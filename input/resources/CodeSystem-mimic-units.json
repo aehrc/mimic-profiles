@@ -14,1519 +14,2024 @@
     "content": "complete",
     "concept": [
         {
-            "code": "#/hpf"
+            "code": "%",
+            "display": "%"
         },
         {
-            "code": "#/lpf"
+            "code": "+/-",
+            "display": "+/-"
         },
         {
-            "code": "#/uL"
+            "code": "-",
+            "display": "-"
         },
         {
-            "code": "%"
+            "code": "___",
+            "display": "___"
         },
         {
-            "code": "% of current infusion rate"
+            "code": "0",
+            "display": "0"
         },
         {
-            "code": "%(50 mg/5 gram)"
+            "code": "(0.06 %)",
+            "display": "(0.06 %)"
         },
         {
-            "code": "(0.06 %)"
+            "code": "(0.6 mg/mL)",
+            "display": "(0.6 mg/mL)"
         },
         {
-            "code": "(0.6 mg/mL)"
+            "code": "0.8 mg",
+            "display": "0.8 mg"
         },
         {
-            "code": "(1,000 mg)"
+            "code": "0/mg",
+            "display": "0/mg"
         },
         {
-            "code": "(10 mg/mL)"
+            "code": "/0mg",
+            "display": "/0mg"
         },
         {
-            "code": "(100 mcg/mL)"
+            "code": "/ 0 Units",
+            "display": "/ 0 Units"
         },
         {
-            "code": "(1250 mg)"
+            "code": "100",
+            "display": "100"
         },
         {
-            "code": "(18 mg/3 mL)"
+            "code": "(1,000 mg)",
+            "display": "(1,000 mg)"
         },
         {
-            "code": "(2 mg/mL)"
+            "code": "1000ML NS",
+            "display": "1000ML NS"
         },
         {
-            "code": "(21)/75 mg (7)"
+            "code": "(100 mcg/mL)",
+            "display": "(100 mcg/mL)"
         },
         {
-            "code": "(24)/75 mg (4)"
+            "code": "-109,000 unit",
+            "display": "-109,000 unit"
         },
         {
-            "code": "(25 mg/2.5gram)"
+            "code": "(10 mg/mL)",
+            "display": "(10 mg/mL)"
         },
         {
-            "code": "(3 mL)"
+            "code": "-120000 unit",
+            "display": "-120000 unit"
         },
         {
-            "code": "(300 mcg)"
+            "code": "(1250 mg)",
+            "display": "(1250 mg)"
         },
         {
-            "code": "(4 mg/mL)"
+            "code": "-125 unit",
+            "display": "-125 unit"
         },
         {
-            "code": "(50 mg/5 gram)"
+            "code": "-12 gram/160 mL",
+            "display": "-12 gram/160 mL"
         },
         {
-            "code": "(500 mg)"
+            "code": "150",
+            "display": "150"
         },
         {
-            "code": "(60 mg/mL)"
+            "code": "15000 unit",
+            "display": "15000 unit"
         },
         {
-            "code": "(65 mg iron)"
+            "code": "180,000 unit",
+            "display": "180,000 unit"
         },
         {
-            "code": "(84)/10 mcg (7)"
+            "code": "180000 unit",
+            "display": "180000 unit"
         },
         {
-            "code": "(morphine)"
+            "code": "(18 mg/3 mL)",
+            "display": "(18 mg/3 mL)"
         },
         {
-            "code": "*IV~mL~mL~"
+            "code": "1 mg/mL",
+            "display": "1 mg/mL"
         },
         {
-            "code": "*IV~mcg~mL~"
+            "code": "200",
+            "display": "200"
         },
         {
-            "code": "+/-"
+            "code": "-200 mg",
+            "display": "-200 mg"
         },
         {
-            "code": "-"
+            "code": "(21)/75 mg (7)",
+            "display": "(21)/75 mg (7)"
         },
         {
-            "code": "-109,000 unit"
+            "code": "(24)/75 mg (4)",
+            "display": "(24)/75 mg (4)"
         },
         {
-            "code": "-12 gram/160 mL"
+            "code": "250",
+            "display": "250"
         },
         {
-            "code": "-120000 unit"
+            "code": "(25 mg/2.5gram)",
+            "display": "(25 mg/2.5gram)"
         },
         {
-            "code": "-125 unit"
+            "code": "(2 mg/mL)",
+            "display": "(2 mg/mL)"
         },
         {
-            "code": "-200 mg"
+            "code": "300",
+            "display": "300"
         },
         {
-            "code": "-60000 unit"
+            "code": "(300 mcg)",
+            "display": "(300 mcg)"
         },
         {
-            "code": "/ 0 Units"
+            "code": "350",
+            "display": "350"
         },
         {
-            "code": "/0mg"
+            "code": "(3 mL)",
+            "display": "(3 mL)"
         },
         {
-            "code": "/hour"
+            "code": "400",
+            "display": "400"
         },
         {
-            "code": "/hpf"
+            "code": "450",
+            "display": "450"
         },
         {
-            "code": "/hr"
+            "code": "(4 mg/mL)",
+            "display": "(4 mg/mL)"
         },
         {
-            "code": "/min"
+            "code": "4ML",
+            "display": "4ML"
         },
         {
-            "code": "/mm3"
+            "code": "50",
+            "display": "50"
         },
         {
-            "code": "0"
+            "code": "500",
+            "display": "500"
         },
         {
-            "code": "0.8 mg"
+            "code": "(500 mg)",
+            "display": "(500 mg)"
         },
         {
-            "code": "0/mg"
+            "code": "%(50 mg/5 gram)",
+            "display": "%(50 mg/5 gram)"
         },
         {
-            "code": "1 mg/mL"
+            "code": "(50 mg/5 gram)",
+            "display": "(50 mg/5 gram)"
         },
         {
-            "code": "100"
+            "code": "50 units/ml",
+            "display": "50 units/ml"
         },
         {
-            "code": "1000ML NS"
+            "code": "550",
+            "display": "550"
         },
         {
-            "code": "150"
+            "code": "600",
+            "display": "600"
         },
         {
-            "code": "15000 unit"
+            "code": "-60000 unit",
+            "display": "-60000 unit"
         },
         {
-            "code": "180,000 unit"
+            "code": "60mg",
+            "display": "60mg"
         },
         {
-            "code": "180000 unit"
+            "code": "(60 mg/mL)",
+            "display": "(60 mg/mL)"
         },
         {
-            "code": "200"
+            "code": "61500 unit",
+            "display": "61500 unit"
         },
         {
-            "code": "250"
+            "code": "(65 mg iron)",
+            "display": "(65 mg iron)"
         },
         {
-            "code": "300"
+            "code": "(84)/10 mcg (7)",
+            "display": "(84)/10 mcg (7)"
         },
         {
-            "code": "350"
+            "code": "AERA",
+            "display": "AERA"
         },
         {
-            "code": "400"
+            "code": "AERO",
+            "display": "AERO"
         },
         {
-            "code": "450"
+            "code": "AMP",
+            "display": "AMP"
         },
         {
-            "code": "4ML"
+            "code": "appl",
+            "display": "appl"
         },
         {
-            "code": "50"
+            "code": "Appl",
+            "display": "Appl"
         },
         {
-            "code": "50 units/ml"
+            "code": "application",
+            "display": "application"
         },
         {
-            "code": "500"
+            "code": "bag",
+            "display": "bag"
         },
         {
-            "code": "550"
+            "code": "BAG",
+            "display": "BAG"
         },
         {
-            "code": "600"
+            "code": "BAGS",
+            "display": "BAGS"
         },
         {
-            "code": "60mg"
+            "code": "billion cell",
+            "display": "billion cell"
         },
         {
-            "code": "61500 unit"
+            "code": "bo",
+            "display": "bo"
         },
         {
-            "code": "AERA"
+            "code": "bottle",
+            "display": "bottle"
         },
         {
-            "code": "AERO"
+            "code": "Bottle",
+            "display": "Bottle"
         },
         {
-            "code": "AMP"
+            "code": "bpm",
+            "display": "bpm"
         },
         {
-            "code": "Appl"
+            "code": "btl",
+            "display": "btl"
         },
         {
-            "code": "BAG"
+            "code": "BTL",
+            "display": "BTL"
         },
         {
-            "code": "BAGS"
+            "code": "BU",
+            "display": "BU"
         },
         {
-            "code": "BTL"
+            "code": "BULK",
+            "display": "BULK"
         },
         {
-            "code": "BU"
+            "code": "\u00b0C",
+            "display": "\u00b0C"
         },
         {
-            "code": "BULK"
+            "code": "CADD",
+            "display": "CADD"
         },
         {
-            "code": "Bottle"
+            "code": "CAN",
+            "display": "CAN"
         },
         {
-            "code": "CADD"
+            "code": "cap",
+            "display": "cap"
         },
         {
-            "code": "CAN"
+            "code": "Cap",
+            "display": "Cap"
         },
         {
-            "code": "CAP"
+            "code": "CAP",
+            "display": "CAP"
         },
         {
-            "code": "CART"
+            "code": "caps",
+            "display": "caps"
         },
         {
-            "code": "CON"
+            "code": "capsule",
+            "display": "capsule"
         },
         {
-            "code": "CONC"
+            "code": "capsules",
+            "display": "capsules"
         },
         {
-            "code": "CPT"
+            "code": "CART",
+            "display": "CART"
         },
         {
-            "code": "CRE"
+            "code": "cc",
+            "display": "cc"
         },
         {
-            "code": "CREA"
+            "code": "cc/hr",
+            "display": "cc/hr"
         },
         {
-            "code": "CUP"
+            "code": "cell",
+            "display": "cell"
         },
         {
-            "code": "Cap"
+            "code": "chamber",
+            "display": "chamber"
         },
         {
-            "code": "DBTL"
+            "code": "cm",
+            "display": "cm"
         },
         {
-            "code": "DEV"
+            "code": "cm3",
+            "display": "cm3"
         },
         {
-            "code": "DOSE"
+            "code": "cmH2O",
+            "display": "cmH2O"
         },
         {
-            "code": "DROP"
+            "code": "cmH2O/L/seconds",
+            "display": "cmH2O/L/seconds"
         },
         {
-            "code": "DROPS"
+            "code": "CON",
+            "display": "CON"
         },
         {
-            "code": "DROPs"
+            "code": "CONC",
+            "display": "CONC"
         },
         {
-            "code": "DRP"
+            "code": "cp",
+            "display": "cp"
         },
         {
-            "code": "Degree"
+            "code": "cps",
+            "display": "cps"
         },
         {
-            "code": "Dose"
+            "code": "CPT",
+            "display": "CPT"
         },
         {
-            "code": "Drop"
+            "code": "CRE",
+            "display": "CRE"
         },
         {
-            "code": "EA"
+            "code": "CREA",
+            "display": "CREA"
         },
         {
-            "code": "EFT"
+            "code": "CUP",
+            "display": "CUP"
         },
         {
-            "code": "ELIX"
+            "code": "DBTL",
+            "display": "DBTL"
         },
         {
-            "code": "ENE"
+            "code": "Degree",
+            "display": "Degree"
         },
         {
-            "code": "ENEMA"
+            "code": "DEV",
+            "display": "DEV"
         },
         {
-            "code": "ERT"
+            "code": "dose",
+            "display": "dose"
         },
         {
-            "code": "EU/dL"
+            "code": "Dose",
+            "display": "Dose"
         },
         {
-            "code": "Enema"
+            "code": "DOSE",
+            "display": "DOSE"
         },
         {
-            "code": "Enemas"
+            "code": "doses",
+            "display": "doses"
         },
         {
-            "code": "FILM"
+            "code": "drop",
+            "display": "drop"
         },
         {
-            "code": "Floor Stock Bag"
+            "code": "Drop",
+            "display": "Drop"
         },
         {
-            "code": "G"
+            "code": "DROP",
+            "display": "DROP"
         },
         {
-            "code": "GEL"
+            "code": "drop ou",
+            "display": "drop ou"
         },
         {
-            "code": "GPL"
+            "code": "drops",
+            "display": "drops"
         },
         {
-            "code": "GR"
+            "code": "DROPs",
+            "display": "DROPs"
         },
         {
-            "code": "GRAM"
+            "code": "DROPS",
+            "display": "DROPS"
         },
         {
-            "code": "GTT"
+            "code": "DRP",
+            "display": "DRP"
         },
         {
-            "code": "GUM"
+            "code": "dynes*sec/cm5",
+            "display": "dynes*sec/cm5"
         },
         {
-            "code": "Grams"
+            "code": "dynes*sec/cm5/m2",
+            "display": "dynes*sec/cm5/m2"
         },
         {
-            "code": "HALF TAB"
+            "code": "dynes.sec.cm-5/m2",
+            "display": "dynes.sec.cm-5/m2"
         },
         {
-            "code": "INCH"
+            "code": "ea",
+            "display": "ea"
         },
         {
-            "code": "INH"
+            "code": "EA",
+            "display": "EA"
         },
         {
-            "code": "INJ"
+            "code": "EFT",
+            "display": "EFT"
         },
         {
-            "code": "IU"
+            "code": "ELIX",
+            "display": "ELIX"
         },
         {
-            "code": "IU/L"
+            "code": "ENE",
+            "display": "ENE"
         },
         {
-            "code": "IU/mL"
+            "code": "enema",
+            "display": "enema"
         },
         {
-            "code": "Inch"
+            "code": "Enema",
+            "display": "Enema"
         },
         {
-            "code": "International Units"
+            "code": "ENEMA",
+            "display": "ENEMA"
         },
         {
-            "code": "JAR"
+            "code": "Enemas",
+            "display": "Enemas"
         },
         {
-            "code": "K/uL"
+            "code": "ERT",
+            "display": "ERT"
         },
         {
-            "code": "KIT"
+            "code": "EU/dL",
+            "display": "EU/dL"
         },
         {
-            "code": "L"
+            "code": "\u00b0F",
+            "display": "\u00b0F"
         },
         {
-            "code": "L/min"
+            "code": "film",
+            "display": "film"
         },
         {
-            "code": "L/min/m2"
+            "code": "FILM",
+            "display": "FILM"
         },
         {
-            "code": "LIQ"
+            "code": "fL",
+            "display": "fL"
         },
         {
-            "code": "LOT"
+            "code": "Floor Stock Bag",
+            "display": "Floor Stock Bag"
         },
         {
-            "code": "LOZ"
+            "code": "g",
+            "display": "g"
         },
         {
-            "code": "Liters"
+            "code": "G",
+            "display": "G"
         },
         {
-            "code": "MCG"
+            "code": "g\\ 0 g",
+            "display": "g\\ 0 g"
         },
         {
-            "code": "MCG/KG/MIN"
+            "code": "g/1L NS",
+            "display": "g/1L NS"
         },
         {
-            "code": "MD to order daily dose"
+            "code": "g/dl",
+            "display": "g/dl"
         },
         {
-            "code": "MG"
+            "code": "g/dL",
+            "display": "g/dL"
         },
         {
-            "code": "MILLI UNITS/MIN"
+            "code": "GEL",
+            "display": "GEL"
         },
         {
-            "code": "ML"
+            "code": "gg",
+            "display": "gg"
         },
         {
-            "code": "MPL"
+            "code": "g/h",
+            "display": "g/h"
         },
         {
-            "code": "MU"
+            "code": "g/hr",
+            "display": "g/hr"
         },
         {
-            "code": "Mcg/kg/hr"
+            "code": "g/kg",
+            "display": "g/kg"
         },
         {
-            "code": "Mg"
+            "code": "gm",
+            "display": "gm"
         },
         {
-            "code": "Mg/hr"
+            "code": "gmgm",
+            "display": "gmgm"
         },
         {
-            "code": "Million Cells"
+            "code": "gm/hr",
+            "display": "gm/hr"
         },
         {
-            "code": "Million Units"
+            "code": "GPL",
+            "display": "GPL"
         },
         {
-            "code": "N/A"
+            "code": "gr",
+            "display": "gr"
         },
         {
-            "code": "NEB"
+            "code": "GR",
+            "display": "GR"
         },
         {
-            "code": "NEEDLE"
+            "code": "gram",
+            "display": "gram"
         },
         {
-            "code": "NG/"
+            "code": "GRAM",
+            "display": "GRAM"
         },
         {
-            "code": "Neb"
+            "code": "gram/100 mL",
+            "display": "gram/100 mL"
         },
         {
-            "code": "Notify"
+            "code": "gram/118 mL",
+            "display": "gram/118 mL"
         },
         {
-            "code": "OINT"
+            "code": "gram/30 mL",
+            "display": "gram/30 mL"
         },
         {
-            "code": "PACK"
+            "code": "grams",
+            "display": "grams"
         },
         {
-            "code": "PAD"
+            "code": "Grams",
+            "display": "Grams"
         },
         {
-            "code": "PE (Phenytoin Sodium Equivalent)"
+            "code": "grams/hour",
+            "display": "grams/hour"
         },
         {
-            "code": "PEN"
+            "code": "grams/min",
+            "display": "grams/min"
         },
         {
-            "code": "PKG"
+            "code": "gtt",
+            "display": "gtt"
         },
         {
-            "code": "PKT"
+            "code": "GTT",
+            "display": "GTT"
         },
         {
-            "code": "PPN Bag"
+            "code": "GUM",
+            "display": "GUM"
         },
         {
-            "code": "PTCH"
+            "code": "gummies",
+            "display": "gummies"
         },
         {
-            "code": "PTCHS"
+            "code": "HALF TAB",
+            "display": "HALF TAB"
         },
         {
-            "code": "PUFF"
+            "code": "/hour",
+            "display": "/hour"
         },
         {
-            "code": "PUFFS"
+            "code": "hour",
+            "display": "hour"
         },
         {
-            "code": "PUMP"
+            "code": "#/hpf",
+            "display": "#/hpf"
         },
         {
-            "code": "PWDR"
+            "code": "/hpf",
+            "display": "/hpf"
         },
         {
-            "code": "Patch"
+            "code": "/hr",
+            "display": "/hr"
         },
         {
-            "code": "Pos/Neg"
+            "code": "hrs",
+            "display": "hrs"
         },
         {
-            "code": "Quarter Tab"
+            "code": "in",
+            "display": "in"
         },
         {
-            "code": "RING"
+            "code": "Inch",
+            "display": "Inch"
         },
         {
-            "code": "RPM"
+            "code": "INCH",
+            "display": "INCH"
         },
         {
-            "code": "Ratio"
+            "code": "INH",
+            "display": "INH"
         },
         {
-            "code": "SBTL"
+            "code": "INJ",
+            "display": "INJ"
         },
         {
-            "code": "SCOOP"
+            "code": "insp/min",
+            "display": "insp/min"
         },
         {
-            "code": "SOLN"
+            "code": "International Units",
+            "display": "International Units"
         },
         {
-            "code": "SPG"
+            "code": "IU",
+            "display": "IU"
         },
         {
-            "code": "SPRY"
+            "code": "iu/0iu",
+            "display": "iu/0iu"
         },
         {
-            "code": "STCK"
+            "code": "IU/L",
+            "display": "IU/L"
         },
         {
-            "code": "STRP"
+            "code": "IU/mL",
+            "display": "IU/mL"
         },
         {
-            "code": "SUPP"
+            "code": "*IV~mcg~mL~",
+            "display": "*IV~mcg~mL~"
         },
         {
-            "code": "SUSP"
+            "code": "*IV~mL~mL~",
+            "display": "*IV~mL~mL~"
         },
         {
-            "code": "SWAB"
+            "code": "JAR",
+            "display": "JAR"
         },
         {
-            "code": "SYR"
+            "code": "kcal/day",
+            "display": "kcal/day"
         },
         {
-            "code": "SYRP"
+            "code": "kcal/kg",
+            "display": "kcal/kg"
         },
         {
-            "code": "Score"
+            "code": "kg",
+            "display": "kg"
         },
         {
-            "code": "Syringe"
+            "code": "KIT",
+            "display": "KIT"
         },
         {
-            "code": "TAB"
+            "code": "K/uL",
+            "display": "K/uL"
         },
         {
-            "code": "TC"
+            "code": "L",
+            "display": "L"
         },
         {
-            "code": "TPN Bag"
+            "code": "lbs",
+            "display": "lbs"
         },
         {
-            "code": "TROC"
+            "code": "LIQ",
+            "display": "LIQ"
         },
         {
-            "code": "TUBE"
+            "code": "Liters",
+            "display": "Liters"
         },
         {
-            "code": "Tab"
+            "code": "L/min",
+            "display": "L/min"
         },
         {
-            "code": "U"
+            "code": "L/min/m2",
+            "display": "L/min/m2"
         },
         {
-            "code": "U/L"
+            "code": "log10 copies/mL",
+            "display": "log10 copies/mL"
         },
         {
-            "code": "U/g/Hb"
+            "code": "log10 cop/mL",
+            "display": "log10 cop/mL"
         },
         {
-            "code": "U/hr"
+            "code": "log10 IU/mL",
+            "display": "log10 IU/mL"
         },
         {
-            "code": "U/mL"
+            "code": "LOT",
+            "display": "LOT"
         },
         {
-            "code": "UDCUP"
+            "code": "LOZ",
+            "display": "LOZ"
         },
         {
-            "code": "UNIT"
+            "code": "lozenge",
+            "display": "lozenge"
         },
         {
-            "code": "UNIT/1000ML"
+            "code": "lozenges",
+            "display": "lozenges"
         },
         {
-            "code": "UNIT/HR"
+            "code": "#/lpf",
+            "display": "#/lpf"
         },
         {
-            "code": "UNIT/KG"
+            "code": "mA",
+            "display": "mA"
         },
         {
-            "code": "UNIT/kg/HR"
+            "code": "mcg",
+            "display": "mcg"
         },
         {
-            "code": "UNITS"
+            "code": "MCG",
+            "display": "MCG"
         },
         {
-            "code": "Umits"
+            "code": "mcg/0.5",
+            "display": "mcg/0.5"
         },
         {
-            "code": "Unit"
+            "code": "mcg\\ 0 mcg",
+            "display": "mcg\\ 0 mcg"
         },
         {
-            "code": "Units"
+            "code": "mcg/2 mL",
+            "display": "mcg/2 mL"
         },
         {
-            "code": "Units Humalog"
+            "code": "mcg/actuation",
+            "display": "mcg/actuation"
         },
         {
-            "code": "Units Insulin 70 / 30"
+            "code": "mcg/day",
+            "display": "mcg/day"
         },
         {
-            "code": "Units Insulin Glargine"
+            "code": "mcg/dose",
+            "display": "mcg/dose"
         },
         {
-            "code": "Units Insulin NPH"
+            "code": "mcg/h",
+            "display": "mcg/h"
         },
         {
-            "code": "Units Regular"
+            "code": "mcg/hour",
+            "display": "mcg/hour"
         },
         {
-            "code": "Units VWF:RCo"
+            "code": "mcg/hr",
+            "display": "mcg/hr"
         },
         {
-            "code": "Units/Hr"
+            "code": "mcg/kg",
+            "display": "mcg/kg"
         },
         {
-            "code": "Units/Liter"
+            "code": "mcg/kg/hour",
+            "display": "mcg/kg/hour"
         },
         {
-            "code": "Units/kg"
+            "code": "mcg/kg/hr",
+            "display": "mcg/kg/hr"
         },
         {
-            "code": "VIAL"
+            "code": "Mcg/kg/hr",
+            "display": "Mcg/kg/hr"
         },
         {
-            "code": "Vial"
+            "code": "mcg/kg/min",
+            "display": "mcg/kg/min"
         },
         {
-            "code": "WAF"
+            "code": "MCG/KG/MIN",
+            "display": "MCG/KG/MIN"
         },
         {
-            "code": "_UNIT"
+            "code": "mcg-mg/mL",
+            "display": "mcg-mg/mL"
         },
         {
-            "code": "___"
+            "code": "mcg/min",
+            "display": "mcg/min"
         },
         {
-            "code": "appl"
+            "code": "mcg/ml",
+            "display": "mcg/ml"
         },
         {
-            "code": "application"
+            "code": "mcg/mL",
+            "display": "mcg/mL"
         },
         {
-            "code": "bag"
+            "code": "mcg'ml-mg/ml",
+            "display": "mcg'ml-mg/ml"
         },
         {
-            "code": "billion cell"
+            "code": "mcg/spray",
+            "display": "mcg/spray"
         },
         {
-            "code": "bo"
+            "code": "mch/kg/min",
+            "display": "mch/kg/min"
         },
         {
-            "code": "bottle"
+            "code": "mcq",
+            "display": "mcq"
         },
         {
-            "code": "bpm"
+            "code": "MD to order daily dose",
+            "display": "MD to order daily dose"
         },
         {
-            "code": "btl"
+            "code": "meq",
+            "display": "meq"
         },
         {
-            "code": "cap"
+            "code": "mEq",
+            "display": "mEq"
         },
         {
-            "code": "caps"
+            "code": "mEq.",
+            "display": "mEq."
         },
         {
-            "code": "capsule"
+            "code": "mEQ",
+            "display": "mEQ"
         },
         {
-            "code": "capsules"
+            "code": "mEq / 100 mL SW",
+            "display": "mEq / 100 mL SW"
         },
         {
-            "code": "cc"
+            "code": "mEq/100 mL SW",
+            "display": "mEq/100 mL SW"
         },
         {
-            "code": "cc/hr"
+            "code": "mEq/15 mL",
+            "display": "mEq/15 mL"
         },
         {
-            "code": "cell"
+            "code": "mEq/200 mL NS",
+            "display": "mEq/200 mL NS"
         },
         {
-            "code": "chamber"
+            "code": "mEq / 250 mL D5W",
+            "display": "mEq / 250 mL D5W"
         },
         {
-            "code": "cm"
+            "code": "mEq / 250 mL NS",
+            "display": "mEq / 250 mL NS"
         },
         {
-            "code": "cm3"
+            "code": "mEq / 500 mL D5W",
+            "display": "mEq / 500 mL D5W"
         },
         {
-            "code": "cmH2O"
+            "code": "mEq / 500 mL NS",
+            "display": "mEq / 500 mL NS"
         },
         {
-            "code": "cmH2O/L/seconds"
+            "code": "mEq./hour",
+            "display": "mEq./hour"
         },
         {
-            "code": "cp"
+            "code": "mEq / hr",
+            "display": "mEq / hr"
         },
         {
-            "code": "cps"
+            "code": "mEq/hr",
+            "display": "mEq/hr"
         },
         {
-            "code": "dose"
+            "code": "mEq in 1L",
+            "display": "mEq in 1L"
         },
         {
-            "code": "doses"
+            "code": "mEq/L",
+            "display": "mEq/L"
         },
         {
-            "code": "drop"
+            "code": "mEqmEq",
+            "display": "mEqmEq"
         },
         {
-            "code": "drop ou"
+            "code": "mg",
+            "display": "mg"
         },
         {
-            "code": "drops"
+            "code": "Mg",
+            "display": "Mg"
         },
         {
-            "code": "dynes*sec/cm5"
+            "code": "MG",
+            "display": "MG"
         },
         {
-            "code": "dynes*sec/cm5/m2"
+            "code": "mg/0.3 mL",
+            "display": "mg/0.3 mL"
         },
         {
-            "code": "dynes.sec.cm-5/m2"
+            "code": "mg/0.5 mL",
+            "display": "mg/0.5 mL"
         },
         {
-            "code": "ea"
+            "code": "mg/0.67 mL",
+            "display": "mg/0.67 mL"
         },
         {
-            "code": "enema"
+            "code": "mg/0.6mL",
+            "display": "mg/0.6mL"
         },
         {
-            "code": "fL"
+            "code": "mg / 0 mg",
+            "display": "mg / 0 mg"
         },
         {
-            "code": "film"
+            "code": "mg/ 0 mg",
+            "display": "mg/ 0 mg"
         },
         {
-            "code": "g"
+            "code": "mg/0 mg",
+            "display": "mg/0 mg"
         },
         {
-            "code": "g/1L NS"
+            "code": "mg\\ 0 mg",
+            "display": "mg\\ 0 mg"
         },
         {
-            "code": "g/dL"
+            "code": "mg/0mg",
+            "display": "mg/0mg"
         },
         {
-            "code": "g/dl"
+            "code": "mg/0mgs",
+            "display": "mg/0mgs"
         },
         {
-            "code": "g/h"
+            "code": "mg/100mg",
+            "display": "mg/100mg"
         },
         {
-            "code": "g/hr"
+            "code": "mg/100 mL",
+            "display": "mg/100 mL"
         },
         {
-            "code": "g/kg"
+            "code": "mg\\ 150 mg",
+            "display": "mg\\ 150 mg"
         },
         {
-            "code": "g\\ 0 g"
+            "code": "mg/15 mL",
+            "display": "mg/15 mL"
         },
         {
-            "code": "gg"
+            "code": "mg (1 mL)",
+            "display": "mg (1 mL)"
         },
         {
-            "code": "gm"
+            "code": "mg/20 mL",
+            "display": "mg/20 mL"
         },
         {
-            "code": "gm/hr"
+            "code": "mg/24h",
+            "display": "mg/24h"
         },
         {
-            "code": "gmgm"
+            "code": "mg/24 hour",
+            "display": "mg/24 hour"
         },
         {
-            "code": "gr"
+            "code": "mg/24 hr",
+            "display": "mg/24 hr"
         },
         {
-            "code": "gram"
+            "code": "mg/24hr",
+            "display": "mg/24hr"
         },
         {
-            "code": "gram/100 mL"
+            "code": "mg/250 ml",
+            "display": "mg/250 ml"
         },
         {
-            "code": "gram/118 mL"
+            "code": "mg/250 mL",
+            "display": "mg/250 mL"
         },
         {
-            "code": "gram/30 mL"
+            "code": "mg/2.625 mL",
+            "display": "mg/2.625 mL"
         },
         {
-            "code": "grams"
+            "code": "mg/2 mL",
+            "display": "mg/2 mL"
         },
         {
-            "code": "grams/hour"
+            "code": "mg-35 mcg (28)",
+            "display": "mg-35 mcg (28)"
         },
         {
-            "code": "grams/min"
+            "code": "mg/3 mL",
+            "display": "mg/3 mL"
         },
         {
-            "code": "gtt"
+            "code": "mg /40 mg",
+            "display": "mg /40 mg"
         },
         {
-            "code": "gummies"
+            "code": "mg/40mg",
+            "display": "mg/40mg"
         },
         {
-            "code": "hour"
+            "code": "mg\\ 40mg",
+            "display": "mg\\ 40mg"
         },
         {
-            "code": "hrs"
+            "code": "mg\\40 mg",
+            "display": "mg\\40 mg"
         },
         {
-            "code": "in"
+            "code": "mg/5",
+            "display": "mg/5"
         },
         {
-            "code": "insp/min"
+            "code": "mg/500 ml",
+            "display": "mg/500 ml"
         },
         {
-            "code": "iu/0iu"
+            "code": "mg/50 ml",
+            "display": "mg/50 ml"
         },
         {
-            "code": "kcal/day"
+            "code": "mg/50 mL",
+            "display": "mg/50 mL"
         },
         {
-            "code": "kcal/kg"
+            "code": "mg/54mg",
+            "display": "mg/54mg"
         },
         {
-            "code": "kg"
+            "code": "mg/5 mL",
+            "display": "mg/5 mL"
         },
         {
-            "code": "lbs"
+            "code": "mg/5 mL (5 mL)",
+            "display": "mg/5 mL (5 mL)"
         },
         {
-            "code": "log10 IU/mL"
+            "code": "mg/61mg",
+            "display": "mg/61mg"
         },
         {
-            "code": "log10 cop/mL"
+            "code": "mg/6 mL (6 mL)",
+            "display": "mg/6 mL (6 mL)"
         },
         {
-            "code": "log10 copies/mL"
+            "code": "mg (950 mg)",
+            "display": "mg (950 mg)"
         },
         {
-            "code": "lozenge"
+            "code": "mg/960mg",
+            "display": "mg/960mg"
         },
         {
-            "code": "lozenges"
+            "code": "mg\\960 mg",
+            "display": "mg\\960 mg"
         },
         {
-            "code": "m/uL"
+            "code": "mg/actuation",
+            "display": "mg/actuation"
         },
         {
-            "code": "mA"
+            "code": "mg base)/3 mL",
+            "display": "mg base)/3 mL"
         },
         {
-            "code": "mEQ"
+            "code": "mg/day",
+            "display": "mg/day"
         },
         {
-            "code": "mEq"
+            "code": "mg/dL",
+            "display": "mg/dL"
         },
         {
-            "code": "mEq / 100 mL SW"
+            "code": "mg/dose",
+            "display": "mg/dose"
         },
         {
-            "code": "mEq / 250 mL D5W"
+            "code": "mg ER",
+            "display": "mg ER"
         },
         {
-            "code": "mEq / 250 mL NS"
+            "code": "mg/g",
+            "display": "mg/g"
         },
         {
-            "code": "mEq / 500 mL D5W"
+            "code": "mg/h",
+            "display": "mg/h"
         },
         {
-            "code": "mEq / 500 mL NS"
+            "code": "mg/hour",
+            "display": "mg/hour"
         },
         {
-            "code": "mEq / hr"
+            "code": "mg/hr",
+            "display": "mg/hr"
         },
         {
-            "code": "mEq in 1L"
+            "code": "Mg/hr",
+            "display": "Mg/hr"
         },
         {
-            "code": "mEq."
+            "code": "mg/kg",
+            "display": "mg/kg"
         },
         {
-            "code": "mEq./hour"
+            "code": "mg/kg/hour",
+            "display": "mg/kg/hour"
         },
         {
-            "code": "mEq/100 mL SW"
+            "code": "mg/kg/hr",
+            "display": "mg/kg/hr"
         },
         {
-            "code": "mEq/15 mL"
+            "code": "mg/kg/min",
+            "display": "mg/kg/min"
         },
         {
-            "code": "mEq/200 mL NS"
+            "code": "mg/L",
+            "display": "mg/L"
         },
         {
-            "code": "mEq/L"
+            "code": "mg/m2",
+            "display": "mg/m2"
         },
         {
-            "code": "mEq/hr"
+            "code": "mg-mcg",
+            "display": "mg-mcg"
         },
         {
-            "code": "mEqmEq"
+            "code": "mg-mg",
+            "display": "mg-mg"
         },
         {
-            "code": "mIU/mL"
+            "code": "mg/mg",
+            "display": "mg/mg"
         },
         {
-            "code": "mL"
+            "code": "mgmg",
+            "display": "mgmg"
         },
         {
-            "code": "mL UDCUP"
+            "code": "mg-mg-mcg-mg",
+            "display": "mg-mg-mcg-mg"
         },
         {
-            "code": "mL/Day"
+            "code": "mg//min",
+            "display": "mg//min"
         },
         {
-            "code": "mL/Lumen"
+            "code": "mg/min",
+            "display": "mg/min"
         },
         {
-            "code": "mL/Syringe"
+            "code": "mg/ml",
+            "display": "mg/ml"
         },
         {
-            "code": "mL/beat"
+            "code": "mg/mL",
+            "display": "mg/mL"
         },
         {
-            "code": "mL/h"
+            "code": "mg/mL (1 %)",
+            "display": "mg/mL (1 %)"
         },
         {
-            "code": "mL/hour"
+            "code": "mg/mL (4 %)",
+            "display": "mg/mL (4 %)"
         },
         {
-            "code": "mL/hr"
+            "code": "mg/omg",
+            "display": "mg/omg"
         },
         {
-            "code": "mL/kg/hour"
+            "code": "mg or 92mg",
+            "display": "mg or 92mg"
         },
         {
-            "code": "mL/m2"
+            "code": "mg PE",
+            "display": "mg PE"
         },
         {
-            "code": "mL/mL"
+            "code": "mg PE/kg",
+            "display": "mg PE/kg"
         },
         {
-            "code": "mL/min"
+            "code": "mgs/min",
+            "display": "mgs/min"
         },
         {
-            "code": "mOsm/kg"
+            "code": "milligrams",
+            "display": "milligrams"
         },
         {
-            "code": "mV"
+            "code": "Million Cells",
+            "display": "Million Cells"
         },
         {
-            "code": "mcg"
+            "code": "million units",
+            "display": "million units"
         },
         {
-            "code": "mcg'ml-mg/ml"
+            "code": "Million Units",
+            "display": "Million Units"
         },
         {
-            "code": "mcg-mg/mL"
+            "code": "MILLI UNITS/MIN",
+            "display": "MILLI UNITS/MIN"
         },
         {
-            "code": "mcg/0.5"
+            "code": "/min",
+            "display": "/min"
         },
         {
-            "code": "mcg/2 mL"
+            "code": "min",
+            "display": "min"
         },
         {
-            "code": "mcg/actuation"
+            "code": "mIU/mL",
+            "display": "mIU/mL"
         },
         {
-            "code": "mcg/day"
+            "code": "ml",
+            "display": "ml"
         },
         {
-            "code": "mcg/dose"
+            "code": "mL",
+            "display": "mL"
         },
         {
-            "code": "mcg/h"
+            "code": "ML",
+            "display": "ML"
         },
         {
-            "code": "mcg/hour"
+            "code": "mL/beat",
+            "display": "mL/beat"
         },
         {
-            "code": "mcg/hr"
+            "code": "ml/day",
+            "display": "ml/day"
         },
         {
-            "code": "mcg/kg"
+            "code": "mL/Day",
+            "display": "mL/Day"
         },
         {
-            "code": "mcg/kg/hour"
+            "code": "mL/h",
+            "display": "mL/h"
         },
         {
-            "code": "mcg/kg/hr"
+            "code": "mL/hour",
+            "display": "mL/hour"
         },
         {
-            "code": "mcg/kg/min"
+            "code": "ml/hr",
+            "display": "ml/hr"
         },
         {
-            "code": "mcg/mL"
+            "code": "mL/hr",
+            "display": "mL/hr"
         },
         {
-            "code": "mcg/min"
+            "code": "ml/kg",
+            "display": "ml/kg"
         },
         {
-            "code": "mcg/ml"
+            "code": "mL/kg/hour",
+            "display": "mL/kg/hour"
         },
         {
-            "code": "mcg/spray"
+            "code": "mL/Lumen",
+            "display": "mL/Lumen"
         },
         {
-            "code": "mcg\\ 0 mcg"
+            "code": "mL/m2",
+            "display": "mL/m2"
         },
         {
-            "code": "mch/kg/min"
+            "code": "ml/min",
+            "display": "ml/min"
         },
         {
-            "code": "mcq"
+            "code": "mL/min",
+            "display": "mL/min"
         },
         {
-            "code": "meq"
+            "code": "mL/mL",
+            "display": "mL/mL"
         },
         {
-            "code": "mg"
+            "code": "mls",
+            "display": "mls"
         },
         {
-            "code": "mg (1 mL)"
+            "code": "mL/Syringe",
+            "display": "mL/Syringe"
         },
         {
-            "code": "mg (950 mg)"
+            "code": "mL UDCUP",
+            "display": "mL UDCUP"
         },
         {
-            "code": "mg / 0 mg"
+            "code": "/mm3",
+            "display": "/mm3"
         },
         {
-            "code": "mg /40 mg"
+            "code": "mm^3",
+            "display": "mm^3"
         },
         {
-            "code": "mg ER"
+            "code": "mm Hg",
+            "display": "mm Hg"
         },
         {
-            "code": "mg PE"
+            "code": "mmHg",
+            "display": "mmHg"
         },
         {
-            "code": "mg PE/kg"
+            "code": "mmHg.",
+            "display": "mmHg."
         },
         {
-            "code": "mg base)/3 mL"
+            "code": "mm/hr",
+            "display": "mm/hr"
         },
         {
-            "code": "mg or 92mg"
+            "code": "mmol",
+            "display": "mmol"
         },
         {
-            "code": "mg-35 mcg (28)"
+            "code": "mmol/L",
+            "display": "mmol/L"
         },
         {
-            "code": "mg-mcg"
+            "code": "(morphine)",
+            "display": "(morphine)"
         },
         {
-            "code": "mg-mg"
+            "code": "mOsm/kg",
+            "display": "mOsm/kg"
         },
         {
-            "code": "mg-mg-mcg-mg"
+            "code": "MPL",
+            "display": "MPL"
         },
         {
-            "code": "mg/ 0 mg"
+            "code": "msec",
+            "display": "msec"
         },
         {
-            "code": "mg//min"
+            "code": "MU",
+            "display": "MU"
         },
         {
-            "code": "mg/0 mg"
+            "code": "m/uL",
+            "display": "m/uL"
         },
         {
-            "code": "mg/0.3 mL"
+            "code": "mV",
+            "display": "mV"
         },
         {
-            "code": "mg/0.5 mL"
+            "code": "N/A",
+            "display": "N/A"
         },
         {
-            "code": "mg/0.67 mL"
+            "code": "nanogram",
+            "display": "nanogram"
         },
         {
-            "code": "mg/0.6mL"
+            "code": "nanograms/kg/minute",
+            "display": "nanograms/kg/minute"
         },
         {
-            "code": "mg/0mg"
+            "code": "neb",
+            "display": "neb"
         },
         {
-            "code": "mg/0mgs"
+            "code": "Neb",
+            "display": "Neb"
         },
         {
-            "code": "mg/100 mL"
+            "code": "NEB",
+            "display": "NEB"
         },
         {
-            "code": "mg/100mg"
+            "code": "NEEDLE",
+            "display": "NEEDLE"
         },
         {
-            "code": "mg/15 mL"
+            "code": "NG/",
+            "display": "NG/"
         },
         {
-            "code": "mg/2 mL"
+            "code": "ng/dL",
+            "display": "ng/dL"
         },
         {
-            "code": "mg/2.625 mL"
+            "code": "ng/kg/min",
+            "display": "ng/kg/min"
         },
         {
-            "code": "mg/20 mL"
+            "code": "ng/mL",
+            "display": "ng/mL"
         },
         {
-            "code": "mg/24 hour"
+            "code": "ng/mL DDU",
+            "display": "ng/mL DDU"
         },
         {
-            "code": "mg/24 hr"
+            "code": "ng/mL FEU",
+            "display": "ng/mL FEU"
         },
         {
-            "code": "mg/24h"
+            "code": "nL",
+            "display": "nL"
         },
         {
-            "code": "mg/24hr"
+            "code": "nmol/L",
+            "display": "nmol/L"
         },
         {
-            "code": "mg/250 mL"
+            "code": "nMol/ml/min",
+            "display": "nMol/ml/min"
         },
         {
-            "code": "mg/250 ml"
+            "code": "Notify",
+            "display": "Notify"
         },
         {
-            "code": "mg/3 mL"
+            "code": "% of current infusion rate",
+            "display": "% of current infusion rate"
         },
         {
-            "code": "mg/40mg"
+            "code": "OINT",
+            "display": "OINT"
         },
         {
-            "code": "mg/5"
+            "code": "ounces",
+            "display": "ounces"
         },
         {
-            "code": "mg/5 mL"
+            "code": "PACK",
+            "display": "PACK"
         },
         {
-            "code": "mg/5 mL (5 mL)"
+            "code": "packet",
+            "display": "packet"
         },
         {
-            "code": "mg/50 mL"
+            "code": "PAD",
+            "display": "PAD"
         },
         {
-            "code": "mg/50 ml"
+            "code": "patch",
+            "display": "patch"
         },
         {
-            "code": "mg/500 ml"
+            "code": "Patch",
+            "display": "Patch"
         },
         {
-            "code": "mg/54mg"
+            "code": "PEN",
+            "display": "PEN"
         },
         {
-            "code": "mg/6 mL (6 mL)"
+            "code": "PE (Phenytoin Sodium Equivalent)",
+            "display": "PE (Phenytoin Sodium Equivalent)"
         },
         {
-            "code": "mg/61mg"
+            "code": "per L",
+            "display": "per L"
         },
         {
-            "code": "mg/960mg"
+            "code": "pg",
+            "display": "pg"
         },
         {
-            "code": "mg/L"
+            "code": "pg/mL",
+            "display": "pg/mL"
         },
         {
-            "code": "mg/actuation"
+            "code": "pills",
+            "display": "pills"
         },
         {
-            "code": "mg/dL"
+            "code": "PKG",
+            "display": "PKG"
         },
         {
-            "code": "mg/day"
+            "code": "PKT",
+            "display": "PKT"
         },
         {
-            "code": "mg/dose"
+            "code": "pL",
+            "display": "pL"
         },
         {
-            "code": "mg/g"
+            "code": "Pos/Neg",
+            "display": "Pos/Neg"
         },
         {
-            "code": "mg/h"
+            "code": "powder",
+            "display": "powder"
         },
         {
-            "code": "mg/hour"
+            "code": "ppm",
+            "display": "ppm"
         },
         {
-            "code": "mg/hr"
+            "code": "PPN Bag",
+            "display": "PPN Bag"
         },
         {
-            "code": "mg/kg"
+            "code": "psi",
+            "display": "psi"
         },
         {
-            "code": "mg/kg/hour"
+            "code": "PTCH",
+            "display": "PTCH"
         },
         {
-            "code": "mg/kg/hr"
+            "code": "PTCHS",
+            "display": "PTCHS"
         },
         {
-            "code": "mg/kg/min"
+            "code": "puff",
+            "display": "puff"
         },
         {
-            "code": "mg/m2"
+            "code": "PUFF",
+            "display": "PUFF"
         },
         {
-            "code": "mg/mL"
+            "code": "puffs",
+            "display": "puffs"
         },
         {
-            "code": "mg/mL (1 %)"
+            "code": "PUFFS",
+            "display": "PUFFS"
         },
         {
-            "code": "mg/mL (4 %)"
+            "code": "PUMP",
+            "display": "PUMP"
         },
         {
-            "code": "mg/mg"
+            "code": "PWDR",
+            "display": "PWDR"
         },
         {
-            "code": "mg/min"
+            "code": "Quarter Tab",
+            "display": "Quarter Tab"
         },
         {
-            "code": "mg/ml"
+            "code": "Ratio",
+            "display": "Ratio"
         },
         {
-            "code": "mg/omg"
+            "code": "RING",
+            "display": "RING"
         },
         {
-            "code": "mg\\ 0 mg"
+            "code": "RPM",
+            "display": "RPM"
         },
         {
-            "code": "mg\\ 150 mg"
+            "code": "SBTL",
+            "display": "SBTL"
         },
         {
-            "code": "mg\\ 40mg"
+            "code": "SCOOP",
+            "display": "SCOOP"
         },
         {
-            "code": "mg\\40 mg"
+            "code": "Score",
+            "display": "Score"
         },
         {
-            "code": "mg\\960 mg"
+            "code": "scp",
+            "display": "scp"
         },
         {
-            "code": "mgmg"
+            "code": "sec",
+            "display": "sec"
         },
         {
-            "code": "mgs/min"
+            "code": "sheet",
+            "display": "sheet"
         },
         {
-            "code": "milligrams"
+            "code": "soak",
+            "display": "soak"
         },
         {
-            "code": "million units"
+            "code": "SOLN",
+            "display": "SOLN"
         },
         {
-            "code": "min"
+            "code": "spacer",
+            "display": "spacer"
         },
         {
-            "code": "ml"
+            "code": "SPG",
+            "display": "SPG"
         },
         {
-            "code": "ml/day"
+            "code": "SPRY",
+            "display": "SPRY"
         },
         {
-            "code": "ml/hr"
+            "code": "STCK",
+            "display": "STCK"
         },
         {
-            "code": "ml/kg"
+            "code": "STRP",
+            "display": "STRP"
         },
         {
-            "code": "ml/min"
+            "code": "SUPP",
+            "display": "SUPP"
         },
         {
-            "code": "mls"
+            "code": "SUSP",
+            "display": "SUSP"
         },
         {
-            "code": "mm Hg"
+            "code": "SWAB",
+            "display": "SWAB"
         },
         {
-            "code": "mm/hr"
+            "code": "SYR",
+            "display": "SYR"
         },
         {
-            "code": "mmHg"
+            "code": "syringe",
+            "display": "syringe"
         },
         {
-            "code": "mmHg."
+            "code": "Syringe",
+            "display": "Syringe"
         },
         {
-            "code": "mm^3"
+            "code": "SYRP",
+            "display": "SYRP"
         },
         {
-            "code": "mmol"
+            "code": "tab",
+            "display": "tab"
         },
         {
-            "code": "mmol/L"
+            "code": "Tab",
+            "display": "Tab"
         },
         {
-            "code": "msec"
+            "code": "TAB",
+            "display": "TAB"
         },
         {
-            "code": "nL"
+            "code": "tablet",
+            "display": "tablet"
         },
         {
-            "code": "nMol/ml/min"
+            "code": "tablets",
+            "display": "tablets"
         },
         {
-            "code": "nanogram"
+            "code": "tabs",
+            "display": "tabs"
         },
         {
-            "code": "nanograms/kg/minute"
+            "code": "tABS",
+            "display": "tABS"
         },
         {
-            "code": "neb"
+            "code": "TC",
+            "display": "TC"
         },
         {
-            "code": "ng/dL"
+            "code": "tiwst",
+            "display": "tiwst"
         },
         {
-            "code": "ng/kg/min"
+            "code": "TPN Bag",
+            "display": "TPN Bag"
         },
         {
-            "code": "ng/mL"
+            "code": "TROC",
+            "display": "TROC"
         },
         {
-            "code": "ng/mL DDU"
+            "code": "tsp",
+            "display": "tsp"
         },
         {
-            "code": "ng/mL FEU"
+            "code": "tube",
+            "display": "tube"
         },
         {
-            "code": "nmol/L"
+            "code": "TUBE",
+            "display": "TUBE"
         },
         {
-            "code": "ounces"
+            "code": "u",
+            "display": "u"
         },
         {
-            "code": "pL"
+            "code": "U",
+            "display": "U"
         },
         {
-            "code": "packet"
+            "code": "UDCUP",
+            "display": "UDCUP"
         },
         {
-            "code": "patch"
+            "code": "ug/dL",
+            "display": "ug/dL"
         },
         {
-            "code": "per L"
+            "code": "U/g/Hb",
+            "display": "U/g/Hb"
         },
         {
-            "code": "pg"
+            "code": "ug/mL",
+            "display": "ug/mL"
         },
         {
-            "code": "pg/mL"
+            "code": "U/hr",
+            "display": "U/hr"
         },
         {
-            "code": "pills"
+            "code": "uIU/mL",
+            "display": "uIU/mL"
         },
         {
-            "code": "powder"
+            "code": "#/uL",
+            "display": "#/uL"
         },
         {
-            "code": "ppm"
+            "code": "uL",
+            "display": "uL"
         },
         {
-            "code": "psi"
+            "code": "U/L",
+            "display": "U/L"
         },
         {
-            "code": "puff"
+            "code": "Umits",
+            "display": "Umits"
         },
         {
-            "code": "puffs"
+            "code": "U/mL",
+            "display": "U/mL"
         },
         {
-            "code": "scp"
+            "code": "umol/L",
+            "display": "umol/L"
         },
         {
-            "code": "sec"
+            "code": "unit",
+            "display": "unit"
         },
         {
-            "code": "sheet"
+            "code": "Unit",
+            "display": "Unit"
         },
         {
-            "code": "soak"
+            "code": "_UNIT",
+            "display": "_UNIT"
         },
         {
-            "code": "spacer"
+            "code": "UNIT",
+            "display": "UNIT"
         },
         {
-            "code": "syringe"
+            "code": "UNIT/1000ML",
+            "display": "UNIT/1000ML"
         },
         {
-            "code": "tABS"
+            "code": "unit/gram",
+            "display": "unit/gram"
         },
         {
-            "code": "tab"
+            "code": "unit/hour",
+            "display": "unit/hour"
         },
         {
-            "code": "tablet"
+            "code": "UNIT/HR",
+            "display": "UNIT/HR"
         },
         {
-            "code": "tablets"
+            "code": "UNIT/KG",
+            "display": "UNIT/KG"
         },
         {
-            "code": "tabs"
+            "code": "UNIT/kg/HR",
+            "display": "UNIT/kg/HR"
         },
         {
-            "code": "tiwst"
+            "code": "unit-mg-unit",
+            "display": "unit-mg-unit"
         },
         {
-            "code": "tsp"
+            "code": "unit/mL",
+            "display": "unit/mL"
         },
         {
-            "code": "tube"
+            "code": "units",
+            "display": "units"
         },
         {
-            "code": "u"
+            "code": "Units",
+            "display": "Units"
         },
         {
-            "code": "uIU/mL"
+            "code": "UNITS",
+            "display": "UNITS"
         },
         {
-            "code": "uL"
+            "code": "units\\ 0 units",
+            "display": "units\\ 0 units"
         },
         {
-            "code": "uU/ML"
+            "code": "units/hour",
+            "display": "units/hour"
         },
         {
-            "code": "ug/dL"
+            "code": "units/hr",
+            "display": "units/hr"
         },
         {
-            "code": "ug/mL"
+            "code": "Units/Hr",
+            "display": "Units/Hr"
         },
         {
-            "code": "umol/L"
+            "code": "Units Humalog",
+            "display": "Units Humalog"
         },
         {
-            "code": "unit"
+            "code": "Units Insulin 70 / 30",
+            "display": "Units Insulin 70 / 30"
         },
         {
-            "code": "unit-mg-unit"
+            "code": "Units Insulin Glargine",
+            "display": "Units Insulin Glargine"
         },
         {
-            "code": "unit/gram"
+            "code": "Units Insulin NPH",
+            "display": "Units Insulin NPH"
         },
         {
-            "code": "unit/hour"
+            "code": "Units/kg",
+            "display": "Units/kg"
         },
         {
-            "code": "unit/mL"
+            "code": "units/kg/hour",
+            "display": "units/kg/hour"
         },
         {
-            "code": "units"
+            "code": "units/kg/hr",
+            "display": "units/kg/hr"
         },
         {
-            "code": "units/hour"
+            "code": "Units/Liter",
+            "display": "Units/Liter"
         },
         {
-            "code": "units/hr"
+            "code": "units/min",
+            "display": "units/min"
         },
         {
-            "code": "units/kg/hour"
+            "code": "Units Regular",
+            "display": "Units Regular"
         },
         {
-            "code": "units/kg/hr"
+            "code": "Units VWF:RCo",
+            "display": "Units VWF:RCo"
         },
         {
-            "code": "units/min"
+            "code": "uU/ML",
+            "display": "uU/ML"
         },
         {
-            "code": "units\\ 0 units"
+            "code": "vial",
+            "display": "vial"
         },
         {
-            "code": "vial"
+            "code": "Vial",
+            "display": "Vial"
         },
         {
-            "code": "years"
+            "code": "VIAL",
+            "display": "VIAL"
         },
         {
-            "code": "\u00b0C"
+            "code": "WAF",
+            "display": "WAF"
         },
         {
-            "code": "\u00b0F"
+            "code": "years",
+            "display": "years"
         }
     ]
 }

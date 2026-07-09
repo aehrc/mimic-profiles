@@ -14,10 +14,12 @@
     "content": "complete",
     "concept": [
         {
-            "code": "ROUTINE"
+            "code": "STAT",
+            "display": "STAT"
         },
         {
-            "code": "STAT"
+            "code": "ROUTINE",
+            "display": "ROUTINE"
         }
     ]
 }

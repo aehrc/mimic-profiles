@@ -14,10 +14,12 @@
     "content": "complete",
     "concept": [
         {
-            "code": "IV therapy"
+            "code": "IV therapy",
+            "display": "IV therapy"
         },
         {
-            "code": "TPN"
+            "code": "TPN",
+            "display": "TPN"
         }
     ]
 }

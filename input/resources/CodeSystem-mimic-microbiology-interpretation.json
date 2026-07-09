@@ -14,16 +14,20 @@
     "content": "complete",
     "concept": [
         {
-            "code": "P"
+            "code": "S",
+            "display": "Sensitive"
         },
         {
-            "code": "S"
+            "code": "R",
+            "display": "Resistant"
         },
         {
-            "code": "R"
+            "code": "I",
+            "display": "Intermediate"
         },
         {
-            "code": "I"
+            "code": "P",
+            "display": "Pending"
         }
     ]
 }
