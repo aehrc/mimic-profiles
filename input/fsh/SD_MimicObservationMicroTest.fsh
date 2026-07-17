@@ -20,6 +20,9 @@ Description:    "A MIMIC observation microbiology test profile based on the FHIR
 // further specification of elements
 * effective[x] only dateTime
 * value[x] only string or CodeableConcept
+// bind only the CodeableConcept choice: R4 bindings also apply to string-typed
+// elements, and a required binding on value[x] would invalidate free-text results
+* valueCodeableConcept from $VSNullFlavor (required)
 * category = $ObservationCategory#laboratory "Laboratory"
 
 // binding to MIMIC terminology

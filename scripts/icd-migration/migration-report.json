@@ -1,0 +1,37 @@
+{
+  "data": "/Users/nau025/Documents/master_thesis_pipeline/pathling_mcp_tool/spark-warehouse",
+  "output": "/Users/nau025/Documents/mimic-profiles/transformed_data",
+  "format": "delta",
+  "systems": [
+    "icd10",
+    "icd9"
+  ],
+  "condition_rows": 5051,
+  "distinct_source_codes_in_data": {
+    "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10": 791,
+    "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9": 784
+  },
+  "codings_on_source_systems_before": {
+    "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10": 2609,
+    "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9": 2442
+  },
+  "codings_on_target_systems_after": {
+    "http://hl7.org/fhir/sid/icd-10-cm": 2609,
+    "http://hl7.org/fhir/sid/icd-9-cm": 2442
+  },
+  "codings_per_pinned_version": {
+    "http://hl7.org/fhir/sid/icd-10-cm": {
+      "2016": 2591,
+      "2017": 13,
+      "2018": 5
+    },
+    "http://hl7.org/fhir/sid/icd-9-cm": {
+      "2012": 2442
+    }
+  },
+  "residual_source_system_codings": {
+    "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10": 0,
+    "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9": 0
+  },
+  "ok": true
+}

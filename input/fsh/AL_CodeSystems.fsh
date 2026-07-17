@@ -7,6 +7,7 @@ Alias: $MimicUnits = http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-units
 // Organizational information
 Alias: $HL7OrganizationType = http://terminology.hl7.org/CodeSystem/organization-type
 Alias: $LocationPhysicalType = http://terminology.hl7.org/CodeSystem/location-physical-type
+Alias: $ActPriorityCS = http://terminology.hl7.org/CodeSystem/v3-ActPriority
 
 // medication
 Alias: $NDC = http://hl7.org/fhir/sid/ndc
@@ -27,6 +28,8 @@ Alias: $MimicMedicationRouteCS = http://mimic.mit.edu/fhir/mimic/CodeSystem/mimi
 Alias: $ConditionCategory = http://terminology.hl7.org/CodeSystem/condition-category
 Alias: $MimicDiagnosisIcd10 = http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10
 Alias: $MimicDiagnosisIcd9 = http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9
+Alias: $Icd10CM = http://hl7.org/fhir/sid/icd-10-cm
+Alias: $Icd9CM = http://hl7.org/fhir/sid/icd-9-cm
 
 // encounter
 Alias: $HL7ActCode = http://terminology.hl7.org/CodeSystem/v3-ActCode

@@ -1,0 +1,41 @@
+{
+ "resourceType": "ValueSet",
+ "id": "mimic-diagnosis",
+ "url": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-diagnosis",
+ "version": "1.0.0",
+ "name": "MimicDiagnosis",
+ "title": "MIMIC Diagnosis (ICD-9-CM and ICD-10-CM)",
+ "status": "active",
+ "experimental": false,
+ "date": "2026-07-16",
+ "publisher": "CSIRO",
+ "description": "All diagnosis codes usable in MIMIC-IV: ICD-9-CM from the FY2012 release (v29, the final content update before the ICD-9-CM freeze, covering the whole MIMIC ICD-9 coding era) plus ICD-10-CM from the release years spanning the MIMIC-IV ICD-10 coding period (FY2016-FY2019 for the admission era, plus FY2024 covering codes introduced by later re-coding). Replaces the mimic-diagnosis-icd10cm ValueSet as the Condition.code source, with full is-a hierarchy support for both systems.",
+ "compose": {
+  "include": [
+   {
+    "system": "http://hl7.org/fhir/sid/icd-9-cm",
+    "version": "2012"
+   },
+   {
+    "system": "http://hl7.org/fhir/sid/icd-10-cm",
+    "version": "2016"
+   },
+   {
+    "system": "http://hl7.org/fhir/sid/icd-10-cm",
+    "version": "2017"
+   },
+   {
+    "system": "http://hl7.org/fhir/sid/icd-10-cm",
+    "version": "2018"
+   },
+   {
+    "system": "http://hl7.org/fhir/sid/icd-10-cm",
+    "version": "2019"
+   },
+   {
+    "system": "http://hl7.org/fhir/sid/icd-10-cm",
+    "version": "2024"
+   }
+  ]
+ }
+}

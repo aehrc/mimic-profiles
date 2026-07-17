@@ -1,0 +1,1056 @@
+{
+  "total_items": 131,
+  "ok": 11,
+  "no_data": 120,
+  "errors": 0,
+  "items": [
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.bodySite",
+      "resource_type": "Condition",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.stage.summary",
+      "resource_type": "Condition",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.stage.type",
+      "resource_type": "Condition",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.evidence.code",
+      "resource_type": "Condition",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.priority",
+      "resource_type": "Encounter",
+      "row_count": 431231,
+      "distinct_count": 4,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.hospitalization.reAdmission",
+      "resource_type": "Encounter",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.hospitalization.dietPreference",
+      "resource_type": "Encounter",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.location.physicalType",
+      "resource_type": "Encounter",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-location",
+      "element_id": "Location.physicalType",
+      "resource_type": "Location",
+      "row_count": 39,
+      "distinct_count": 1,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-medication",
+      "element_id": "Medication.form",
+      "resource_type": "Medication",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication",
+      "element_id": "Medication.ingredient.item[x]",
+      "resource_type": "Medication",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.statusReason",
+      "resource_type": "MedicationAdministration",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.medication[x]",
+      "resource_type": "MedicationAdministration",
+      "row_count": 27754178,
+      "distinct_count": 5811,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.performer.function",
+      "resource_type": "MedicationAdministration",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.reasonCode",
+      "resource_type": "MedicationAdministration",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.statusReason",
+      "resource_type": "MedicationAdministration",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.medication[x]",
+      "resource_type": "MedicationAdministration",
+      "row_count": 8978893,
+      "distinct_count": 324,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.performer.function",
+      "resource_type": "MedicationAdministration",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.reasonCode",
+      "resource_type": "MedicationAdministration",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.dosage.site",
+      "resource_type": "MedicationAdministration",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.dosage.route",
+      "resource_type": "MedicationAdministration",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.statusReason[x]",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.medication[x]",
+      "resource_type": "MedicationDispense",
+      "row_count": 12689766,
+      "distinct_count": 9372,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.performer.function",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.type",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.additionalInstruction",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.asNeeded[x]",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.site",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.method",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.doseAndRate.type",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.substitution.type",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.substitution.reason",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.statusReason[x]",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.performer.function",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.type",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.substitution.type",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.substitution.reason",
+      "resource_type": "MedicationDispense",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.statusReason",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.category",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.medication[x]",
+      "resource_type": "MedicationRequest",
+      "row_count": 1883681,
+      "distinct_count": 2890,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.performerType",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.reasonCode",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.courseOfTherapyType",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.additionalInstruction",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.asNeeded[x]",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.site",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.method",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.doseAndRate.type",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.substitution.allowed[x]",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.substitution.reason",
+      "resource_type": "MedicationRequest",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "element_id": "MedicationStatement.statusReason",
+      "resource_type": "MedicationStatement",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "element_id": "MedicationStatement.medication[x]",
+      "resource_type": "MedicationStatement",
+      "row_count": 8143620,
+      "distinct_count": 19691,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "element_id": "MedicationStatement.reasonCode",
+      "resource_type": "MedicationStatement",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.bodySite",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.method",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.component.value[x]",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.bodySite",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.method",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.component.value[x]",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.bodySite",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.method",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.component.value[x]",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.bodySite",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.method",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.component.value[x]",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.bodySite",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.method",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.component.value[x]",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.value[x]",
+      "resource_type": "Observation",
+      "row_count": 1107278,
+      "distinct_count": 4,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.bodySite",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.method",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.component.value[x]",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.value[x]",
+      "resource_type": "Observation",
+      "row_count": 132802,
+      "distinct_count": 2,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.bodySite",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.method",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.component.value[x]",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.bodySite",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.method",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.component.value[x]",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.bodySite",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.method",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "row_count": 3979394,
+      "distinct_count": 2,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.component.value[x]",
+      "resource_type": "Observation",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-organization",
+      "element_id": "Organization.type",
+      "resource_type": "Organization",
+      "row_count": 1,
+      "distinct_count": 1,
+      "status": "ok"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.statusReason",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.category",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.performer.function",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.reasonCode",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.bodySite",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.outcome",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.complication",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.followUp",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.usedCode",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.statusReason",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.category",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.performer.function",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.reasonCode",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.bodySite",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.outcome",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.complication",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.followUp",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.usedCode",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.statusReason",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.performer.function",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.reasonCode",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.outcome",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.complication",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.followUp",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.usedCode",
+      "resource_type": "Procedure",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.collection.method",
+      "resource_type": "Specimen",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.collection.bodySite",
+      "resource_type": "Specimen",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.processing.procedure",
+      "resource_type": "Specimen",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.container.type",
+      "resource_type": "Specimen",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.container.additive[x]",
+      "resource_type": "Specimen",
+      "row_count": 0,
+      "distinct_count": 0,
+      "status": "no_data"
+    }
+  ]
+}

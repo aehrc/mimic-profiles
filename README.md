@@ -51,3 +51,43 @@ scripts/publish-conformance.sh http://velonto.dw.csiro.au/fhir output
 
 It requires `curl` and `jq` on the PATH and reads `CodeSystem-*.json`,
 `ValueSet-*.json`, and `StructureDefinition-*.json` from the given directory.
+
+## CSIRO fork changes (2026-07-10): terminology bindings
+
+A full-data binding analysis (see `scripts/binding-analysis/`, decisions and
+evidence in `scripts/binding-analysis/FINDINGS.md`) added required terminology
+bindings to elements that previously had none. All 131 bindable coded elements
+were scanned against the complete MIMIC-on-FHIR dataset; the 11 populated ones
+are now bound.
+
+**New required bindings (profiles):**
+- `medication[x]` → `mimic-medication` on MedicationAdministrationICU,
+  MedicationDispense, MedicationRequest.
+- `medication[x]` → new **`mimic-medication-with-unknown`** ValueSet
+  (`mimic-medication` + `v3-NullFlavor#UNK`) on MedicationAdministration —
+  931 of 27.7M hospital rows carry UNK where the drug could not be coded.
+- `value[x]` → `mimic-micro-interpretation` on ObservationMicroSusc.
+- `valueCodeableConcept` → `v3-NullFlavor` on ObservationMicroTest (only the
+  CodeableConcept choice is bound; free-text string results remain valid).
+- `Encounter.priority` → `v3-ActPriority`; `Location.physicalType` →
+  `location-physical-type`; `Organization.type` → `organization-type`.
+- MedicationStatementED: coding slicing closed (only gsn/ndc/etc systems occur
+  in the data), per-slice required bindings `coding[gsnCode]` →
+  `mimic-medication-gsn` and `coding[etccodeCode]` → `mimic-medication-etc`.
+  The `ndcCode` slice stays unbound: no available terminology server hosts
+  `http://hl7.org/fhir/sid/ndc` (an extensional VS of the 9,312 observed NDC
+  codes is documented as a future option in FINDINGS.md).
+- ObservationVitalSigns: `component.code` → new
+  **`mimic-observation-component-vital`** ValueSet (systolic/diastolic BP
+  LOINCs `8480-6`/`8462-4`, previously in no ValueSet).
+
+**IG QA fixes:**
+- `EX_MimicEncounter`: `priority` example corrected to `v3-ActPriority#EM` —
+  real data uses ActPriority (R/EL/EM/UR), not `mimic-admission-type`.
+- `EX_MimicMedicationStatementED`: example rebuilt as Acetaminophen 325mg with
+  an observed NDC code that also resolves on tx.fhir.org (most MIMIC NDC codes
+  are delisted and unknown to tx, which fails IG QA).
+- `MimicQuantityUnit`: `degF` corrected to the valid UCUM form `[degF]`.
+- Removed the invalid `CodeSystem.valueSet` all-codes claim from
+  `mimic-admission-class` and `mimic-admission-type` (their ValueSets also
+  include codes from other systems).

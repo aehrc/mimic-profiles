@@ -22,6 +22,7 @@ Description:    "A MIMIC medication dispense profile based on the FHIR R4 medica
 * medication[x] only CodeableConcept
  
 // binding to MIMIC terminology
+* medication[x] from $MimicMedicationCodes (required)
 * identifier.system = $IdentifierMedicationDispense
 * dosageInstruction.timing.code from $MimicMedicationFrequency
 * dosageInstruction.route from $MimicMedicationRoute

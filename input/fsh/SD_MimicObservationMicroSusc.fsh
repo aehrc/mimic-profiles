@@ -24,6 +24,7 @@ Description:    "A MIMIC observation microbiology susceptiblity profile based on
 // binding to MIMIC terminology
 * identifier.system = $IdentifierObservationMicroSusc
 * code from $MimicMicrobiologyAntibiotic
+* value[x] from $MimicMicroInterpretation (required)
 * interpretation from $ObservationInterpretation
 * extension contains DilutionDetails named dilutionDetails 0..1
 

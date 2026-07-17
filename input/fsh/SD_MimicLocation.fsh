@@ -9,6 +9,7 @@ Description:    "A MIMIC location profile based on FHIR R4 Location."
 
 // modifications to elements
 * physicalType = $LocationPhysicalType#wa "Ward"
+* physicalType from $VSLocationPhysicalType (required)
 
 // referencing must be to MIMIC profiles
 * managingOrganization only Reference(MimicOrganization)

@@ -7,5 +7,22 @@ Thumbs.db
 /template
 
 .idea
-/_*.bat
+__pycache__/
+
+# generated FHIR package caches
 .index.db
+
+# Windows counterparts of the IG publisher scripts, pulled in by _updatePublisher.sh
+_*.bat
+
+# local outputs of the ICD data migration (demo runs)
+/transformed_data/
+
+# terminology-build: raw ICD source data (download separately, see scripts/terminology-build/README.md)
+scripts/terminology-build/2012_icd9/
+scripts/terminology-build/2016/
+scripts/terminology-build/2017/
+scripts/terminology-build/2018/
+scripts/terminology-build/2019/
+# large generated CodeSystems are published as GitHub release assets, not committed
+scripts/terminology-build/output/CodeSystem-*.json

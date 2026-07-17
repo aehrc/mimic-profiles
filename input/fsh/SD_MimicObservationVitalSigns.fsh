@@ -26,6 +26,7 @@ Description:    "An Observation resource (based on FHIR R4 Observation) that rep
 
 // binding to terminology
 * code from MimicObservationTypeVital
+* component.code from MimicObservationComponentVital (required)
 * dataAbsentReason from DataAbsentReason
 
 // referencing MIMIC resources

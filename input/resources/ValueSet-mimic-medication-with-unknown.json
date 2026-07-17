@@ -1,0 +1,31 @@
+{
+    "resourceType": "ValueSet",
+    "id": "mimic-medication-with-unknown",
+    "language": "en",
+    "url": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-with-unknown",
+    "version": "2.0",
+    "name": "MimicMedicationWithUnknown",
+    "title": "MimicMedicationWithUnknown",
+    "status": "draft",
+    "date": "2026-07-10",
+    "publisher": "KinD Lab",
+    "description": "All MIMIC medication codes (mimic-medication) plus v3-NullFlavor UNK, used by hospital MedicationAdministration records where the administered drug could not be coded.",
+    "compose": {
+        "include": [
+            {
+                "valueSet": [
+                    "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication"
+                ]
+            },
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                "concept": [
+                    {
+                        "code": "UNK",
+                        "display": "unknown"
+                    }
+                ]
+            }
+        ]
+    }
+}

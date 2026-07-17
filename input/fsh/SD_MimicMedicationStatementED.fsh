@@ -25,7 +25,7 @@ Description:    "A MedicationStatement resource that represents each record in t
 // Slicing logic of medication[x] coding (multiple codes: gsn, ndc, etccode)
 * medicationCodeableConcept.coding ^slicing.discriminator.type = #pattern
 * medicationCodeableConcept.coding ^slicing.discriminator.path = "system"
-* medicationCodeableConcept.coding ^slicing.rules = #open
+* medicationCodeableConcept.coding ^slicing.rules = #closed // full-data extraction (2026-07-10) saw only gsn/ndc/etc systems across 8.1M rows
 * medicationCodeableConcept.coding ^slicing.description = "Slice based on the medicationCodeableConcept.coding pattern"
 
 // Define slices
@@ -33,6 +33,11 @@ Description:    "A MedicationStatement resource that represents each record in t
        gsnCode 0..1 and
        ndcCode 0..1 and
        etccodeCode 0..
-* medicationCodeableConcept.coding[gsnCode].system = $GSN_CS // No defined code system.. 
+* medicationCodeableConcept.coding[gsnCode].system = $GSN_CS // No defined code system..
 * medicationCodeableConcept.coding[ndcCode].system = $NDC
 * medicationCodeableConcept.coding[etccodeCode].system = $ETC // URL correct but no defined code system..
+
+// per-slice bindings (binding-analysis 2026-07-10); ndcCode stays unbound —
+// no terminology server hosts sid/ndc, the slice already pins the system URI
+* medicationCodeableConcept.coding[gsnCode] from $GSN_VS (required)
+* medicationCodeableConcept.coding[etccodeCode] from $ETC_VS (required)

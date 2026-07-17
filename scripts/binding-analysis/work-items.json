@@ -1,0 +1,2925 @@
+{
+  "generated_from": "kindlab.fhir.mimic#1.3.0-csiro.1",
+  "candidates": [
+    {
+      "profile_id": "mimic-condition",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-condition",
+      "resource_type": "Condition",
+      "element_id": "Condition.bodySite",
+      "element_path": "Condition.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-condition",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-condition",
+      "resource_type": "Condition",
+      "element_id": "Condition.stage.summary",
+      "element_path": "Condition.stage.summary",
+      "type": "CodeableConcept",
+      "extract_path": "stage.summary.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/condition-stage|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-condition",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-condition",
+      "resource_type": "Condition",
+      "element_id": "Condition.stage.type",
+      "element_path": "Condition.stage.type",
+      "type": "CodeableConcept",
+      "extract_path": "stage.type.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/condition-stage-type|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-condition",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-condition",
+      "resource_type": "Condition",
+      "element_id": "Condition.evidence.code",
+      "element_path": "Condition.evidence.code",
+      "type": "CodeableConcept",
+      "extract_path": "evidence.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/manifestation-or-symptom|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-encounter",
+      "resource_type": "Encounter",
+      "element_id": "Encounter.priority",
+      "element_path": "Encounter.priority",
+      "type": "CodeableConcept",
+      "extract_path": "priority.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-ActPriority"
+      }
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-encounter",
+      "resource_type": "Encounter",
+      "element_id": "Encounter.hospitalization.reAdmission",
+      "element_path": "Encounter.hospitalization.reAdmission",
+      "type": "CodeableConcept",
+      "extract_path": "hospitalization.reAdmission.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v2-0092"
+      }
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-encounter",
+      "resource_type": "Encounter",
+      "element_id": "Encounter.hospitalization.dietPreference",
+      "element_path": "Encounter.hospitalization.dietPreference",
+      "type": "CodeableConcept",
+      "extract_path": "hospitalization.dietPreference.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/encounter-diet|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-encounter",
+      "resource_type": "Encounter",
+      "element_id": "Encounter.location.physicalType",
+      "element_path": "Encounter.location.physicalType",
+      "type": "CodeableConcept",
+      "extract_path": "location.physicalType.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/location-physical-type|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-location",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-location",
+      "resource_type": "Location",
+      "element_id": "Location.physicalType",
+      "element_path": "Location.physicalType",
+      "type": "CodeableConcept",
+      "extract_path": "physicalType.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/location-physical-type|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication",
+      "resource_type": "Medication",
+      "element_id": "Medication.form",
+      "element_path": "Medication.form",
+      "type": "CodeableConcept",
+      "extract_path": "form.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-form-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication",
+      "resource_type": "Medication",
+      "element_id": "Medication.ingredient.item[x]",
+      "element_path": "Medication.ingredient.item[x]",
+      "type": "CodeableConcept",
+      "extract_path": "ingredient.item.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.statusReason",
+      "element_path": "MedicationAdministration.statusReason",
+      "type": "CodeableConcept",
+      "extract_path": "statusReason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/reason-medication-not-given-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.medication[x]",
+      "element_path": "MedicationAdministration.medication[x]",
+      "type": "CodeableConcept",
+      "extract_path": "medication.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.performer.function",
+      "element_path": "MedicationAdministration.performer.function",
+      "type": "CodeableConcept",
+      "extract_path": "performer.function.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/med-admin-perform-function|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.reasonCode",
+      "element_path": "MedicationAdministration.reasonCode",
+      "type": "CodeableConcept",
+      "extract_path": "reasonCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/reason-medication-given-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration-icu",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.statusReason",
+      "element_path": "MedicationAdministration.statusReason",
+      "type": "CodeableConcept",
+      "extract_path": "statusReason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/reason-medication-not-given-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration-icu",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.medication[x]",
+      "element_path": "MedicationAdministration.medication[x]",
+      "type": "CodeableConcept",
+      "extract_path": "medication.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration-icu",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.performer.function",
+      "element_path": "MedicationAdministration.performer.function",
+      "type": "CodeableConcept",
+      "extract_path": "performer.function.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/med-admin-perform-function|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration-icu",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.reasonCode",
+      "element_path": "MedicationAdministration.reasonCode",
+      "type": "CodeableConcept",
+      "extract_path": "reasonCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/reason-medication-given-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration-icu",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.dosage.site",
+      "element_path": "MedicationAdministration.dosage.site",
+      "type": "CodeableConcept",
+      "extract_path": "dosage.site.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/approach-site-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-administration-icu",
+      "resource_type": "MedicationAdministration",
+      "element_id": "MedicationAdministration.dosage.route",
+      "element_path": "MedicationAdministration.dosage.route",
+      "type": "CodeableConcept",
+      "extract_path": "dosage.route.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/route-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.statusReason[x]",
+      "element_path": "MedicationDispense.statusReason[x]",
+      "type": "CodeableConcept",
+      "extract_path": "statusReason.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medicationdispense-status-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.medication[x]",
+      "element_path": "MedicationDispense.medication[x]",
+      "type": "CodeableConcept",
+      "extract_path": "medication.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.performer.function",
+      "element_path": "MedicationDispense.performer.function",
+      "type": "CodeableConcept",
+      "extract_path": "performer.function.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medicationdispense-performer-function|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.type",
+      "element_path": "MedicationDispense.type",
+      "type": "CodeableConcept",
+      "extract_path": "type.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.dosageInstruction.additionalInstruction",
+      "element_path": "MedicationDispense.dosageInstruction.additionalInstruction",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.additionalInstruction.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/additional-instruction-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.dosageInstruction.asNeeded[x]",
+      "element_path": "MedicationDispense.dosageInstruction.asNeeded[x]",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.asNeeded.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-as-needed-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.dosageInstruction.site",
+      "element_path": "MedicationDispense.dosageInstruction.site",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.site.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/approach-site-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.dosageInstruction.method",
+      "element_path": "MedicationDispense.dosageInstruction.method",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/administration-method-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.dosageInstruction.doseAndRate.type",
+      "element_path": "MedicationDispense.dosageInstruction.doseAndRate.type",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.doseAndRate.type.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/dose-rate-type|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.substitution.type",
+      "element_path": "MedicationDispense.substitution.type",
+      "type": "CodeableConcept",
+      "extract_path": "substitution.type.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-ActSubstanceAdminSubstitutionCode"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.substitution.reason",
+      "element_path": "MedicationDispense.substitution.reason",
+      "type": "CodeableConcept",
+      "extract_path": "substitution.reason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-SubstanceAdminSubstitutionReason"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense-ed",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.statusReason[x]",
+      "element_path": "MedicationDispense.statusReason[x]",
+      "type": "CodeableConcept",
+      "extract_path": "statusReason.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medicationdispense-status-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense-ed",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.performer.function",
+      "element_path": "MedicationDispense.performer.function",
+      "type": "CodeableConcept",
+      "extract_path": "performer.function.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medicationdispense-performer-function|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense-ed",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.type",
+      "element_path": "MedicationDispense.type",
+      "type": "CodeableConcept",
+      "extract_path": "type.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense-ed",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.substitution.type",
+      "element_path": "MedicationDispense.substitution.type",
+      "type": "CodeableConcept",
+      "extract_path": "substitution.type.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-ActSubstanceAdminSubstitutionCode"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-dispense-ed",
+      "resource_type": "MedicationDispense",
+      "element_id": "MedicationDispense.substitution.reason",
+      "element_path": "MedicationDispense.substitution.reason",
+      "type": "CodeableConcept",
+      "extract_path": "substitution.reason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-SubstanceAdminSubstitutionReason"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.statusReason",
+      "element_path": "MedicationRequest.statusReason",
+      "type": "CodeableConcept",
+      "extract_path": "statusReason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medicationrequest-status-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.category",
+      "element_path": "MedicationRequest.category",
+      "type": "CodeableConcept",
+      "extract_path": "category.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medicationrequest-category|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.medication[x]",
+      "element_path": "MedicationRequest.medication[x]",
+      "type": "CodeableConcept",
+      "extract_path": "medication.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.performerType",
+      "element_path": "MedicationRequest.performerType",
+      "type": "CodeableConcept",
+      "extract_path": "performerType.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/performer-role|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.reasonCode",
+      "element_path": "MedicationRequest.reasonCode",
+      "type": "CodeableConcept",
+      "extract_path": "reasonCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/condition-code|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.courseOfTherapyType",
+      "element_path": "MedicationRequest.courseOfTherapyType",
+      "type": "CodeableConcept",
+      "extract_path": "courseOfTherapyType.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medicationrequest-course-of-therapy|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.dosageInstruction.additionalInstruction",
+      "element_path": "MedicationRequest.dosageInstruction.additionalInstruction",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.additionalInstruction.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/additional-instruction-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.dosageInstruction.asNeeded[x]",
+      "element_path": "MedicationRequest.dosageInstruction.asNeeded[x]",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.asNeeded.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-as-needed-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.dosageInstruction.site",
+      "element_path": "MedicationRequest.dosageInstruction.site",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.site.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/approach-site-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.dosageInstruction.method",
+      "element_path": "MedicationRequest.dosageInstruction.method",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/administration-method-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.dosageInstruction.doseAndRate.type",
+      "element_path": "MedicationRequest.dosageInstruction.doseAndRate.type",
+      "type": "CodeableConcept",
+      "extract_path": "dosageInstruction.doseAndRate.type.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/dose-rate-type|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.substitution.allowed[x]",
+      "element_path": "MedicationRequest.substitution.allowed[x]",
+      "type": "CodeableConcept",
+      "extract_path": "substitution.allowed.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-ActSubstanceAdminSubstitutionCode"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-request",
+      "resource_type": "MedicationRequest",
+      "element_id": "MedicationRequest.substitution.reason",
+      "element_path": "MedicationRequest.substitution.reason",
+      "type": "CodeableConcept",
+      "extract_path": "substitution.reason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-SubstanceAdminSubstitutionReason"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-statement-ed",
+      "resource_type": "MedicationStatement",
+      "element_id": "MedicationStatement.statusReason",
+      "element_path": "MedicationStatement.statusReason",
+      "type": "CodeableConcept",
+      "extract_path": "statusReason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/reason-medication-status-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-statement-ed",
+      "resource_type": "MedicationStatement",
+      "element_id": "MedicationStatement.medication[x]",
+      "element_path": "MedicationStatement.medication[x]",
+      "type": "CodeableConcept",
+      "extract_path": "medication.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-medication-statement-ed",
+      "resource_type": "MedicationStatement",
+      "element_id": "MedicationStatement.reasonCode",
+      "element_path": "MedicationStatement.reasonCode",
+      "type": "CodeableConcept",
+      "extract_path": "reasonCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/condition-code|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-chartevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.bodySite",
+      "element_path": "Observation.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-chartevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.method",
+      "element_path": "Observation.method",
+      "type": "CodeableConcept",
+      "extract_path": "method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-methods|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-chartevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "element_path": "Observation.referenceRange.appliesTo",
+      "type": "CodeableConcept",
+      "extract_path": "referenceRange.appliesTo.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/referencerange-appliesto|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-chartevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.code",
+      "element_path": "Observation.component.code",
+      "type": "CodeableConcept",
+      "extract_path": "component.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-chartevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.value[x]",
+      "element_path": "Observation.component.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "component.value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-datetimeevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.bodySite",
+      "element_path": "Observation.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-datetimeevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.method",
+      "element_path": "Observation.method",
+      "type": "CodeableConcept",
+      "extract_path": "method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-methods|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-datetimeevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "element_path": "Observation.referenceRange.appliesTo",
+      "type": "CodeableConcept",
+      "extract_path": "referenceRange.appliesTo.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/referencerange-appliesto|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-datetimeevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.code",
+      "element_path": "Observation.component.code",
+      "type": "CodeableConcept",
+      "extract_path": "component.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-datetimeevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.value[x]",
+      "element_path": "Observation.component.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "component.value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-ed",
+      "resource_type": "Observation",
+      "element_id": "Observation.bodySite",
+      "element_path": "Observation.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-ed",
+      "resource_type": "Observation",
+      "element_id": "Observation.method",
+      "element_path": "Observation.method",
+      "type": "CodeableConcept",
+      "extract_path": "method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-methods|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-ed",
+      "resource_type": "Observation",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "element_path": "Observation.referenceRange.appliesTo",
+      "type": "CodeableConcept",
+      "extract_path": "referenceRange.appliesTo.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/referencerange-appliesto|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-ed",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.code",
+      "element_path": "Observation.component.code",
+      "type": "CodeableConcept",
+      "extract_path": "component.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-ed",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.value[x]",
+      "element_path": "Observation.component.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "component.value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-labevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.bodySite",
+      "element_path": "Observation.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-labevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.method",
+      "element_path": "Observation.method",
+      "type": "CodeableConcept",
+      "extract_path": "method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-methods|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-labevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "element_path": "Observation.referenceRange.appliesTo",
+      "type": "CodeableConcept",
+      "extract_path": "referenceRange.appliesTo.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/referencerange-appliesto|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-labevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.code",
+      "element_path": "Observation.component.code",
+      "type": "CodeableConcept",
+      "extract_path": "component.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-labevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.value[x]",
+      "element_path": "Observation.component.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "component.value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-org",
+      "resource_type": "Observation",
+      "element_id": "Observation.bodySite",
+      "element_path": "Observation.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-org",
+      "resource_type": "Observation",
+      "element_id": "Observation.method",
+      "element_path": "Observation.method",
+      "type": "CodeableConcept",
+      "extract_path": "method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-methods|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-org",
+      "resource_type": "Observation",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "element_path": "Observation.referenceRange.appliesTo",
+      "type": "CodeableConcept",
+      "extract_path": "referenceRange.appliesTo.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/referencerange-appliesto|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-org",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.code",
+      "element_path": "Observation.component.code",
+      "type": "CodeableConcept",
+      "extract_path": "component.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-org",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.value[x]",
+      "element_path": "Observation.component.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "component.value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-susc",
+      "resource_type": "Observation",
+      "element_id": "Observation.value[x]",
+      "element_path": "Observation.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-susc",
+      "resource_type": "Observation",
+      "element_id": "Observation.bodySite",
+      "element_path": "Observation.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-susc",
+      "resource_type": "Observation",
+      "element_id": "Observation.method",
+      "element_path": "Observation.method",
+      "type": "CodeableConcept",
+      "extract_path": "method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-methods|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-susc",
+      "resource_type": "Observation",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "element_path": "Observation.referenceRange.appliesTo",
+      "type": "CodeableConcept",
+      "extract_path": "referenceRange.appliesTo.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/referencerange-appliesto|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-susc",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.code",
+      "element_path": "Observation.component.code",
+      "type": "CodeableConcept",
+      "extract_path": "component.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-susc",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.value[x]",
+      "element_path": "Observation.component.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "component.value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-test",
+      "resource_type": "Observation",
+      "element_id": "Observation.value[x]",
+      "element_path": "Observation.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-test",
+      "resource_type": "Observation",
+      "element_id": "Observation.bodySite",
+      "element_path": "Observation.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-test",
+      "resource_type": "Observation",
+      "element_id": "Observation.method",
+      "element_path": "Observation.method",
+      "type": "CodeableConcept",
+      "extract_path": "method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-methods|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-test",
+      "resource_type": "Observation",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "element_path": "Observation.referenceRange.appliesTo",
+      "type": "CodeableConcept",
+      "extract_path": "referenceRange.appliesTo.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/referencerange-appliesto|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-test",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.code",
+      "element_path": "Observation.component.code",
+      "type": "CodeableConcept",
+      "extract_path": "component.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-micro-test",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.value[x]",
+      "element_path": "Observation.component.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "component.value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-outputevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.bodySite",
+      "element_path": "Observation.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-outputevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.method",
+      "element_path": "Observation.method",
+      "type": "CodeableConcept",
+      "extract_path": "method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-methods|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-outputevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "element_path": "Observation.referenceRange.appliesTo",
+      "type": "CodeableConcept",
+      "extract_path": "referenceRange.appliesTo.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/referencerange-appliesto|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-outputevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.code",
+      "element_path": "Observation.component.code",
+      "type": "CodeableConcept",
+      "extract_path": "component.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-outputevents",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.value[x]",
+      "element_path": "Observation.component.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "component.value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-vital-signs",
+      "resource_type": "Observation",
+      "element_id": "Observation.bodySite",
+      "element_path": "Observation.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-vital-signs",
+      "resource_type": "Observation",
+      "element_id": "Observation.method",
+      "element_path": "Observation.method",
+      "type": "CodeableConcept",
+      "extract_path": "method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-methods|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-vital-signs",
+      "resource_type": "Observation",
+      "element_id": "Observation.referenceRange.appliesTo",
+      "element_path": "Observation.referenceRange.appliesTo",
+      "type": "CodeableConcept",
+      "extract_path": "referenceRange.appliesTo.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/referencerange-appliesto|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-vital-signs",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.code",
+      "element_path": "Observation.component.code",
+      "type": "CodeableConcept",
+      "extract_path": "component.code.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-observation-vital-signs",
+      "resource_type": "Observation",
+      "element_id": "Observation.component.value[x]",
+      "element_path": "Observation.component.value[x]",
+      "type": "CodeableConcept",
+      "extract_path": "component.value.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": null
+    },
+    {
+      "profile_id": "mimic-organization",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-organization",
+      "resource_type": "Organization",
+      "element_id": "Organization.type",
+      "element_path": "Organization.type",
+      "type": "CodeableConcept",
+      "extract_path": "type.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/organization-type|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.statusReason",
+      "element_path": "Procedure.statusReason",
+      "type": "CodeableConcept",
+      "extract_path": "statusReason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-not-performed-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.category",
+      "element_path": "Procedure.category",
+      "type": "CodeableConcept",
+      "extract_path": "category.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-category|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.performer.function",
+      "element_path": "Procedure.performer.function",
+      "type": "CodeableConcept",
+      "extract_path": "performer.function.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/performer-role|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.reasonCode",
+      "element_path": "Procedure.reasonCode",
+      "type": "CodeableConcept",
+      "extract_path": "reasonCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.bodySite",
+      "element_path": "Procedure.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.outcome",
+      "element_path": "Procedure.outcome",
+      "type": "CodeableConcept",
+      "extract_path": "outcome.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-outcome|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.complication",
+      "element_path": "Procedure.complication",
+      "type": "CodeableConcept",
+      "extract_path": "complication.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/condition-code|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.followUp",
+      "element_path": "Procedure.followUp",
+      "type": "CodeableConcept",
+      "extract_path": "followUp.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-followup|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.usedCode",
+      "element_path": "Procedure.usedCode",
+      "type": "CodeableConcept",
+      "extract_path": "usedCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/device-kind|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-ed",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.statusReason",
+      "element_path": "Procedure.statusReason",
+      "type": "CodeableConcept",
+      "extract_path": "statusReason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-not-performed-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-ed",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.category",
+      "element_path": "Procedure.category",
+      "type": "CodeableConcept",
+      "extract_path": "category.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-category|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-ed",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.performer.function",
+      "element_path": "Procedure.performer.function",
+      "type": "CodeableConcept",
+      "extract_path": "performer.function.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/performer-role|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-ed",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.reasonCode",
+      "element_path": "Procedure.reasonCode",
+      "type": "CodeableConcept",
+      "extract_path": "reasonCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-ed",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.bodySite",
+      "element_path": "Procedure.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-ed",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.outcome",
+      "element_path": "Procedure.outcome",
+      "type": "CodeableConcept",
+      "extract_path": "outcome.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-outcome|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-ed",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.complication",
+      "element_path": "Procedure.complication",
+      "type": "CodeableConcept",
+      "extract_path": "complication.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/condition-code|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-ed",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.followUp",
+      "element_path": "Procedure.followUp",
+      "type": "CodeableConcept",
+      "extract_path": "followUp.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-followup|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-ed",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.usedCode",
+      "element_path": "Procedure.usedCode",
+      "type": "CodeableConcept",
+      "extract_path": "usedCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/device-kind|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-icu",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.statusReason",
+      "element_path": "Procedure.statusReason",
+      "type": "CodeableConcept",
+      "extract_path": "statusReason.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-not-performed-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-icu",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.performer.function",
+      "element_path": "Procedure.performer.function",
+      "type": "CodeableConcept",
+      "extract_path": "performer.function.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/performer-role|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-icu",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.reasonCode",
+      "element_path": "Procedure.reasonCode",
+      "type": "CodeableConcept",
+      "extract_path": "reasonCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-reason|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-icu",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.outcome",
+      "element_path": "Procedure.outcome",
+      "type": "CodeableConcept",
+      "extract_path": "outcome.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-outcome|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-icu",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.complication",
+      "element_path": "Procedure.complication",
+      "type": "CodeableConcept",
+      "extract_path": "complication.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/condition-code|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-icu",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.followUp",
+      "element_path": "Procedure.followUp",
+      "type": "CodeableConcept",
+      "extract_path": "followUp.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/procedure-followup|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-procedure-icu",
+      "resource_type": "Procedure",
+      "element_id": "Procedure.usedCode",
+      "element_path": "Procedure.usedCode",
+      "type": "CodeableConcept",
+      "extract_path": "usedCode.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/device-kind|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-specimen",
+      "resource_type": "Specimen",
+      "element_id": "Specimen.collection.method",
+      "element_path": "Specimen.collection.method",
+      "type": "CodeableConcept",
+      "extract_path": "collection.method.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/specimen-collection-method|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-specimen",
+      "resource_type": "Specimen",
+      "element_id": "Specimen.collection.bodySite",
+      "element_path": "Specimen.collection.bodySite",
+      "type": "CodeableConcept",
+      "extract_path": "collection.bodySite.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/body-site|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-specimen",
+      "resource_type": "Specimen",
+      "element_id": "Specimen.processing.procedure",
+      "element_path": "Specimen.processing.procedure",
+      "type": "CodeableConcept",
+      "extract_path": "processing.procedure.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/specimen-processing-procedure|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-specimen",
+      "resource_type": "Specimen",
+      "element_id": "Specimen.container.type",
+      "element_path": "Specimen.container.type",
+      "type": "CodeableConcept",
+      "extract_path": "container.type.coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/specimen-container-type|4.0.1"
+      }
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "profile_url": "http://mimic.mit.edu/fhir/mimic/StructureDefinition/mimic-specimen",
+      "resource_type": "Specimen",
+      "element_id": "Specimen.container.additive[x]",
+      "element_path": "Specimen.container.additive[x]",
+      "type": "CodeableConcept",
+      "extract_path": "container.additive.ofType(CodeableConcept).coding",
+      "system_in_data": true,
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v2-0371"
+      }
+    }
+  ],
+  "already_bound": [
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.clinicalStatus",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.verificationStatus",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.category",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/condition-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.severity",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/condition-severity|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-diagnosis-icd",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/encounter-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.statusHistory.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/encounter-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.class",
+      "binding_strength": "extensible",
+      "value_set": "http://terminology.hl7.org/ValueSet/v3-ActEncounterCode",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.classHistory.class",
+      "binding_strength": "extensible",
+      "value_set": "http://terminology.hl7.org/ValueSet/v3-ActEncounterCode",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.type",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-encounter-type",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.serviceType",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-services",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.participant.type",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/encounter-participant-type|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.reasonCode",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/encounter-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.diagnosis.use",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/diagnosis-role|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.hospitalization.admitSource",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-admit-source",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.hospitalization.specialCourtesy",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/encounter-special-courtesy|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.hospitalization.specialArrangement",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/encounter-special-arrangements|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.hospitalization.dischargeDisposition",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-discharge-disposition",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.location.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/encounter-location-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-location",
+      "element_id": "Location.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/location-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-location",
+      "element_id": "Location.operationalStatus",
+      "binding_strength": "preferred",
+      "value_set": "http://terminology.hl7.org/ValueSet/v2-0116",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-location",
+      "element_id": "Location.mode",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/location-mode|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-location",
+      "element_id": "Location.type",
+      "binding_strength": "extensible",
+      "value_set": "http://terminology.hl7.org/ValueSet/v3-ServiceDeliveryLocationRoleType",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-location",
+      "element_id": "Location.hoursOfOperation.daysOfWeek",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/days-of-week|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication",
+      "element_id": "Medication.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication",
+      "element_id": "Medication.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/medication-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/medication-admin-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.category",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/medication-admin-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.dosage.site",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-site",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.dosage.route",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-route",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.dosage.method",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-method",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/medication-admin-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.category",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medadmin-category-icu",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.dosage.method",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-method-icu",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.identifier.use",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-use|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.identifier.type",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-type|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.category",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/medicationdispense-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.timing.repeat.durationUnit",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/units-of-time|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.timing.repeat.periodUnit",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/units-of-time|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.timing.repeat.dayOfWeek",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/days-of-week|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.timing.repeat.when",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/event-timing|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.timing.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-frequency",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.route",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-route",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.category",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/medicationdispense-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.medication[x]",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-gsn",
+      "note": "binding on .coding child (non-idiomatic)"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/medicationrequest-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.intent",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/medicationrequest-intent|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.priority",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/request-priority|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.timing.repeat.durationUnit",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/units-of-time|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.timing.repeat.periodUnit",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/units-of-time|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.timing.repeat.dayOfWeek",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/days-of-week|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.timing.repeat.when",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/event-timing|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.timing.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-frequency",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.route",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-route",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "element_id": "MedicationStatement.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/medication-statement-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "element_id": "MedicationStatement.category",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/medication-statement-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.category",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-category",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-chartevents-d-items",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.referenceRange.type",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/referencerange-meaning|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.component.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.component.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.category",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-category",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-datetimeevents-d-items",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.referenceRange.type",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/referencerange-meaning|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.component.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.component.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.category",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-category-ed",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-type-ed",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.dataAbsentReason",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-dateAbsentReason",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.referenceRange.type",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/referencerange-meaning|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.component.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.component.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.identifier.use",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-use|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.identifier.type",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-type|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.category",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-d-labitems",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.interpretation",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-lab-interpretation",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.referenceRange.type",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/referencerange-meaning|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.component.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.component.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.category",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-microbiology-organism",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.referenceRange.type",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/referencerange-meaning|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.component.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.component.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.identifier.use",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-use|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.identifier.type",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-type|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.category",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-microbiology-antibiotic",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.interpretation",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.referenceRange.type",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/referencerange-meaning|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.component.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.component.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.category",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-microbiology-test",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.referenceRange.type",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/referencerange-meaning|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.component.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.component.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.category",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-category",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-outputevents-d-items",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.referenceRange.type",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/referencerange-meaning|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.component.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.component.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.category",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-category|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-type-vital",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.dataAbsentReason",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-dateAbsentReason",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.referenceRange.type",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/referencerange-meaning|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.component.dataAbsentReason",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/data-absent-reason|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.component.interpretation",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/observation-interpretation|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-organization",
+      "element_id": "Organization.identifier.use",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-use|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-organization",
+      "element_id": "Organization.identifier.type",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-type|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-organization",
+      "element_id": "Organization.contact.purpose",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/contactentity-type|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-patient",
+      "element_id": "Patient.identifier.use",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-use|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-patient",
+      "element_id": "Patient.identifier.type",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/identifier-type|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-patient",
+      "element_id": "Patient.gender",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-patient",
+      "element_id": "Patient.maritalStatus",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/marital-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-patient",
+      "element_id": "Patient.contact.relationship",
+      "binding_strength": "extensible",
+      "value_set": "http://hl7.org/fhir/ValueSet/patient-contactrelationship|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-patient",
+      "element_id": "Patient.contact.gender",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-patient",
+      "element_id": "Patient.communication.language",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/languages|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-patient",
+      "element_id": "Patient.link.type",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/link-type|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/event-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-procedure-icd",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.focalDevice.action",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/device-action|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/event-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-procedure-types-ed",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.focalDevice.action",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/device-action|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/event-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.category",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-procedure-category",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.code",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-procedureevents-d-items",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.bodySite",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-bodysite",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.focalDevice.action",
+      "binding_strength": "preferred",
+      "value_set": "http://hl7.org/fhir/ValueSet/device-action|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.status",
+      "binding_strength": "required",
+      "value_set": "http://hl7.org/fhir/ValueSet/specimen-status|4.0.1",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.type",
+      "binding_strength": "required",
+      "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-specimen-type",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.collection.fastingStatus[x]",
+      "binding_strength": "extensible",
+      "value_set": "http://terminology.hl7.org/ValueSet/v2-0916",
+      "note": null
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.condition",
+      "binding_strength": "extensible",
+      "value_set": "http://terminology.hl7.org/ValueSet/v2-0493",
+      "note": null
+    }
+  ]
+}

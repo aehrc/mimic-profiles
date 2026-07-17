@@ -28,11 +28,18 @@ Description: "Selected codes from LOINC that represent values from the triage or
 * $LNC#2708-6 "Oxygen saturation in Arterial blood" // o2sat
 * $LNC#85354-9 "Blood pressure panel with all children optional" // sbp and dbp (component)
 
+ValueSet: MimicObservationComponentVital
+Id: mimic-observation-component-vital
+Title: "MIMIC-ED Observation Component Types Value Set"
+Description: "LOINC codes appearing in Observation.component.code of the vital-signs profile (blood pressure panel children)."
+* $LNC#8480-6 "Systolic blood pressure"
+* $LNC#8462-4 "Diastolic blood pressure"
+
 ValueSet: MimicQuantityUnit
 Id: mimic-unit-quantity
 Title: "MIMIC-ED Observation Quantity Units Value Set"
 Description: "Selected codes from UCUM that represent quantity units."
-* $UCUM#degF "F" // triage:temperature / vitalsign:temperature
+* $UCUM#[degF] "F" // triage:temperature / vitalsign:temperature ([degF] is the valid UCUM form)
 * $UCUM#{Beats}/min "Beats / minute" // triage:heartrate / vitalsign:heartrate
 * $UCUM#{Breaths}/min "Breaths / minute" // triage:resprate / vitalsign: resprate
 * $UCUM#% "%" // triage:o2sat / vitalsign:o2sat

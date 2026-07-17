@@ -40,6 +40,7 @@ Description:    "A MIMIC medication request profile based on the FHIR R4 medicat
 * identifier[POE_ID].value 1..1
 
 // binding to MIMIC terminology
+* medication[x] from $MimicMedicationCodes (required)
 * dosageInstruction.timing.code from $MimicMedicationFrequency
 * dosageInstruction.route from $MimicMedicationRoute
 

@@ -57,6 +57,7 @@ Description:    "A MIMIC encounter profile based on FHIR R4 Encounter."
 
 // Bind MIMIC terminology
 * type from $MimicEncounterType
+* priority from $VSActPriority (required)
 * serviceType from $MimicServices
 * hospitalization.admitSource from $MimicAdmitSource
 * hospitalization.dischargeDisposition from $MimicDischargeDisposition

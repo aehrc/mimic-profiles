@@ -13,4 +13,5 @@ Description:    "A MIMIC organization profile based on FHIR R4 Organization."
 * active 1..1
 
 // binding to MIMIC terminology
+* type from $VSOrganizationType (required)
 * identifier.system = $IdentifierOrganization

@@ -10,7 +10,7 @@ Usage: #example
 * class = $MimicAdmissionClassCS#"EW EMER."
 * type = $SCT#308335008 "Patient encounter procedure"
 * serviceType = $MimicServicesCS#TRAUM
-* priority = $MimicAdmissionTypeCS#"EW EMER."
+* priority = $ActPriorityCS#EM "emergency" // real data uses v3-ActPriority (R/EL/EM/UR), not mimic-admission-type
 * subject = Reference(ExampleMimicPatient)
 * period.start = "2147-12-30T08:40:00-05:00"
 * period.end = "2148-01-11T17:55:00-05:00"

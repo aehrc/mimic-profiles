@@ -15,7 +15,7 @@ Description:    "A MIMIC condition profile based on FHIR R4 Condition."
 // modifications to category and code
 * category = $ConditionCategory#encounter-diagnosis "Encounter Diagnosis"
 * category ^short = "All conditions are assumed to be encounter diagnosis (a point in time diagnosis related to an encounter) in MIMIC"
-* code from $MimicDiagnosisIcd
+* code from $MimicDiagnosis
 
 // referencing must be to MIMIC profiles
 * subject only Reference(MimicPatient)

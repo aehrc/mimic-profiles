@@ -23,6 +23,9 @@ Description:    "A MIMIC medication administration profile based on the base FHI
 * medication[x] only CodeableConcept
 
 // binding to MIMIC terminology
+// mimic-medication + v3-NullFlavor#UNK: 931 of 27.7M rows carry UNK where the
+// administered drug could not be coded (intentional upstream ETL null-flavoring)
+* medication[x] from $MimicMedicationWithUnknown (required)
 * dosage.method from $MimicMedicationMethod
 * dosage.route from $MimicMedicationRoute
 * dosage.site from $MimicMedicationSite

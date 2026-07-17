@@ -1,0 +1,65 @@
+{
+  "description": "Identity of the external inputs the pipeline consumes. Paths are relative to $ICD_SOURCE_DIR. Verify with: uv run scripts/terminology-build/verify_inputs.py",
+  "sources": {
+    "icd10cm": "https://www.cms.gov/medicare/coding-billing/icd-10-codes (yearly 'Code Descriptions in Tabular Order' and 'Code Tables and Index' downloads)",
+    "icd9cm": "CDC/CMS FY2012 (v29) distribution",
+    "retrieved": "2026-07"
+  },
+  "note": "Only the files below influence the generated CodeSystems: the ICD-9 Disease Tabular RTF + CMS long descriptions, and per ICD-10 year the order file + tabular XML. Other files in the CMS/CDC zips are unused.",
+  "files": [
+    {
+      "path": "2012_icd9/Dtab12.rtf",
+      "sha256": "e42a2cee1ec961352f2d8ea2bea95fe6b144c9168fa7d860c3f2f7789b78bd63",
+      "bytes": 13239830
+    },
+    {
+      "path": "2012_icd9/CMS29_DESC_LONG_DX.101111.txt",
+      "sha256": "79879c948b40d7e26e83156acaa83dadbc12e657f28da97cf889edb10974aebb",
+      "bytes": 897475
+    },
+    {
+      "path": "2016/icd10cm_order_2016.txt",
+      "sha256": "9f5bb2d9e425e60015205b79b0d54ce230aa62aa9a63c716402a64d466ee89e2",
+      "bytes": 13716322
+    },
+    {
+      "path": "2016/ICD10CM_FY2016_ Full_ XML/Tabular.xml",
+      "sha256": "3c4fdd851a5314a939d4893f45c921ad37522c0170244aa1065b93d4d9f9c01f",
+      "bytes": 8724012
+    },
+    {
+      "path": "2017/icd10cm_order_2017.txt",
+      "sha256": "737509cf3861c6198ac17a523030740f408f5161e035ee5d85a2e5e975a80404",
+      "bytes": 13947095
+    },
+    {
+      "path": "2017/ICD10CM_FY2017_Full_XML/icd10cm_tabular_2017.xml",
+      "sha256": "ecc299fda46d04800d903811a3c7536b48a2c0bfc19a0c6ba115466964c839f4",
+      "bytes": 8961360
+    },
+    {
+      "path": "2018/icd10cm_order_2018.txt",
+      "sha256": "fbd6207618a7ca2f9eb1a001c522584e77433ccb3d2bda240790f052b1593b66",
+      "bytes": 14076464
+    },
+    {
+      "path": "2018/ICD-10-CM-Codes-Tables-and-Index-2018/icd10cm_tabular_2018.xml",
+      "sha256": "ded07bf818246041e9d8fd6ccbdec03e2d0291ccff949155d32146cad235e0be",
+      "bytes": 9054004
+    },
+    {
+      "path": "2019/icd10cm_order_2019.txt",
+      "sha256": "c3d6a88945ba1416848f6f7bea738d382484a8c469dff585e58172b9a573aeb4",
+      "bytes": 14118522
+    },
+    {
+      "path": "2019/2019 Table and Index/icd10cm_tabular_2019.xml",
+      "sha256": "26d5ee7581b83e32bf73cb9d67f034250c5fae0cc0d0d3aa942def2020a6276c",
+      "bytes": 9107469
+    }
+  ],
+  "mimic_data": {
+    "identity": "MIMIC-IV-on-FHIR full dataset (PhysioNet), loaded as a Pathling Delta warehouse on the HPC node",
+    "fingerprint": "Condition table: 5,655,376 rows; 2,445,484 codings on mimic-diagnosis-icd10 and 3,209,892 on mimic-diagnosis-icd9 before migration (see scripts/icd-migration/migration-report.json)"
+  }
+}

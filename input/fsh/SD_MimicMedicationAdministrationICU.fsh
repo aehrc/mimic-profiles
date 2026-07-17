@@ -23,6 +23,7 @@ Description:    "A MIMIC medication administration ICU profile based on the FHIR
 * medication[x] only CodeableConcept
 
 // bindings to MIMIC terminology
+* medication[x] from $MimicMedicationCodes (required)
 * category from $MimicMedAdminCategoryICU
 * dosage.method from $MimicMedicationMethodICU
 

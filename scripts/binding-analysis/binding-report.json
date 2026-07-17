@@ -1,0 +1,961 @@
+{
+  "generated_from": "kindlab.fhir.mimic#1.3.0-csiro.1",
+  "summary": {
+    "total_items": 131,
+    "ok": 11,
+    "no_data": 120,
+    "errors": 0
+  },
+  "elements": [
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.priority",
+      "resource_type": "Encounter",
+      "type": "CodeableConcept",
+      "fsh_element_path": "priority",
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://terminology.hl7.org/ValueSet/v3-ActPriority"
+      },
+      "distinct_count": 4,
+      "row_count": 431231,
+      "observed_systems": [
+        "http://terminology.hl7.org/CodeSystem/v3-ActPriority"
+      ],
+      "mimic_systems": [],
+      "external_systems": [
+        "http://terminology.hl7.org/CodeSystem/v3-ActPriority"
+      ],
+      "verdict": "external_terminology",
+      "recommended_fsh": null,
+      "winning_value_set": null,
+      "winning_alias": null,
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {
+        "http://terminology.hl7.org/CodeSystem/v3-ActPriority": "http://terminology.hl7.org/ValueSet/v3-ActPriority"
+      },
+      "candidates": [],
+      "missing_codes": []
+    },
+    {
+      "profile_id": "mimic-location",
+      "element_id": "Location.physicalType",
+      "resource_type": "Location",
+      "type": "CodeableConcept",
+      "fsh_element_path": "physicalType",
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/location-physical-type|4.0.1"
+      },
+      "distinct_count": 1,
+      "row_count": 39,
+      "observed_systems": [
+        "http://terminology.hl7.org/CodeSystem/location-physical-type"
+      ],
+      "mimic_systems": [],
+      "external_systems": [
+        "http://terminology.hl7.org/CodeSystem/location-physical-type"
+      ],
+      "verdict": "external_terminology",
+      "recommended_fsh": null,
+      "winning_value_set": null,
+      "winning_alias": null,
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {
+        "http://terminology.hl7.org/CodeSystem/location-physical-type": "http://hl7.org/fhir/ValueSet/location-physical-type"
+      },
+      "candidates": [],
+      "missing_codes": []
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.medication[x]",
+      "resource_type": "MedicationAdministration",
+      "type": "CodeableConcept",
+      "fsh_element_path": "medication[x]",
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      },
+      "distinct_count": 5811,
+      "row_count": 27754178,
+      "observed_systems": [
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-formulary-drug-cd",
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name",
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-poe-iv",
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+      ],
+      "mimic_systems": [
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-formulary-drug-cd",
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name",
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-poe-iv"
+      ],
+      "external_systems": [
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+      ],
+      "verdict": "repair_candidate",
+      "recommended_fsh": null,
+      "winning_value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication",
+      "winning_alias": "MimicMedicationCodes",
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor": "http://terminology.hl7.org/ValueSet/v3-NullFlavor"
+      },
+      "candidates": [
+        {
+          "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication",
+          "alias": "MimicMedicationCodes",
+          "partial_resolvable": false,
+          "n_systems": 5,
+          "pct_distinct": 99.98,
+          "pct_rows": 99.9966,
+          "covered_distinct": 5810,
+          "total_distinct": 5811,
+          "covered_rows": 27753247,
+          "total_rows": 27754178,
+          "unknown_distinct": 0,
+          "unknown_rows": 0
+        }
+      ],
+      "missing_codes": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+          "code": "UNK",
+          "display": null,
+          "n": 931
+        }
+      ]
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.medication[x]",
+      "resource_type": "MedicationAdministration",
+      "type": "CodeableConcept",
+      "fsh_element_path": "medication[x]",
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      },
+      "distinct_count": 324,
+      "row_count": 8978893,
+      "observed_systems": [
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-icu"
+      ],
+      "mimic_systems": [
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-icu"
+      ],
+      "external_systems": [],
+      "verdict": "bind",
+      "recommended_fsh": "* medication[x] from $MimicMedicationCodes (required)",
+      "winning_value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication",
+      "winning_alias": "MimicMedicationCodes",
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {},
+      "candidates": [
+        {
+          "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication",
+          "alias": "MimicMedicationCodes",
+          "partial_resolvable": false,
+          "n_systems": 5,
+          "pct_distinct": 100.0,
+          "pct_rows": 100.0,
+          "covered_distinct": 324,
+          "total_distinct": 324,
+          "covered_rows": 8978893,
+          "total_rows": 8978893,
+          "unknown_distinct": 0,
+          "unknown_rows": 0
+        }
+      ],
+      "missing_codes": []
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.medication[x]",
+      "resource_type": "MedicationDispense",
+      "type": "CodeableConcept",
+      "fsh_element_path": "medication[x]",
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      },
+      "distinct_count": 9372,
+      "row_count": 12689766,
+      "observed_systems": [
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name"
+      ],
+      "mimic_systems": [
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name"
+      ],
+      "external_systems": [],
+      "verdict": "bind",
+      "recommended_fsh": "* medication[x] from $MimicMedicationCodes (required)",
+      "winning_value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication",
+      "winning_alias": "MimicMedicationCodes",
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {},
+      "candidates": [
+        {
+          "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication",
+          "alias": "MimicMedicationCodes",
+          "partial_resolvable": false,
+          "n_systems": 5,
+          "pct_distinct": 100.0,
+          "pct_rows": 100.0,
+          "covered_distinct": 9372,
+          "total_distinct": 9372,
+          "covered_rows": 12689766,
+          "total_rows": 12689766,
+          "unknown_distinct": 0,
+          "unknown_rows": 0
+        }
+      ],
+      "missing_codes": []
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.medication[x]",
+      "resource_type": "MedicationRequest",
+      "type": "CodeableConcept",
+      "fsh_element_path": "medication[x]",
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      },
+      "distinct_count": 2890,
+      "row_count": 1883681,
+      "observed_systems": [
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name",
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-poe-iv"
+      ],
+      "mimic_systems": [
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name",
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-poe-iv"
+      ],
+      "external_systems": [],
+      "verdict": "bind",
+      "recommended_fsh": "* medication[x] from $MimicMedicationCodes (required)",
+      "winning_value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication",
+      "winning_alias": "MimicMedicationCodes",
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {},
+      "candidates": [
+        {
+          "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication",
+          "alias": "MimicMedicationCodes",
+          "partial_resolvable": false,
+          "n_systems": 5,
+          "pct_distinct": 100.0,
+          "pct_rows": 100.0,
+          "covered_distinct": 2890,
+          "total_distinct": 2890,
+          "covered_rows": 1883681,
+          "total_rows": 1883681,
+          "unknown_distinct": 0,
+          "unknown_rows": 0
+        }
+      ],
+      "missing_codes": []
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "element_id": "MedicationStatement.medication[x]",
+      "resource_type": "MedicationStatement",
+      "type": "CodeableConcept",
+      "fsh_element_path": "medication[x]",
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/medication-codes|4.0.1"
+      },
+      "distinct_count": 19691,
+      "row_count": 8143620,
+      "observed_systems": [
+        "http://hl7.org/fhir/sid/ndc",
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-etc",
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-gsn"
+      ],
+      "mimic_systems": [
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-etc",
+        "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-gsn"
+      ],
+      "external_systems": [
+        "http://hl7.org/fhir/sid/ndc"
+      ],
+      "verdict": "no_binding",
+      "recommended_fsh": null,
+      "winning_value_set": null,
+      "winning_alias": null,
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {},
+      "candidates": [],
+      "missing_codes": []
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.value[x]",
+      "resource_type": "Observation",
+      "type": "CodeableConcept",
+      "fsh_element_path": "value[x]",
+      "existing_binding": null,
+      "distinct_count": 4,
+      "row_count": 1107278,
+      "observed_systems": [
+        "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"
+      ],
+      "mimic_systems": [],
+      "external_systems": [
+        "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"
+      ],
+      "verdict": "bind",
+      "recommended_fsh": "* value[x] from http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-micro-interpretation (required)",
+      "winning_value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-micro-interpretation",
+      "winning_alias": null,
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {
+        "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation": "http://hl7.org/fhir/ValueSet/observation-interpretation"
+      },
+      "candidates": [
+        {
+          "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-micro-interpretation",
+          "alias": null,
+          "partial_resolvable": false,
+          "n_systems": 1,
+          "pct_distinct": 100.0,
+          "pct_rows": 100.0,
+          "covered_distinct": 4,
+          "total_distinct": 4,
+          "covered_rows": 1107278,
+          "total_rows": 1107278,
+          "unknown_distinct": 0,
+          "unknown_rows": 0
+        },
+        {
+          "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-lab-interpretation",
+          "alias": null,
+          "partial_resolvable": false,
+          "n_systems": 1,
+          "pct_distinct": 0.0,
+          "pct_rows": 0.0,
+          "covered_distinct": 0,
+          "total_distinct": 4,
+          "covered_rows": 0,
+          "total_rows": 1107278,
+          "unknown_distinct": 0,
+          "unknown_rows": 0
+        }
+      ],
+      "missing_codes": []
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.value[x]",
+      "resource_type": "Observation",
+      "type": "CodeableConcept",
+      "fsh_element_path": "value[x]",
+      "existing_binding": null,
+      "distinct_count": 2,
+      "row_count": 132802,
+      "observed_systems": [
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+      ],
+      "mimic_systems": [],
+      "external_systems": [
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+      ],
+      "verdict": "external_terminology",
+      "recommended_fsh": null,
+      "winning_value_set": null,
+      "winning_alias": null,
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {
+        "http://terminology.hl7.org/CodeSystem/v3-NullFlavor": "http://terminology.hl7.org/ValueSet/v3-NullFlavor"
+      },
+      "candidates": [],
+      "missing_codes": []
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.component.code",
+      "resource_type": "Observation",
+      "type": "CodeableConcept",
+      "fsh_element_path": "component.code",
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/observation-codes|4.0.1"
+      },
+      "distinct_count": 2,
+      "row_count": 3979394,
+      "observed_systems": [
+        "http://loinc.org"
+      ],
+      "mimic_systems": [],
+      "external_systems": [
+        "http://loinc.org"
+      ],
+      "verdict": "no_binding",
+      "recommended_fsh": null,
+      "winning_value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-type-ed",
+      "winning_alias": null,
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {
+        "http://loinc.org": "(LOINC - external; validate against terminology server)"
+      },
+      "candidates": [
+        {
+          "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-type-ed",
+          "alias": null,
+          "partial_resolvable": false,
+          "n_systems": 1,
+          "pct_distinct": 0.0,
+          "pct_rows": 0.0,
+          "covered_distinct": 0,
+          "total_distinct": 2,
+          "covered_rows": 0,
+          "total_rows": 3979394,
+          "unknown_distinct": 0,
+          "unknown_rows": 0
+        },
+        {
+          "value_set": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-type-vital",
+          "alias": null,
+          "partial_resolvable": false,
+          "n_systems": 1,
+          "pct_distinct": 0.0,
+          "pct_rows": 0.0,
+          "covered_distinct": 0,
+          "total_distinct": 2,
+          "covered_rows": 0,
+          "total_rows": 3979394,
+          "unknown_distinct": 0,
+          "unknown_rows": 0
+        }
+      ],
+      "missing_codes": [
+        {
+          "system": "http://loinc.org",
+          "code": "8480-6",
+          "display": "Systolic blood pressure",
+          "n": 1989697
+        },
+        {
+          "system": "http://loinc.org",
+          "code": "8462-4",
+          "display": "Diastolic blood pressure",
+          "n": 1989697
+        }
+      ]
+    },
+    {
+      "profile_id": "mimic-organization",
+      "element_id": "Organization.type",
+      "resource_type": "Organization",
+      "type": "CodeableConcept",
+      "fsh_element_path": "type",
+      "existing_binding": {
+        "strength": "example",
+        "value_set": "http://hl7.org/fhir/ValueSet/organization-type|4.0.1"
+      },
+      "distinct_count": 1,
+      "row_count": 1,
+      "observed_systems": [
+        "http://terminology.hl7.org/CodeSystem/organization-type"
+      ],
+      "mimic_systems": [],
+      "external_systems": [
+        "http://terminology.hl7.org/CodeSystem/organization-type"
+      ],
+      "verdict": "external_terminology",
+      "recommended_fsh": null,
+      "winning_value_set": null,
+      "winning_alias": null,
+      "other_full_covering_value_sets": [],
+      "external_vs_suggestions": {
+        "http://terminology.hl7.org/CodeSystem/organization-type": "http://hl7.org/fhir/ValueSet/organization-type"
+      },
+      "candidates": [],
+      "missing_codes": []
+    }
+  ],
+  "no_data_elements": [
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.bodySite"
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.stage.summary"
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.stage.type"
+    },
+    {
+      "profile_id": "mimic-condition",
+      "element_id": "Condition.evidence.code"
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.hospitalization.reAdmission"
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.hospitalization.dietPreference"
+    },
+    {
+      "profile_id": "mimic-encounter",
+      "element_id": "Encounter.location.physicalType"
+    },
+    {
+      "profile_id": "mimic-medication",
+      "element_id": "Medication.form"
+    },
+    {
+      "profile_id": "mimic-medication",
+      "element_id": "Medication.ingredient.item[x]"
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.statusReason"
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.performer.function"
+    },
+    {
+      "profile_id": "mimic-medication-administration",
+      "element_id": "MedicationAdministration.reasonCode"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.statusReason"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.performer.function"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.reasonCode"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.dosage.site"
+    },
+    {
+      "profile_id": "mimic-medication-administration-icu",
+      "element_id": "MedicationAdministration.dosage.route"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.statusReason[x]"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.performer.function"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.type"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.additionalInstruction"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.asNeeded[x]"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.site"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.method"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.dosageInstruction.doseAndRate.type"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.substitution.type"
+    },
+    {
+      "profile_id": "mimic-medication-dispense",
+      "element_id": "MedicationDispense.substitution.reason"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.statusReason[x]"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.performer.function"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.type"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.substitution.type"
+    },
+    {
+      "profile_id": "mimic-medication-dispense-ed",
+      "element_id": "MedicationDispense.substitution.reason"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.statusReason"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.category"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.performerType"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.reasonCode"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.courseOfTherapyType"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.additionalInstruction"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.asNeeded[x]"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.site"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.method"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.dosageInstruction.doseAndRate.type"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.substitution.allowed[x]"
+    },
+    {
+      "profile_id": "mimic-medication-request",
+      "element_id": "MedicationRequest.substitution.reason"
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "element_id": "MedicationStatement.statusReason"
+    },
+    {
+      "profile_id": "mimic-medication-statement-ed",
+      "element_id": "MedicationStatement.reasonCode"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.bodySite"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.method"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.referenceRange.appliesTo"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.component.code"
+    },
+    {
+      "profile_id": "mimic-observation-chartevents",
+      "element_id": "Observation.component.value[x]"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.bodySite"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.method"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.referenceRange.appliesTo"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.component.code"
+    },
+    {
+      "profile_id": "mimic-observation-datetimeevents",
+      "element_id": "Observation.component.value[x]"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.bodySite"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.method"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.referenceRange.appliesTo"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.component.code"
+    },
+    {
+      "profile_id": "mimic-observation-ed",
+      "element_id": "Observation.component.value[x]"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.bodySite"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.method"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.referenceRange.appliesTo"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.component.code"
+    },
+    {
+      "profile_id": "mimic-observation-labevents",
+      "element_id": "Observation.component.value[x]"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.bodySite"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.method"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.referenceRange.appliesTo"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.component.code"
+    },
+    {
+      "profile_id": "mimic-observation-micro-org",
+      "element_id": "Observation.component.value[x]"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.bodySite"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.method"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.referenceRange.appliesTo"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.component.code"
+    },
+    {
+      "profile_id": "mimic-observation-micro-susc",
+      "element_id": "Observation.component.value[x]"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.bodySite"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.method"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.referenceRange.appliesTo"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.component.code"
+    },
+    {
+      "profile_id": "mimic-observation-micro-test",
+      "element_id": "Observation.component.value[x]"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.bodySite"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.method"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.referenceRange.appliesTo"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.component.code"
+    },
+    {
+      "profile_id": "mimic-observation-outputevents",
+      "element_id": "Observation.component.value[x]"
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.bodySite"
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.method"
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.referenceRange.appliesTo"
+    },
+    {
+      "profile_id": "mimic-observation-vital-signs",
+      "element_id": "Observation.component.value[x]"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.statusReason"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.category"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.performer.function"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.reasonCode"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.bodySite"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.outcome"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.complication"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.followUp"
+    },
+    {
+      "profile_id": "mimic-procedure",
+      "element_id": "Procedure.usedCode"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.statusReason"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.category"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.performer.function"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.reasonCode"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.bodySite"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.outcome"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.complication"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.followUp"
+    },
+    {
+      "profile_id": "mimic-procedure-ed",
+      "element_id": "Procedure.usedCode"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.statusReason"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.performer.function"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.reasonCode"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.outcome"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.complication"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.followUp"
+    },
+    {
+      "profile_id": "mimic-procedure-icu",
+      "element_id": "Procedure.usedCode"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.collection.method"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.collection.bodySite"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.processing.procedure"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.container.type"
+    },
+    {
+      "profile_id": "mimic-specimen",
+      "element_id": "Specimen.container.additive[x]"
+    }
+  ]
+}
