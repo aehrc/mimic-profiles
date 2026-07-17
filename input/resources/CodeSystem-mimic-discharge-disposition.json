@@ -14,64 +14,84 @@
     "content": "complete",
     "concept": [
         {
-            "code": "ACUTE HOSPITAL"
+            "code": "REHAB",
+            "display": "REHAB"
         },
         {
-            "code": "REHAB"
+            "code": "OTHER",
+            "display": "OTHER"
         },
         {
-            "code": "LEFT AGAINST MEDICAL ADVICE"
+            "code": "ADMITTED",
+            "display": "ADMITTED"
         },
         {
-            "code": "OTHER"
+            "code": "LEFT WITHOUT BEING SEEN",
+            "display": "LEFT WITHOUT BEING SEEN"
         },
         {
-            "code": "PSYCH FACILITY"
+            "code": "ASSISTED LIVING",
+            "display": "ASSISTED LIVING"
         },
         {
-            "code": "EXPIRED"
+            "code": "DIED",
+            "display": "DIED"
         },
         {
-            "code": "HOME"
+            "code": "PSYCH FACILITY",
+            "display": "PSYCH FACILITY"
         },
         {
-            "code": "AGAINST ADVICE"
+            "code": "SKILLED NURSING FACILITY",
+            "display": "SKILLED NURSING FACILITY"
         },
         {
-            "code": "TRANSFER"
+            "code": "HOME HEALTH CARE",
+            "display": "HOME HEALTH CARE"
         },
         {
-            "code": "HOSPICE"
+            "code": "EXPIRED",
+            "display": "EXPIRED"
         },
         {
-            "code": "ELOPED"
+            "code": "CHRONIC/LONG TERM ACUTE CARE",
+            "display": "CHRONIC/LONG TERM ACUTE CARE"
         },
         {
-            "code": "SKILLED NURSING FACILITY"
+            "code": "HEALTHCARE FACILITY",
+            "display": "HEALTHCARE FACILITY"
         },
         {
-            "code": "OTHER FACILITY"
+            "code": "LEFT AGAINST MEDICAL ADVICE",
+            "display": "LEFT AGAINST MEDICAL ADVICE"
         },
         {
-            "code": "CHRONIC/LONG TERM ACUTE CARE"
+            "code": "HOSPICE",
+            "display": "HOSPICE"
         },
         {
-            "code": "HOME HEALTH CARE"
+            "code": "HOME",
+            "display": "HOME"
         },
         {
-            "code": "HEALTHCARE FACILITY"
+            "code": "OTHER FACILITY",
+            "display": "OTHER FACILITY"
         },
         {
-            "code": "LEFT WITHOUT BEING SEEN"
+            "code": "ACUTE HOSPITAL",
+            "display": "ACUTE HOSPITAL"
         },
         {
-            "code": "ADMITTED"
+            "code": "AGAINST ADVICE",
+            "display": "AGAINST ADVICE"
         },
         {
-            "code": "ASSISTED LIVING"
+            "code": "TRANSFER",
+            "display": "TRANSFER"
         },
         {
-            "code": "DIED"
+            "code": "ELOPED",
+            "display": "ELOPED"
         }
     ]
 }

@@ -14,322 +14,428 @@
     "content": "complete",
     "concept": [
         {
-            "code": "AD"
+            "code": "AD",
+            "display": "AD"
         },
         {
-            "code": "G TUBE"
+            "code": "G TUBE",
+            "display": "G TUBE"
         },
         {
-            "code": "IH"
+            "code": "IH",
+            "display": "IH"
         },
         {
-            "code": "NG"
+            "code": "NG",
+            "display": "NG"
         },
         {
-            "code": "AERO"
+            "code": "AERO",
+            "display": "AERO"
         },
         {
-            "code": "IL"
+            "code": "IL",
+            "display": "IL"
         },
         {
-            "code": "IT"
+            "code": "IT",
+            "display": "IT"
         },
         {
-            "code": "PO"
+            "code": "PO",
+            "display": "PO"
         },
         {
-            "code": "DWELL"
+            "code": "DWELL",
+            "display": "DWELL"
         },
         {
-            "code": "IU"
+            "code": "IU",
+            "display": "IU"
         },
         {
-            "code": "RIGHT EAR"
+            "code": "RIGHT EAR",
+            "display": "RIGHT EAR"
         },
         {
-            "code": "LEFT EAR"
+            "code": "LEFT EAR",
+            "display": "LEFT EAR"
         },
         {
-            "code": "PO/NG"
+            "code": "PO/NG",
+            "display": "PO/NG"
         },
         {
-            "code": "INTRAVITREAL"
+            "code": "INTRAVITREAL",
+            "display": "INTRAVITREAL"
         },
         {
-            "code": "PO OR ENTERAL TUBE"
+            "code": "PO OR ENTERAL TUBE",
+            "display": "PO OR ENTERAL TUBE"
         },
         {
-            "code": "SIDE PORT"
+            "code": "SIDE PORT",
+            "display": "SIDE PORT"
         },
         {
-            "code": "FEMORAL VEIN"
+            "code": "FEMORAL VEIN",
+            "display": "FEMORAL VEIN"
         },
         {
-            "code": "IV"
+            "code": "IV",
+            "display": "IV"
         },
         {
-            "code": "IA"
+            "code": "IA",
+            "display": "IA"
         },
         {
-            "code": "REPLACE"
+            "code": "REPLACE",
+            "display": "REPLACE"
         },
         {
-            "code": "LEFT EYE"
+            "code": "LEFT EYE",
+            "display": "LEFT EYE"
         },
         {
-            "code": "IV FLUSH"
+            "code": "IV FLUSH",
+            "display": "IV FLUSH"
         },
         {
-            "code": "IP"
+            "code": "IP",
+            "display": "IP"
         },
         {
-            "code": "AS"
+            "code": "AS",
+            "display": "AS"
         },
         {
-            "code": "ED"
+            "code": "ED",
+            "display": "ED"
         },
         {
-            "code": "INTRA-ARTERIALLY"
+            "code": "INTRA-ARTERIALLY",
+            "display": "INTRA-ARTERIALLY"
         },
         {
-            "code": "ORAL"
+            "code": "ORAL",
+            "display": "ORAL"
         },
         {
-            "code": "FLUSH"
+            "code": "FLUSH",
+            "display": "FLUSH"
         },
         {
-            "code": "BOTH EYES"
+            "code": "BOTH EYES",
+            "display": "BOTH EYES"
         },
         {
-            "code": "DIALYS"
+            "code": "DIALYS",
+            "display": "DIALYS"
         },
         {
-            "code": "INFUSION VIA ON-Q PUMP"
+            "code": "INFUSION VIA ON-Q PUMP",
+            "display": "INFUSION VIA ON-Q PUMP"
         },
         {
-            "code": "PO/IV"
+            "code": "PO/IV",
+            "display": "PO/IV"
         },
         {
-            "code": "INHALATION"
+            "code": "INHALATION",
+            "display": "INHALATION"
         },
         {
-            "code": "IVPCA"
+            "code": "IVPCA",
+            "display": "IVPCA"
         },
         {
-            "code": "OD"
+            "code": "OD",
+            "display": "OD"
         },
         {
-            "code": "IV INFUSION"
+            "code": "IV INFUSION",
+            "display": "IV INFUSION"
         },
         {
-            "code": "ND"
+            "code": "ND",
+            "display": "ND"
         },
         {
-            "code": "EDPCA"
+            "code": "EDPCA",
+            "display": "EDPCA"
         },
         {
-            "code": "PO/OG"
+            "code": "PO/OG",
+            "display": "PO/OG"
         },
         {
-            "code": "PEG"
+            "code": "PEG",
+            "display": "PEG"
         },
         {
-            "code": "BOTH EARS"
+            "code": "BOTH EARS",
+            "display": "BOTH EARS"
         },
         {
-            "code": "SL"
+            "code": "SL",
+            "display": "SL"
         },
         {
-            "code": "IVS"
+            "code": "IVS",
+            "display": "IVS"
         },
         {
-            "code": "AU"
+            "code": "AU",
+            "display": "AU"
         },
         {
-            "code": "IR"
+            "code": "IR",
+            "display": "IR"
         },
         {
-            "code": "NS"
+            "code": "NS",
+            "display": "NS"
         },
         {
-            "code": "OU"
+            "code": "OU",
+            "display": "OU"
         },
         {
-            "code": "IN"
+            "code": "IN",
+            "display": "IN"
         },
         {
-            "code": "INTRALESIONAL"
+            "code": "INTRALESIONAL",
+            "display": "INTRALESIONAL"
         },
         {
-            "code": "P.O."
+            "code": "P.O.",
+            "display": "P.O."
         },
         {
-            "code": "TD"
+            "code": "TD",
+            "display": "TD"
         },
         {
-            "code": "NGT"
+            "code": "NGT",
+            "display": "NGT"
         },
         {
-            "code": "INTRACORPOREAL"
+            "code": "INTRACORPOREAL",
+            "display": "INTRACORPOREAL"
         },
         {
-            "code": "NAS"
+            "code": "NAS",
+            "display": "NAS"
         },
         {
-            "code": "Po"
+            "code": "Po",
+            "display": "Po"
         },
         {
-            "code": "ET"
+            "code": "ET",
+            "display": "ET"
         },
         {
-            "code": "IMPELLA"
+            "code": "IMPELLA",
+            "display": "IMPELLA"
         },
         {
-            "code": "EX-VIVO"
+            "code": "EX-VIVO",
+            "display": "EX-VIVO"
         },
         {
-            "code": "NEB"
+            "code": "NEB",
+            "display": "NEB"
         },
         {
-            "code": "IRR"
+            "code": "IRR",
+            "display": "IRR"
         },
         {
-            "code": "SC INFUSION"
+            "code": "SC INFUSION",
+            "display": "SC INFUSION"
         },
         {
-            "code": "PL"
+            "code": "PL",
+            "display": "PL"
         },
         {
-            "code": "ITPCA"
+            "code": "ITPCA",
+            "display": "ITPCA"
         },
         {
-            "code": "IJ"
+            "code": "IJ",
+            "display": "IJ"
         },
         {
-            "code": "IO"
+            "code": "IO",
+            "display": "IO"
         },
         {
-            "code": "LOCK"
+            "code": "LOCK",
+            "display": "LOCK"
         },
         {
-            "code": "OG"
+            "code": "OG",
+            "display": "OG"
         },
         {
-            "code": "TRANSDERMAL"
+            "code": "TRANSDERMAL",
+            "display": "TRANSDERMAL"
         },
         {
-            "code": "OGT"
+            "code": "OGT",
+            "display": "OGT"
         },
         {
-            "code": "SUBCUT INFUSION"
+            "code": "SUBCUT INFUSION",
+            "display": "SUBCUT INFUSION"
         },
         {
-            "code": "VG"
+            "code": "VG",
+            "display": "VG"
         },
         {
-            "code": "SCPCA"
+            "code": "SCPCA",
+            "display": "SCPCA"
         },
         {
-            "code": "IV FLUSH*"
+            "code": "IVCI",
+            "display": "IVCI"
         },
         {
-            "code": "IVCI"
+            "code": "IV FLUSH*",
+            "display": "IV FLUSH*"
         },
         {
-            "code": "INTRAPLEURAL"
+            "code": "INTRAPLEURAL",
+            "display": "INTRAPLEURAL"
         },
         {
-            "code": "OS"
+            "code": "OS",
+            "display": "OS"
         },
         {
-            "code": "DLPICC"
+            "code": "DLPICC",
+            "display": "DLPICC"
         },
         {
-            "code": "IV BOLUS"
+            "code": "IV BOLUS",
+            "display": "IV BOLUS"
         },
         {
-            "code": "SC"
+            "code": "SC",
+            "display": "SC"
         },
         {
-            "code": "INTERSPACE"
+            "code": "INTERSPACE",
+            "display": "INTERSPACE"
         },
         {
-            "code": "po"
+            "code": "po",
+            "display": "po"
         },
         {
-            "code": "SCPUMP"
+            "code": "SCPUMP",
+            "display": "SCPUMP"
         },
         {
-            "code": "TT"
+            "code": "TT",
+            "display": "TT"
         },
         {
-            "code": "IV DRIP"
+            "code": "IV DRIP",
+            "display": "IV DRIP"
         },
         {
-            "code": "PB"
+            "code": "PB",
+            "display": "PB"
         },
         {
-            "code": "IVT"
+            "code": "IVT",
+            "display": "IVT"
         },
         {
-            "code": "RIGHT EYE"
+            "code": "RIGHT EYE",
+            "display": "RIGHT EYE"
         },
         {
-            "code": "PR"
+            "code": "PR",
+            "display": "PR"
         },
         {
-            "code": "SUBCUT"
+            "code": "SUBCUT",
+            "display": "SUBCUT"
         },
         {
-            "code": "AC"
+            "code": "AC",
+            "display": "AC"
         },
         {
-            "code": "BUCCAL"
+            "code": "BUCCAL",
+            "display": "BUCCAL"
         },
         {
-            "code": "INTRAPERICARDIAL"
+            "code": "INTRAPERICARDIAL",
+            "display": "INTRAPERICARDIAL"
         },
         {
-            "code": "TP"
+            "code": "TP",
+            "display": "TP"
         },
         {
-            "code": "AXILLARY"
+            "code": "AXILLARY",
+            "display": "AXILLARY"
         },
         {
-            "code": "ng"
+            "code": "ng",
+            "display": "ng"
         },
         {
-            "code": "PERIPHNERVE"
+            "code": "PERIPHNERVE",
+            "display": "PERIPHNERVE"
         },
         {
-            "code": "IC"
+            "code": "IC",
+            "display": "IC"
         },
         {
-            "code": "BU"
+            "code": "BU",
+            "display": "BU"
         },
         {
-            "code": "PV"
+            "code": "PV",
+            "display": "PV"
         },
         {
-            "code": "NU"
+            "code": "NU",
+            "display": "NU"
         },
         {
-            "code": "ENTERAL TUBE ONLY \u2013 NOT ORAL"
+            "code": "ENTERAL TUBE ONLY \u2013 NOT ORAL",
+            "display": "ENTERAL TUBE ONLY \u2013 NOT ORAL"
         },
         {
-            "code": "J TUBE"
+            "code": "J TUBE",
+            "display": "J TUBE"
         },
         {
-            "code": "LUMBAR PLEXUS"
+            "code": "LUMBAR PLEXUS",
+            "display": "LUMBAR PLEXUS"
         },
         {
-            "code": "NG/OG"
+            "code": "NG/OG",
+            "display": "NG/OG"
         },
         {
-            "code": "ID"
+            "code": "ID",
+            "display": "ID"
         },
         {
-            "code": "IM"
+            "code": "IM",
+            "display": "IM"
         }
     ]
 }

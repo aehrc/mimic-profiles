@@ -14,31 +14,40 @@
     "content": "complete",
     "concept": [
         {
-            "code": "EU OBSERVATION"
+            "code": "EU OBSERVATION",
+            "display": "EU OBSERVATION"
         },
         {
-            "code": "URGENT"
+            "code": "EW EMER.",
+            "display": "EW EMER."
         },
         {
-            "code": "ELECTIVE"
+            "code": "DIRECT EMER.",
+            "display": "DIRECT EMER."
         },
         {
-            "code": "AMBULATORY OBSERVATION"
+            "code": "DIRECT OBSERVATION",
+            "display": "DIRECT OBSERVATION"
         },
         {
-            "code": "SURGICAL SAME DAY ADMISSION"
+            "code": "AMBULATORY OBSERVATION",
+            "display": "AMBULATORY OBSERVATION"
         },
         {
-            "code": "DIRECT OBSERVATION"
+            "code": "OBSERVATION ADMIT",
+            "display": "OBSERVATION ADMIT"
         },
         {
-            "code": "DIRECT EMER."
+            "code": "SURGICAL SAME DAY ADMISSION",
+            "display": "SURGICAL SAME DAY ADMISSION"
         },
         {
-            "code": "OBSERVATION ADMIT"
+            "code": "URGENT",
+            "display": "URGENT"
         },
         {
-            "code": "EW EMER."
+            "code": "ELECTIVE",
+            "display": "ELECTIVE"
         }
     ]
 }

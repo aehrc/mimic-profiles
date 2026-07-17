@@ -14,46 +14,60 @@
     "content": "complete",
     "concept": [
         {
-            "code": "17 - Inhaled Meds"
+            "code": "17 - Inhaled Meds",
+            "display": "17 - Inhaled Meds"
         },
         {
-            "code": "CRRT Filter Change"
+            "code": "Communication",
+            "display": "Communication"
         },
         {
-            "code": "Communication"
+            "code": "Continuous Procedures",
+            "display": "Continuous Procedures"
         },
         {
-            "code": "Continuous Procedures"
+            "code": "CRRT Filter Change",
+            "display": "CRRT Filter Change"
         },
         {
-            "code": "Dialysis"
+            "code": "Dialysis",
+            "display": "Dialysis"
         },
         {
-            "code": "Imaging"
+            "code": "Imaging",
+            "display": "Imaging"
         },
         {
-            "code": "Intubation/Extubation"
+            "code": "Intubation/Extubation",
+            "display": "Intubation/Extubation"
         },
         {
-            "code": "Invasive Lines"
+            "code": "Invasive Lines",
+            "display": "Invasive Lines"
         },
         {
-            "code": "Peripheral Lines"
+            "code": "Peripheral Lines",
+            "display": "Peripheral Lines"
         },
         {
-            "code": "Peritoneal Dialysis"
+            "code": "Peritoneal Dialysis",
+            "display": "Peritoneal Dialysis"
         },
         {
-            "code": "Procedures"
+            "code": "Procedures",
+            "display": "Procedures"
         },
         {
-            "code": "Significant Events"
+            "code": "Significant Events",
+            "display": "Significant Events"
         },
         {
-            "code": "Tubes"
+            "code": "Tubes",
+            "display": "Tubes"
         },
         {
-            "code": "Ventilation"
+            "code": "Ventilation",
+            "display": "Ventilation"
         }
     ]
 }

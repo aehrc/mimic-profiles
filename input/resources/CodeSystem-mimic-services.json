@@ -14,61 +14,80 @@
     "content": "complete",
     "concept": [
         {
-            "code": "TRAUM"
+            "code": "CMED",
+            "display": "Cardiac Medical"
         },
         {
-            "code": "DENT"
+            "code": "CSURG",
+            "display": "Cardiac Surgery"
         },
         {
-            "code": "CSURG"
+            "code": "DENT",
+            "display": "Dental"
         },
         {
-            "code": "CMED"
+            "code": "ENT",
+            "display": "Ear, Nose, and Throat"
         },
         {
-            "code": "ORTHO"
+            "code": "EYE",
+            "display": "Eye"
         },
         {
-            "code": "ENT"
+            "code": "GU",
+            "display": "Genitourinary"
         },
         {
-            "code": "GU"
+            "code": "GYN",
+            "display": "Gynecological"
         },
         {
-            "code": "NMED"
+            "code": "MED",
+            "display": "Medical"
         },
         {
-            "code": "SURG"
+            "code": "NMED",
+            "display": "Neurologic Medical"
         },
         {
-            "code": "TSURG"
+            "code": "NSURG",
+            "display": "Neurologic Surgical"
         },
         {
-            "code": "GYN"
+            "code": "OBS",
+            "display": "Obstetrics"
         },
         {
-            "code": "VSURG"
+            "code": "OMED",
+            "display": "Oncologic Medical"
         },
         {
-            "code": "MED"
+            "code": "ORTHO",
+            "display": "Orthopaedic"
         },
         {
-            "code": "NSURG"
+            "code": "PSURG",
+            "display": "Plastic"
         },
         {
-            "code": "PSYCH"
+            "code": "PSYCH",
+            "display": "Psychiatric"
         },
         {
-            "code": "OBS"
+            "code": "SURG",
+            "display": "Surgical"
         },
         {
-            "code": "OMED"
+            "code": "TRAUM",
+            "display": "Trauma"
         },
         {
-            "code": "EYE"
+            "code": "TSURG",
+            "display": "Thoracic Surgical"
         },
         {
-            "code": "PSURG"
+            "code": "VSURG",
+            "display": "Vascular Surgical"
         }
     ]
 }
