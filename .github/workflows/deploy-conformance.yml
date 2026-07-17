@@ -56,7 +56,7 @@ jobs:
           # driver from loading its native library. Extract it to an
           # exec-capable directory within the workspace instead.
           mkdir -p "$GITHUB_WORKSPACE/.sqlite-tmp"
-          java -Dorg.sqlite.tmpdir="$GITHUB_WORKSPACE/.sqlite-tmp" -jar -Xms4096M -Xmx6144M -XX:NewRatio=1 -XX:-UseAdaptiveSizePolicy input-cache/publisher.jar ig.ini
+          java -Dorg.sqlite.tmpdir="$GITHUB_WORKSPACE/.sqlite-tmp" -jar -Xms2048M -Xmx4096M -XX:NewRatio=1 -XX:-UseAdaptiveSizePolicy input-cache/publisher.jar ig.ini
 
       # Publish the built conformance resources to the Velonto FHIR server.
       - name: "Publish conformance resources to Velonto"
