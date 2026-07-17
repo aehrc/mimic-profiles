@@ -1,0 +1,4 @@
+# Self-hosted runner labels used by this repository's workflows.
+self-hosted-runner:
+  labels:
+    - pathling-linux

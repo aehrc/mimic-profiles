@@ -1,0 +1,61 @@
+name: Deploy terminology to Velonto
+on:
+  workflow_dispatch:
+  push:
+    branches: [velonto]
+jobs:
+  deploy-terminology:
+    runs-on: pathling-linux
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      # Install Ruby.
+      # https://github.com/ruby/setup-ruby
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+
+      # Install Jekyll, required by the IG Publisher.
+      # https://jekyllrb.com/docs/installation/ubuntu/
+      - name: "Install Jekyll"
+        shell: bash
+        run: |
+          gem install jekyll bundler
+          jekyll -v
+
+      # Install Node.js for SUSHI.
+      # https://github.com/actions/setup-node
+      - name: "Install Node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: "Install and run SUSHI"
+        shell: bash
+        run: |
+          npm install -g fsh-sushi@2.7.0
+          sushi --version
+          sushi .
+
+      - name: "Download the IG Publisher"
+        shell: bash
+        run: |
+          mkdir ./input-cache
+          curl -sS -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar
+          chmod +x ./input-cache/publisher.jar
+
+      - name: "Create IG"
+        shell: bash
+        run: |
+          java -jar -Xms4096M -Xmx6144M -XX:NewRatio=1 -XX:-UseAdaptiveSizePolicy input-cache/publisher.jar ig.ini
+
+      # Publish the built terminology resources to the Velonto FHIR server.
+      - name: "Publish terminology to Velonto"
+        shell: bash
+        run: |
+          scripts/publish-terminology.sh http://velonto.dw.csiro.au/fhir output
