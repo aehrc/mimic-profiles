@@ -5,7 +5,7 @@ on:
     branches: [velonto]
 jobs:
   deploy-terminology:
-    runs-on: pathling-linux
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - uses: actions/checkout@v4
 
