@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 #
-# Publish the IG's terminology resources (CodeSystems and ValueSets) to a FHIR
-# R4 server. For each resource, any server copy sharing the same canonical URL
-# is deleted first, then the build-output copy is uploaded by its resource id.
+# Publish the IG's conformance resources (CodeSystems, ValueSets, and
+# StructureDefinitions) to a FHIR R4 server. For each resource, any server copy
+# sharing the same canonical URL is deleted first, then the build-output copy is
+# uploaded by its resource id. Terminology is published before
+# StructureDefinitions so that terminology a profile binds to is present first.
 # The run fails fast on the first unexpected HTTP response.
 #
 # Author: John Grimes.
@@ -14,7 +16,8 @@ usage() {
   echo "Usage: $0 <fhir-base-url> <resource-dir>" >&2
   echo >&2
   echo "  <fhir-base-url>  FHIR R4 base URL, e.g. http://velonto.dw.csiro.au/fhir." >&2
-  echo "  <resource-dir>   Directory holding CodeSystem-*.json and ValueSet-*.json." >&2
+  echo "  <resource-dir>   Directory holding CodeSystem-*.json, ValueSet-*.json," >&2
+  echo "                   and StructureDefinition-*.json." >&2
 }
 
 # Report a failed HTTP interaction and exit non-zero.
@@ -52,19 +55,22 @@ if [[ ! -d "$resource_dir" ]]; then
   exit 1
 fi
 
-# Collect the terminology files. A nullglob keeps the arrays empty rather than
-# leaving the literal glob pattern when nothing matches.
+# Collect the conformance files. Terminology (CodeSystems then ValueSets) comes
+# before StructureDefinitions so that terminology a profile binds to is
+# published first. A nullglob keeps the arrays empty rather than leaving the
+# literal glob pattern when nothing matches.
 shopt -s nullglob
-files=("$resource_dir"/CodeSystem-*.json "$resource_dir"/ValueSet-*.json)
+files=("$resource_dir"/CodeSystem-*.json "$resource_dir"/ValueSet-*.json \
+  "$resource_dir"/StructureDefinition-*.json)
 shopt -u nullglob
 
 # Verify at least one matching file was found.
 if [[ ${#files[@]} -eq 0 ]]; then
-  echo "ERROR: no CodeSystem-*.json or ValueSet-*.json files in '${resource_dir}'." >&2
+  echo "ERROR: no CodeSystem-*.json, ValueSet-*.json, or StructureDefinition-*.json files in '${resource_dir}'." >&2
   exit 1
 fi
 
-echo "Publishing ${#files[@]} terminology resources to ${base_url}."
+echo "Publishing ${#files[@]} conformance resources to ${base_url}."
 
 for file in "${files[@]}"; do
   # Read the resource type, id, and canonical URL from the resource itself.
@@ -110,4 +116,4 @@ for file in "${files[@]}"; do
   esac
 done
 
-echo "Done. Published ${#files[@]} terminology resources."
+echo "Done. Published ${#files[@]} conformance resources."

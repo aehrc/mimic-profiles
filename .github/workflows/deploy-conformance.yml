@@ -1,10 +1,10 @@
-name: Deploy terminology to Velonto
+name: Deploy conformance resources to Velonto
 on:
   workflow_dispatch:
   push:
     branches: [velonto]
 jobs:
-  deploy-terminology:
+  deploy-conformance:
     runs-on: [self-hosted, Linux, X64]
     steps:
       - uses: actions/checkout@v4
@@ -54,8 +54,8 @@ jobs:
         run: |
           java -jar -Xms4096M -Xmx6144M -XX:NewRatio=1 -XX:-UseAdaptiveSizePolicy input-cache/publisher.jar ig.ini
 
-      # Publish the built terminology resources to the Velonto FHIR server.
-      - name: "Publish terminology to Velonto"
+      # Publish the built conformance resources to the Velonto FHIR server.
+      - name: "Publish conformance resources to Velonto"
         shell: bash
         run: |
-          scripts/publish-terminology.sh http://velonto.dw.csiro.au/fhir output
+          scripts/publish-conformance.sh http://velonto.dw.csiro.au/fhir output
