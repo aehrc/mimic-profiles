@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 #
 # Publish the IG's conformance resources (CodeSystems, ValueSets, and
-# StructureDefinitions) to a FHIR R4 server. For each resource, any server copy
-# sharing the same canonical URL is deleted first, then the build-output copy is
-# uploaded by its resource id. Terminology is published before
-# StructureDefinitions so that terminology a profile binds to is present first.
-# The run fails fast on the first unexpected HTTP response.
+# StructureDefinitions) to a FHIR R4 server. For each resource, every server
+# copy sharing the same canonical URL is deleted first (found by search and
+# deleted individually by id, as the server does not support conditional
+# delete), then the build-output copy is uploaded by its resource id. Deleting
+# all matches first ensures the canonical URL resolves unambiguously.
+# Terminology is published before StructureDefinitions so that terminology a
+# profile binds to is present first. The run fails fast on the first
+# unexpected HTTP response.
 #
 # Author: John Grimes.
 
@@ -86,20 +89,56 @@ for file in "${files[@]}"; do
     exit 1
   fi
 
-  # Conditionally delete every server copy sharing this canonical URL. A 404
-  # means nothing matched, which is not an error; a 412 (multiple matches
-  # rejected) or any other unexpected status fails the run.
-  echo "Deleting existing ${resource_type} with url=${canonical_url}."
-  delete_response="$(curl -sS -G -X DELETE \
-    -w $'\n%{http_code}' \
-    --data-urlencode "url=${canonical_url}" \
-    "${base_url}/${resource_type}")"
-  delete_status="${delete_response##*$'\n'}"
-  delete_body="${delete_response%$'\n'*}"
-  case "$delete_status" in
-    200 | 204 | 404) ;;
-    *) fail "$file" "conditional delete" "$delete_status" "$delete_body" ;;
-  esac
+  # Delete every server copy sharing this canonical URL, so the URL resolves
+  # unambiguously after upload. The server does not support conditional
+  # delete, so matches are found by search and deleted individually by id.
+  # The search-delete cycle repeats until no matches remain, which also
+  # covers results paged beyond a single search response.
+  encoded_url="$(jq -rn --arg url "$canonical_url" '$url | @uri')"
+  attempts=0
+  while :; do
+    # Bound the search-delete cycle so a server that keeps returning matches
+    # it will not delete cannot loop forever.
+    attempts=$((attempts + 1))
+    if [[ $attempts -gt 10 ]]; then
+      echo "ERROR: matches for url=${canonical_url} remain after ${attempts} search-delete cycles." >&2
+      exit 1
+    fi
+
+    search_response="$(curl -sS \
+      -w $'\n%{http_code}' \
+      -H "Accept: application/fhir+json" \
+      "${base_url}/${resource_type}?url=${encoded_url}&_elements=id&_count=100")"
+    search_status="${search_response##*$'\n'}"
+    search_body="${search_response%$'\n'*}"
+    if [[ "$search_status" != 200 ]]; then
+      fail "$file" "search by url" "$search_status" "$search_body"
+    fi
+
+    # Collect the ids of the matched resources; stop once none remain. FHIR
+    # ids contain no whitespace or glob characters, so word-splitting the jq
+    # output into an array is safe (and portable to bash 3, unlike mapfile).
+    # shellcheck disable=SC2207
+    existing_ids=($(jq -r \
+      '[.entry // [] | .[] | select(.search.mode != "include") | .resource.id] | .[]' \
+      <<< "$search_body"))
+    if [[ ${#existing_ids[@]} -eq 0 ]]; then
+      break
+    fi
+
+    for existing_id in "${existing_ids[@]}"; do
+      echo "Deleting existing ${resource_type}/${existing_id} with url=${canonical_url}."
+      delete_response="$(curl -sS -X DELETE \
+        -w $'\n%{http_code}' \
+        "${base_url}/${resource_type}/${existing_id}")"
+      delete_status="${delete_response##*$'\n'}"
+      delete_body="${delete_response%$'\n'*}"
+      case "$delete_status" in
+        200 | 204 | 404) ;;
+        *) fail "$file" "delete by id" "$delete_status" "$delete_body" ;;
+      esac
+    done
+  done
 
   # Upload the build-output copy by its resource id.
   echo "Uploading ${resource_type}/${resource_id} from ${file}."
