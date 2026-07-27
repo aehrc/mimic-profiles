@@ -26,3 +26,9 @@ scripts/terminology-build/2018/
 scripts/terminology-build/2019/
 # large generated CodeSystems are published as GitHub release assets, not committed
 scripts/terminology-build/output/CodeSystem-*.json
+
+# merged-profile-provisioning: local Spark scratch + generated draft artifacts
+# (document mode's summaries/suggested FSH are drafts for a human to review,
+# not files consumed by the IG build)
+scripts/merged_profile_provisioning/spark-warehouse/
+scripts/merged_profile_provisioning/artifacts/
