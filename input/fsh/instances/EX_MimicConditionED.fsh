@@ -7,4 +7,4 @@ Usage:          #example
 
 * subject = Reference(ExampleMimicPatientED)
 * encounter = Reference(ExampleMimicEncounterED)
-* code = $Icd9CM|2012#205.00 "Acute myeloid leukemia, without mention of having achieved remission"
+* code = $MimicDiagnosisIcd9#20500 "Acute myeloid leukemia, without mention of having achieved remission"

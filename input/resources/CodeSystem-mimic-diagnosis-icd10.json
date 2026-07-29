@@ -6,7 +6,7 @@
  "version": "2.0",
  "name": "MimicDiagnosisIcd10",
  "title": "MimicDiagnosisIcd10",
- "status": "retired",
+ "status": "draft",
  "date": "2022-09-21T13:59:43-04:00",
  "publisher": "KinD Lab",
  "description": "The diagnosis ICD10 codes used for MIMIC",

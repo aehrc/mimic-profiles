@@ -32,3 +32,6 @@ scripts/terminology-build/output/CodeSystem-*.json
 # not files consumed by the IG build)
 scripts/merged_profile_provisioning/spark-warehouse/
 scripts/merged_profile_provisioning/artifacts/
+
+# Local credentials — never commit
+.env

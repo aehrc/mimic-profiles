@@ -28,8 +28,6 @@ Alias: $MimicMedicationRouteCS = http://mimic.mit.edu/fhir/mimic/CodeSystem/mimi
 Alias: $ConditionCategory = http://terminology.hl7.org/CodeSystem/condition-category
 Alias: $MimicDiagnosisIcd10 = http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10
 Alias: $MimicDiagnosisIcd9 = http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9
-Alias: $Icd10CM = http://hl7.org/fhir/sid/icd-10-cm
-Alias: $Icd9CM = http://hl7.org/fhir/sid/icd-9-cm
 
 // encounter
 Alias: $HL7ActCode = http://terminology.hl7.org/CodeSystem/v3-ActCode

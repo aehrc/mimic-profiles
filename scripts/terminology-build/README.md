@@ -1,5 +1,33 @@
 # terminology-build
 
+> **OUTDATED — kept for provenance, do not run as part of the current pipeline.**
+>
+> This directory supported the July 2026 migration that rewrote `Condition.code`
+> onto the standard `http://hl7.org/fhir/sid/icd-9-cm` / `icd-10-cm` systems and
+> bound the profile to a `mimic-diagnosis` ValueSet built from them.
+>
+> **That migration has been reverted.** `Condition.code` is bound to
+> `mimic-diagnosis-icd` again (the union of the custom `mimic-diagnosis-icd9` and
+> `mimic-diagnosis-icd10` CodeSystems), and the data carries the MIMIC dot-less
+> codes. Translation to the standard systems is now done at query time via
+> `ConceptMap/mimic-diagnosis-icd-to-sid` (see `../icd-migration/`), not by
+> rewriting the stored resources.
+>
+> **The ValueSet is current again, in a new role.**
+> `output/ValueSet-mimic-diagnosis.json` is no longer part of the IG (it was
+> removed from `input/resources/`) and nothing binds to it, but it is now the
+> `targetCanonical` of `ConceptMap/mimic-diagnosis-icd-to-sid` — the
+> hierarchy-bearing value set a text-to-code search service is pointed at, whose
+> results reverse-translate back to MIMIC codes. It has moved to our own canonical
+> base, `http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-diagnosis`,
+> because `mimic.mit.edu/fhir/mimic` belongs to the upstream publisher; that is
+> also why it cannot live in `input/resources/`.
+>
+> So `build_icd9cm_codesystem.py` and `build_icd10cm_codesystem.py` **are** still
+> worth running: they load the standard ICD systems the ConceptMap targets, and
+> build and upload that ValueSet. The reverted parts are only the profile
+> re-binding and the data rewrite, neither of which lives here.
+
 Builds FHIR R4 CodeSystem resources for ICD-9-CM (2012) and ICD-10-CM (2016–2019),
 plus a `mimic-diagnosis` ValueSet covering the code systems used by MIMIC diagnosis
 data, for loading into Ontoserver.

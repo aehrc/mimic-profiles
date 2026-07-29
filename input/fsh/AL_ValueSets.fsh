@@ -13,7 +13,6 @@ Alias: $MimicMedAdminCategoryICU = http://mimic.mit.edu/fhir/mimic/ValueSet/mimi
 Alias: $MimicMedicationMethodICU =  http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-method-icu
 
 // Diagnosis/Procedure
-Alias: $MimicDiagnosis = http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-diagnosis
 Alias: $MimicDiagnosisIcd = http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-diagnosis-icd
 Alias: $MimicProcedureIcd = http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-procedure-icd
 Alias: $MimicProcedureeventsDItems = http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-procedureevents-d-items

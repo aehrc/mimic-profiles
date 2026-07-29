@@ -63,9 +63,39 @@ ICD10_SYSTEM_URI = "http://hl7.org/fhir/sid/icd-10-cm"
 ICD10_VERSIONS = ["2016", "2017", "2018", "2019", "2024"]
 OLD_VS_ID = "mimic-diagnosis-icd10cm"
 
+# Our own canonical base, not mimic.mit.edu/fhir/mimic — that belongs to the
+# upstream IG's publisher, and this ValueSet is ours. It is deliberately NOT in
+# input/resources/: nothing in the IG binds to it, and a resource whose url sits
+# outside the IG canonical would fail the publisher's QA. It is uploaded straight
+# to the terminology server, where it serves as the targetCanonical of
+# ConceptMap/mimic-diagnosis-icd-to-sid (../icd-migration/).
+CANONICAL_BASE = "http://fhnaumann.github.io/mimic-profiles/fhir"
+VS_ID = "mimic-diagnosis"
+VS_URL = f"{CANONICAL_BASE}/ValueSet/{VS_ID}"
+
+DEFAULT_CA_BUNDLE = (os.environ.get("SSL_CERT_FILE")
+                     or os.environ.get("REQUESTS_CA_BUNDLE"))
+
+# Verify properly when a CA bundle is available (servers behind a corporate CA
+# need one); fall back to the historical no-verify behaviour otherwise so
+# existing invocations keep working. Set from main().
 SSL_CONTEXT = ssl.create_default_context()
 SSL_CONTEXT.check_hostname = False
 SSL_CONTEXT.verify_mode = ssl.CERT_NONE
+
+
+def configure_tls(ca_bundle: str | None, insecure: bool):
+    global SSL_CONTEXT
+    if insecure:
+        print("  WARNING: TLS verification disabled (--insecure)")
+        return
+    if not ca_bundle:
+        print("  WARNING: no --ca-bundle and SSL_CERT_FILE unset — TLS "
+              "verification is OFF")
+        return
+    if not Path(ca_bundle).exists():
+        sys.exit(f"--ca-bundle not found: {ca_bundle}")
+    SSL_CONTEXT = ssl.create_default_context(cafile=ca_bundle)
 
 # separator is a tab, but a few lines have a stray space (538) or lost the
 # tab entirely (066.40West Nile fever, 707.0x)
@@ -418,8 +448,8 @@ def build_codesystem(chapters, sections, codes):
 def build_valueset(today: str):
     return {
         "resourceType": "ValueSet",
-        "id": "mimic-diagnosis",
-        "url": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-diagnosis",
+        "id": VS_ID,
+        "url": VS_URL,
         "version": "1.0.0",
         "name": "MimicDiagnosis",
         "title": "MIMIC Diagnosis (ICD-9-CM and ICD-10-CM)",
@@ -433,9 +463,14 @@ def build_valueset(today: str):
             "covering the whole MIMIC ICD-9 coding era) plus ICD-10-CM from the "
             "release years spanning the MIMIC-IV ICD-10 coding period "
             "(FY2016-FY2019 for the admission era, plus FY2024 covering codes "
-            "introduced by later re-coding). Replaces the "
-            "mimic-diagnosis-icd10cm ValueSet as the Condition.code source, "
-            "with full is-a hierarchy support for both systems."),
+            "introduced by later re-coding). Spans several releases because the "
+            "MIMIC code list does: there is no single ICD release in which every "
+            "MIMIC code is valid. Not bound by any profile — Condition.code is "
+            "bound to mimic-diagnosis-icd (MIMIC's own flat, dot-less codes). "
+            "This is the targetCanonical of "
+            "ConceptMap/mimic-diagnosis-icd-to-sid: the hierarchy-bearing value "
+            "set to run text-to-code search against, whose results translate "
+            "back to MIMIC codes for filtering."),
         "compose": {
             "include": [
                 {"system": SYSTEM_URI, "version": VERSION},
@@ -480,7 +515,7 @@ def smoke_test(fhir_base):
     for system, version, code in [(SYSTEM_URI, VERSION, "428.0"),
                                   (ICD10_SYSTEM_URI, "2019", "I50.9")]:
         q = urllib.parse.urlencode({
-            "url": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-diagnosis",
+            "url": VS_URL,
             "system": system, "systemVersion": version, "code": code})
         try:
             _, result = http("GET", f"{fhir_base}/ValueSet/$validate-code?{q}")
@@ -508,7 +543,14 @@ def main():
                     help="terminology server base URL (default: $ONTOSERVER_URL; "
                          "no upload when unset)")
     ap.add_argument("--no-upload", action="store_true", help="convert only")
+    ap.add_argument("--ca-bundle", default=DEFAULT_CA_BUNDLE,
+                    help="PEM bundle to verify the server's certificate chain "
+                         "against, for servers behind a corporate CA (default: "
+                         "$SSL_CERT_FILE, else $REQUESTS_CA_BUNDLE)")
+    ap.add_argument("--insecure", action="store_true",
+                    help="skip TLS verification entirely; prefer --ca-bundle")
     args = ap.parse_args()
+    configure_tls(args.ca_bundle, args.insecure)
 
     print(f"== ICD-9-CM FY{VERSION} ==")
     lines = rtf_to_text(args.source)
