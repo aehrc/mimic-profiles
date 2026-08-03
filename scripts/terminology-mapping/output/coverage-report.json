@@ -1,0 +1,10 @@
+{
+ "diagnosis": {
+  "failures": [],
+  "unmapped": 0
+ },
+ "procedure": {
+  "failures": [],
+  "unmapped": 2
+ }
+}

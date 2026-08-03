@@ -4,7 +4,7 @@ This repo is a fork of [kindlab/mimic-profiles](https://github.com/kind-lab/mimi
 (the MIMIC-on-FHIR IG, upstream v1.3.0) carrying all CSIRO modifications, currently at
 IG version **1.4.0-csiro**:
 
-1. **Terminology build** (`scripts/terminology-build/`, merged from the former
+1. **Terminology build** (`scripts/terminology-mapping/`, merged from the former
    `update-mimic-terminology` repo): FHIR R4 CodeSystems for ICD-9-CM 2012 and
    ICD-10-CM 2016–2019 plus the `mimic-diagnosis` ValueSet, generated from CMS/CDC
    source distributions.
@@ -31,24 +31,31 @@ Two environments, with a hard boundary:
 [laptop]  verify-inputs ─→ terminology ─→ deploy-terminology ──┐
 [laptop]  ig (sushi + _genonce.sh) ─→ package upload ──────────┤
                                                                ▼
-[laptop]  check-codes (one-time analysis; needs deployed terminology)
-              │  produces scripts/icd-migration/display-map.json (committed)
-              ▼  … carried to the node via this repo …
-[node]    migrate ─→ verify-migration ─→ migrated Condition data handoff
+[laptop]  mappings  =  scaffolds ─→ conceptmaps ─→ valuesets ─→ verify-mappings
+              │            (offline; needs the built CodeSystems in output/)
+              ▼  … you read unmapped-<field>.csv …
+[laptop]  upload-mappings   (gated: refuses while any code is unmapped)
+              │  ConceptMaps + ValueSets → $ONTOSERVER_URL
+              ▼
+[node]    read-time translation via ConceptMap/$translate
 ```
+
+Condition/Procedure codes are **not** rewritten in the warehouse. Translation to
+the standard ICD systems is a read-time concern (see §5); the node consumes the
+published ConceptMaps rather than a migrated copy of the data.
 
 Artifacts crossing the boundary:
 
 | Artifact | Direction | Note |
 |---|---|---|
-| `scripts/icd-migration/display-map.json` | laptop → node | complete offline map: dotless code → dotted code, official display, pinned version |
+| `scripts/terminology-mapping/output/ConceptMap-*.json` | laptop → server | the mapping rules, committed; the only place they live |
+| `scripts/terminology-mapping/output/ValueSet-mimic-{diagnosis,procedure}.json` | laptop → server | enumerated target value sets, committed |
 | `scripts/binding-analysis/work-items.json` | laptop → node | drove the one-time phase-1 extraction |
-| `distinct-codes.ndjson`, `migration-report.json` | node → laptop | evidence, committed |
 
 Repeatable stages: `verify-inputs`, `terminology`, `ig`, `deploy-terminology`,
-`migrate`, `verify-migration`. One-time analysis (documented in §5–6, re-runnable
+`mappings`, `upload-mappings`. One-time analysis (documented in §5–6, re-runnable
 manually but their conclusions are frozen into committed files): binding-analysis
-phases 0–2, `check-codes`.
+phases 0–2.
 
 ## 2. Configuration
 
@@ -57,11 +64,11 @@ CLI flags on the underlying scripts override the environment.
 
 | Variable | Used by | Meaning |
 |---|---|---|
-| `ONTOSERVER_URL` | terminology builds (upload step), `check_icd_codes.py` | FHIR terminology server base URL. Unset ⇒ builds skip upload; check-codes refuses to run |
-| `ICD_SOURCE_DIR` | terminology builds, `verify_inputs.py` | directory with the raw ICD distributions (`2012_icd9/`, `2016/`…`2019/`) |
-| `MIMIC_WAREHOUSE` | `migrate_condition_codes.py`, `verify_migration.py` | Pathling Delta warehouse path (node) |
+| `ONTOSERVER_URL` | terminology builds, `upload-mappings` | FHIR terminology server base URL. Unset ⇒ builds skip upload |
+| `ICD_SOURCE_DIR` | terminology builds, `verify_inputs.py` | directory with the raw ICD distributions, one folder per code system per fiscal year |
+| `MIMIC_WAREHOUSE` | `scripts/mimic-pipeline/` | Pathling Delta warehouse path (node) |
 
-Input identity is pinned in `scripts/terminology-build/input-manifest.json`
+Input identity is pinned in `scripts/terminology-mapping/input-manifest.json`
 (SHA-256 + size of every source file that influences output, source URLs, MIMIC data
 fingerprint). `make verify-inputs` checks a local copy against it.
 
@@ -70,12 +77,15 @@ Make targets (one per stage):
 | Target | Where | What |
 |---|---|---|
 | `verify-inputs` | laptop | hash-check ICD sources against the manifest |
-| `terminology` | laptop | build all CodeSystems + ValueSet into `scripts/terminology-build/output/` (no upload) |
+| `terminology` | laptop | build all CodeSystems + ValueSet into `scripts/terminology-mapping/output/` (no upload) |
 | `deploy-terminology` | laptop | build **and** upload to `$ONTOSERVER_URL`, incl. `$lookup` smoke tests |
 | `ig` | laptop | `sushi` + `./_genonce.sh` → `output/package.tgz` |
-| `check-codes` | laptop | validate distinct MIMIC ICD codes against the server, regenerate `display-map.json` (one-time; see §6) |
-| `migrate` | node | rewrite Condition codings per `display-map.json` (`MIGRATED_OUT`, default `transformed_data`) |
-| `verify-migration` | node | independent row-by-row re-derivation check of the migrated table |
+| `scaffolds` | laptop | placeholder target ValueSets the ConceptMaps point at (stage 2) |
+| `conceptmaps` | laptop | build the ConceptMaps — the only place mapping rules live (stage 3) |
+| `valuesets` | laptop | translate every MIMIC code through the map into the enumerated target VS (stage 4) |
+| `verify-mappings` | laptop | coverage + invariant checks; non-zero while any code is unmapped |
+| `mappings` | laptop | the four above in order — the everyday command |
+| `upload-mappings` | laptop | publish ConceptMaps + ValueSets; gated on `verify-mappings`, override with `ARGS=--allow-unmapped` |
 
 ## 3. Toolchain
 
@@ -95,11 +105,11 @@ Make targets (one per stage):
 `make verify-inputs`. Inputs: `$ICD_SOURCE_DIR`. Verification is the stage: all 10
 files must report `ok`. Sources: CMS ICD-10-CM yearly downloads
 (<https://www.cms.gov/medicare/coding-billing/icd-10-codes>), CDC/CMS FY2012 (v29)
-ICD-9-CM distribution. Layout in `scripts/terminology-build/README.md`.
+ICD-9-CM distribution. Layout in `scripts/terminology-mapping/README.md`.
 
 ### terminology
 `make terminology`. Inputs: verified ICD sources. Outputs:
-`scripts/terminology-build/output/CodeSystem-icd-9-cm-2012.json`,
+`scripts/terminology-mapping/output/CodeSystem-icd-9-cm-2012.json`,
 `CodeSystem-icd-10-cm-{2016..2019}.json` (gitignored, ~36 MB each),
 `ValueSet-mimic-diagnosis.json` (committed).
 **Verify:** byte-diff against the release assets (§7); the only legitimate diff is the
@@ -128,23 +138,32 @@ server admin / manual FHIR upload, not by a script in this repo.
 per type at the new version, `$expand` on `mimic-medication-with-unknown`,
 `$validate-code` on `v3-NullFlavor#UNK`, `$lookup` spot-checks on admission-class/type.
 
-### migrate (node)
-`make migrate` (or explicit: `uv run scripts/icd-migration/migrate_condition_codes.py
---data $MIMIC_WAREHOUSE --output <dir> [--format delta|ndjson] [--dry-run] [--limit N]`).
-Fully offline: consumes only the committed `display-map.json`. Rewrites codings on the
-two custom systems to `http://hl7.org/fhir/sid/icd-{9,10}-cm`; everything else passes
-through byte-identical. Fails loudly on unmapped codes (drift guard) rather than
-passing them through. Defaults to writing a migrated copy; in-place requires
-`--overwrite` with `--output` = `--data`.
-**Verify:** `migration-report.json` shows `"ok": true`, zero
-`residual_source_system_codings`, and before/after coding counts that reconcile
-(see §5 for the accepted ±5 false-flag delta). Then run `make verify-migration`.
+### mappings
+`make mappings`. Runs stages 2–4 then verifies. Fully offline and takes seconds:
+stage 4 reads the ConceptMap from disk rather than calling `$translate`. Inputs:
+the built CodeSystems in `output/` plus `input/resources/CodeSystem-mimic-*.json`.
+Outputs: `ConceptMap-mimic-{diagnosis,procedure}-icd-to-sid.json`,
+`ValueSet-mimic-{diagnosis,procedure}.json` (all committed),
+`unmapped-{diagnosis,procedure}.csv` and `coverage-report.json`.
 
-### verify-migration (node)
-`make verify-migration`. Independent of the migration script's own bookkeeping:
-re-derives the expected result from `display-map.json` and compares row by row —
-id-set equality, zero residual custom-system codings, exact rewrite per map, non-MIMIC
-codings byte-identical, coding order preserved, all ICD-9 pins = 2012.
+Mapping rules live **only** in `conceptmaps/build_conceptmap.py`; everything
+downstream reads the generated map. See `scripts/terminology-mapping/README.md`.
+
+**Verify:** all four checks pass — coverage, ValueSet == ConceptMap target side,
+only releases built here, and no ICD-9 procedure code mapped to an ICD-10-PCS
+grouper. Rebuilds from unchanged inputs are byte-identical, so
+`make mappings && git diff --exit-code` is a valid test.
+
+### upload-mappings
+`make upload-mappings`. Runs `verify-mappings` first and **refuses to publish
+while any code is unmapped** — read `unmapped-<field>.csv`, fix the input that is
+missing (almost always an unbuilt ICD release), and re-run. Once reviewed,
+`make upload-mappings ARGS=--allow-unmapped` publishes anyway; that flag does not
+relax the three correctness checks.
+
+Publication is a plain `PUT` by resource id. Nothing is deleted first: CodeSystem
+releases deliberately share one canonical URL and differ only by `version`, so a
+delete-by-url would take the sibling releases with it.
 
 ## 5. What was changed and why (provenance)
 

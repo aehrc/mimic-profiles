@@ -6,27 +6,28 @@ the ones the committed CodeSystems were generated from, so a rebuild that
 diverges can be blamed on code, not data.
 
 Usage:
-  uv run scripts/terminology-build/verify_inputs.py
-  uv run scripts/terminology-build/verify_inputs.py --base-dir /path/to/icd-sources
+  uv run scripts/terminology-mapping/verify_inputs.py
+  uv run scripts/terminology-mapping/verify_inputs.py --base-dir /path/to/icd-sources
 """
 
 import argparse
 import hashlib
 import json
-import os
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from common import paths  # noqa: E402
 
 MANIFEST = Path(__file__).parent / "input-manifest.json"
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--base-dir", type=Path,
-                    default=Path(os.environ.get("ICD_SOURCE_DIR",
-                                                Path(__file__).parent)),
-                    help="directory containing the ICD source folders "
-                         "(default: $ICD_SOURCE_DIR)")
+    ap.add_argument("--base-dir", type=Path, default=paths.SOURCES,
+                    help=f"directory containing the per-code-system source "
+                         f"folders (default: {paths.SOURCES})")
     args = ap.parse_args()
 
     manifest = json.loads(MANIFEST.read_text())

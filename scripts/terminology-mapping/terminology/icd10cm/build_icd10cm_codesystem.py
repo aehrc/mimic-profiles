@@ -27,23 +27,19 @@ Usage:
 
 import argparse
 import json
-import os
 import re
-import ssl
 import sys
-import urllib.error
-import urllib.parse
-import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-DEFAULT_FHIR_BASE = os.environ.get("ONTOSERVER_URL")
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from common import paths  # noqa: E402
+from common.cli import add_common_args, resolve  # noqa: E402
+from common.fhirclient import upload_and_verify  # noqa: E402
+
 SYSTEM_URI = "http://hl7.org/fhir/sid/icd-10-cm"
 OID = "urn:oid:2.16.840.1.113883.6.90"
-
-SSL_CONTEXT = ssl.create_default_context()
-SSL_CONTEXT.check_hostname = False
-SSL_CONTEXT.verify_mode = ssl.CERT_NONE
 
 
 def add_dot(code: str) -> str:
@@ -220,26 +216,8 @@ def locate_inputs(year_dir: Path, year: str):
     return order[0], (tabulars[0] if tabulars else None)
 
 
-def http(method, url, data=None):
-    req = urllib.request.Request(url, data=data, method=method, headers={
-        "Accept": "application/fhir+json",
-        **({"Content-Type": "application/fhir+json; charset=utf-8"} if data else {}),
-    })
-    with urllib.request.urlopen(req, context=SSL_CONTEXT, timeout=600) as resp:
-        return resp.status, json.loads(resp.read().decode("utf-8"))
-
-
-def upload(cs, fhir_base):
-    url = f"{fhir_base}/CodeSystem/{cs['id']}"
-    body = json.dumps(cs).encode("utf-8")
-    print(f"  PUT {url} ({len(body) / 1e6:.1f} MB) ...")
-    status, _ = http("PUT", url, body)
-    print(f"  -> HTTP {status}")
-
-
-def smoke_test(cs, fhir_base):
-    version = cs["version"]
-    # A dotted 4-char code, the first 7-char code, and a block if present.
+def probe_codes(cs):
+    """A dotted 4-char code, the first 7-char code, and a block if present."""
     codes = ["A00.0"]
     seven = next((c["code"] for c in cs["concept"]
                   if "-" not in c["code"] and len(c["code"].replace(".", "")) == 7), None)
@@ -249,38 +227,19 @@ def smoke_test(cs, fhir_base):
                   if "-" in c["code"] and any(p["code"] == "parent" for p in c.get("property", []))), None)
     if block:
         codes.append(block)
-    ok = True
-    for code in codes:
-        q = urllib.parse.urlencode({"system": SYSTEM_URI, "version": version, "code": code})
-        try:
-            _, result = http("GET", f"{fhir_base}/CodeSystem/$lookup?{q}")
-            display = next(p["valueString"] for p in result["parameter"] if p["name"] == "display")
-            print(f"  $lookup {code} -> {display}")
-        except Exception as exc:  # noqa: BLE001
-            print(f"  $lookup {code} FAILED: {exc}")
-            ok = False
-    return ok
+    return codes
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("years", nargs="+", help="release year folders, e.g. 2016 2017")
-    ap.add_argument("--base-dir", type=Path,
-                    default=Path(os.environ.get("ICD_SOURCE_DIR",
-                                                Path(__file__).parent)),
-                    help="directory containing the year folders "
-                         "(default: $ICD_SOURCE_DIR)")
-    ap.add_argument("--out-dir", type=Path, default=Path(__file__).parent / "output")
-    ap.add_argument("--fhir-base", default=DEFAULT_FHIR_BASE,
-                    help="terminology server base URL (default: $ONTOSERVER_URL; "
-                         "no upload when unset)")
-    ap.add_argument("--no-upload", action="store_true", help="convert only")
+    ap.add_argument("--base-dir", type=Path, default=paths.SOURCES / "icd10cm",
+                    help=f"directory containing the year folders "
+                         f"(default: {paths.SOURCES / 'icd10cm'})")
+    add_common_args(ap)
     args = ap.parse_args()
+    do_upload = resolve(args)
 
-    if not args.no_upload and not args.fhir_base:
-        print("skipping uploads: no --fhir-base and ONTOSERVER_URL unset")
-
-    args.out_dir.mkdir(parents=True, exist_ok=True)
     failures = []
     for year in args.years:
         print(f"== FY{year} ==")
@@ -307,13 +266,9 @@ def main():
         out = args.out_dir / f"CodeSystem-icd-10-cm-{year}.json"
         out.write_text(json.dumps(cs, indent=1))
         print(f"  wrote {out}")
-        if not args.no_upload and args.fhir_base:
-            try:
-                upload(cs, args.fhir_base)
-                if not smoke_test(cs, args.fhir_base):
-                    failures.append(year)
-            except urllib.error.HTTPError as exc:
-                print(f"  UPLOAD FAILED: HTTP {exc.code}: {exc.read()[:2000].decode(errors='replace')}")
+        if do_upload:
+            if not upload_and_verify(cs, args.fhir_base, SYSTEM_URI, year,
+                                     probe_codes(cs)):
                 failures.append(year)
     if failures:
         sys.exit(f"FAILED years: {', '.join(failures)}")

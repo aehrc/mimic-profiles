@@ -1,0 +1,3 @@
+field,source_system,mimic_code,mimic_display,expected_code,expected_system,reason
+Procedure.code,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd9,0096,Infusion of 4-Factor Prothrombin Complex Concentrate,00.96,http://hl7.org/fhir/sid/icd-9-cm,absent-from-all-built-releases
+Procedure.code,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd9,0095,Injection or infusion of glucarpidase,00.95,http://hl7.org/fhir/sid/icd-9-cm,absent-from-all-built-releases

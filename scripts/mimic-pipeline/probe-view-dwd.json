@@ -1,0 +1,39 @@
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "viewResource",
+      "resource": {
+        "resourceType": "ViewDefinition",
+        "name": "one_code_fwd",
+        "resource": "Condition",
+        "status": "active",
+        "where": [{ "path": "code.coding.exists(code = '0389')" }],
+        "select": [
+          {
+            "column": [
+              { "name": "src_code", "path": "code.coding.first().code" },
+              {
+                "name": "tgt_system",
+                "path": "code.coding.translate('http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-diagnosis-icd-to-sid').first().system"
+              },
+              {
+                "name": "tgt_code",
+                "path": "code.coding.translate('http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-diagnosis-icd-to-sid').first().code"
+              },
+              {
+                "name": "tgt_version",
+                "path": "code.coding.translate('http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-diagnosis-icd-to-sid').first().version"
+              },
+              {
+                "name": "tgt_display",
+                "path": "code.coding.translate('http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-diagnosis-icd-to-sid').first().display"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    { "name": "_limit", "valueInteger": 1 }
+  ]
+}

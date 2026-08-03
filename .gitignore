@@ -18,14 +18,15 @@ _*.bat
 # local outputs of the ICD data migration (demo runs)
 /transformed_data/
 
-# terminology-build: raw ICD source data (download separately, see scripts/terminology-build/README.md)
-scripts/terminology-build/2012_icd9/
-scripts/terminology-build/2016/
-scripts/terminology-build/2017/
-scripts/terminology-build/2018/
-scripts/terminology-build/2019/
+# terminology-mapping: raw ICD source data (download separately, see
+# scripts/terminology-mapping/README.md). Whole tree — one folder per code
+# system per year, several hundred MB.
+scripts/terminology-mapping/sources/
 # large generated CodeSystems are published as GitHub release assets, not committed
-scripts/terminology-build/output/CodeSystem-*.json
+scripts/terminology-mapping/output/CodeSystem-*.json
+# scaffold ValueSets are throwaway placeholders that only exist to give the
+# ConceptMaps a targetCanonical to point at before stage 4 builds the real one
+scripts/terminology-mapping/output/ValueSet-*-scaffold.json
 
 # merged-profile-provisioning: local Spark scratch + generated draft artifacts
 # (document mode's summaries/suggested FSH are drafts for a human to review,
