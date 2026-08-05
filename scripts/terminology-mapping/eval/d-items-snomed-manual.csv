@@ -1,0 +1,170 @@
+mimic_code,mimic_display,snomed_code,snomed_display,equivalence,comment
+221214,CT scan,77477000,Computed tomography,equivalent,
+221216,X-ray,168537006,Plain X-ray,equivalent,
+221217,Ultrasound,16310003,Ultrasonography,equivalent,
+221219,Venogram,4970003,Venography,equivalent,
+221223,EEG,54550000,Electroencephalogram,equivalent,
+221255,Trans Esophageal Echo,105376000,Transesophageal echocardiography,equivalent,
+223253,Magnetic Resonance Imaging,113091000,Magnetic resonance imaging,equivalent,
+224263,Multi Lumen,233527006,Central venous cannula insertion,wider,
+224264,PICC Line,425196008,Insertion of peripherally inserted central catheter,equivalent,
+224267,Cordis/Introducer,233527006,Central venous cannula insertion,wider,
+224268,Trauma line,233527006,Central venous cannula insertion,wider,
+224269,CCO PAC,65677008,Pulmonary catheterization with Swan-Ganz catheter,wider,Continuous-cardiac-output PA catheter; the continuous-CO capability is not represented.
+224270,Dialysis Catheter,61740001,"Insertion of cannula for hemodialysis, vein to vein",equivalent,
+224272,IABP line,16965008,Insertion of intra-aortic balloon counterpulsation,equivalent,
+224273,Presep Catheter,233527006,Central venous cannula insertion,wider,"PreSep is a central venous oximetry (ScvO2) catheter — a CVC, not a pulmonary artery catheter."
+224274,22 Gauge,233520008,Insertion of peripheral venous cannula into peripheral vein,wider,As 224566.
+224275,20 Gauge,233520008,Insertion of peripheral venous cannula into peripheral vein,wider,As 224566.
+224276,16 Gauge,233520008,Insertion of peripheral venous cannula into peripheral vein,wider,As 224566.
+224277,18 Gauge,233520008,Insertion of peripheral venous cannula into peripheral vein,wider,As 224566.
+224385,Intubation,112798008,Insertion of endotracheal tube,equivalent,
+224560,PA Catheter,65677008,Pulmonary catheterization with Swan-Ganz catheter,equivalent,
+224566,14 Gauge,233520008,Insertion of peripheral venous cannula into peripheral vein,wider,"Gauge is not represented — the label is a cannula size, and the event it records is the cannulation."
+225199,Triple Introducer,233527006,Central venous cannula insertion,wider,
+225202,Indwelling Port (PortaCath),397958003,Accessing of implantable venous access port,relatedto,"A PortaCath is implanted electively before admission, so the ICU event is accessing the existing port, not implanting one."
+225203,Pheresis Catheter,233527006,Central venous cannula insertion,wider,Large-bore dual-lumen catheter for apheresis; the target does not represent the indication.
+225204,Midline,233520008,Insertion of peripheral venous cannula into peripheral vein,relatedto,"A midline is a long PERIPHERAL catheter whose tip stops short of the central circulation, so it is not a PICC."
+225205,RIC,233520008,Insertion of peripheral venous cannula into peripheral vein,wider,"RIC = Rapid Infusion Catheter, a large-bore peripheral line."
+225315,Tunneled (Hickman) Line,442309004,Insertion of tunneled central venous catheter,wider,
+225399,Lumbar Puncture,277762005,Lumbar puncture,equivalent,
+225400,Bronchoscopy,10847001,Bronchoscopy,equivalent,
+225401,Blood Cultured,30088009,Blood culture,equivalent,
+225402,EKG,29303009,Electrocardiographic procedure,equivalent,
+225406,Transferred to Floor,107724000,Patient transfer,wider,Destination ward is not represented.
+225427,Angiography,77343006,Angiography,equivalent,
+225428,Blakemore / Minnesota Tube D/C,235212007,Balloon tamponade of esophagus using Sengstaken-Blakemore tube,relatedto,Records REMOVAL of the tamponade tube; SNOMED has no removal concept for it.
+225429,Blakemore / MinnesotaTube Inserted,235212007,Balloon tamponade of esophagus using Sengstaken-Blakemore tube,equivalent,
+225430,Cardiac Cath,34945008,Angiocardiography,equivalent,
+225432,Transthoracic Echo,433236007,Transthoracic echocardiography,equivalent,
+225433,Chest Tube Placed,1381505000,Insertion of drainage tube into pleural cavity,equivalent,
+225434,Colonoscopy,73761001,Colonoscopy,equivalent,
+225436,CRRT Filter Change,714749008,Continuous renal replacement therapy,relatedto,"A circuit filter change during CRRT, not the initiation of the therapy."
+225437,CSF Culture,104174003,Microbial culture of cerebrospinal fluid,equivalent,
+225439,Endoscopy,423827005,Endoscopy,equivalent,
+225440,Fluoroscopy,44491008,Fluoroscopy,equivalent,
+225441,Hemodialysis,233575001,Intermittent hemodialysis,equivalent,
+225442,Liver Biopsy,86259008,Biopsy of liver,equivalent,
+225443,Nuclear Medicine,371572003,Nuclear medicine procedure,equivalent,
+225444,Pan Culture,61594008,Microbial culture,wider,"A 'pan culture' is a set of cultures from several sites at once; OHDSI maps it to blood culture alone, which drops the rest."
+225445,Paracentesis,89305009,Abdominal paracentesis,equivalent,
+225446,PEG Insertion,235159007,Percutaneous endoscopic gastrostomy,equivalent,
+225447,Percutaneous Drain Insertion,698956007,Insertion of drain,wider,Percutaneous technique and site are not represented.
+225448,Percutaneous Tracheostomy,307007002,Percutaneous tracheostomy,equivalent,
+225449,Pericardiocentesis,309849004,Pericardiocentesis,equivalent,
+225450,Radiation Therapy,1287742003,Radiotherapy,equivalent,
+225451,Sputum Culture,104173009,Microbial culture of sputum,equivalent,
+225454,Urine Culture,117010004,Urine culture,equivalent,
+225456,Ventricular Drain,446523001,Insertion of catheter into brain ventricle,equivalent,
+225457,Abdominal X-Ray,168702005,Plain X-ray of abdomen,equivalent,
+225459,Chest X-Ray,399208008,Plain X-ray of chest,equivalent,
+225460,Cervical Spine,712970008,Plain X-ray of cervical spine,equivalent,"One of the imaging items whose label names only the body region; a cervical spine series, not the body structure."
+225461,Pelvis,713021002,Plain X-ray of pelvis,equivalent,"Label names only the body region — this is a pelvis X-ray series, not 12921003 |Pelvic structure|."
+225462,Interventional Radiology,708174004,Interventional radiology service,relatedto,"Records that the patient went to interventional radiology; no procedure is identified. SNOMED has no IR procedure concept, so this maps to the service."
+225463,TLS Spine,444634007,Plain X-ray of thoracic and lumbar spine,equivalent,"TLS = thoracolumbosacral spine (the imaging series), not tumour lysis syndrome."
+225464,Cardioversion/Defibrillation,281572005,Direct current cardiac shock,equivalent,
+225465,Chest Pain,29857009,Chest pain,equivalent,"A |finding| concept, not a procedure."
+225466,Cardiac Arrest,410429000,Cardiac arrest,equivalent,"A clinical event, not a procedure: the target is a |disorder| concept. Recorded in procedureevents by MIMIC all the same."
+225467,Chest Opened,177765008,Opening of chest,equivalent,In the ICU this is emergency resternotomy at the bedside.
+225468,Unplanned Extubation (patient-initiated),271280005,Removal of endotracheal tube,wider,"'Unplanned, patient-initiated' is not represented."
+225469,OR Received,397821002,Patient transfer to intensive care unit,equivalent,
+225470,OR Sent,107724000,Patient transfer,wider,"Patient sent TO the operating room. Deliberately NOT OHDSI's 398068008 |Patient transfer to postoperative anaesthesia care unit| — the PACU is where the patient goes afterwards, not where this event sends them."
+225472,Pneumothorax,36118008,Pneumothorax,equivalent,"A |disorder| concept, not a procedure."
+225474,Fall,1912002,Fall,equivalent,"An |event| concept, not a procedure."
+225475,Respiratory Arrest,87317003,Respiratory arrest,equivalent,"As 225466 — a |disorder| concept, not a procedure."
+225476,Unplanned Line/Catheter Removal (Non-Patient initated),175853000,Removal of central venous line,inexact,"Loses 'unplanned', and asserts a central line where the item does not say which line was pulled."
+225477,Unplanned Extubation (non-patient initiated),271280005,Removal of endotracheal tube,wider,"'Unplanned, non-patient-initiated' is not represented."
+225478,Operation,387713003,Surgical procedure,wider,'Operation' names no particular procedure.
+225479,Thoracentesis,91602002,Thoracentesis,equivalent,
+225752,Arterial Line,392247006,Insertion of catheter into artery,equivalent,
+225761,Sheath Insertion,281588005,Vascular cannula insertion,wider,Site not represented.
+225789,Sheath (Venous),281588005,Vascular cannula insertion,wider,"Venous site not represented. Deliberately NOT 423786009 |Maintenance of vascular sheath| — the item records placement, not upkeep."
+225792,Invasive Ventilation,40617009,Artificial ventilation,wider,Invasive mechanical ventilation; the target does not distinguish invasive from non-invasive.
+225794,Non-invasive Ventilation,428311008,Non-invasive ventilation,equivalent,
+225802,Dialysis - CRRT,714749008,Continuous renal replacement therapy,equivalent,
+225803,Dialysis - CVVHD,233580005,Continuous venovenous hemodialysis,equivalent,
+225805,Peritoneal Dialysis,71192002,Peritoneal dialysis,equivalent,
+225809,Dialysis - CVVHDF,233590002,Continuous venovenous hemodiafiltration,equivalent,
+225814,Stool Culture,117028002,Stool culture,equivalent,
+225815,Peritoneal Fluid,117027007,"Microbial culture, body fluid",wider,Peritoneal site is not represented.
+225816,Wound Culture,401294003,"Wound microscopy, culture and sensitivities",equivalent,
+225817,BAL Fluid Culture,117056007,Respiratory microbial culture,wider,"Culture of bronchoalveolar lavage fluid. OHDSI maps this to the lavage procedure itself, which is the wrong act; the international edition has no BAL-culture concept."
+225818,Pleural Fluid Culture,117027007,"Microbial culture, body fluid",wider,Pleural site is not represented.
+225819,Brain Death,398205000,Diagnosis of brainstem death,equivalent,
+225820,C-Spine Clearance,284405008,Examination of cervical spine,relatedto,Clearance is the clinical decision that the cervical spine is uninjured; the target names the examination it rests on.
+225821,Unplanned Line/Catheter Removal (Patient Initiated),175853000,Removal of central venous line,inexact,As 225476.
+225955,Dialysis - SCUF,182750009,Ultrafiltration,wider,"SCUF = slow continuous ultrafiltration, a CRRT mode; neither the slowness nor the continuity is represented."
+225966,Nasal Swab,312882009,Taking nasal swab,equivalent,
+225967,Rectal Swab,285570007,Taking of swab,wider,"Rectal site is not represented. Deliberately NOT 258528007 |Rectal swab|, which is the SPECIMEN, not the act of taking it."
+226124,ICP Catheter,230940006,Insertion of intracranial pressure catheter,equivalent,
+226236,Temporary Pacemaker Wires Discontinued,77326008,Removal of pacemaker electrode leads without replacement,equivalent,
+226237,Open Tracheostomy,48387007,Incision of trachea,wider,Surgical (open) tracheostomy; the target covers percutaneous technique too.
+226474,ICP Bolt Inserted,230938001,Insertion of intracranial pressure measuring device,equivalent,
+226475,Intraventricular Drain Inserted,446523001,Insertion of catheter into brain ventricle,equivalent,
+226476,Esophogeal Balloon,173676001,Intubation of esophagus for pressure manometry,relatedto,An oesophageal balloon in the ICU measures pleural pressure during ventilation; the target names the manometry intubation.
+226477,Temporary Pacemaker Wires Inserted,233175008,Temporary cardiac pacemaker procedure,equivalent,
+227194,Extubation,271280005,Removal of endotracheal tube,equivalent,
+227550,ERCP (Travel to),712470002,Endoscopic retrograde cholangiopancreatography,relatedto,Records travel to ERCP rather than the procedure itself.
+227551,Plasma Pheresis.,20720000,Plasmapheresis,equivalent,
+227711,Drain Removed,241031001,Removal of drain,equivalent,
+227712,Chest Tube Removed,238356005,Intercostal drain removal,equivalent,
+227713,Epidural Placement,18946005,Epidural anesthesia,equivalent,
+227714,Pericardial Drain Removed,241031001,Removal of drain,wider,Pericardial site is not represented.
+227715,TLS Clearance,284394000,Examination of spine,relatedto,"As 225820, for the thoracolumbosacral spine. TLS here is the spine region, not tumour lysis syndrome."
+227719,AVA,233527006,Central venous cannula insertion,wider,"AVA = Advanced Venous Access catheter, a large-bore central line — not arteriovenous access."
+228125,Family meeting held,711070007,Coordination of family conference,equivalent,
+228126,Family met with Case Manager,22759000,Social service interview of family,relatedto,Met with a case manager rather than a social worker; the target names the social-work interview.
+228127,Family met with Social Worker,22759000,Social service interview of family,equivalent,
+228128,Family updated by MD,711066004,Liaising with family,wider,That the update came from a doctor is not represented.
+228129,Family updated by RN,711066004,Liaising with family,wider,That the update came from a nurse is not represented.
+228130,NEOB notified,450432001,Verification of organ donation status,relatedto,NEOB = New England Organ Bank. The item records the notification; the target names the donation-status verification it triggers.
+228136,Family notified of transfer,711066004,Liaising with family,wider,The subject of the communication (a transfer) is not represented.
+228169,Impella Line,700151002,Temporary implantation of LVAD (left ventricular assist device),relatedto,"Impella is a temporary percutaneous VAD; the item records the line, the target the implantation."
+228201,Tandem Heart Inflow Line,700151002,Temporary implantation of LVAD (left ventricular assist device),relatedto,"One cannula of a TandemHeart circuit; the target names the device implantation, not the individual line."
+228202,Tandem Heart Outflow Line,700151002,Temporary implantation of LVAD (left ventricular assist device),relatedto,As 228201.
+228228,"Family meeting attempted, unable",,,,"The meeting was ATTEMPTED and did not happen. Mapping it to 711070007 |Coordination of family conference|, as OHDSI does, would assert a conference that the item exists to record as absent."
+228286,Intraosseous Device,430824005,Intraosseous cannulation,equivalent,
+228715,Transcranial Doppler,431648005,Transcranial Doppler ultrasonography,equivalent,
+229298,Speech and Swallow Evaluation,1370911009,Assessment of swallowing,narrower,The item covers speech AND swallow; the target covers only swallowing.
+229351,Foley Catheter,446583004,Insertion of indwelling catheter into urinary bladder,equivalent,
+229366,Epoprostenol (Inhaled),243132000,Inhaled drug administration,wider,"Inhaled epoprostenol, a pulmonary vasodilator. This is really a MedicationAdministration filed into procedureevents; the agent is not represented by the target."
+229380,Nursing Water Swallow Screening,1370911009,Assessment of swallowing,wider,A nursing bedside water-swallow screen; the target is any swallowing assessment.
+229468,24 Gauge,233520008,Insertion of peripheral venous cannula into peripheral vein,wider,As 224566.
+229501,Small Bore Nasal Enteral Tube Placement,87750000,Insertion of nasogastric tube,inexact,"A small-bore nasal feeding tube may be sited post-pylorically, which the nasogastric target does not admit."
+229514,EKOS,,,,"EKOS = EkoSonic ultrasound-assisted catheter-directed thrombolysis. SNOMED has only site-specific catheter-directed thrombolysis concepts (405596009, 405356008, ...) and the item does not record the site, so any of them would assert a vessel that was never documented."
+229515,Avalon/Protek Duo,786453001,Venovenous extracorporeal membrane oxygenation,relatedto,"Avalon/Protek Duo are dual-lumen cannulae used for veno-venous ECMO; the target names the therapy, not the cannula."
+229516,Single Lumen,233527006,Central venous cannula insertion,wider,
+229517,Multi Lumen Cooling Catheter,308693008,Induction of hypothermia,relatedto,The item names a cooling catheter; the target names the therapy it delivers.
+229518,ICP - Camino,230938001,Insertion of intracranial pressure measuring device,wider,As 229533.
+229519,EVD #1,446523001,Insertion of catheter into brain ventricle,equivalent,EVD = external ventricular drain; the numbering distinguishes two concurrent drains and is not represented.
+229520,EVD #2,446523001,Insertion of catheter into brain ventricle,equivalent,As 229519.
+229521,ICP - PbtO2,230937006,Procedure for monitoring intracranial pressure,relatedto,"A Licox-type probe measuring brain tissue oxygen tension (PbtO2), filed under MIMIC's ICP group. SNOMED has no PbtO2 monitoring concept, so this maps to the ICP monitoring it is co-located with — the oxygen measurement itself is not represented."
+229522,SEPS (Subdural Evacuating Port System),171721007,Drainage of subdural space,wider,"SEPS = Subdural Evacuating Port System, a bedside subdural drainage device; the technique is not represented."
+229523,Subdural Drain,1366177007,Insertion of external drain into intracranial subdural space,equivalent,
+229524,Lumbar Drain,738769004,Insertion of cerebrospinal fluid drain,wider,A lumbar CSF drain; the site is not represented.
+229525,Sheath (Arterial),281588005,Vascular cannula insertion,wider,Arterial site not represented.
+229526,MAC,233527006,Central venous cannula insertion,wider,"MAC = Multi-Access Catheter, a large-bore central line. NOT Mycobacterium avium complex and not monitored anaesthesia care, both of which a string match returns first."
+229527,Centrimag Inflow Line,700151002,Temporary implantation of LVAD (left ventricular assist device),relatedto,CentriMag is a temporary VAD; this is one cannula of the circuit.
+229528,Centrimag Outflow Line,700151002,Temporary implantation of LVAD (left ventricular assist device),relatedto,As 229527.
+229529,ECMO Inflow Line,233573008,Extracorporeal membrane oxygenation,relatedto,One cannula of an ECMO circuit; the target names the therapy.
+229530,ECMO Outflow Line,233573008,Extracorporeal membrane oxygenation,relatedto,As 229529.
+229531,Tunneled Access Line,442309004,Insertion of tunneled central venous catheter,wider,
+229532,Indwelling Port,397958003,Accessing of implantable venous access port,relatedto,As 225202.
+229533,Camino,230938001,Insertion of intracranial pressure measuring device,wider,Camino is a brand of intraparenchymal ICP bolt; the target covers any ICP measuring device.
+229575,Travel to Radiology,107724000,Patient transfer,wider,"A transport event, not a procedure — the destination is not represented."
+229576,ERCP (Done in unit),712470002,Endoscopic retrograde cholangiopancreatography,equivalent,
+229577,Cath Lab (Received),107724000,Patient transfer,wider,Received back from the catheterisation laboratory; the origin is not represented.
+229578,Cath Lab (Sent),107724000,Patient transfer,wider,Sent to the catheterisation laboratory; the destination is not represented.
+229579,Transfer Intercampus by Ambulance,715537001,Transportation by ambulance,equivalent,
+229580,Line Placement at Bedside,281588005,Vascular cannula insertion,wider,Records that a line was placed at the bedside; which line is not stated.
+229581,Portable Chest X-Ray,399208008,Plain X-ray of chest,wider,"Bedside portable film. Deliberately NOT 432769002 |Plain X-ray of chest using mobile image intensifier| — that is fluoroscopy with a C-arm, not a portable radiograph."
+229582,Portable CT scan,77477000,Computed tomography,wider,"Portable/bedside CT. SNOMED has no mobile-CT concept; 432778008 and its kin name a mobile IMAGE INTENSIFIER (a C-arm), which is not a portable CT scanner."
+229584,EMG,42803009,Electromyography,equivalent,
+229585,Surgical Procedure at Bedside,387713003,Surgical procedure,wider,A surgical procedure performed at the bedside rather than in theatre; which procedure is not stated.
+229586,VAC Change,1217562000,Replacement of negative pressure wound dressing,equivalent,
+229614,EEG (Continuous),54550000,Electroencephalogram,wider,"Continuous EEG monitoring; SNOMED has no continuous-EEG concept, so the continuity is not represented."
+229620,Massive Transfusion,116859006,Transfusion of blood product,wider,The 'massive' protocol activation is not represented.
+229755,Trigger Initiated,,,,"'Trigger Initiated' is not documented in MIMIC's d_items and its meaning is ambiguous even in context — plausibly a rapid-response or sepsis-protocol trigger, plausibly a ventilator trigger. Guessing between those would put an unrelated procedure in the map."
+229983,Isoflurane (Inhaled),243132000,Inhaled drug administration,wider,"Inhaled isoflurane, used for ICU sedation. As 229366 — the agent is not represented."
+229984,Sevoflurane (Inhaled),243132000,Inhaled drug administration,wider,"Inhaled sevoflurane, used for ICU sedation. As 229366."
+229996,Nitrous Oxide (Inhaled),243132000,Inhaled drug administration,wider,Inhaled nitrous oxide. As 229366.

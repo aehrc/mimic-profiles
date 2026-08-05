@@ -1,0 +1,173 @@
+{
+ "field": "procedure",
+ "element": "Procedure.code",
+ "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-procedure-merged-to-standard",
+ "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-procedure-merged-standard",
+ "version": "1.0.0",
+ "date": "2026-08-05",
+ "source_total": 12746,
+ "mapped": 12683,
+ "unmapped": 63,
+ "by_source": [
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "mapped": 108
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd10",
+   "mapped": 10031
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd9",
+   "mapped": 2542
+  },
+  {
+   "system": "http://snomed.info/sct",
+   "mapped": 2
+  }
+ ],
+ "by_target_system": [
+  {
+   "system": "http://hl7.org/fhir/sid/icd-9-cm|2012",
+   "mappings": 2542
+  },
+  {
+   "system": "http://snomed.info/sct",
+   "mappings": 110
+  },
+  {
+   "system": "http://www.cms.gov/Medicare/Coding/ICD10|2016",
+   "mappings": 9440
+  },
+  {
+   "system": "http://www.cms.gov/Medicare/Coding/ICD10|2018",
+   "mappings": 528
+  },
+  {
+   "system": "http://www.cms.gov/Medicare/Coding/ICD10|2019",
+   "mappings": 48
+  },
+  {
+   "system": "http://www.cms.gov/Medicare/Coding/ICD10|2020",
+   "mappings": 15
+  }
+ ],
+ "by_equivalence": {
+  "equivalent": 12575,
+  "relatedto": 108,
+  "unmatched": 63
+ },
+ "unmapped_by_reason": {
+  "absent-from-all-built-releases": 2,
+  "no-suitable-concept": 61
+ },
+ "by_stream": [
+  {
+   "stream": "mimic-procedure-icd10",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd10",
+   "method": "notation",
+   "total": 10031,
+   "mapped": 10031,
+   "unmapped": 0,
+   "coverage_pct": 100.0,
+   "target_systems": [
+    "http://www.cms.gov/Medicare/Coding/ICD10"
+   ],
+   "by_equivalence": {
+    "equivalent": 10031,
+    "unmatched": 0
+   },
+   "unmapped_by_reason": {}
+  },
+  {
+   "stream": "mimic-procedure-icd9",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd9",
+   "method": "notation",
+   "total": 2544,
+   "mapped": 2542,
+   "unmapped": 2,
+   "coverage_pct": 99.9,
+   "target_systems": [
+    "http://hl7.org/fhir/sid/icd-9-cm"
+   ],
+   "by_equivalence": {
+    "equivalent": 2542,
+    "unmatched": 2
+   },
+   "unmapped_by_reason": {
+    "absent-from-all-built-releases": 2
+   }
+  },
+  {
+   "stream": "mimic-procedure-types-ed",
+   "source_system": "http://snomed.info/sct",
+   "method": "identity",
+   "total": 2,
+   "mapped": 2,
+   "unmapped": 0,
+   "coverage_pct": 100.0,
+   "target_systems": [
+    "http://snomed.info/sct"
+   ],
+   "by_equivalence": {
+    "equivalent": 2,
+    "unmatched": 0
+   },
+   "unmapped_by_reason": {}
+  },
+  {
+   "stream": "mimic-procedureevents-d-items",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "method": "table",
+   "total": 169,
+   "mapped": 108,
+   "unmapped": 61,
+   "coverage_pct": 63.9,
+   "target_systems": [
+    "http://snomed.info/sct"
+   ],
+   "by_equivalence": {
+    "relatedto": 108,
+    "unmatched": 61
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 61
+   },
+   "codesearch": {
+    "status": {
+     "below-threshold": 35,
+     "extension": 7,
+     "no-match": 19,
+     "ok": 108
+    },
+    "confidence": {
+     "min": 0.5,
+     "median": 0.85,
+     "mean": 0.796,
+     "max": 0.95
+    },
+    "constraint": "(<<71388002 OR <<404684003 OR <<272379006)",
+    "template": "ICU procedure event recorded on placement or performance of: {}",
+    "confidence_threshold": 0.8
+   }
+  }
+ ],
+ "target_valueset_codes": 12670,
+ "extras": {
+  "d_items_table": "terminology-mapping/conceptmaps/d-items-snomed.csv",
+  "d_items_rows": 169,
+  "d_items_mapped": 108,
+  "d_items_codesearch_status": {
+   "below-threshold": 35,
+   "extension": 7,
+   "no-match": 19,
+   "ok": 108
+  },
+  "d_items_commented": 1,
+  "d_items_codesearch_confidence": {
+   "answered": 150,
+   "min": 0.5,
+   "max": 0.95
+  }
+ }
+}

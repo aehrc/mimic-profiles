@@ -1,0 +1,3159 @@
+{
+ "resourceType": "ConceptMap",
+ "id": "mimic-observation-merged-to-standard",
+ "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-observation-merged-to-standard",
+ "version": "1.0.0",
+ "name": "MimicObservationMergedToStandard",
+ "title": "MIMIC merged Observation codes to LOINC / SNOMED CT",
+ "status": "active",
+ "experimental": false,
+ "date": "2026-08-05",
+ "publisher": "CSIRO",
+ "description": "Maps the codes the merged MIMIC Observation profile admits on Observation.code onto standard terminology, so a consumer can translate the whole Observation.code column through a single ConceptMap. Codes that are already LOINC map to themselves, so translating the column preserves them instead of dropping them. Observation.component.code is NOT in scope here: it is a separate column with a separate binding, mapped by ConceptMap/mimic-observation-component-to-standard. INCOMPLETE: the code-search populations are being added one stream at a time. Present so far are the microbiology antibiotics, the microbiology test names and the ICU outputevents items; microbiology organisms, ICU datetimeevents and chartevents, and labevents are not in this map yet.",
+ "purpose": "Lets a consumer translate the merged Observation.code column with a single $translate. Two kinds of group. The ED and vital-signs codes are already LOINC and map to themselves, stated rather than omitted because a consumer cannot otherwise tell a code that needs no translation from one the map is missing \u2014 $translate returns nothing in both cases. They are coded 'equivalent' rather than 'equal', matching the other maps, because consumers that pin the equivalence they accept filter 'equal' out. The microbiology antibiotics, the microbiology test names and the ICU outputevents items come from generated tables and are 'relatedto': a MIMIC susceptibility code and a LOINC susceptibility code are related, as are a MIMIC microbiology test name and a LOINC lab code, and an ICU flowsheet output route and a LOINC fluid-output volume, and no direction between them is asserted. Consumers must accept 'relatedto' as well as 'equivalent' or they will drop those populations.",
+ "sourceCanonical": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-merged-code",
+ "targetCanonical": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-merged-standard",
+ "group": [
+  {
+   "source": "http://loinc.org",
+   "target": "http://loinc.org",
+   "element": [
+    {
+     "code": "2708-6",
+     "display": "Oxygen saturation in Arterial blood",
+     "target": [
+      {
+       "code": "2708-6",
+       "equivalence": "equivalent",
+       "display": "Oxygen saturation in Arterial blood"
+      }
+     ]
+    },
+    {
+     "code": "56839-4",
+     "display": "Acuity assessment Narrative",
+     "target": [
+      {
+       "code": "56839-4",
+       "equivalence": "equivalent",
+       "display": "Acuity assessment Narrative"
+      }
+     ]
+    },
+    {
+     "code": "8310-5",
+     "display": "Body temperature",
+     "target": [
+      {
+       "code": "8310-5",
+       "equivalence": "equivalent",
+       "display": "Body temperature"
+      }
+     ]
+    },
+    {
+     "code": "85354-9",
+     "display": "Blood pressure panel with all children optional",
+     "target": [
+      {
+       "code": "85354-9",
+       "equivalence": "equivalent",
+       "display": "Blood pressure panel with all children optional"
+      }
+     ]
+    },
+    {
+     "code": "8661-1",
+     "display": "Chief complaint - Reported",
+     "target": [
+      {
+       "code": "8661-1",
+       "equivalence": "equivalent",
+       "display": "Chief complaint - Reported"
+      }
+     ]
+    },
+    {
+     "code": "8867-4",
+     "display": "Heart rate",
+     "target": [
+      {
+       "code": "8867-4",
+       "equivalence": "equivalent",
+       "display": "Heart rate"
+      }
+     ]
+    },
+    {
+     "code": "8884-9",
+     "display": "Heart rate rhythm",
+     "target": [
+      {
+       "code": "8884-9",
+       "equivalence": "equivalent",
+       "display": "Heart rate rhythm"
+      }
+     ]
+    },
+    {
+     "code": "9279-1",
+     "display": "Respiratory rate",
+     "target": [
+      {
+       "code": "9279-1",
+       "equivalence": "equivalent",
+       "display": "Respiratory rate"
+      }
+     ]
+    },
+    {
+     "code": "98137-3",
+     "display": "Pain assessment report",
+     "target": [
+      {
+       "code": "98137-3",
+       "equivalence": "equivalent",
+       "display": "Pain assessment report"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "target": "http://loinc.org",
+   "element": [
+    {
+     "code": "226557",
+     "display": "R Ureteral Stent",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "226558",
+     "display": "L Ureteral Stent",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "226559",
+     "display": "Foley",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "226560",
+     "display": "Void",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "226561",
+     "display": "Condom Cath",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "226563",
+     "display": "Suprapubic",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "226564",
+     "display": "R Nephrostomy",
+     "target": [
+      {
+       "code": "79549-2",
+       "equivalence": "relatedto",
+       "display": "Urine output measured by nephrostomy"
+      }
+     ]
+    },
+    {
+     "code": "226565",
+     "display": "L Nephrostomy",
+     "target": [
+      {
+       "code": "79549-2",
+       "equivalence": "relatedto",
+       "display": "Urine output measured by nephrostomy"
+      }
+     ]
+    },
+    {
+     "code": "226566",
+     "display": "Urine and GU Irrigant Out",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "226567",
+     "display": "Straight Cath",
+     "target": [
+      {
+       "code": "9195-9",
+       "equivalence": "relatedto",
+       "display": "Urine output by in and out urethral catheter"
+      }
+     ]
+    },
+    {
+     "code": "226569",
+     "display": "Anderson (gastric)",
+     "target": [
+      {
+       "code": "9149-6",
+       "equivalence": "relatedto",
+       "display": "Fluid output gastric tube"
+      }
+     ]
+    },
+    {
+     "code": "226571",
+     "display": "Emesis",
+     "target": [
+      {
+       "code": "9137-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output emesis"
+      }
+     ]
+    },
+    {
+     "code": "226573",
+     "display": "Gastric Tube",
+     "target": [
+      {
+       "code": "9149-6",
+       "equivalence": "relatedto",
+       "display": "Fluid output gastric tube"
+      }
+     ]
+    },
+    {
+     "code": "226574",
+     "display": "Jejunostomy",
+     "target": [
+      {
+       "code": "79560-9",
+       "equivalence": "relatedto",
+       "display": "Fluid output gastrointestinal ostomy [Volume] Measured"
+      }
+     ]
+    },
+    {
+     "code": "226575",
+     "display": "Nasogastric",
+     "target": [
+      {
+       "code": "73704-9",
+       "equivalence": "relatedto",
+       "display": "Fluid output.nasogastric tube Measured"
+      }
+     ]
+    },
+    {
+     "code": "226579",
+     "display": "Stool",
+     "target": [
+      {
+       "code": "9217-1",
+       "equivalence": "relatedto",
+       "display": "Output.stool [Volume]"
+      }
+     ]
+    },
+    {
+     "code": "226580",
+     "display": "Fecal Bag",
+     "target": [
+      {
+       "code": "9217-1",
+       "equivalence": "relatedto",
+       "display": "Output.stool [Volume]"
+      }
+     ]
+    },
+    {
+     "code": "226582",
+     "display": "Ostomy (output)",
+     "target": [
+      {
+       "code": "79560-9",
+       "equivalence": "relatedto",
+       "display": "Fluid output gastrointestinal ostomy [Volume] Measured"
+      }
+     ]
+    },
+    {
+     "code": "226583",
+     "display": "Rectal Tube",
+     "target": [
+      {
+       "code": "79559-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output gastrointestinal drain [Volume] Measured"
+      }
+     ]
+    },
+    {
+     "code": "226584",
+     "display": "Ileoconduit",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "226588",
+     "display": "Chest Tube #1",
+     "target": [
+      {
+       "code": "9129-8",
+       "equivalence": "relatedto",
+       "display": "Fluid output chest tube"
+      }
+     ]
+    },
+    {
+     "code": "226589",
+     "display": "Chest Tube #2",
+     "target": [
+      {
+       "code": "9129-8",
+       "equivalence": "relatedto",
+       "display": "Fluid output chest tube"
+      }
+     ]
+    },
+    {
+     "code": "226590",
+     "display": "L Pleural #1",
+     "target": [
+      {
+       "code": "9129-8",
+       "equivalence": "relatedto",
+       "display": "Fluid output chest tube"
+      }
+     ]
+    },
+    {
+     "code": "226591",
+     "display": "L Pleural #2",
+     "target": [
+      {
+       "code": "9129-8",
+       "equivalence": "relatedto",
+       "display": "Fluid output chest tube"
+      }
+     ]
+    },
+    {
+     "code": "226593",
+     "display": "R Pleural #1",
+     "target": [
+      {
+       "code": "9129-8",
+       "equivalence": "relatedto",
+       "display": "Fluid output chest tube"
+      }
+     ]
+    },
+    {
+     "code": "226595",
+     "display": "R Pleural #2",
+     "target": [
+      {
+       "code": "9129-8",
+       "equivalence": "relatedto",
+       "display": "Fluid output chest tube"
+      }
+     ]
+    },
+    {
+     "code": "226597",
+     "display": "JP Medial",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226598",
+     "display": "JP Lateral",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226599",
+     "display": "Jackson Pratt #1",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226600",
+     "display": "Jackson Pratt #2",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226601",
+     "display": "Jackson Pratt #3",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226602",
+     "display": "Jackson Pratt #4",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226603",
+     "display": "T Tube",
+     "target": [
+      {
+       "code": "9113-2",
+       "equivalence": "relatedto",
+       "display": "Fluid output biliary drain"
+      }
+     ]
+    },
+    {
+     "code": "226604",
+     "display": "Hemovac #1",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226605",
+     "display": "Hemovac #2",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226606",
+     "display": "Cerebral Ventricular #1",
+     "target": [
+      {
+       "code": "9122-3",
+       "equivalence": "relatedto",
+       "display": "Fluid output cerebral ventricle drain"
+      }
+     ]
+    },
+    {
+     "code": "226607",
+     "display": "Cerebral Ventricular #2",
+     "target": [
+      {
+       "code": "9122-3",
+       "equivalence": "relatedto",
+       "display": "Fluid output cerebral ventricle drain"
+      }
+     ]
+    },
+    {
+     "code": "226608",
+     "display": "Cerebral Subdural #1",
+     "target": [
+      {
+       "code": "79556-7",
+       "equivalence": "relatedto",
+       "display": "Fluid output neurological drain [Volume] Measured"
+      }
+     ]
+    },
+    {
+     "code": "226609",
+     "display": "Cerebral Subdural #2",
+     "target": [
+      {
+       "code": "79556-7",
+       "equivalence": "relatedto",
+       "display": "Fluid output neurological drain [Volume] Measured"
+      }
+     ]
+    },
+    {
+     "code": "226610",
+     "display": "Lumbar",
+     "target": [
+      {
+       "code": "9128-0",
+       "equivalence": "relatedto",
+       "display": "Fluid output subarachnoid drain"
+      }
+     ]
+    },
+    {
+     "code": "226612",
+     "display": "Pericardial",
+     "target": [
+      {
+       "code": "9168-6",
+       "equivalence": "relatedto",
+       "display": "Fluid output pericardial drain"
+      }
+     ]
+    },
+    {
+     "code": "226613",
+     "display": "Wound Vac #1",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226614",
+     "display": "Wound Vac #2",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226617",
+     "display": "Sump #1",
+     "target": [
+      {
+       "code": "9161-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output miscellaneous Measured"
+      }
+     ]
+    },
+    {
+     "code": "226618",
+     "display": "Sump #2",
+     "target": [
+      {
+       "code": "9161-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output miscellaneous Measured"
+      }
+     ]
+    },
+    {
+     "code": "226621",
+     "display": "Davol",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226622",
+     "display": "Red Rubber",
+     "target": [
+      {
+       "code": "9195-9",
+       "equivalence": "relatedto",
+       "display": "Urine output by in and out urethral catheter"
+      }
+     ]
+    },
+    {
+     "code": "226623",
+     "display": "Penrose #1",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226624",
+     "display": "Penrose #2",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226625",
+     "display": "Tap",
+     "target": [
+      {
+       "code": "9161-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output miscellaneous Measured"
+      }
+     ]
+    },
+    {
+     "code": "226626",
+     "display": "OR EBL",
+     "target": [
+      {
+       "code": "9110-8",
+       "equivalence": "relatedto",
+       "display": "Blood loss.total intraoperative [Volume] Estimated"
+      }
+     ]
+    },
+    {
+     "code": "226627",
+     "display": "OR Urine",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "226628",
+     "display": "PACU Drains",
+     "target": [
+      {
+       "code": "9203-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output wound drain"
+      }
+     ]
+    },
+    {
+     "code": "226629",
+     "display": "PACU EBL",
+     "target": [
+      {
+       "code": "9110-8",
+       "equivalence": "relatedto",
+       "display": "Blood loss.total intraoperative [Volume] Estimated"
+      }
+     ]
+    },
+    {
+     "code": "226630",
+     "display": "PACU Gastric",
+     "target": [
+      {
+       "code": "9149-6",
+       "equivalence": "relatedto",
+       "display": "Fluid output gastric tube"
+      }
+     ]
+    },
+    {
+     "code": "226631",
+     "display": "PACU Urine",
+     "target": [
+      {
+       "code": "9187-6",
+       "equivalence": "relatedto",
+       "display": "Urine output"
+      }
+     ]
+    },
+    {
+     "code": "227510",
+     "display": "TF Residual",
+     "target": [
+      {
+       "code": "9149-6",
+       "equivalence": "relatedto",
+       "display": "Fluid output gastric tube"
+      }
+     ]
+    },
+    {
+     "code": "227511",
+     "display": "TF Residual Output",
+     "target": [
+      {
+       "code": "79561-7",
+       "equivalence": "relatedto",
+       "display": "Fluid output enteral tube [Volume] Measured"
+      }
+     ]
+    },
+    {
+     "code": "227701",
+     "display": "Drainage Bag",
+     "target": [
+      {
+       "code": "9161-1",
+       "equivalence": "relatedto",
+       "display": "Fluid output miscellaneous Measured"
+      }
+     ]
+    },
+    {
+     "code": "229413",
+     "display": "Chest Tube #3",
+     "target": [
+      {
+       "code": "9129-8",
+       "equivalence": "relatedto",
+       "display": "Fluid output chest tube"
+      }
+     ]
+    },
+    {
+     "code": "229414",
+     "display": "Chest Tube #4",
+     "target": [
+      {
+       "code": "9129-8",
+       "equivalence": "relatedto",
+       "display": "Fluid output chest tube"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-antibiotic",
+   "target": "http://loinc.org",
+   "element": [
+    {
+     "code": "90003",
+     "display": "PENICILLIN G",
+     "target": [
+      {
+       "code": "18965-4",
+       "equivalence": "relatedto",
+       "display": "Penicillin G [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90004",
+     "display": "AMPICILLIN",
+     "target": [
+      {
+       "code": "18864-9",
+       "equivalence": "relatedto",
+       "display": "Ampicillin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90005",
+     "display": "CEFAZOLIN",
+     "target": [
+      {
+       "code": "18878-9",
+       "equivalence": "relatedto",
+       "display": "ceFAZolin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90006",
+     "display": "ERYTHROMYCIN",
+     "target": [
+      {
+       "code": "18919-1",
+       "equivalence": "relatedto",
+       "display": "Erythromycin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90007",
+     "display": "CLINDAMYCIN",
+     "target": [
+      {
+       "code": "18908-4",
+       "equivalence": "relatedto",
+       "display": "Clindamycin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90008",
+     "display": "TRIMETHOPRIM/SULFA",
+     "target": [
+      {
+       "code": "18998-5",
+       "equivalence": "relatedto",
+       "display": "Trimethoprim+Sulfamethoxazole [Susceptibility]",
+       "comment": "The MIMIC label abbreviates the second component of the combination the target names in full: `SULFA` is sulfamethoxazole. Both concepts are susceptibility to trimethoprim+sulfamethoxazole."
+      }
+     ]
+    },
+    {
+     "code": "90010",
+     "display": "NITROFURANTOIN",
+     "target": [
+      {
+       "code": "18955-5",
+       "equivalence": "relatedto",
+       "display": "Nitrofurantoin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90011",
+     "display": "TETRACYCLINE",
+     "target": [
+      {
+       "code": "18993-6",
+       "equivalence": "relatedto",
+       "display": "Tetracycline [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90012",
+     "display": "GENTAMICIN",
+     "target": [
+      {
+       "code": "18928-2",
+       "equivalence": "relatedto",
+       "display": "Gentamicin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90013",
+     "display": "TOBRAMYCIN",
+     "target": [
+      {
+       "code": "18996-9",
+       "equivalence": "relatedto",
+       "display": "Tobramycin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90014",
+     "display": "AMIKACIN",
+     "target": [
+      {
+       "code": "18860-7",
+       "equivalence": "relatedto",
+       "display": "Amikacin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90015",
+     "display": "VANCOMYCIN",
+     "target": [
+      {
+       "code": "19000-9",
+       "equivalence": "relatedto",
+       "display": "Vancomycin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90016",
+     "display": "OXACILLIN",
+     "target": [
+      {
+       "code": "18961-3",
+       "equivalence": "relatedto",
+       "display": "Oxacillin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90017",
+     "display": "CEFTAZIDIME",
+     "target": [
+      {
+       "code": "18893-8",
+       "equivalence": "relatedto",
+       "display": "cefTAZidime [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90018",
+     "display": "CEFTRIAXONE",
+     "target": [
+      {
+       "code": "18895-3",
+       "equivalence": "relatedto",
+       "display": "cefTRIAXone [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90019",
+     "display": "CIPROFLOXACIN",
+     "target": [
+      {
+       "code": "18906-8",
+       "equivalence": "relatedto",
+       "display": "Ciprofloxacin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90020",
+     "display": "IMIPENEM",
+     "target": [
+      {
+       "code": "18932-4",
+       "equivalence": "relatedto",
+       "display": "Imipenem [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90021",
+     "display": "PIPERACILLIN",
+     "target": [
+      {
+       "code": "18969-6",
+       "equivalence": "relatedto",
+       "display": "Piperacillin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90022",
+     "display": "AMPICILLIN/SULBACTAM",
+     "target": [
+      {
+       "code": "18865-6",
+       "equivalence": "relatedto",
+       "display": "Ampicillin+Sulbactam [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90023",
+     "display": "CEFUROXIME",
+     "target": [
+      {
+       "code": "51724-3",
+       "equivalence": "relatedto",
+       "display": "Cefuroxime [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90025",
+     "display": "LEVOFLOXACIN",
+     "target": [
+      {
+       "code": "20629-2",
+       "equivalence": "relatedto",
+       "display": "levoFLOXacin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90026",
+     "display": "PIPERACILLIN/TAZO",
+     "target": [
+      {
+       "code": "18970-4",
+       "equivalence": "relatedto",
+       "display": "Piperacillin+Tazobactam [Susceptibility]",
+       "comment": "The MIMIC label abbreviates the second component of the combination the target names in full: `TAZO` is tazobactam. Both concepts are susceptibility to piperacillin+tazobactam."
+      }
+     ]
+    },
+    {
+     "code": "90027",
+     "display": "RIFAMPIN",
+     "target": [
+      {
+       "code": "18974-6",
+       "equivalence": "relatedto",
+       "display": "rifAMPin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90028",
+     "display": "CEFEPIME",
+     "target": [
+      {
+       "code": "18879-7",
+       "equivalence": "relatedto",
+       "display": "Cefepime [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90029",
+     "display": "MEROPENEM",
+     "target": [
+      {
+       "code": "18943-1",
+       "equivalence": "relatedto",
+       "display": "Meropenem [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90030",
+     "display": "DAPTOMYCIN",
+     "target": [
+      {
+       "code": "35789-7",
+       "equivalence": "relatedto",
+       "display": "DAPTOmycin [Susceptibility]"
+      }
+     ]
+    },
+    {
+     "code": "90031",
+     "display": "LINEZOLID",
+     "target": [
+      {
+       "code": "29258-1",
+       "equivalence": "relatedto",
+       "display": "Linezolid [Susceptibility]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-test",
+   "target": "http://loinc.org",
+   "element": [
+    {
+     "code": "90039",
+     "display": "URINE CULTURE",
+     "target": [
+      {
+       "code": "630-4",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Urine by Culture"
+      }
+     ]
+    },
+    {
+     "code": "90042",
+     "display": "TREPONEMAL ANTIBODY TEST",
+     "target": [
+      {
+       "code": "41122-3",
+       "equivalence": "relatedto",
+       "display": "Treponema pallidum Ab [Units/volume] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90046",
+     "display": "WOUND CULTURE",
+     "target": [
+      {
+       "code": "6462-6",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Wound by Culture"
+      }
+     ]
+    },
+    {
+     "code": "90049",
+     "display": "BRUCELLA CULTURE",
+     "target": [
+      {
+       "code": "44797-9",
+       "equivalence": "relatedto",
+       "display": "Brucella sp [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90050",
+     "display": "GRAM STAIN- R/O THRUSH",
+     "target": [
+      {
+       "code": "74759-2",
+       "equivalence": "relatedto",
+       "display": "Yeast [Presence] in Specimen by Gram stain"
+      }
+     ]
+    },
+    {
+     "code": "90053",
+     "display": "CYTOMEGALOVIRUS EARLY ANTIGEN TEST (SHELL VIAL METHOD)",
+     "target": [
+      {
+       "code": "60541-0",
+       "equivalence": "relatedto",
+       "display": "Cytomegalovirus early Ag [Presence] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90054",
+     "display": "IMMUNOFLUORESCENT TEST FOR PNEUMOCYSTIS CARINII",
+     "target": [
+      {
+       "code": "700-5",
+       "equivalence": "relatedto",
+       "display": "Pneumocystis jirovecii Ag [Presence] in Specimen by Immunofluorescence"
+      }
+     ]
+    },
+    {
+     "code": "90055",
+     "display": "RESPIRATORY CULTURE",
+     "target": [
+      {
+       "code": "32355-0",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Specimen by Respiratory culture"
+      }
+     ]
+    },
+    {
+     "code": "90059",
+     "display": "LEGIONELLA CULTURE",
+     "target": [
+      {
+       "code": "593-4",
+       "equivalence": "relatedto",
+       "display": "Legionella sp identified in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90061",
+     "display": "BRUCELLA BLOOD CULTURE",
+     "target": [
+      {
+       "code": "551-2",
+       "equivalence": "relatedto",
+       "display": "Brucella sp identified in Blood by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90067",
+     "display": "TISSUE CULTURE-AMNIOTIC FLUID",
+     "target": [
+      {
+       "code": "596-7",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Amniotic fluid by Culture"
+      }
+     ]
+    },
+    {
+     "code": "90071",
+     "display": "CHROMOSOME ANALYSIS-CVS",
+     "target": [
+      {
+       "code": "62350-4",
+       "equivalence": "relatedto",
+       "display": "Chromosome analysis panel - Chorionic villus sample by G-banded"
+      }
+     ]
+    },
+    {
+     "code": "90075",
+     "display": "CHROMOSOME ANALYSIS-BLOOD",
+     "target": [
+      {
+       "code": "62348-8",
+       "equivalence": "relatedto",
+       "display": "Chromosome analysis panel - Blood by G-banded"
+      }
+     ]
+    },
+    {
+     "code": "90076",
+     "display": "CHROMOSOME ANALYSIS-AMNIOTIC FLUID",
+     "target": [
+      {
+       "code": "62351-2",
+       "equivalence": "relatedto",
+       "display": "Chromosome analysis panel - Amniotic fluid by G-banded"
+      }
+     ]
+    },
+    {
+     "code": "90083",
+     "display": "FECAL CULTURE - R/O VIBRIO",
+     "target": [
+      {
+       "code": "6579-7",
+       "equivalence": "relatedto",
+       "display": "Vibrio sp identified in Stool by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90086",
+     "display": "FECAL CULTURE - R/O YERSINIA",
+     "target": [
+      {
+       "code": "28549-4",
+       "equivalence": "relatedto",
+       "display": "Yersinia sp identified in Stool by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90087",
+     "display": "FECAL CULTURE - R/O E.COLI 0157:H7",
+     "target": [
+      {
+       "code": "10851-4",
+       "equivalence": "relatedto",
+       "display": "Escherichia coli O157:H7 [Presence] in Stool by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90088",
+     "display": "CHROMOSOME ANALYSIS - ADDITIONAL KARYOTYPE",
+     "target": [
+      {
+       "code": "29770-5",
+       "equivalence": "relatedto",
+       "display": "Karyotype [Identifier] in Blood or Tissue Nominal"
+      }
+     ]
+    },
+    {
+     "code": "90091",
+     "display": "VARICELLA-ZOSTER IgG SEROLOGY",
+     "target": [
+      {
+       "code": "19162-7",
+       "equivalence": "relatedto",
+       "display": "Varicella zoster virus IgG Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90092",
+     "display": "AEROBIC BOTTLE",
+     "target": [
+      {
+       "code": "17928-3",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Blood by Aerobe culture"
+      }
+     ]
+    },
+    {
+     "code": "90093",
+     "display": "ANAEROBIC BOTTLE",
+     "target": [
+      {
+       "code": "17934-1",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Blood by Anaerobe culture"
+      }
+     ]
+    },
+    {
+     "code": "90095",
+     "display": "VARICELLA-ZOSTER CULTURE",
+     "target": [
+      {
+       "code": "10860-5",
+       "equivalence": "relatedto",
+       "display": "Varicella zoster virus [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90096",
+     "display": "DIRECT ANTIGEN TEST FOR VARICELLA-ZOSTER VIRUS",
+     "target": [
+      {
+       "code": "31982-2",
+       "equivalence": "relatedto",
+       "display": "Varicella zoster virus Ag [Presence] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90097",
+     "display": "R/O GROUP B BETA STREP",
+     "target": [
+      {
+       "code": "586-8",
+       "equivalence": "relatedto",
+       "display": "Streptococcus agalactiae [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90098",
+     "display": "SWAB- R/O YEAST",
+     "target": [
+      {
+       "code": "18482-0",
+       "equivalence": "relatedto",
+       "display": "Yeast [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90099",
+     "display": "NOCARDIA CULTURE",
+     "target": [
+      {
+       "code": "43365-6",
+       "equivalence": "relatedto",
+       "display": "Nocardia sp identified in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90101",
+     "display": "EPSTEIN-BARR VIRUS VCA-IgG AB",
+     "target": [
+      {
+       "code": "30339-6",
+       "equivalence": "relatedto",
+       "display": "Epstein Barr virus capsid IgG Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90105",
+     "display": "Respiratory Viral Antigen Screen",
+     "target": [
+      {
+       "code": "54245-6",
+       "equivalence": "relatedto",
+       "display": "Respiratory virus Ag [Identifier] in Specimen by Immunofluorescence"
+      }
+     ]
+    },
+    {
+     "code": "90112",
+     "display": "MODIFIED ACID-FAST STAIN FOR NOCARDIA",
+     "target": [
+      {
+       "code": "655-1",
+       "equivalence": "relatedto",
+       "display": "Microscopic observation [Identifier] in Specimen by Acid fast stain.Kinyoun modified"
+      }
+     ]
+    },
+    {
+     "code": "90113",
+     "display": "URINE-GRAM STAIN - UNSPUN",
+     "target": [
+      {
+       "code": "653-6",
+       "equivalence": "relatedto",
+       "display": "Microscopic observation [Identifier] in Urine by Gram stain"
+      }
+     ]
+    },
+    {
+     "code": "90115",
+     "display": "R/O VANCOMYCIN RESISTANT ENTEROCOCCUS",
+     "target": [
+      {
+       "code": "105904-7",
+       "equivalence": "relatedto",
+       "display": "Vancomycin resistant enterococcus [Presence] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90116",
+     "display": "Chlamydia trachomatis, Nucleic Acid Probe, with Amplification",
+     "target": [
+      {
+       "code": "21613-5",
+       "equivalence": "relatedto",
+       "display": "Chlamydia trachomatis DNA [Presence] in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90117",
+     "display": "ANAEROBIC BOTTLE",
+     "target": [
+      {
+       "code": "17934-1",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Blood by Anaerobe culture"
+      }
+     ]
+    },
+    {
+     "code": "90119",
+     "display": "HELICOBACTER PYLORI ANTIBODY TEST",
+     "target": [
+      {
+       "code": "22310-7",
+       "equivalence": "relatedto",
+       "display": "Helicobacter pylori Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90123",
+     "display": "HCV VIRAL LOAD",
+     "target": [
+      {
+       "code": "49380-9",
+       "equivalence": "relatedto",
+       "display": "Hepatitis C virus RNA [#/volume] (viral load) in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90126",
+     "display": "TOXOPLASMA IgM ANTIBODY",
+     "target": [
+      {
+       "code": "25542-2",
+       "equivalence": "relatedto",
+       "display": "Toxoplasma gondii IgM Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90127",
+     "display": "RUBEOLA ANTIBODY, IgG",
+     "target": [
+      {
+       "code": "20479-2",
+       "equivalence": "relatedto",
+       "display": "Measles virus IgG Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90128",
+     "display": "Legionella Urinary Antigen",
+     "target": [
+      {
+       "code": "32781-7",
+       "equivalence": "relatedto",
+       "display": "Legionella sp Ag [Presence] in Urine"
+      }
+     ]
+    },
+    {
+     "code": "90129",
+     "display": "ASO Screen",
+     "target": [
+      {
+       "code": "9788-1",
+       "equivalence": "relatedto",
+       "display": "Streptolysin O Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90131",
+     "display": "ASO TITER",
+     "target": [
+      {
+       "code": "22568-0",
+       "equivalence": "relatedto",
+       "display": "Streptolysin O Ab [Titer] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90133",
+     "display": "MONOSPOT",
+     "target": [
+      {
+       "code": "31418-7",
+       "equivalence": "relatedto",
+       "display": "Heterophile Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90134",
+     "display": "EPSTEIN-BARR VIRUS VCA-IgM AB",
+     "target": [
+      {
+       "code": "30340-4",
+       "equivalence": "relatedto",
+       "display": "Epstein Barr virus capsid IgM Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90135",
+     "display": "EPSTEIN-BARR VIRUS EBNA IgG AB",
+     "target": [
+      {
+       "code": "16825-2",
+       "equivalence": "relatedto",
+       "display": "Epstein Barr virus nuclear IgG Ab [Presence] in Body fluid"
+      }
+     ]
+    },
+    {
+     "code": "90136",
+     "display": "CMV IgM ANTIBODY",
+     "target": [
+      {
+       "code": "30325-5",
+       "equivalence": "relatedto",
+       "display": "Cytomegalovirus IgM Ab [Presence] in Serum or Plasma"
+      }
+     ]
+    },
+    {
+     "code": "90137",
+     "display": "QUANTITATIVE RPR",
+     "target": [
+      {
+       "code": "31147-2",
+       "equivalence": "relatedto",
+       "display": "Reagin Ab [Titer] in Serum by RPR"
+      }
+     ]
+    },
+    {
+     "code": "90140",
+     "display": "QUANTITATIVE CRYPTOCOCCAL ANTIGEN",
+     "target": [
+      {
+       "code": "31792-5",
+       "equivalence": "relatedto",
+       "display": "Cryptococcus sp Ag [Units/volume] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90142",
+     "display": "VIRAL CULTURE: R/O CYTOMEGALOVIRUS",
+     "target": [
+      {
+       "code": "5838-8",
+       "equivalence": "relatedto",
+       "display": "Cytomegalovirus [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90143",
+     "display": "CMV IgG ANTIBODY",
+     "target": [
+      {
+       "code": "22244-8",
+       "equivalence": "relatedto",
+       "display": "Cytomegalovirus IgG Ab [Presence] in Serum or Plasma"
+      }
+     ]
+    },
+    {
+     "code": "90144",
+     "display": "TOXOPLASMA IgG ANTIBODY",
+     "target": [
+      {
+       "code": "22580-5",
+       "equivalence": "relatedto",
+       "display": "Toxoplasma gondii IgG Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90154",
+     "display": "BARTONELLA BLOOD CULTURE",
+     "target": [
+      {
+       "code": "38354-7",
+       "equivalence": "relatedto",
+       "display": "Bartonella sp identified in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90156",
+     "display": "DIRECT INFLUENZA A ANTIGEN TEST",
+     "target": [
+      {
+       "code": "31859-2",
+       "equivalence": "relatedto",
+       "display": "Influenza virus A Ag [Presence] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90157",
+     "display": "DIRECT RSV ANTIGEN TEST",
+     "target": [
+      {
+       "code": "31950-9",
+       "equivalence": "relatedto",
+       "display": "Respiratory syncytial virus Ag [Presence] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90158",
+     "display": "R/O GC Only",
+     "target": [
+      {
+       "code": "698-1",
+       "equivalence": "relatedto",
+       "display": "Neisseria gonorrhoeae [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90160",
+     "display": "Cryptosporidium/Giardia (DFA)",
+     "target": [
+      {
+       "code": "48062-4",
+       "equivalence": "relatedto",
+       "display": "Giardia lamblia+Cryptosporidium parvum Ag [Presence] in Stool by Immunofluorescence"
+      }
+     ]
+    },
+    {
+     "code": "90161",
+     "display": "TRICHOMONAS SALINE PREP",
+     "target": [
+      {
+       "code": "105060-8",
+       "equivalence": "relatedto",
+       "display": "Trichomonas vaginalis [Presence] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90168",
+     "display": "DIRECT INFLUENZA B ANTIGEN TEST",
+     "target": [
+      {
+       "code": "31864-2",
+       "equivalence": "relatedto",
+       "display": "Influenza virus B Ag [Presence] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90169",
+     "display": "GEN-PROBE AMPLIFIED M. TUBERCULOSIS DIRECT TEST (MTD)",
+     "target": [
+      {
+       "code": "48174-7",
+       "equivalence": "relatedto",
+       "display": "Mycobacterium tuberculosis complex rRNA [Presence] in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90172",
+     "display": "HCV GENOTYPE",
+     "target": [
+      {
+       "code": "48575-5",
+       "equivalence": "relatedto",
+       "display": "Hepatitis C virus genotype [Identifier] in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90173",
+     "display": "Acid Fast Stain for Cryptosporidium",
+     "target": [
+      {
+       "code": "41488-8",
+       "equivalence": "relatedto",
+       "display": "Cryptosporidium sp [Presence] in Specimen by Acid fast stain"
+      }
+     ]
+    },
+    {
+     "code": "90174",
+     "display": "Concentration and Stain for Giardia",
+     "target": [
+      {
+       "code": "108163-7",
+       "equivalence": "relatedto",
+       "display": "Giardia sp [Presence] in Stool by Light microscopy"
+      }
+     ]
+    },
+    {
+     "code": "90175",
+     "display": "HIV-1 Viral Load/Ultrasensitive",
+     "target": [
+      {
+       "code": "21008-8",
+       "equivalence": "relatedto",
+       "display": "HIV 1 RNA [#/volume] (viral load) in Serum or Plasma by Probe"
+      }
+     ]
+    },
+    {
+     "code": "90177",
+     "display": "HBV Viral Load",
+     "target": [
+      {
+       "code": "49362-7",
+       "equivalence": "relatedto",
+       "display": "Hepatitis B virus DNA [#/volume] (viral load) in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90178",
+     "display": "FUNGAL CULTURE (HAIR/SKIN/NAILS)",
+     "target": [
+      {
+       "code": "580-1",
+       "equivalence": "relatedto",
+       "display": "Fungus identified in Specimen by Culture"
+      }
+     ]
+    },
+    {
+     "code": "90180",
+     "display": "O&P MACROSCOPIC EXAM - WORM",
+     "target": [
+      {
+       "code": "104742-2",
+       "equivalence": "relatedto",
+       "display": "Ova and parasites identified in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90181",
+     "display": "O&P MACROSCOPIC EXAM - ARTHROPOD",
+     "target": [
+      {
+       "code": "10644-3",
+       "equivalence": "relatedto",
+       "display": "Arthropod identified in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90184",
+     "display": "STEM CELL - ANAEROBIC BOTTLE",
+     "target": [
+      {
+       "code": "17934-1",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Blood by Anaerobe culture"
+      }
+     ]
+    },
+    {
+     "code": "90186",
+     "display": "YEAST VAGINITIS CULTURE",
+     "target": [
+      {
+       "code": "18483-8",
+       "equivalence": "relatedto",
+       "display": "Yeast [Presence] in Genital specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90188",
+     "display": "NEISSERIA GONORRHOEAE (GC), NUCLEIC ACID PROBE, WITH AMPLIFICATION",
+     "target": [
+      {
+       "code": "24111-7",
+       "equivalence": "relatedto",
+       "display": "Neisseria gonorrhoeae DNA [Presence] in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90189",
+     "display": "MRSA SCREEN",
+     "target": [
+      {
+       "code": "13317-3",
+       "equivalence": "relatedto",
+       "display": "Methicillin resistant Staphylococcus aureus [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90191",
+     "display": "MUMPS IgG ANTIBODY",
+     "target": [
+      {
+       "code": "22415-4",
+       "equivalence": "relatedto",
+       "display": "Mumps virus IgG Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90192",
+     "display": "CMV Viral Load",
+     "target": [
+      {
+       "code": "33006-8",
+       "equivalence": "relatedto",
+       "display": "Cytomegalovirus DNA [#/volume] (viral load) in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90194",
+     "display": "R/O Group B Strep - Penicillin Allergy",
+     "target": [
+      {
+       "code": "586-8",
+       "equivalence": "relatedto",
+       "display": "Streptococcus agalactiae [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90195",
+     "display": "Reflex HCV Qual PCR",
+     "target": [
+      {
+       "code": "104715-8",
+       "equivalence": "relatedto",
+       "display": "Hepatitis C virus RNA [Presence] in Serum or Plasma by Molecular genetics method"
+      }
+     ]
+    },
+    {
+     "code": "90199",
+     "display": "Immunofluorescent test for Pneumocystis jirovecii (carinii)",
+     "target": [
+      {
+       "code": "700-5",
+       "equivalence": "relatedto",
+       "display": "Pneumocystis jirovecii Ag [Presence] in Specimen by Immunofluorescence"
+      }
+     ]
+    },
+    {
+     "code": "90203",
+     "display": "Aerobic Bottle Gram Stain",
+     "target": [
+      {
+       "code": "87969-2",
+       "equivalence": "relatedto",
+       "display": "Microscopic observation [Identifier] in Blood by Gram stain"
+      }
+     ]
+    },
+    {
+     "code": "90204",
+     "display": "Anaerobic Bottle Gram Stain",
+     "target": [
+      {
+       "code": "87969-2",
+       "equivalence": "relatedto",
+       "display": "Microscopic observation [Identifier] in Blood by Gram stain"
+      }
+     ]
+    },
+    {
+     "code": "90209",
+     "display": "Pediatric Bottle Gram Stain",
+     "target": [
+      {
+       "code": "87969-2",
+       "equivalence": "relatedto",
+       "display": "Microscopic observation [Identifier] in Blood by Gram stain"
+      }
+     ]
+    },
+    {
+     "code": "90210",
+     "display": "Malaria Antigen Test",
+     "target": [
+      {
+       "code": "50687-3",
+       "equivalence": "relatedto",
+       "display": "Plasmodium sp Ag [Presence] in Blood"
+      }
+     ]
+    },
+    {
+     "code": "90211",
+     "display": "Rubella IgG/IgM Antibody",
+     "target": [
+      {
+       "code": "25514-1",
+       "equivalence": "relatedto",
+       "display": "Rubella virus IgG Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90212",
+     "display": "CLOSTRIDIUM DIFFICILE TOXIN A & B TEST",
+     "target": [
+      {
+       "code": "34713-8",
+       "equivalence": "relatedto",
+       "display": "Clostridioides difficile toxin A+B [Presence] in Stool"
+      }
+     ]
+    },
+    {
+     "code": "90213",
+     "display": "Enterovirus Culture",
+     "target": [
+      {
+       "code": "5843-8",
+       "equivalence": "relatedto",
+       "display": "Enterovirus identified in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90218",
+     "display": "Carbapenemase Resistant Enterobacteriaceae Screen",
+     "target": [
+      {
+       "code": "77924-9",
+       "equivalence": "relatedto",
+       "display": "Enterobacteriaceae.carbapenem resistant [Presence] in Anorectal or stool specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90221",
+     "display": "C. difficile PCR",
+     "target": [
+      {
+       "code": "61367-9",
+       "equivalence": "relatedto",
+       "display": "Clostridioides difficile DNA [Presence] in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90222",
+     "display": "MTB Direct Amplification",
+     "target": [
+      {
+       "code": "13956-8",
+       "equivalence": "relatedto",
+       "display": "Mycobacterium tuberculosis DNA [Presence] in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90225",
+     "display": "ED Gram Stain for Yeast",
+     "target": [
+      {
+       "code": "74759-2",
+       "equivalence": "relatedto",
+       "display": "Yeast [Presence] in Specimen by Gram stain"
+      }
+     ]
+    },
+    {
+     "code": "90226",
+     "display": "RPR w/check for Prozone",
+     "target": [
+      {
+       "code": "31147-2",
+       "equivalence": "relatedto",
+       "display": "Reagin Ab [Titer] in Serum by RPR"
+      }
+     ]
+    },
+    {
+     "code": "90228",
+     "display": "Lyme IgG",
+     "target": [
+      {
+       "code": "22128-3",
+       "equivalence": "relatedto",
+       "display": "Borrelia burgdorferi IgG Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90229",
+     "display": "Lyme IgM",
+     "target": [
+      {
+       "code": "22135-8",
+       "equivalence": "relatedto",
+       "display": "Borrelia burgdorferi IgM Ab [Presence] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90231",
+     "display": "Swab - R/O Yeast - IC",
+     "target": [
+      {
+       "code": "18482-0",
+       "equivalence": "relatedto",
+       "display": "Yeast [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90232",
+     "display": "Staph aureus Preop PCR",
+     "target": [
+      {
+       "code": "61404-0",
+       "equivalence": "relatedto",
+       "display": "Staphylococcus aureus DNA [Presence] in Specimen by NAA with probe detection"
+      }
+     ]
+    },
+    {
+     "code": "90233",
+     "display": "C. difficile Toxin antigen assay",
+     "target": [
+      {
+       "code": "34468-9",
+       "equivalence": "relatedto",
+       "display": "Clostridioides difficile toxin A+B [Presence] in Stool by Immunoassay"
+      }
+     ]
+    },
+    {
+     "code": "90236",
+     "display": "Anaerobic culture, Prosthetic Joint Fluid",
+     "target": [
+      {
+       "code": "87944-5",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Synovial fluid by Anaerobe culture"
+      }
+     ]
+    },
+    {
+     "code": "90238",
+     "display": "POST-MORTEM ACID-FAST CULTURE",
+     "target": [
+      {
+       "code": "543-9",
+       "equivalence": "relatedto",
+       "display": "Mycobacterium sp identified in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90239",
+     "display": "POST-MORTEM DIRECT ACID-FAST STAIN",
+     "target": [
+      {
+       "code": "11545-1",
+       "equivalence": "relatedto",
+       "display": "Microscopic observation [Identifier] in Specimen by Acid fast stain"
+      }
+     ]
+    },
+    {
+     "code": "90240",
+     "display": "ACID FAST CULTURE",
+     "target": [
+      {
+       "code": "543-9",
+       "equivalence": "relatedto",
+       "display": "Mycobacterium sp identified in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90243",
+     "display": "CAMPYLOBACTER CULTURE",
+     "target": [
+      {
+       "code": "97513-6",
+       "equivalence": "relatedto",
+       "display": "Campylobacter sp [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90246",
+     "display": "ACID FAST SMEAR",
+     "target": [
+      {
+       "code": "11545-1",
+       "equivalence": "relatedto",
+       "display": "Microscopic observation [Identifier] in Specimen by Acid fast stain"
+      }
+     ]
+    },
+    {
+     "code": "90248",
+     "display": "RAPID PLASMA REAGIN TEST",
+     "target": [
+      {
+       "code": "20508-8",
+       "equivalence": "relatedto",
+       "display": "Reagin Ab [Units/volume] in Serum or Plasma by RPR"
+      }
+     ]
+    },
+    {
+     "code": "90249",
+     "display": "CRYPTOCOCCAL ANTIGEN",
+     "target": [
+      {
+       "code": "29533-7",
+       "equivalence": "relatedto",
+       "display": "Cryptococcus sp Ag [Presence] in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90250",
+     "display": "OVA + PARASITES",
+     "target": [
+      {
+       "code": "104742-2",
+       "equivalence": "relatedto",
+       "display": "Ova and parasites identified in Specimen"
+      }
+     ]
+    },
+    {
+     "code": "90252",
+     "display": "VIRAL CULTURE",
+     "target": [
+      {
+       "code": "6584-7",
+       "equivalence": "relatedto",
+       "display": "Virus identified in Specimen by Culture"
+      }
+     ]
+    },
+    {
+     "code": "90253",
+     "display": "CLOSTRIDIUM DIFFICILE TOXIN ASSAY",
+     "target": [
+      {
+       "code": "34713-8",
+       "equivalence": "relatedto",
+       "display": "Clostridioides difficile toxin A+B [Presence] in Stool"
+      }
+     ]
+    },
+    {
+     "code": "90254",
+     "display": "RUBELLA IgG SEROLOGY",
+     "target": [
+      {
+       "code": "8014-3",
+       "equivalence": "relatedto",
+       "display": "Rubella virus IgG Ab [Units/volume] in Serum"
+      }
+     ]
+    },
+    {
+     "code": "90255",
+     "display": "VIRAL CULTURE: R/O CYTOMEGALOVIRUS",
+     "target": [
+      {
+       "code": "5838-8",
+       "equivalence": "relatedto",
+       "display": "Cytomegalovirus [Presence] in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90256",
+     "display": "VIRAL CULTURE: R/O HERPES SIMPLEX VIRUS",
+     "target": [
+      {
+       "code": "5859-4",
+       "equivalence": "relatedto",
+       "display": "Herpes simplex virus identified in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90258",
+     "display": "AEROBIC BOTTLE",
+     "target": [
+      {
+       "code": "17928-3",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Blood by Aerobe culture"
+      }
+     ]
+    },
+    {
+     "code": "90259",
+     "display": "SCOTCH TAPE PREP/PADDLE",
+     "target": [
+      {
+       "code": "6676-1",
+       "equivalence": "relatedto",
+       "display": "Enterobius vermicularis [Presence] in Anal by Pinworm exam"
+      }
+     ]
+    },
+    {
+     "code": "90260",
+     "display": "AEROBIC BOTTLE",
+     "target": [
+      {
+       "code": "17928-3",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Blood by Aerobe culture"
+      }
+     ]
+    },
+    {
+     "code": "90261",
+     "display": "ANAEROBIC BOTTLE",
+     "target": [
+      {
+       "code": "17934-1",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Blood by Anaerobe culture"
+      }
+     ]
+    },
+    {
+     "code": "90262",
+     "display": "CHLAMYDIA CULTURE",
+     "target": [
+      {
+       "code": "560-3",
+       "equivalence": "relatedto",
+       "display": "Chlamydia sp identified in Specimen by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90264",
+     "display": "BLOOD/AFB CULTURE",
+     "target": [
+      {
+       "code": "64412-0",
+       "equivalence": "relatedto",
+       "display": "Mycobacterium sp [Presence] in Blood by Organism specific culture"
+      }
+     ]
+    },
+    {
+     "code": "90265",
+     "display": "BLOOD/FUNGAL CULTURE",
+     "target": [
+      {
+       "code": "601-5",
+       "equivalence": "relatedto",
+       "display": "Fungus identified in Blood by Culture"
+      }
+     ]
+    },
+    {
+     "code": "90267",
+     "display": "FECAL CULTURE",
+     "target": [
+      {
+       "code": "625-4",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Stool by Culture"
+      }
+     ]
+    },
+    {
+     "code": "90268",
+     "display": "FLUID CULTURE",
+     "target": [
+      {
+       "code": "611-4",
+       "equivalence": "relatedto",
+       "display": "Bacteria identified in Body fluid by Culture"
+      }
+     ]
+    },
+    {
+     "code": "90269",
+     "display": "FUNGAL CULTURE",
+     "target": [
+      {
+       "code": "580-1",
+       "equivalence": "relatedto",
+       "display": "Fungus identified in Specimen by Culture"
+      }
+     ]
+    },
+    {
+     "code": "90270",
+     "display": "GRAM STAIN",
+     "target": [
+      {
+       "code": "664-3",
+       "equivalence": "relatedto",
+       "display": "Microscopic observation [Identifier] in Specimen by Gram stain"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "target": "http://loinc.org",
+   "element": [
+    {
+     "code": "224458",
+     "display": "Drain Output_ingr",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: MIMIC's d_items dictionary records no volume for this item (param_type is 'Ingredient', not 'Numeric'), so no member of (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4) \u2014 every one of which is a volume \u2014 can be its target."
+      }
+     ]
+    },
+    {
+     "code": "226570",
+     "display": "Blakemore",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 9257-7 |Fluid output total Measured| at 0.85, which sums fluid output over every route. This item records one route, so mapping it there would make any total over Observation.code count the same volume twice."
+      }
+     ]
+    },
+    {
+     "code": "226572",
+     "display": "Ewald",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Ewald' within (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4)."
+      }
+     ]
+    },
+    {
+     "code": "226576",
+     "display": "Oral Gastric",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 79561-7 |Fluid output enteral tube [Volume] Measured| at 0.78 for 'Oral Gastric', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "226586",
+     "display": "Stool Estimate",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: MIMIC's d_items dictionary records no volume for this item (param_type is 'Text', not 'Numeric'), so no member of (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4) \u2014 every one of which is a volume \u2014 can be its target."
+      }
+     ]
+    },
+    {
+     "code": "226592",
+     "display": "Mediastinal",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Mediastinal' within (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4)."
+      }
+     ]
+    },
+    {
+     "code": "226616",
+     "display": "Anderson",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 9257-7 |Fluid output total Measured| at 0.86, which sums fluid output over every route. This item records one route, so mapping it there would make any total over Observation.code count the same volume twice."
+      }
+     ]
+    },
+    {
+     "code": "226619",
+     "display": "Pigtail #1",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 9161-1 |Fluid output miscellaneous Measured| at 0.78 for 'Pigtail', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "226620",
+     "display": "Pigtail #2",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 9161-1 |Fluid output miscellaneous Measured| at 0.78 for 'Pigtail', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "226632",
+     "display": "Cath Lab",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 9257-7 |Fluid output total Measured| at 0.85, which sums fluid output over every route. This item records one route, so mapping it there would make any total over Observation.code count the same volume twice."
+      }
+     ]
+    },
+    {
+     "code": "226633",
+     "display": "Pre-Admission",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 9257-7 |Fluid output total Measured| at 0.85, which sums fluid output over every route. This item records one route, so mapping it there would make any total over Observation.code count the same volume twice."
+      }
+     ]
+    },
+    {
+     "code": "226713",
+     "display": "Incontinent/voids (estimate)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: MIMIC's d_items dictionary records no volume for this item (param_type is 'Text', not 'Numeric'), so no member of (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4) \u2014 every one of which is a volume \u2014 can be its target."
+      }
+     ]
+    },
+    {
+     "code": "227487",
+     "display": "GU Irrigant Type",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: MIMIC's d_items dictionary records no volume for this item (param_type is 'Text', not 'Numeric'), so no member of (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4) \u2014 every one of which is a volume \u2014 can be its target."
+      }
+     ]
+    },
+    {
+     "code": "227488",
+     "display": "GU Irrigant Volume In",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'GU Irrigant Volume In' within (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4)."
+      }
+     ]
+    },
+    {
+     "code": "227489",
+     "display": "GU Irrigant/Urine Volume Out",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'GU Irrigant/Urine Volume Out' within (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4)."
+      }
+     ]
+    },
+    {
+     "code": "228103",
+     "display": "Stool containment device placed",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: MIMIC's d_items dictionary records no volume for this item (param_type is 'Date and time', not 'Numeric'), so no member of (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4) \u2014 every one of which is a volume \u2014 can be its target."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-test",
+   "target": "http://loinc.org",
+   "element": [
+    {
+     "code": "90038",
+     "display": "GENITAL CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'GENITAL CULTURE': micro proposed 41026-6 |Fungus identified in Genital specimen by Culture| at 0.50; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90043",
+     "display": "POST MORTEM MYCOLOGY CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'POST MORTEM MYCOLOGY CULTURE' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90065",
+     "display": "STOOL SMEAR FOR POLYMORPHONUCLEAR LEUKOCYTES",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'STOOL SMEAR FOR POLYMORPHONUCLEAR LEUKOCYTES' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90066",
+     "display": "TISSUE CULTURE-LYMPHOCYTE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'TISSUE CULTURE-LYMPHOCYTE' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90068",
+     "display": "TISSUE CULTURE-FLUID",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'TISSUE CULTURE-FLUID': micro proposed 11475-1 |Microorganism identified in Specimen by Culture| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90072",
+     "display": "CHROMOSOME ANALYSIS-TISSUE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'CHROMOSOME ANALYSIS-TISSUE' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90074",
+     "display": "FOCUSED ANALYSIS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'FOCUSED ANALYSIS' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90078",
+     "display": "CHROMOSOME ANALYSIS-FLUID",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'CHROMOSOME ANALYSIS-FLUID': micro returned no match; cyto proposed 62351-2 |Chromosome analysis panel - Amniotic fluid by G-banded| at 0.75."
+      }
+     ]
+    },
+    {
+     "code": "90079",
+     "display": "TISSUE CULTURE-CVS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'TISSUE CULTURE-CVS' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90080",
+     "display": "TISSUE CULTURE-TISSUE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'TISSUE CULTURE-TISSUE' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90090",
+     "display": "POST-MORTEM VIRAL CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'POST-MORTEM VIRAL CULTURE': micro proposed 6584-7 |Virus identified in Specimen by Culture| at 0.75; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90104",
+     "display": "Direct Antigen Test for Herpes Simplex Virus Types 1 & 2",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'Direct Antigen Test for Herpes Simplex Virus Types 1 & 2': micro proposed 10678-1 |Herpes simplex virus 1+2 Ag [Presence] in Tissue by Immune stain| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90106",
+     "display": "MICROSPORIDIA STAIN",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'MICROSPORIDIA STAIN': micro proposed 10857-1 |Microsporidia identified in Specimen by Light microscopy| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90107",
+     "display": "Respiratory Virus Identification",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'Respiratory Virus Identification': micro proposed 54245-6 |Respiratory virus Ag [Identifier] in Specimen by Immunofluorescence| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90109",
+     "display": "M.FURFUR CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'M.FURFUR CULTURE' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90111",
+     "display": "CHROMOSOME ANALYSIS-BONE MARROW",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'CHROMOSOME ANALYSIS-BONE MARROW' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90121",
+     "display": "CYCLOSPORA STAIN",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'CYCLOSPORA STAIN': micro proposed 50313-6 |Cyclospora sp identified in Stool by Safranin stain| at 0.75; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90124",
+     "display": "CVS NEEDLE ASPIRATION EVALUATION",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'CVS NEEDLE ASPIRATION EVALUATION' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90130",
+     "display": "R/O Beta Strep Group A",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'R/O Beta Strep Group A': micro proposed 105062-4 |Streptococcus pyogenes DNA [Presence] in Specimen| at 0.75; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90132",
+     "display": "LYME SEROLOGY",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'LYME SEROLOGY' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90146",
+     "display": "CHROMOSOME ANALYSIS-NEOPLASTIC BLOOD",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'CHROMOSOME ANALYSIS-NEOPLASTIC BLOOD' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90148",
+     "display": "Cryopreservation - Cells",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Cryopreservation - Cells' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90150",
+     "display": "MOLECULAR CYTOGENETICS - DNA PROBE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'MOLECULAR CYTOGENETICS - DNA PROBE': micro returned no match; cyto proposed 62369-4 |FISH probe name panel - Laboratory device| at 0.70."
+      }
+     ]
+    },
+    {
+     "code": "90151",
+     "display": "Tissue Culture-Bone Marrow",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'Tissue Culture-Bone Marrow': micro proposed 60258-1 |Bacteria identified in Bone marrow by Culture| at 0.75; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90152",
+     "display": "Tissue Culture - Neoplastic Blood",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Tissue Culture - Neoplastic Blood' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90153",
+     "display": "Additional Cells and Karyotype",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'Additional Cells and Karyotype': micro returned no match; cyto proposed 35129-6 |Karyotype [Identifier] in Specimen Nominal| at 0.75."
+      }
+     ]
+    },
+    {
+     "code": "90155",
+     "display": "MOLECULAR CYTOGENETICS-DNA Probe",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'MOLECULAR CYTOGENETICS-DNA Probe' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90159",
+     "display": "POSTMORTEM CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'POSTMORTEM CULTURE' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90162",
+     "display": "ADDITIONAL CELLS COUNTED",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'ADDITIONAL CELLS COUNTED' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90163",
+     "display": "INTERPHASE FISH ANALYSIS, 25-99 CELLS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'INTERPHASE FISH ANALYSIS, 25-99 CELLS': micro returned no match; cyto proposed 62345-4 |Chromosome analysis.interphase panel - Blood by FISH| at 0.75."
+      }
+     ]
+    },
+    {
+     "code": "90164",
+     "display": "INTERPHASE FISH ANALYSIS, 100-300 CELLS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'INTERPHASE FISH ANALYSIS, 100-300 CELLS': micro returned no match; cyto proposed 59050-5 |Chromosome analysis.interphase [Interpretation] in Specimen by FISH Narrative| at 0.75."
+      }
+     ]
+    },
+    {
+     "code": "90166",
+     "display": "Problem",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Problem' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90167",
+     "display": "ISOLATE FOR MIC",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'ISOLATE FOR MIC' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90170",
+     "display": "FISH ANALYSIS, 3-5 CELLS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'FISH ANALYSIS, 3-5 CELLS' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90171",
+     "display": "FISH ANALYSIS, 10-30 CELLS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'FISH ANALYSIS, 10-30 CELLS': micro returned no match; cyto proposed 62367-8 |Chromosome analysis panel by FISH| at 0.70."
+      }
+     ]
+    },
+    {
+     "code": "90179",
+     "display": "POTASSIUM HYDROXIDE PREPARATION (HAIR/SKIN/NAILS)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'POTASSIUM HYDROXIDE PREPARATION (HAIR/SKIN/NAILS)': micro proposed 644-5 |Microscopic observation [Identifier] in Skin by KOH preparation| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90182",
+     "display": "STEM CELL - AEROBIC BOTTLE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'STEM CELL - AEROBIC BOTTLE' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90185",
+     "display": "SMEAR FOR BACTERIAL VAGINOSIS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'SMEAR FOR BACTERIAL VAGINOSIS': micro proposed 14361-0 |Microscopic observation [Identifier] in Vaginal fluid by Gram stain| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90187",
+     "display": "GENITAL CULTURE FOR TOXIC SHOCK",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'GENITAL CULTURE FOR TOXIC SHOCK': micro proposed 10352-3 |Bacteria identified in Genital specimen by Aerobe culture| at 0.60; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90190",
+     "display": "Tissue culture for additional cells",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Tissue culture for additional cells' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90193",
+     "display": "voided",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'voided' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90198",
+     "display": "Staph aureus Screen",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'Staph aureus Screen': micro proposed 100897-8 |Staphylococcus aureus [Presence] in Specimen by Organism specific culture| at 0.75; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90201",
+     "display": "Blood Culture, Routine",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Blood Culture, Routine' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90202",
+     "display": "Blood Culture, Neonate",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Blood Culture, Neonate' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90205",
+     "display": "Fluid Culture in Bottles",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Fluid Culture in Bottles' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90206",
+     "display": "Blood Culture, Post Mortem",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Blood Culture, Post Mortem' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90207",
+     "display": "Stem Cell Aer/Ana Culture",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'Stem Cell Aer/Ana Culture': micro proposed 21020-3 |Bacteria identified in Specimen by Anaerobe+Aerobe culture| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90208",
+     "display": "Myco-F Bottle Gram Stain",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'Myco-F Bottle Gram Stain': micro proposed 664-3 |Microscopic observation [Identifier] in Specimen by Gram stain| at 0.75; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90214",
+     "display": "Respiratory Viral Culture",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'Respiratory Viral Culture': micro proposed 87709-2 |Virus identified in Lower respiratory specimen by Culture| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90215",
+     "display": "M. furfur Blood Culture",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'M. furfur Blood Culture': micro proposed 601-5 |Fungus identified in Blood by Culture| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90216",
+     "display": "Malassezia furfur Culture",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'Malassezia furfur Culture': micro proposed 15378-3 |Fungus identified in Isolate by Culture| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90219",
+     "display": "CRE/ESBL/AMP-C Screening",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'CRE/ESBL/AMP-C Screening' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90220",
+     "display": "Deparaffinization, Lysis of Cells",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Deparaffinization, Lysis of Cells' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90224",
+     "display": "Cipro Resistant Screen",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Cipro Resistant Screen' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90227",
+     "display": "Sonication culture, prosthetic joint",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Sonication culture, prosthetic joint' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90230",
+     "display": "Stool Hold Request",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Stool Hold Request' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90235",
+     "display": "REFLEX URINE CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'REFLEX URINE CULTURE': micro proposed 630-4 |Bacteria identified in Urine by Culture| at 0.70; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90241",
+     "display": "POTASSIUM HYDROXIDE PREPARATION",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'POTASSIUM HYDROXIDE PREPARATION': micro proposed 55305-7 |Fungus [Presence] in Specimen by KOH preparation| at 0.75; cyto returned no match."
+      }
+     ]
+    },
+    {
+     "code": "90245",
+     "display": "ANAEROBIC CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'ANAEROBIC CULTURE' within either search space: (http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE) or (http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)."
+      }
+     ]
+    },
+    {
+     "code": "90272",
+     "display": "TISSUE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "No answer above the 0.8 threshold for 'TISSUE': micro proposed 43408-4 |Bacteria identified in Tissue by Culture| at 0.70; cyto returned no match."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

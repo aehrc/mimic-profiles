@@ -7,7 +7,7 @@
  "title": "MIMIC local ICD diagnosis codes to ICD-9-CM / ICD-10-CM",
  "status": "active",
  "experimental": false,
- "date": "2026-08-03",
+ "date": "2026-08-05",
  "publisher": "CSIRO",
  "description": "Maps MIMIC's local dot-less Condition.code codes onto the official dotted ICD codes, with the display and the release the code belongs to. Each group pins the target release in targetVersion; a code is mapped into the EARLIEST release that contains it. Lets consumers translate MIMIC codes on the fly rather than reading a rewritten copy of the source data.",
  "purpose": "This is a notation map, not a version crosswalk: every mapping is 'equivalent' and changes only how the code is written, never which concept it means. It is NOT an ICD-9-to-ICD-10 GEM.",

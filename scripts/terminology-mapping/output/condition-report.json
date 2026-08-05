@@ -1,0 +1,90 @@
+{
+ "field": "condition",
+ "element": "Condition.code",
+ "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-diagnosis-icd-to-sid",
+ "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-diagnosis",
+ "version": "1.0.0",
+ "date": "2026-08-05",
+ "source_total": 27913,
+ "mapped": 27913,
+ "unmapped": 0,
+ "by_source": [
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10",
+   "mapped": 18450
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9",
+   "mapped": 9463
+  }
+ ],
+ "by_target_system": [
+  {
+   "system": "http://hl7.org/fhir/sid/icd-10-cm|2016",
+   "mappings": 17538
+  },
+  {
+   "system": "http://hl7.org/fhir/sid/icd-10-cm|2017",
+   "mappings": 668
+  },
+  {
+   "system": "http://hl7.org/fhir/sid/icd-10-cm|2018",
+   "mappings": 129
+  },
+  {
+   "system": "http://hl7.org/fhir/sid/icd-10-cm|2019",
+   "mappings": 78
+  },
+  {
+   "system": "http://hl7.org/fhir/sid/icd-10-cm|2024",
+   "mappings": 43
+  },
+  {
+   "system": "http://hl7.org/fhir/sid/icd-9-cm|2012",
+   "mappings": 9457
+  }
+ ],
+ "by_equivalence": {
+  "equivalent": 27913
+ },
+ "unmapped_by_reason": {},
+ "by_stream": [
+  {
+   "stream": "mimic-diagnosis-icd10",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10",
+   "method": "notation",
+   "total": 18450,
+   "mapped": 18450,
+   "unmapped": 0,
+   "coverage_pct": 100.0,
+   "target_systems": [
+    "http://hl7.org/fhir/sid/icd-10-cm"
+   ],
+   "by_equivalence": {
+    "equivalent": 18450,
+    "unmatched": 0
+   },
+   "unmapped_by_reason": {}
+  },
+  {
+   "stream": "mimic-diagnosis-icd9",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9",
+   "method": "notation",
+   "total": 9463,
+   "mapped": 9463,
+   "unmapped": 0,
+   "coverage_pct": 100.0,
+   "target_systems": [
+    "http://hl7.org/fhir/sid/icd-10-cm",
+    "http://hl7.org/fhir/sid/icd-9-cm"
+   ],
+   "by_equivalence": {
+    "equivalent": 9463,
+    "unmatched": 0
+   },
+   "unmapped_by_reason": {}
+  }
+ ],
+ "target_valueset_codes": 27907,
+ "extras": {}
+}

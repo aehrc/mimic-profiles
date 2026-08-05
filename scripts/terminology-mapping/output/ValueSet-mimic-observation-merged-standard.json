@@ -1,0 +1,634 @@
+{
+ "resourceType": "ValueSet",
+ "id": "mimic-observation-merged-standard",
+ "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-merged-standard",
+ "version": "1.0.0",
+ "name": "MimicObservationMergedStandard",
+ "title": "MIMIC merged Observation codes as standard terminology",
+ "status": "active",
+ "experimental": false,
+ "date": "2026-08-05",
+ "publisher": "CSIRO",
+ "description": "Every code the merged MIMIC Observation profile admits on Observation.code, in standard terminology. Derived from ConceptMap/mimic-observation-merged-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. The LOINC include carries no version: this repo builds no LOINC release, so pinning one would name something it cannot reproduce. Grows as each code-search stream is added to the map.",
+ "compose": {
+  "include": [
+   {
+    "system": "http://loinc.org",
+    "concept": [
+     {
+      "code": "104715-8",
+      "display": "Hepatitis C virus RNA [Presence] in Serum or Plasma by Molecular genetics method"
+     },
+     {
+      "code": "104742-2",
+      "display": "Ova and parasites identified in Specimen"
+     },
+     {
+      "code": "105060-8",
+      "display": "Trichomonas vaginalis [Presence] in Specimen"
+     },
+     {
+      "code": "105904-7",
+      "display": "Vancomycin resistant enterococcus [Presence] in Specimen"
+     },
+     {
+      "code": "10644-3",
+      "display": "Arthropod identified in Specimen"
+     },
+     {
+      "code": "108163-7",
+      "display": "Giardia sp [Presence] in Stool by Light microscopy"
+     },
+     {
+      "code": "10851-4",
+      "display": "Escherichia coli O157:H7 [Presence] in Stool by Organism specific culture"
+     },
+     {
+      "code": "10860-5",
+      "display": "Varicella zoster virus [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "11545-1",
+      "display": "Microscopic observation [Identifier] in Specimen by Acid fast stain"
+     },
+     {
+      "code": "13317-3",
+      "display": "Methicillin resistant Staphylococcus aureus [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "13956-8",
+      "display": "Mycobacterium tuberculosis DNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "16825-2",
+      "display": "Epstein Barr virus nuclear IgG Ab [Presence] in Body fluid"
+     },
+     {
+      "code": "17928-3",
+      "display": "Bacteria identified in Blood by Aerobe culture"
+     },
+     {
+      "code": "17934-1",
+      "display": "Bacteria identified in Blood by Anaerobe culture"
+     },
+     {
+      "code": "18482-0",
+      "display": "Yeast [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "18483-8",
+      "display": "Yeast [Presence] in Genital specimen by Organism specific culture"
+     },
+     {
+      "code": "18860-7",
+      "display": "Amikacin [Susceptibility]"
+     },
+     {
+      "code": "18864-9",
+      "display": "Ampicillin [Susceptibility]"
+     },
+     {
+      "code": "18865-6",
+      "display": "Ampicillin+Sulbactam [Susceptibility]"
+     },
+     {
+      "code": "18878-9",
+      "display": "ceFAZolin [Susceptibility]"
+     },
+     {
+      "code": "18879-7",
+      "display": "Cefepime [Susceptibility]"
+     },
+     {
+      "code": "18893-8",
+      "display": "cefTAZidime [Susceptibility]"
+     },
+     {
+      "code": "18895-3",
+      "display": "cefTRIAXone [Susceptibility]"
+     },
+     {
+      "code": "18906-8",
+      "display": "Ciprofloxacin [Susceptibility]"
+     },
+     {
+      "code": "18908-4",
+      "display": "Clindamycin [Susceptibility]"
+     },
+     {
+      "code": "18919-1",
+      "display": "Erythromycin [Susceptibility]"
+     },
+     {
+      "code": "18928-2",
+      "display": "Gentamicin [Susceptibility]"
+     },
+     {
+      "code": "18932-4",
+      "display": "Imipenem [Susceptibility]"
+     },
+     {
+      "code": "18943-1",
+      "display": "Meropenem [Susceptibility]"
+     },
+     {
+      "code": "18955-5",
+      "display": "Nitrofurantoin [Susceptibility]"
+     },
+     {
+      "code": "18961-3",
+      "display": "Oxacillin [Susceptibility]"
+     },
+     {
+      "code": "18965-4",
+      "display": "Penicillin G [Susceptibility]"
+     },
+     {
+      "code": "18969-6",
+      "display": "Piperacillin [Susceptibility]"
+     },
+     {
+      "code": "18970-4",
+      "display": "Piperacillin+Tazobactam [Susceptibility]"
+     },
+     {
+      "code": "18974-6",
+      "display": "rifAMPin [Susceptibility]"
+     },
+     {
+      "code": "18993-6",
+      "display": "Tetracycline [Susceptibility]"
+     },
+     {
+      "code": "18996-9",
+      "display": "Tobramycin [Susceptibility]"
+     },
+     {
+      "code": "18998-5",
+      "display": "Trimethoprim+Sulfamethoxazole [Susceptibility]"
+     },
+     {
+      "code": "19000-9",
+      "display": "Vancomycin [Susceptibility]"
+     },
+     {
+      "code": "19162-7",
+      "display": "Varicella zoster virus IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "20479-2",
+      "display": "Measles virus IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "20508-8",
+      "display": "Reagin Ab [Units/volume] in Serum or Plasma by RPR"
+     },
+     {
+      "code": "20629-2",
+      "display": "levoFLOXacin [Susceptibility]"
+     },
+     {
+      "code": "21008-8",
+      "display": "HIV 1 RNA [#/volume] (viral load) in Serum or Plasma by Probe"
+     },
+     {
+      "code": "21613-5",
+      "display": "Chlamydia trachomatis DNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "22128-3",
+      "display": "Borrelia burgdorferi IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "22135-8",
+      "display": "Borrelia burgdorferi IgM Ab [Presence] in Serum"
+     },
+     {
+      "code": "22244-8",
+      "display": "Cytomegalovirus IgG Ab [Presence] in Serum or Plasma"
+     },
+     {
+      "code": "22310-7",
+      "display": "Helicobacter pylori Ab [Presence] in Serum"
+     },
+     {
+      "code": "22415-4",
+      "display": "Mumps virus IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "22568-0",
+      "display": "Streptolysin O Ab [Titer] in Serum"
+     },
+     {
+      "code": "22580-5",
+      "display": "Toxoplasma gondii IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "24111-7",
+      "display": "Neisseria gonorrhoeae DNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "25514-1",
+      "display": "Rubella virus IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "25542-2",
+      "display": "Toxoplasma gondii IgM Ab [Presence] in Serum"
+     },
+     {
+      "code": "2708-6",
+      "display": "Oxygen saturation in Arterial blood"
+     },
+     {
+      "code": "28549-4",
+      "display": "Yersinia sp identified in Stool by Organism specific culture"
+     },
+     {
+      "code": "29258-1",
+      "display": "Linezolid [Susceptibility]"
+     },
+     {
+      "code": "29533-7",
+      "display": "Cryptococcus sp Ag [Presence] in Specimen"
+     },
+     {
+      "code": "29770-5",
+      "display": "Karyotype [Identifier] in Blood or Tissue Nominal"
+     },
+     {
+      "code": "30325-5",
+      "display": "Cytomegalovirus IgM Ab [Presence] in Serum or Plasma"
+     },
+     {
+      "code": "30339-6",
+      "display": "Epstein Barr virus capsid IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "30340-4",
+      "display": "Epstein Barr virus capsid IgM Ab [Presence] in Serum"
+     },
+     {
+      "code": "31147-2",
+      "display": "Reagin Ab [Titer] in Serum by RPR"
+     },
+     {
+      "code": "31418-7",
+      "display": "Heterophile Ab [Presence] in Serum"
+     },
+     {
+      "code": "31792-5",
+      "display": "Cryptococcus sp Ag [Units/volume] in Specimen"
+     },
+     {
+      "code": "31859-2",
+      "display": "Influenza virus A Ag [Presence] in Specimen"
+     },
+     {
+      "code": "31864-2",
+      "display": "Influenza virus B Ag [Presence] in Specimen"
+     },
+     {
+      "code": "31950-9",
+      "display": "Respiratory syncytial virus Ag [Presence] in Specimen"
+     },
+     {
+      "code": "31982-2",
+      "display": "Varicella zoster virus Ag [Presence] in Specimen"
+     },
+     {
+      "code": "32355-0",
+      "display": "Bacteria identified in Specimen by Respiratory culture"
+     },
+     {
+      "code": "32781-7",
+      "display": "Legionella sp Ag [Presence] in Urine"
+     },
+     {
+      "code": "33006-8",
+      "display": "Cytomegalovirus DNA [#/volume] (viral load) in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "34468-9",
+      "display": "Clostridioides difficile toxin A+B [Presence] in Stool by Immunoassay"
+     },
+     {
+      "code": "34713-8",
+      "display": "Clostridioides difficile toxin A+B [Presence] in Stool"
+     },
+     {
+      "code": "35789-7",
+      "display": "DAPTOmycin [Susceptibility]"
+     },
+     {
+      "code": "38354-7",
+      "display": "Bartonella sp identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "41122-3",
+      "display": "Treponema pallidum Ab [Units/volume] in Specimen"
+     },
+     {
+      "code": "41488-8",
+      "display": "Cryptosporidium sp [Presence] in Specimen by Acid fast stain"
+     },
+     {
+      "code": "43365-6",
+      "display": "Nocardia sp identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "44797-9",
+      "display": "Brucella sp [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "48062-4",
+      "display": "Giardia lamblia+Cryptosporidium parvum Ag [Presence] in Stool by Immunofluorescence"
+     },
+     {
+      "code": "48174-7",
+      "display": "Mycobacterium tuberculosis complex rRNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "48575-5",
+      "display": "Hepatitis C virus genotype [Identifier] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "49362-7",
+      "display": "Hepatitis B virus DNA [#/volume] (viral load) in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "49380-9",
+      "display": "Hepatitis C virus RNA [#/volume] (viral load) in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "50687-3",
+      "display": "Plasmodium sp Ag [Presence] in Blood"
+     },
+     {
+      "code": "51724-3",
+      "display": "Cefuroxime [Susceptibility]"
+     },
+     {
+      "code": "54245-6",
+      "display": "Respiratory virus Ag [Identifier] in Specimen by Immunofluorescence"
+     },
+     {
+      "code": "543-9",
+      "display": "Mycobacterium sp identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "551-2",
+      "display": "Brucella sp identified in Blood by Organism specific culture"
+     },
+     {
+      "code": "560-3",
+      "display": "Chlamydia sp identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "56839-4",
+      "display": "Acuity assessment Narrative"
+     },
+     {
+      "code": "580-1",
+      "display": "Fungus identified in Specimen by Culture"
+     },
+     {
+      "code": "5838-8",
+      "display": "Cytomegalovirus [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "5843-8",
+      "display": "Enterovirus identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "5859-4",
+      "display": "Herpes simplex virus identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "586-8",
+      "display": "Streptococcus agalactiae [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "593-4",
+      "display": "Legionella sp identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "596-7",
+      "display": "Bacteria identified in Amniotic fluid by Culture"
+     },
+     {
+      "code": "601-5",
+      "display": "Fungus identified in Blood by Culture"
+     },
+     {
+      "code": "60541-0",
+      "display": "Cytomegalovirus early Ag [Presence] in Specimen"
+     },
+     {
+      "code": "611-4",
+      "display": "Bacteria identified in Body fluid by Culture"
+     },
+     {
+      "code": "61367-9",
+      "display": "Clostridioides difficile DNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "61404-0",
+      "display": "Staphylococcus aureus DNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "62348-8",
+      "display": "Chromosome analysis panel - Blood by G-banded"
+     },
+     {
+      "code": "62350-4",
+      "display": "Chromosome analysis panel - Chorionic villus sample by G-banded"
+     },
+     {
+      "code": "62351-2",
+      "display": "Chromosome analysis panel - Amniotic fluid by G-banded"
+     },
+     {
+      "code": "625-4",
+      "display": "Bacteria identified in Stool by Culture"
+     },
+     {
+      "code": "630-4",
+      "display": "Bacteria identified in Urine by Culture"
+     },
+     {
+      "code": "64412-0",
+      "display": "Mycobacterium sp [Presence] in Blood by Organism specific culture"
+     },
+     {
+      "code": "6462-6",
+      "display": "Bacteria identified in Wound by Culture"
+     },
+     {
+      "code": "653-6",
+      "display": "Microscopic observation [Identifier] in Urine by Gram stain"
+     },
+     {
+      "code": "655-1",
+      "display": "Microscopic observation [Identifier] in Specimen by Acid fast stain.Kinyoun modified"
+     },
+     {
+      "code": "6579-7",
+      "display": "Vibrio sp identified in Stool by Organism specific culture"
+     },
+     {
+      "code": "6584-7",
+      "display": "Virus identified in Specimen by Culture"
+     },
+     {
+      "code": "664-3",
+      "display": "Microscopic observation [Identifier] in Specimen by Gram stain"
+     },
+     {
+      "code": "6676-1",
+      "display": "Enterobius vermicularis [Presence] in Anal by Pinworm exam"
+     },
+     {
+      "code": "698-1",
+      "display": "Neisseria gonorrhoeae [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "700-5",
+      "display": "Pneumocystis jirovecii Ag [Presence] in Specimen by Immunofluorescence"
+     },
+     {
+      "code": "73704-9",
+      "display": "Fluid output.nasogastric tube Measured"
+     },
+     {
+      "code": "74759-2",
+      "display": "Yeast [Presence] in Specimen by Gram stain"
+     },
+     {
+      "code": "77924-9",
+      "display": "Enterobacteriaceae.carbapenem resistant [Presence] in Anorectal or stool specimen by Organism specific culture"
+     },
+     {
+      "code": "79549-2",
+      "display": "Urine output measured by nephrostomy"
+     },
+     {
+      "code": "79556-7",
+      "display": "Fluid output neurological drain [Volume] Measured"
+     },
+     {
+      "code": "79559-1",
+      "display": "Fluid output gastrointestinal drain [Volume] Measured"
+     },
+     {
+      "code": "79560-9",
+      "display": "Fluid output gastrointestinal ostomy [Volume] Measured"
+     },
+     {
+      "code": "79561-7",
+      "display": "Fluid output enteral tube [Volume] Measured"
+     },
+     {
+      "code": "8014-3",
+      "display": "Rubella virus IgG Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "8310-5",
+      "display": "Body temperature"
+     },
+     {
+      "code": "85354-9",
+      "display": "Blood pressure panel with all children optional"
+     },
+     {
+      "code": "8661-1",
+      "display": "Chief complaint - Reported"
+     },
+     {
+      "code": "87944-5",
+      "display": "Bacteria identified in Synovial fluid by Anaerobe culture"
+     },
+     {
+      "code": "87969-2",
+      "display": "Microscopic observation [Identifier] in Blood by Gram stain"
+     },
+     {
+      "code": "8867-4",
+      "display": "Heart rate"
+     },
+     {
+      "code": "8884-9",
+      "display": "Heart rate rhythm"
+     },
+     {
+      "code": "9110-8",
+      "display": "Blood loss.total intraoperative [Volume] Estimated"
+     },
+     {
+      "code": "9113-2",
+      "display": "Fluid output biliary drain"
+     },
+     {
+      "code": "9122-3",
+      "display": "Fluid output cerebral ventricle drain"
+     },
+     {
+      "code": "9128-0",
+      "display": "Fluid output subarachnoid drain"
+     },
+     {
+      "code": "9129-8",
+      "display": "Fluid output chest tube"
+     },
+     {
+      "code": "9137-1",
+      "display": "Fluid output emesis"
+     },
+     {
+      "code": "9149-6",
+      "display": "Fluid output gastric tube"
+     },
+     {
+      "code": "9161-1",
+      "display": "Fluid output miscellaneous Measured"
+     },
+     {
+      "code": "9168-6",
+      "display": "Fluid output pericardial drain"
+     },
+     {
+      "code": "9187-6",
+      "display": "Urine output"
+     },
+     {
+      "code": "9195-9",
+      "display": "Urine output by in and out urethral catheter"
+     },
+     {
+      "code": "9203-1",
+      "display": "Fluid output wound drain"
+     },
+     {
+      "code": "9217-1",
+      "display": "Output.stool [Volume]"
+     },
+     {
+      "code": "9279-1",
+      "display": "Respiratory rate"
+     },
+     {
+      "code": "97513-6",
+      "display": "Campylobacter sp [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "9788-1",
+      "display": "Streptolysin O Ab [Presence] in Serum"
+     },
+     {
+      "code": "98137-3",
+      "display": "Pain assessment report"
+     }
+    ]
+   }
+  ]
+ }
+}

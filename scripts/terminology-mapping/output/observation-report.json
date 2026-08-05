@@ -1,0 +1,187 @@
+{
+ "field": "observation",
+ "element": "Observation.code",
+ "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-observation-merged-to-standard",
+ "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-merged-standard",
+ "version": "1.0.0",
+ "date": "2026-08-05",
+ "source_total": 289,
+ "mapped": 213,
+ "unmapped": 76,
+ "by_source": [
+  {
+   "system": "http://loinc.org",
+   "mapped": 9
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "mapped": 61
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-antibiotic",
+   "mapped": 27
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-test",
+   "mapped": 116
+  }
+ ],
+ "by_target_system": [
+  {
+   "system": "http://loinc.org",
+   "mappings": 213
+  }
+ ],
+ "by_equivalence": {
+  "equivalent": 9,
+  "relatedto": 204,
+  "unmatched": 76
+ },
+ "unmapped_by_reason": {
+  "no-suitable-concept": 76
+ },
+ "by_stream": [
+  {
+   "stream": "mimic-observation-type-ed",
+   "source_system": "http://loinc.org",
+   "method": "identity",
+   "total": 4,
+   "mapped": 4,
+   "unmapped": 0,
+   "coverage_pct": 100.0,
+   "target_systems": [
+    "http://loinc.org"
+   ],
+   "by_equivalence": {
+    "equivalent": 4,
+    "unmatched": 0
+   },
+   "unmapped_by_reason": {}
+  },
+  {
+   "stream": "mimic-observation-type-vital",
+   "source_system": "http://loinc.org",
+   "method": "identity",
+   "total": 5,
+   "mapped": 5,
+   "unmapped": 0,
+   "coverage_pct": 100.0,
+   "target_systems": [
+    "http://loinc.org"
+   ],
+   "by_equivalence": {
+    "equivalent": 5,
+    "unmatched": 0
+   },
+   "unmapped_by_reason": {}
+  },
+  {
+   "stream": "mimic-microbiology-antibiotic",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-antibiotic",
+   "method": "table",
+   "total": 27,
+   "mapped": 27,
+   "unmapped": 0,
+   "coverage_pct": 100.0,
+   "target_systems": [
+    "http://loinc.org"
+   ],
+   "by_equivalence": {
+    "relatedto": 27,
+    "unmatched": 0
+   },
+   "unmapped_by_reason": {},
+   "codesearch": {
+    "status": {
+     "ok": 27
+    },
+    "confidence": {
+     "min": 0.85,
+     "median": 0.85,
+     "mean": 0.85,
+     "max": 0.85
+    },
+    "constraint": "(http://loinc.org)(CLASS=ABXBACT,STATUS=ACTIVE,METHOD_TYP?false)",
+    "template": "Antimicrobial susceptibility test result for the antibiotic: {}",
+    "confidence_threshold": 0.8
+   }
+  },
+  {
+   "stream": "mimic-outputevents-d-items",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "method": "table",
+   "total": 77,
+   "mapped": 61,
+   "unmapped": 16,
+   "coverage_pct": 79.2,
+   "target_systems": [
+    "http://loinc.org"
+   ],
+   "by_equivalence": {
+    "relatedto": 61,
+    "unmatched": 16
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 16
+   },
+   "codesearch": {
+    "status": {
+     "below-threshold": 3,
+     "no-match": 4,
+     "not-a-volume": 5,
+     "ok": 61,
+     "total": 4
+    },
+    "confidence": {
+     "min": 0.78,
+     "median": 0.9,
+     "mean": 0.894,
+     "max": 0.95
+    },
+    "constraint": "(http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4)",
+    "template": "ICU flowsheet output volume recorded for: {}",
+    "confidence_threshold": 0.8
+   }
+  },
+  {
+   "stream": "mimic-microbiology-test",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-test",
+   "method": "table",
+   "total": 176,
+   "mapped": 116,
+   "unmapped": 60,
+   "coverage_pct": 65.9,
+   "target_systems": [
+    "http://loinc.org"
+   ],
+   "by_equivalence": {
+    "relatedto": 116,
+    "unmatched": 60
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 60
+   },
+   "codesearch": {
+    "status": {
+     "below-threshold": 27,
+     "no-match": 33,
+     "ok": 116
+    },
+    "confidence": {
+     "min": 0.5,
+     "median": 0.85,
+     "mean": 0.81,
+     "max": 0.85
+    },
+    "constraint": [
+     "(http://loinc.org)(CLASS=MICRO,STATUS=ACTIVE)",
+     "(http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)"
+    ],
+    "template": "Clinical microbiology test name recorded in the hospital microbiology results table: {}",
+    "confidence_threshold": 0.8
+   }
+  }
+ ],
+ "target_valueset_codes": 153,
+ "extras": {}
+}

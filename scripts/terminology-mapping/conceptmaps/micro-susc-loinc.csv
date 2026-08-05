@@ -1,0 +1,28 @@
+mimic_code,mimic_display,loinc_code,loinc_display,comment,codesearch_target,codesearch_display,codesearch_confidence,codesearch_status,codesearch_reasoning
+90003,PENICILLIN G,18965-4,Penicillin G [Susceptibility],,18965-4,Penicillin G [Susceptibility],0.85,ok,FSN matches Penicillin G susceptibility test result
+90004,AMPICILLIN,18864-9,Ampicillin [Susceptibility],,18864-9,Ampicillin [Susceptibility],0.85,ok,FSN matches ampicillin susceptibility test result
+90005,CEFAZOLIN,18878-9,ceFAZolin [Susceptibility],,18878-9,ceFAZolin [Susceptibility],0.85,ok,FSN matches cefazolin susceptibility test result
+90006,ERYTHROMYCIN,18919-1,Erythromycin [Susceptibility],,18919-1,Erythromycin [Susceptibility],0.85,ok,FSN matches antimicrobial susceptibility test for erythromycin
+90007,CLINDAMYCIN,18908-4,Clindamycin [Susceptibility],,18908-4,Clindamycin [Susceptibility],0.85,ok,FSN matches clindamycin susceptibility test result
+90008,TRIMETHOPRIM/SULFA,18998-5,Trimethoprim+Sulfamethoxazole [Susceptibility],The MIMIC label abbreviates the second component of the combination the target names in full: `SULFA` is sulfamethoxazole. Both concepts are susceptibility to trimethoprim+sulfamethoxazole.,18998-5,Trimethoprim+Sulfamethoxazole [Susceptibility],0.85,ok,FSN matches susceptibility result for trimethoprim/sulfa
+90010,NITROFURANTOIN,18955-5,Nitrofurantoin [Susceptibility],,18955-5,Nitrofurantoin [Susceptibility],0.85,ok,FSN matches antimicrobial susceptibility result for nitrofurantoin
+90011,TETRACYCLINE,18993-6,Tetracycline [Susceptibility],,18993-6,Tetracycline [Susceptibility],0.85,ok,FSN matches antimicrobial susceptibility test for tetracycline
+90012,GENTAMICIN,18928-2,Gentamicin [Susceptibility],,18928-2,Gentamicin [Susceptibility],0.85,ok,FSN matches gentamicin susceptibility test result
+90013,TOBRAMYCIN,18996-9,Tobramycin [Susceptibility],,18996-9,Tobramycin [Susceptibility],0.85,ok,FSN matches tobramycin susceptibility test result
+90014,AMIKACIN,18860-7,Amikacin [Susceptibility],,18860-7,Amikacin [Susceptibility],0.85,ok,FSN matches amikacin susceptibility test result
+90015,VANCOMYCIN,19000-9,Vancomycin [Susceptibility],,19000-9,Vancomycin [Susceptibility],0.85,ok,FSN matches vancomycin susceptibility test result
+90016,OXACILLIN,18961-3,Oxacillin [Susceptibility],,18961-3,Oxacillin [Susceptibility],0.85,ok,FSN matches oxacillin susceptibility test result
+90017,CEFTAZIDIME,18893-8,cefTAZidime [Susceptibility],,18893-8,cefTAZidime [Susceptibility],0.85,ok,FSN matches ceftazidime susceptibility exactly
+90018,CEFTRIAXONE,18895-3,cefTRIAXone [Susceptibility],,18895-3,cefTRIAXone [Susceptibility],0.85,ok,FSN matches ceftriaxone susceptibility exactly
+90019,CIPROFLOXACIN,18906-8,Ciprofloxacin [Susceptibility],,18906-8,Ciprofloxacin [Susceptibility],0.85,ok,FSN matches ciprofloxacin susceptibility result exactly
+90020,IMIPENEM,18932-4,Imipenem [Susceptibility],,18932-4,Imipenem [Susceptibility],0.85,ok,FSN matches imipenem susceptibility test result exactly
+90021,PIPERACILLIN,18969-6,Piperacillin [Susceptibility],,18969-6,Piperacillin [Susceptibility],0.85,ok,FSN matches piperacillin susceptibility exactly
+90022,AMPICILLIN/SULBACTAM,18865-6,Ampicillin+Sulbactam [Susceptibility],,18865-6,Ampicillin+Sulbactam [Susceptibility],0.85,ok,FSN matches antimicrobial susceptibility test for ampicillin/sulbactam
+90023,CEFUROXIME,51724-3,Cefuroxime [Susceptibility],,51724-3,Cefuroxime [Susceptibility],0.85,ok,FSN matches cefuroxime susceptibility; no route specified
+90025,LEVOFLOXACIN,20629-2,levoFLOXacin [Susceptibility],,20629-2,levoFLOXacin [Susceptibility],0.85,ok,FSN matches levofloxacin susceptibility test result
+90026,PIPERACILLIN/TAZO,18970-4,Piperacillin+Tazobactam [Susceptibility],The MIMIC label abbreviates the second component of the combination the target names in full: `TAZO` is tazobactam. Both concepts are susceptibility to piperacillin+tazobactam.,18970-4,Piperacillin+Tazobactam [Susceptibility],0.85,ok,FSN matches piperacillin/tazobactam susceptibility result
+90027,RIFAMPIN,18974-6,rifAMPin [Susceptibility],,18974-6,rifAMPin [Susceptibility],0.85,ok,FSN matches rifampin susceptibility test result
+90028,CEFEPIME,18879-7,Cefepime [Susceptibility],,18879-7,Cefepime [Susceptibility],0.85,ok,FSN matches cefepime susceptibility test result
+90029,MEROPENEM,18943-1,Meropenem [Susceptibility],,18943-1,Meropenem [Susceptibility],0.85,ok,FSN matches Meropenem susceptibility test result
+90030,DAPTOMYCIN,35789-7,DAPTOmycin [Susceptibility],,35789-7,DAPTOmycin [Susceptibility],0.85,ok,Daptomycin susceptibility test result matches input
+90031,LINEZOLID,29258-1,Linezolid [Susceptibility],,29258-1,Linezolid [Susceptibility],0.85,ok,FSN matches linezolid susceptibility test result

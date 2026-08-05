@@ -31,9 +31,10 @@ Two environments, with a hard boundary:
 [laptop]  verify-inputs ─→ terminology ─→ deploy-terminology ──┐
 [laptop]  ig (sushi + _genonce.sh) ─→ package upload ──────────┤
                                                                ▼
-[laptop]  mappings  =  scaffolds ─→ conceptmaps ─→ valuesets ─→ verify-mappings
+[laptop]  mappings  =  condition ─→ procedure ─→ verify-mappings
               │            (offline; needs the built CodeSystems in output/)
-              ▼  … you read unmapped-<field>.csv …
+              │            each builder writes its ConceptMap AND its ValueSet
+              ▼  … you read <field>-report.json and unmapped-<field>.csv …
 [laptop]  upload-mappings   (gated: refuses while any code is unmapped)
               │  ConceptMaps + ValueSets → $ONTOSERVER_URL
               ▼
@@ -80,12 +81,13 @@ Make targets (one per stage):
 | `terminology` | laptop | build all CodeSystems + ValueSet into `scripts/terminology-mapping/output/` (no upload) |
 | `deploy-terminology` | laptop | build **and** upload to `$ONTOSERVER_URL`, incl. `$lookup` smoke tests |
 | `ig` | laptop | `sushi` + `./_genonce.sh` → `output/package.tgz` |
-| `scaffolds` | laptop | placeholder target ValueSets the ConceptMaps point at (stage 2) |
-| `conceptmaps` | laptop | build the ConceptMaps — the only place mapping rules live (stage 3) |
-| `valuesets` | laptop | translate every MIMIC code through the map into the enumerated target VS (stage 4) |
+| `condition` | laptop | `Condition.code`: ConceptMap + enumerated target ValueSet, one offline pass |
+| `procedure` | laptop | `Procedure.code`: same, for the three merged populations |
 | `verify-mappings` | laptop | coverage + invariant checks; non-zero while any code is unmapped |
-| `mappings` | laptop | the four above in order — the everyday command |
-| `upload-mappings` | laptop | publish ConceptMaps + ValueSets; gated on `verify-mappings`, override with `ARGS=--allow-unmapped` |
+| `mappings` | laptop | every builder, then verify — the everyday command |
+| `verify-curated` | laptop | `$lookup` every SNOMED code in the mapping tables (needs the network) |
+| `d-items-table` | laptop | regenerate the ICU table from code-search (needs the network; never part of `mappings`) |
+| `upload-mappings` | laptop | publish ConceptMaps + ValueSets; gated on `verify-mappings`, override with `ARGS=--allow-unmapped`, TLS flags via `UPLOAD_ARGS` |
 
 ## 3. Toolchain
 
@@ -139,15 +141,19 @@ per type at the new version, `$expand` on `mimic-medication-with-unknown`,
 `$validate-code` on `v3-NullFlavor#UNK`, `$lookup` spot-checks on admission-class/type.
 
 ### mappings
-`make mappings`. Runs stages 2–4 then verifies. Fully offline and takes seconds:
-stage 4 reads the ConceptMap from disk rather than calling `$translate`. Inputs:
-the built CodeSystems in `output/` plus `input/resources/CodeSystem-mimic-*.json`.
-Outputs: `ConceptMap-mimic-{diagnosis,procedure}-icd-to-sid.json`,
-`ValueSet-mimic-{diagnosis,procedure}.json` (all committed),
-`unmapped-{diagnosis,procedure}.csv` and `coverage-report.json`.
+`make mappings`. Runs one builder per bound element, then verifies. Fully offline
+and takes seconds — the builders take no `--fhir-base` at all. Inputs: the built
+CodeSystems in `output/`, `input/resources/CodeSystem-mimic-*.json`, the
+FSH-generated ValueSets, and the committed `conceptmaps/d-items-snomed.csv`.
 
-Mapping rules live **only** in `conceptmaps/build_conceptmap.py`; everything
-downstream reads the generated map. See `scripts/terminology-mapping/README.md`.
+Each builder writes four files in one pass:
+`ConceptMap-<id>.json`, the enumerated `ValueSet-<target id>.json` that map's
+`targetCanonical` names, `unmapped-<field>.csv`, and `<field>-report.json`
+(coverage in a shape that is comparable across populations). All committed.
+
+Nothing downstream re-derives a mapping — the shared machinery is in
+`conceptmaps/lib/`, and the dot rules live only in `lib/notation.py`. See
+`scripts/terminology-mapping/README.md`.
 
 **Verify:** all four checks pass — coverage, ValueSet == ConceptMap target side,
 only releases built here, and no ICD-9 procedure code mapped to an ICD-10-PCS

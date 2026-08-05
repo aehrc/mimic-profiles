@@ -1,19 +1,1214 @@
 {
  "resourceType": "ConceptMap",
- "id": "mimic-procedure-icd-to-sid",
- "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-procedure-icd-to-sid",
+ "id": "mimic-procedure-merged-to-standard",
+ "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-procedure-merged-to-standard",
  "version": "1.0.0",
- "name": "MimicProcedureIcdToSid",
- "title": "MIMIC local ICD procedure codes to ICD-9-CM Vol 3 / ICD-10-PCS",
+ "name": "MimicProcedureMergedToStandard",
+ "title": "MIMIC merged Procedure codes to ICD-9-CM Vol 3 / ICD-10-PCS / SNOMED CT",
  "status": "active",
  "experimental": false,
- "date": "2026-08-03",
+ "date": "2026-08-05",
  "publisher": "CSIRO",
- "description": "Maps MIMIC's local dot-less Procedure.code codes onto the official dotted ICD codes, with the display and the release the code belongs to. Each group pins the target release in targetVersion; a code is mapped into the EARLIEST release that contains it. Lets consumers translate MIMIC codes on the fly rather than reading a rewritten copy of the source data.",
- "purpose": "This is a notation map, not a version crosswalk: every mapping is 'equivalent' and changes only how the code is written, never which concept it means. It is NOT an ICD-9-to-ICD-10 GEM.",
- "sourceCanonical": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-procedure-icd",
- "targetCanonical": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-procedure",
+ "description": "Maps every code the merged MIMIC Procedure profile admits onto standard terminology, so a consumer can translate the whole Procedure.code column through a single ConceptMap. MIMIC's dot-less ICD codes become official dotted ICD codes pinned to a release; codes that are already SNOMED CT map to themselves, so that translating the column preserves them instead of dropping them.",
+ "purpose": "Lets a consumer translate the whole Procedure.code column with a single $translate. The ICD groups are a notation map \u2014 every mapping is 'equivalent' and changes only how the code is written, never which concept it means, and this is NOT an ICD-9-to-ICD-10 GEM. The SNOMED CT groups are different in kind: the ED codes are already SNOMED CT and map to themselves, 'equivalent', while every ICU d_items mapping is 'relatedto'. A flowsheet item like '16 Gauge' has no SNOMED concept of equal meaning, and the relationship to the peripheral cannula insertion it records is not a direction this resource claims to know, so it is not asserted. Consumers must therefore accept 'relatedto' as well as 'equivalent', or they will drop the whole ICU population. Where the code pair alone would mislead, the row carries a comment saying what the mapping does and does not cover.",
+ "sourceCanonical": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-procedure-merged-code",
+ "targetCanonical": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-procedure-merged-standard",
  "group": [
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "target": "http://snomed.info/sct",
+   "element": [
+    {
+     "code": "221214",
+     "display": "CT scan",
+     "target": [
+      {
+       "code": "77477000",
+       "equivalence": "relatedto",
+       "display": "Computed tomography"
+      }
+     ]
+    },
+    {
+     "code": "221216",
+     "display": "X-ray",
+     "target": [
+      {
+       "code": "168537006",
+       "equivalence": "relatedto",
+       "display": "Plain X-ray"
+      }
+     ]
+    },
+    {
+     "code": "221217",
+     "display": "Ultrasound",
+     "target": [
+      {
+       "code": "16310003",
+       "equivalence": "relatedto",
+       "display": "Ultrasound"
+      }
+     ]
+    },
+    {
+     "code": "221219",
+     "display": "Venogram",
+     "target": [
+      {
+       "code": "4970003",
+       "equivalence": "relatedto",
+       "display": "Venography"
+      }
+     ]
+    },
+    {
+     "code": "221223",
+     "display": "EEG",
+     "target": [
+      {
+       "code": "54550000",
+       "equivalence": "relatedto",
+       "display": "EEG"
+      }
+     ]
+    },
+    {
+     "code": "221255",
+     "display": "Trans Esophageal Echo",
+     "target": [
+      {
+       "code": "105376000",
+       "equivalence": "relatedto",
+       "display": "Transoesophageal echocardiography"
+      }
+     ]
+    },
+    {
+     "code": "223253",
+     "display": "Magnetic Resonance Imaging",
+     "target": [
+      {
+       "code": "113091000",
+       "equivalence": "relatedto",
+       "display": "Magnetic resonance imaging"
+      }
+     ]
+    },
+    {
+     "code": "224264",
+     "display": "PICC Line",
+     "target": [
+      {
+       "code": "425196008",
+       "equivalence": "relatedto",
+       "display": "Peripherally inserted central catheterisation"
+      }
+     ]
+    },
+    {
+     "code": "224269",
+     "display": "CCO PAC",
+     "target": [
+      {
+       "code": "65677008",
+       "equivalence": "relatedto",
+       "display": "Pulmonary catheterisation with Swan-Ganz catheter"
+      }
+     ]
+    },
+    {
+     "code": "224272",
+     "display": "IABP line",
+     "target": [
+      {
+       "code": "16965008",
+       "equivalence": "relatedto",
+       "display": "Insertion of intra-aortic balloon pump"
+      }
+     ]
+    },
+    {
+     "code": "224273",
+     "display": "Presep Catheter",
+     "target": [
+      {
+       "code": "449860009",
+       "equivalence": "relatedto",
+       "display": "Nontunnelled central venous catheterisation"
+      }
+     ]
+    },
+    {
+     "code": "224385",
+     "display": "Intubation",
+     "target": [
+      {
+       "code": "52765003",
+       "equivalence": "relatedto",
+       "display": "Intubation"
+      }
+     ]
+    },
+    {
+     "code": "224560",
+     "display": "PA Catheter",
+     "target": [
+      {
+       "code": "82936005",
+       "equivalence": "relatedto",
+       "display": "Introduction of catheter into pulmonary artery"
+      }
+     ]
+    },
+    {
+     "code": "225202",
+     "display": "Indwelling Port (PortaCath)",
+     "target": [
+      {
+       "code": "80402001",
+       "equivalence": "relatedto",
+       "display": "Implantation of venous access port"
+      }
+     ]
+    },
+    {
+     "code": "225204",
+     "display": "Midline",
+     "target": [
+      {
+       "code": "392230005",
+       "equivalence": "relatedto",
+       "display": "Catheterisation of vein"
+      }
+     ]
+    },
+    {
+     "code": "225205",
+     "display": "RIC",
+     "target": [
+      {
+       "code": "233520008",
+       "equivalence": "relatedto",
+       "display": "Peripheral venous cannula insertion"
+      }
+     ]
+    },
+    {
+     "code": "225315",
+     "display": "Tunneled (Hickman) Line",
+     "target": [
+      {
+       "code": "442309004",
+       "equivalence": "relatedto",
+       "display": "Insertion of tunnelled central venous catheter"
+      }
+     ]
+    },
+    {
+     "code": "225399",
+     "display": "Lumbar Puncture",
+     "target": [
+      {
+       "code": "277762005",
+       "equivalence": "relatedto",
+       "display": "Lumbar puncture"
+      }
+     ]
+    },
+    {
+     "code": "225400",
+     "display": "Bronchoscopy",
+     "target": [
+      {
+       "code": "10847001",
+       "equivalence": "relatedto",
+       "display": "Bronchoscopy"
+      }
+     ]
+    },
+    {
+     "code": "225401",
+     "display": "Blood Cultured",
+     "target": [
+      {
+       "code": "30088009",
+       "equivalence": "relatedto",
+       "display": "Blood culture"
+      }
+     ]
+    },
+    {
+     "code": "225402",
+     "display": "EKG",
+     "target": [
+      {
+       "code": "29303009",
+       "equivalence": "relatedto",
+       "display": "ECG procedure"
+      }
+     ]
+    },
+    {
+     "code": "225406",
+     "display": "Transferred to Floor",
+     "target": [
+      {
+       "code": "37729005",
+       "equivalence": "relatedto",
+       "display": "Patient transfer, in-hospital"
+      }
+     ]
+    },
+    {
+     "code": "225427",
+     "display": "Angiography",
+     "target": [
+      {
+       "code": "77343006",
+       "equivalence": "relatedto",
+       "display": "Angiography"
+      }
+     ]
+    },
+    {
+     "code": "225429",
+     "display": "Blakemore / MinnesotaTube Inserted",
+     "target": [
+      {
+       "code": "235419001",
+       "equivalence": "relatedto",
+       "display": "Intubation of gastrointestinal tract"
+      }
+     ]
+    },
+    {
+     "code": "225430",
+     "display": "Cardiac Cath",
+     "target": [
+      {
+       "code": "41976001",
+       "equivalence": "relatedto",
+       "display": "Cardiac catheterisation"
+      }
+     ]
+    },
+    {
+     "code": "225432",
+     "display": "Transthoracic Echo",
+     "target": [
+      {
+       "code": "433236007",
+       "equivalence": "relatedto",
+       "display": "Transthoracic echocardiography"
+      }
+     ]
+    },
+    {
+     "code": "225433",
+     "display": "Chest Tube Placed",
+     "target": [
+      {
+       "code": "1381505000",
+       "equivalence": "relatedto",
+       "display": "Insertion of drainage tube into pleural cavity"
+      }
+     ]
+    },
+    {
+     "code": "225434",
+     "display": "Colonoscopy",
+     "target": [
+      {
+       "code": "73761001",
+       "equivalence": "relatedto",
+       "display": "Colonoscopy"
+      }
+     ]
+    },
+    {
+     "code": "225437",
+     "display": "CSF Culture",
+     "target": [
+      {
+       "code": "252399001",
+       "equivalence": "relatedto",
+       "display": "CSF culture"
+      }
+     ]
+    },
+    {
+     "code": "225439",
+     "display": "Endoscopy",
+     "target": [
+      {
+       "code": "423827005",
+       "equivalence": "relatedto",
+       "display": "Endoscopy"
+      }
+     ]
+    },
+    {
+     "code": "225440",
+     "display": "Fluoroscopy",
+     "target": [
+      {
+       "code": "44491008",
+       "equivalence": "relatedto",
+       "display": "Fluoroscopy"
+      }
+     ]
+    },
+    {
+     "code": "225441",
+     "display": "Hemodialysis",
+     "target": [
+      {
+       "code": "302497006",
+       "equivalence": "relatedto",
+       "display": "Haemodialysis"
+      }
+     ]
+    },
+    {
+     "code": "225442",
+     "display": "Liver Biopsy",
+     "target": [
+      {
+       "code": "86259008",
+       "equivalence": "relatedto",
+       "display": "Biopsy of liver"
+      }
+     ]
+    },
+    {
+     "code": "225443",
+     "display": "Nuclear Medicine",
+     "target": [
+      {
+       "code": "371572003",
+       "equivalence": "relatedto",
+       "display": "Nuclear medicine procedure"
+      }
+     ]
+    },
+    {
+     "code": "225445",
+     "display": "Paracentesis",
+     "target": [
+      {
+       "code": "89305009",
+       "equivalence": "relatedto",
+       "display": "Abdominal paracentesis"
+      }
+     ]
+    },
+    {
+     "code": "225446",
+     "display": "PEG Insertion",
+     "target": [
+      {
+       "code": "235159007",
+       "equivalence": "relatedto",
+       "display": "Percutaneous endoscopic insertion of gastrostomy tube"
+      }
+     ]
+    },
+    {
+     "code": "225447",
+     "display": "Percutaneous Drain Insertion",
+     "target": [
+      {
+       "code": "698956007",
+       "equivalence": "relatedto",
+       "display": "Insertion of drain"
+      }
+     ]
+    },
+    {
+     "code": "225448",
+     "display": "Percutaneous Tracheostomy",
+     "target": [
+      {
+       "code": "307007002",
+       "equivalence": "relatedto",
+       "display": "Percutaneous tracheostomy"
+      }
+     ]
+    },
+    {
+     "code": "225449",
+     "display": "Pericardiocentesis",
+     "target": [
+      {
+       "code": "309849004",
+       "equivalence": "relatedto",
+       "display": "Pericardiocentesis"
+      }
+     ]
+    },
+    {
+     "code": "225450",
+     "display": "Radiation Therapy",
+     "target": [
+      {
+       "code": "1287742003",
+       "equivalence": "relatedto",
+       "display": "Radiotherapy"
+      }
+     ]
+    },
+    {
+     "code": "225451",
+     "display": "Sputum Culture",
+     "target": [
+      {
+       "code": "104173009",
+       "equivalence": "relatedto",
+       "display": "Microbial culture of sputum"
+      }
+     ]
+    },
+    {
+     "code": "225454",
+     "display": "Urine Culture",
+     "target": [
+      {
+       "code": "117010004",
+       "equivalence": "relatedto",
+       "display": "Urine culture"
+      }
+     ]
+    },
+    {
+     "code": "225457",
+     "display": "Abdominal X-Ray",
+     "target": [
+      {
+       "code": "168702005",
+       "equivalence": "relatedto",
+       "display": "Plain X-ray of abdomen"
+      }
+     ]
+    },
+    {
+     "code": "225459",
+     "display": "Chest X-Ray",
+     "target": [
+      {
+       "code": "399208008",
+       "equivalence": "relatedto",
+       "display": "Plain X-ray of chest"
+      }
+     ]
+    },
+    {
+     "code": "225465",
+     "display": "Chest Pain",
+     "target": [
+      {
+       "code": "29857009",
+       "equivalence": "relatedto",
+       "display": "Chest pain"
+      }
+     ]
+    },
+    {
+     "code": "225466",
+     "display": "Cardiac Arrest",
+     "target": [
+      {
+       "code": "410429000",
+       "equivalence": "relatedto",
+       "display": "Cardiac arrest"
+      }
+     ]
+    },
+    {
+     "code": "225467",
+     "display": "Chest Opened",
+     "target": [
+      {
+       "code": "177765008",
+       "equivalence": "relatedto",
+       "display": "Opening of chest"
+      }
+     ]
+    },
+    {
+     "code": "225468",
+     "display": "Unplanned Extubation (patient-initiated)",
+     "target": [
+      {
+       "code": "405639008",
+       "equivalence": "relatedto",
+       "display": "Inadvertent tracheal extubation"
+      }
+     ]
+    },
+    {
+     "code": "225470",
+     "display": "OR Sent",
+     "target": [
+      {
+       "code": "1336167003",
+       "equivalence": "relatedto",
+       "display": "Patient transfer to operating room"
+      }
+     ]
+    },
+    {
+     "code": "225472",
+     "display": "Pneumothorax",
+     "target": [
+      {
+       "code": "36118008",
+       "equivalence": "relatedto",
+       "display": "Pneumothorax"
+      }
+     ]
+    },
+    {
+     "code": "225474",
+     "display": "Fall",
+     "target": [
+      {
+       "code": "1912002",
+       "equivalence": "relatedto",
+       "display": "Fall"
+      }
+     ]
+    },
+    {
+     "code": "225475",
+     "display": "Respiratory Arrest",
+     "target": [
+      {
+       "code": "87317003",
+       "equivalence": "relatedto",
+       "display": "Respiratory arrest"
+      }
+     ]
+    },
+    {
+     "code": "225476",
+     "display": "Unplanned Line/Catheter Removal (Non-Patient initated)",
+     "target": [
+      {
+       "code": "439377004",
+       "equivalence": "relatedto",
+       "display": "Accidental removal of catheter"
+      }
+     ]
+    },
+    {
+     "code": "225477",
+     "display": "Unplanned Extubation (non-patient initiated)",
+     "target": [
+      {
+       "code": "405639008",
+       "equivalence": "relatedto",
+       "display": "Inadvertent tracheal extubation"
+      }
+     ]
+    },
+    {
+     "code": "225478",
+     "display": "Operation",
+     "target": [
+      {
+       "code": "387713003",
+       "equivalence": "relatedto",
+       "display": "Surgical procedure"
+      }
+     ]
+    },
+    {
+     "code": "225479",
+     "display": "Thoracentesis",
+     "target": [
+      {
+       "code": "91602002",
+       "equivalence": "relatedto",
+       "display": "Thoracentesis"
+      }
+     ]
+    },
+    {
+     "code": "225752",
+     "display": "Arterial Line",
+     "target": [
+      {
+       "code": "392247006",
+       "equivalence": "relatedto",
+       "display": "Catheterisation of artery"
+      }
+     ]
+    },
+    {
+     "code": "225792",
+     "display": "Invasive Ventilation",
+     "target": [
+      {
+       "code": "1258985005",
+       "equivalence": "relatedto",
+       "display": "Invasive mechanical ventilation"
+      }
+     ]
+    },
+    {
+     "code": "225794",
+     "display": "Non-invasive Ventilation",
+     "target": [
+      {
+       "code": "428311008",
+       "equivalence": "relatedto",
+       "display": "Non-invasive ventilation"
+      }
+     ]
+    },
+    {
+     "code": "225802",
+     "display": "Dialysis - CRRT",
+     "target": [
+      {
+       "code": "714749008",
+       "equivalence": "relatedto",
+       "display": "Continuous renal replacement therapy"
+      }
+     ]
+    },
+    {
+     "code": "225803",
+     "display": "Dialysis - CVVHD",
+     "target": [
+      {
+       "code": "233580005",
+       "equivalence": "relatedto",
+       "display": "Continuous venovenous haemodialysis"
+      }
+     ]
+    },
+    {
+     "code": "225805",
+     "display": "Peritoneal Dialysis",
+     "target": [
+      {
+       "code": "71192002",
+       "equivalence": "relatedto",
+       "display": "Peritoneal dialysis"
+      }
+     ]
+    },
+    {
+     "code": "225809",
+     "display": "Dialysis - CVVHDF",
+     "target": [
+      {
+       "code": "233590002",
+       "equivalence": "relatedto",
+       "display": "Continuous venovenous haemodiafiltration"
+      }
+     ]
+    },
+    {
+     "code": "225814",
+     "display": "Stool Culture",
+     "target": [
+      {
+       "code": "117028002",
+       "equivalence": "relatedto",
+       "display": "Stool culture"
+      }
+     ]
+    },
+    {
+     "code": "225818",
+     "display": "Pleural Fluid Culture",
+     "target": [
+      {
+       "code": "167944006",
+       "equivalence": "relatedto",
+       "display": "Pleural fluid examination"
+      }
+     ]
+    },
+    {
+     "code": "225819",
+     "display": "Brain Death",
+     "target": [
+      {
+       "code": "398205000",
+       "equivalence": "relatedto",
+       "display": "Diagnosis of brainstem death"
+      }
+     ]
+    },
+    {
+     "code": "225821",
+     "display": "Unplanned Line/Catheter Removal (Patient Initiated)",
+     "target": [
+      {
+       "code": "103715008",
+       "equivalence": "relatedto",
+       "display": "Removal of catheter"
+      }
+     ]
+    },
+    {
+     "code": "225966",
+     "display": "Nasal Swab",
+     "target": [
+      {
+       "code": "312882009",
+       "equivalence": "relatedto",
+       "display": "Taking nasal swab"
+      }
+     ]
+    },
+    {
+     "code": "226124",
+     "display": "ICP Catheter",
+     "target": [
+      {
+       "code": "230940006",
+       "equivalence": "relatedto",
+       "display": "Insertion of intracranial pressure catheter"
+      }
+     ]
+    },
+    {
+     "code": "226476",
+     "display": "Esophogeal Balloon",
+     "target": [
+      {
+       "code": "426584002",
+       "equivalence": "relatedto",
+       "display": "Oesophageal pressure monitoring"
+      }
+     ]
+    },
+    {
+     "code": "226477",
+     "display": "Temporary Pacemaker Wires Inserted",
+     "target": [
+      {
+       "code": "281556002",
+       "equivalence": "relatedto",
+       "display": "Insertion of temporary cardiac pacemaker"
+      }
+     ]
+    },
+    {
+     "code": "227194",
+     "display": "Extubation",
+     "target": [
+      {
+       "code": "309812005",
+       "equivalence": "relatedto",
+       "display": "Extubation of trachea"
+      }
+     ]
+    },
+    {
+     "code": "227550",
+     "display": "ERCP (Travel to)",
+     "target": [
+      {
+       "code": "712470002",
+       "equivalence": "relatedto",
+       "display": "Endoscopic retrograde cholangiopancreatography"
+      }
+     ]
+    },
+    {
+     "code": "227551",
+     "display": "Plasma Pheresis.",
+     "target": [
+      {
+       "code": "20720000",
+       "equivalence": "relatedto",
+       "display": "Plasmapheresis"
+      }
+     ]
+    },
+    {
+     "code": "227711",
+     "display": "Drain Removed",
+     "target": [
+      {
+       "code": "241031001",
+       "equivalence": "relatedto",
+       "display": "Removal of drain"
+      }
+     ]
+    },
+    {
+     "code": "227712",
+     "display": "Chest Tube Removed",
+     "target": [
+      {
+       "code": "238356005",
+       "equivalence": "relatedto",
+       "display": "Intercostal drain removal"
+      }
+     ]
+    },
+    {
+     "code": "227713",
+     "display": "Epidural Placement",
+     "target": [
+      {
+       "code": "446244002",
+       "equivalence": "relatedto",
+       "display": "Catheterisation of lumbar epidural space",
+       "comment": "The MIMIC item records an epidural placed at any level; the target names the lumbar epidural space specifically. Thoracic placements are within the source item and outside the target."
+      }
+     ]
+    },
+    {
+     "code": "227714",
+     "display": "Pericardial Drain Removed",
+     "target": [
+      {
+       "code": "241031001",
+       "equivalence": "relatedto",
+       "display": "Removal of drain"
+      }
+     ]
+    },
+    {
+     "code": "227719",
+     "display": "AVA",
+     "target": [
+      {
+       "code": "287364001",
+       "equivalence": "relatedto",
+       "display": "Arteriovenous anastomosis"
+      }
+     ]
+    },
+    {
+     "code": "228125",
+     "display": "Family meeting held",
+     "target": [
+      {
+       "code": "312048002",
+       "equivalence": "relatedto",
+       "display": "Family case conference"
+      }
+     ]
+    },
+    {
+     "code": "228126",
+     "display": "Family met with Case Manager",
+     "target": [
+      {
+       "code": "312048002",
+       "equivalence": "relatedto",
+       "display": "Family case conference"
+      }
+     ]
+    },
+    {
+     "code": "228128",
+     "display": "Family updated by MD",
+     "target": [
+      {
+       "code": "304563002",
+       "equivalence": "relatedto",
+       "display": "Informing relative"
+      }
+     ]
+    },
+    {
+     "code": "228129",
+     "display": "Family updated by RN",
+     "target": [
+      {
+       "code": "304564008",
+       "equivalence": "relatedto",
+       "display": "Informing next of kin"
+      }
+     ]
+    },
+    {
+     "code": "228286",
+     "display": "Intraosseous Device",
+     "target": [
+      {
+       "code": "440009003",
+       "equivalence": "relatedto",
+       "display": "Insertion of needle for intraosseous infusion"
+      }
+     ]
+    },
+    {
+     "code": "228715",
+     "display": "Transcranial Doppler",
+     "target": [
+      {
+       "code": "431648005",
+       "equivalence": "relatedto",
+       "display": "Transcranial Doppler ultrasound"
+      }
+     ]
+    },
+    {
+     "code": "229351",
+     "display": "Foley Catheter",
+     "target": [
+      {
+       "code": "446583004",
+       "equivalence": "relatedto",
+       "display": "Indwelling catheterisation of urinary bladder"
+      }
+     ]
+    },
+    {
+     "code": "229380",
+     "display": "Nursing Water Swallow Screening",
+     "target": [
+      {
+       "code": "431765005",
+       "equivalence": "relatedto",
+       "display": "Screening for dysphagia"
+      }
+     ]
+    },
+    {
+     "code": "229501",
+     "display": "Small Bore Nasal Enteral Tube Placement",
+     "target": [
+      {
+       "code": "235420007",
+       "equivalence": "relatedto",
+       "display": "Intubation of gastrointestinal tract via nose"
+      }
+     ]
+    },
+    {
+     "code": "229520",
+     "display": "EVD #2",
+     "target": [
+      {
+       "code": "698956007",
+       "equivalence": "relatedto",
+       "display": "Insertion of drain"
+      }
+     ]
+    },
+    {
+     "code": "229521",
+     "display": "ICP - PbtO2",
+     "target": [
+      {
+       "code": "230937006",
+       "equivalence": "relatedto",
+       "display": "Procedure for monitoring intracranial pressure"
+      }
+     ]
+    },
+    {
+     "code": "229522",
+     "display": "SEPS (Subdural Evacuating Port System)",
+     "target": [
+      {
+       "code": "304846008",
+       "equivalence": "relatedto",
+       "display": "External subdural drain procedure"
+      }
+     ]
+    },
+    {
+     "code": "229523",
+     "display": "Subdural Drain",
+     "target": [
+      {
+       "code": "304846008",
+       "equivalence": "relatedto",
+       "display": "External subdural drain procedure"
+      }
+     ]
+    },
+    {
+     "code": "229525",
+     "display": "Sheath (Arterial)",
+     "target": [
+      {
+       "code": "233403006",
+       "equivalence": "relatedto",
+       "display": "Insertion of arterial intraluminal device"
+      }
+     ]
+    },
+    {
+     "code": "229526",
+     "display": "MAC",
+     "target": [
+      {
+       "code": "233527006",
+       "equivalence": "relatedto",
+       "display": "Central venous cannula insertion"
+      }
+     ]
+    },
+    {
+     "code": "229529",
+     "display": "ECMO Inflow Line",
+     "target": [
+      {
+       "code": "440001000",
+       "equivalence": "relatedto",
+       "display": "Insertion of vascular cannula for prolonged extracorporeal circulation"
+      }
+     ]
+    },
+    {
+     "code": "229531",
+     "display": "Tunneled Access Line",
+     "target": [
+      {
+       "code": "442309004",
+       "equivalence": "relatedto",
+       "display": "Insertion of tunnelled central venous catheter"
+      }
+     ]
+    },
+    {
+     "code": "229532",
+     "display": "Indwelling Port",
+     "target": [
+      {
+       "code": "80402001",
+       "equivalence": "relatedto",
+       "display": "Implantation of venous access port"
+      }
+     ]
+    },
+    {
+     "code": "229575",
+     "display": "Travel to Radiology",
+     "target": [
+      {
+       "code": "37729005",
+       "equivalence": "relatedto",
+       "display": "Patient transfer, in-hospital"
+      }
+     ]
+    },
+    {
+     "code": "229576",
+     "display": "ERCP (Done in unit)",
+     "target": [
+      {
+       "code": "712470002",
+       "equivalence": "relatedto",
+       "display": "Endoscopic retrograde cholangiopancreatography"
+      }
+     ]
+    },
+    {
+     "code": "229579",
+     "display": "Transfer Intercampus by Ambulance",
+     "target": [
+      {
+       "code": "107724000",
+       "equivalence": "relatedto",
+       "display": "Patient transfer"
+      }
+     ]
+    },
+    {
+     "code": "229581",
+     "display": "Portable Chest X-Ray",
+     "target": [
+      {
+       "code": "399208008",
+       "equivalence": "relatedto",
+       "display": "Plain X-ray of chest"
+      }
+     ]
+    },
+    {
+     "code": "229582",
+     "display": "Portable CT scan",
+     "target": [
+      {
+       "code": "77477000",
+       "equivalence": "relatedto",
+       "display": "Computed tomography"
+      }
+     ]
+    },
+    {
+     "code": "229584",
+     "display": "EMG",
+     "target": [
+      {
+       "code": "42803009",
+       "equivalence": "relatedto",
+       "display": "Electromyography"
+      }
+     ]
+    },
+    {
+     "code": "229585",
+     "display": "Surgical Procedure at Bedside",
+     "target": [
+      {
+       "code": "387713003",
+       "equivalence": "relatedto",
+       "display": "Surgical procedure"
+      }
+     ]
+    },
+    {
+     "code": "229586",
+     "display": "VAC Change",
+     "target": [
+      {
+       "code": "1217562000",
+       "equivalence": "relatedto",
+       "display": "Replacement of negative pressure wound dressing"
+      }
+     ]
+    },
+    {
+     "code": "229614",
+     "display": "EEG (Continuous)",
+     "target": [
+      {
+       "code": "54550000",
+       "equivalence": "relatedto",
+       "display": "EEG"
+      }
+     ]
+    },
+    {
+     "code": "229620",
+     "display": "Massive Transfusion",
+     "target": [
+      {
+       "code": "277360004",
+       "equivalence": "relatedto",
+       "display": "Massive blood transfusion"
+      }
+     ]
+    },
+    {
+     "code": "229984",
+     "display": "Sevoflurane (Inhaled)",
+     "target": [
+      {
+       "code": "288185006",
+       "equivalence": "relatedto",
+       "display": "Inhalation general anaesthesia"
+      }
+     ]
+    }
+   ]
+  },
   {
    "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd10",
    "target": "http://www.cms.gov/Medicare/Coding/ICD10",
@@ -138353,6 +139548,650 @@
    ]
   },
   {
+   "source": "http://snomed.info/sct",
+   "target": "http://snomed.info/sct",
+   "element": [
+    {
+     "code": "386478007",
+     "display": "Triage: emergency center (procedure)",
+     "target": [
+      {
+       "code": "386478007",
+       "equivalence": "equivalent",
+       "display": "Triage: emergency center (procedure)"
+      }
+     ]
+    },
+    {
+     "code": "410188000",
+     "display": "Taking patient vital signs assessment (procedure)",
+     "target": [
+      {
+       "code": "410188000",
+       "equivalence": "equivalent",
+       "display": "Taking patient vital signs assessment (procedure)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "target": "http://snomed.info/sct",
+   "element": [
+    {
+     "code": "224263",
+     "display": "Multi Lumen",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 233527006 |Central venous cannula insertion| at 0.60, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "224267",
+     "display": "Cordis/Introducer",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 429446009 |Catheterisation of blood vessel| at 0.78, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "224268",
+     "display": "Trauma line",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 429446009 |Catheterisation of blood vessel| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "224270",
+     "display": "Dialysis Catheter",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "224274",
+     "display": "22 Gauge",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "224275",
+     "display": "20 Gauge",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 429446009 |Catheterisation of blood vessel| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "224276",
+     "display": "16 Gauge",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "224277",
+     "display": "18 Gauge",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "224566",
+     "display": "14 Gauge",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "225199",
+     "display": "Triple Introducer",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 429446009 |Catheterisation of blood vessel| at 0.72, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225203",
+     "display": "Pheresis Catheter",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "225428",
+     "display": "Blakemore / Minnesota Tube D/C",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 1230036005 |Removal of tube| at 0.78, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225436",
+     "display": "CRRT Filter Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 714749008 |Continuous renal replacement therapy| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225444",
+     "display": "Pan Culture",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 104178000 |Bacterial culture| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225456",
+     "display": "Ventricular Drain",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 698956007 |Insertion of drain| at 0.70, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225460",
+     "display": "Cervical Spine",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 428490009 |Surgical procedure on cervical spine| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225461",
+     "display": "Pelvis",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "225462",
+     "display": "Interventional Radiology",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "225463",
+     "display": "TLS Spine",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 238181003 |Procedure on spine| at 0.65, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225464",
+     "display": "Cardioversion/Defibrillation",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 250980009 |Cardioversion| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225469",
+     "display": "OR Received",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "225761",
+     "display": "Sheath Insertion",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 429446009 |Catheterisation of blood vessel| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225789",
+     "display": "Sheath (Venous)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 392230005 |Catheterisation of vein| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225815",
+     "display": "Peritoneal Fluid",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 238257004 |Peritoneal drainage procedure| at 0.70, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225816",
+     "display": "Wound Culture",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "225817",
+     "display": "BAL Fluid Culture",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 117027007 |Microbial culture, body fluid| at 0.78, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225820",
+     "display": "C-Spine Clearance",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 284405008 |Examination of cervical spine| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225955",
+     "display": "Dialysis - SCUF",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 108241001 |Dialysis procedure| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225967",
+     "display": "Rectal Swab",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 285570007 |Taking of swab| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "226236",
+     "display": "Temporary Pacemaker Wires Discontinued",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 233188006 |Removal of cardiac pacing electrode| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "226237",
+     "display": "Open Tracheostomy",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 810551000168104 |Tracheostomy| at 0.80 but that concept is not in the SNOMED international core."
+      }
+     ]
+    },
+    {
+     "code": "226474",
+     "display": "ICP Bolt Inserted",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 830051000168103 |Insertion of intracranial pressure monitor| at 0.85 but that concept is not in the SNOMED international core."
+      }
+     ]
+    },
+    {
+     "code": "226475",
+     "display": "Intraventricular Drain Inserted",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "227715",
+     "display": "TLS Clearance",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 277605001 |Tumour lysis syndrome| at 0.60, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "228127",
+     "display": "Family met with Social Worker",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 709753004 |Liaising with social worker| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "228130",
+     "display": "NEOB notified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "228136",
+     "display": "Family notified of transfer",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "228169",
+     "display": "Impella Line",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 933316631000036107 |Percutaneous insertion of catheter based ventricular assist device| at 0.85 but that concept is not in the SNOMED international core."
+      }
+     ]
+    },
+    {
+     "code": "228201",
+     "display": "Tandem Heart Inflow Line",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 933316631000036107 |Percutaneous implantation of catheter based ventricular assist device| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "228202",
+     "display": "Tandem Heart Outflow Line",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 933316631000036107 |Percutaneous implantation of catheter based ventricular assist device| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "228228",
+     "display": "Family meeting attempted, unable",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 312048002 |Family case conference| at 0.70, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229298",
+     "display": "Speech and Swallow Evaluation",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 1200601000168108 |Swallowing assessment| at 0.85 but that concept is not in the SNOMED international core."
+      }
+     ]
+    },
+    {
+     "code": "229366",
+     "display": "Epoprostenol (Inhaled)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "229468",
+     "display": "24 Gauge",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "229514",
+     "display": "EKOS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 240929001 |Percutaneous thrombolysis| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229515",
+     "display": "Avalon/Protek Duo",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 440001000 |Insertion of vascular cannula for prolonged extracorporeal circulation| at 0.78, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229516",
+     "display": "Single Lumen",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "229517",
+     "display": "Multi Lumen Cooling Catheter",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 45211000 |Catheterisation| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229518",
+     "display": "ICP - Camino",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 830051000168103 |Insertion of intracranial pressure monitor| at 0.85 but that concept is not in the SNOMED international core."
+      }
+     ]
+    },
+    {
+     "code": "229519",
+     "display": "EVD #1",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 698956007 |Insertion of drain| at 0.78, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229524",
+     "display": "Lumbar Drain",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 933600661000036105 |Insertion of external lumbar drain| at 0.85 but that concept is not in the SNOMED international core."
+      }
+     ]
+    },
+    {
+     "code": "229527",
+     "display": "Centrimag Inflow Line",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 232965003 |Implantation of ventricular assist device| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229528",
+     "display": "Centrimag Outflow Line",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 42825003 |Cannulation| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229530",
+     "display": "ECMO Outflow Line",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 233573008 |Extracorporeal membrane oxygenation| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229533",
+     "display": "Camino",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 830051000168103 |Insertion of intracranial pressure monitor| at 0.85 but that concept is not in the SNOMED international core."
+      }
+     ]
+    },
+    {
+     "code": "229577",
+     "display": "Cath Lab (Received)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "229578",
+     "display": "Cath Lab (Sent)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 183519002 |Referral to cardiology service| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229580",
+     "display": "Line Placement at Bedside",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 429446009 |Catheterisation of blood vessel| at 0.72, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229755",
+     "display": "Trigger Initiated",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "229983",
+     "display": "Isoflurane (Inhaled)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+      }
+     ]
+    },
+    {
+     "code": "229996",
+     "display": "Nitrous Oxide (Inhaled)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 1366004 |Inhalation therapy procedure| at 0.50, below the 0.8 threshold."
+      }
+     ]
+    }
+   ]
+  },
+  {
    "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd9",
    "target": "http://hl7.org/fhir/sid/icd-9-cm",
    "element": [
@@ -138378,5 +140217,6 @@
     }
    ]
   }
- ]
+ ],
+ "copyright": "The ICU d_items groups were coded by an automated terminology search service constrained to procedures, clinical findings and events, and its answer kept only above a stated confidence threshold; every target was then checked against a terminology server and discarded unless it is active and in the SNOMED CT international core module; target display terms are the server's preferred term; items the service could not answer are left unmapped rather than guessed; and every mapping is 'relatedto', because no direction was established for any of them. SNOMED CT is distributed by SNOMED International; this resource references SNOMED CT codes and does not redistribute the terminology."
 }

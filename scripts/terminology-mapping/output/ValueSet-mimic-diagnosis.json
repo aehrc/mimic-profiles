@@ -7,7 +7,7 @@
  "title": "MIMIC diagnosis codes as standard ICD",
  "status": "active",
  "experimental": false,
- "date": "2026-08-03",
+ "date": "2026-08-05",
  "publisher": "CSIRO",
  "description": "Every code MIMIC-IV uses in Condition.code, written as official dotted ICD codes and pinned to the earliest release containing it. Derived from ConceptMap/mimic-diagnosis-icd-to-sid, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Displays are the official ICD descriptions, not MIMIC's abbreviated text, so $validate-code never reports a display mismatch.",
  "compose": {

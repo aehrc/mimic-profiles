@@ -1,15 +1,15 @@
 {
  "resourceType": "ValueSet",
- "id": "mimic-procedure",
- "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-procedure",
+ "id": "mimic-procedure-merged-standard",
+ "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-procedure-merged-standard",
  "version": "1.0.0",
- "name": "MimicProcedure",
- "title": "MIMIC procedure codes as standard ICD",
+ "name": "MimicProcedureMergedStandard",
+ "title": "MIMIC merged Procedure codes as standard terminology",
  "status": "active",
  "experimental": false,
- "date": "2026-08-03",
+ "date": "2026-08-05",
  "publisher": "CSIRO",
- "description": "Every code MIMIC-IV uses in Procedure.code, written as official dotted ICD codes and pinned to the earliest release containing it. Derived from ConceptMap/mimic-procedure-icd-to-sid, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Displays are the official ICD descriptions, not MIMIC's abbreviated text, so $validate-code never reports a display mismatch.",
+ "description": "Every code the merged MIMIC Procedure profile admits, in standard terminology: MIMIC's ICD codes as official dotted ICD pinned to the earliest release containing them, plus the SNOMED CT codes that were already standard and map to themselves. Derived from ConceptMap/mimic-procedure-merged-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. The SNOMED include carries no version: this repo builds no SNOMED release, so pinning one would name something it cannot reproduce.",
  "compose": {
   "include": [
    {
@@ -10183,6 +10183,399 @@
      {
       "code": "99.99",
       "display": "Other miscellaneous procedures"
+     }
+    ]
+   },
+   {
+    "system": "http://snomed.info/sct",
+    "concept": [
+     {
+      "code": "103715008",
+      "display": "Removal of catheter"
+     },
+     {
+      "code": "104173009",
+      "display": "Microbial culture of sputum"
+     },
+     {
+      "code": "105376000",
+      "display": "Transoesophageal echocardiography"
+     },
+     {
+      "code": "107724000",
+      "display": "Patient transfer"
+     },
+     {
+      "code": "10847001",
+      "display": "Bronchoscopy"
+     },
+     {
+      "code": "113091000",
+      "display": "Magnetic resonance imaging"
+     },
+     {
+      "code": "117010004",
+      "display": "Urine culture"
+     },
+     {
+      "code": "117028002",
+      "display": "Stool culture"
+     },
+     {
+      "code": "1217562000",
+      "display": "Replacement of negative pressure wound dressing"
+     },
+     {
+      "code": "1258985005",
+      "display": "Invasive mechanical ventilation"
+     },
+     {
+      "code": "1287742003",
+      "display": "Radiotherapy"
+     },
+     {
+      "code": "1336167003",
+      "display": "Patient transfer to operating room"
+     },
+     {
+      "code": "1381505000",
+      "display": "Insertion of drainage tube into pleural cavity"
+     },
+     {
+      "code": "16310003",
+      "display": "Ultrasound"
+     },
+     {
+      "code": "167944006",
+      "display": "Pleural fluid examination"
+     },
+     {
+      "code": "168537006",
+      "display": "Plain X-ray"
+     },
+     {
+      "code": "168702005",
+      "display": "Plain X-ray of abdomen"
+     },
+     {
+      "code": "16965008",
+      "display": "Insertion of intra-aortic balloon pump"
+     },
+     {
+      "code": "177765008",
+      "display": "Opening of chest"
+     },
+     {
+      "code": "1912002",
+      "display": "Fall"
+     },
+     {
+      "code": "20720000",
+      "display": "Plasmapheresis"
+     },
+     {
+      "code": "230937006",
+      "display": "Procedure for monitoring intracranial pressure"
+     },
+     {
+      "code": "230940006",
+      "display": "Insertion of intracranial pressure catheter"
+     },
+     {
+      "code": "233403006",
+      "display": "Insertion of arterial intraluminal device"
+     },
+     {
+      "code": "233520008",
+      "display": "Peripheral venous cannula insertion"
+     },
+     {
+      "code": "233527006",
+      "display": "Central venous cannula insertion"
+     },
+     {
+      "code": "233580005",
+      "display": "Continuous venovenous haemodialysis"
+     },
+     {
+      "code": "233590002",
+      "display": "Continuous venovenous haemodiafiltration"
+     },
+     {
+      "code": "235159007",
+      "display": "Percutaneous endoscopic insertion of gastrostomy tube"
+     },
+     {
+      "code": "235419001",
+      "display": "Intubation of gastrointestinal tract"
+     },
+     {
+      "code": "235420007",
+      "display": "Intubation of gastrointestinal tract via nose"
+     },
+     {
+      "code": "238356005",
+      "display": "Intercostal drain removal"
+     },
+     {
+      "code": "241031001",
+      "display": "Removal of drain"
+     },
+     {
+      "code": "252399001",
+      "display": "CSF culture"
+     },
+     {
+      "code": "277360004",
+      "display": "Massive blood transfusion"
+     },
+     {
+      "code": "277762005",
+      "display": "Lumbar puncture"
+     },
+     {
+      "code": "281556002",
+      "display": "Insertion of temporary cardiac pacemaker"
+     },
+     {
+      "code": "287364001",
+      "display": "Arteriovenous anastomosis"
+     },
+     {
+      "code": "288185006",
+      "display": "Inhalation general anaesthesia"
+     },
+     {
+      "code": "29303009",
+      "display": "ECG procedure"
+     },
+     {
+      "code": "29857009",
+      "display": "Chest pain"
+     },
+     {
+      "code": "30088009",
+      "display": "Blood culture"
+     },
+     {
+      "code": "302497006",
+      "display": "Haemodialysis"
+     },
+     {
+      "code": "304563002",
+      "display": "Informing relative"
+     },
+     {
+      "code": "304564008",
+      "display": "Informing next of kin"
+     },
+     {
+      "code": "304846008",
+      "display": "External subdural drain procedure"
+     },
+     {
+      "code": "307007002",
+      "display": "Percutaneous tracheostomy"
+     },
+     {
+      "code": "309812005",
+      "display": "Extubation of trachea"
+     },
+     {
+      "code": "309849004",
+      "display": "Pericardiocentesis"
+     },
+     {
+      "code": "312048002",
+      "display": "Family case conference"
+     },
+     {
+      "code": "312882009",
+      "display": "Taking nasal swab"
+     },
+     {
+      "code": "36118008",
+      "display": "Pneumothorax"
+     },
+     {
+      "code": "371572003",
+      "display": "Nuclear medicine procedure"
+     },
+     {
+      "code": "37729005",
+      "display": "Patient transfer, in-hospital"
+     },
+     {
+      "code": "386478007",
+      "display": "Triage: emergency center (procedure)"
+     },
+     {
+      "code": "387713003",
+      "display": "Surgical procedure"
+     },
+     {
+      "code": "392230005",
+      "display": "Catheterisation of vein"
+     },
+     {
+      "code": "392247006",
+      "display": "Catheterisation of artery"
+     },
+     {
+      "code": "398205000",
+      "display": "Diagnosis of brainstem death"
+     },
+     {
+      "code": "399208008",
+      "display": "Plain X-ray of chest"
+     },
+     {
+      "code": "405639008",
+      "display": "Inadvertent tracheal extubation"
+     },
+     {
+      "code": "410188000",
+      "display": "Taking patient vital signs assessment (procedure)"
+     },
+     {
+      "code": "410429000",
+      "display": "Cardiac arrest"
+     },
+     {
+      "code": "41976001",
+      "display": "Cardiac catheterisation"
+     },
+     {
+      "code": "423827005",
+      "display": "Endoscopy"
+     },
+     {
+      "code": "425196008",
+      "display": "Peripherally inserted central catheterisation"
+     },
+     {
+      "code": "426584002",
+      "display": "Oesophageal pressure monitoring"
+     },
+     {
+      "code": "42803009",
+      "display": "Electromyography"
+     },
+     {
+      "code": "428311008",
+      "display": "Non-invasive ventilation"
+     },
+     {
+      "code": "431648005",
+      "display": "Transcranial Doppler ultrasound"
+     },
+     {
+      "code": "431765005",
+      "display": "Screening for dysphagia"
+     },
+     {
+      "code": "433236007",
+      "display": "Transthoracic echocardiography"
+     },
+     {
+      "code": "439377004",
+      "display": "Accidental removal of catheter"
+     },
+     {
+      "code": "440001000",
+      "display": "Insertion of vascular cannula for prolonged extracorporeal circulation"
+     },
+     {
+      "code": "440009003",
+      "display": "Insertion of needle for intraosseous infusion"
+     },
+     {
+      "code": "442309004",
+      "display": "Insertion of tunnelled central venous catheter"
+     },
+     {
+      "code": "44491008",
+      "display": "Fluoroscopy"
+     },
+     {
+      "code": "446244002",
+      "display": "Catheterisation of lumbar epidural space"
+     },
+     {
+      "code": "446583004",
+      "display": "Indwelling catheterisation of urinary bladder"
+     },
+     {
+      "code": "449860009",
+      "display": "Nontunnelled central venous catheterisation"
+     },
+     {
+      "code": "4970003",
+      "display": "Venography"
+     },
+     {
+      "code": "52765003",
+      "display": "Intubation"
+     },
+     {
+      "code": "54550000",
+      "display": "EEG"
+     },
+     {
+      "code": "65677008",
+      "display": "Pulmonary catheterisation with Swan-Ganz catheter"
+     },
+     {
+      "code": "698956007",
+      "display": "Insertion of drain"
+     },
+     {
+      "code": "71192002",
+      "display": "Peritoneal dialysis"
+     },
+     {
+      "code": "712470002",
+      "display": "Endoscopic retrograde cholangiopancreatography"
+     },
+     {
+      "code": "714749008",
+      "display": "Continuous renal replacement therapy"
+     },
+     {
+      "code": "73761001",
+      "display": "Colonoscopy"
+     },
+     {
+      "code": "77343006",
+      "display": "Angiography"
+     },
+     {
+      "code": "77477000",
+      "display": "Computed tomography"
+     },
+     {
+      "code": "80402001",
+      "display": "Implantation of venous access port"
+     },
+     {
+      "code": "82936005",
+      "display": "Introduction of catheter into pulmonary artery"
+     },
+     {
+      "code": "86259008",
+      "display": "Biopsy of liver"
+     },
+     {
+      "code": "87317003",
+      "display": "Respiratory arrest"
+     },
+     {
+      "code": "89305009",
+      "display": "Abdominal paracentesis"
+     },
+     {
+      "code": "91602002",
+      "display": "Thoracentesis"
      }
     ]
    },

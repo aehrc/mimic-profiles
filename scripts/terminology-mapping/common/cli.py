@@ -7,6 +7,7 @@ from . import paths
 from .fhirclient import configure_tls
 
 DEFAULT_FHIR_BASE = os.environ.get("ONTOSERVER_URL")
+DEFAULT_CODE_SEARCH = os.environ.get("CODE_SEARCH_URL")
 DEFAULT_CA_BUNDLE = (os.environ.get("SSL_CERT_FILE")
                      or os.environ.get("REQUESTS_CA_BUNDLE"))
 

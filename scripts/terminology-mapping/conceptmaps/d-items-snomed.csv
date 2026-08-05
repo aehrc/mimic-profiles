@@ -1,0 +1,170 @@
+mimic_code,mimic_display,snomed_code,snomed_display,comment,codesearch_target,codesearch_display,codesearch_confidence,codesearch_status,codesearch_reasoning
+221214,CT scan,77477000,Computed tomography,,77477000,Computed tomography,0.85,ok,FSN matches CT scan; recording context is non-coded
+221216,X-ray,168537006,Plain X-ray,,168537006,Plain X-ray,0.85,ok,FSN matches X-ray procedure; ICU recording context is non-coded.
+221217,Ultrasound,16310003,Ultrasound,,16310003,Ultrasound,0.85,ok,FSN is ultrasonography procedure; no further specification stated
+221219,Venogram,4970003,Venography,,4970003,Venography,0.85,ok,Venogram is synonymous with venography; unspecified procedure.
+221223,EEG,54550000,EEG,,54550000,EEG,0.95,ok,FSN electroencephalogram matches EEG procedure
+221255,Trans Esophageal Echo,105376000,Transoesophageal echocardiography,,105376000,Transoesophageal echocardiography,0.85,ok,FSN exactly matches Trans Esophageal Echo procedure
+223253,Magnetic Resonance Imaging,113091000,Magnetic resonance imaging,,113091000,Magnetic resonance imaging,0.85,ok,FSN matches the recorded procedure without unstated specificity
+224263,Multi Lumen,,,"code-search proposed 233527006 |Central venous cannula insertion| at 0.60, below the 0.8 threshold.",233527006,Central venous cannula insertion,0.60,below-threshold,Closest procedure match for multi-lumen line placement
+224264,PICC Line,425196008,Peripherally inserted central catheterisation,,425196008,Peripherally inserted central catheterisation,0.85,ok,FSN matches PICC line placement without unstated technique
+224267,Cordis/Introducer,,,"code-search proposed 429446009 |Catheterisation of blood vessel| at 0.78, below the 0.8 threshold.",429446009,Catheterisation of blood vessel,0.78,below-threshold,Broad vascular access procedure; no site or device specifics stated
+224268,Trauma line,,,"code-search proposed 429446009 |Catheterisation of blood vessel| at 0.50, below the 0.8 threshold.",429446009,Catheterisation of blood vessel,0.50,below-threshold,Broad vascular line placement; trauma line is unspecified
+224269,CCO PAC,65677008,Pulmonary catheterisation with Swan-Ganz catheter,,65677008,Pulmonary catheterisation with Swan-Ganz catheter,0.85,ok,CCO PAC denotes continuous cardiac output pulmonary artery catheter placement
+224270,Dialysis Catheter,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+224272,IABP line,16965008,Insertion of intra-aortic balloon pump,,16965008,Insertion of intra-aortic balloon pump,0.85,ok,FSN matches IABP line placement without unstated technique
+224273,Presep Catheter,449860009,Nontunnelled central venous catheterisation,,449860009,Nontunnelled central venous catheterisation,0.80,ok,PreSep is a nontunnelled central venous monitoring catheter
+224274,22 Gauge,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+224275,20 Gauge,,,"code-search proposed 429446009 |Catheterisation of blood vessel| at 0.50, below the 0.8 threshold.",429446009,Catheterisation of blood vessel,0.50,below-threshold,Likely 20-gauge vascular access placement; generic vascular catheter avoids unstated site
+224276,16 Gauge,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+224277,18 Gauge,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+224385,Intubation,52765003,Intubation,,52765003,Intubation,0.85,ok,FSN matches stated procedure without unstated airway specification
+224560,PA Catheter,82936005,Introduction of catheter into pulmonary artery,,82936005,Introduction of catheter into pulmonary artery,0.85,ok,PA catheter placement/performance; no route or guidance specified
+224566,14 Gauge,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+225199,Triple Introducer,,,"code-search proposed 429446009 |Catheterisation of blood vessel| at 0.72, below the 0.8 threshold.",429446009,Catheterisation of blood vessel,0.72,below-threshold,Broader procedure matching placement of a vascular introducer
+225202,Indwelling Port (PortaCath),80402001,Implantation of venous access port,,80402001,Implantation of venous access port,0.85,ok,Matches placement of an indwelling Port-a-Cath
+225203,Pheresis Catheter,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+225204,Midline,392230005,Catheterisation of vein,,392230005,Catheterisation of vein,0.80,ok,Midline placement is venous catheterisation; no specific midline concept found
+225205,RIC,233520008,Peripheral venous cannula insertion,,233520008,Peripheral venous cannula insertion,0.80,ok,RIC is a peripheral rapid infusion venous cannula; FSN captures insertion.
+225315,Tunneled (Hickman) Line,442309004,Insertion of tunnelled central venous catheter,,442309004,Insertion of tunnelled central venous catheter,0.85,ok,FSN matches tunneled Hickman line placement
+225399,Lumbar Puncture,277762005,Lumbar puncture,,277762005,Lumbar puncture,0.85,ok,FSN matches the recorded procedure without unstated specification
+225400,Bronchoscopy,10847001,Bronchoscopy,,10847001,Bronchoscopy,0.85,ok,FSN exactly matches the recorded procedure
+225401,Blood Cultured,30088009,Blood culture,,30088009,Blood culture,0.85,ok,FSN matches the recorded procedure.
+225402,EKG,29303009,ECG procedure,,29303009,ECG procedure,0.85,ok,FSN matches EKG performance without unstated ECG type
+225406,Transferred to Floor,37729005,"Patient transfer, in-hospital",,37729005,"Patient transfer, in-hospital",0.85,ok,Transferred to floor implies in-hospital patient transfer
+225427,Angiography,77343006,Angiography,,77343006,Angiography,0.85,ok,FSN matches the recorded procedure.
+225428,Blakemore / Minnesota Tube D/C,,,"code-search proposed 1230036005 |Removal of tube| at 0.78, below the 0.8 threshold.",1230036005,Removal of tube,0.78,below-threshold,Blakemore/Minnesota tube discontinuation denotes tube removal; generic procedure avoids unstated tube route.
+225429,Blakemore / MinnesotaTube Inserted,235419001,Intubation of gastrointestinal tract,,235419001,Intubation of gastrointestinal tract,0.85,ok,Broad procedure match for placement of Blakemore or Minnesota tube
+225430,Cardiac Cath,41976001,Cardiac catheterisation,,41976001,Cardiac catheterisation,0.85,ok,FSN matches cardiac cath without unstated procedural specifics
+225432,Transthoracic Echo,433236007,Transthoracic echocardiography,,433236007,Transthoracic echocardiography,0.85,ok,FSN matches transthoracic echo; ICU context adds no procedure specificity
+225433,Chest Tube Placed,1381505000,Insertion of drainage tube into pleural cavity,,1381505000,Insertion of drainage tube into pleural cavity,0.85,ok,FSN matches chest tube placement without unstated technique
+225434,Colonoscopy,73761001,Colonoscopy,,73761001,Colonoscopy,0.85,ok,FSN exactly matches the recorded procedure.
+225436,CRRT Filter Change,,,"code-search proposed 714749008 |Continuous renal replacement therapy| at 0.50, below the 0.8 threshold.",714749008,Continuous renal replacement therapy,0.50,below-threshold,Closest broader procedure; filter change has no matching code
+225437,CSF Culture,252399001,CSF culture,,252399001,CSF culture,0.85,ok,FSN exactly matches CSF culture procedure
+225439,Endoscopy,423827005,Endoscopy,,423827005,Endoscopy,0.85,ok,FSN exactly matches the recorded procedure.
+225440,Fluoroscopy,44491008,Fluoroscopy,,44491008,Fluoroscopy,0.85,ok,FSN matches the recorded procedure; ICU context adds no specificity
+225441,Hemodialysis,302497006,Haemodialysis,,302497006,Haemodialysis,0.85,ok,FSN matches recorded procedure; ICU context is non-coded
+225442,Liver Biopsy,86259008,Biopsy of liver,,86259008,Biopsy of liver,0.85,ok,FSN matches liver biopsy without unstated technique
+225443,Nuclear Medicine,371572003,Nuclear medicine procedure,,371572003,Nuclear medicine procedure,0.85,ok,FSN matches the recorded procedure category without unstated imaging specificity
+225444,Pan Culture,,,"code-search proposed 104178000 |Bacterial culture| at 0.50, below the 0.8 threshold.",104178000,Bacterial culture,0.50,below-threshold,Closest available culture procedure; pan culture is nonspecific
+225445,Paracentesis,89305009,Abdominal paracentesis,,89305009,Abdominal paracentesis,0.85,ok,FSN precisely matches paracentesis procedure
+225446,PEG Insertion,235159007,Percutaneous endoscopic insertion of gastrostomy tube,,235159007,Percutaneous endoscopic insertion of gastrostomy tube,0.85,ok,PEG insertion exactly matches FSN
+225447,Percutaneous Drain Insertion,698956007,Insertion of drain,,698956007,Insertion of drain,0.82,ok,Broader drain insertion; no site or guidance overstated
+225448,Percutaneous Tracheostomy,307007002,Percutaneous tracheostomy,,307007002,Percutaneous tracheostomy,0.85,ok,FSN matches recorded procedure exactly
+225449,Pericardiocentesis,309849004,Pericardiocentesis,,309849004,Pericardiocentesis,0.85,ok,FSN exactly matches the recorded procedure.
+225450,Radiation Therapy,1287742003,Radiotherapy,,1287742003,Radiotherapy,0.85,ok,FSN matches radiation therapy without unstated modality
+225451,Sputum Culture,104173009,Microbial culture of sputum,,104173009,Microbial culture of sputum,0.85,ok,FSN matches sputum culture procedure exactly
+225454,Urine Culture,117010004,Urine culture,,117010004,Urine culture,0.85,ok,FSN matches the recorded procedure; ICU context adds no coding specificity
+225456,Ventricular Drain,,,"code-search proposed 698956007 |Insertion of drain| at 0.70, below the 0.8 threshold.",698956007,Insertion of drain,0.70,below-threshold,Broader procedure matching ventricular drain placement without unstated technique
+225457,Abdominal X-Ray,168702005,Plain X-ray of abdomen,,168702005,Plain X-ray of abdomen,0.85,ok,FSN matches abdominal X-ray procedure
+225459,Chest X-Ray,399208008,Plain X-ray of chest,,399208008,Plain X-ray of chest,0.85,ok,FSN matches chest X-ray; ICU recording context is non-coded.
+225460,Cervical Spine,,,"code-search proposed 428490009 |Surgical procedure on cervical spine| at 0.50, below the 0.8 threshold.",428490009,Surgical procedure on cervical spine,0.50,below-threshold,Closest procedure concept for cervical spine; surgical detail is unstated
+225461,Pelvis,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+225462,Interventional Radiology,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+225463,TLS Spine,,,"code-search proposed 238181003 |Procedure on spine| at 0.65, below the 0.8 threshold.",238181003,Procedure on spine,0.65,below-threshold,Broad procedure match; no specific TLS procedure stated
+225464,Cardioversion/Defibrillation,,,"code-search proposed 250980009 |Cardioversion| at 0.75, below the 0.8 threshold.",250980009,Cardioversion,0.75,below-threshold,Broad procedure match; defibrillation method unspecified
+225465,Chest Pain,29857009,Chest pain,,29857009,Chest pain,0.85,ok,FSN exactly matches recorded clinical finding
+225466,Cardiac Arrest,410429000,Cardiac arrest,,410429000,Cardiac arrest,0.85,ok,Base cardiac arrest; ICU recording context adds no clinical specificity
+225467,Chest Opened,177765008,Opening of chest,,177765008,Opening of chest,0.85,ok,FSN exactly matches chest opened procedure event
+225468,Unplanned Extubation (patient-initiated),405639008,Inadvertent tracheal extubation,,405639008,Inadvertent tracheal extubation,0.85,ok,Closest broader finding; includes unplanned patient-initiated extubation
+225469,OR Received,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+225470,OR Sent,1336167003,Patient transfer to operating room,,1336167003,Patient transfer to operating room,0.85,ok,“OR Sent” matches transfer to operating room
+225472,Pneumothorax,36118008,Pneumothorax,,36118008,Pneumothorax,0.85,ok,FSN matches recorded clinical condition; no procedure subtype stated
+225474,Fall,1912002,Fall,,1912002,Fall,0.85,ok,FSN matches recorded event without added specificity
+225475,Respiratory Arrest,87317003,Respiratory arrest,,87317003,Respiratory arrest,0.85,ok,FSN matches the recorded clinical event
+225476,Unplanned Line/Catheter Removal (Non-Patient initated),439377004,Accidental removal of catheter,,439377004,Accidental removal of catheter,0.85,ok,FSN captures unplanned catheter removal without adding catheter subtype
+225477,Unplanned Extubation (non-patient initiated),405639008,Inadvertent tracheal extubation,,405639008,Inadvertent tracheal extubation,0.85,ok,FSN matches unplanned non-patient-initiated extubation
+225478,Operation,387713003,Surgical procedure,,387713003,Surgical procedure,0.85,ok,Operation is a synonym; FSN captures procedure meaning
+225479,Thoracentesis,91602002,Thoracentesis,,91602002,Thoracentesis,0.85,ok,FSN matches the recorded procedure; ICU context is non-coded.
+225752,Arterial Line,392247006,Catheterisation of artery,,392247006,Catheterisation of artery,0.85,ok,FSN matches arterial line placement without unstated site or method
+225761,Sheath Insertion,,,"code-search proposed 429446009 |Catheterisation of blood vessel| at 0.50, below the 0.8 threshold.",429446009,Catheterisation of blood vessel,0.50,below-threshold,Closest broader procedure for sheath placement; sheath type unspecified
+225789,Sheath (Venous),,,"code-search proposed 392230005 |Catheterisation of vein| at 0.50, below the 0.8 threshold.",392230005,Catheterisation of vein,0.50,below-threshold,Closest broad procedure for venous sheath placement
+225792,Invasive Ventilation,1258985005,Invasive mechanical ventilation,,1258985005,Invasive mechanical ventilation,0.85,ok,FSN precisely matches invasive ventilation
+225794,Non-invasive Ventilation,428311008,Non-invasive ventilation,,428311008,Non-invasive ventilation,0.85,ok,FSN matches the recorded therapy exactly
+225802,Dialysis - CRRT,714749008,Continuous renal replacement therapy,,714749008,Continuous renal replacement therapy,0.85,ok,CRRT exactly matches this procedure
+225803,Dialysis - CVVHD,233580005,Continuous venovenous haemodialysis,,233580005,Continuous venovenous haemodialysis,0.85,ok,FSN matches CVVHD procedure exactly
+225805,Peritoneal Dialysis,71192002,Peritoneal dialysis,,71192002,Peritoneal dialysis,0.85,ok,FSN matches the recorded procedure
+225809,Dialysis - CVVHDF,233590002,Continuous venovenous haemodiafiltration,,233590002,Continuous venovenous haemodiafiltration,0.85,ok,CVVHDF exactly denotes continuous venovenous haemodiafiltration
+225814,Stool Culture,117028002,Stool culture,,117028002,Stool culture,0.85,ok,FSN exactly matches the recorded procedure.
+225815,Peritoneal Fluid,,,"code-search proposed 238257004 |Peritoneal drainage procedure| at 0.70, below the 0.8 threshold.",238257004,Peritoneal drainage procedure,0.70,below-threshold,Broad procedure for intervention involving peritoneal fluid
+225816,Wound Culture,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+225817,BAL Fluid Culture,,,"code-search proposed 117027007 |Microbial culture, body fluid| at 0.78, below the 0.8 threshold.",117027007,"Microbial culture, body fluid",0.78,below-threshold,Broader fluid culture; avoids unstated microscopy and sensitivities
+225818,Pleural Fluid Culture,167944006,Pleural fluid examination,,167944006,Pleural fluid examination,0.80,ok,Broader pleural fluid procedure; culture-specific code unavailable
+225819,Brain Death,398205000,Diagnosis of brainstem death,,398205000,Diagnosis of brainstem death,0.80,ok,Procedure event for brain death; closest procedure match
+225820,C-Spine Clearance,,,"code-search proposed 284405008 |Examination of cervical spine| at 0.75, below the 0.8 threshold.",284405008,Examination of cervical spine,0.75,below-threshold,Closest broader match for C-spine clearance; no specific clearance code exists
+225821,Unplanned Line/Catheter Removal (Patient Initiated),103715008,Removal of catheter,,103715008,Removal of catheter,0.85,ok,FSN matches removal of catheter/line; unplanned/patient-initiated are qualifiers
+225955,Dialysis - SCUF,,,"code-search proposed 108241001 |Dialysis procedure| at 0.75, below the 0.8 threshold.",108241001,Dialysis procedure,0.75,below-threshold,Broader dialysis procedure; avoids unstated intermittent haemodialysis
+225966,Nasal Swab,312882009,Taking nasal swab,,312882009,Taking nasal swab,0.85,ok,FSN matches nasal swab procedure; context is qualifier
+225967,Rectal Swab,,,"code-search proposed 285570007 |Taking of swab| at 0.75, below the 0.8 threshold.",285570007,Taking of swab,0.75,below-threshold,No generic rectal swab procedure; closest broader match capturing swab placement
+226124,ICP Catheter,230940006,Insertion of intracranial pressure catheter,,230940006,Insertion of intracranial pressure catheter,0.85,ok,FSN matches ICP catheter placement
+226236,Temporary Pacemaker Wires Discontinued,,,"code-search proposed 233188006 |Removal of cardiac pacing electrode| at 0.75, below the 0.8 threshold.",233188006,Removal of cardiac pacing electrode,0.75,below-threshold,Discontinuation of temporary pacemaker wires = removal of pacing electrode; broader match without overstepping
+226237,Open Tracheostomy,,,code-search proposed 810551000168104 |Tracheostomy| at 0.80 but that concept is not in the SNOMED international core.,810551000168104,Tracheostomy,0.80,extension,No specific 'open tracheostomy' code; generic tracheostomy procedure captures meaning
+226474,ICP Bolt Inserted,,,code-search proposed 830051000168103 |Insertion of intracranial pressure monitor| at 0.85 but that concept is not in the SNOMED international core.,830051000168103,Insertion of intracranial pressure monitor,0.85,extension,ICP bolt insertion = insertion of intracranial pressure monitor
+226475,Intraventricular Drain Inserted,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+226476,Esophogeal Balloon,426584002,Oesophageal pressure monitoring,,426584002,Esophageal pressure monitoring,0.80,ok,Esophageal balloon in ICU is used for pressure monitoring; closest procedure match
+226477,Temporary Pacemaker Wires Inserted,281556002,Insertion of temporary cardiac pacemaker,,281556002,Insertion of temporary cardiac pacemaker,0.85,ok,FSN matches temporary pacemaker insertion procedure
+227194,Extubation,309812005,Extubation of trachea,,309812005,Extubation of trachea,0.85,ok,FSN matches extubation procedure
+227550,ERCP (Travel to),712470002,Endoscopic retrograde cholangiopancreatography,,712470002,Endoscopic retrograde cholangiopancreatography,0.95,ok,ERCP explicitly names this procedure; travel context is non-coded
+227551,Plasma Pheresis.,20720000,Plasmapheresis,,20720000,Plasmapheresis,0.85,ok,FSN matches plasmapheresis procedure
+227711,Drain Removed,241031001,Removal of drain,,241031001,Removal of drain,0.85,ok,FSN matches 'Drain Removed' exactly
+227712,Chest Tube Removed,238356005,Intercostal drain removal,,238356005,Intercostal drain removal,0.85,ok,FSN matches removal of chest tube/drain
+227713,Epidural Placement,446244002,Catheterisation of lumbar epidural space,The MIMIC item records an epidural placed at any level; the target names the lumbar epidural space specifically. Thoracic placements are within the source item and outside the target.,446244002,Catheterisation of lumbar epidural space,0.80,ok,Epidural placement = insertion of epidural catheter; lumbar is standard site
+227714,Pericardial Drain Removed,241031001,Removal of drain,,241031001,Removal of drain,0.85,ok,"Removal of pericardial drain; no specific code, generic drain removal is closest broader match"
+227715,TLS Clearance,,,"code-search proposed 277605001 |Tumour lysis syndrome| at 0.60, below the 0.8 threshold.",277605001,Tumour lysis syndrome,0.60,below-threshold,TLS = tumour lysis syndrome; best available match
+227719,AVA,287364001,Arteriovenous anastomosis,,287364001,Arteriovenous anastomosis,0.85,ok,AVA = arteriovenous anastomosis; procedure matches placement/performance
+228125,Family meeting held,312048002,Family case conference,,312048002,Family case conference,0.85,ok,Family meeting held maps to family case conference
+228126,Family met with Case Manager,312048002,Family case conference,,312048002,Family case conference,0.80,ok,Meeting between family and case manager; closest procedure match
+228127,Family met with Social Worker,,,"code-search proposed 709753004 |Liaising with social worker| at 0.75, below the 0.8 threshold.",709753004,Liaising with social worker,0.75,below-threshold,Procedure event of meeting with social worker; closest match
+228128,Family updated by MD,304563002,Informing relative,,304563002,Informing relative,0.85,ok,Procedure of informing family/relative; closest match to 'Family updated by MD'
+228129,Family updated by RN,304564008,Informing next of kin,,304564008,Informing next of kin,0.80,ok,Family updated by RN maps to informing next of kin procedure
+228130,NEOB notified,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+228136,Family notified of transfer,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+228169,Impella Line,,,code-search proposed 933316631000036107 |Percutaneous insertion of catheter based ventricular assist device| at 0.85 but that concept is not in the SNOMED international core.,933316631000036107,Percutaneous insertion of catheter based ventricular assist device,0.85,extension,Impella is a catheter-based ventricular assist device
+228201,Tandem Heart Inflow Line,,,"code-search proposed 933316631000036107 |Percutaneous implantation of catheter based ventricular assist device| at 0.75, below the 0.8 threshold.",933316631000036107,Percutaneous implantation of catheter based ventricular assist device,0.75,below-threshold,TandemHeart is a catheter-based VAD; placement procedure matches
+228202,Tandem Heart Outflow Line,,,"code-search proposed 933316631000036107 |Percutaneous implantation of catheter based ventricular assist device| at 0.75, below the 0.8 threshold.",933316631000036107,Percutaneous implantation of catheter based ventricular assist device,0.75,below-threshold,TandemHeart is a percutaneous VAD; closest procedure match
+228228,"Family meeting attempted, unable",,,"code-search proposed 312048002 |Family case conference| at 0.70, below the 0.8 threshold.",312048002,Family case conference,0.70,below-threshold,Closest procedure concept for family meeting; attempted/unable is a qualifier
+228286,Intraosseous Device,440009003,Insertion of needle for intraosseous infusion,,440009003,Insertion of needle for intraosseous infusion,0.85,ok,Matches placement/performance of intraosseous access device
+228715,Transcranial Doppler,431648005,Transcranial Doppler ultrasound,,431648005,Transcranial Doppler ultrasound,0.85,ok,FSN matches procedure without unstated test-specific qualifiers
+229298,Speech and Swallow Evaluation,,,code-search proposed 1200601000168108 |Swallowing assessment| at 0.85 but that concept is not in the SNOMED international core.,1200601000168108,Swallowing assessment,0.85,extension,FSN matches swallow evaluation without unstated method or anatomy
+229351,Foley Catheter,446583004,Indwelling catheterisation of urinary bladder,,446583004,Indwelling catheterisation of urinary bladder,0.85,ok,Foley catheter placement is indwelling bladder catheter insertion
+229366,Epoprostenol (Inhaled),,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+229380,Nursing Water Swallow Screening,431765005,Screening for dysphagia,,431765005,Screening for dysphagia,0.82,ok,Closest broader procedure; nursing water swallow screens dysphagia
+229468,24 Gauge,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+229501,Small Bore Nasal Enteral Tube Placement,235420007,Intubation of gastrointestinal tract via nose,,235420007,Intubation of gastrointestinal tract via nose,0.85,ok,Captures nasal enteral tube placement without assuming gastric destination
+229514,EKOS,,,"code-search proposed 240929001 |Percutaneous thrombolysis| at 0.50, below the 0.8 threshold.",240929001,Percutaneous thrombolysis,0.50,below-threshold,Closest broad procedure for EKOS; no EKOS-specific concept found
+229515,Avalon/Protek Duo,,,"code-search proposed 440001000 |Insertion of vascular cannula for prolonged extracorporeal circulation| at 0.78, below the 0.8 threshold.",440001000,Insertion of vascular cannula for prolonged extracorporeal circulation,0.78,below-threshold,Closest procedure for placement of Avalon/Protek Duo cannula
+229516,Single Lumen,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+229517,Multi Lumen Cooling Catheter,,,"code-search proposed 45211000 |Catheterisation| at 0.50, below the 0.8 threshold.",45211000,Catheterisation,0.50,below-threshold,Broad procedure match for cooling catheter placement
+229518,ICP - Camino,,,code-search proposed 830051000168103 |Insertion of intracranial pressure monitor| at 0.85 but that concept is not in the SNOMED international core.,830051000168103,Insertion of intracranial pressure monitor,0.85,extension,Camino is an intracranial pressure monitor; placement matches insertion
+229519,EVD #1,,,"code-search proposed 698956007 |Insertion of drain| at 0.78, below the 0.8 threshold.",698956007,Insertion of drain,0.78,below-threshold,Broader procedure match for EVD placement; no technique specified
+229520,EVD #2,698956007,Insertion of drain,,698956007,Insertion of drain,0.80,ok,Broader procedure match for EVD placement; no technique assumed
+229521,ICP - PbtO2,230937006,Procedure for monitoring intracranial pressure,,230937006,Procedure for monitoring intracranial pressure,0.80,ok,Captures ICP monitoring procedure; PbtO2 specificity unavailable
+229522,SEPS (Subdural Evacuating Port System),304846008,External subdural drain procedure,,304846008,External subdural drain procedure,0.85,ok,SEPS is an external subdural drain procedure
+229523,Subdural Drain,304846008,External subdural drain procedure,,304846008,External subdural drain procedure,0.85,ok,FSN captures subdural drain placement or performance
+229524,Lumbar Drain,,,code-search proposed 933600661000036105 |Insertion of external lumbar drain| at 0.85 but that concept is not in the SNOMED international core.,933600661000036105,Insertion of external lumbar drain,0.85,extension,FSN matches placement of lumbar drain
+229525,Sheath (Arterial),233403006,Insertion of arterial intraluminal device,,233403006,Insertion of arterial intraluminal device,0.82,ok,Broad procedure matching placement of an arterial sheath
+229526,MAC,233527006,Central venous cannula insertion,,233527006,Central venous cannula insertion,0.80,ok,Closest broad procedure for MAC placement
+229527,Centrimag Inflow Line,,,"code-search proposed 232965003 |Implantation of ventricular assist device| at 0.50, below the 0.8 threshold.",232965003,Implantation of ventricular assist device,0.50,below-threshold,Closest procedure; Centrimag inflow line is a ventricular assist device component
+229528,Centrimag Outflow Line,,,"code-search proposed 42825003 |Cannulation| at 0.50, below the 0.8 threshold.",42825003,Cannulation,0.50,below-threshold,Broad procedure matching placement of the Centrimag outflow line
+229529,ECMO Inflow Line,440001000,Insertion of vascular cannula for prolonged extracorporeal circulation,,440001000,Insertion of vascular cannula for prolonged extracorporeal circulation,0.85,ok,Captures placement of ECMO inflow vascular cannula
+229530,ECMO Outflow Line,,,"code-search proposed 233573008 |Extracorporeal membrane oxygenation| at 0.50, below the 0.8 threshold.",233573008,Extracorporeal membrane oxygenation,0.50,below-threshold,Broader ECMO procedure; no specific outflow line placement code found
+229531,Tunneled Access Line,442309004,Insertion of tunnelled central venous catheter,,442309004,Insertion of tunnelled central venous catheter,0.85,ok,Matches tunneled access line placement without unstated guidance or subtype
+229532,Indwelling Port,80402001,Implantation of venous access port,,80402001,Implantation of venous access port,0.85,ok,Placement/performance of indwelling port; FSN matches implantation
+229533,Camino,,,code-search proposed 830051000168103 |Insertion of intracranial pressure monitor| at 0.85 but that concept is not in the SNOMED international core.,830051000168103,Insertion of intracranial pressure monitor,0.85,extension,Camino is an intracranial pressure monitor; placement matches insertion
+229575,Travel to Radiology,37729005,"Patient transfer, in-hospital",,37729005,"Patient transfer, in-hospital",0.80,ok,Travel to radiology is an in-hospital patient transfer
+229576,ERCP (Done in unit),712470002,Endoscopic retrograde cholangiopancreatography,,712470002,Endoscopic retrograde cholangiopancreatography,0.95,ok,FSN matches ERCP; setting and completion are non-coded qualifiers
+229577,Cath Lab (Received),,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+229578,Cath Lab (Sent),,,"code-search proposed 183519002 |Referral to cardiology service| at 0.50, below the 0.8 threshold.",183519002,Referral to cardiology service,0.50,below-threshold,Closest broad cardiology-service action; cath lab destination stated
+229579,Transfer Intercampus by Ambulance,107724000,Patient transfer,,107724000,Patient transfer,0.85,ok,Captures transfer between care locations without unstated destination
+229580,Line Placement at Bedside,,,"code-search proposed 429446009 |Catheterisation of blood vessel| at 0.72, below the 0.8 threshold.",429446009,Catheterisation of blood vessel,0.72,below-threshold,Broad procedure match for unspecified line placement
+229581,Portable Chest X-Ray,399208008,Plain X-ray of chest,,399208008,Plain X-ray of chest,0.85,ok,FSN matches chest X-ray; portable status not represented
+229582,Portable CT scan,77477000,Computed tomography,,77477000,Computed tomography,0.85,ok,Portable CT is computed tomography; portability is non-coded
+229584,EMG,42803009,Electromyography,,42803009,Electromyography,0.85,ok,FSN matches EMG procedure exactly
+229585,Surgical Procedure at Bedside,387713003,Surgical procedure,,387713003,Surgical procedure,0.80,ok,FSN captures surgical procedure; bedside context is non-coded.
+229586,VAC Change,1217562000,Replacement of negative pressure wound dressing,,1217562000,Replacement of negative pressure wound dressing,0.85,ok,VAC change means replacement of negative pressure wound dressing
+229614,EEG (Continuous),54550000,EEG,,54550000,EEG,0.85,ok,EEG procedure matches; continuous monitoring specificity not represented
+229620,Massive Transfusion,277360004,Massive blood transfusion,,277360004,Massive blood transfusion,0.85,ok,FSN matches the recorded procedure exactly
+229755,Trigger Initiated,,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+229983,Isoflurane (Inhaled),,,code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006).,,,,no-match,
+229984,Sevoflurane (Inhaled),288185006,Inhalation general anaesthesia,,288185006,Inhalation general anaesthesia,0.80,ok,Closest procedure match for inhaled sevoflurane administration
+229996,Nitrous Oxide (Inhaled),,,"code-search proposed 1366004 |Inhalation therapy procedure| at 0.50, below the 0.8 threshold.",1366004,Inhalation therapy procedure,0.50,below-threshold,Broader procedure matching inhaled administration; no nitrous oxide-specific procedure found

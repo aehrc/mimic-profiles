@@ -50,8 +50,9 @@ Output: output/CodeSystem-icd-9-cm-2012.json.
 This script used to also emit output/ValueSet-mimic-diagnosis.json as a
 composed value set over the whole ICD releases. That value set is now
 enumerated from the ICD ConceptMap and owned entirely by
-../../valuesets/build_final_valueset.py — nothing about it lives here any more, so
-running this script can no longer regress the server to the composed form.
+../../conceptmaps/build_condition_cm_vs.py — nothing about it lives here any
+more, so running this script can no longer regress the server to the composed
+form.
 
 Conventions follow https://terminology.hl7.org/5.5.0/ICD.html: canonical url
 http://hl7.org/fhir/sid/icd-9-cm, diagnosis OID 2.16.840.1.113883.6.103,

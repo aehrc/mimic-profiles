@@ -1,0 +1,13 @@
+field,element,stream,source_system,method,target_systems,total,mapped,unmapped,coverage_pct,equivalent,relatedto,unmatched,confidence_threshold,confidence_median,reason_absent-from-all-built-releases,reason_no-suitable-concept,status_below-threshold,status_extension,status_no-match,status_not-a-volume,status_ok,status_total
+condition,Condition.code,mimic-diagnosis-icd10,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10,notation,http://hl7.org/fhir/sid/icd-10-cm,18450,18450,0,100.0,18450,0,0,,,,,,,,,,
+condition,Condition.code,mimic-diagnosis-icd9,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9,notation,http://hl7.org/fhir/sid/icd-10-cm;http://hl7.org/fhir/sid/icd-9-cm,9463,9463,0,100.0,9463,0,0,,,,,,,,,,
+observation,Observation.code,mimic-observation-type-ed,http://loinc.org,identity,http://loinc.org,4,4,0,100.0,4,0,0,,,,,,,,,,
+observation,Observation.code,mimic-observation-type-vital,http://loinc.org,identity,http://loinc.org,5,5,0,100.0,5,0,0,,,,,,,,,,
+observation,Observation.code,mimic-microbiology-antibiotic,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-antibiotic,table,http://loinc.org,27,27,0,100.0,0,27,0,0.8,0.85,,,,,,,27,
+observation,Observation.code,mimic-outputevents-d-items,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items,table,http://loinc.org,77,61,16,79.2,0,61,16,0.8,0.9,,16,3,,4,5,61,4
+observation,Observation.code,mimic-microbiology-test,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-test,table,http://loinc.org,176,116,60,65.9,0,116,60,0.8,0.85,,60,27,,33,,116,
+observation-component,Observation.component.code,mimic-observation-component-vital,http://loinc.org,identity,http://loinc.org,2,2,0,100.0,2,0,0,,,,,,,,,,
+procedure,Procedure.code,mimic-procedure-icd10,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd10,notation,http://www.cms.gov/Medicare/Coding/ICD10,10031,10031,0,100.0,10031,0,0,,,,,,,,,,
+procedure,Procedure.code,mimic-procedure-icd9,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd9,notation,http://hl7.org/fhir/sid/icd-9-cm,2544,2542,2,99.9,2542,0,2,,,2,,,,,,,
+procedure,Procedure.code,mimic-procedure-types-ed,http://snomed.info/sct,identity,http://snomed.info/sct,2,2,0,100.0,2,0,0,,,,,,,,,,
+procedure,Procedure.code,mimic-procedureevents-d-items,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items,table,http://snomed.info/sct,169,108,61,63.9,0,108,61,0.8,0.85,,61,35,7,19,,108,

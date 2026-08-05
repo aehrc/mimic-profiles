@@ -1,6 +1,6 @@
 """Shared helpers for the terminology build scripts.
 
-Scripts under terminology/ and valuesets/ bootstrap this package with
+Scripts under terminology/, conceptmaps/ and verify/ bootstrap this package with
 
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 

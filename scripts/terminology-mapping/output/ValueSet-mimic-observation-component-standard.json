@@ -1,0 +1,30 @@
+{
+ "resourceType": "ValueSet",
+ "id": "mimic-observation-component-standard",
+ "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-component-standard",
+ "version": "1.0.0",
+ "name": "MimicObservationComponentStandard",
+ "title": "MIMIC Observation component codes as standard terminology",
+ "status": "active",
+ "experimental": false,
+ "date": "2026-08-05",
+ "publisher": "CSIRO",
+ "description": "The two LOINC codes the merged MIMIC Observation profile admits on Observation.component.code. Derived from ConceptMap/mimic-observation-component-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Deliberately narrow: it is the search space for the component column alone, and a consumer that searched these codes against Observation.code would match nothing, because MIMIC only ever emits them inside a component. The LOINC include carries no version: this repo builds no LOINC release, so pinning one would name something it cannot reproduce.",
+ "compose": {
+  "include": [
+   {
+    "system": "http://loinc.org",
+    "concept": [
+     {
+      "code": "8462-4",
+      "display": "Diastolic blood pressure"
+     },
+     {
+      "code": "8480-6",
+      "display": "Systolic blood pressure"
+     }
+    ]
+   }
+  ]
+ }
+}
