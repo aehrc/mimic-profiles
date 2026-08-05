@@ -1,0 +1,3213 @@
+{
+  "constraint_ecl": "(<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)",
+  "template": "ICU flowsheet date/time recorded for the following event: {}",
+  "confidence_threshold": 0.8,
+  "device_care_codes": {
+    "422744007": "Arterial catheter care",
+    "392020005": "Peripherally inserted central catheter care",
+    "449107008": "Care of central venous catheter",
+    "449584006": "Care of tunnelled central venous catheter",
+    "385757000": "Venous catheter care",
+    "423877008": "Peripheral catheter care",
+    "423687009": "Peripheral intravenous catheter care",
+    "422463007": "Pulmonary artery catheter care",
+    "427614007": "Atrial catheter care",
+    "704118000": "Epidural catheter care",
+    "1284922006": "Haemodialysis catheter care",
+    "737944006": "Care of urinary catheter",
+    "445191009": "Care of suprapubic urinary catheter",
+    "226005007": "Care of central line",
+    "386482009": "Umbilical line tube care",
+    "133909001": "Maintenance of device",
+    "370771002": "Maintenance of invasive device",
+    "386493006": "Venous access device maintenance",
+    "406168002": "Dialysis access maintenance",
+    "225356004": "Care of equipment and devices",
+    "309637002": "Care of equipment by device",
+    "708010003": "Intraosseous access care management",
+    "34475007": "Intraaortic balloon pump maintenance",
+    "21151009": "Intracranial pressure monitor maintenance"
+  },
+  "wrong_action": {
+    "Tunneled (Hickman) Tubing Change->439355003": {
+      "display": "Replacement of tunnelled centrally inserted central venous catheter",
+      "why": "changing the tubing does not replace the catheter \u2014 replacing it is what the sibling column 225328 Tunneled (Hickman) Change over Wire Date records"
+    }
+  },
+  "family_index_pattern": "\\s*#\\d+",
+  "families": {
+    "14 Gauge Cap Change": [
+      "229736"
+    ],
+    "14 Gauge Dressing Change": [
+      "229730"
+    ],
+    "14 Gauge Insertion Date": [
+      "225757"
+    ],
+    "16 Gauge Cap Change": [
+      "229737"
+    ],
+    "16 Gauge Dressing Change": [
+      "229731"
+    ],
+    "16 Gauge Insertion Date": [
+      "225756"
+    ],
+    "18 Gauge Cap Change": [
+      "229729"
+    ],
+    "18 Gauge Dressing Change": [
+      "229728"
+    ],
+    "18 Gauge Insertion Date": [
+      "225755"
+    ],
+    "20 Gauge Cap Change": [
+      "229738"
+    ],
+    "20 Gauge Dressing Change": [
+      "229732"
+    ],
+    "20 Gauge Insertion Date": [
+      "225754"
+    ],
+    "22 Gauge Cap Change": [
+      "229739"
+    ],
+    "22 Gauge Dressing Change": [
+      "229733"
+    ],
+    "22 Gauge Insertion Date": [
+      "225753"
+    ],
+    "24 Gauge Cap Change": [
+      "229740"
+    ],
+    "24 Gauge Dressing Change": [
+      "229734"
+    ],
+    "24 Gauge Insertion Date": [
+      "229471"
+    ],
+    "AVA Cap Change": [
+      "227720"
+    ],
+    "AVA Change over Wire Date": [
+      "227721"
+    ],
+    "AVA Dressing Change": [
+      "227722"
+    ],
+    "AVA Insertion Date": [
+      "227724"
+    ],
+    "AVA Tubing Change": [
+      "227729"
+    ],
+    "Arterial Line Dressing Change": [
+      "224287"
+    ],
+    "Arterial line Cap Change": [
+      "224284"
+    ],
+    "Arterial line Change over Wire Date": [
+      "224285"
+    ],
+    "Arterial line Insertion Date": [
+      "224288"
+    ],
+    "Arterial line Tubing Change": [
+      "224290"
+    ],
+    "Avalon Dressing Change": [
+      "229549"
+    ],
+    "Avalon Insertion Date": [
+      "229550"
+    ],
+    "Blood Clot Outdates": [
+      "226482"
+    ],
+    "CCO PAC Cap Change": [
+      "225221"
+    ],
+    "CCO PAC Change over Wire Date": [
+      "225222"
+    ],
+    "CCO PAC Dressing Change": [
+      "225224"
+    ],
+    "CCO PAC Insertion Date": [
+      "225316"
+    ],
+    "CCO PAC Tubing Change": [
+      "225226"
+    ],
+    "Cardiac Assist Cannula Change": [
+      "229555"
+    ],
+    "Cardiac Assist Cannula Date": [
+      "229556"
+    ],
+    "Cordis/Introducer Cap Change": [
+      "224292"
+    ],
+    "Cordis/Introducer Change over Wire Date": [
+      "224293"
+    ],
+    "Cordis/Introducer Dressing Change": [
+      "224295"
+    ],
+    "Cordis/Introducer Insertion Date": [
+      "224296"
+    ],
+    "Cordis/Introducer Tubing Change": [
+      "224298"
+    ],
+    "Date - Student": [
+      "227907"
+    ],
+    "Date - Therapist": [
+      "227911"
+    ],
+    "Date of Admission to Hospital": [
+      "225279"
+    ],
+    "Date of Birth": [
+      "226515"
+    ],
+    "Date signed": [
+      "228631"
+    ],
+    "Dialysis Catheter Cap Change": [
+      "225318"
+    ],
+    "Dialysis Catheter Change over Wire Date": [
+      "225319"
+    ],
+    "Dialysis Catheter Dressing Change": [
+      "225321"
+    ],
+    "Dialysis Catheter Insertion Date": [
+      "225322"
+    ],
+    "Dialysis CatheterTubing Change": [
+      "225324"
+    ],
+    "Discharge Date/Time": [
+      "226516"
+    ],
+    "EKOS Dressing Change": [
+      "229542"
+    ],
+    "EKOS Insertion Date": [
+      "229541"
+    ],
+    "Expected Discharge Date": [
+      "226518"
+    ],
+    "FM Date/Time": [
+      "228266"
+    ],
+    "Foley Cath Insertion Date": [
+      "229352"
+    ],
+    "Foley Cath Removal Date": [
+      "229353"
+    ],
+    "GU Catheter D/C Date": [
+      "227584"
+    ],
+    "GU Catheter Insertion Date": [
+      "224878"
+    ],
+    "Hospital Admit Date": [
+      "226724"
+    ],
+    "IABP Cap Change": [
+      "225335"
+    ],
+    "IABP Change over Wire Date": [
+      "225336"
+    ],
+    "IABP Dressing Change": [
+      "225337"
+    ],
+    "IABP Insertion Date": [
+      "225338"
+    ],
+    "IABP Tubing Change": [
+      "225340"
+    ],
+    "ICP Line Dressing Change": [
+      "226126"
+    ],
+    "ICP Line Insertion Date": [
+      "226128"
+    ],
+    "ICP Line Tubing Change": [
+      "226132"
+    ],
+    "ICU Admission date": [
+      "220003"
+    ],
+    "IO Insertion Date": [
+      "228291"
+    ],
+    "Impaired Skin  - Dressing Change": [
+      "227790",
+      "227791",
+      "227792",
+      "227793",
+      "227794",
+      "227795",
+      "227796",
+      "227797",
+      "227798",
+      "227800"
+    ],
+    "Impella Aortic Pressure Tubing Change": [
+      "228160"
+    ],
+    "Impella Daily Tubing Change": [
+      "228165"
+    ],
+    "Impella Dressing Change": [
+      "228166"
+    ],
+    "Impella Insertion Date": [
+      "228168"
+    ],
+    "Indwelling (PortaCath) Dressing Change": [
+      "227361"
+    ],
+    "Indwelling (PortaCath) Port Date Accessed": [
+      "227126",
+      "227197"
+    ],
+    "Indwelling (PortaCath) Port Date De-accessed": [
+      "227198",
+      "227199"
+    ],
+    "Indwelling Port (PortaCath) Cap Change": [
+      "225375"
+    ],
+    "Indwelling Port (PortaCath) Change over Wire Date": [
+      "225376"
+    ],
+    "Indwelling Port (PortaCath) Dressing Change": [
+      "225377"
+    ],
+    "Indwelling Port (PortaCath) Insertion Date": [
+      "225378"
+    ],
+    "Indwelling Port (PortaCath)Tubing Change": [
+      "225380"
+    ],
+    "Last dialysis": [
+      "225128"
+    ],
+    "Last menses": [
+      "226719"
+    ],
+    "Midline Cap Change": [
+      "225343"
+    ],
+    "Midline Change over Wire Date": [
+      "225344"
+    ],
+    "Midline Dressing Change": [
+      "225345"
+    ],
+    "Midline Insertion Date": [
+      "225346"
+    ],
+    "Midline Tubing Change": [
+      "225348"
+    ],
+    "Multi Lumen Cap Change": [
+      "224261"
+    ],
+    "Multi Lumen Change over Wire Date": [
+      "224262"
+    ],
+    "Multi Lumen Dressing Change": [
+      "224279"
+    ],
+    "Multi Lumen Insertion Date": [
+      "224280"
+    ],
+    "Multi Lumen Tubing Change": [
+      "224282"
+    ],
+    "Organ Bank Notified": [
+      "226532"
+    ],
+    "PA Catheter Cap Change": [
+      "225351"
+    ],
+    "PA Catheter Change over Wire Date": [
+      "225352"
+    ],
+    "PA Catheter Dressing Change": [
+      "225353"
+    ],
+    "PA Catheter Insertion Date": [
+      "225354"
+    ],
+    "PA Catheter Tubing Change": [
+      "225356"
+    ],
+    "PC Date": [
+      "228321"
+    ],
+    "PC Time of visit": [
+      "228331"
+    ],
+    "PICC Line Cap Change": [
+      "224183"
+    ],
+    "PICC Line Change over Wire Date": [
+      "224185"
+    ],
+    "PICC Line Dressing Change": [
+      "224186"
+    ],
+    "PICC Line Insertion Date": [
+      "224184"
+    ],
+    "PICC Line Tubing Change": [
+      "224187"
+    ],
+    "Pheresis Catheter Cap Change": [
+      "225367"
+    ],
+    "Pheresis Catheter Change over Wire Date": [
+      "225368"
+    ],
+    "Pheresis Catheter Dressing Change": [
+      "225369"
+    ],
+    "Pheresis Catheter Insertion Date": [
+      "225370"
+    ],
+    "Pheresis Catheter Tubing Change": [
+      "225372"
+    ],
+    "Pregnancy due date": [
+      "225083"
+    ],
+    "Presep Catheter Cap Change": [
+      "225383"
+    ],
+    "Presep Catheter Change over Wire Date": [
+      "225384"
+    ],
+    "Presep Catheter Dressing Change": [
+      "225385"
+    ],
+    "Presep Catheter Insertion Date": [
+      "225386"
+    ],
+    "Presep Catheter Tubing Change": [
+      "225390"
+    ],
+    "Pressure Ulcer- Date Indentified": [
+      "229884",
+      "229885",
+      "229886",
+      "229887",
+      "229888",
+      "229889",
+      "229890",
+      "229891",
+      "229892",
+      "229893"
+    ],
+    "Pressure ulcer- Date Indentified_OLD_1": [
+      "229883"
+    ],
+    "Pressure ulcer- Dressing change": [
+      "228793",
+      "228794",
+      "228795",
+      "228796",
+      "228797",
+      "228798",
+      "228799",
+      "228800",
+      "228801",
+      "228802"
+    ],
+    "RIC Cap Change": [
+      "229741"
+    ],
+    "RIC Dressing Change": [
+      "229735"
+    ],
+    "RIC Insertion Date": [
+      "225758"
+    ],
+    "Referral Date": [
+      "227817"
+    ],
+    "ScvO2 (Presep) Calibrated": [
+      "227542"
+    ],
+    "Sheath Cap Change": [
+      "225762"
+    ],
+    "Sheath Change over Wire Date": [
+      "225763"
+    ],
+    "Sheath Dressing Change": [
+      "225765"
+    ],
+    "Sheath Insertion Date": [
+      "225766"
+    ],
+    "Sheath Tubing Change": [
+      "225769"
+    ],
+    "Stroke NCP -  Fam Ed Given Date": [
+      "229655"
+    ],
+    "Stroke NCP - Ed Given Date": [
+      "229643"
+    ],
+    "Stroke NCP - Water Swallow Date": [
+      "229651"
+    ],
+    "SvO2 Calibrated": [
+      "227541"
+    ],
+    "Tandem Heart Access Line Dressing Change": [
+      "228207"
+    ],
+    "Tandem Heart Access Line Insertion Date": [
+      "228209"
+    ],
+    "Tandem Heart Access Line Tubing Change": [
+      "228215"
+    ],
+    "Tandem Heart Return Cannula Dressing Change": [
+      "228218"
+    ],
+    "Tandem Heart Return Cannula Insertion Date": [
+      "228221"
+    ],
+    "Trauma Line Cap Change": [
+      "225213"
+    ],
+    "Trauma Line Change over Wire Date": [
+      "225214"
+    ],
+    "Trauma Line Dressing Change": [
+      "225216"
+    ],
+    "Trauma Line Insertion Date": [
+      "225317"
+    ],
+    "Trauma Line Tubing Change": [
+      "225218"
+    ],
+    "Triple Introducer Cap Change": [
+      "225391"
+    ],
+    "Triple Introducer Change over Wire Date": [
+      "225392"
+    ],
+    "Triple Introducer Dressing Change": [
+      "225393"
+    ],
+    "Triple Introducer Insertion Date": [
+      "225394"
+    ],
+    "Triple Introducer Tubing Change": [
+      "225396"
+    ],
+    "Tunneled (Hickman) Cap Change": [
+      "225327"
+    ],
+    "Tunneled (Hickman) Change over Wire Date": [
+      "225328"
+    ],
+    "Tunneled (Hickman) Dressing Change": [
+      "225329"
+    ],
+    "Tunneled (Hickman) Insertion Date": [
+      "225330"
+    ],
+    "Tunneled (Hickman) Tubing Change": [
+      "225332"
+    ]
+  },
+  "comment_overrides": {},
+  "fhir_base": "https://velonto.dw.csiro.au/fhir",
+  "codesearch_service": {
+    "version": "dev",
+    "ontoserver_url": "https://velonto.dw.csiro.au/fhir",
+    "model_tiers": [
+      {
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "rounds_per_tier": 1
+      },
+      {
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "rounds_per_tier": 2
+      },
+      {
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "rounds_per_tier": 3
+      }
+    ],
+    "model_profile": "custom1",
+    "available_profiles": [
+      "free",
+      "cheap",
+      "default",
+      "gemini3-flash",
+      "balanced",
+      "quality",
+      "research",
+      "opencode",
+      "custom1"
+    ],
+    "small_valueset_threshold": 50
+  },
+  "rows": [
+    {
+      "mimic_code": "220003",
+      "mimic_display": "ICU Admission date",
+      "snomed_code": "399423000",
+      "snomed_display": "Date of admission",
+      "comment": "",
+      "codesearch_query": "ICU Admission date",
+      "codesearch_target": "399423000",
+      "codesearch_display": "Date of admission",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches date of admission; ICU is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224183",
+      "mimic_display": "PICC Line Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 392020005 |Peripherally inserted central catheter care| at 0.70 for 'PICC Line Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "PICC Line Cap Change",
+      "codesearch_target": "392020005",
+      "codesearch_display": "Peripherally inserted central catheter care",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "Closest broader match for PICC line cap change procedure",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224184",
+      "mimic_display": "PICC Line Insertion Date",
+      "snomed_code": "425196008",
+      "snomed_display": "Peripherally inserted central catheterisation",
+      "comment": "",
+      "codesearch_query": "PICC Line Insertion Date",
+      "codesearch_target": "425196008",
+      "codesearch_display": "Insertion of peripherally inserted central catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches PICC line insertion event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224185",
+      "mimic_display": "PICC Line Change over Wire Date",
+      "snomed_code": "416504003",
+      "snomed_display": "Vascular line exchange over wire",
+      "comment": "",
+      "codesearch_query": "PICC Line Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "PICC line change over wire = vascular line exchange over wire",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224186",
+      "mimic_display": "PICC Line Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "PICC Line Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is dressing change; PICC line is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224187",
+      "mimic_display": "PICC Line Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 392020005 |Peripherally inserted central catheter care| at 0.75 for 'PICC Line Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "PICC Line Tubing Change",
+      "codesearch_target": "392020005",
+      "codesearch_display": "Peripherally inserted central catheter care",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "Closest match to PICC line tubing change; broader procedure concept",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224261",
+      "mimic_display": "Multi Lumen Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 226005007 |Care of central line| at 0.70 for 'Multi Lumen Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "Multi Lumen Cap Change",
+      "codesearch_target": "226005007",
+      "codesearch_display": "Care of central line",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "No exact 'cap change' code; closest broader procedure for multi-lumen central line care",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224262",
+      "mimic_display": "Multi Lumen Change over Wire Date",
+      "snomed_code": "416504003",
+      "snomed_display": "Vascular line exchange over wire",
+      "comment": "",
+      "codesearch_query": "Multi Lumen Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Multi Lumen Change over Wire maps to vascular line exchange over wire procedure",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224279",
+      "mimic_display": "Multi Lumen Dressing Change",
+      "snomed_code": "1230246000",
+      "snomed_display": "Replacement of dressing of insertion site of vascular catheter",
+      "comment": "",
+      "codesearch_query": "Multi Lumen Dressing Change",
+      "codesearch_target": "1230246000",
+      "codesearch_display": "Replacement of dressing of insertion site of vascular catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Multi-lumen catheter dressing change matches vascular catheter insertion site dressing replacement",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224280",
+      "mimic_display": "Multi Lumen Insertion Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 233527006 |Central venous cannula insertion| at 0.70 for 'Multi Lumen Insertion Date', below the 0.8 threshold.",
+      "codesearch_query": "Multi Lumen Insertion Date",
+      "codesearch_target": "233527006",
+      "codesearch_display": "Central venous cannula insertion",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Multi-lumen catheter is a central venous catheter; date/time is a qualifier not separately coded",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224282",
+      "mimic_display": "Multi Lumen Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Multi Lumen Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Multi Lumen Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224284",
+      "mimic_display": "Arterial line Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 422744007 |Arterial catheter care| at 0.75 for 'Arterial line Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "Arterial line Cap Change",
+      "codesearch_target": "422744007",
+      "codesearch_display": "Arterial catheter care",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "Closest broader match for arterial line cap change; no exact code exists",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224285",
+      "mimic_display": "Arterial line Change over Wire Date",
+      "snomed_code": "416504003",
+      "snomed_display": "Vascular line exchange over wire",
+      "comment": "",
+      "codesearch_query": "Arterial line Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Arterial line change over wire matches vascular line exchange over wire procedure",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224287",
+      "mimic_display": "Arterial Line Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Arterial Line Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core concept is dressing change; arterial line is site qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224288",
+      "mimic_display": "Arterial line Insertion Date",
+      "snomed_code": "392247006",
+      "snomed_display": "Catheterisation of artery",
+      "comment": "",
+      "codesearch_query": "Arterial line Insertion Date",
+      "codesearch_target": "392247006",
+      "codesearch_display": "Insertion of catheter into artery",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches arterial line insertion; date/time is a recording qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224290",
+      "mimic_display": "Arterial line Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 422744007 |Arterial catheter care| at 0.75 for 'Arterial line Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "Arterial line Tubing Change",
+      "codesearch_target": "422744007",
+      "codesearch_display": "Arterial catheter care",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "Arterial line care regime; tubing change is part of line care",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224292",
+      "mimic_display": "Cordis/Introducer Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Cordis/Introducer Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Cordis/Introducer Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224293",
+      "mimic_display": "Cordis/Introducer Change over Wire Date",
+      "snomed_code": "416504003",
+      "snomed_display": "Vascular line exchange over wire",
+      "comment": "",
+      "codesearch_query": "Cordis/Introducer Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Captures the change-over-wire procedure; date/time is a qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224295",
+      "mimic_display": "Cordis/Introducer Dressing Change",
+      "snomed_code": "1230246000",
+      "snomed_display": "Replacement of dressing of insertion site of vascular catheter",
+      "comment": "",
+      "codesearch_query": "Cordis/Introducer Dressing Change",
+      "codesearch_target": "1230246000",
+      "codesearch_display": "Replacement of dressing of insertion site of vascular catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Cordis/introducer is a vascular catheter; dressing change at insertion site matches",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224296",
+      "mimic_display": "Cordis/Introducer Insertion Date",
+      "snomed_code": "439272007",
+      "snomed_display": "Date of procedure",
+      "comment": "",
+      "codesearch_query": "Cordis/Introducer Insertion Date",
+      "codesearch_target": "439272007",
+      "codesearch_display": "Date of procedure",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Temporal observable for date of a procedure; Cordis/introducer insertion is the procedure event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224298",
+      "mimic_display": "Cordis/Introducer Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Cordis/Introducer Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Cordis/Introducer Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "224878",
+      "mimic_display": "GU Catheter Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "GU Catheter Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Flowsheet records date/time of GU catheter insertion event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225083",
+      "mimic_display": "Pregnancy due date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Pregnancy due date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Pregnancy due date",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225128",
+      "mimic_display": "Last dialysis",
+      "snomed_code": "265764009",
+      "snomed_display": "Renal dialysis",
+      "comment": "",
+      "codesearch_query": "Last dialysis",
+      "codesearch_target": "265764009",
+      "codesearch_display": "Renal dialysis",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Event 'last dialysis' refers to a dialysis procedure; renal dialysis captures it",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225213",
+      "mimic_display": "Trauma Line Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 225199003 |Changing intravenous infusion line| at 0.60 for 'Trauma Line Cap Change', below the 0.8 threshold.",
+      "codesearch_query": "Trauma Line Cap Change",
+      "codesearch_target": "225199003",
+      "codesearch_display": "Changing intravenous infusion line",
+      "codesearch_confidence": "0.60",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest concept to line cap change event; procedure for changing IV line",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225214",
+      "mimic_display": "Trauma Line Change over Wire Date",
+      "snomed_code": "416504003",
+      "snomed_display": "Vascular line exchange over wire",
+      "comment": "",
+      "codesearch_query": "Trauma Line Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Line change over wire maps to vascular line exchange over wire",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225216",
+      "mimic_display": "Trauma Line Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Trauma Line Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is dressing change; date/time is recording context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225218",
+      "mimic_display": "Trauma Line Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Trauma Line Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Trauma Line Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225221",
+      "mimic_display": "CCO PAC Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 422463007 |Pulmonary artery catheter care| at 0.70 for 'CCO PAC Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "CCO PAC Cap Change",
+      "codesearch_target": "422463007",
+      "codesearch_display": "Pulmonary artery catheter care",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "Closest broader match for PAC cap change; no specific cap-change code exists",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225222",
+      "mimic_display": "CCO PAC Change over Wire Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 416504003 |Vascular line exchange over wire| at 0.75 for 'CCO PAC Change over Wire Date', below the 0.8 threshold.",
+      "codesearch_query": "CCO PAC Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "CCO PAC change over wire = vascular line exchange over wire",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225224",
+      "mimic_display": "CCO PAC Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "CCO PAC Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change; PAC context is qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225226",
+      "mimic_display": "CCO PAC Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 422463007 |Pulmonary artery catheter care| at 0.70 for 'CCO PAC Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "CCO PAC Tubing Change",
+      "codesearch_target": "422463007",
+      "codesearch_display": "Pulmonary artery catheter care",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "Tubing change is part of PAC care; no specific tubing change code",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225279",
+      "mimic_display": "Date of Admission to Hospital",
+      "snomed_code": "399423000",
+      "snomed_display": "Date of admission",
+      "comment": "",
+      "codesearch_query": "Date of Admission to Hospital",
+      "codesearch_target": "399423000",
+      "codesearch_display": "Date of admission",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches the event being recorded",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225316",
+      "mimic_display": "CCO PAC Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "CCO PAC Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Captures date/time recorded for an event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225317",
+      "mimic_display": "Trauma Line Insertion Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 397914003 |Uncomplicated intravascular line insertion| at 0.60 for 'Trauma Line Insertion Date', below the 0.8 threshold.",
+      "codesearch_query": "Trauma Line Insertion Date",
+      "codesearch_target": "397914003",
+      "codesearch_display": "Uncomplicated intravascular line insertion",
+      "codesearch_confidence": "0.60",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Line insertion procedure for the trauma line event; 'uncomplicated' is unstated qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225318",
+      "mimic_display": "Dialysis Catheter Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Dialysis Catheter Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Dialysis Catheter Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225319",
+      "mimic_display": "Dialysis Catheter Change over Wire Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 416504003 |Vascular line exchange over wire| at 0.72 for 'Dialysis Catheter Change over Wire Date', below the 0.8 threshold.",
+      "codesearch_query": "Dialysis Catheter Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.72",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Captures 'change over wire' procedure; broader than dialysis-specific but no overstepping",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225321",
+      "mimic_display": "Dialysis Catheter Dressing Change",
+      "snomed_code": "1230246000",
+      "snomed_display": "Replacement of dressing of insertion site of vascular catheter",
+      "comment": "",
+      "codesearch_query": "Dialysis Catheter Dressing Change",
+      "codesearch_target": "1230246000",
+      "codesearch_display": "Replacement of dressing of insertion site of vascular catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Dialysis catheter is a vascular catheter; dressing change of its insertion site",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225322",
+      "mimic_display": "Dialysis Catheter Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "Dialysis Catheter Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Temporal observable capturing date/time of an event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225324",
+      "mimic_display": "Dialysis CatheterTubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 103713001 |Replacement of catheter| at 0.70 for 'Dialysis CatheterTubing Change', below the 0.8 threshold.",
+      "codesearch_query": "Dialysis CatheterTubing Change",
+      "codesearch_target": "103713001",
+      "codesearch_display": "Replacement of catheter",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "No specific dialysis catheter tubing change code; broadest procedure match",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225327",
+      "mimic_display": "Tunneled (Hickman) Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 449584006 |Care of tunneled central venous catheter| at 0.70 for 'Tunneled (Hickman) Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "Tunneled (Hickman) Cap Change",
+      "codesearch_target": "449584006",
+      "codesearch_display": "Care of tunneled central venous catheter",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "No exact 'cap change' code; closest broader match is care of tunneled CVC",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225328",
+      "mimic_display": "Tunneled (Hickman) Change over Wire Date",
+      "snomed_code": "416504003",
+      "snomed_display": "Vascular line exchange over wire",
+      "comment": "",
+      "codesearch_query": "Tunneled (Hickman) Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Captures the change-over-wire procedure for the Hickman line",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225329",
+      "mimic_display": "Tunneled (Hickman) Dressing Change",
+      "snomed_code": "1230246000",
+      "snomed_display": "Replacement of dressing of insertion site of vascular catheter",
+      "comment": "",
+      "codesearch_query": "Tunneled (Hickman) Dressing Change",
+      "codesearch_target": "1230246000",
+      "codesearch_display": "Replacement of dressing of insertion site of vascular catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Dressing change at vascular catheter insertion site matches Hickman dressing change",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225330",
+      "mimic_display": "Tunneled (Hickman) Insertion Date",
+      "snomed_code": "442309004",
+      "snomed_display": "Insertion of tunnelled central venous catheter",
+      "comment": "",
+      "codesearch_query": "Tunneled (Hickman) Insertion Date",
+      "codesearch_target": "442309004",
+      "codesearch_display": "Insertion of tunnelled central venous catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Hickman is a tunneled central venous catheter; insertion procedure matches",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225332",
+      "mimic_display": "Tunneled (Hickman) Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 439355003 |Replacement of tunneled centrally inserted central venous catheter| at 0.85 for 'Tunneled (Hickman) Tubing Change', but changing the tubing does not replace the catheter \u2014 replacing it is what the sibling column 225328 Tunneled (Hickman) Change over Wire Date records. The concept is right about the device and wrong about the action, so the mapping would assert something this column does not record.",
+      "codesearch_query": "Tunneled (Hickman) Tubing Change",
+      "codesearch_target": "439355003",
+      "codesearch_display": "Replacement of tunneled centrally inserted central venous catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "wrong-action",
+      "codesearch_reasoning": "Hickman is a tunneled central venous catheter; change = replacement",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225335",
+      "mimic_display": "IABP Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 34475007 |Intraaortic balloon pump maintenance| at 0.60 for 'IABP Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "IABP Cap Change",
+      "codesearch_target": "34475007",
+      "codesearch_display": "Intraaortic balloon pump maintenance",
+      "codesearch_confidence": "0.60",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "IABP cap change is a maintenance event; closest broader match",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225336",
+      "mimic_display": "IABP Change over Wire Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 416504003 |Vascular line exchange over wire| at 0.60 for 'IABP Change over Wire Date', below the 0.8 threshold.",
+      "codesearch_query": "IABP Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.60",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest procedure for IABP change over wire; no IABP-specific code",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225337",
+      "mimic_display": "IABP Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "IABP Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core procedure is dressing change; IABP is context qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225338",
+      "mimic_display": "IABP Insertion Date",
+      "snomed_code": "16965008",
+      "snomed_display": "Insertion of intra-aortic balloon pump",
+      "comment": "",
+      "codesearch_query": "IABP Insertion Date",
+      "codesearch_target": "16965008",
+      "codesearch_display": "Insertion of intra-aortic balloon pump",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core concept is IABP insertion; date/time is a recording qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225340",
+      "mimic_display": "IABP Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 34475007 |Intraaortic balloon pump maintenance| at 0.75 for 'IABP Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "IABP Tubing Change",
+      "codesearch_target": "34475007",
+      "codesearch_display": "Intraaortic balloon pump maintenance",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "Tubing change is a maintenance procedure on IABP; closest broader match",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225343",
+      "mimic_display": "Midline Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Midline Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Midline Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225344",
+      "mimic_display": "Midline Change over Wire Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "Midline Change over Wire Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Captures date/time recorded for an event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225345",
+      "mimic_display": "Midline Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Midline Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is midline dressing change; date/time is flowsheet metadata",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225346",
+      "mimic_display": "Midline Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "Midline Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Temporal observable capturing date/time of an event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225348",
+      "mimic_display": "Midline Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Midline Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Midline Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225351",
+      "mimic_display": "PA Catheter Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 422463007 |Pulmonary artery catheter care| at 0.70 for 'PA Catheter Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "PA Catheter Cap Change",
+      "codesearch_target": "422463007",
+      "codesearch_display": "Pulmonary artery catheter care",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "No exact cap change code; closest broader match for PA catheter care",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225352",
+      "mimic_display": "PA Catheter Change over Wire Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 416504003 |Vascular line exchange over wire| at 0.75 for 'PA Catheter Change over Wire Date', below the 0.8 threshold.",
+      "codesearch_query": "PA Catheter Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest match for PA catheter change over wire; broader vascular line exchange",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225353",
+      "mimic_display": "PA Catheter Dressing Change",
+      "snomed_code": "1230246000",
+      "snomed_display": "Replacement of dressing of insertion site of vascular catheter",
+      "comment": "",
+      "codesearch_query": "PA Catheter Dressing Change",
+      "codesearch_target": "1230246000",
+      "codesearch_display": "Replacement of dressing of insertion site of vascular catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Dressing change at vascular catheter insertion site; PA catheter is a vascular catheter",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225354",
+      "mimic_display": "PA Catheter Insertion Date",
+      "snomed_code": "65677008",
+      "snomed_display": "Pulmonary catheterisation with Swan-Ganz catheter",
+      "comment": "",
+      "codesearch_query": "PA Catheter Insertion Date",
+      "codesearch_target": "65677008",
+      "codesearch_display": "Pulmonary catheterisation with Swan-Ganz catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "PA catheter insertion; synonym matches pulmonary artery catheter insertion",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225356",
+      "mimic_display": "PA Catheter Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 422463007 |Pulmonary artery catheter care| at 0.75 for 'PA Catheter Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "PA Catheter Tubing Change",
+      "codesearch_target": "422463007",
+      "codesearch_display": "Pulmonary artery catheter care",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "No specific 'change of PA catheter tubing' code; closest broader match is PA catheter care",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225367",
+      "mimic_display": "Pheresis Catheter Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Pheresis Catheter Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Pheresis Catheter Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225368",
+      "mimic_display": "Pheresis Catheter Change over Wire Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 439272007 |Date of procedure| at 0.70 for 'Pheresis Catheter Change over Wire Date', below the 0.8 threshold.",
+      "codesearch_query": "Pheresis Catheter Change over Wire Date",
+      "codesearch_target": "439272007",
+      "codesearch_display": "Date of procedure",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Observable for date of a procedure; matches date/time recorded for event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225369",
+      "mimic_display": "Pheresis Catheter Dressing Change",
+      "snomed_code": "1230246000",
+      "snomed_display": "Replacement of dressing of insertion site of vascular catheter",
+      "comment": "",
+      "codesearch_query": "Pheresis Catheter Dressing Change",
+      "codesearch_target": "1230246000",
+      "codesearch_display": "Replacement of dressing of insertion site of vascular catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Dressing change at vascular catheter site; pheresis catheter is a vascular catheter",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225370",
+      "mimic_display": "Pheresis Catheter Insertion Date",
+      "snomed_code": "439272007",
+      "snomed_display": "Date of procedure",
+      "comment": "",
+      "codesearch_query": "Pheresis Catheter Insertion Date",
+      "codesearch_target": "439272007",
+      "codesearch_display": "Date of procedure",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Temporal observable matching date/time recorded for a procedure event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225372",
+      "mimic_display": "Pheresis Catheter Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 103713001 |Replacement of catheter| at 0.75 for 'Pheresis Catheter Tubing Change', below the 0.8 threshold.",
+      "codesearch_query": "Pheresis Catheter Tubing Change",
+      "codesearch_target": "103713001",
+      "codesearch_display": "Replacement of catheter",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "No specific pheresis catheter tubing change code; generic catheter replacement is closest broader match",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225375",
+      "mimic_display": "Indwelling Port (PortaCath) Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Indwelling Port (PortaCath) Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Indwelling Port (PortaCath) Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225376",
+      "mimic_display": "Indwelling Port (PortaCath) Change over Wire Date",
+      "snomed_code": "416504003",
+      "snomed_display": "Vascular line exchange over wire",
+      "comment": "",
+      "codesearch_query": "Indwelling Port (PortaCath) Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "PortaCath change over wire = vascular line exchange over wire",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225377",
+      "mimic_display": "Indwelling Port (PortaCath) Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Indwelling Port (PortaCath) Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core concept is dressing change; PortaCath is context, not overstepping",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225378",
+      "mimic_display": "Indwelling Port (PortaCath) Insertion Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 1507661000168104 |Insertion of central venous catheter with subcutaneous access port| at 0.85 but that concept is not in the SNOMED international core.",
+      "codesearch_query": "Indwelling Port (PortaCath) Insertion Date",
+      "codesearch_target": "1507661000168104",
+      "codesearch_display": "Insertion of central venous catheter with subcutaneous access port",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "extension",
+      "codesearch_reasoning": "FSN matches PortaCath insertion; synonym 'Port-a-cath insertion'",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225380",
+      "mimic_display": "Indwelling Port (PortaCath)Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Indwelling Port (PortaCath)Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Indwelling Port (PortaCath)Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225383",
+      "mimic_display": "Presep Catheter Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 103713001 |Replacement of catheter| at 0.60 for 'Presep Catheter Cap Change', below the 0.8 threshold.",
+      "codesearch_query": "Presep Catheter Cap Change",
+      "codesearch_target": "103713001",
+      "codesearch_display": "Replacement of catheter",
+      "codesearch_confidence": "0.60",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "No exact 'catheter cap change' code; broadest matching procedure",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225384",
+      "mimic_display": "Presep Catheter Change over Wire Date",
+      "snomed_code": "416504003",
+      "snomed_display": "Vascular line exchange over wire",
+      "comment": "",
+      "codesearch_query": "Presep Catheter Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Catheter change over wire = line exchange over wire; Presep is a CVC brand",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225385",
+      "mimic_display": "Presep Catheter Dressing Change",
+      "snomed_code": "1230246000",
+      "snomed_display": "Replacement of dressing of insertion site of vascular catheter",
+      "comment": "",
+      "codesearch_query": "Presep Catheter Dressing Change",
+      "codesearch_target": "1230246000",
+      "codesearch_display": "Replacement of dressing of insertion site of vascular catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Presep catheter is a vascular catheter; dressing change matches",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225386",
+      "mimic_display": "Presep Catheter Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "Presep Catheter Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Date/time recorded for an event; observable entity matches",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225390",
+      "mimic_display": "Presep Catheter Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Presep Catheter Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Presep Catheter Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225391",
+      "mimic_display": "Triple Introducer Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Triple Introducer Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Triple Introducer Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225392",
+      "mimic_display": "Triple Introducer Change over Wire Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "Triple Introducer Change over Wire Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Temporal observable capturing date/time of an event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225393",
+      "mimic_display": "Triple Introducer Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Triple Introducer Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is dressing change; no specific triple introducer code exists",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225394",
+      "mimic_display": "Triple Introducer Insertion Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Triple Introducer Insertion Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Triple Introducer Insertion Date",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225396",
+      "mimic_display": "Triple Introducer Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Triple Introducer Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Triple Introducer Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225753",
+      "mimic_display": "22 Gauge Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "22 Gauge Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Temporal observable capturing date/time of an event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225754",
+      "mimic_display": "20 Gauge Insertion Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for '20 Gauge Insertion Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "20 Gauge Insertion Date",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225755",
+      "mimic_display": "18 Gauge Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "18 Gauge Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Date/time recorded for an event (18 gauge insertion)",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225756",
+      "mimic_display": "16 Gauge Insertion Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 439771001 |Date of event| at 0.60 for '16 Gauge Insertion Date', below the 0.8 threshold.",
+      "codesearch_query": "16 Gauge Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.60",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest temporal observable to flowsheet date/time recorded for event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225757",
+      "mimic_display": "14 Gauge Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "14 Gauge Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN captures date/time recorded for an event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225758",
+      "mimic_display": "RIC Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "RIC Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Date/time recorded for an event; Date of event matches",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225762",
+      "mimic_display": "Sheath Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Sheath Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Sheath Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225763",
+      "mimic_display": "Sheath Change over Wire Date",
+      "snomed_code": "416504003",
+      "snomed_display": "Vascular line exchange over wire",
+      "comment": "",
+      "codesearch_query": "Sheath Change over Wire Date",
+      "codesearch_target": "416504003",
+      "codesearch_display": "Vascular line exchange over wire",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Sheath change over wire = vascular line exchange over wire; date/time is qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225765",
+      "mimic_display": "Sheath Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Sheath Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Sheath dressing change maps to Change of dressing; date/time is documentation attribute",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225766",
+      "mimic_display": "Sheath Insertion Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Sheath Insertion Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Sheath Insertion Date",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "225769",
+      "mimic_display": "Sheath Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Sheath Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Sheath Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226126",
+      "mimic_display": "ICP Line Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "ICP Line Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is ICP line dressing change; base concept Change of dressing",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226128",
+      "mimic_display": "ICP Line Insertion Date",
+      "snomed_code": "230940006",
+      "snomed_display": "Insertion of intracranial pressure catheter",
+      "comment": "",
+      "codesearch_query": "ICP Line Insertion Date",
+      "codesearch_target": "230940006",
+      "codesearch_display": "Insertion of intracranial pressure catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "ICP line insertion maps to intracranial pressure catheter insertion procedure",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226132",
+      "mimic_display": "ICP Line Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 21151009 |Intracranial pressure monitor maintenance| at 0.70 for 'ICP Line Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "ICP Line Tubing Change",
+      "codesearch_target": "21151009",
+      "codesearch_display": "Intracranial pressure monitor maintenance",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "No exact 'ICP line tubing change' code; maintenance is closest broader match",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226482",
+      "mimic_display": "Blood Clot Outdates",
+      "snomed_code": "117073009",
+      "snomed_display": "Blood product unit expired",
+      "comment": "",
+      "codesearch_query": "Blood Clot Outdates",
+      "codesearch_target": "117073009",
+      "codesearch_display": "Blood product unit expired",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Outdates refers to blood product expiry; FSN matches event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226515",
+      "mimic_display": "Date of Birth",
+      "snomed_code": "184099003",
+      "snomed_display": "Date of birth",
+      "comment": "",
+      "codesearch_query": "Date of Birth",
+      "codesearch_target": "184099003",
+      "codesearch_display": "Date of birth",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches the event concept exactly",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226516",
+      "mimic_display": "Discharge Date/Time",
+      "snomed_code": "442864001",
+      "snomed_display": "Date of discharge",
+      "comment": "",
+      "codesearch_query": "Discharge Date/Time",
+      "codesearch_target": "442864001",
+      "codesearch_display": "Date of discharge",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Observable for discharge date/time; matches input concept",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226518",
+      "mimic_display": "Expected Discharge Date",
+      "snomed_code": "442864001",
+      "snomed_display": "Date of discharge",
+      "comment": "",
+      "codesearch_query": "Expected Discharge Date",
+      "codesearch_target": "442864001",
+      "codesearch_display": "Date of discharge",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Closest observable for expected discharge date",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226532",
+      "mimic_display": "Organ Bank Notified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Organ Bank Notified' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Organ Bank Notified",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226719",
+      "mimic_display": "Last menses",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Last menses' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Last menses",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "226724",
+      "mimic_display": "Hospital Admit Date",
+      "snomed_code": "399423000",
+      "snomed_display": "Date of admission",
+      "comment": "",
+      "codesearch_query": "Hospital Admit Date",
+      "codesearch_target": "399423000",
+      "codesearch_display": "Date of admission",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN captures hospital admit date; flowsheet context is qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227126",
+      "mimic_display": "Indwelling (PortaCath) Port #1 Date Accessed",
+      "snomed_code": "397958003",
+      "snomed_display": "Accessing of implantable venous access port",
+      "comment": "",
+      "codesearch_query": "Indwelling (PortaCath) Port Date Accessed",
+      "codesearch_target": "397958003",
+      "codesearch_display": "Accessing of implantable venous access port",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches PortaCath port access event; date/time is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227197",
+      "mimic_display": "Indwelling (PortaCath) Port #2 Date Accessed",
+      "snomed_code": "397958003",
+      "snomed_display": "Accessing of implantable venous access port",
+      "comment": "",
+      "codesearch_query": "Indwelling (PortaCath) Port Date Accessed",
+      "codesearch_target": "397958003",
+      "codesearch_display": "Accessing of implantable venous access port",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches PortaCath port access event; date/time is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227198",
+      "mimic_display": "Indwelling (PortaCath) Port #1 Date De-accessed",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Indwelling (PortaCath) Port Date De-accessed' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Indwelling (PortaCath) Port Date De-accessed",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227199",
+      "mimic_display": "Indwelling (PortaCath) Port #2 Date De-accessed",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Indwelling (PortaCath) Port Date De-accessed' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Indwelling (PortaCath) Port Date De-accessed",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227361",
+      "mimic_display": "Indwelling (PortaCath) Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Indwelling (PortaCath) Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core concept is dressing change; PortaCath is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227541",
+      "mimic_display": "SvO2 Calibrated",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 250551006 |Venous oxygen saturation measurement| at 0.70 for 'SvO2 Calibrated', below the 0.8 threshold.",
+      "codesearch_query": "SvO2 Calibrated",
+      "codesearch_target": "250551006",
+      "codesearch_display": "Venous oxygen saturation measurement",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "SvO2 event; closest concept is venous oxygen saturation measurement",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227542",
+      "mimic_display": "ScvO2 (Presep) Calibrated",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'ScvO2 (Presep) Calibrated' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "ScvO2 (Presep) Calibrated",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227584",
+      "mimic_display": "GU Catheter D/C Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "GU Catheter D/C Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Input is recording date/time for an event; observable matches",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227720",
+      "mimic_display": "AVA Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'AVA Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "AVA Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227721",
+      "mimic_display": "AVA Change over Wire Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "AVA Change over Wire Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Date/time recorded for an event; matches observable entity",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227722",
+      "mimic_display": "AVA Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "AVA Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core clinical concept is dressing change; AVA qualifier not separately coded",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227724",
+      "mimic_display": "AVA Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "AVA Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Temporal observable capturing date of an event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227729",
+      "mimic_display": "AVA Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'AVA Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "AVA Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227790",
+      "mimic_display": "Impaired Skin  - Dressing Change #1",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227791",
+      "mimic_display": "Impaired Skin  - Dressing Change #2",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227792",
+      "mimic_display": "Impaired Skin  - Dressing Change #3",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227793",
+      "mimic_display": "Impaired Skin  - Dressing Change #4",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227794",
+      "mimic_display": "Impaired Skin  - Dressing Change #5",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227795",
+      "mimic_display": "Impaired Skin  - Dressing Change #6",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227796",
+      "mimic_display": "Impaired Skin  - Dressing Change #7",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227797",
+      "mimic_display": "Impaired Skin  - Dressing Change #8",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227798",
+      "mimic_display": "Impaired Skin  - Dressing Change #9",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227800",
+      "mimic_display": "Impaired Skin  - Dressing Change #10",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impaired Skin  - Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change procedure; impaired skin is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227817",
+      "mimic_display": "Referral Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 3457005 |Patient referral| at 0.70 for 'Referral Date', below the 0.8 threshold.",
+      "codesearch_query": "Referral Date",
+      "codesearch_target": "3457005",
+      "codesearch_display": "Patient referral",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Referral event; no date/time-specific code exists",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227907",
+      "mimic_display": "Date - Student",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 439771001 |Date of event| at 0.75 for 'Date - Student', below the 0.8 threshold.",
+      "codesearch_query": "Date - Student",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable entity capturing date/time of an event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "227911",
+      "mimic_display": "Date - Therapist",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 439771001 |Date of event| at 0.70 for 'Date - Therapist', below the 0.8 threshold.",
+      "codesearch_query": "Date - Therapist",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Date/time recorded for an event; closest match",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228160",
+      "mimic_display": "Impella Aortic Pressure Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Impella Aortic Pressure Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Impella Aortic Pressure Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228165",
+      "mimic_display": "Impella Daily Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Impella Daily Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Impella Daily Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228166",
+      "mimic_display": "Impella Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Impella Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is dressing change; no Impella-specific code exists",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228168",
+      "mimic_display": "Impella Insertion Date",
+      "snomed_code": "439272007",
+      "snomed_display": "Date of procedure",
+      "comment": "",
+      "codesearch_query": "Impella Insertion Date",
+      "codesearch_target": "439272007",
+      "codesearch_display": "Date of procedure",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Date/time recorded for Impella insertion event maps to Date of procedure",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228207",
+      "mimic_display": "Tandem Heart Access Line Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Tandem Heart Access Line Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core procedure is dressing change; device context not separately coded",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228209",
+      "mimic_display": "Tandem Heart Access Line Insertion Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 439272007 |Date of procedure| at 0.75 for 'Tandem Heart Access Line Insertion Date', below the 0.8 threshold.",
+      "codesearch_query": "Tandem Heart Access Line Insertion Date",
+      "codesearch_target": "439272007",
+      "codesearch_display": "Date of procedure",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Date/time recorded for Tandem Heart access line insertion event = date of procedure",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228215",
+      "mimic_display": "Tandem Heart Access Line Tubing Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Tandem Heart Access Line Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Tandem Heart Access Line Tubing Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228218",
+      "mimic_display": "Tandem Heart Return Cannula Dressing Change",
+      "snomed_code": "1230247009",
+      "snomed_display": "Replacement of dressing of insertion site of cannula",
+      "comment": "",
+      "codesearch_query": "Tandem Heart Return Cannula Dressing Change",
+      "codesearch_target": "1230247009",
+      "codesearch_display": "Replacement of dressing of insertion site of cannula",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Dressing change on cannula insertion site; matches event core",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228221",
+      "mimic_display": "Tandem Heart Return Cannula Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "Tandem Heart Return Cannula Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Observable capturing date/time of an event; matches flowsheet date/time recording",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228266",
+      "mimic_display": "FM Date/Time",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 439771001 |Date of event| at 0.75 for 'FM Date/Time', below the 0.8 threshold.",
+      "codesearch_query": "FM Date/Time",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Captures date/time of an event; closest match",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228291",
+      "mimic_display": "IO Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "IO Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN captures date/time recorded for an event (IO insertion)",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228321",
+      "mimic_display": "PC Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'PC Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "PC Date",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228331",
+      "mimic_display": "PC Time of visit",
+      "snomed_code": "406544004",
+      "snomed_display": "Time of visit",
+      "comment": "",
+      "codesearch_query": "PC Time of visit",
+      "codesearch_target": "406544004",
+      "codesearch_display": "Time of visit",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches core concept 'Time of visit'",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228631",
+      "mimic_display": "Date signed",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Date signed' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Date signed",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228793",
+      "mimic_display": "Pressure ulcer #1- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228794",
+      "mimic_display": "Pressure ulcer #2- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228795",
+      "mimic_display": "Pressure ulcer #3- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228796",
+      "mimic_display": "Pressure ulcer #4- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228797",
+      "mimic_display": "Pressure ulcer #5- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228798",
+      "mimic_display": "Pressure ulcer #6- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228799",
+      "mimic_display": "Pressure ulcer #7- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228800",
+      "mimic_display": "Pressure ulcer #8- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228801",
+      "mimic_display": "Pressure ulcer #9- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "228802",
+      "mimic_display": "Pressure ulcer #10- Dressing change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Pressure ulcer- Dressing change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN 'Change of dressing' matches the documented event; pressure ulcer is context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229352",
+      "mimic_display": "Foley Cath Insertion Date",
+      "snomed_code": "446583004",
+      "snomed_display": "Indwelling catheterisation of urinary bladder",
+      "comment": "",
+      "codesearch_query": "Foley Cath Insertion Date",
+      "codesearch_target": "446583004",
+      "codesearch_display": "Insertion of indwelling catheter into urinary bladder",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Foley catheter insertion = indwelling urinary catheter insertion",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229353",
+      "mimic_display": "Foley Cath Removal Date",
+      "snomed_code": "43748006",
+      "snomed_display": "Removal of bladder catheter",
+      "comment": "",
+      "codesearch_query": "Foley Cath Removal Date",
+      "codesearch_target": "43748006",
+      "codesearch_display": "Removal of urinary bladder catheter",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Foley catheter removal = removal of urinary bladder catheter; date/time is a qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229471",
+      "mimic_display": "24 Gauge Insertion Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "24 Gauge Insertion Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Observable capturing date/time of an event; matches flowsheet field",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229541",
+      "mimic_display": "EKOS Insertion Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'EKOS Insertion Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "EKOS Insertion Date",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229542",
+      "mimic_display": "EKOS Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "EKOS Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core concept is dressing change; EKOS is unstated context",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229549",
+      "mimic_display": "Avalon Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "Avalon Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is the dressing change; date/time is a recording qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229550",
+      "mimic_display": "Avalon Insertion Date",
+      "snomed_code": "439272007",
+      "snomed_display": "Date of procedure",
+      "comment": "",
+      "codesearch_query": "Avalon Insertion Date",
+      "codesearch_target": "439272007",
+      "codesearch_display": "Date of procedure",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Avalon insertion date is a date of a procedure",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229555",
+      "mimic_display": "Cardiac Assist Cannula Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Cardiac Assist Cannula Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Cardiac Assist Cannula Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229556",
+      "mimic_display": "Cardiac Assist Cannula Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Cardiac Assist Cannula Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Cardiac Assist Cannula Date",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229643",
+      "mimic_display": "Stroke NCP - Ed Given Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 439771001 |Date of event| at 0.75 for 'Stroke NCP - Ed Given Date', below the 0.8 threshold.",
+      "codesearch_query": "Stroke NCP - Ed Given Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Observable for date/time of an event; matches flowsheet field",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229651",
+      "mimic_display": "Stroke NCP - Water Swallow Date",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'Stroke NCP - Water Swallow Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "Stroke NCP - Water Swallow Date",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229655",
+      "mimic_display": "Stroke NCP -  Fam Ed Given Date",
+      "snomed_code": "439771001",
+      "snomed_display": "Date of event",
+      "comment": "",
+      "codesearch_query": "Stroke NCP -  Fam Ed Given Date",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.80",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Date/time recorded for an event; matches observable entity",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229728",
+      "mimic_display": "18 Gauge Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "18 Gauge Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core concept is dressing change; 18 gauge is unstated qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229729",
+      "mimic_display": "18 Gauge Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 225199003 |Changing intravenous infusion line| at 0.60 for '18 Gauge Cap Change', below the 0.8 threshold.",
+      "codesearch_query": "18 Gauge Cap Change",
+      "codesearch_target": "225199003",
+      "codesearch_display": "Changing intravenous infusion line",
+      "codesearch_confidence": "0.60",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest procedure for IV access component change; no specific cap-change code",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229730",
+      "mimic_display": "14 Gauge Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "14 Gauge Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is dressing change; gauge is unstated qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229731",
+      "mimic_display": "16 Gauge Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "16 Gauge Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core concept is dressing change; 16 gauge is a device qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229732",
+      "mimic_display": "20 Gauge Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "20 Gauge Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core concept is dressing change; gauge is unstated qualifier",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229733",
+      "mimic_display": "22 Gauge Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "22 Gauge Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "FSN matches dressing change event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229734",
+      "mimic_display": "24 Gauge Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "24 Gauge Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is dressing change; gauge/context are qualifiers",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229735",
+      "mimic_display": "RIC Dressing Change",
+      "snomed_code": "18949003",
+      "snomed_display": "Change of dressing",
+      "comment": "",
+      "codesearch_query": "RIC Dressing Change",
+      "codesearch_target": "18949003",
+      "codesearch_display": "Change of dressing",
+      "codesearch_confidence": "0.85",
+      "codesearch_status": "ok",
+      "codesearch_reasoning": "Core event is dressing change; date/time is recording metadata",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229736",
+      "mimic_display": "14 Gauge Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 423687009 |Peripheral intravenous catheter care| at 0.60 for '14 Gauge Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "14 Gauge Cap Change",
+      "codesearch_target": "423687009",
+      "codesearch_display": "Peripheral intravenous catheter care",
+      "codesearch_confidence": "0.60",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "Cap change on 14G IV is a PIVC maintenance procedure; no exact cap-change concept exists",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229737",
+      "mimic_display": "16 Gauge Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 423687009 |Peripheral intravenous catheter care| at 0.75 for '16 Gauge Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "16 Gauge Cap Change",
+      "codesearch_target": "423687009",
+      "codesearch_display": "Peripheral intravenous catheter care",
+      "codesearch_confidence": "0.75",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "Closest broader match; cap change is component of peripheral IV catheter care",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229738",
+      "mimic_display": "20 Gauge Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for '20 Gauge Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "20 Gauge Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229739",
+      "mimic_display": "22 Gauge Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 225199003 |Changing intravenous infusion line| at 0.70 for '22 Gauge Cap Change', below the 0.8 threshold.",
+      "codesearch_query": "22 Gauge Cap Change",
+      "codesearch_target": "225199003",
+      "codesearch_display": "Changing intravenous infusion line",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest procedure for IV cap change event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229740",
+      "mimic_display": "24 Gauge Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 423687009 |Peripheral intravenous catheter care| at 0.70 for '24 Gauge Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable.",
+      "codesearch_query": "24 Gauge Cap Change",
+      "codesearch_target": "423687009",
+      "codesearch_display": "Peripheral intravenous catheter care",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "device-care",
+      "codesearch_reasoning": "No exact 'IV cap change' code; closest broader match is peripheral IV catheter care",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229741",
+      "mimic_display": "RIC Cap Change",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search returned no match for 'RIC Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004).",
+      "codesearch_query": "RIC Cap Change",
+      "codesearch_target": "",
+      "codesearch_display": "",
+      "codesearch_confidence": "",
+      "codesearch_status": "no-match",
+      "codesearch_reasoning": "",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229883",
+      "mimic_display": "Pressure ulcer #1- Date Indentified_OLD_1",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 439771001 |Date of event| at 0.70 for 'Pressure ulcer- Date Indentified_OLD_1', below the 0.8 threshold.",
+      "codesearch_query": "Pressure ulcer- Date Indentified_OLD_1",
+      "codesearch_target": "439771001",
+      "codesearch_display": "Date of event",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Flowsheet records date identified for pressure ulcer event",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229884",
+      "mimic_display": "Pressure Ulcer #1- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229885",
+      "mimic_display": "Pressure Ulcer #2- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229886",
+      "mimic_display": "Pressure Ulcer #3- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229887",
+      "mimic_display": "Pressure Ulcer #4- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229888",
+      "mimic_display": "Pressure Ulcer #5- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229889",
+      "mimic_display": "Pressure Ulcer #6- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229890",
+      "mimic_display": "Pressure Ulcer #7- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229891",
+      "mimic_display": "Pressure Ulcer #8- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229892",
+      "mimic_display": "Pressure Ulcer #9- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    },
+    {
+      "mimic_code": "229893",
+      "mimic_display": "Pressure Ulcer #10- Date Indentified",
+      "snomed_code": "",
+      "snomed_display": "",
+      "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold.",
+      "codesearch_query": "Pressure Ulcer- Date Indentified",
+      "codesearch_target": "298059007",
+      "codesearch_display": "Date of onset",
+      "codesearch_confidence": "0.70",
+      "codesearch_status": "below-threshold",
+      "codesearch_reasoning": "Closest observable for 'date identified'; broader but captures date meaning",
+      "path": "cached"
+    }
+  ]
+}

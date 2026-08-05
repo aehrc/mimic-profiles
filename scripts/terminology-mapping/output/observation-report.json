@@ -5,9 +5,9 @@
  "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-merged-standard",
  "version": "1.0.0",
  "date": "2026-08-05",
- "source_total": 289,
- "mapped": 213,
- "unmapped": 76,
+ "source_total": 477,
+ "mapped": 314,
+ "unmapped": 163,
  "by_source": [
   {
    "system": "http://loinc.org",
@@ -15,7 +15,7 @@
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
-   "mapped": 61
+   "mapped": 162
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-antibiotic",
@@ -30,15 +30,19 @@
   {
    "system": "http://loinc.org",
    "mappings": 213
+  },
+  {
+   "system": "http://snomed.info/sct",
+   "mappings": 101
   }
  ],
  "by_equivalence": {
   "equivalent": 9,
-  "relatedto": 204,
-  "unmatched": 76
+  "relatedto": 305,
+  "unmatched": 163
  },
  "unmapped_by_reason": {
-  "no-suitable-concept": 76
+  "no-suitable-concept": 163
  },
  "by_stream": [
   {
@@ -103,7 +107,15 @@
     },
     "constraint": "(http://loinc.org)(CLASS=ABXBACT,STATUS=ACTIVE,METHOD_TYP?false)",
     "template": "Antimicrobial susceptibility test result for the antibiotic: {}",
-    "confidence_threshold": 0.8
+    "confidence_threshold": 0.8,
+    "near_threshold": {
+     "0.05": 0,
+     "0.1": 0,
+     "0.2": 0,
+     "0.3": 0,
+     "0.4": 0
+    },
+    "near_misses": []
    }
   },
   {
@@ -140,7 +152,43 @@
     },
     "constraint": "(http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4)",
     "template": "ICU flowsheet output volume recorded for: {}",
-    "confidence_threshold": 0.8
+    "confidence_threshold": 0.8,
+    "near_threshold": {
+     "0.05": 3,
+     "0.1": 3,
+     "0.2": 3,
+     "0.3": 3,
+     "0.4": 3
+    },
+    "near_misses": [
+     {
+      "mimic_code": "226576",
+      "mimic_display": "Oral Gastric",
+      "proposed_code": "79561-7",
+      "proposed_display": "Fluid output enteral tube [Volume] Measured",
+      "confidence": 0.78,
+      "gap": 0.02,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "226619",
+      "mimic_display": "Pigtail #1",
+      "proposed_code": "9161-1",
+      "proposed_display": "Fluid output miscellaneous Measured",
+      "confidence": 0.78,
+      "gap": 0.02,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "226620",
+      "mimic_display": "Pigtail #2",
+      "proposed_code": "9161-1",
+      "proposed_display": "Fluid output miscellaneous Measured",
+      "confidence": 0.78,
+      "gap": 0.02,
+      "reasoning": ""
+     }
+    ]
    }
   },
   {
@@ -178,10 +226,597 @@
      "(http://loinc.org)(CLASS/\"MOLPATH.*|PANEL.HL7.CYTOGEN\",STATUS=ACTIVE)"
     ],
     "template": "Clinical microbiology test name recorded in the hospital microbiology results table: {}",
-    "confidence_threshold": 0.8
+    "confidence_threshold": 0.8,
+    "near_threshold": {
+     "0.05": 11,
+     "0.1": 25,
+     "0.2": 26,
+     "0.3": 27,
+     "0.4": 27
+    },
+    "near_misses": [
+     {
+      "mimic_code": "90153",
+      "mimic_display": "Additional Cells and Karyotype",
+      "proposed_code": "35129-6",
+      "proposed_display": "Karyotype [Identifier] in Specimen Nominal",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Test name for karyotype; generic specimen code best captures concept"
+     },
+     {
+      "mimic_code": "90078",
+      "mimic_display": "CHROMOSOME ANALYSIS-FLUID",
+      "proposed_code": "62351-2",
+      "proposed_display": "Chromosome analysis panel - Amniotic fluid by G-banded",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match; input generic 'fluid' but amniotic fluid is standard for chromosome analysis"
+     },
+     {
+      "mimic_code": "90121",
+      "mimic_display": "CYCLOSPORA STAIN",
+      "proposed_code": "50313-6",
+      "proposed_display": "Cyclospora sp identified in Stool by Safranin stain",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Cyclospora stain test; Safranin is the canonical Cyclospora stain"
+     },
+     {
+      "mimic_code": "90164",
+      "mimic_display": "INTERPHASE FISH ANALYSIS, 100-300 CELLS",
+      "proposed_code": "59050-5",
+      "proposed_display": "Chromosome analysis.interphase [Interpretation] in Specimen by FISH Narrative",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Interphase FISH analysis; generic specimen matches unspecified input"
+     },
+     {
+      "mimic_code": "90163",
+      "mimic_display": "INTERPHASE FISH ANALYSIS, 25-99 CELLS",
+      "proposed_code": "62345-4",
+      "proposed_display": "Chromosome analysis.interphase panel - Blood by FISH",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Interphase FISH analysis; specimen not specified, blood panel closest"
+     },
+     {
+      "mimic_code": "90208",
+      "mimic_display": "Myco-F Bottle Gram Stain",
+      "proposed_code": "664-3",
+      "proposed_display": "Microscopic observation [Identifier] in Specimen by Gram stain",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Gram stain on specimen; Myco-F bottle is specimen source"
+     },
+     {
+      "mimic_code": "90090",
+      "mimic_display": "POST-MORTEM VIRAL CULTURE",
+      "proposed_code": "6584-7",
+      "proposed_display": "Virus identified in Specimen by Culture",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Generic viral culture; post-mortem is a specimen qualifier not altering base concept"
+     },
+     {
+      "mimic_code": "90241",
+      "mimic_display": "POTASSIUM HYDROXIDE PREPARATION",
+      "proposed_code": "55305-7",
+      "proposed_display": "Fungus [Presence] in Specimen by KOH preparation",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Generic KOH preparation test; specimen-unspecified best match"
+     },
+     {
+      "mimic_code": "90130",
+      "mimic_display": "R/O Beta Strep Group A",
+      "proposed_code": "105062-4",
+      "proposed_display": "Streptococcus pyogenes DNA [Presence] in Specimen",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "R/O Beta Strep Group A = rule out Group A Streptococcus (S. pyogenes); generic specimen presence test"
+     },
+     {
+      "mimic_code": "90198",
+      "mimic_display": "Staph aureus Screen",
+      "proposed_code": "100897-8",
+      "proposed_display": "Staphylococcus aureus [Presence] in Specimen by Organism specific culture",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "General Staph aureus screening culture; no exact 'screen' code"
+     },
+     {
+      "mimic_code": "90151",
+      "mimic_display": "Tissue Culture-Bone Marrow",
+      "proposed_code": "60258-1",
+      "proposed_display": "Bacteria identified in Bone marrow by Culture",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest general bone marrow culture test; input is generic tissue culture"
+     },
+     {
+      "mimic_code": "90104",
+      "mimic_display": "Direct Antigen Test for Herpes Simplex Virus Types 1 & 2",
+      "proposed_code": "10678-1",
+      "proposed_display": "Herpes simplex virus 1+2 Ag [Presence] in Tissue by Immune stain",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Direct antigen test for HSV 1&2; adds tissue specimen/method"
+     },
+     {
+      "mimic_code": "90171",
+      "mimic_display": "FISH ANALYSIS, 10-30 CELLS",
+      "proposed_code": "62367-8",
+      "proposed_display": "Chromosome analysis panel by FISH",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic FISH analysis test; cell count is unstated qualifier"
+     },
+     {
+      "mimic_code": "90215",
+      "mimic_display": "M. furfur Blood Culture",
+      "proposed_code": "601-5",
+      "proposed_display": "Fungus identified in Blood by Culture",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No specific M. furfur blood culture code; fungus blood culture is closest broader match"
+     },
+     {
+      "mimic_code": "90106",
+      "mimic_display": "MICROSPORIDIA STAIN",
+      "proposed_code": "10857-1",
+      "proposed_display": "Microsporidia identified in Specimen by Light microscopy",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic specimen microsporidia test; closest broad match to non-specific stain"
+     },
+     {
+      "mimic_code": "90150",
+      "mimic_display": "MOLECULAR CYTOGENETICS - DNA PROBE",
+      "proposed_code": "62369-4",
+      "proposed_display": "FISH probe name panel - Laboratory device",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "DNA probe panel in molecular cytogenetics; FISH is the DNA probe method"
+     },
+     {
+      "mimic_code": "90216",
+      "mimic_display": "Malassezia furfur Culture",
+      "proposed_code": "15378-3",
+      "proposed_display": "Fungus identified in Isolate by Culture",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest broader match; culture test for fungus, organism not specified"
+     },
+     {
+      "mimic_code": "90179",
+      "mimic_display": "POTASSIUM HYDROXIDE PREPARATION (HAIR/SKIN/NAILS)",
+      "proposed_code": "644-5",
+      "proposed_display": "Microscopic observation [Identifier] in Skin by KOH preparation",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "KOH preparation test; input lists hair/skin/nails, no single combined code"
+     },
+     {
+      "mimic_code": "90235",
+      "mimic_display": "REFLEX URINE CULTURE",
+      "proposed_code": "630-4",
+      "proposed_display": "Bacteria identified in Urine by Culture",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest general urine culture test; reflex qualifier not coded"
+     },
+     {
+      "mimic_code": "90214",
+      "mimic_display": "Respiratory Viral Culture",
+      "proposed_code": "87709-2",
+      "proposed_display": "Virus identified in Lower respiratory specimen by Culture",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Respiratory viral culture; closest match, minor 'lower' specifier"
+     },
+     {
+      "mimic_code": "90107",
+      "mimic_display": "Respiratory Virus Identification",
+      "proposed_code": "54245-6",
+      "proposed_display": "Respiratory virus Ag [Identifier] in Specimen by Immunofluorescence",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Respiratory virus identification test; closest match though method/specimen specified"
+     },
+     {
+      "mimic_code": "90185",
+      "mimic_display": "SMEAR FOR BACTERIAL VAGINOSIS",
+      "proposed_code": "14361-0",
+      "proposed_display": "Microscopic observation [Identifier] in Vaginal fluid by Gram stain",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Smear for bacterial vaginosis is a Gram-stained vaginal smear; closest match"
+     },
+     {
+      "mimic_code": "90207",
+      "mimic_display": "Stem Cell Aer/Ana Culture",
+      "proposed_code": "21020-3",
+      "proposed_display": "Bacteria identified in Specimen by Anaerobe+Aerobe culture",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Broader match for aerobic+anaerobic culture; no stem cell-specific code exists"
+     },
+     {
+      "mimic_code": "90272",
+      "mimic_display": "TISSUE",
+      "proposed_code": "43408-4",
+      "proposed_display": "Bacteria identified in Tissue by Culture",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Most general tissue microbiology culture test; input unspecified organism"
+     },
+     {
+      "mimic_code": "90068",
+      "mimic_display": "TISSUE CULTURE-FLUID",
+      "proposed_code": "11475-1",
+      "proposed_display": "Microorganism identified in Specimen by Culture",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic microbiology culture test; input specifies tissue/fluid but no single code covers both"
+     },
+     {
+      "mimic_code": "90187",
+      "mimic_display": "GENITAL CULTURE FOR TOXIC SHOCK",
+      "proposed_code": "10352-3",
+      "proposed_display": "Bacteria identified in Genital specimen by Aerobe culture",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Genital culture test; toxic shock qualifier not separately coded"
+     },
+     {
+      "mimic_code": "90038",
+      "mimic_display": "GENITAL CULTURE",
+      "proposed_code": "41026-6",
+      "proposed_display": "Fungus identified in Genital specimen by Culture",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "General genital culture; only candidate with plain Culture method, though specifies fungus"
+     }
+    ]
+   }
+  },
+  {
+   "stream": "mimic-datetimeevents-d-items",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "method": "table",
+   "total": 188,
+   "mapped": 101,
+   "unmapped": 87,
+   "coverage_pct": 53.7,
+   "target_systems": [
+    "http://snomed.info/sct"
+   ],
+   "by_equivalence": {
+    "relatedto": 101,
+    "unmatched": 87
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 87
+   },
+   "codesearch": {
+    "status": {
+     "below-threshold": 32,
+     "device-care": 16,
+     "extension": 1,
+     "no-match": 37,
+     "ok": 101,
+     "wrong-action": 1
+    },
+    "confidence": {
+     "min": 0.6,
+     "median": 0.8,
+     "mean": 0.792,
+     "max": 0.85
+    },
+    "constraint": "(<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)",
+    "template": "ICU flowsheet date/time recorded for the following event: {}",
+    "confidence_threshold": 0.8,
+    "near_threshold": {
+     "0.05": 7,
+     "0.1": 26,
+     "0.2": 32,
+     "0.3": 32,
+     "0.4": 32
+    },
+    "near_misses": [
+     {
+      "mimic_code": "225222",
+      "mimic_display": "CCO PAC Change over Wire Date",
+      "proposed_code": "416504003",
+      "proposed_display": "Vascular line exchange over wire",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "CCO PAC change over wire = vascular line exchange over wire"
+     },
+     {
+      "mimic_code": "227907",
+      "mimic_display": "Date - Student",
+      "proposed_code": "439771001",
+      "proposed_display": "Date of event",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest observable entity capturing date/time of an event"
+     },
+     {
+      "mimic_code": "228266",
+      "mimic_display": "FM Date/Time",
+      "proposed_code": "439771001",
+      "proposed_display": "Date of event",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Captures date/time of an event; closest match"
+     },
+     {
+      "mimic_code": "225352",
+      "mimic_display": "PA Catheter Change over Wire Date",
+      "proposed_code": "416504003",
+      "proposed_display": "Vascular line exchange over wire",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match for PA catheter change over wire; broader vascular line exchange"
+     },
+     {
+      "mimic_code": "225372",
+      "mimic_display": "Pheresis Catheter Tubing Change",
+      "proposed_code": "103713001",
+      "proposed_display": "Replacement of catheter",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No specific pheresis catheter tubing change code; generic catheter replacement is closest broader match"
+     },
+     {
+      "mimic_code": "229643",
+      "mimic_display": "Stroke NCP - Ed Given Date",
+      "proposed_code": "439771001",
+      "proposed_display": "Date of event",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Observable for date/time of an event; matches flowsheet field"
+     },
+     {
+      "mimic_code": "228209",
+      "mimic_display": "Tandem Heart Access Line Insertion Date",
+      "proposed_code": "439272007",
+      "proposed_display": "Date of procedure",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Date/time recorded for Tandem Heart access line insertion event = date of procedure"
+     },
+     {
+      "mimic_code": "225319",
+      "mimic_display": "Dialysis Catheter Change over Wire Date",
+      "proposed_code": "416504003",
+      "proposed_display": "Vascular line exchange over wire",
+      "confidence": 0.72,
+      "gap": 0.08,
+      "reasoning": "Captures 'change over wire' procedure; broader than dialysis-specific but no overstepping"
+     },
+     {
+      "mimic_code": "229739",
+      "mimic_display": "22 Gauge Cap Change",
+      "proposed_code": "225199003",
+      "proposed_display": "Changing intravenous infusion line",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest procedure for IV cap change event"
+     },
+     {
+      "mimic_code": "227911",
+      "mimic_display": "Date - Therapist",
+      "proposed_code": "439771001",
+      "proposed_display": "Date of event",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Date/time recorded for an event; closest match"
+     },
+     {
+      "mimic_code": "225324",
+      "mimic_display": "Dialysis CatheterTubing Change",
+      "proposed_code": "103713001",
+      "proposed_display": "Replacement of catheter",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No specific dialysis catheter tubing change code; broadest procedure match"
+     },
+     {
+      "mimic_code": "224280",
+      "mimic_display": "Multi Lumen Insertion Date",
+      "proposed_code": "233527006",
+      "proposed_display": "Central venous cannula insertion",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Multi-lumen catheter is a central venous catheter; date/time is a qualifier not separately coded"
+     },
+     {
+      "mimic_code": "225368",
+      "mimic_display": "Pheresis Catheter Change over Wire Date",
+      "proposed_code": "439272007",
+      "proposed_display": "Date of procedure",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Observable for date of a procedure; matches date/time recorded for event"
+     },
+     {
+      "mimic_code": "229884",
+      "mimic_display": "Pressure Ulcer #1- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229893",
+      "mimic_display": "Pressure Ulcer #10- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229885",
+      "mimic_display": "Pressure Ulcer #2- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229886",
+      "mimic_display": "Pressure Ulcer #3- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229887",
+      "mimic_display": "Pressure Ulcer #4- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229888",
+      "mimic_display": "Pressure Ulcer #5- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229889",
+      "mimic_display": "Pressure Ulcer #6- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229890",
+      "mimic_display": "Pressure Ulcer #7- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229891",
+      "mimic_display": "Pressure Ulcer #8- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229892",
+      "mimic_display": "Pressure Ulcer #9- Date Indentified",
+      "proposed_code": "298059007",
+      "proposed_display": "Date of onset",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest observable for 'date identified'; broader but captures date meaning"
+     },
+     {
+      "mimic_code": "229883",
+      "mimic_display": "Pressure ulcer #1- Date Indentified_OLD_1",
+      "proposed_code": "439771001",
+      "proposed_display": "Date of event",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Flowsheet records date identified for pressure ulcer event"
+     },
+     {
+      "mimic_code": "227817",
+      "mimic_display": "Referral Date",
+      "proposed_code": "3457005",
+      "proposed_display": "Patient referral",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Referral event; no date/time-specific code exists"
+     },
+     {
+      "mimic_code": "227541",
+      "mimic_display": "SvO2 Calibrated",
+      "proposed_code": "250551006",
+      "proposed_display": "Venous oxygen saturation measurement",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "SvO2 event; closest concept is venous oxygen saturation measurement"
+     },
+     {
+      "mimic_code": "225756",
+      "mimic_display": "16 Gauge Insertion Date",
+      "proposed_code": "439771001",
+      "proposed_display": "Date of event",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest temporal observable to flowsheet date/time recorded for event"
+     },
+     {
+      "mimic_code": "229729",
+      "mimic_display": "18 Gauge Cap Change",
+      "proposed_code": "225199003",
+      "proposed_display": "Changing intravenous infusion line",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest procedure for IV access component change; no specific cap-change code"
+     },
+     {
+      "mimic_code": "225336",
+      "mimic_display": "IABP Change over Wire Date",
+      "proposed_code": "416504003",
+      "proposed_display": "Vascular line exchange over wire",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest procedure for IABP change over wire; no IABP-specific code"
+     },
+     {
+      "mimic_code": "225383",
+      "mimic_display": "Presep Catheter Cap Change",
+      "proposed_code": "103713001",
+      "proposed_display": "Replacement of catheter",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "No exact 'catheter cap change' code; broadest matching procedure"
+     },
+     {
+      "mimic_code": "225213",
+      "mimic_display": "Trauma Line Cap Change",
+      "proposed_code": "225199003",
+      "proposed_display": "Changing intravenous infusion line",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest concept to line cap change event; procedure for changing IV line"
+     },
+     {
+      "mimic_code": "225317",
+      "mimic_display": "Trauma Line Insertion Date",
+      "proposed_code": "397914003",
+      "proposed_display": "Uncomplicated intravascular line insertion",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Line insertion procedure for the trauma line event; 'uncomplicated' is unstated qualifier"
+     }
+    ]
    }
   }
  ],
- "target_valueset_codes": 153,
+ "target_valueset_codes": 174,
  "extras": {}
 }

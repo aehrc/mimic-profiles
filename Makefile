@@ -49,13 +49,14 @@ D_ITEMS_TABLE := $(TERM)/conceptmaps/build_d_items_table.py
 MICRO_SUSC_TABLE := $(TERM)/conceptmaps/build_micro_susc_table.py
 MICRO_TEST_TABLE := $(TERM)/conceptmaps/build_micro_test_table.py
 OUTPUTEVENTS_TABLE := $(TERM)/conceptmaps/build_outputevents_table.py
+DATETIMEEVENTS_TABLE := $(TERM)/conceptmaps/build_datetimeevents_table.py
 STATISTICS := $(TERM)/build_statistics.py
 UPLOAD_MAPPINGS := $(TERM)/upload.py
 
 .PHONY: verify-inputs update-manifest terminology deploy-terminology \
         condition procedure observation observation-component verify-mappings \
         verify-curated d-items-table micro-susc-table micro-test-table \
-        outputevents-table mappings statistics \
+        outputevents-table datetimeevents-table mappings statistics \
         upload-mappings ig
 
 verify-inputs: ## check ICD source files against input-manifest.json
@@ -170,6 +171,29 @@ micro-test-table: ## regenerate conceptmaps/micro-test-loinc.csv from code-searc
 #   make outputevents-table ARGS="--only 226559,226610 --insecure"   probe a few
 outputevents-table: ## regenerate conceptmaps/outputevents-loinc.csv from code-search
 	uv run $(OUTPUTEVENTS_TABLE) $(ARGS)
+
+# The 188 ICU datetimeevents items, and the first stream since procedureevents to
+# target SNOMED — so the first to put a second target system into the
+# Observation.code map. Same standing as the three above: network, writes a build
+# input, never part of `mappings`.
+#
+# Its constraint adds `<<364713004 |Temporal observable|` to the procedureevents
+# hierarchies, because Observation.value[x] here is a dateTime and the
+# administrative dates (date of birth, date of discharge) are observable entities
+# that no procedure/finding/event constraint can reach. It also carries a
+# device-care reject list, the analogue of the outputevents table's TOTAL_CODES:
+# `Arterial catheter care` is true of a dressing, cap, tubing AND wire change
+# alike, so mapping it would make four distinct flowsheet columns
+# indistinguishable. A second list, WRONG_ACTION, declines a (label, code) PAIR
+# for the failure a hierarchy constraint cannot catch — a real, specific concept
+# that names the wrong action on the right device. Both are checked before the
+# confidence threshold, so an item's recorded status is the reason that actually
+# decided it. The generator's docstring carries the evidence, including why the
+# threshold stays at 0.8.
+#
+#   make datetimeevents-table ARGS="--only 224288,224284 --insecure"   probe a few
+datetimeevents-table: ## regenerate conceptmaps/datetimeevents-snomed.csv from code-search
+	uv run $(DATETIMEEVENTS_TABLE) $(ARGS)
 
 # --- stage 3: publish, gated ------------------------------------------------ #
 

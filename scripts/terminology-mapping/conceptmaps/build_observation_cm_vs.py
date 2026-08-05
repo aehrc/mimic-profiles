@@ -34,9 +34,19 @@ Present so far:
             classes — because BIDMC files karyotyping in the same results table.
             See build_micro_test_table.py.
 
-Still to come, in the order the issue sets: MicroOrg (646, SNOMED), Datetime-
-events (188, SNOMED), Labevents (1,622) and Chartevents (2,982), all
-LOINC-or-SNOMED code-search.
+  table     the 188 ICU datetimeevents items, the first stream in this map to
+            target SNOMED CT rather than LOINC. Their VALUE is a dateTime, so the
+            code names the thing whose date was recorded, and the constraint is
+            the procedureevents hierarchies plus `<<364713004 |Temporal
+            observable|` — SNOMED files date of birth and date of discharge there,
+            and no procedure/finding/event constraint can reach them. Its coverage
+            is the lowest in this map by some distance, and deliberately so: 45 of
+            the 188 items have no SNOMED counterpart at all, because there is no
+            concept for changing a catheter cap. See
+            build_datetimeevents_table.py.
+
+Still to come, in the order the issue sets: MicroOrg (646, SNOMED), Labevents
+(1,622) and Chartevents (2,982), all LOINC-or-SNOMED code-search.
 
 NOT IN THIS MAP: the blood-pressure component codes. They are bound to
 `Observation.component.code`, a different FHIRPath expression over the same
@@ -66,7 +76,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from conceptmaps.lib.assemble import target                       # noqa: E402
 from conceptmaps.lib.canonical import (CANONICAL_BASE, LOINC,     # noqa: E402
-                                       MIMIC_BASE, TABLE_DIR)
+                                       MIMIC_BASE, SNOMED, TABLE_DIR)
 from conceptmaps.lib.driver import run                            # noqa: E402
 from conceptmaps.lib.notation import no_dot                       # noqa: E402
 
@@ -80,6 +90,7 @@ VERSION = "1.0.0"
 MICRO_SUSC_TABLE = TABLE_DIR / "micro-susc-loinc.csv"
 MICRO_TEST_TABLE = TABLE_DIR / "micro-test-loinc.csv"
 OUTPUTEVENTS_TABLE = TABLE_DIR / "outputevents-loinc.csv"
+DATETIMEEVENTS_TABLE = TABLE_DIR / "datetimeevents-snomed.csv"
 
 # No targetVersion on any entry — this repo builds no LOINC release, and pinning
 # one it neither publishes nor controls is exactly the irreproducibility
@@ -164,6 +175,39 @@ SOURCES = [
         "table_columns": ("loinc_code", "loinc_display"),
         "targets": [target(LOINC, no_dot)],
     },
+    {
+        # mimic-datetimeevents-d-items: 188 ICU flowsheet items whose VALUE is a
+        # dateTime, so the code has to name the thing whose date was recorded —
+        # `224288 Arterial line Insertion Date` is an arterial catheterisation
+        # that got written down, not a concept called "insertion date".
+        #
+        # The first stream in this map to target SNOMED CT rather than LOINC, and
+        # the reason is that shape: SNOMED models the administrative dates (date
+        # of birth, date of discharge) as observable entities, and the ICU line
+        # and skin events as procedures, findings and events. So the constraint is
+        # the procedureevents hierarchies plus `<<364713004 |Temporal
+        # observable|`. See build_datetimeevents_table.py, which also records why
+        # 45 of the 188 are unrepresentable in SNOMED at all — there is no
+        # concept for changing a catheter cap — and why the expected coverage is
+        # therefore nearer 40% than the 64% the procedureevents items scored.
+        #
+        # Third population off the same source CodeSystem as the procedureevents
+        # and outputevents items: mimic-d-items partitions cleanly into 188
+        # datetimeevents + 77 outputevents + 169 procedureevents = 434, and each
+        # population's table carries only its own rows. This entry and the
+        # outputevents one above therefore share a source system and differ in
+        # target, which is two groups rather than one — a group is keyed by
+        # (source system, target system, targetVersion).
+        "system": f"{MIMIC_BASE}/CodeSystem/mimic-d-items",
+        "valueset_file": "ValueSet-mimic-datetimeevents-d-items.json",
+        "table": DATETIMEEVENTS_TABLE,
+        # The only table in this map that targets SNOMED, so it keeps the default
+        # column names rather than declaring LOINC ones.
+        "table_columns": ("snomed_code", "snomed_display"),
+        # No targetVersion: this repo builds no SNOMED release either, and SNOMED
+        # has been on UNVERSIONED_SYSTEMS since the Procedure map.
+        "targets": [target(SNOMED, no_dot)],
+    },
 ]
 
 META = {
@@ -185,10 +229,10 @@ META = {
         "column with a separate binding, mapped by "
         "ConceptMap/mimic-observation-component-to-standard. INCOMPLETE: the "
         "code-search populations are being added one stream at a time. Present "
-        "so far are the microbiology antibiotics, the microbiology test names "
-        "and the ICU outputevents items; microbiology organisms, ICU "
-        "datetimeevents and chartevents, and labevents are not in this map "
-        "yet.",
+        "so far are the microbiology antibiotics, the microbiology test names, "
+        "the ICU outputevents items and the ICU datetimeevents items; "
+        "microbiology organisms, ICU chartevents and labevents are not in this "
+        "map yet.",
     "purpose":
         "Lets a consumer translate the merged Observation.code column with a "
         "single $translate. Two kinds of group. The ED and vital-signs codes are "
@@ -197,23 +241,28 @@ META = {
         "one the map is missing — $translate returns nothing in both cases. They "
         "are coded 'equivalent' rather than 'equal', matching the other maps, "
         "because consumers that pin the equivalence they accept filter 'equal' "
-        "out. The microbiology antibiotics, the microbiology test names and the "
-        "ICU outputevents items come from generated tables and are 'relatedto': "
-        "a MIMIC susceptibility code and a LOINC susceptibility code are "
-        "related, as are a MIMIC microbiology test name and a LOINC lab code, "
-        "and an ICU flowsheet output route and a LOINC fluid-output volume, and "
-        "no direction between them is asserted. Consumers must accept "
-        "'relatedto' as well as 'equivalent' or they will drop those "
-        "populations.",
+        "out. The microbiology antibiotics, the microbiology test names, the ICU "
+        "outputevents items and the ICU datetimeevents items come from generated "
+        "tables and are 'relatedto': a MIMIC susceptibility code and a LOINC "
+        "susceptibility code are related, as are a MIMIC microbiology test name "
+        "and a LOINC lab code, an ICU flowsheet output route and a LOINC "
+        "fluid-output volume, and an ICU flowsheet timestamp column and the "
+        "SNOMED CT procedure, finding or temporal observable whose date it "
+        "records, and no direction between them is asserted. Consumers must "
+        "accept 'relatedto' as well as 'equivalent' or they will drop those "
+        "populations. Note that a target here may be SNOMED CT as well as LOINC: "
+        "the datetimeevents items map to SNOMED, so a consumer cannot assume one "
+        "target system for this column.",
     "target_title": "MIMIC merged Observation codes as standard terminology",
     "target_description":
         "Every code the merged MIMIC Observation profile admits on "
         "Observation.code, in standard terminology. Derived from "
         "ConceptMap/mimic-observation-merged-to-standard, whose targetCanonical "
         "this is, so membership here and reachability by $translate are the same "
-        "set. The LOINC include carries no version: this repo builds no LOINC "
-        "release, so pinning one would name something it cannot reproduce. "
-        "Grows as each code-search stream is added to the map.",
+        "set. Neither the LOINC nor the SNOMED CT include carries a version: this "
+        "repo builds no LOINC or SNOMED release, so pinning one would name "
+        "something it cannot reproduce. Grows as each code-search stream is added "
+        "to the map.",
     "cli_description": __doc__,
 }
 

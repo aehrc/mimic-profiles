@@ -9,7 +9,7 @@
  "experimental": false,
  "date": "2026-08-05",
  "publisher": "CSIRO",
- "description": "Every code the merged MIMIC Observation profile admits on Observation.code, in standard terminology. Derived from ConceptMap/mimic-observation-merged-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. The LOINC include carries no version: this repo builds no LOINC release, so pinning one would name something it cannot reproduce. Grows as each code-search stream is added to the map.",
+ "description": "Every code the merged MIMIC Observation profile admits on Observation.code, in standard terminology. Derived from ConceptMap/mimic-observation-merged-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Neither the LOINC nor the SNOMED CT include carries a version: this repo builds no LOINC or SNOMED release, so pinning one would name something it cannot reproduce. Grows as each code-search stream is added to the map.",
  "compose": {
   "include": [
    {
@@ -626,6 +626,95 @@
      {
       "code": "98137-3",
       "display": "Pain assessment report"
+     }
+    ]
+   },
+   {
+    "system": "http://snomed.info/sct",
+    "concept": [
+     {
+      "code": "117073009",
+      "display": "Blood product unit expired"
+     },
+     {
+      "code": "1230246000",
+      "display": "Replacement of dressing of insertion site of vascular catheter"
+     },
+     {
+      "code": "1230247009",
+      "display": "Replacement of dressing of insertion site of cannula"
+     },
+     {
+      "code": "16965008",
+      "display": "Insertion of intra-aortic balloon pump"
+     },
+     {
+      "code": "184099003",
+      "display": "Date of birth"
+     },
+     {
+      "code": "18949003",
+      "display": "Change of dressing"
+     },
+     {
+      "code": "230940006",
+      "display": "Insertion of intracranial pressure catheter"
+     },
+     {
+      "code": "265764009",
+      "display": "Renal dialysis"
+     },
+     {
+      "code": "392247006",
+      "display": "Catheterisation of artery"
+     },
+     {
+      "code": "397958003",
+      "display": "Accessing of implantable venous access port"
+     },
+     {
+      "code": "399423000",
+      "display": "Date of admission"
+     },
+     {
+      "code": "406544004",
+      "display": "Time of visit"
+     },
+     {
+      "code": "416504003",
+      "display": "Vascular line exchange over wire"
+     },
+     {
+      "code": "425196008",
+      "display": "Peripherally inserted central catheterisation"
+     },
+     {
+      "code": "43748006",
+      "display": "Removal of bladder catheter"
+     },
+     {
+      "code": "439272007",
+      "display": "Date of procedure"
+     },
+     {
+      "code": "439771001",
+      "display": "Date of event"
+     },
+     {
+      "code": "442309004",
+      "display": "Insertion of tunnelled central venous catheter"
+     },
+     {
+      "code": "442864001",
+      "display": "Date of discharge"
+     },
+     {
+      "code": "446583004",
+      "display": "Indwelling catheterisation of urinary bladder"
+     },
+     {
+      "code": "65677008",
+      "display": "Pulmonary catheterisation with Swan-Ganz catheter"
      }
     ]
    }

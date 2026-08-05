@@ -9,8 +9,8 @@
  "experimental": false,
  "date": "2026-08-05",
  "publisher": "CSIRO",
- "description": "Maps the codes the merged MIMIC Observation profile admits on Observation.code onto standard terminology, so a consumer can translate the whole Observation.code column through a single ConceptMap. Codes that are already LOINC map to themselves, so translating the column preserves them instead of dropping them. Observation.component.code is NOT in scope here: it is a separate column with a separate binding, mapped by ConceptMap/mimic-observation-component-to-standard. INCOMPLETE: the code-search populations are being added one stream at a time. Present so far are the microbiology antibiotics, the microbiology test names and the ICU outputevents items; microbiology organisms, ICU datetimeevents and chartevents, and labevents are not in this map yet.",
- "purpose": "Lets a consumer translate the merged Observation.code column with a single $translate. Two kinds of group. The ED and vital-signs codes are already LOINC and map to themselves, stated rather than omitted because a consumer cannot otherwise tell a code that needs no translation from one the map is missing \u2014 $translate returns nothing in both cases. They are coded 'equivalent' rather than 'equal', matching the other maps, because consumers that pin the equivalence they accept filter 'equal' out. The microbiology antibiotics, the microbiology test names and the ICU outputevents items come from generated tables and are 'relatedto': a MIMIC susceptibility code and a LOINC susceptibility code are related, as are a MIMIC microbiology test name and a LOINC lab code, and an ICU flowsheet output route and a LOINC fluid-output volume, and no direction between them is asserted. Consumers must accept 'relatedto' as well as 'equivalent' or they will drop those populations.",
+ "description": "Maps the codes the merged MIMIC Observation profile admits on Observation.code onto standard terminology, so a consumer can translate the whole Observation.code column through a single ConceptMap. Codes that are already LOINC map to themselves, so translating the column preserves them instead of dropping them. Observation.component.code is NOT in scope here: it is a separate column with a separate binding, mapped by ConceptMap/mimic-observation-component-to-standard. INCOMPLETE: the code-search populations are being added one stream at a time. Present so far are the microbiology antibiotics, the microbiology test names, the ICU outputevents items and the ICU datetimeevents items; microbiology organisms, ICU chartevents and labevents are not in this map yet.",
+ "purpose": "Lets a consumer translate the merged Observation.code column with a single $translate. Two kinds of group. The ED and vital-signs codes are already LOINC and map to themselves, stated rather than omitted because a consumer cannot otherwise tell a code that needs no translation from one the map is missing \u2014 $translate returns nothing in both cases. They are coded 'equivalent' rather than 'equal', matching the other maps, because consumers that pin the equivalence they accept filter 'equal' out. The microbiology antibiotics, the microbiology test names, the ICU outputevents items and the ICU datetimeevents items come from generated tables and are 'relatedto': a MIMIC susceptibility code and a LOINC susceptibility code are related, as are a MIMIC microbiology test name and a LOINC lab code, an ICU flowsheet output route and a LOINC fluid-output volume, and an ICU flowsheet timestamp column and the SNOMED CT procedure, finding or temporal observable whose date it records, and no direction between them is asserted. Consumers must accept 'relatedto' as well as 'equivalent' or they will drop those populations. Note that a target here may be SNOMED CT as well as LOINC: the datetimeevents items map to SNOMED, so a consumer cannot assume one target system for this column.",
  "sourceCanonical": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-merged-code",
  "targetCanonical": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-merged-standard",
  "group": [
@@ -791,6 +791,1123 @@
        "code": "9129-8",
        "equivalence": "relatedto",
        "display": "Fluid output chest tube"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "target": "http://snomed.info/sct",
+   "element": [
+    {
+     "code": "220003",
+     "display": "ICU Admission date",
+     "target": [
+      {
+       "code": "399423000",
+       "equivalence": "relatedto",
+       "display": "Date of admission"
+      }
+     ]
+    },
+    {
+     "code": "224184",
+     "display": "PICC Line Insertion Date",
+     "target": [
+      {
+       "code": "425196008",
+       "equivalence": "relatedto",
+       "display": "Peripherally inserted central catheterisation"
+      }
+     ]
+    },
+    {
+     "code": "224185",
+     "display": "PICC Line Change over Wire Date",
+     "target": [
+      {
+       "code": "416504003",
+       "equivalence": "relatedto",
+       "display": "Vascular line exchange over wire"
+      }
+     ]
+    },
+    {
+     "code": "224186",
+     "display": "PICC Line Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "224262",
+     "display": "Multi Lumen Change over Wire Date",
+     "target": [
+      {
+       "code": "416504003",
+       "equivalence": "relatedto",
+       "display": "Vascular line exchange over wire"
+      }
+     ]
+    },
+    {
+     "code": "224279",
+     "display": "Multi Lumen Dressing Change",
+     "target": [
+      {
+       "code": "1230246000",
+       "equivalence": "relatedto",
+       "display": "Replacement of dressing of insertion site of vascular catheter"
+      }
+     ]
+    },
+    {
+     "code": "224285",
+     "display": "Arterial line Change over Wire Date",
+     "target": [
+      {
+       "code": "416504003",
+       "equivalence": "relatedto",
+       "display": "Vascular line exchange over wire"
+      }
+     ]
+    },
+    {
+     "code": "224287",
+     "display": "Arterial Line Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "224288",
+     "display": "Arterial line Insertion Date",
+     "target": [
+      {
+       "code": "392247006",
+       "equivalence": "relatedto",
+       "display": "Catheterisation of artery"
+      }
+     ]
+    },
+    {
+     "code": "224293",
+     "display": "Cordis/Introducer Change over Wire Date",
+     "target": [
+      {
+       "code": "416504003",
+       "equivalence": "relatedto",
+       "display": "Vascular line exchange over wire"
+      }
+     ]
+    },
+    {
+     "code": "224295",
+     "display": "Cordis/Introducer Dressing Change",
+     "target": [
+      {
+       "code": "1230246000",
+       "equivalence": "relatedto",
+       "display": "Replacement of dressing of insertion site of vascular catheter"
+      }
+     ]
+    },
+    {
+     "code": "224296",
+     "display": "Cordis/Introducer Insertion Date",
+     "target": [
+      {
+       "code": "439272007",
+       "equivalence": "relatedto",
+       "display": "Date of procedure"
+      }
+     ]
+    },
+    {
+     "code": "224878",
+     "display": "GU Catheter Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225128",
+     "display": "Last dialysis",
+     "target": [
+      {
+       "code": "265764009",
+       "equivalence": "relatedto",
+       "display": "Renal dialysis"
+      }
+     ]
+    },
+    {
+     "code": "225214",
+     "display": "Trauma Line Change over Wire Date",
+     "target": [
+      {
+       "code": "416504003",
+       "equivalence": "relatedto",
+       "display": "Vascular line exchange over wire"
+      }
+     ]
+    },
+    {
+     "code": "225216",
+     "display": "Trauma Line Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "225224",
+     "display": "CCO PAC Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "225279",
+     "display": "Date of Admission to Hospital",
+     "target": [
+      {
+       "code": "399423000",
+       "equivalence": "relatedto",
+       "display": "Date of admission"
+      }
+     ]
+    },
+    {
+     "code": "225316",
+     "display": "CCO PAC Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225321",
+     "display": "Dialysis Catheter Dressing Change",
+     "target": [
+      {
+       "code": "1230246000",
+       "equivalence": "relatedto",
+       "display": "Replacement of dressing of insertion site of vascular catheter"
+      }
+     ]
+    },
+    {
+     "code": "225322",
+     "display": "Dialysis Catheter Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225328",
+     "display": "Tunneled (Hickman) Change over Wire Date",
+     "target": [
+      {
+       "code": "416504003",
+       "equivalence": "relatedto",
+       "display": "Vascular line exchange over wire"
+      }
+     ]
+    },
+    {
+     "code": "225329",
+     "display": "Tunneled (Hickman) Dressing Change",
+     "target": [
+      {
+       "code": "1230246000",
+       "equivalence": "relatedto",
+       "display": "Replacement of dressing of insertion site of vascular catheter"
+      }
+     ]
+    },
+    {
+     "code": "225330",
+     "display": "Tunneled (Hickman) Insertion Date",
+     "target": [
+      {
+       "code": "442309004",
+       "equivalence": "relatedto",
+       "display": "Insertion of tunnelled central venous catheter"
+      }
+     ]
+    },
+    {
+     "code": "225337",
+     "display": "IABP Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "225338",
+     "display": "IABP Insertion Date",
+     "target": [
+      {
+       "code": "16965008",
+       "equivalence": "relatedto",
+       "display": "Insertion of intra-aortic balloon pump"
+      }
+     ]
+    },
+    {
+     "code": "225344",
+     "display": "Midline Change over Wire Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225345",
+     "display": "Midline Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "225346",
+     "display": "Midline Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225353",
+     "display": "PA Catheter Dressing Change",
+     "target": [
+      {
+       "code": "1230246000",
+       "equivalence": "relatedto",
+       "display": "Replacement of dressing of insertion site of vascular catheter"
+      }
+     ]
+    },
+    {
+     "code": "225354",
+     "display": "PA Catheter Insertion Date",
+     "target": [
+      {
+       "code": "65677008",
+       "equivalence": "relatedto",
+       "display": "Pulmonary catheterisation with Swan-Ganz catheter"
+      }
+     ]
+    },
+    {
+     "code": "225369",
+     "display": "Pheresis Catheter Dressing Change",
+     "target": [
+      {
+       "code": "1230246000",
+       "equivalence": "relatedto",
+       "display": "Replacement of dressing of insertion site of vascular catheter"
+      }
+     ]
+    },
+    {
+     "code": "225370",
+     "display": "Pheresis Catheter Insertion Date",
+     "target": [
+      {
+       "code": "439272007",
+       "equivalence": "relatedto",
+       "display": "Date of procedure"
+      }
+     ]
+    },
+    {
+     "code": "225376",
+     "display": "Indwelling Port (PortaCath) Change over Wire Date",
+     "target": [
+      {
+       "code": "416504003",
+       "equivalence": "relatedto",
+       "display": "Vascular line exchange over wire"
+      }
+     ]
+    },
+    {
+     "code": "225377",
+     "display": "Indwelling Port (PortaCath) Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "225384",
+     "display": "Presep Catheter Change over Wire Date",
+     "target": [
+      {
+       "code": "416504003",
+       "equivalence": "relatedto",
+       "display": "Vascular line exchange over wire"
+      }
+     ]
+    },
+    {
+     "code": "225385",
+     "display": "Presep Catheter Dressing Change",
+     "target": [
+      {
+       "code": "1230246000",
+       "equivalence": "relatedto",
+       "display": "Replacement of dressing of insertion site of vascular catheter"
+      }
+     ]
+    },
+    {
+     "code": "225386",
+     "display": "Presep Catheter Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225392",
+     "display": "Triple Introducer Change over Wire Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225393",
+     "display": "Triple Introducer Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "225753",
+     "display": "22 Gauge Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225755",
+     "display": "18 Gauge Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225757",
+     "display": "14 Gauge Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225758",
+     "display": "RIC Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "225763",
+     "display": "Sheath Change over Wire Date",
+     "target": [
+      {
+       "code": "416504003",
+       "equivalence": "relatedto",
+       "display": "Vascular line exchange over wire"
+      }
+     ]
+    },
+    {
+     "code": "225765",
+     "display": "Sheath Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "226126",
+     "display": "ICP Line Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "226128",
+     "display": "ICP Line Insertion Date",
+     "target": [
+      {
+       "code": "230940006",
+       "equivalence": "relatedto",
+       "display": "Insertion of intracranial pressure catheter"
+      }
+     ]
+    },
+    {
+     "code": "226482",
+     "display": "Blood Clot Outdates",
+     "target": [
+      {
+       "code": "117073009",
+       "equivalence": "relatedto",
+       "display": "Blood product unit expired"
+      }
+     ]
+    },
+    {
+     "code": "226515",
+     "display": "Date of Birth",
+     "target": [
+      {
+       "code": "184099003",
+       "equivalence": "relatedto",
+       "display": "Date of birth"
+      }
+     ]
+    },
+    {
+     "code": "226516",
+     "display": "Discharge Date/Time",
+     "target": [
+      {
+       "code": "442864001",
+       "equivalence": "relatedto",
+       "display": "Date of discharge"
+      }
+     ]
+    },
+    {
+     "code": "226518",
+     "display": "Expected Discharge Date",
+     "target": [
+      {
+       "code": "442864001",
+       "equivalence": "relatedto",
+       "display": "Date of discharge"
+      }
+     ]
+    },
+    {
+     "code": "226724",
+     "display": "Hospital Admit Date",
+     "target": [
+      {
+       "code": "399423000",
+       "equivalence": "relatedto",
+       "display": "Date of admission"
+      }
+     ]
+    },
+    {
+     "code": "227126",
+     "display": "Indwelling (PortaCath) Port #1 Date Accessed",
+     "target": [
+      {
+       "code": "397958003",
+       "equivalence": "relatedto",
+       "display": "Accessing of implantable venous access port"
+      }
+     ]
+    },
+    {
+     "code": "227197",
+     "display": "Indwelling (PortaCath) Port #2 Date Accessed",
+     "target": [
+      {
+       "code": "397958003",
+       "equivalence": "relatedto",
+       "display": "Accessing of implantable venous access port"
+      }
+     ]
+    },
+    {
+     "code": "227361",
+     "display": "Indwelling (PortaCath) Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227584",
+     "display": "GU Catheter D/C Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "227721",
+     "display": "AVA Change over Wire Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "227722",
+     "display": "AVA Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227724",
+     "display": "AVA Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "227790",
+     "display": "Impaired Skin  - Dressing Change #1",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227791",
+     "display": "Impaired Skin  - Dressing Change #2",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227792",
+     "display": "Impaired Skin  - Dressing Change #3",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227793",
+     "display": "Impaired Skin  - Dressing Change #4",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227794",
+     "display": "Impaired Skin  - Dressing Change #5",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227795",
+     "display": "Impaired Skin  - Dressing Change #6",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227796",
+     "display": "Impaired Skin  - Dressing Change #7",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227797",
+     "display": "Impaired Skin  - Dressing Change #8",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227798",
+     "display": "Impaired Skin  - Dressing Change #9",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "227800",
+     "display": "Impaired Skin  - Dressing Change #10",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228166",
+     "display": "Impella Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228168",
+     "display": "Impella Insertion Date",
+     "target": [
+      {
+       "code": "439272007",
+       "equivalence": "relatedto",
+       "display": "Date of procedure"
+      }
+     ]
+    },
+    {
+     "code": "228207",
+     "display": "Tandem Heart Access Line Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228218",
+     "display": "Tandem Heart Return Cannula Dressing Change",
+     "target": [
+      {
+       "code": "1230247009",
+       "equivalence": "relatedto",
+       "display": "Replacement of dressing of insertion site of cannula"
+      }
+     ]
+    },
+    {
+     "code": "228221",
+     "display": "Tandem Heart Return Cannula Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "228291",
+     "display": "IO Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "228331",
+     "display": "PC Time of visit",
+     "target": [
+      {
+       "code": "406544004",
+       "equivalence": "relatedto",
+       "display": "Time of visit"
+      }
+     ]
+    },
+    {
+     "code": "228793",
+     "display": "Pressure ulcer #1- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228794",
+     "display": "Pressure ulcer #2- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228795",
+     "display": "Pressure ulcer #3- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228796",
+     "display": "Pressure ulcer #4- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228797",
+     "display": "Pressure ulcer #5- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228798",
+     "display": "Pressure ulcer #6- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228799",
+     "display": "Pressure ulcer #7- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228800",
+     "display": "Pressure ulcer #8- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228801",
+     "display": "Pressure ulcer #9- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "228802",
+     "display": "Pressure ulcer #10- Dressing change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "229352",
+     "display": "Foley Cath Insertion Date",
+     "target": [
+      {
+       "code": "446583004",
+       "equivalence": "relatedto",
+       "display": "Indwelling catheterisation of urinary bladder"
+      }
+     ]
+    },
+    {
+     "code": "229353",
+     "display": "Foley Cath Removal Date",
+     "target": [
+      {
+       "code": "43748006",
+       "equivalence": "relatedto",
+       "display": "Removal of bladder catheter"
+      }
+     ]
+    },
+    {
+     "code": "229471",
+     "display": "24 Gauge Insertion Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "229542",
+     "display": "EKOS Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "229549",
+     "display": "Avalon Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "229550",
+     "display": "Avalon Insertion Date",
+     "target": [
+      {
+       "code": "439272007",
+       "equivalence": "relatedto",
+       "display": "Date of procedure"
+      }
+     ]
+    },
+    {
+     "code": "229655",
+     "display": "Stroke NCP -  Fam Ed Given Date",
+     "target": [
+      {
+       "code": "439771001",
+       "equivalence": "relatedto",
+       "display": "Date of event"
+      }
+     ]
+    },
+    {
+     "code": "229728",
+     "display": "18 Gauge Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "229730",
+     "display": "14 Gauge Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "229731",
+     "display": "16 Gauge Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "229732",
+     "display": "20 Gauge Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "229733",
+     "display": "22 Gauge Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "229734",
+     "display": "24 Gauge Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
+      }
+     ]
+    },
+    {
+     "code": "229735",
+     "display": "RIC Dressing Change",
+     "target": [
+      {
+       "code": "18949003",
+       "equivalence": "relatedto",
+       "display": "Change of dressing"
       }
      ]
     }
@@ -2544,6 +3661,882 @@
       {
        "equivalence": "unmatched",
        "comment": "Not sent to code-search: MIMIC's d_items dictionary records no volume for this item (param_type is 'Date and time', not 'Numeric'), so no member of (http://loinc.org)(CLASS/\"IO_OUT.*\",STATUS=ACTIVE,PROPERTY=LP6893-4) \u2014 every one of which is a volume \u2014 can be its target."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
+   "target": "http://snomed.info/sct",
+   "element": [
+    {
+     "code": "224183",
+     "display": "PICC Line Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 392020005 |Peripherally inserted central catheter care| at 0.70 for 'PICC Line Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "224187",
+     "display": "PICC Line Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 392020005 |Peripherally inserted central catheter care| at 0.75 for 'PICC Line Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "224261",
+     "display": "Multi Lumen Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 226005007 |Care of central line| at 0.70 for 'Multi Lumen Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "224280",
+     "display": "Multi Lumen Insertion Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 233527006 |Central venous cannula insertion| at 0.70 for 'Multi Lumen Insertion Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "224282",
+     "display": "Multi Lumen Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Multi Lumen Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "224284",
+     "display": "Arterial line Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 422744007 |Arterial catheter care| at 0.75 for 'Arterial line Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "224290",
+     "display": "Arterial line Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 422744007 |Arterial catheter care| at 0.75 for 'Arterial line Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "224292",
+     "display": "Cordis/Introducer Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Cordis/Introducer Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "224298",
+     "display": "Cordis/Introducer Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Cordis/Introducer Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225083",
+     "display": "Pregnancy due date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Pregnancy due date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225213",
+     "display": "Trauma Line Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 225199003 |Changing intravenous infusion line| at 0.60 for 'Trauma Line Cap Change', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225218",
+     "display": "Trauma Line Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Trauma Line Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225221",
+     "display": "CCO PAC Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 422463007 |Pulmonary artery catheter care| at 0.70 for 'CCO PAC Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "225222",
+     "display": "CCO PAC Change over Wire Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 416504003 |Vascular line exchange over wire| at 0.75 for 'CCO PAC Change over Wire Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225226",
+     "display": "CCO PAC Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 422463007 |Pulmonary artery catheter care| at 0.70 for 'CCO PAC Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "225317",
+     "display": "Trauma Line Insertion Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 397914003 |Uncomplicated intravascular line insertion| at 0.60 for 'Trauma Line Insertion Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225318",
+     "display": "Dialysis Catheter Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Dialysis Catheter Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225319",
+     "display": "Dialysis Catheter Change over Wire Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 416504003 |Vascular line exchange over wire| at 0.72 for 'Dialysis Catheter Change over Wire Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225324",
+     "display": "Dialysis CatheterTubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 103713001 |Replacement of catheter| at 0.70 for 'Dialysis CatheterTubing Change', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225327",
+     "display": "Tunneled (Hickman) Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 449584006 |Care of tunneled central venous catheter| at 0.70 for 'Tunneled (Hickman) Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "225332",
+     "display": "Tunneled (Hickman) Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 439355003 |Replacement of tunneled centrally inserted central venous catheter| at 0.85 for 'Tunneled (Hickman) Tubing Change', but changing the tubing does not replace the catheter \u2014 replacing it is what the sibling column 225328 Tunneled (Hickman) Change over Wire Date records. The concept is right about the device and wrong about the action, so the mapping would assert something this column does not record."
+      }
+     ]
+    },
+    {
+     "code": "225335",
+     "display": "IABP Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 34475007 |Intraaortic balloon pump maintenance| at 0.60 for 'IABP Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "225336",
+     "display": "IABP Change over Wire Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 416504003 |Vascular line exchange over wire| at 0.60 for 'IABP Change over Wire Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225340",
+     "display": "IABP Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 34475007 |Intraaortic balloon pump maintenance| at 0.75 for 'IABP Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "225343",
+     "display": "Midline Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Midline Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225348",
+     "display": "Midline Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Midline Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225351",
+     "display": "PA Catheter Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 422463007 |Pulmonary artery catheter care| at 0.70 for 'PA Catheter Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "225352",
+     "display": "PA Catheter Change over Wire Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 416504003 |Vascular line exchange over wire| at 0.75 for 'PA Catheter Change over Wire Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225356",
+     "display": "PA Catheter Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 422463007 |Pulmonary artery catheter care| at 0.75 for 'PA Catheter Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "225367",
+     "display": "Pheresis Catheter Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Pheresis Catheter Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225368",
+     "display": "Pheresis Catheter Change over Wire Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 439272007 |Date of procedure| at 0.70 for 'Pheresis Catheter Change over Wire Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225372",
+     "display": "Pheresis Catheter Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 103713001 |Replacement of catheter| at 0.75 for 'Pheresis Catheter Tubing Change', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225375",
+     "display": "Indwelling Port (PortaCath) Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Indwelling Port (PortaCath) Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225378",
+     "display": "Indwelling Port (PortaCath) Insertion Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 1507661000168104 |Insertion of central venous catheter with subcutaneous access port| at 0.85 but that concept is not in the SNOMED international core."
+      }
+     ]
+    },
+    {
+     "code": "225380",
+     "display": "Indwelling Port (PortaCath)Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Indwelling Port (PortaCath)Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225383",
+     "display": "Presep Catheter Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 103713001 |Replacement of catheter| at 0.60 for 'Presep Catheter Cap Change', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225390",
+     "display": "Presep Catheter Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Presep Catheter Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225391",
+     "display": "Triple Introducer Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Triple Introducer Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225394",
+     "display": "Triple Introducer Insertion Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Triple Introducer Insertion Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225396",
+     "display": "Triple Introducer Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Triple Introducer Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225754",
+     "display": "20 Gauge Insertion Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for '20 Gauge Insertion Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225756",
+     "display": "16 Gauge Insertion Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 439771001 |Date of event| at 0.60 for '16 Gauge Insertion Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "225762",
+     "display": "Sheath Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Sheath Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225766",
+     "display": "Sheath Insertion Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Sheath Insertion Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "225769",
+     "display": "Sheath Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Sheath Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "226132",
+     "display": "ICP Line Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 21151009 |Intracranial pressure monitor maintenance| at 0.70 for 'ICP Line Tubing Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "226532",
+     "display": "Organ Bank Notified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Organ Bank Notified' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "226719",
+     "display": "Last menses",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Last menses' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "227198",
+     "display": "Indwelling (PortaCath) Port #1 Date De-accessed",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Indwelling (PortaCath) Port Date De-accessed' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "227199",
+     "display": "Indwelling (PortaCath) Port #2 Date De-accessed",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Indwelling (PortaCath) Port Date De-accessed' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "227541",
+     "display": "SvO2 Calibrated",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 250551006 |Venous oxygen saturation measurement| at 0.70 for 'SvO2 Calibrated', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "227542",
+     "display": "ScvO2 (Presep) Calibrated",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'ScvO2 (Presep) Calibrated' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "227720",
+     "display": "AVA Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'AVA Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "227729",
+     "display": "AVA Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'AVA Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "227817",
+     "display": "Referral Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 3457005 |Patient referral| at 0.70 for 'Referral Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "227907",
+     "display": "Date - Student",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 439771001 |Date of event| at 0.75 for 'Date - Student', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "227911",
+     "display": "Date - Therapist",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 439771001 |Date of event| at 0.70 for 'Date - Therapist', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "228160",
+     "display": "Impella Aortic Pressure Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Impella Aortic Pressure Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "228165",
+     "display": "Impella Daily Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Impella Daily Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "228209",
+     "display": "Tandem Heart Access Line Insertion Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 439272007 |Date of procedure| at 0.75 for 'Tandem Heart Access Line Insertion Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "228215",
+     "display": "Tandem Heart Access Line Tubing Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Tandem Heart Access Line Tubing Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "228266",
+     "display": "FM Date/Time",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 439771001 |Date of event| at 0.75 for 'FM Date/Time', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "228321",
+     "display": "PC Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'PC Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "228631",
+     "display": "Date signed",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Date signed' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "229541",
+     "display": "EKOS Insertion Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'EKOS Insertion Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "229555",
+     "display": "Cardiac Assist Cannula Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Cardiac Assist Cannula Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "229556",
+     "display": "Cardiac Assist Cannula Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Cardiac Assist Cannula Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "229643",
+     "display": "Stroke NCP - Ed Given Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 439771001 |Date of event| at 0.75 for 'Stroke NCP - Ed Given Date', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229651",
+     "display": "Stroke NCP - Water Swallow Date",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'Stroke NCP - Water Swallow Date' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "229729",
+     "display": "18 Gauge Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 225199003 |Changing intravenous infusion line| at 0.60 for '18 Gauge Cap Change', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229736",
+     "display": "14 Gauge Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 423687009 |Peripheral intravenous catheter care| at 0.60 for '14 Gauge Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "229737",
+     "display": "16 Gauge Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 423687009 |Peripheral intravenous catheter care| at 0.75 for '16 Gauge Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "229738",
+     "display": "20 Gauge Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for '20 Gauge Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "229739",
+     "display": "22 Gauge Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 225199003 |Changing intravenous infusion line| at 0.70 for '22 Gauge Cap Change', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229740",
+     "display": "24 Gauge Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 423687009 |Peripheral intravenous catheter care| at 0.70 for '24 Gauge Cap Change', a generic device-care concept. It is equally true of this item's insertion, dressing, cap, tubing and wire changes, so mapping it here would make those distinct flowsheet columns indistinguishable."
+      }
+     ]
+    },
+    {
+     "code": "229741",
+     "display": "RIC Cap Change",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match for 'RIC Cap Change' within (<<71388002 OR <<404684003 OR <<272379006 OR <<364713004)."
+      }
+     ]
+    },
+    {
+     "code": "229883",
+     "display": "Pressure ulcer #1- Date Indentified_OLD_1",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 439771001 |Date of event| at 0.70 for 'Pressure ulcer- Date Indentified_OLD_1', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229884",
+     "display": "Pressure Ulcer #1- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229885",
+     "display": "Pressure Ulcer #2- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229886",
+     "display": "Pressure Ulcer #3- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229887",
+     "display": "Pressure Ulcer #4- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229888",
+     "display": "Pressure Ulcer #5- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229889",
+     "display": "Pressure Ulcer #6- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229890",
+     "display": "Pressure Ulcer #7- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229891",
+     "display": "Pressure Ulcer #8- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229892",
+     "display": "Pressure Ulcer #9- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "229893",
+     "display": "Pressure Ulcer #10- Date Indentified",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 298059007 |Date of onset| at 0.70 for 'Pressure Ulcer- Date Indentified', below the 0.8 threshold."
       }
      ]
     }
