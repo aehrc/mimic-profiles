@@ -253,11 +253,12 @@ labevents-table: ## regenerate conceptmaps/labevents-loinc.csv from code-search
 # and SNOMED CT (<<363787002 |Observable entity|) only where LOINC declined; the
 # two are never compared on confidence. The bare label is sent with NO context
 # template — injecting the dictionary's `category` was probed and rejected for
-# manufacturing an APACHE IV score for a regression coefficient — and the 133
-# `Care Plans` and 38 `Alarms` items are declined WITHOUT being searched,
-# because both answer above threshold and wrongly and no constraint catches it.
-# The generator's docstring carries that evidence and the union-vs-split
-# constraint history.
+# manufacturing an APACHE IV score for a regression coefficient, and re-probed
+# against the first full run's abbreviation defects, which it also failed — and
+# 216 documentation, attestation and alarm-limit items are declined WITHOUT
+# being searched, because they answer above threshold and wrongly and no
+# constraint catches it. The generator's docstring carries that evidence and the
+# union-vs-split constraint history.
 #
 # The longest run here: 2,982 items collapse to ~2,200 searches once the `#<n>`
 # instance index is stripped, and every one that LOINC declines costs a second

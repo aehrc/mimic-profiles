@@ -6,8 +6,8 @@
  "version": "1.0.0",
  "date": "2026-08-06",
  "source_total": 5727,
- "mapped": 3297,
- "unmapped": 2430,
+ "mapped": 3283,
+ "unmapped": 2444,
  "by_source": [
   {
    "system": "http://loinc.org",
@@ -15,7 +15,7 @@
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-chartevents-d-items",
-   "mapped": 1231
+   "mapped": 1217
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
@@ -41,20 +41,20 @@
  "by_target_system": [
   {
    "system": "http://loinc.org",
-   "mappings": 2202
+   "mappings": 2191
   },
   {
    "system": "http://snomed.info/sct",
-   "mappings": 1095
+   "mappings": 1092
   }
  ],
  "by_equivalence": {
   "equivalent": 9,
-  "relatedto": 3288,
-  "unmatched": 2430
+  "relatedto": 3274,
+  "unmatched": 2444
  },
  "unmapped_by_reason": {
-  "no-suitable-concept": 2430
+  "no-suitable-concept": 2444
  },
  "by_stream": [
   {
@@ -2353,42 +2353,42 @@
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-chartevents-d-items",
    "method": "table",
    "total": 2982,
-   "mapped": 1231,
-   "unmapped": 1751,
-   "coverage_pct": 41.3,
+   "mapped": 1217,
+   "unmapped": 1765,
+   "coverage_pct": 40.8,
    "target_systems": [
     "http://loinc.org",
     "http://snomed.info/sct"
    ],
    "by_equivalence": {
-    "relatedto": 1231,
-    "unmatched": 1751
+    "relatedto": 1217,
+    "unmatched": 1765
    },
    "unmapped_by_reason": {
-    "no-suitable-concept": 1751
+    "no-suitable-concept": 1765
    },
    "codesearch": {
     "status": {
-     "below-threshold": 333,
-     "no-match": 1247,
-     "not-searchable": 171,
-     "ok": 1231
+     "below-threshold": 331,
+     "no-match": 1218,
+     "not-searchable": 216,
+     "ok": 1217
     },
     "confidence": {
      "min": 0.5,
      "median": 0.85,
-     "mean": 0.819,
+     "mean": 0.818,
      "max": 1.0
     },
     "constraint": "(http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE)",
     "template": "{}",
     "confidence_threshold": 0.8,
     "near_threshold": {
-     "0.05": 86,
-     "0.1": 245,
-     "0.2": 326,
-     "0.3": 333,
-     "0.4": 333
+     "0.05": 85,
+     "0.1": 244,
+     "0.2": 324,
+     "0.3": 331,
+     "0.4": 331
     },
     "near_misses": [
      {
@@ -2525,15 +2525,6 @@
       "confidence": 0.75,
       "gap": 0.05,
       "reasoning": "Field name combines Creatinine with Apache II; serum creatinine is the clinical referent"
-     },
-     {
-      "mimic_code": "229855",
-      "mimic_display": "Delta P Alarm (CH)",
-      "proposed_code": "76152-8",
-      "proposed_display": "Airway pressure delta setting Ventilator",
-      "confidence": 0.75,
-      "gap": 0.05,
-      "reasoning": "Delta P = airway pressure delta; alarm setting on ventilator"
      },
      {
       "mimic_code": "225637",
@@ -5299,15 +5290,6 @@
       "reasoning": "Dressing as functional activity; UE qualifier not captured by any code"
      },
      {
-      "mimic_code": "228467",
-      "mimic_display": "Verification (Gen Proc)",
-      "proposed_code": "81680-1",
-      "proposed_display": "Preoperative verification process panel",
-      "confidence": 0.6,
-      "gap": 0.2,
-      "reasoning": "Only candidate capturing 'Verification'; panel vs note type mismatch"
-     },
-     {
       "mimic_code": "229481",
       "mimic_display": "Verification of  (SBNET)",
       "proposed_code": "98250-4",
@@ -5392,6 +5374,6 @@
    }
   }
  ],
- "target_valueset_codes": 2178,
+ "target_valueset_codes": 2174,
  "extras": {}
 }

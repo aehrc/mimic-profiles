@@ -6383,6 +6383,17 @@
      ]
     },
     {
+     "code": "227674",
+     "display": "Face to Face Eval (Non-Violent)",
+     "target": [
+      {
+       "code": "51848-0",
+       "equivalence": "relatedto",
+       "display": "Evaluation note"
+      }
+     ]
+    },
+    {
      "code": "227685",
      "display": "ZCentral Venous O2% Sat",
      "target": [
@@ -7435,105 +7446,6 @@
        "code": "75918-3",
        "equivalence": "relatedto",
        "display": "Bispectral index Cerebral cortex Electroencephalogram (EEG)"
-      }
-     ]
-    },
-    {
-     "code": "228460",
-     "display": "Indication (Gen Proc)",
-     "target": [
-      {
-       "code": "59768-2",
-       "equivalence": "relatedto",
-       "display": "Procedure indications [Interpretation] Narrative"
-      }
-     ]
-    },
-    {
-     "code": "228463",
-     "display": "Acuity (Gen Proc)",
-     "target": [
-      {
-       "code": "56839-4",
-       "equivalence": "relatedto",
-       "display": "Acuity assessment Narrative"
-      }
-     ]
-    },
-    {
-     "code": "228465",
-     "display": "Timeout Performed By (Gen Proc)",
-     "target": [
-      {
-       "code": "81686-8",
-       "equivalence": "relatedto",
-       "display": "Performed preoperative time-out assessment"
-      }
-     ]
-    },
-    {
-     "code": "228466",
-     "display": "Patient Identified Correctly (Gen Proc)",
-     "target": [
-      {
-       "code": "81681-9",
-       "equivalence": "relatedto",
-       "display": "Verified two types of patient identification"
-      }
-     ]
-    },
-    {
-     "code": "228473",
-     "display": "Conscious Sedation (Gen Proc)",
-     "target": [
-      {
-       "code": "90353-4",
-       "equivalence": "relatedto",
-       "display": "Conscious sedation procedure note"
-      }
-     ]
-    },
-    {
-     "code": "228474",
-     "display": "Patient Position (Gen Proc)",
-     "target": [
-      {
-       "code": "81684-3",
-       "equivalence": "relatedto",
-       "display": "Verified patient position"
-      }
-     ]
-    },
-    {
-     "code": "228475",
-     "display": "Side (Gen Proc)",
-     "target": [
-      {
-       "code": "81682-7",
-       "equivalence": "relatedto",
-       "display": "Verified side andor site of procedure"
-      }
-     ]
-    },
-    {
-     "code": "228478",
-     "display": "Number of Attempts (Gen Proc)",
-     "target": [
-      {
-       "code": "67543-9",
-       "equivalence": "relatedto",
-       "display": "Procedure attempts [#]"
-      }
-     ]
-    },
-    {
-     "code": "228485",
-     "display": "Complications (Gen Proc)",
-     "target": [
-      {
-       "code": "67545-4",
-       "equivalence": "relatedto",
-       "display": "Procedure complication NEMSIS"
       }
      ]
     },
@@ -9221,17 +9133,6 @@
      ]
     },
     {
-     "code": "229791",
-     "display": "Estimated Blood Loss (GenProc)",
-     "target": [
-      {
-       "code": "59770-8",
-       "equivalence": "relatedto",
-       "display": "Procedure estimated blood loss Narrative"
-      }
-     ]
-    },
-    {
      "code": "229792",
      "display": "Estimated Blood Loss (Intub)",
      "target": [
@@ -9364,17 +9265,6 @@
      ]
     },
     {
-     "code": "229847",
-     "display": "SvO2 Alarm (Lo) (CH)",
-     "target": [
-      {
-       "code": "19224-5",
-       "equivalence": "relatedto",
-       "display": "Oxygen saturation in Mixed venous blood"
-      }
-     ]
-    },
-    {
      "code": "229854",
      "display": "Pressures Off (CH)",
      "target": [
@@ -9476,17 +9366,6 @@
     {
      "code": "230070",
      "display": "Documented in DC Summary (Aline)",
-     "target": [
-      {
-       "code": "18842-5",
-       "equivalence": "relatedto",
-       "display": "Discharge summary"
-      }
-     ]
-    },
-    {
-     "code": "230072",
-     "display": "Documented on DC Summary (GenProc)",
      "target": [
       {
        "code": "18842-5",
@@ -12329,28 +12208,6 @@
      ]
     },
     {
-     "code": "228462",
-     "display": "Patient (Gen Proc)",
-     "target": [
-      {
-       "code": "363791007",
-       "equivalence": "relatedto",
-       "display": "General appearance of patient"
-      }
-     ]
-    },
-    {
-     "code": "228468",
-     "display": "Hand Cleansing (Gen Proc)",
-     "target": [
-      {
-       "code": "258154008",
-       "equivalence": "relatedto",
-       "display": "Washing hands"
-      }
-     ]
-    },
-    {
      "code": "228506",
      "display": "Pressure Ulcer #1- Location",
      "target": [
@@ -13255,17 +13112,6 @@
     {
      "code": "229255",
      "display": "Flow (RVAD)",
-     "target": [
-      {
-       "code": "444479000",
-       "equivalence": "relatedto",
-       "display": "Rate of blood flow through cardiovascular device"
-      }
-     ]
-    },
-    {
-     "code": "229258",
-     "display": "Flow Alarm (Lo) (LVAD)",
      "target": [
       {
        "code": "444479000",
@@ -42237,7 +42083,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'IABP Alarms Activated' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'IABP Alarms Activated' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -44662,16 +44508,6 @@
      ]
     },
     {
-     "code": "227674",
-     "display": "Face to Face Eval (Non-Violent)",
-     "target": [
-      {
-       "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Face to Face Eval (Non-Violent)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Face to Face Eval (Non-Violent)' within <<363787002."
-      }
-     ]
-    },
-    {
      "code": "227675",
      "display": "Face to Face Eval (Violent)",
      "target": [
@@ -45447,7 +45283,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Restraint Device (Non-violent)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Restraint Device (Non-violent)' within <<363787002."
+       "comment": "LOINC: no match for 'Restraint Device (Non-Violent)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Restraint Device (Non-Violent)' within <<363787002."
       }
      ]
     },
@@ -47697,7 +47533,57 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Location (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Location (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228460",
+     "display": "Indication (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228462",
+     "display": "Patient (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228463",
+     "display": "Acuity (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228465",
+     "display": "Timeout Performed By (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228466",
+     "display": "Patient Identified Correctly (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -47707,7 +47593,17 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: proposed 81680-1 |Preoperative verification process panel| at 0.60, below the 0.8 threshold. SNOMED CT: no match for 'Verification (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228468",
+     "display": "Hand Cleansing (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -47717,7 +47613,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Site Cleansed With ChloraPrep (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Site Cleansed With ChloraPrep (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -47727,7 +47623,37 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Barrier Precautions (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: proposed 40174006 |Isolation procedure| at 0.85 but that code is not a member of <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228473",
+     "display": "Conscious Sedation (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228474",
+     "display": "Patient Position (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228475",
+     "display": "Side (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -47737,7 +47663,17 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'With Ultrasound (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'With Ultrasound (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228478",
+     "display": "Number of Attempts (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -47747,7 +47683,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Number of Operators (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Number of Operators (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -47757,7 +47693,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Dressing Applied (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Dressing Applied (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -47767,7 +47703,17 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Follow Up Xray (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Follow Up Xray (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "228485",
+     "display": "Complications (Gen Proc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -47777,7 +47723,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Clinical Operator (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Clinical Operator (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -47787,7 +47733,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Present and Agree (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Present and Agree (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -50767,7 +50713,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Specrecbyhand (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Specrecbyhand (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -50777,7 +50723,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Specreclabeled (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Specreclabeled (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -50787,7 +50733,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'SpecrecPOE (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'SpecrecPOE (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -50797,7 +50743,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Specrectolabby (Gen Proc)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Specrectolabby (Gen Proc)' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -50807,7 +50753,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Specrectolabbyother (Gen Proc)old' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Specrectolabbyother (Gen Proc)old' within <<363787002."
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -50927,7 +50873,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Flow Alarm (Hi) (LVAD)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Flow Alarm (Hi) (LVAD)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -50937,7 +50883,17 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Flow Alarm (Hi) (RVAD)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Flow Alarm (Hi) (RVAD)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
+     "code": "229258",
+     "display": "Flow Alarm (Lo) (LVAD)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -50947,7 +50903,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Flow Alarm (Lo) (RVAD)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Flow Alarm (Lo) (RVAD)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -51057,7 +51013,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Flow Alarm (Hi) (ECMO)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Flow Alarm (Hi) (ECMO)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -51067,7 +51023,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Flow Alarm (Lo) (ECMO)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Flow Alarm (Lo) (ECMO)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -51217,7 +51173,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Low Flow Alarm (HeartWare)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Low Flow Alarm (HeartWare)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -51227,7 +51183,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'High Power Alarm (HeartWare)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'High Power Alarm (HeartWare)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -52952,6 +52908,16 @@
      ]
     },
     {
+     "code": "229791",
+     "display": "Estimated Blood Loss (GenProc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
      "code": "229813",
      "display": "Reason for Trigger (RN)",
      "target": [
@@ -52997,7 +52963,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'High Watts Alarm (VAD)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'High Watts Alarm (VAD)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -53007,7 +52973,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Low Flow Alarm (VAD)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Low Flow Alarm (VAD)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -53137,7 +53103,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Flow Alarm (Hi) (CH)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Flow Alarm (Hi) (CH)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -53147,7 +53113,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Flow Alarm (Lo) (CH)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Flow Alarm (Lo) (CH)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -53172,12 +53138,22 @@
      ]
     },
     {
+     "code": "229847",
+     "display": "SvO2 Alarm (Lo) (CH)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
+      }
+     ]
+    },
+    {
      "code": "229848",
      "display": "Pven Alarm (Lo) (CH)",
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Pven Alarm (Lo) (CH)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Pven Alarm (Lo) (CH)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -53187,7 +53163,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: no match for 'Part Alarm (Hi) (CH)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Part Alarm (Hi) (CH)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -53237,7 +53213,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "LOINC: proposed 76152-8 |Airway pressure delta setting Ventilator| at 0.75, below the 0.8 threshold. SNOMED CT: no match for 'Delta P Alarm (CH)' within <<363787002."
+       "comment": "Not sent to code-search: its label names an alarm, so it is a device alarm limit \u2014 a monitor setting rather than a measurement of the patient \u2014 whatever category the dictionary files it under. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },
@@ -53828,6 +53804,16 @@
       {
        "equivalence": "unmatched",
        "comment": "LOINC: no match for 'Documented in DC Summary (CVL)' within (http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE). SNOMED CT: no match for 'Documented in DC Summary (CVL)' within <<363787002."
+      }
+     ]
+    },
+    {
+     "code": "230072",
+     "display": "Documented on DC Summary (GenProc)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not sent to code-search: every item is a procedural-workflow attestation \u2014 `Timeout Performed By`, `Patient Identified Correctly`, `Hand Cleansing prior to procedure` \u2014 recording that a step of the safety checklist happened, not an observation of the patient. An answer here would be the service coding a string MIMIC does not stand behind."
       }
      ]
     },

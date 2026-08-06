@@ -4212,10 +4212,6 @@
       "display": "Procedure attempts [#]"
      },
      {
-      "code": "67545-4",
-      "display": "Procedure complication NEMSIS"
-     },
-     {
       "code": "67574-4",
       "display": "Reason CPR resuscitation discontinued"
      },
@@ -4912,10 +4908,6 @@
       "display": "Verified two types of patient identification"
      },
      {
-      "code": "81682-7",
-      "display": "Verified side andor site of procedure"
-     },
-     {
       "code": "81684-3",
       "display": "Verified patient position"
      },
@@ -5290,10 +5282,6 @@
      {
       "code": "9033-2",
       "display": "Type of GI tube"
-     },
-     {
-      "code": "90353-4",
-      "display": "Conscious sedation procedure note"
      },
      {
       "code": "9110-8",
@@ -6931,10 +6919,6 @@
      {
       "code": "363769000",
       "display": "Entamoeba histolytica/Entamoeba dispar complex"
-     },
-     {
-      "code": "363791007",
-      "display": "General appearance of patient"
      },
      {
       "code": "363803005",

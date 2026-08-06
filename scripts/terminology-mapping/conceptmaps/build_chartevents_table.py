@@ -46,8 +46,8 @@ Reading the 2,982 labels against their `category` there are four kinds:
 
   ~500  NOT AN OBSERVATION OF THE PATIENT — care-plan documentation slots, note
         templates, device alarm limits, workflow fields. Most decline on the
-        constraint. Two categories do not, and are pre-filtered — see BOTH
-        PRE-SEARCH DECLINES.
+        constraint. 216 of them demonstrably do not, and are pre-filtered — see
+        THE PRE-SEARCH DECLINES.
 
 Neither terminology covers this population alone, which is what makes the
 mixed-target shape worth its machinery. Note that build_outputevents_table.py
@@ -103,11 +103,20 @@ passes with an exactly-one-may-answer rule.
 It did not reproduce on the deployment that generates this table. There, the
 clinical pass finds `19946-3` directly, the laboratory pass finds `718-7`
 directly, and the union returns exactly what the correct narrow pass returns —
-inventing nothing and suppressing nothing, stable over three runs. With no
-measured harm from merging, the split would be complexity without a correctness
-argument, so this stream uses ONE union pass. The first full run's unmapped CSV
-is a far better sample than any probe for revisiting that, and it is where a
-merge pathology would show up across all 2,341 queries rather than two.
+inventing nothing and suppressing nothing. With no measured harm from merging,
+the split would be complexity without a correctness argument, so this stream
+uses ONE union pass.
+
+(Those probe cells were re-run and reported "stable". They were not: the service
+caches on (text, url, system), so a repeat of an identical query is a cache hit
+and bit-identical BY CONSTRUCTION. No probe in this file has a measured
+variance, and nothing here should be read as claiming one. What the union rests
+on instead is the first full run: across all 2,124 queries only 9 of 859 LOINC
+rows are non-`Labs` items landing on Laboratory codes, ~1%, and every one of
+those is caused by a bare abbreviation rather than by the merged pool — a
+disjoint Laboratory pass would have found the same code with no clinical-pass
+competitor to displace it. Meanwhile the union carries `Labs` at 88.8%, the
+best-covered category in the stream.)
 
 Which is also the reason this docstring names a deployment at all. Table
 generation is the one stage whose output is not a pure function of this repo,
@@ -154,10 +163,54 @@ service codes the sentence when the label carries no clinical content, which is
 the failure build_labevents_table.py records for `category` and the reason that
 stream's query key is (label, fluid) and not (label, fluid, category).
 
-BOTH PRE-SEARCH DECLINES are read off the dictionary's `category` column and
-applied to every item identically — the build_labevents_table.py pattern, where
-an item the dictionary disqualifies is declined WITHOUT being searched because a
-search it should not have been sent would be answered confidently anyway.
+RE-TESTED AFTER THE FIRST FULL RUN, because that run exposed a failure class the
+20-label probe set did not contain: ABBREVIATIONS the category would have
+disambiguated. `224017 GU Catheter Size` -> `78945-3 |Guiding catheter size|`,
+reasoning "GU = Guiding" — GU is Genitourinary, so 674k Foley sizes are filed as
+cardiac guiding-catheter sizes. `224702 PCV Level` (Respiratory, hence Pressure
+Control Ventilation) -> a haematocrit. `228273 FM Measures` (Family Mtg Note) ->
+fetal movement. `220561 ZINR` -> `286617004 |Zinc intake|`. That is a real cost
+of the identity wrapper and it deserved a decisive experiment rather than a
+defence of the original choice.
+
+Two candidates were run over 25 items — the 12 known abbreviation defects, 3
+contentless labels the wrapper protects, 3 rows where the category might
+REINFORCE an error, and 7 correct controls — through the full resolution rule,
+gate and threshold. Bar set in advance: fix >= 6 defects, rescue NO contentless
+label, disturb <= 1 control.
+
+    T1  `ICU flowsheet observation charted under {category}: {label}`
+        6 of 12 fixed, but 2 rescues and 2 controls lost         FAIL
+    T2  `{label} ({category})`
+        4 of 12 fixed, 2 rescues, 2 controls lost                FAIL
+
+T2 existed to test the theory that a parenthetical adds context without
+contributing a codeable noun phrase. FALSIFIED: the CATEGORY VALUE is itself
+codeable content. Both templates answered `226893 Coefficient Hospital
+Mortality` with `1351474005 |APACHE IV score|`, T2 reasoning "APACHE IV score
+matches; coefficient/version qualifiers not separately coded" — it took "APACHE
+IV" from the category string and discarded the word the label is about. T1 coded
+its own words again too, on `229570 Plan-ID` -> `84243-5 |Nurse Intensive care
+unit Flowsheet|`.
+
+Both also lose `224082 Turn` -> `282984004 |Ability to turn|` (2.41M
+occurrences) outright, displace `224093 Position`, and defeat the service's
+deterministic fast path so that every query goes through LLM evaluation with
+confidences compressed toward 0.85 — flattening the signal a reviewer triages
+on. T2 makes one known defect HARDER to catch, raising `226766
+MapApacheIIValue` on the wrong `9264-3 |Apache II score|` from 0.85 to 0.95.
+
+So the abbreviation defects stay, documented rather than fixed: no template
+setting removes them without buying worse. They are the `227719 AVA` and
+`50823 Required O2` case again — a target that is perfectly good for some other
+source and simply wrong for this one — and the only remaining lever is a
+per-item abbreviation glossary, which is curation against rows seen to fail and
+is what COMMENT_OVERRIDES exists to forbid.
+
+THE PRE-SEARCH DECLINES, 216 items, read off the dictionary and applied to every
+item identically — the build_labevents_table.py pattern, where an item the
+dictionary disqualifies is declined WITHOUT being searched because a search it
+should not have been sent would be answered confidently anyway.
 
   Care Plans (133)  every one is `<X> NCP - {Goal | Expected outcomes |
                     Outcomes met | Interventions}`, a nursing-care-plan
@@ -177,27 +230,64 @@ search it should not have been sent would be answered confidently anyway.
                     coding it as the measurement makes the data say a value was
                     observed that never was.
 
-Both are uniform properties of a dictionary column, not lists of labels seen to
-come back wrong — which is the distinction build_micro_test_table.py draws when
-it declines to write a reject list, and the reason those two categories are
-pre-filtered while the other ~360 note, restraint and workflow items are
-searched normally and expected to decline on the constraint.
+  Generic Proc      (28) every one is a procedural-workflow attestation —
+  Note              `Timeout Performed By`, `Patient Identified Correctly`,
+                    `Side (Gen Proc)`, `Hand Cleansing prior to procedure`. The
+                    first full run mapped 13 of them, to the safety-checklist
+                    LOINC codes and to `258154008 |Washing hands|`: all
+                    structurally the Care Plans case, a record that a step
+                    happened rather than an observation of the patient.
 
-ONE QUERY PER COLLAPSED LABEL, 2,811 searchable items collapsing to 2,172
-searches. 629 of the 2,982 labels carry an instance index (`Impaired Skin Site
-#1` … `#10`, `Angio Site # 2`), and stripping `#\s*\d+` leaves 94 families. This
-is a correctness rule and not an optimisation, the same one
+  alarms by label   (17) an alarm limit does not stop being one because the
+                    dictionary filed it under the device. The Centrimag, ECMO,
+                    HeartWare, VAD and IABP flow and pressure alarms sit outside
+                    `Alarms`, and 2 of them mapped in the first run —
+                    `229847 SvO2 Alarm (Lo) (CH)` to `19224-5 |Mixed venous
+                    oxygen saturation|`, `229258 Flow Alarm (Lo) (LVAD)` to
+                    `444479000 |Flow rate|` — a threshold SETTING coded as the
+                    measurement it is a threshold for. See ALARM_LABEL_RE.
+
+Every one is a uniform property of a dictionary field, not a list of labels seen
+to come back wrong — the distinction build_micro_test_table.py draws when it
+declines to write a reject list. That is also why `Restraint/Support Systems`,
+`OT Notes`, `MD Progress Note` and `Adm History/FHPA` are NOT pre-filtered
+despite each holding some documentation slots: the first run mapped genuine
+functional-status observables there (`227831 Grooming` -> `96767-9`,
+`227854 Weight Bearing Status` -> `364579007`, `227346 Mental status` ->
+`8693-4`), so a blanket decline would destroy value that the constraint is
+successfully finding.
+
+ONE QUERY PER COLLAPSED LABEL, CASE-FOLDED — 2,766 searchable items collapsing
+to 2,124 searches. 629 of the 2,982 labels carry an instance index (`Impaired
+Skin Site #1` … `#10`, `Angio Site # 2`), and stripping `#\s*\d+` leaves 94
+families. This is a correctness rule and not an optimisation, the same one
 build_micro_test_table.py and build_labevents_table.py make: nothing
 distinguishes `Pressure Ulcer Stage #3` from `#7` but the index, so a map where
 they receive different targets is wrong however plausible each row looks alone.
 The fan-out makes divergence unrepresentable and main() asserts it anyway.
 
-The collapsed label is also the whole query key, which was measured rather than
-assumed: keying on (collapsed label, category) yields the identical 2,341
+The key is case-folded for the same reason, learned from the first full run: the
+service is not case-stable, and `Face to Face Eval (Non-violent)` mapped to
+`51848-0` while `(Non-Violent)` came back unmapped — one capital letter, three
+affected families. Casing is not meaning.
+
+The collapsed label is otherwise the whole query key, which was measured rather
+than assumed: keying on (collapsed label, category) yields the identical count of
 distinct keys over the full population, i.e. no collapsed label spans two
 categories, so category can add nothing to the key. That matters because the
 template sends the label alone — a key finer than the text sent would issue two
 identical searches and invite them to disagree.
+
+NOT collapsed: LATERALITY. `RUE`/`LUE`/`RLE`/`LLE Temp` disagree in the first
+run's output and it is tempting to fold them the way the instance index is
+folded. It would be wrong. LOINC carries genuinely lateralised codes and 24
+mapped rows use them — `Dorsal PedPulse R` -> `74782-4 |… Dorsal pedal artery -
+right|` and `Dorsal PedPulse L` -> `8902-9 |… - left|` are CORRECT and must
+differ, as are both `Pupil Size` items. A regex cannot tell a family whose
+target has no laterality (where the limbs should agree) from one whose target
+does (where they must not), so folding would trade four noisy families for four
+correctly lateralised ones. The limb divergence is a real defect with no clean
+instrument; it is left standing rather than papered over.
 
 THE GATE is per system, because the two terminologies fail differently. LOINC:
 membership asserted with $validate-code against the constraint rather than
@@ -314,7 +404,28 @@ DECLINED_CATEGORIES = {
     "Alarms": ("every item is a `<X> Alarm - {High | Low}` device alarm limit, "
                "which is a monitor setting rather than a measurement of the "
                "patient"),
+    "Generic Proc Note": ("every item is a procedural-workflow attestation — "
+                          "`Timeout Performed By`, `Patient Identified "
+                          "Correctly`, `Hand Cleansing prior to procedure` — "
+                          "recording that a step of the safety checklist "
+                          "happened, not an observation of the patient"),
 }
+
+# An alarm limit does not stop being an alarm limit because the dictionary filed
+# it under the device rather than under `Alarms`. 17 items match this outside the
+# three categories above — the Centrimag, ECMO, HeartWare, VAD and IABP flow and
+# pressure alarms — and the category filter alone reaches none of them.
+#
+# This is the category rule's OWN rationale, applied where the categorisation
+# does not reach, and not a new judgement: `229847 SvO2 Alarm (Lo) (CH)` was
+# measured mapping to `19224-5 |Mixed venous oxygen saturation|` and
+# `229258 Flow Alarm (Lo) (LVAD)` to `444479000 |Flow rate|`, i.e. a threshold
+# SETTING coded as the measurement it is a threshold for — exactly what the
+# `Alarms` category is pre-filtered to prevent. The other 15 declined on the
+# constraint anyway, so the rule mostly confirms what the search already does;
+# it is here because "mostly" is not a property a committed table should rest
+# on.
+ALARM_LABEL_RE = re.compile(r"\bAlarms?\b", re.IGNORECASE)
 
 # --------------------------------------------------------------------------- #
 # Paths and provenance
@@ -401,9 +512,10 @@ def dictionary(expected):
     """
     if not D_ITEMS_GZ.is_file():
         sys.exit(f"  {D_ITEMS_GZ} not found. It carries the `category` column "
-                 f"the pre-filter reads — without it the 133 Care Plans and 38 "
-                 f"Alarms items would be searched, and both were measured "
-                 f"answering above threshold and wrongly. Download MIMIC-IV "
+                 f"the pre-filter reads — without it the 216 documentation, "
+                 f"attestation and alarm-limit items would be searched, and "
+                 f"those were measured answering above threshold and wrongly. "
+                 f"Download MIMIC-IV "
                  f"demo 2.2 (no credentialing needed):\n"
                  f"    https://physionet.org/files/mimic-iv-demo/2.2/icu/d_items.csv.gz")
 
@@ -451,12 +563,18 @@ def collapsed(label):
 def searchable(item):
     """(True, '') if this item should be asked about, else (False, reason).
 
-    One decline, read off the dictionary's `category` and applied to every item
-    identically. See BOTH PRE-SEARCH DECLINES in the module docstring.
+    Two declines, both read off the dictionary and applied to every item
+    identically — one on `category`, one on the label. See THE PRE-SEARCH
+    DECLINES in the module docstring.
     """
     why_not = DECLINED_CATEGORIES.get(item["category"])
     if why_not:
         return False, why_not
+    if ALARM_LABEL_RE.search(item["label"]):
+        return False, ("its label names an alarm, so it is a device alarm "
+                       "limit — a monitor setting rather than a measurement of "
+                       "the patient — whatever category the dictionary files "
+                       "it under")
     if not collapsed(item["label"]):
         # No label survives the index strip, so there is no question to ask.
         # Not observed in the current dictionary; here because a label of `#1`
@@ -1002,13 +1120,31 @@ def main():
             decline_unasked(row, why_not)
         rows_by_code[code] = row
 
-    # One search per COLLAPSED label. The label is the DICTIONARY's with its
-    # instance index stripped; `mimic_display` in the committed table stays the
-    # IG's exact string, which load_curated requires, and `codesearch_query`
-    # records the string actually sent, so the collapse is visible in the CSV.
+    # One search per COLLAPSED label, keyed CASE-INSENSITIVELY. The label is the
+    # DICTIONARY's with its instance index stripped; `mimic_display` in the
+    # committed table stays the IG's exact string, which load_curated requires,
+    # and `codesearch_query` records the string actually sent, so the collapse
+    # is visible in the CSV.
+    #
+    # Case-folded because MIMIC spells the same item two ways and the service is
+    # not case-stable: `Face to Face Eval (Non-violent)` mapped while
+    # `(Non-Violent)` came back unmapped, on one capital letter. Three families
+    # are affected (the two `(Non-Violent)` pairs and `CAM-ICU MS Change`), and
+    # a difference of casing is not a difference of meaning, so letting the two
+    # spellings receive different targets is the same defect the index collapse
+    # exists to prevent.
+    #
+    # The SENT string is the alphabetically first spelling among the members —
+    # an arbitrary but deterministic choice, so a re-run cannot silently switch
+    # which variant was asked about and churn the diff.
+    spellings = {}
+    for code in asked:
+        label = collapsed(items_dict[code]["label"])
+        spellings.setdefault(label.casefold(), set()).add(label)
     queries = {}
     for code in asked:
-        queries.setdefault(collapsed(items_dict[code]["label"]), []).append(code)
+        key = collapsed(items_dict[code]["label"]).casefold()
+        queries.setdefault(sorted(spellings[key])[0], []).append(code)
     ordered = sorted(queries)
 
     print(f"  {len(items)} IG code(s)"
@@ -1127,7 +1263,7 @@ def main():
         },
         # Which itemids shared a query, so the collapse is auditable without
         # re-deriving it from the dictionary.
-        "query_key": ["label with #<n> stripped"],
+        "query_key": ["label with #<n> stripped, case-folded"],
         "shared_queries": {label: sorted(members)
                            for label, members in sorted(queries.items())
                            if len(members) > 1},

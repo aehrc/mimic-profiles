@@ -11,8 +11,8 @@ MedicationRequest.medication[x],mapped,0,0,0.0
 MedicationRequest.medication[x],declined,0,0,0.0
 MedicationRequest.medication[x],no-stream-yet,2890,1883681,100.0
 MedicationRequest.medication[x],not-in-enumeration,0,0,0.0
-Observation.code,mapped,2611,307170809,66.62
-Observation.code,declined,1630,153928099,33.38
+Observation.code,mapped,2610,307177309,66.62
+Observation.code,declined,1631,153921599,33.38
 Observation.code,no-stream-yet,0,0,0.0
 Observation.code,not-in-enumeration,0,0,0.0
 Observation.component.code,mapped,2,3979394,100.0

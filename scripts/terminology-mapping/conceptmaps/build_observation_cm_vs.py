@@ -356,8 +356,9 @@ SOURCES = [
         # SNOMED only where LOINC declined, never compared on confidence), for
         # why the SNOMED constraint is `<<363787002 |Observable entity|` alone
         # rather than the procedure/finding/event union the two ICU procedure
-        # streams use, and for the two categories declined without being
-        # searched because no constraint or threshold catches them.
+        # streams use, and for the 216 documentation, attestation and
+        # alarm-limit items declined without being searched because no
+        # constraint or threshold catches them.
         #
         # `file`, not `valueset_file`: ValueSet-mimic-chartevents-d-items is a
         # bare compose with no enumerated concepts, so the CodeSystem is the
