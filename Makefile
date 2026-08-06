@@ -52,6 +52,7 @@ OUTPUTEVENTS_TABLE := $(TERM)/conceptmaps/build_outputevents_table.py
 DATETIMEEVENTS_TABLE := $(TERM)/conceptmaps/build_datetimeevents_table.py
 MICRO_ORG_TABLE := $(TERM)/conceptmaps/build_micro_org_table.py
 LABEVENTS_TABLE := $(TERM)/conceptmaps/build_labevents_table.py
+CHARTEVENTS_TABLE := $(TERM)/conceptmaps/build_chartevents_table.py
 STATISTICS := $(TERM)/build_statistics.py
 UPLOAD_MAPPINGS := $(TERM)/upload.py
 
@@ -59,7 +60,8 @@ UPLOAD_MAPPINGS := $(TERM)/upload.py
         condition procedure observation observation-component verify-mappings \
         verify-curated d-items-table micro-susc-table micro-test-table \
         outputevents-table datetimeevents-table micro-org-table \
-        labevents-table mappings statistics upload-mappings ig
+        labevents-table chartevents-table mappings statistics \
+        upload-mappings ig
 
 verify-inputs: ## check ICD source files against input-manifest.json
 	uv run $(TERM)/verify_inputs.py
@@ -244,6 +246,26 @@ micro-org-table: ## regenerate conceptmaps/micro-org-snomed.csv from code-search
 #   make labevents-table ARGS="--only 50983,51516 --insecure"   probe a few
 labevents-table: ## regenerate conceptmaps/labevents-loinc.csv from code-search
 	uv run $(LABEVENTS_TABLE) $(ARGS)
+
+# The last Observation stream and the only MIXED-TARGET table: its rows name
+# their own terminology, because the population is two things and neither
+# terminology covers it alone. LOINC (CLASSTYPE 1 and 2, active) is asked first
+# and SNOMED CT (<<363787002 |Observable entity|) only where LOINC declined; the
+# two are never compared on confidence. The bare label is sent with NO context
+# template — injecting the dictionary's `category` was probed and rejected for
+# manufacturing an APACHE IV score for a regression coefficient — and the 133
+# `Care Plans` and 38 `Alarms` items are declined WITHOUT being searched,
+# because both answer above threshold and wrongly and no constraint catches it.
+# The generator's docstring carries that evidence and the union-vs-split
+# constraint history.
+#
+# The longest run here: 2,982 items collapse to ~2,200 searches once the `#<n>`
+# instance index is stripped, and every one that LOINC declines costs a second
+# SNOMED call. --only is the way to probe a handful.
+#
+#   make chartevents-table ARGS="--only 220045,224093 --insecure"   probe a few
+chartevents-table: ## regenerate conceptmaps/chartevents-standard.csv from code-search
+	uv run $(CHARTEVENTS_TABLE) $(ARGS)
 
 # --- stage 3: publish, gated ------------------------------------------------ #
 

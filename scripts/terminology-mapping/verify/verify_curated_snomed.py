@@ -74,16 +74,53 @@ def lookup(fhir_base, code):
     return active, module, names
 
 
+def snomed_columns(fieldnames):
+    """(code column, display column, system column) for this table's SNOMED
+    targets, or None if it holds none.
+
+    Two table shapes, and the header is what distinguishes them — see
+    conceptmaps/lib/curated.py. A SINGLE-TARGET table names its terminology in
+    the heading, so `snomed_code` present means every row is SNOMED. A
+    MIXED-TARGET table names the system per row, so the SNOMED rows are a SUBSET
+    selected by `target_system` and the other rows belong to a terminology this
+    script has nothing to say about.
+
+    Keyed on the header rather than on the filename: `*-standard.csv` is the
+    mixed-target naming convention, but a check that silently passes because it
+    matched no glob is exactly the failure this script exists to prevent.
+    """
+    if "snomed_code" in fieldnames:
+        return "snomed_code", "snomed_display", None
+    if "target_code" in fieldnames and "target_system" in fieldnames:
+        return "target_code", "target_display", "target_system"
+    return None
+
+
 def check_table(path, fhir_base, fix_displays):
     rows = list(csv.DictReader(open(path, newline="")))
-    mapped = [r for r in rows if (r["snomed_code"] or "").strip()]
+    columns = snomed_columns(rows[0].keys() if rows else [])
+    if columns is None:
+        print(f"\n== {path.name} ==")
+        print("  no SNOMED target column — skipped")
+        return []
+    code_column, display_column, system_column = columns
+
+    mapped = [r for r in rows if (r[code_column] or "").strip()
+              and (system_column is None
+                   or (r[system_column] or "").strip() == SNOMED)]
     print(f"\n== {path.name} ==")
-    print(f"  {len(rows)} row(s), {len(mapped)} with a target, "
-          f"{len(rows) - len(mapped)} declared non-mappings")
+    if system_column:
+        other = sum(1 for r in rows if (r[code_column] or "").strip()
+                    and (r[system_column] or "").strip() != SNOMED)
+        print(f"  {len(rows)} row(s), {len(mapped)} with a SNOMED target, "
+              f"{other} targeting another system (not this script's business)")
+    else:
+        print(f"  {len(rows)} row(s), {len(mapped)} with a target, "
+              f"{len(rows) - len(mapped)} declared non-mappings")
 
     seen, problems, fixed = {}, [], 0
     for row in mapped:
-        code = row["snomed_code"].strip()
+        code = row[code_column].strip()
         if code not in seen:
             seen[code] = lookup(fhir_base, code)
         result = seen[code]
@@ -95,20 +132,20 @@ def check_table(path, fhir_base, fix_displays):
         active, module, names = result
         if not active:
             problems.append(f"{row['mimic_code']} -> {code} "
-                            f"({row['snomed_display']}): RETIRED — find its "
+                            f"({row[display_column]}): RETIRED — find its "
                             f"replacement")
         if module != INTL_MODULE:
             problems.append(f"{row['mimic_code']} -> {code} "
-                            f"({row['snomed_display']}): module {module} is "
+                            f"({row[display_column]}): module {module} is "
                             f"not the international core")
-        if row["snomed_display"].strip() not in names:
+        if row[display_column].strip() not in names:
             if fix_displays and names:
-                row["snomed_display"] = sorted(names, key=len)[0]
+                row[display_column] = sorted(names, key=len)[0]
                 fixed += 1
             else:
                 problems.append(
                     f"{row['mimic_code']} -> {code}: display "
-                    f"{row['snomed_display']!r} is not a designation of this "
+                    f"{row[display_column]!r} is not a designation of this "
                     f"concept. Server has e.g. {sorted(names)[:2]}")
 
     if fixed:
@@ -146,9 +183,18 @@ def main():
     # Discovered by glob rather than by walking a registry: with one builder
     # script per population there is no shared FIELDS dict to walk, and a table
     # is checkable on its own terms regardless of which builder declares it.
-    tables = sorted(TABLE_DIR.glob("*-snomed.csv"))
+    #
+    # `*-standard.csv` as well as `*-snomed.csv`: a MIXED-TARGET table carries
+    # SNOMED rows alongside rows in another terminology, and those SNOMED codes
+    # age exactly like any other — retired concepts and national-extension
+    # concepts are precisely what this script exists to catch, and a table
+    # excluded by the glob would have been checked by nothing at all.
+    # check_table reads the header to decide which columns hold the SNOMED
+    # target and which rows carry one.
+    tables = sorted(set(TABLE_DIR.glob("*-snomed.csv"))
+                    | set(TABLE_DIR.glob("*-standard.csv")))
     if not tables:
-        print(f"no *-snomed.csv tables in {TABLE_DIR}")
+        print(f"no curated tables with SNOMED targets in {TABLE_DIR}")
         return 0
 
     problems = []

@@ -9,6 +9,10 @@ exactly one:
   identity  `identity: True`; the code is already standard terminology and maps
             to itself.
   table     `table` names a committed CSV; the mapping is data, see curated.py.
+            Single-target by default. A table declaring MIXED_TARGET_COLUMNS
+            names its target system per row instead, and then one source spans
+            one group per system it named — which is how the chartevents stream
+            reaches LOINC where LOINC answers and SNOMED CT where it does not.
 
 The resolver also fixes the equivalence: `equivalent` for notation and identity,
 `relatedto` for every table row. See build_groups for why it is a property of
@@ -22,7 +26,7 @@ import sys
 from collections import Counter, defaultdict
 
 from .built import find
-from .curated import DEFAULT_TARGET_COLUMNS, load_table
+from .curated import DEFAULT_TARGET_COLUMNS, is_mixed, load_table
 from .igsource import resource_path, source_concepts
 
 Target = dict  # {system, rule, kind, predicate}
@@ -64,11 +68,15 @@ def build_groups(sources, element, built):
         target_systems = set()
         by_equivalence = Counter()
         # `table_columns` names the target pair as this table spells it; the
-        # rows come back keyed `target_code` / `target_display` either way.
+        # rows come back keyed `target_code` / `target_display` either way. A
+        # mixed-target table names a THIRD column, `target_system`, and its rows
+        # additionally come back keyed `target_system` — see curated.py.
+        table_columns = source.get("table_columns", DEFAULT_TARGET_COLUMNS)
+        mixed_table = is_mixed(table_columns)
         table = (load_table(source["table"], dict(concepts),
-                            resource_path(source).name,
-                            source.get("table_columns",
-                                       DEFAULT_TARGET_COLUMNS))
+                            resource_path(source).name, table_columns,
+                            allowed_systems={t["system"]
+                                             for t in source["targets"]})
                  if "table" in source else None)
 
         for code, mimic_display in concepts:
@@ -85,6 +93,14 @@ def build_groups(sources, element, built):
                 by_equivalence["equivalent"] += 1
                 continue
             if table is not None:
+                # The system an UNMAPPED row is reported against. For a
+                # single-target table that is the only system there is; for a
+                # mixed one it is the system asked FIRST, which is what the
+                # declining comment on the row is phrased against. A row that
+                # declined was refused by every space the generator tried, so no
+                # single system is the whole truth — naming the primary keeps
+                # the unmatched elements in one group and leaves the row's own
+                # comment to say what was actually searched.
                 tgt = source["targets"][0]
                 row = table.get(code)
                 if row is None:
@@ -120,12 +136,20 @@ def build_groups(sources, element, built):
                     # so it holds for every table equally and cannot drift as
                     # one generator's rule is edited. The tables have no
                     # equivalence column to carry — see lib/curated.py.
-                    buckets[(source["system"], tgt["system"], None)].append(
+                    #
+                    # A mixed-target table decides the target system PER ROW, so
+                    # one stream fans out across as many groups as it named
+                    # systems — a group is keyed by (source, target, version),
+                    # and load_table has already checked every row's system is
+                    # one this source declared.
+                    mapped_system = (row["target_system"] if mixed_table
+                                     else tgt["system"])
+                    buckets[(source["system"], mapped_system, None)].append(
                         (code, mimic_display, row["target_code"],
                          row["target_display"], "relatedto",
                          row["comment"]))
                     hits += 1
-                    target_systems.add(tgt["system"])
+                    target_systems.add(mapped_system)
                     by_equivalence["relatedto"] += 1
                 continue
             for tgt in source["targets"]:

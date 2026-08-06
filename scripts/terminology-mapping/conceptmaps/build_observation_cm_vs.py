@@ -71,8 +71,19 @@ Present so far:
             build_labevents_table.py for the regression that rejected it, and
             for the one known defect (`50823 Required O2`) no setting can catch.
 
-Still to come, the last one the issue sets: Chartevents (2,982), LOINC-or-SNOMED
-code-search by rule on `param_type`.
+  table     the 2,982 ICU chartevents items, the largest stream in this map and
+            the first MIXED-TARGET table in the repo: its rows name their own
+            terminology, because the population is genuinely two things and
+            neither LOINC nor SNOMED covers it alone. The 160 bedside laboratory
+            analytes have Laboratory-class LOINC targets that SNOMED cannot
+            express, and the ~1,400 nursing-assessment items are refused by
+            LOINC and answered by SNOMED observable entities. One source, two
+            groups. The issue proposed routing on `param_type`; that was
+            dropped, because `param_type` describes the VALUE's datatype and not
+            which terminology holds the concept — `GCS - Verbal Response` is
+            `Text` and LOINC has it exactly, `Hemoglobin` is `Numeric` and
+            SNOMED has nothing for it. Which space answers is the routing rule
+            instead. See build_chartevents_table.py.
 
 NOT IN THIS MAP: the blood-pressure component codes. They are bound to
 `Observation.component.code`, a different FHIRPath expression over the same
@@ -103,6 +114,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from conceptmaps.lib.assemble import target                       # noqa: E402
 from conceptmaps.lib.canonical import (CANONICAL_BASE, LOINC,     # noqa: E402
                                        MIMIC_BASE, SNOMED, TABLE_DIR)
+from conceptmaps.lib.curated import MIXED_TARGET_COLUMNS          # noqa: E402
 from conceptmaps.lib.driver import run                            # noqa: E402
 from conceptmaps.lib.notation import no_dot                       # noqa: E402
 
@@ -119,6 +131,9 @@ OUTPUTEVENTS_TABLE = TABLE_DIR / "outputevents-loinc.csv"
 DATETIMEEVENTS_TABLE = TABLE_DIR / "datetimeevents-snomed.csv"
 MICRO_ORG_TABLE = TABLE_DIR / "micro-org-snomed.csv"
 LABEVENTS_TABLE = TABLE_DIR / "labevents-loinc.csv"
+# `-standard`, not `-loinc` or `-snomed`: the only MIXED-TARGET table here, so
+# it names its target system per row instead of in its column headings.
+CHARTEVENTS_TABLE = TABLE_DIR / "chartevents-standard.csv"
 
 # No targetVersion on any entry — this repo builds no LOINC release, and pinning
 # one it neither publishes nor controls is exactly the irreproducibility
@@ -312,6 +327,54 @@ SOURCES = [
         "table_columns": ("loinc_code", "loinc_display"),
         "targets": [target(LOINC, no_dot)],
     },
+    {
+        # mimic-chartevents-d-items: 2,982 ICU bedside flowsheet columns, the
+        # largest population in this map and by some distance the largest coded
+        # Observation population in the warehouse — 313.6M occurrences, 68% of
+        # every occurrence of Observation.code.
+        #
+        # The one structurally new thing about this stream is that it is the
+        # first MIXED-TARGET table: its rows name their own terminology, because
+        # which one answers is a result of the search rather than a property of
+        # the stream. The population is genuinely two things. The 160 `Labs`
+        # items are bedside laboratory analytes whose LOINC targets are
+        # Laboratory-class and which SNOMED cannot express at MIMIC's
+        # granularity at all; the ~1,400 nursing-assessment items — skin and
+        # wound detail, line sites, positioning, limb colour — are refused by
+        # LOINC above threshold and answered correctly by SNOMED observable
+        # entities. Neither terminology covers the population alone, which is
+        # what makes the per-row `target_system` worth its machinery here where
+        # the outputevents and labevents streams both probed a SNOMED second
+        # opinion and rightly rejected it.
+        #
+        # So this ONE source contributes TWO groups, one per system it named — a
+        # group is keyed by (source system, target system, targetVersion), and
+        # lib/curated.py checks every row's system against the `targets` below
+        # so a table cannot open a group into a terminology never declared here.
+        #
+        # See build_chartevents_table.py for the resolution rule (LOINC first,
+        # SNOMED only where LOINC declined, never compared on confidence), for
+        # why the SNOMED constraint is `<<363787002 |Observable entity|` alone
+        # rather than the procedure/finding/event union the two ICU procedure
+        # streams use, and for the two categories declined without being
+        # searched because no constraint or threshold catches them.
+        #
+        # `file`, not `valueset_file`: ValueSet-mimic-chartevents-d-items is a
+        # bare compose with no enumerated concepts, so the CodeSystem is the
+        # only enumeration there is — same as the antibiotics, the test names,
+        # the organisms and the lab analytes. Note this is its OWN CodeSystem
+        # and not the `mimic-d-items` the three other ICU streams share.
+        "system": f"{MIMIC_BASE}/CodeSystem/mimic-chartevents-d-items",
+        "file": "CodeSystem-mimic-chartevents-d-items.json",
+        "table": CHARTEVENTS_TABLE,
+        # The mixed-target shape: `target_system` per row rather than a
+        # system-named column pair. See lib/curated.py MIXED_TARGET_COLUMNS.
+        "table_columns": MIXED_TARGET_COLUMNS,
+        # Both systems declared, and load_table rejects a row naming anything
+        # else. `targets[0]` is additionally the system an unmapped row is
+        # reported against — LOINC, the space asked first.
+        "targets": [target(LOINC, no_dot), target(SNOMED, no_dot)],
+    },
 ]
 
 META = {
@@ -331,12 +394,14 @@ META = {
         "translating the column preserves them instead of dropping them. "
         "Observation.component.code is NOT in scope here: it is a separate "
         "column with a separate binding, mapped by "
-        "ConceptMap/mimic-observation-component-to-standard. INCOMPLETE: the "
-        "code-search populations are being added one stream at a time. Present "
-        "so far are the microbiology antibiotics, the microbiology test names, "
-        "the ICU outputevents items, the ICU datetimeevents items, the "
-        "microbiology organisms and the hospital laboratory analytes; ICU "
-        "chartevents is not in this map yet.",
+        "ConceptMap/mimic-observation-component-to-standard. All ten code "
+        "populations are now present: the ED and vital-signs identity groups, "
+        "the microbiology antibiotics, the microbiology test names, the ICU "
+        "outputevents items, the ICU datetimeevents items, the microbiology "
+        "organisms, the hospital laboratory analytes and the ICU chartevents "
+        "items. Coverage is deliberately partial within them — a code this map "
+        "does not resolve is declared as an unmatched element with a reason, "
+        "never silently omitted.",
     "purpose":
         "Lets a consumer translate the merged Observation.code column with a "
         "single $translate. Two kinds of group. The ED and vital-signs codes are "
@@ -347,19 +412,25 @@ META = {
         "because consumers that pin the equivalence they accept filter 'equal' "
         "out. The microbiology antibiotics, the microbiology test names, the ICU "
         "outputevents items, the ICU datetimeevents items, the microbiology "
-        "organisms and the hospital laboratory analytes come from generated "
+        "organisms, the hospital laboratory analytes and the ICU chartevents "
+        "items come from generated "
         "tables and are 'relatedto': a MIMIC susceptibility code and a LOINC "
         "susceptibility code are related, as are a MIMIC microbiology test name "
         "and a LOINC lab code, an ICU flowsheet output route and a LOINC "
         "fluid-output volume, an ICU flowsheet timestamp column and the "
         "SNOMED CT procedure, finding or temporal observable whose date it "
-        "records, a MIMIC organism name and the SNOMED CT taxon it names, and a "
+        "records, a MIMIC organism name and the SNOMED CT taxon it names, a "
         "MIMIC lab analyte and the LOINC laboratory code for that analyte in "
-        "that specimen, and no direction between them is asserted. Consumers must "
+        "that specimen, and an ICU bedside flowsheet column and the LOINC or "
+        "SNOMED CT concept naming what it records, "
+        "and no direction between them is asserted. Consumers must "
         "accept 'relatedto' as well as 'equivalent' or they will drop those "
         "populations. Note that a target here may be SNOMED CT as well as LOINC: "
-        "the datetimeevents items map to SNOMED, so a consumer cannot assume one "
-        "target system for this column. Nor may a consumer assume what KIND of "
+        "the datetimeevents and microbiology organism items map to SNOMED, and "
+        "the ICU chartevents items map to WHICHEVER of the two carries the "
+        "concept, so a consumer cannot assume one target system for this column "
+        "and cannot assume one even within a single source population. Nor may "
+        "a consumer assume what KIND of "
         "concept a target is: the microbiology organism stream maps to SNOMED CT "
         "organism taxa, which are not observable entities, because MIMIC records "
         "the organism identified in Observation.code itself.",

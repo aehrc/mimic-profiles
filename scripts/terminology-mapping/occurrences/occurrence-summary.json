@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-06T00:36:55+00:00",
- "host": "c348",
+ "generated": "2026-08-06T04:45:29+00:00",
+ "host": "c146",
  "warehouse": "/scratch3/nau025/mimic-on-fhir-delta/spark_warehouse",
  "csv": "code-occurrences.csv",
- "csv_sha256": "a552e98d8f9cecb4419d5285ec73f500c2a6420a67b37e1cc8c44ff1b1283483",
+ "csv_sha256": "a3a34c30df91bd95eb654fb8b5cfe67e6aad9b599f207ae1ef4cf360bac526cf",
  "versions": {
   "python": "3.12.3",
   "spark": "4.0.2",
@@ -11,40 +11,40 @@
  },
  "tables": {
   "Condition": {
-   "delta_version": 2,
-   "committed": "2026-07-27 15:34:40",
+   "delta_version": 3,
+   "committed": "2026-08-06 11:00:16",
    "rows": 5655376
   },
   "Procedure": {
-   "delta_version": 1,
-   "committed": "2026-07-27 15:35:54",
+   "delta_version": 2,
+   "committed": "2026-08-06 11:01:09",
    "rows": 3354975
   },
   "Observation": {
-   "delta_version": 1,
-   "committed": "2026-07-23 13:47:29",
+   "delta_version": 2,
+   "committed": "2026-08-06 11:00:57",
    "rows": 461098908
   },
   "Specimen": {
-   "delta_version": 1,
-   "committed": "2026-07-27 15:36:01",
+   "delta_version": 2,
+   "committed": "2026-08-06 11:01:13",
    "rows": 14963904
   },
   "MedicationAdministration": {
-   "delta_version": 1,
-   "committed": "2026-07-27 15:35:11",
+   "delta_version": 2,
+   "committed": "2026-08-06 11:00:36",
    "rows": 36733071
   },
   "MedicationRequest": {
-   "delta_version": 1,
-   "committed": "2026-07-27 15:35:39",
+   "delta_version": 2,
+   "committed": "2026-08-06 11:00:45",
    "rows": 15416901
   }
  },
  "elements": {
   "Condition.code": {
    "codings": 5655376,
-   "distinct_codes": 27564,
+   "distinct_codes": 27569,
    "codings_without_code": 0
   },
   "Procedure.code": {

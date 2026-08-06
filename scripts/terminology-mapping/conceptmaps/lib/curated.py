@@ -18,6 +18,12 @@ search constraint and its own context template, and a single file spanning
 several of them would be unreviewable. What they share is this loader and the
 shape it enforces.
 
+Two shapes, and a table picks one by the columns it declares. A SINGLE-TARGET
+table names its terminology in the column heading (`snomed_code`, `loinc_code`)
+because the whole table aims at one system. A MIXED-TARGET table names the
+system per row, because the system is a result of the search rather than a
+property of the stream — see MIXED_TARGET_COLUMNS.
+
 A table is the one thing that names source codes, which the builders never do.
 What replaces that guarantee is checking it against the IG rather than trusting
 it — see load_table.
@@ -49,17 +55,44 @@ import sys
 # terminology a given table aims at.
 DEFAULT_TARGET_COLUMNS = ("snomed_code", "snomed_display")
 
+# A MIXED-TARGET table names its target system per ROW instead, because the
+# system is a result of the search rather than a property of the stream: the
+# chartevents items are asked against LOINC first and against SNOMED CT only
+# where LOINC declined, so which terminology answers is decided item by item and
+# cannot be spelled in a column heading.
+#
+# Declared by a source as `table_columns: MIXED_TARGET_COLUMNS`. The system-named
+# pair above stays the shape for every single-target table, and the six already
+# committed are NOT migrated to this one — a table that aims at exactly one
+# terminology should keep saying so in its header.
+MIXED_TARGET_COLUMNS = ("target_system", "target_code", "target_display")
+
 
 def curated_columns(target_columns=DEFAULT_TARGET_COLUMNS):
-    """The five columns a builder reads, for a table with these target names.
+    """The columns a builder reads, for a table with these target names.
+
+    Five for a single-target table, six for a mixed-target one — the extra
+    column is `target_system`, and `is_mixed` below is what tells them apart.
 
     A generator may emit any number of extra provenance columns after these —
     they are read and discarded here, which is what lets build_d_items_table.py
     record the `codesearch_*` detail in the committed file at no cost to the
     build.
     """
+    if is_mixed(target_columns):
+        system, code, display = target_columns
+        return ["mimic_code", "mimic_display", system, code, display, "comment"]
     code, display = target_columns
     return ["mimic_code", "mimic_display", code, display, "comment"]
+
+
+def is_mixed(target_columns):
+    """Does this table name its target system per row?
+
+    Keyed on the shape rather than on a flag a source could set inconsistently
+    with the columns it also declares.
+    """
+    return len(target_columns) == 3
 
 
 # The default layout, as a constant because build_d_items_table.py writes a
@@ -68,7 +101,7 @@ CURATED_COLUMNS = curated_columns()
 
 
 def load_table(path, expected, expected_name,
-               target_columns=DEFAULT_TARGET_COLUMNS):
+               target_columns=DEFAULT_TARGET_COLUMNS, allowed_systems=None):
     """code -> row, validated against the IG's own enumeration.
 
     `expected` is {code: display} from igsource.source_concepts. A row naming a
@@ -76,6 +109,13 @@ def load_table(path, expected, expected_name,
     the IG's is fatal too — an item that got relabelled upstream is exactly one a
     human should look at again. A code with no row is NOT fatal; it flows to the
     unmapped CSV as an ordinary gap in the worklist.
+
+    `allowed_systems` is required for a mixed-target table and ignored otherwise:
+    a per-row system is data, so it is checked against the systems the source
+    declared rather than trusted. An unrecognised one is fatal, because it would
+    otherwise reach assemble.build_groups and open a ConceptMap group into a
+    terminology this repo never agreed to map into — and check 4 of
+    verify_mappings would then fail far away from the row that caused it.
 
     NOTE for when tables become field-agnostic (keyed by source CodeSystem and
     target system rather than by field): the "not in `expected`" check has to
@@ -91,7 +131,15 @@ def load_table(path, expected, expected_name,
                  f"code in it.")
 
     columns = curated_columns(target_columns)
-    code_column, display_column = target_columns
+    mixed = is_mixed(target_columns)
+    if mixed:
+        system_column, code_column, display_column = target_columns
+        if not allowed_systems:
+            sys.exit(f"  {path.name}: a mixed-target table needs the systems it "
+                     f"may name, and the source declared none.")
+    else:
+        system_column = None
+        code_column, display_column = target_columns
 
     rows = {}
     with open(path, newline="") as fh:
@@ -126,6 +174,16 @@ def load_table(path, expected, expected_name,
             if row["target_code"]:
                 if not row["target_display"]:
                     sys.exit(f"{where}: {code_column} without {display_column}")
+                if mixed:
+                    if not row["target_system"]:
+                        sys.exit(f"{where}: {code_column} without "
+                                 f"{system_column}. A mixed-target row has to "
+                                 f"say which terminology answered it.")
+                    if row["target_system"] not in allowed_systems:
+                        sys.exit(f"{where}: {system_column} "
+                                 f"{row['target_system']!r} is not one this "
+                                 f"source maps into "
+                                 f"({sorted(allowed_systems)}).")
             elif not row["comment"]:
                 # A blank target is a decision, so it has to carry its reason —
                 # otherwise it is indistinguishable from an unfinished row.

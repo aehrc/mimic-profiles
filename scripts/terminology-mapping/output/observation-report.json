@@ -5,13 +5,17 @@
  "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-merged-standard",
  "version": "1.0.0",
  "date": "2026-08-06",
- "source_total": 2745,
- "mapped": 2066,
- "unmapped": 679,
+ "source_total": 5727,
+ "mapped": 3297,
+ "unmapped": 2430,
  "by_source": [
   {
    "system": "http://loinc.org",
    "mapped": 9
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-chartevents-d-items",
+   "mapped": 1231
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
@@ -37,20 +41,20 @@
  "by_target_system": [
   {
    "system": "http://loinc.org",
-   "mappings": 1343
+   "mappings": 2202
   },
   {
    "system": "http://snomed.info/sct",
-   "mappings": 723
+   "mappings": 1095
   }
  ],
  "by_equivalence": {
   "equivalent": 9,
-  "relatedto": 2057,
-  "unmatched": 679
+  "relatedto": 3288,
+  "unmatched": 2430
  },
  "unmapped_by_reason": {
-  "no-suitable-concept": 679
+  "no-suitable-concept": 2430
  },
  "by_stream": [
   {
@@ -2342,8 +2346,3052 @@
      }
     ]
    }
+  },
+  {
+   "stream": "mimic-chartevents-d-items",
+   "source_file": "CodeSystem-mimic-chartevents-d-items.json",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-chartevents-d-items",
+   "method": "table",
+   "total": 2982,
+   "mapped": 1231,
+   "unmapped": 1751,
+   "coverage_pct": 41.3,
+   "target_systems": [
+    "http://loinc.org",
+    "http://snomed.info/sct"
+   ],
+   "by_equivalence": {
+    "relatedto": 1231,
+    "unmatched": 1751
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 1751
+   },
+   "codesearch": {
+    "status": {
+     "below-threshold": 333,
+     "no-match": 1247,
+     "not-searchable": 171,
+     "ok": 1231
+    },
+    "confidence": {
+     "min": 0.5,
+     "median": 0.85,
+     "mean": 0.819,
+     "max": 1.0
+    },
+    "constraint": "(http://loinc.org)(CLASSTYPE/\"1|2\",STATUS=ACTIVE)",
+    "template": "{}",
+    "confidence_threshold": 0.8,
+    "near_threshold": {
+     "0.05": 86,
+     "0.1": 245,
+     "0.2": 326,
+     "0.3": 333,
+     "0.4": 333
+    },
+    "near_misses": [
+     {
+      "mimic_code": "228098",
+      "mimic_display": "16 Gauge placed in the field",
+      "proposed_code": "88660-6",
+      "proposed_display": "Needle gauge [Length] Intravascular tube",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Needle gauge observation; '16 Gauge' is the value, 'placed in the field' is context"
+     },
+     {
+      "mimic_code": "226139",
+      "mimic_display": "22 Gauge placed in outside facility",
+      "proposed_code": "88660-6",
+      "proposed_display": "Needle gauge [Length] Intravascular tube",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Captures needle gauge concept; outside facility is context"
+     },
+     {
+      "mimic_code": "227926",
+      "mimic_display": "Activity O2 sat - Aerobic Activity Response",
+      "proposed_code": "89276-0",
+      "proposed_display": "Oxygen saturation in Arterial blood by Pulse oximetry --W exercise",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "O2 sat during exercise; closest to aerobic activity response"
+     },
+     {
+      "mimic_code": "225054",
+      "mimic_display": "Anti Embolic Device Status",
+      "proposed_code": "104959-2",
+      "proposed_display": "Device fitting or implant status",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest broader match for device status; no anti-embolic specific code"
+     },
+     {
+      "mimic_code": "229747",
+      "mimic_display": "Attending Notified",
+      "proposed_code": "38889-2",
+      "proposed_display": "Personnel notified of {event}",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match to personnel/attending being notified"
+     },
+     {
+      "mimic_code": "227577",
+      "mimic_display": "BiPap Mode",
+      "proposed_code": "20124-4",
+      "proposed_display": "Ventilation mode Ventilator",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "BiPAP is a ventilation mode; closest code captures the mode concept"
+     },
+     {
+      "mimic_code": "229600",
+      "mimic_display": "CAUTI Info Given",
+      "proposed_code": "89187-9",
+      "proposed_display": "Instructions provided",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Captures 'info given' to patient; CAUTI is topic qualifier"
+     },
+     {
+      "mimic_code": "225227",
+      "mimic_display": "CCO PAC Waveform Appear",
+      "proposed_code": "76519-8",
+      "proposed_display": "Left ventricular Cardiac output by Continuous",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "CCO = continuous cardiac output via PAC; closest match"
+     },
+     {
+      "mimic_code": "224806",
+      "mimic_display": "CT #1 Suction Type",
+      "proposed_code": "8930-0",
+      "proposed_display": "Type of Chest tube",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "CT = chest tube; type of chest tube captures suction type"
+     },
+     {
+      "mimic_code": "224808",
+      "mimic_display": "CT #2 Suction Type",
+      "proposed_code": "8930-0",
+      "proposed_display": "Type of Chest tube",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "CT = chest tube; type of chest tube captures suction type"
+     },
+     {
+      "mimic_code": "224810",
+      "mimic_display": "CT #3 Suction Type",
+      "proposed_code": "8930-0",
+      "proposed_display": "Type of Chest tube",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "CT = chest tube; type of chest tube captures suction type"
+     },
+     {
+      "mimic_code": "224812",
+      "mimic_display": "CT #4 Suction Type",
+      "proposed_code": "8930-0",
+      "proposed_display": "Type of Chest tube",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "CT = chest tube; type of chest tube captures suction type"
+     },
+     {
+      "mimic_code": "224479",
+      "mimic_display": "Complications (PA line)",
+      "proposed_code": "78943-8",
+      "proposed_display": "Cardiac procedure complications panel",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "PA line is a cardiac procedure; complications panel captures meaning"
+     },
+     {
+      "mimic_code": "225052",
+      "mimic_display": "Cooling Device Status",
+      "proposed_code": "104959-2",
+      "proposed_display": "Device fitting or implant status",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Broader device status; no specific cooling device status code exists"
+     },
+     {
+      "mimic_code": "226752",
+      "mimic_display": "CreatinineApacheIIValue",
+      "proposed_code": "38483-4",
+      "proposed_display": "Creatinine [Mass/volume] in Blood",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Field name combines Creatinine with Apache II; serum creatinine is the clinical referent"
+     },
+     {
+      "mimic_code": "229855",
+      "mimic_display": "Delta P Alarm (CH)",
+      "proposed_code": "76152-8",
+      "proposed_display": "Airway pressure delta setting Ventilator",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Delta P = airway pressure delta; alarm setting on ventilator"
+     },
+     {
+      "mimic_code": "225637",
+      "mimic_display": "Differential-Atyps",
+      "proposed_code": "26477-0",
+      "proposed_display": "Variant lymphocytes [#/volume] in Blood",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Differential-Atyps = atypical cells on differential; variant/atypical lymphocytes best match"
+     },
+     {
+      "mimic_code": "230068",
+      "mimic_display": "Documented in DC Summary (Bronch)_OLD_1",
+      "proposed_code": "18744-3",
+      "proposed_display": "Bronchoscopy study",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Document for bronchoscopy; matches (Bronch) summary intent"
+     },
+     {
+      "mimic_code": "230078",
+      "mimic_display": "Documented on DC Summary (Thora)",
+      "proposed_code": "99489-7",
+      "proposed_display": "Cardiothoracic surgery Discharge summary",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Thora=thoracic; closest discharge summary, though adds cardiac"
+     },
+     {
+      "mimic_code": "228108",
+      "mimic_display": "Emergency Postoperative Diagnoses",
+      "proposed_code": "8719-7",
+      "proposed_display": "Surgical operation note postoperative diagnosis",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Postoperative diagnosis concept; 'Emergency' qualifier not separately coded"
+     },
+     {
+      "mimic_code": "224367",
+      "mimic_display": "Epidural Total Dose (mL)",
+      "proposed_code": "76304-5",
+      "proposed_display": "Infused volume.total Reporting Period Infusion pump",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Total epidural dose in mL = total infused volume"
+     },
+     {
+      "mimic_code": "229453",
+      "mimic_display": "Exam-GI/GU",
+      "proposed_code": "11384-5",
+      "proposed_display": "Physical examination by organ systems",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Physical exam of GI/GU organ systems; broadest matching exam concept"
+     },
+     {
+      "mimic_code": "229594",
+      "mimic_display": "Exam-GI/GU",
+      "proposed_code": "11384-5",
+      "proposed_display": "Physical examination by organ systems",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Physical exam of GI/GU organ systems; broadest matching exam concept"
+     },
+     {
+      "mimic_code": "226871",
+      "mimic_display": "Expiratory Ratio",
+      "proposed_code": "75931-6",
+      "proposed_display": "Inspiration/Expiration time Ratio",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match; expiratory ratio refers to I:E ratio"
+     },
+     {
+      "mimic_code": "229842",
+      "mimic_display": "Flow (CH)",
+      "proposed_code": "77441-4",
+      "proposed_display": "Child and adolescent psychiatry Flowsheet",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Flow=Flowsheet, CH=Child; best match to flowsheet candidate"
+     },
+     {
+      "mimic_code": "224865",
+      "mimic_display": "Flow Sensitivity",
+      "proposed_code": "57656-1",
+      "proposed_display": "Flow trigger setting Ventilator",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Flow sensitivity refers to ventilator flow trigger setting"
+     },
+     {
+      "mimic_code": "225702",
+      "mimic_display": "Follow-up chest X-RAY ordered (CVL)",
+      "proposed_code": "30745-4",
+      "proposed_display": "XR Chest Views",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Generic chest X-ray order; best general match among view-specific codes"
+     },
+     {
+      "mimic_code": "228037",
+      "mimic_display": "Follow-up chest X-RAY ordered (CVL)",
+      "proposed_code": "30745-4",
+      "proposed_display": "XR Chest Views",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Generic chest X-ray order; best general match among view-specific codes"
+     },
+     {
+      "mimic_code": "223875",
+      "mimic_display": "Fspn High",
+      "proposed_code": "30009-5",
+      "proposed_display": "Fibrin+Fibrinogen fragments [Mass/volume] in Serum",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "FSPN = fibrin split products; 'High' is result qualifier"
+     },
+     {
+      "mimic_code": "226759",
+      "mimic_display": "HCO3ApacheIIValue",
+      "proposed_code": "1959-6",
+      "proposed_display": "Bicarbonate [Moles/volume] in Blood",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "HCO3 component of Apache II score; closest is bicarbonate measurement"
+     },
+     {
+      "mimic_code": "226185",
+      "mimic_display": "ICU Consent Signed",
+      "proposed_code": "19826-7",
+      "proposed_display": "Informed consent obtained",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Consent signed = consent obtained; no ICU-specific consent code exists"
+     },
+     {
+      "mimic_code": "227665",
+      "mimic_display": "Immobilizer Evaluated",
+      "proposed_code": "88671-3",
+      "proposed_display": "Position &or immobilizer used during EMS transport",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest LOINC observation about immobilizer use/evaluation"
+     },
+     {
+      "mimic_code": "227787",
+      "mimic_display": "Impaired Skin  - Dressing Status  #8",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "227780",
+      "mimic_display": "Impaired Skin  - Dressing Status #1",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "227789",
+      "mimic_display": "Impaired Skin  - Dressing Status #10",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "227781",
+      "mimic_display": "Impaired Skin  - Dressing Status #2",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "227782",
+      "mimic_display": "Impaired Skin  - Dressing Status #3",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "227784",
+      "mimic_display": "Impaired Skin  - Dressing Status #5",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "227785",
+      "mimic_display": "Impaired Skin  - Dressing Status #6",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "227786",
+      "mimic_display": "Impaired Skin  - Dressing Status #7",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "227788",
+      "mimic_display": "Impaired Skin  - Dressing Status #9",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228600",
+      "mimic_display": "Impaired Skin #1- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228609",
+      "mimic_display": "Impaired Skin #10- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228601",
+      "mimic_display": "Impaired Skin #2- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228602",
+      "mimic_display": "Impaired Skin #3- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228603",
+      "mimic_display": "Impaired Skin #4- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228604",
+      "mimic_display": "Impaired Skin #5- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228605",
+      "mimic_display": "Impaired Skin #6- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228606",
+      "mimic_display": "Impaired Skin #7- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228607",
+      "mimic_display": "Impaired Skin #8- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "228608",
+      "mimic_display": "Impaired Skin #9- Dressing Status",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "227783",
+      "mimic_display": "Impaired Skin - Dressing Status  #4",
+      "proposed_code": "80344-5",
+      "proposed_display": "Skin integrity",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Impaired skin maps to skin integrity finding"
+     },
+     {
+      "mimic_code": "225242",
+      "mimic_display": "Indication (THCEN)",
+      "proposed_code": "104907-1",
+      "proposed_display": "Indication Narrative",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Base concept 'Indication'; synonym matches, THCEN is non-coded qualifier"
+     },
+     {
+      "mimic_code": "225748",
+      "mimic_display": "Indwelling Port (PortaCath) Discontinued",
+      "proposed_code": "87107-9",
+      "proposed_display": "Guidance for removal of CV catheter with port from Chest",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match to port discontinuation/removal; PortaCath is a CV catheter with port"
+     },
+     {
+      "mimic_code": "224508",
+      "mimic_display": "Location (PICC)",
+      "proposed_code": "39112-8",
+      "proposed_display": "Body location qualifier",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Location qualifier concept matches 'Location (PICC)'"
+     },
+     {
+      "mimic_code": "226260",
+      "mimic_display": "Mechanically Ventilated",
+      "proposed_code": "103747-2",
+      "proposed_display": "Is the patient on invasive mechanical ventilation support",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest finding for mechanically ventilated state; invasive is unstated qualifier"
+     },
+     {
+      "mimic_code": "223926",
+      "mimic_display": "Neuro Drain #1 Type",
+      "proposed_code": "10255-8",
+      "proposed_display": "Type of Subarachnoid drain",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Neuro drain refers to CSF/neurological drain; subarachnoid drain is the closest type match"
+     },
+     {
+      "mimic_code": "227981",
+      "mimic_display": "Neuro Drain #2 Type",
+      "proposed_code": "10255-8",
+      "proposed_display": "Type of Subarachnoid drain",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Neuro drain refers to CSF/neurological drain; subarachnoid drain is the closest type match"
+     },
+     {
+      "mimic_code": "224764",
+      "mimic_display": "Neuro Drain Location",
+      "proposed_code": "9111-6",
+      "proposed_display": "Cerebral ventricle drain site",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Neuro drain location is a drain site observation; ventricular drain is the typical neuro drain"
+     },
+     {
+      "mimic_code": "227034",
+      "mimic_display": "Non-Operative Trauma (TRAUMA)",
+      "proposed_code": "89036-8",
+      "proposed_display": "Trauma Note",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "General trauma note, non-operative; candidate was operative note (oversteps)"
+     },
+     {
+      "mimic_code": "229839",
+      "mimic_display": "Other Micro / Path Reviewed in OMR",
+      "proposed_code": "85341-6",
+      "proposed_display": "Pathology report reviewed",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Captures 'Path Reviewed'; micro component not separately coded"
+     },
+     {
+      "mimic_code": "225355",
+      "mimic_display": "PA Catheter Site Appear",
+      "proposed_code": "80243-9",
+      "proposed_display": "Cardiac catheterization access site",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "PA catheter is a cardiac catheterization; access site matches, 'appearance' is non-coded qualifier"
+     },
+     {
+      "mimic_code": "224665",
+      "mimic_display": "PCA total dose",
+      "proposed_code": "76313-6",
+      "proposed_display": "PCA dose volume.max Infusion pump",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest LOINC for total PCA dose volume"
+     },
+     {
+      "mimic_code": "224348",
+      "mimic_display": "Patient identified correctly (CVL)",
+      "proposed_code": "81681-9",
+      "proposed_display": "Verified two types of patient identification",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match to confirming patient identity; 'two types' is unstated specifier"
+     },
+     {
+      "mimic_code": "229424",
+      "mimic_display": "ROS-Cardiac",
+      "proposed_code": "8687-6",
+      "proposed_display": "Review of systems - Reported",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "ROS-Cardiac is a review of systems section; no cardiac-specific ROS code exists, general ROS is closest"
+     },
+     {
+      "mimic_code": "229432",
+      "mimic_display": "ROS-Psych",
+      "proposed_code": "8687-6",
+      "proposed_display": "Review of systems - Reported",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "ROS-Psych is a review of systems section; base ROS code captures meaning"
+     },
+     {
+      "mimic_code": "227654",
+      "mimic_display": "Reflexes LE",
+      "proposed_code": "8697-5",
+      "proposed_display": "Physical findings of Neurologic deep tendon reflexes",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Reflexes finding; LE is location qualifier not separately coded"
+     },
+     {
+      "mimic_code": "227655",
+      "mimic_display": "Reflexes UE",
+      "proposed_code": "80324-7",
+      "proposed_display": "Tendon reflex assessment panel",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest broader match for upper extremity reflexes; no UE-specific reflex code"
+     },
+     {
+      "mimic_code": "230041",
+      "mimic_display": "Restlessness.",
+      "proposed_code": "65517-5",
+      "proposed_display": "Feeling restless in past 7 days [QIDS]",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest LOINC finding for restlessness; adds 7-day timeframe"
+     },
+     {
+      "mimic_code": "227683",
+      "mimic_display": "Restraint/Seclusion Observer Sheet",
+      "proposed_code": "70007-0",
+      "proposed_display": "Restraint note",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Document type for restraint observation; no seclusion-specific code exists"
+     },
+     {
+      "mimic_code": "227967",
+      "mimic_display": "Restraint/Seclusion Observer Sheet",
+      "proposed_code": "70007-0",
+      "proposed_display": "Restraint note",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Document type for restraint observation; no seclusion-specific code exists"
+     },
+     {
+      "mimic_code": "225518",
+      "mimic_display": "Services (Bronch)",
+      "proposed_code": "18744-3",
+      "proposed_display": "Bronchoscopy study",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Best LOINC match for bronchoscopy services"
+     },
+     {
+      "mimic_code": "224178",
+      "mimic_display": "Small Volume Neb Dose #2",
+      "proposed_code": "65818-7",
+      "proposed_display": "Medication [Mass/volume] Dose",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Medication dose; nebulizer delivery method not separately coded"
+     },
+     {
+      "mimic_code": "224372",
+      "mimic_display": "Sputum Source",
+      "proposed_code": "31208-2",
+      "proposed_display": "Specimen source identified",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match to 'Sputum Source'; generic specimen source concept"
+     },
+     {
+      "mimic_code": "228412",
+      "mimic_display": "Strength R Arm",
+      "proposed_code": "80322-1",
+      "proposed_display": "Muscle strength",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Core concept is muscle strength; R Arm is unstated qualifier"
+     },
+     {
+      "mimic_code": "228378",
+      "mimic_display": "TFCd (NICOM)",
+      "proposed_code": "76525-5",
+      "proposed_display": "Thoracic fluid conductivity [Fluid Conductance] Chest",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "TFC (thoracic fluid content) by NICOM; closest LOINC is thoracic fluid conductivity"
+     },
+     {
+      "mimic_code": "228379",
+      "mimic_display": "TFCd0 (NICOM)",
+      "proposed_code": "76525-5",
+      "proposed_display": "Thoracic fluid conductivity [Fluid Conductance] Chest",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "TFC (thoracic fluid content) measured by NICOM; closest LOINC match"
+     },
+     {
+      "mimic_code": "223818",
+      "mimic_display": "Tactile Disturbances",
+      "proposed_code": "80327-0",
+      "proposed_display": "Paresthesia [Type]",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Paresthesia is a disturbance of touch sensation; closest match"
+     },
+     {
+      "mimic_code": "228380",
+      "mimic_display": "Thoracic Fluid Content (TFC) (NICOM)",
+      "proposed_code": "76525-5",
+      "proposed_display": "Thoracic fluid conductivity [Fluid Conductance] Chest",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest LOINC match to Thoracic Fluid Content (TFC) measured by NICOM"
+     },
+     {
+      "mimic_code": "223964",
+      "mimic_display": "Transcutaneous Pacer",
+      "proposed_code": "78934-7",
+      "proposed_display": "Temporary pacing performed",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Transcutaneous pacing is a form of temporary pacing; broader match, no overstepping"
+     },
+     {
+      "mimic_code": "225736",
+      "mimic_display": "Triple Introducer Line Tip Cultured",
+      "proposed_code": "19128-8",
+      "proposed_display": "Bacteria identified in Catheter tip by Culture",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match for line tip culture test"
+     },
+     {
+      "mimic_code": "227763",
+      "mimic_display": "Triple Introducer Placement Confirmed by X-ray",
+      "proposed_code": "24631-4",
+      "proposed_display": "RF Unspecified body region Views for central venous catheter placement check",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "X-ray placement check of central venous catheter (triple introducer)"
+     },
+     {
+      "mimic_code": "225395",
+      "mimic_display": "Triple Introducer Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest LOINC observation for introducer/access site appearance; 'triple' is non-coded qualifier"
+     },
+     {
+      "mimic_code": "224015",
+      "mimic_display": "Urine Source",
+      "proposed_code": "47938-6",
+      "proposed_display": "Specimen source [Identifier] of Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Urine is a body fluid; closest broader match for specimen source"
+     },
+     {
+      "mimic_code": "225655",
+      "mimic_display": "ZFK506",
+      "proposed_code": "11253-2",
+      "proposed_display": "Tacrolimus [Mass/volume] in Blood",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "ZFK506 is a typo for FK506 (tacrolimus); generic blood test matches"
+     },
+     {
+      "mimic_code": "223881",
+      "mimic_display": "ZGU Irrigant Intake",
+      "proposed_code": "9025-8",
+      "proposed_display": "Fluid intake urinary bladder irrigation Estimated",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "ZGU irrigant intake = genitourinary irrigation fluid intake; closest match"
+     },
+     {
+      "mimic_code": "225240",
+      "mimic_display": "14 Gauge Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Matches 'site appear'; 14 gauge is unstated needle qualifier"
+     },
+     {
+      "mimic_code": "225237",
+      "mimic_display": "16 Gauge Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "16 gauge needle site likely dialysis access site appearance"
+     },
+     {
+      "mimic_code": "226138",
+      "mimic_display": "20 Gauge placed in outside facility",
+      "proposed_code": "88660-6",
+      "proposed_display": "Needle gauge [Length] Intravascular tube",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Captures 20 gauge needle/catheter concept; facility context not coded"
+     },
+     {
+      "mimic_code": "224119",
+      "mimic_display": "22 Gauge Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Captures 'site appearance' meaning; gauge qualifier not represented"
+     },
+     {
+      "mimic_code": "226742",
+      "mimic_display": "APACHE II Diagnosistic weight factors - Surgical",
+      "proposed_code": "9264-3",
+      "proposed_display": "Apache II score",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest match; input is APACHE II diagnostic weight factor component"
+     },
+     {
+      "mimic_code": "226748",
+      "mimic_display": "APACHEII-Renal failure",
+      "proposed_code": "9264-3",
+      "proposed_display": "Apache II score",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "APACHEII component; score code matches primary concept"
+     },
+     {
+      "mimic_code": "227864",
+      "mimic_display": "Activity HR - Aerobic Capacity",
+      "proposed_code": "94122-9",
+      "proposed_display": "Oxygen consumption (VO2)/Body weight [Volume Rate Content] --peak during exercise",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Aerobic capacity corresponds to VO2 max; best available match"
+     },
+     {
+      "mimic_code": "225721",
+      "mimic_display": "Acuity (A-Line)",
+      "proposed_code": "56839-4",
+      "proposed_display": "Acuity assessment",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Core concept 'Acuity' matches; A-Line qualifier unclear"
+     },
+     {
+      "mimic_code": "224341",
+      "mimic_display": "Acuity (CVL)",
+      "proposed_code": "56839-4",
+      "proposed_display": "Acuity assessment",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Acuity maps to acuity assessment; CVL qualifier not represented"
+     },
+     {
+      "mimic_code": "226979",
+      "mimic_display": "Admission location",
+      "proposed_code": "80412-0",
+      "proposed_display": "Encounter location",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest broader match for admission location"
+     },
+     {
+      "mimic_code": "226738",
+      "mimic_display": "AgeApacheIIScore",
+      "proposed_code": "9264-3",
+      "proposed_display": "Apache II score",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Age is a component of Apache II score; closest match"
+     },
+     {
+      "mimic_code": "228241",
+      "mimic_display": "Ammonia (Soft)_OLD_1",
+      "proposed_code": "23656-2",
+      "proposed_display": "Ammonia [Mass/volume] in Specimen",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic ammonia measurement; specimen type unspecified"
+     },
+     {
+      "mimic_code": "225533",
+      "mimic_display": "Autofluorescence AF (Bronch)",
+      "proposed_code": "18744-3",
+      "proposed_display": "Bronchoscopy study",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest broader match; captures bronchoscopy, autofluorescence method not separately coded"
+     },
+     {
+      "mimic_code": "228062",
+      "mimic_display": "Autofluorescence AF (Bronch)",
+      "proposed_code": "18744-3",
+      "proposed_display": "Bronchoscopy study",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest broader match; captures bronchoscopy, autofluorescence method not separately coded"
+     },
+     {
+      "mimic_code": "227580",
+      "mimic_display": "BiPap IPAP",
+      "proposed_code": "58960-6",
+      "proposed_display": "Pressure.bilevel positive airway Ventilator",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest to BiPAP IPAP pressure setting; no exact IPAP code"
+     },
+     {
+      "mimic_code": "226998",
+      "mimic_display": "Bilirubin_ApacheIV",
+      "proposed_code": "42719-5",
+      "proposed_display": "Bilirubin.total [Mass/volume] in Blood",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Bilirubin component of APACHE IV score; best match is bilirubin lab test"
+     },
+     {
+      "mimic_code": "227751",
+      "mimic_display": "CCO PAC Placement Confirmed by X-ray",
+      "proposed_code": "87109-5",
+      "proposed_display": "Guidance for placement of Swan-Ganz catheter in Chest",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "PAC (pulmonary artery catheter) = Swan-Ganz; placement code matches, though 'confirmed by X-ray' not explicit"
+     },
+     {
+      "mimic_code": "226859",
+      "mimic_display": "CI pressure (PA Line)",
+      "proposed_code": "75994-4",
+      "proposed_display": "Pulmonary artery wedge pressure",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "PA line pressure; CI likely cardiac index context, wedge pressure is PA line measurement"
+     },
+     {
+      "mimic_code": "229690",
+      "mimic_display": "CPOT-Pain Assessment Method-Post",
+      "proposed_code": "80317-1",
+      "proposed_display": "Pain assessment [Interpretation]",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No CPOT-specific LOINC code; closest broader pain assessment concept"
+     },
+     {
+      "mimic_code": "223996",
+      "mimic_display": "CT #1 Drainage",
+      "proposed_code": "35922-4",
+      "proposed_display": "CT Guidance for drainage and placement of drainage catheter of Unspecified body region",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic CT drainage guidance; unspecified region, minor catheter placement qualifier"
+     },
+     {
+      "mimic_code": "224424",
+      "mimic_display": "CT #2 Drainage",
+      "proposed_code": "35922-4",
+      "proposed_display": "CT Guidance for drainage and placement of drainage catheter of Unspecified body region",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic CT drainage guidance; unspecified region, minor catheter placement qualifier"
+     },
+     {
+      "mimic_code": "224430",
+      "mimic_display": "CT #3 Drainage",
+      "proposed_code": "35922-4",
+      "proposed_display": "CT Guidance for drainage and placement of drainage catheter of Unspecified body region",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic CT drainage guidance; unspecified region, minor catheter placement qualifier"
+     },
+     {
+      "mimic_code": "224431",
+      "mimic_display": "CT #4 Drainage",
+      "proposed_code": "35922-4",
+      "proposed_display": "CT Guidance for drainage and placement of drainage catheter of Unspecified body region",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic CT drainage guidance; unspecified region, minor catheter placement qualifier"
+     },
+     {
+      "mimic_code": "225707",
+      "mimic_display": "Central Line ordered on POE",
+      "proposed_code": "30643-1",
+      "proposed_display": "Guidance for placement of central venous catheter",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC code for central line placement order"
+     },
+     {
+      "mimic_code": "228036",
+      "mimic_display": "Central Line ordered on POE",
+      "proposed_code": "30643-1",
+      "proposed_display": "Guidance for placement of central venous catheter",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC code for central line placement order"
+     },
+     {
+      "mimic_code": "226524",
+      "mimic_display": "Complications (A-Line)",
+      "proposed_code": "19817-6",
+      "proposed_display": "Complications",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No specific arterial line complication code; general Complications is closest broader match"
+     },
+     {
+      "mimic_code": "225524",
+      "mimic_display": "Complications (Bronch)",
+      "proposed_code": "19817-6",
+      "proposed_display": "Complications",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "General complications finding; no bronchoscopy-specific code exists"
+     },
+     {
+      "mimic_code": "224506",
+      "mimic_display": "Conscious sedation (THCEN)",
+      "proposed_code": "90353-4",
+      "proposed_display": "Conscious sedation procedure note",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC match to conscious sedation concept"
+     },
+     {
+      "mimic_code": "228427",
+      "mimic_display": "Contraindications (MBAL)",
+      "proposed_code": "34070-3",
+      "proposed_display": "FDA package insert Contraindications section",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest contraindications section concept; MBAL specifier unclear"
+     },
+     {
+      "mimic_code": "230069",
+      "mimic_display": "Documented in DC Summary (Bronch)",
+      "proposed_code": "18744-3",
+      "proposed_display": "Bronchoscopy study",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Bronch document; no bronchoscopy discharge summary exists"
+     },
+     {
+      "mimic_code": "226014",
+      "mimic_display": "Dressing applied and dated (LP)",
+      "proposed_code": "95208-5",
+      "proposed_display": "Bandage applied",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest to 'dressing applied'; bandage vs dressing minor mismatch"
+     },
+     {
+      "mimic_code": "228077",
+      "mimic_display": "Dressing applied and dated (LP)",
+      "proposed_code": "95208-5",
+      "proposed_display": "Bandage applied",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest to 'dressing applied'; bandage vs dressing minor mismatch"
+     },
+     {
+      "mimic_code": "223838",
+      "mimic_display": "ETT Location",
+      "proposed_code": "33444-1",
+      "proposed_display": "Intubation tube depth Respiratory system",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No exact 'ETT location' code; depth is the clinical measure of tube position"
+     },
+     {
+      "mimic_code": "226480",
+      "mimic_display": "Ectopy Frequency 2",
+      "proposed_code": "8621-5",
+      "proposed_display": "Ventricular ectopics",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Ectopy frequency refers to ectopic beat rate; closest match is ventricular ectopics rate"
+     },
+     {
+      "mimic_code": "224078",
+      "mimic_display": "Education Handout",
+      "proposed_code": "34895-3",
+      "proposed_display": "Education note",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest document concept to an education handout"
+     },
+     {
+      "mimic_code": "229267",
+      "mimic_display": "Emergency Equipment at bedside (ECMO)",
+      "proposed_code": "92192-4",
+      "proposed_display": "Equipment type available",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest broader match for equipment availability observation"
+     },
+     {
+      "mimic_code": "229252",
+      "mimic_display": "Emergency Equipment at bedside (LVAD)",
+      "proposed_code": "92192-4",
+      "proposed_display": "Equipment type available",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest match to equipment available at bedside"
+     },
+     {
+      "mimic_code": "228260",
+      "mimic_display": "FM Pt Preferences",
+      "proposed_code": "107905-2",
+      "proposed_display": "Treatment intervention preferences",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Patient preferences; FM abbreviation unclear, broadest preference match"
+     },
+     {
+      "mimic_code": "228277",
+      "mimic_display": "FM Pt present",
+      "proposed_code": "57088-7",
+      "proposed_display": "Fetal Movement - Reported",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "FM = fetal movement; presence at point in time"
+     },
+     {
+      "mimic_code": "228691",
+      "mimic_display": "Febrile last 24 hours",
+      "proposed_code": "95384-4",
+      "proposed_display": "Symptoms in the last 24 hours",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Captures 24h timeframe; no LOINC code combines fever with 24h"
+     },
+     {
+      "mimic_code": "224691",
+      "mimic_display": "Flow Rate (L/min)",
+      "proposed_code": "3151-8",
+      "proposed_display": "Inhaled oxygen flow rate",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only flow rate in L/min; adds oxygen specificity to generic input"
+     },
+     {
+      "mimic_code": "225648",
+      "mimic_display": "Follow-up X-RAYordered (PA Line)",
+      "proposed_code": "24648-8",
+      "proposed_display": "XR Chest PA upright",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "PA X-ray; closest match though adds chest/upright specificity"
+     },
+     {
+      "mimic_code": "228122",
+      "mimic_display": "Follow-up X-RAYordered (PA Line)",
+      "proposed_code": "24648-8",
+      "proposed_display": "XR Chest PA upright",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "PA X-ray; closest match though adds chest/upright specificity"
+     },
+     {
+      "mimic_code": "224007",
+      "mimic_display": "GI #1 Intub Site",
+      "proposed_code": "8934-2",
+      "proposed_display": "Enteral tube site",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest to GI intubation site; enteral tube site"
+     },
+     {
+      "mimic_code": "224441",
+      "mimic_display": "GI #2 Intub Site",
+      "proposed_code": "8934-2",
+      "proposed_display": "Enteral tube site",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest to GI intubation site; enteral tube site"
+     },
+     {
+      "mimic_code": "224442",
+      "mimic_display": "GI #3 Intub Site",
+      "proposed_code": "8934-2",
+      "proposed_display": "Enteral tube site",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest to GI intubation site; enteral tube site"
+     },
+     {
+      "mimic_code": "226760",
+      "mimic_display": "HCO3Score",
+      "proposed_code": "1963-8",
+      "proposed_display": "Bicarbonate [Moles/volume] in Serum or Plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "HCO3 is bicarbonate; no 'score' concept exists, closest is bicarbonate measurement"
+     },
+     {
+      "mimic_code": "225708",
+      "mimic_display": "Immediate complications (PICC)",
+      "proposed_code": "19817-6",
+      "proposed_display": "Complications",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No PICC-specific complication code; general Complications is closest broader match"
+     },
+     {
+      "mimic_code": "228048",
+      "mimic_display": "Immediate complications (PICC)",
+      "proposed_code": "19817-6",
+      "proposed_display": "Complications",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No PICC-specific complication code; general Complications is closest broader match"
+     },
+     {
+      "mimic_code": "227666",
+      "mimic_display": "Immobilizer Location",
+      "proposed_code": "88671-3",
+      "proposed_display": "Position &or immobilizer used during EMS transport",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest available; captures immobilizer position/location concept"
+     },
+     {
+      "mimic_code": "228516",
+      "mimic_display": "Impaired Skin #1- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228853",
+      "mimic_display": "Impaired Skin #1- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228585",
+      "mimic_display": "Impaired Skin #10- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228862",
+      "mimic_display": "Impaired Skin #10- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228577",
+      "mimic_display": "Impaired Skin #2- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228854",
+      "mimic_display": "Impaired Skin #2- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228578",
+      "mimic_display": "Impaired Skin #3- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228855",
+      "mimic_display": "Impaired Skin #3- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228579",
+      "mimic_display": "Impaired Skin #4- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228856",
+      "mimic_display": "Impaired Skin #4- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228580",
+      "mimic_display": "Impaired Skin #5- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228857",
+      "mimic_display": "Impaired Skin #5- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228581",
+      "mimic_display": "Impaired Skin #6- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228858",
+      "mimic_display": "Impaired Skin #6- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228582",
+      "mimic_display": "Impaired Skin #7- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228859",
+      "mimic_display": "Impaired Skin #7- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228583",
+      "mimic_display": "Impaired Skin #8- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228860",
+      "mimic_display": "Impaired Skin #8- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228584",
+      "mimic_display": "Impaired Skin #9- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "228861",
+      "mimic_display": "Impaired Skin #9- Type",
+      "proposed_code": "72300-7",
+      "proposed_display": "Wound type",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC type observation for impaired skin; wound type captures skin impairment classification"
+     },
+     {
+      "mimic_code": "224226",
+      "mimic_display": "Impaired Skin Wound Base #1",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "227617",
+      "mimic_display": "Impaired Skin Wound Base #10",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "224958",
+      "mimic_display": "Impaired Skin Wound Base #2",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "224959",
+      "mimic_display": "Impaired Skin Wound Base #3",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "224960",
+      "mimic_display": "Impaired Skin Wound Base #4",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "224961",
+      "mimic_display": "Impaired Skin Wound Base #5",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "224962",
+      "mimic_display": "Impaired Skin Wound Base #6",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "224963",
+      "mimic_display": "Impaired Skin Wound Base #7",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "224964",
+      "mimic_display": "Impaired Skin Wound Base #8",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "227616",
+      "mimic_display": "Impaired Skin Wound Base #9",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Wound base observation; 'impaired' is a qualifier on appearance"
+     },
+     {
+      "mimic_code": "228170",
+      "mimic_display": "Impella Line Discontinued",
+      "proposed_code": "87516-1",
+      "proposed_display": "Life support was discontinued",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest broader match; Impella is a ventricular assist device (life support) being discontinued"
+     },
+     {
+      "mimic_code": "228174",
+      "mimic_display": "Impella Line Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest match: device access site appearance observation"
+     },
+     {
+      "mimic_code": "224848",
+      "mimic_display": "Incision Appearance #1",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "229036",
+      "mimic_display": "Incision Appearance #10",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "224993",
+      "mimic_display": "Incision Appearance #2",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "224994",
+      "mimic_display": "Incision Appearance #3",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "224995",
+      "mimic_display": "Incision Appearance #4",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "224996",
+      "mimic_display": "Incision Appearance #5",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "224997",
+      "mimic_display": "Incision Appearance #6",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "229033",
+      "mimic_display": "Incision Appearance #7",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "229034",
+      "mimic_display": "Incision Appearance #8",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "229035",
+      "mimic_display": "Incision Appearance #9",
+      "proposed_code": "72371-8",
+      "proposed_display": "Appearance of Wound base",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest wound appearance observation; incision is a wound"
+     },
+     {
+      "mimic_code": "224489",
+      "mimic_display": "Indication (LP)",
+      "proposed_code": "104907-1",
+      "proposed_display": "Indication Narrative",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Base 'Indication' concept; LP qualifier unclear, closest match"
+     },
+     {
+      "mimic_code": "226525",
+      "mimic_display": "Indications (A-Line)",
+      "proposed_code": "104907-1",
+      "proposed_display": "Indication Narrative",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "General indications concept; A-Line is ambiguous qualifier"
+     },
+     {
+      "mimic_code": "225271",
+      "mimic_display": "Induction/Drugs/Doses (Intubation)",
+      "proposed_code": "29303-5",
+      "proposed_display": "Medication administered",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Section header for induction drugs/doses; medication administered captures drug/dose concept"
+     },
+     {
+      "mimic_code": "220120",
+      "mimic_display": "Intra Aortic Ballon Pump Setting",
+      "proposed_code": "80998-8",
+      "proposed_display": "Intra-aortic balloon pump used",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only IABP code; captures pump concept though 'setting' not explicit"
+     },
+     {
+      "mimic_code": "227980",
+      "mimic_display": "Intra Aortic Balloon Pump Setting",
+      "proposed_code": "80998-8",
+      "proposed_display": "Intra-aortic balloon pump used",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only candidate; captures IABP use observation"
+     },
+     {
+      "mimic_code": "227021",
+      "mimic_display": "Intubated_ApacheIV",
+      "proposed_code": "103747-2",
+      "proposed_display": "Is the patient on invasive mechanical ventilation support",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "'Intubated' maps to invasive mechanical ventilation finding"
+     },
+     {
+      "mimic_code": "224762",
+      "mimic_display": "LLE Sensation",
+      "proposed_code": "32473-1",
+      "proposed_display": "Physical findings sensation",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Sensation finding; LLE is body-site qualifier not separately coded"
+     },
+     {
+      "mimic_code": "224773",
+      "mimic_display": "LLE Temp",
+      "proposed_code": "81673-6",
+      "proposed_display": "Temperature of Extremity",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest temperature code; broader (extremity) than left lower extremity"
+     },
+     {
+      "mimic_code": "224759",
+      "mimic_display": "LUE Sensation",
+      "proposed_code": "32473-1",
+      "proposed_display": "Physical findings sensation",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Sensation finding; LUE laterality not captured by any code"
+     },
+     {
+      "mimic_code": "224769",
+      "mimic_display": "LUE Temp",
+      "proposed_code": "81673-6",
+      "proposed_display": "Temperature of Extremity",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Temperature of extremity; broader than LUE but captures meaning"
+     },
+     {
+      "mimic_code": "229535",
+      "mimic_display": "Line Type",
+      "proposed_code": "77738-3",
+      "proposed_display": "Line Flush [Type]",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "FSN 'Flush:Type:Pt:Line:Nom' matches 'Line Type' concept"
+     },
+     {
+      "mimic_code": "230038",
+      "mimic_display": "Look of fear",
+      "proposed_code": "103778-7",
+      "proposed_display": "Facial expression",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Broader match; no specific 'look of fear' code exists"
+     },
+     {
+      "mimic_code": "229606",
+      "mimic_display": "Manometry Method",
+      "proposed_code": "51393-7",
+      "proposed_display": "Esophageal manometry study",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest match; synonym 'Manometry study' captures generic manometry concept"
+     },
+     {
+      "mimic_code": "224281",
+      "mimic_display": "Multi Lumen Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC observation for multi-lumen catheter site appearance"
+     },
+     {
+      "mimic_code": "227026",
+      "mimic_display": "Non-Operative Gastrointestinal (GI)",
+      "proposed_code": "82195-9",
+      "proposed_display": "Gastrointestinal pathogens DNA and RNA panel - Stool by NAA with non-probe detection",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest general GI panel among candidates; non-operative qualifier not captured"
+     },
+     {
+      "mimic_code": "227031",
+      "mimic_display": "Non-Operative Neurologic (NEUROLOGIC)",
+      "proposed_code": "80314-8",
+      "proposed_display": "Neurological assessment",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest match to non-operative neurologic category"
+     },
+     {
+      "mimic_code": "226011",
+      "mimic_display": "Number of attempts (PACEN)",
+      "proposed_code": "88661-4",
+      "proposed_display": "Number of unsuccessful attempts",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only attempt-count code; adds unstated 'unsuccessful' qualifier"
+     },
+     {
+      "mimic_code": "227117",
+      "mimic_display": "PCA total dose units",
+      "proposed_code": "76313-6",
+      "proposed_display": "PCA dose volume.max Infusion pump",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest PCA dose code; 'total' vs 'max' qualifier mismatch"
+     },
+     {
+      "mimic_code": "230049",
+      "mimic_display": "PNC-1 Appearance",
+      "proposed_code": "76675-8",
+      "proposed_display": "Appearance of Cerebral spinal fluid--1st tube",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "PNC-1 likely tube 1; appearance of CSF 1st tube matches"
+     },
+     {
+      "mimic_code": "230052",
+      "mimic_display": "PNC-1 Location",
+      "proposed_code": "22046-7",
+      "proposed_display": "Place of 1st Dx [Location] Cancer Narrative",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only Location candidate; PNC-1 likely cancer registry field for place of first diagnosis"
+     },
+     {
+      "mimic_code": "223795",
+      "mimic_display": "Pain Assessment Method",
+      "proposed_code": "38212-7",
+      "proposed_display": "Pain assessment panel",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "General pain assessment concept; no exact 'method' code, panel is broadest match"
+     },
+     {
+      "mimic_code": "229687",
+      "mimic_display": "Pain Assessment Method",
+      "proposed_code": "38212-7",
+      "proposed_display": "Pain assessment panel",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "General pain assessment concept; no exact 'method' code, panel is broadest match"
+     },
+     {
+      "mimic_code": "229688",
+      "mimic_display": "Pain Assessment Method (BIS)",
+      "proposed_code": "38212-7",
+      "proposed_display": "Pain assessment panel",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No BIS-specific code; general pain assessment is closest broader match"
+     },
+     {
+      "mimic_code": "230040",
+      "mimic_display": "Paradoxical breathing",
+      "proposed_code": "101970-2",
+      "proposed_display": "Breathing patterns",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No specific LOINC code for paradoxical breathing; closest broader match is breathing patterns"
+     },
+     {
+      "mimic_code": "229480",
+      "mimic_display": "Patient identified correctly  (SBNET)",
+      "proposed_code": "81681-9",
+      "proposed_display": "Verified two types of patient identification",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest SBNET checklist item for patient identity verification"
+     },
+     {
+      "mimic_code": "225540",
+      "mimic_display": "Patient identified correctly (Bronch)",
+      "proposed_code": "81681-9",
+      "proposed_display": "Verified two types of patient identification",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest match to patient identification verification finding"
+     },
+     {
+      "mimic_code": "225597",
+      "mimic_display": "Patient identified correctly (LP)",
+      "proposed_code": "81681-9",
+      "proposed_display": "Verified two types of patient identification",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest to confirming patient identity; adds 'two types' specifier"
+     },
+     {
+      "mimic_code": "228439",
+      "mimic_display": "Patient identified correctly (MBAL)",
+      "proposed_code": "81681-9",
+      "proposed_display": "Verified two types of patient identification",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest match; adds unstated 'two types' qualifier"
+     },
+     {
+      "mimic_code": "224618",
+      "mimic_display": "Patient identified correctly (PA line)",
+      "proposed_code": "81681-9",
+      "proposed_display": "Verified two types of patient identification",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest match; captures verified patient identification, adds unstated 'two types' specifier"
+     },
+     {
+      "mimic_code": "224517",
+      "mimic_display": "Patient identified correctly (PICC)",
+      "proposed_code": "81681-9",
+      "proposed_display": "Verified two types of patient identification",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest match to patient identification verification; adds unstated 'two types'"
+     },
+     {
+      "mimic_code": "224855",
+      "mimic_display": "Patient/Family Informed_V1",
+      "proposed_code": "19826-7",
+      "proposed_display": "Informed consent obtained",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Informed refers to informed consent; closest LOINC match"
+     },
+     {
+      "mimic_code": "225989",
+      "mimic_display": "Pericardial Drain Aspiration",
+      "proposed_code": "89609-2",
+      "proposed_display": "CT Guidance for fluid aspiration of Pericardial space",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest to pericardial aspiration procedure; adds guidance/modality"
+     },
+     {
+      "mimic_code": "229569",
+      "mimic_display": "Plan-Endocrine",
+      "proposed_code": "92895-2",
+      "proposed_display": "Endocrinology studies",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Document section for endocrine; closest match to Plan-Endocrine heading"
+     },
+     {
+      "mimic_code": "227040",
+      "mimic_display": "Post-Operative Cardiovascular (CARDIOVASC)",
+      "proposed_code": "80275-1",
+      "proposed_display": "Cardiovascular physiologic assessment panel",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Cardiovascular assessment panel; post-operative context not captured by any candidate"
+     },
+     {
+      "mimic_code": "227049",
+      "mimic_display": "Post-Operative Trauma (TRAUMA)",
+      "proposed_code": "78240-9",
+      "proposed_display": "Trauma Surgical operation note",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC document code for trauma operative note"
+     },
+     {
+      "mimic_code": "226772",
+      "mimic_display": "PotassiumApacheIIValue",
+      "proposed_code": "2823-3",
+      "proposed_display": "Potassium [Moles/volume] in Serum or Plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Variable name for Apache II potassium value; serum potassium is the clinical referent"
+     },
+     {
+      "mimic_code": "229275",
+      "mimic_display": "Pump plugged into RED outlet (ECMO)",
+      "proposed_code": "103847-0",
+      "proposed_display": "Extracorporeal membrane oxygenation ECMO device",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "ECMO pump device; closest match to ECMO pump concept"
+     },
+     {
+      "mimic_code": "223924",
+      "mimic_display": "RLE Sensation",
+      "proposed_code": "32473-1",
+      "proposed_display": "Physical findings sensation",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Sensation finding; RLE is location qualifier not separately coded"
+     },
+     {
+      "mimic_code": "224771",
+      "mimic_display": "RLE Temp",
+      "proposed_code": "81673-6",
+      "proposed_display": "Temperature of Extremity",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Temperature finding of extremity; broader than RLE but no laterality/lower-specific code exists"
+     },
+     {
+      "mimic_code": "229422",
+      "mimic_display": "ROS-HEENT",
+      "proposed_code": "8687-6",
+      "proposed_display": "Review of systems - Reported",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "ROS = Review of systems; HEENT is body region qualifier"
+     },
+     {
+      "mimic_code": "223851",
+      "mimic_display": "Rate",
+      "proposed_code": "8867-4",
+      "proposed_display": "Heart rate",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic 'Rate' most commonly refers to heart rate"
+     },
+     {
+      "mimic_code": "227677",
+      "mimic_display": "Reason for Restraint/Seclusion (Violent)",
+      "proposed_code": "70007-0",
+      "proposed_display": "Restraint note",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest broader match; captures restraint documentation, not reason/violent qualifiers"
+     },
+     {
+      "mimic_code": "227962",
+      "mimic_display": "Restraints (Violent)",
+      "proposed_code": "70007-0",
+      "proposed_display": "Restraint note",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "General restraint note; 'violent' qualifier not represented in candidates"
+     },
+     {
+      "mimic_code": "223923",
+      "mimic_display": "Seizure Activity",
+      "proposed_code": "32472-3",
+      "proposed_display": "History of Seizure activity disorders",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only LOINC code capturing 'Seizure activity' analyte"
+     },
+     {
+      "mimic_code": "228413",
+      "mimic_display": "Seizure Activity",
+      "proposed_code": "32472-3",
+      "proposed_display": "History of Seizure activity disorders",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only LOINC code capturing 'Seizure activity' analyte"
+     },
+     {
+      "mimic_code": "225550",
+      "mimic_display": "Side (A-Line)",
+      "proposed_code": "20228-3",
+      "proposed_display": "Anatomic part Laterality",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Side maps to laterality; no specific arterial line side code exists"
+     },
+     {
+      "mimic_code": "224340",
+      "mimic_display": "Side (CVL)",
+      "proposed_code": "20228-3",
+      "proposed_display": "Anatomic part Laterality",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "General laterality concept; no specific CVL side code exists"
+     },
+     {
+      "mimic_code": "225244",
+      "mimic_display": "Side (THCEN)",
+      "proposed_code": "32892-2",
+      "proposed_display": "Side [Identifier] Tooth",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Side in tooth context; THCEN likely tooth identifier"
+     },
+     {
+      "mimic_code": "227957",
+      "mimic_display": "Signs of Injury from Intervention",
+      "proposed_code": "67545-4",
+      "proposed_display": "Procedure complication",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Injury from intervention maps to procedure complication finding"
+     },
+     {
+      "mimic_code": "225122",
+      "mimic_display": "Special diet",
+      "proposed_code": "81663-7",
+      "proposed_display": "Diet [Type]",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No exact 'special diet' code; Diet [Type] is closest broader match"
+     },
+     {
+      "mimic_code": "228410",
+      "mimic_display": "Strength L Leg",
+      "proposed_code": "80322-1",
+      "proposed_display": "Muscle strength",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Captures strength concept; laterality not coded"
+     },
+     {
+      "mimic_code": "229276",
+      "mimic_display": "Suction events (ECMO)",
+      "proposed_code": "88107-8",
+      "proposed_display": "Suctioning frequency",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest to counting suction events; ECMO is context qualifier"
+     },
+     {
+      "mimic_code": "228214",
+      "mimic_display": "Tandem Heart Access Line Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Access site appearance observation; closest match, dialysis qualifier unstated"
+     },
+     {
+      "mimic_code": "224390",
+      "mimic_display": "Temporary Atrial Sens",
+      "proposed_code": "99677-7",
+      "proposed_display": "Pacemaker Atrial sensitivity setting",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Atrial Sens = atrial sensitivity; temporary qualifier not captured by any code"
+     },
+     {
+      "mimic_code": "223962",
+      "mimic_display": "Temporary Pacemaker Wires Venticular",
+      "proposed_code": "99695-9",
+      "proposed_display": "Pacemaker Ventricular wire",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Captures ventricular pacemaker wire; temporary qualifier not stated"
+     },
+     {
+      "mimic_code": "224837",
+      "mimic_display": "Temporary Ventricular Sens Setting mV",
+      "proposed_code": "99691-8",
+      "proposed_display": "Pacemaker Ventricular sensitivity setting",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Ventricular sensitivity setting matches; 'temporary' qualifier not captured by any code"
+     },
+     {
+      "mimic_code": "225287",
+      "mimic_display": "Transparent dressing applied and dated (PICC)",
+      "proposed_code": "95208-5",
+      "proposed_display": "Bandage applied",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest broader match for dressing applied; lacks transparent/dated specifier"
+     },
+     {
+      "mimic_code": "228045",
+      "mimic_display": "Transparent dressing applied and dated (PICC)",
+      "proposed_code": "95208-5",
+      "proposed_display": "Bandage applied",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest broader match for dressing applied; lacks transparent/dated specifier"
+     },
+     {
+      "mimic_code": "225217",
+      "mimic_display": "Trauma Line Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only access-site appearance code; dialysis qualifier unstated but closest match"
+     },
+     {
+      "mimic_code": "229720",
+      "mimic_display": "Ultrasound (PACath)",
+      "proposed_code": "87144-2",
+      "proposed_display": "Guidance for placement of peripherally-inserted central venous catheter in Upper extremity",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "PACath=PICC placement; modality unspecified but closest match"
+     },
+     {
+      "mimic_code": "223775",
+      "mimic_display": "VAD Beat Rate R",
+      "proposed_code": "99685-0",
+      "proposed_display": "Pacemaker rate",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Device rate measurement; no VAD-specific rate code exists"
+     },
+     {
+      "mimic_code": "227061",
+      "mimic_display": "Ventilated at any time during ICU Day 1",
+      "proposed_code": "103747-2",
+      "proposed_display": "Is the patient on invasive mechanical ventilation support",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Ventilated in ICU implies mechanical ventilation; invasive is closest"
+     },
+     {
+      "mimic_code": "228400",
+      "mimic_display": "Visual Field Cut",
+      "proposed_code": "79805-8",
+      "proposed_display": "Visual field defects Left eye",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Visual field cut = visual field defect; only lateralized versions exist, laterality unstated"
+     },
+     {
+      "mimic_code": "226779",
+      "mimic_display": "WbcApacheIIScore",
+      "proposed_code": "9264-3",
+      "proposed_display": "Apache II score",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "WBC APACHE II component not separately coded; closest broader match is Apache II score"
+     },
+     {
+      "mimic_code": "224703",
+      "mimic_display": "ZATC Tube #",
+      "proposed_code": "105118-4",
+      "proposed_display": "Tube number of Specimen",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Tube # generic; ZATC specimen type not found, generic specimen tube number is closest"
+     },
+     {
+      "mimic_code": "220574",
+      "mimic_display": "ZAlbumin",
+      "proposed_code": "1751-7",
+      "proposed_display": "Albumin [Mass/volume] in Serum or Plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "ZAlbumin likely refers to serum albumin test; best generic match"
+     },
+     {
+      "mimic_code": "225686",
+      "mimic_display": "ZThrombin",
+      "proposed_code": "3243-3",
+      "proposed_display": "Thrombin time",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "ZThrombin is a lab test order; closest general thrombin test is Thrombin time"
+     },
+     {
+      "mimic_code": "229746",
+      "mimic_display": "Card Used",
+      "proposed_code": "81002-8",
+      "proposed_display": "Devices used during Cardiac catheterization",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": "'Card' abbreviates cardiac; 'Used' matches; adds catheterization specificity"
+     },
+     {
+      "mimic_code": "220069",
+      "mimic_display": "Left Artrial Pressure",
+      "proposed_code": "60988-3",
+      "proposed_display": "Left atrial pressure",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "220603",
+      "mimic_display": "Cholesterol",
+      "proposed_code": "9342-7",
+      "proposed_display": "Cholesterol [Percentile]",
+      "confidence": 0.62,
+      "gap": 0.18,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "227440",
+      "mimic_display": "Digoxin",
+      "proposed_code": "4222-6",
+      "proposed_display": "Digoxin [Mass] of Dose",
+      "confidence": 0.62,
+      "gap": 0.18,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "220546",
+      "mimic_display": "WBC",
+      "proposed_code": "26464-8",
+      "proposed_display": "Leukocytes [#/volume] in Blood",
+      "confidence": 0.61,
+      "gap": 0.19,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "228097",
+      "mimic_display": "14 Gauge placed in the field",
+      "proposed_code": "88660-6",
+      "proposed_display": "Needle gauge [Length] Intravascular tube",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures '14 gauge' needle concept; placement context not separately coded"
+     },
+     {
+      "mimic_code": "224121",
+      "mimic_display": "22 Gauge Reason Discontinued",
+      "proposed_code": "67574-4",
+      "proposed_display": "Reason CPR resuscitation discontinued",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures 'Reason Discontinued'; adds unstated CPR specificity"
+     },
+     {
+      "mimic_code": "229473",
+      "mimic_display": "24 Gauge placed in the field",
+      "proposed_code": "88660-6",
+      "proposed_display": "Needle gauge [Length] Intravascular tube",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures 24 Gauge concept; 'placed in field' is procedure context not in LOINC VS"
+     },
+     {
+      "mimic_code": "226739",
+      "mimic_display": "AgeApacheIIValue",
+      "proposed_code": "9264-3",
+      "proposed_display": "Apache II score",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "No exact age-component code; closest broader is Apache II score"
+     },
+     {
+      "mimic_code": "223827",
+      "mimic_display": "Ataxia",
+      "proposed_code": "93001-6",
+      "proposed_display": "Total ataxia score SARA",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Context-forced specificity: 'Ataxia' is underspecified for flat code system http://loinc.org (mandatory structural axes); resolved to the most generic in-pool leaf for the analyte (fewest added tokens, uniquely)."
+     },
+     {
+      "mimic_code": "224310",
+      "mimic_display": "Augmented Diastole",
+      "proposed_code": "80276-9",
+      "proposed_display": "Heart sounds",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Augmented diastolic heart sound; closest broader finding is Heart sounds"
+     },
+     {
+      "mimic_code": "224311",
+      "mimic_display": "BAEDP",
+      "proposed_code": "35569-3",
+      "proposed_display": "Oligoclonal bands [#] in Serum or Plasma",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "BAEDP is an ambiguous abbreviation; top-ranked oligoclonal bands test in Serum/Plasma"
+     },
+     {
+      "mimic_code": "225304",
+      "mimic_display": "Blade / Equipment (Intubation)",
+      "proposed_code": "98181-1",
+      "proposed_display": "Medical equipment used",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Broader LOINC match for intubation equipment/blade used"
+     },
+     {
+      "mimic_code": "227352",
+      "mimic_display": "CCO PAC Dressing Occlusive",
+      "proposed_code": "39121-9",
+      "proposed_display": "Dressing for Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "No occlusive dressing code exists; generic dressing is closest broader match"
+     },
+     {
+      "mimic_code": "225225",
+      "mimic_display": "CCO PAC Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Only site-appearance observation; catheter access site type matches, dialysis qualifier unstated"
+     },
+     {
+      "mimic_code": "226108",
+      "mimic_display": "CCO PAC placed in outside facility",
+      "proposed_code": "87109-5",
+      "proposed_display": "Guidance for placement of Swan-Ganz catheter in Chest",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "PAC/Swan-Ganz catheter placement; closest LOINC concept"
+     },
+     {
+      "mimic_code": "229705",
+      "mimic_display": "CP-Pain Assessment Method",
+      "proposed_code": "38212-7",
+      "proposed_display": "Pain assessment panel",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "No CP-specific pain assessment; generic pain assessment panel is closest broader match"
+     },
+     {
+      "mimic_code": "227131",
+      "mimic_display": "Cont. Neb Med Dose",
+      "proposed_code": "65818-7",
+      "proposed_display": "Medication [Mass/volume] Dose",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Core concept is medication dose; no continuous-nebulized specific code exists"
+     },
+     {
+      "mimic_code": "227753",
+      "mimic_display": "Dialysis Catheter Placement Confirmed by X-ray",
+      "proposed_code": "87081-6",
+      "proposed_display": "Guidance for placement of catheter in Peritoneum",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest match to dialysis catheter placement; adds guidance/peritoneum specificity"
+     },
+     {
+      "mimic_code": "224651",
+      "mimic_display": "Ectopy Frequency 1",
+      "proposed_code": "8621-5",
+      "proposed_display": "Ventricular ectopics",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Only ectopy frequency code; adds unstated ventricular specifier"
+     },
+     {
+      "mimic_code": "224073",
+      "mimic_display": "Education Topic",
+      "proposed_code": "86906-5",
+      "proposed_display": "Chronic kidney disease education topic(s) discussed during this visit",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Context-forced specificity: 'Education Topic' is underspecified for flat code system http://loinc.org (mandatory structural axes); resolved to the most generic in-pool leaf for the analyte (fewest added tokens, uniquely)."
+     },
+     {
+      "mimic_code": "228264",
+      "mimic_display": "FM Condition Rev",
+      "proposed_code": "66233-8",
+      "proposed_display": "Has your doctor ever said that you have a heart condition and that you should only do physical activity recommended by a doctor [Revised PARQ]",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Revised PARQ heart condition item matches 'Condition Rev'"
+     },
+     {
+      "mimic_code": "228279",
+      "mimic_display": "FM Spirit/cultural",
+      "proposed_code": "81364-2",
+      "proposed_display": "Religious or cultural beliefs",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest to spiritual/cultural survey concept"
+     },
+     {
+      "mimic_code": "228284",
+      "mimic_display": "FM Time spent",
+      "proposed_code": "105256-2",
+      "proposed_display": "Longest amount of time family members spent in jail or prison",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "FM=family member; only candidate matching family+time spent"
+     },
+     {
+      "mimic_code": "225262",
+      "mimic_display": "Fluid removed description (PACEN)",
+      "proposed_code": "99739-5",
+      "proposed_display": "Hemodialysis fluid removed [Volume]",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Core concept 'fluid removed' matches; 'description' qualifier vs volume property mismatch"
+     },
+     {
+      "mimic_code": "224080",
+      "mimic_display": "Head of Bed",
+      "proposed_code": "38876-9",
+      "proposed_display": "Respiratory contraindications to elevating head of bed greater than 30 degrees",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Context-forced specificity: 'Head of Bed' is underspecified for flat code system http://loinc.org (mandatory structural axes); resolved to the most generic in-pool leaf for the analyte (fewest added tokens, uniquely)."
+     },
+     {
+      "mimic_code": "227839",
+      "mimic_display": "Home Management",
+      "proposed_code": "85470-3",
+      "proposed_display": "Patient's home Medication management note",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest candidate; captures home + management, generic role"
+     },
+     {
+      "mimic_code": "227663",
+      "mimic_display": "Immobilizer",
+      "proposed_code": "88671-3",
+      "proposed_display": "Position AndOr immobilizer used during EMS transport",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Context-forced specificity: 'Immobilizer' is underspecified for flat code system http://loinc.org (mandatory structural axes); resolved to the most generic in-pool leaf for the analyte (fewest added tokens, uniquely)."
+     },
+     {
+      "mimic_code": "224037",
+      "mimic_display": "Impaired Skin Cleanse #1",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "227595",
+      "mimic_display": "Impaired Skin Cleanse #10",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "224888",
+      "mimic_display": "Impaired Skin Cleanse #2",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "224889",
+      "mimic_display": "Impaired Skin Cleanse #3",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "224890",
+      "mimic_display": "Impaired Skin Cleanse #4",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "224891",
+      "mimic_display": "Impaired Skin Cleanse #5",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "224892",
+      "mimic_display": "Impaired Skin Cleanse #6",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "224893",
+      "mimic_display": "Impaired Skin Cleanse #7",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "224894",
+      "mimic_display": "Impaired Skin Cleanse #8",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "227594",
+      "mimic_display": "Impaired Skin Cleanse #9",
+      "proposed_code": "83181-8",
+      "proposed_display": "Bathing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Impaired skin cleansing maps to bathing/hygiene functional ability"
+     },
+     {
+      "mimic_code": "224847",
+      "mimic_display": "Impaired Skin Drainage Amount #1",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "227601",
+      "mimic_display": "Impaired Skin Drainage Amount #10",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "224909",
+      "mimic_display": "Impaired Skin Drainage Amount #2",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "224910",
+      "mimic_display": "Impaired Skin Drainage Amount #3",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "224911",
+      "mimic_display": "Impaired Skin Drainage Amount #4",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "224912",
+      "mimic_display": "Impaired Skin Drainage Amount #5",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "224913",
+      "mimic_display": "Impaired Skin Drainage Amount #6",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "224914",
+      "mimic_display": "Impaired Skin Drainage Amount #7",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "224915",
+      "mimic_display": "Impaired Skin Drainage Amount #8",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "227600",
+      "mimic_display": "Impaired Skin Drainage Amount #9",
+      "proposed_code": "39116-9",
+      "proposed_display": "Drainage amount of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest LOINC test for drainage amount; 'impaired skin' not precisely matched"
+     },
+     {
+      "mimic_code": "229477",
+      "mimic_display": "Indications (SBNET)",
+      "proposed_code": "19777-2",
+      "proposed_display": "Indications Endoscopy",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest 'Indications' finding code; SBNET context not specifically coded"
+     },
+     {
+      "mimic_code": "223919",
+      "mimic_display": "LU Strength/Movement",
+      "proposed_code": "80322-1",
+      "proposed_display": "Muscle strength",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "LU=left upper extremity; strength is core concept, no combined code"
+     },
+     {
+      "mimic_code": "229502",
+      "mimic_display": "MDnoteConsent",
+      "proposed_code": "75476-2",
+      "proposed_display": "Physician Note",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "MDnoteConsent is compound; MD note is primary component"
+     },
+     {
+      "mimic_code": "225780",
+      "mimic_display": "Multi Lumen Dressing Type",
+      "proposed_code": "39121-9",
+      "proposed_display": "Dressing for Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest dressing-type observation; multi-lumen qualifier not captured"
+     },
+     {
+      "mimic_code": "227111",
+      "mimic_display": "PCA  dose units",
+      "proposed_code": "76313-6",
+      "proposed_display": "PCA dose volume.max Infusion pump",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "PCA dose measurement; input vague on units"
+     },
+     {
+      "mimic_code": "230062",
+      "mimic_display": "PNC-2 Motor Deficit",
+      "proposed_code": "62780-2",
+      "proposed_display": "PhenX - gross motor function - 2-4Y protocol 131201",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "PhenX gross motor function protocol; PNC-2 likely PhenX motor assessment"
+     },
+     {
+      "mimic_code": "225059",
+      "mimic_display": "Past medical history",
+      "proposed_code": "67842-5",
+      "proposed_display": "EMS past medical history Narrative NEMSIS",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Context-forced specificity: 'Past medical history' is underspecified for flat code system http://loinc.org (mandatory structural axes); resolved to the most generic in-pool leaf for the analyte (fewest added tokens, uniquely)."
+     },
+     {
+      "mimic_code": "225510",
+      "mimic_display": "Patient (Bronch)",
+      "proposed_code": "100231-0",
+      "proposed_display": "Endobronchial ultrasound study",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Bronchial study; adds unstated ultrasound method"
+     },
+     {
+      "mimic_code": "227960",
+      "mimic_display": "Patient/Family Informed",
+      "proposed_code": "19826-7",
+      "proposed_display": "Informed consent obtained",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest to 'informed' concept; adds consent specificity"
+     },
+     {
+      "mimic_code": "227662",
+      "mimic_display": "Patient/Family Informed_V2",
+      "proposed_code": "19826-7",
+      "proposed_display": "Informed consent obtained",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest 'informed' concept; panel name not directly represented"
+     },
+     {
+      "mimic_code": "229571",
+      "mimic_display": "Plan-MSK/Skin/Wound",
+      "proposed_code": "94244-1",
+      "proposed_display": "Wound, Ostomy, and Continence Care Plan of care note",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures Wound plan; adds Ostomy/Continence, misses MSK/Skin"
+     },
+     {
+      "mimic_code": "227045",
+      "mimic_display": "Post-Operative Musculoskeletal/Skin (MUSKELSKIN)",
+      "proposed_code": "80321-3",
+      "proposed_display": "Musculoskeletal assessment panel",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Panel type matches; captures musculoskeletal component"
+     },
+     {
+      "mimic_code": "228843",
+      "mimic_display": "Pressure ulcer #1- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "228852",
+      "mimic_display": "Pressure ulcer #10- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "228844",
+      "mimic_display": "Pressure ulcer #2- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "228845",
+      "mimic_display": "Pressure ulcer #3- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "228846",
+      "mimic_display": "Pressure ulcer #4- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "228847",
+      "mimic_display": "Pressure ulcer #5- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "228848",
+      "mimic_display": "Pressure ulcer #6- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "228849",
+      "mimic_display": "Pressure ulcer #7- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "228850",
+      "mimic_display": "Pressure ulcer #8- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "228851",
+      "mimic_display": "Pressure ulcer #9- Undermining present",
+      "proposed_code": "72295-9",
+      "proposed_display": "Undermining of Wound",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Captures undermining finding; pressure ulcer context not coded in VS"
+     },
+     {
+      "mimic_code": "229678",
+      "mimic_display": "Purge Solution Flow Rate (R)",
+      "proposed_code": "99712-2",
+      "proposed_display": "Dialysate flow rate Renal replacement therapy circuit",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Purge solution flow rate in RRT; closest flow-rate-in-circuit match"
+     },
+     {
+      "mimic_code": "227684",
+      "mimic_display": "Safety Measures",
+      "proposed_code": "81679-3",
+      "proposed_display": "Preoperative measures for patient safety panel",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Context-forced specificity: 'Safety Measures' is underspecified for flat code system http://loinc.org (mandatory structural axes); resolved to the most generic in-pool leaf for the analyte (fewest added tokens, uniquely)."
+     },
+     {
+      "mimic_code": "227700",
+      "mimic_display": "Safety Measures",
+      "proposed_code": "81679-3",
+      "proposed_display": "Preoperative measures for patient safety panel",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Context-forced specificity: 'Safety Measures' is underspecified for flat code system http://loinc.org (mandatory structural axes); resolved to the most generic in-pool leaf for the analyte (fewest added tokens, uniquely)."
+     },
+     {
+      "mimic_code": "227969",
+      "mimic_display": "Safety Measures",
+      "proposed_code": "81679-3",
+      "proposed_display": "Preoperative measures for patient safety panel",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Context-forced specificity: 'Safety Measures' is underspecified for flat code system http://loinc.org (mandatory structural axes); resolved to the most generic in-pool leaf for the analyte (fewest added tokens, uniquely)."
+     },
+     {
+      "mimic_code": "225175",
+      "mimic_display": "See chart for initial patient assessment",
+      "proposed_code": "11371-2",
+      "proposed_display": "Initial visit for chief complaint",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest to initial patient assessment concept"
+     },
+     {
+      "mimic_code": "228226",
+      "mimic_display": "Tandem Heart Return Cannula Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest concept: appearance of an access/cannula site; adds dialysis specificity"
+     },
+     {
+      "mimic_code": "228711",
+      "mimic_display": "Time spent",
+      "proposed_code": "106299-1",
+      "proposed_display": "How much time is usually spent on screens",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Context-forced specificity: 'Time spent' is underspecified for flat code system http://loinc.org (mandatory structural axes); resolved to the most generic in-pool leaf for the analyte (fewest added tokens, uniquely)."
+     },
+     {
+      "mimic_code": "227835",
+      "mimic_display": "UE Dressing",
+      "proposed_code": "83182-6",
+      "proposed_display": "Dressing - functional ability",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Dressing as functional activity; UE qualifier not captured by any code"
+     },
+     {
+      "mimic_code": "228467",
+      "mimic_display": "Verification (Gen Proc)",
+      "proposed_code": "81680-1",
+      "proposed_display": "Preoperative verification process panel",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Only candidate capturing 'Verification'; panel vs note type mismatch"
+     },
+     {
+      "mimic_code": "229481",
+      "mimic_display": "Verification of  (SBNET)",
+      "proposed_code": "98250-4",
+      "proposed_display": "Neuroendocrine tumor [Type] in Tumor",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "SBNET = small bowel neuroendocrine tumor; closest LOINC type code"
+     },
+     {
+      "mimic_code": "225492",
+      "mimic_display": "Verification of (THCEN)",
+      "proposed_code": "19418-3",
+      "proposed_display": "Tetrahydrocannabinol cutoff [Mass/volume] in Urine for Confirmatory method",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Verification/confirmation of THC; confirmatory method test"
+     },
+     {
+      "mimic_code": "225379",
+      "mimic_display": "Indwelling Port (PortaCath) Site Appear",
+      "proposed_code": "99716-3",
+      "proposed_display": "Dialysis access site appearance",
+      "confidence": 0.55,
+      "gap": 0.25,
+      "reasoning": "Only access-site appearance code; dialysis qualifier unstated but same entity type"
+     },
+     {
+      "mimic_code": "227001",
+      "mimic_display": "BunScore_ApacheIV",
+      "proposed_code": "6299-2",
+      "proposed_display": "Urea nitrogen [Mass/volume] in Blood",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "BUN component of APACHE IV score; no APACHE IV code exists"
+     },
+     {
+      "mimic_code": "228268",
+      "mimic_display": "FM Dx reviewed",
+      "proposed_code": "85437-2",
+      "proposed_display": "Family medicine Note",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "FM=Dx reviewed likely a family medicine note heading; closest broader match"
+     },
+     {
+      "mimic_code": "228159",
+      "mimic_display": "Purge Solution Flow Rate",
+      "proposed_code": "99713-0",
+      "proposed_display": "Post-filter replacement fluid rate Renal replacement therapy circuit",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "Purge solution approximates replacement fluid; flow rate matches, pre/post unstated"
+     },
+     {
+      "mimic_code": "224153",
+      "mimic_display": "Replacement Rate",
+      "proposed_code": "99713-0",
+      "proposed_display": "Post-filter replacement fluid rate Renal replacement therapy circuit",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "Replacement rate in RRT context = replacement fluid rate; pre/post filter unspecified"
+     },
+     {
+      "mimic_code": "227682",
+      "mimic_display": "Restraints Evaluated_V2",
+      "proposed_code": "70007-0",
+      "proposed_display": "Restraint note",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "Generic restraint concept; 'Evaluated' qualifier not captured by any candidate"
+     },
+     {
+      "mimic_code": "229636",
+      "mimic_display": "Test Performed (AM-PAC)",
+      "proposed_code": "79535-1",
+      "proposed_display": "Applied cognitive score [AM-PAC]",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "AM-PAC test order; no generic code, first domain score fits type"
+     }
+    ]
+   }
   }
  ],
- "target_valueset_codes": 1575,
+ "target_valueset_codes": 2178,
  "extras": {}
 }

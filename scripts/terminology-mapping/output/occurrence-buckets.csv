@@ -1,8 +1,8 @@
 element,bucket,codes,occurrences,share_pct
-Condition.code,mapped,0,0,0.0
+Condition.code,mapped,27569,5655376,100.0
 Condition.code,declined,0,0,0.0
 Condition.code,no-stream-yet,0,0,0.0
-Condition.code,not-in-enumeration,27564,5655376,100.0
+Condition.code,not-in-enumeration,0,0,0.0
 MedicationAdministration.medication[x],mapped,0,0,0.0
 MedicationAdministration.medication[x],declined,0,0,0.0
 MedicationAdministration.medication[x],no-stream-yet,6135,36733071,100.0
@@ -11,9 +11,9 @@ MedicationRequest.medication[x],mapped,0,0,0.0
 MedicationRequest.medication[x],declined,0,0,0.0
 MedicationRequest.medication[x],no-stream-yet,2890,1883681,100.0
 MedicationRequest.medication[x],not-in-enumeration,0,0,0.0
-Observation.code,mapped,1645,127031726,27.55
-Observation.code,declined,369,20422150,4.43
-Observation.code,no-stream-yet,2227,313645032,68.02
+Observation.code,mapped,2611,307170809,66.62
+Observation.code,declined,1630,153928099,33.38
+Observation.code,no-stream-yet,0,0,0.0
 Observation.code,not-in-enumeration,0,0,0.0
 Observation.component.code,mapped,2,3979394,100.0
 Observation.component.code,declined,0,0,0.0
