@@ -45,8 +45,34 @@ Present so far:
             concept for changing a catheter cap. See
             build_datetimeevents_table.py.
 
-Still to come, in the order the issue sets: MicroOrg (646, SNOMED), Labevents
-(1,622) and Chartevents (2,982), all LOINC-or-SNOMED code-search.
+  table     the 646 microbiology organism names, the largest stream in this map
+            so far and the first sent with NO context template. 528 of the 646
+            labels are already exact taxonomic names, so the wrapper every
+            earlier stream needed is harmful here: all three candidates answered
+            a NEGATED label with the taxon it excludes. Constrained to
+            `<<410607006 |Organism|` alone; widening it to reach the three
+            result labels (`NO GROWTH`, `POSITIVE`, `NEGATIVE`) was built,
+            probed and dropped because it broke three control rows and could not
+            reach them anyway. Note the targets are organism TAXA, so no
+            consumer may assume a target of this map is an observable entity.
+            See build_micro_org_table.py.
+
+  table     the 1,622 hospital laboratory analytes, the largest stream in this
+            map and the first whose SEARCH TEXT IS NOT THE LABEL. Only 807 of
+            them are blood, MIMIC keeps the specimen in a separate `fluid`
+            column, and `fluid` is the LOINC System axis — so the generator
+            joins MIMIC's own dictionary and injects the specimen into every
+            query, without which all 815 non-blood analytes resolve against
+            serum or plasma. `category` is deliberately NOT injected: it reaches
+            a better System axis and makes the 52 `Delete` / `Voided Specimen`
+            rows answer confidently with a blood-gas panel. Constrained to
+            LOINC's `CLASSTYPE = 1` (Laboratory), active only, which is NOT
+            widened to reach the blood-gas worksheet's respiratory tail — see
+            build_labevents_table.py for the regression that rejected it, and
+            for the one known defect (`50823 Required O2`) no setting can catch.
+
+Still to come, the last one the issue sets: Chartevents (2,982), LOINC-or-SNOMED
+code-search by rule on `param_type`.
 
 NOT IN THIS MAP: the blood-pressure component codes. They are bound to
 `Observation.component.code`, a different FHIRPath expression over the same
@@ -91,6 +117,8 @@ MICRO_SUSC_TABLE = TABLE_DIR / "micro-susc-loinc.csv"
 MICRO_TEST_TABLE = TABLE_DIR / "micro-test-loinc.csv"
 OUTPUTEVENTS_TABLE = TABLE_DIR / "outputevents-loinc.csv"
 DATETIMEEVENTS_TABLE = TABLE_DIR / "datetimeevents-snomed.csv"
+MICRO_ORG_TABLE = TABLE_DIR / "micro-org-snomed.csv"
+LABEVENTS_TABLE = TABLE_DIR / "labevents-loinc.csv"
 
 # No targetVersion on any entry — this repo builds no LOINC release, and pinning
 # one it neither publishes nor controls is exactly the irreproducibility
@@ -208,6 +236,82 @@ SOURCES = [
         # has been on UNVERSIONED_SYSTEMS since the Procedure map.
         "targets": [target(SNOMED, no_dot)],
     },
+    {
+        # mimic-microbiology-organism: 646 organism names from
+        # `microbiologyevents.org_name`. `Observation.value[x]` on
+        # MimicObservationMicroOrg is a plain string, so it is the CODE that
+        # names the organism identified, and the target is a SNOMED organism
+        # TAXON rather than an observable or a laboratory test.
+        #
+        # Consumers must take that literally: `<<363787002 |Observable entity|`
+        # is not a safe assumption about a target of this map. It is the caveat
+        # the README already records for the ICU procedure population — a SNOMED
+        # target is not necessarily a procedure — arriving from the other
+        # direction, and it follows from the IG's modelling rather than from
+        # anything the mapping chose.
+        #
+        # The first stream here sent with NO context template: 528 of the 646
+        # labels are already exact taxonomic names, so the wrapper every previous
+        # stream needed is not only unnecessary but harmful — all three
+        # candidates answered a NEGATED label with the taxon it excludes. See
+        # build_micro_org_table.py, which carries that evidence along with why
+        # the constraint is `<<410607006 |Organism|` alone and why widening it to
+        # include clinical findings was built, probed and dropped.
+        #
+        # `file`, not `valueset_file`: ValueSet-mimic-microbiology-organism is a
+        # bare compose with no enumerated concepts, so the CodeSystem is the only
+        # enumeration there is — same as the antibiotics and the test names.
+        "system": f"{MIMIC_BASE}/CodeSystem/mimic-microbiology-organism",
+        "file": "CodeSystem-mimic-microbiology-organism.json",
+        "table": MICRO_ORG_TABLE,
+        # The second table in this map to target SNOMED, so it keeps the default
+        # column names rather than declaring LOINC ones. It shares a group with
+        # the datetimeevents stream only if it shares a source system, which it
+        # does not — different source CodeSystem, so a group of its own.
+        "table_columns": ("snomed_code", "snomed_display"),
+        "targets": [target(SNOMED, no_dot)],
+    },
+    {
+        # mimic-d-labitems: 1,622 hospital laboratory analytes, the largest
+        # population in this map and the fourth to target LOINC.
+        #
+        # The one structurally new thing about this stream is that the SEARCH
+        # TEXT IS NOT THE LABEL. MIMIC keeps the specimen in its own `fluid`
+        # column, and only 807 of the 1,622 analytes are blood — the rest are
+        # urine, CSF, pleural, ascitic, synovial, stool and marrow. `fluid` is
+        # the LOINC System axis, so a search on the bare label asks a question
+        # with no specimen in it and gets serum or plasma back by default:
+        # `Potassium` filed under Other Body Fluid answers with a BLOOD code,
+        # and `(Albumin)` under Pleural with a serum one. The generator
+        # therefore joins MIMIC's own openly-downloadable dictionary and injects
+        # the specimen into every query. See build_labevents_table.py, which
+        # carries the measurement (specimen-correct System on the non-blood rows
+        # goes 7/12 -> 11/12) and, more importantly, why `category` is NOT also
+        # injected despite reaching 12/12: it makes the 52 `Delete` and `Voided
+        # Specimen` rows answer with `24338-6 |Gas panel - Blood|` above
+        # threshold and inside the constraint.
+        #
+        # Its docstring also records why the constraint stays
+        # `CLASSTYPE=1,STATUS=ACTIVE` and is NOT widened with `CLASS=PULM` to
+        # reach the blood-gas worksheet's respiratory tail: the widening rescues
+        # one defensible mapping out of eleven and was measured changing the
+        # answer for an ordinary chemistry analyte whose correct target involved
+        # no PULM code at all. Membership is not answer stability.
+        #
+        # `file`, not `valueset_file`: ValueSet-mimic-d-labitems is a bare
+        # compose with no enumerated concepts, so the CodeSystem is the only
+        # enumeration there is — same as the antibiotics, the test names and the
+        # organisms.
+        "system": f"{MIMIC_BASE}/CodeSystem/mimic-d-labitems",
+        "file": "CodeSystem-mimic-d-labitems.json",
+        "table": LABEVENTS_TABLE,
+        # Targets LOINC, so it declares the LOINC column names. It shares a
+        # group with the other LOINC-targeting streams only if it shares a
+        # source system, which it does not — its own CodeSystem, so its own
+        # group.
+        "table_columns": ("loinc_code", "loinc_display"),
+        "targets": [target(LOINC, no_dot)],
+    },
 ]
 
 META = {
@@ -230,9 +334,9 @@ META = {
         "ConceptMap/mimic-observation-component-to-standard. INCOMPLETE: the "
         "code-search populations are being added one stream at a time. Present "
         "so far are the microbiology antibiotics, the microbiology test names, "
-        "the ICU outputevents items and the ICU datetimeevents items; "
-        "microbiology organisms, ICU chartevents and labevents are not in this "
-        "map yet.",
+        "the ICU outputevents items, the ICU datetimeevents items, the "
+        "microbiology organisms and the hospital laboratory analytes; ICU "
+        "chartevents is not in this map yet.",
     "purpose":
         "Lets a consumer translate the merged Observation.code column with a "
         "single $translate. Two kinds of group. The ED and vital-signs codes are "
@@ -242,17 +346,23 @@ META = {
         "are coded 'equivalent' rather than 'equal', matching the other maps, "
         "because consumers that pin the equivalence they accept filter 'equal' "
         "out. The microbiology antibiotics, the microbiology test names, the ICU "
-        "outputevents items and the ICU datetimeevents items come from generated "
+        "outputevents items, the ICU datetimeevents items, the microbiology "
+        "organisms and the hospital laboratory analytes come from generated "
         "tables and are 'relatedto': a MIMIC susceptibility code and a LOINC "
         "susceptibility code are related, as are a MIMIC microbiology test name "
         "and a LOINC lab code, an ICU flowsheet output route and a LOINC "
-        "fluid-output volume, and an ICU flowsheet timestamp column and the "
+        "fluid-output volume, an ICU flowsheet timestamp column and the "
         "SNOMED CT procedure, finding or temporal observable whose date it "
-        "records, and no direction between them is asserted. Consumers must "
+        "records, a MIMIC organism name and the SNOMED CT taxon it names, and a "
+        "MIMIC lab analyte and the LOINC laboratory code for that analyte in "
+        "that specimen, and no direction between them is asserted. Consumers must "
         "accept 'relatedto' as well as 'equivalent' or they will drop those "
         "populations. Note that a target here may be SNOMED CT as well as LOINC: "
         "the datetimeevents items map to SNOMED, so a consumer cannot assume one "
-        "target system for this column.",
+        "target system for this column. Nor may a consumer assume what KIND of "
+        "concept a target is: the microbiology organism stream maps to SNOMED CT "
+        "organism taxa, which are not observable entities, because MIMIC records "
+        "the organism identified in Observation.code itself.",
     "target_title": "MIMIC merged Observation codes as standard terminology",
     "target_description":
         "Every code the merged MIMIC Observation profile admits on "

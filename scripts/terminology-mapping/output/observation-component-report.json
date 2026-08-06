@@ -27,6 +27,7 @@
  "by_stream": [
   {
    "stream": "mimic-observation-component-vital",
+   "source_file": "ValueSet-mimic-observation-component-vital.json",
    "source_system": "http://loinc.org",
    "method": "identity",
    "total": 2,

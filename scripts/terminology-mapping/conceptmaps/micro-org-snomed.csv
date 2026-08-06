@@ -1,0 +1,647 @@
+mimic_code,mimic_display,snomed_code,snomed_display,comment,codesearch_target,codesearch_display,codesearch_confidence,codesearch_status,codesearch_reasoning
+80002,ESCHERICHIA COLI,112283007,Escherichia coli,,112283007,Escherichia coli,1.00,ok,
+80004,KLEBSIELLA PNEUMONIAE,56415008,Klebsiella pneumoniae,,56415008,Klebsiella pneumoniae,1.00,ok,
+80005,KLEBSIELLA OXYTOCA,40886007,Klebsiella oxytoca,,40886007,Klebsiella oxytoca,1.00,ok,
+80007,ENTEROBACTER AEROGENES,62592009,Enterobacter aerogenes,,62592009,Enterobacter aerogenes,1.00,ok,
+80008,ENTEROBACTER CLOACAE,14385002,Enterobacter cloacae,,14385002,Enterobacter cloacae,1.00,ok,
+80009,HAFNIA ALVEI,76694001,Hafnia alvei,,76694001,Hafnia alvei,1.00,ok,
+80011,ENTEROBACTER GERGOVIAE,716346000,Pluralibacter gergoviae,,716346000,Pluralibacter gergoviae,0.95,ok,
+80012,CRONOBACTER (ENTEROBACTER) SAKAZAKII,445562004,Cronobacter sakazakii,,445562004,Cronobacter sakazakii,0.95,ok,FSN matches input exactly; Enterobacter is former genus name
+80013,SERRATIA LIQUEFACIENS,23787004,Serratia liquefaciens,,23787004,Serratia liquefaciens,1.00,ok,
+80014,SERRATIA MARCESCENS,33522002,Serratia marcescens,,33522002,Serratia marcescens,1.00,ok,
+80015,SERRATIA RUBIDAEA,55825002,Serratia rubidaea,,55825002,Serratia rubidaea,1.00,ok,
+80016,PROTEUS VULGARIS,45834001,Proteus vulgaris,,45834001,Proteus vulgaris,1.00,ok,
+80017,PROTEUS MIRABILIS,73457008,Proteus mirabilis,,73457008,Proteus mirabilis,1.00,ok,
+80018,MORGANELLA MORGANII,243301005,Morganella morganii,,243301005,Morganella morganii,1.00,ok,
+80019,PROVIDENCIA STUARTII,1445008,Providencia stuartii,,1445008,Providencia stuartii,1.00,ok,
+80020,PROVIDENCIA RETTGERI,14196002,Providencia rettgeri,,14196002,Providencia rettgeri,1.00,ok,
+80021,SHIGELLA FLEXNERI,85729005,Shigella flexneri,,85729005,Shigella flexneri,1.00,ok,
+80022,SALMONELLA ENTERITIDIS,73525009,Salmonella Enteritidis,,73525009,Salmonella Enteritidis,1.00,ok,
+80023,STAPH AUREUS COAG +,3092008,Staphylococcus aureus,,3092008,Staphylococcus aureus,0.95,ok,FSN matches input; coagulase positive is inherent to S. aureus
+80024,STAPHYLOCOCCUS EPIDERMIDIS,60875001,Staphylococcus epidermidis,,60875001,Staphylococcus epidermidis,1.00,ok,
+80025,CITROBACTER AMALONATICUS,55744003,Citrobacter amalonaticus,,55744003,Citrobacter amalonaticus,1.00,ok,
+80026,PSEUDOMONAS AERUGINOSA,52499004,Pseudomonas aeruginosa,,52499004,Pseudomonas aeruginosa,1.00,ok,
+80027,PSEUDOMONAS PUTIDA,68608003,Pseudomonas putida,,68608003,Pseudomonas putida,1.00,ok,
+80028,BURKHOLDERIA CEPACIA,113669008,Burkholderia cepacia,,113669008,Burkholderia cepacia,1.00,ok,
+80029,PSEUDOMONAS SPECIES,57032008,Pseudomonas species,,57032008,Pseudomonas species,1.00,ok,
+80030,BORDETELLA BRONCHISEPTICA,10620008,Bordetella bronchiseptica,,10620008,Bordetella bronchiseptica,1.00,ok,
+80031,MORAXELLA SPECIES,36361003,Moraxella species,,36361003,Moraxella species,1.00,ok,
+80032,AEROMONAS HYDROPHILA,85823000,Aeromonas hydrophila,,85823000,Aeromonas hydrophila,1.00,ok,
+80033,VIBRIO SPECIES,34872001,Vibrio species,,34872001,Vibrio species,1.00,ok,
+80034,PASTEURELLA MULTOCIDA,10879005,Pasteurella multocida,,10879005,Pasteurella multocida,1.00,ok,
+80035,EIKENELLA CORRODENS,52591004,Eikenella corrodens,,52591004,Eikenella corrodens,1.00,ok,
+80036,ANAEROBIC GRAM NEGATIVE ROD(S),243386003,Anaerobic Gram-negative bacillus,,243386003,Anaerobic Gram-negative bacillus,0.95,ok,FSN matches input exactly; rod = bacillus
+80037,GRAM VARIABLE RODS,243288000,Gram-variable bacillus,,243288000,Gram-variable bacillus,0.95,ok,FSN matches 'gram variable rods' (rods = bacillus)
+80038,CLOSTRIDIUM PERFRINGENS,8331005,Clostridium perfringens,,8331005,Clostridium perfringens,1.00,ok,
+80039,CLOSTRIDIUM SPECIES,8191000,Clostridium species,,8191000,Clostridium species,1.00,ok,
+80040,NEISSERIA GONORRHOEAE,68704007,Neisseria gonorrhoeae,,68704007,Neisseria gonorrhoeae,1.00,ok,
+80041,NEISSERIA MENINGITIDIS,17872004,Neisseria meningitidis,,17872004,Neisseria meningitidis,1.00,ok,
+80042,NEISSERIA SPECIES,59083001,Neisseria species,,59083001,Neisseria species,1.00,ok,
+80043,HAEMOPHILUS PARAINFLUENZAE,51593004,Haemophilus parainfluenzae,,51593004,Haemophilus parainfluenzae,1.00,ok,
+80044,HAEMOPHILUS SP,71268004,Haemophilus species,,71268004,Haemophilus species,0.95,ok,FSN Genus Haemophilus matches 'HAEMOPHILUS SP' at genus level
+80045,BETA STREPTOCOCCUS GROUP B,43492007,Group B streptococcus,,43492007,Group B streptococcus,0.95,ok,"FSN Streptococcus agalactiae; synonym Beta-hemolytic Streptococcus, group B matches input"
+80046,BETA STREPTOCOCCUS GROUP C,89181007,"Streptococcus, group C",,89181007,"Streptococcus, group C",0.95,ok,FSN matches beta-hemolytic group C streptococcus exactly
+80047,BETA STREPTOCOCCUS GROUP G,75012005,"Streptococcus, group G",,75012005,"Streptococcus, group G",0.90,ok,FSN matches group G streptococcus; beta-hemolytic implied
+80048,BETA STREPTOCOCCUS,53490009,Beta-haemolytic Streptococcus,,53490009,Beta-haemolytic Streptococcus,0.95,ok,FSN matches input exactly; no group specified
+80049,STREPTOCOCCUS MITIS,57997003,Streptococcus mitis,,57997003,Streptococcus mitis,1.00,ok,
+80050,STREPTOCOCCUS BOVIS,72646003,Streptococcus equinus,,72646003,Streptococcus equinus,0.93,ok,
+80052,ALPHA STREPTOCOCCI,60631002,Alpha-haemolytic streptococcus,,60631002,Alpha-hemolytic streptococcus,0.85,ok,FSN matches alpha streptococci meaning
+80053,ENTEROCOCCUS SP.,2785000,Enterococcus species,,2785000,Enterococcus species,0.97,ok,FSN Genus Enterococcus matches 'Enterococcus sp.' exactly
+80054,BETA STREPTOCOCCUS GROUP A,413643004,"Beta-haemolytic Streptococcus, group A",,413643004,"Beta-haemolytic Streptococcus, group A",0.97,ok,FSN matches input exactly
+80055,GRAM POSITIVE COCCUS(COCCI),59206002,Gram-positive coccus,,59206002,Gram-positive coccus (organism),0.97,ok,FSN matches input exactly
+80056,GRAM POSITIVE RODS,83514008,Gram-positive bacillus,,83514008,Gram-positive bacillus,0.95,ok,FSN matches; synonym 'Gram-positive rods' exact
+80057,GRAM NEGATIVE DIPLOCOCCI,83410001,Gram-negative diplococcus,,83410001,Gram-negative diplococcus (organism),0.97,ok,FSN matches input exactly
+80058,GRAM NEGATIVE ROD(S),87172008,Gram-negative bacillus,,87172008,Gram-negative bacillus,0.95,ok,FSN matches; rod = bacillus
+80059,CANDIDA SPECIES,3265006,Candida species,,3265006,Candida species,1.00,ok,
+80060,CANDIDA ALBICANS,53326005,Candida albicans,,53326005,Candida albicans,1.00,ok,
+80061,RHODOTORULA SPECIES,51976007,Rhodotorula species,,51976007,Rhodotorula species,1.00,ok,
+80062,ASPERGILLUS NIGER,89354002,Aspergillus niger,,89354002,Aspergillus niger,1.00,ok,
+80063,ASPERGILLUS SPECIES,2429008,Aspergillus species,,2429008,Aspergillus species,1.00,ok,
+80064,PENICILLIUM SPECIES,42993004,Penicillium species,,42993004,Penicillium species,1.00,ok,
+80065,CRYPTOCOCCUS NEOFORMANS,67168003,Cryptococcus neoformans,,67168003,Cryptococcus neoformans,1.00,ok,
+80066,ASPERGILLUS FUMIGATUS,32684000,Aspergillus fumigatus,,32684000,Aspergillus fumigatus,1.00,ok,
+80067,NOCARDIA ASTEROIDES,30092002,Nocardia asteroides,,30092002,Nocardia asteroides,1.00,ok,
+80068,NOCARDIA SPECIES,59674005,Nocardia species,,59674005,Nocardia species,1.00,ok,
+80069,MYCOBACTERIUM TUBERCULOSIS,113861009,Mycobacterium tuberculosis,,113861009,Mycobacterium tuberculosis,1.00,ok,
+80070,GRAM NEGATIVE ROD #1,87172008,Gram-negative bacillus,,87172008,Gram-negative bacillus,0.95,ok,FSN matches Gram-negative rod; #1 is line number
+80071,GRAM NEGATIVE ROD #2,87172008,Gram-negative bacillus,,87172008,Gram-negative bacillus,0.90,ok,"FSN matches 'gram negative rod'; #2 is list index, not clinical meaning"
+80072,GRAM NEGATIVE ROD #3,87172008,Gram-negative bacillus,,87172008,Gram-negative bacillus,0.85,ok,FSN matches 'gram negative rod'; #3 is unstated numbering
+80073,GRAM NEGATIVE ROD #4,87172008,Gram-negative bacillus,,87172008,Gram-negative bacillus,0.90,ok,"FSN matches; '#4' is lab numbering, not clinical meaning"
+80074,ANAEROBIC GRAM NEGATIVE ROD #2,243386003,Anaerobic Gram-negative bacillus,,243386003,Anaerobic Gram-negative bacillus,0.95,ok,FSN matches input exactly
+80075,YEAST,62093005,Yeast,,62093005,Yeast,1.00,ok,
+80076,STREPTOCOCCUS PNEUMONIAE,9861002,Streptococcus pneumoniae,,9861002,Streptococcus pneumoniae,1.00,ok,
+80078,ANAEROBIC GRAM POSITIVE COCCUS(I),243416009,Anaerobic Gram-positive coccus,,243416009,Anaerobic Gram-positive coccus (organism),0.98,ok,FSN matches input exactly
+80079,ANAEROBIC GRAM POSITIVE ROD(S),243398008,Anaerobic Gram-positive bacillus,,243398008,Anaerobic Gram-positive bacillus,0.95,ok,FSN matches input exactly; rod = bacillus
+80080,BACTERIA,409822003,Domain Bacteria,,409822003,Domain Bacteria,0.95,ok,
+80081,GRAM POSITIVE BACTERIA,8745002,Gram-positive bacteria,,8745002,Gram-positive bacteria,0.97,ok,FSN matches input exactly
+80082,BACILLUS SPECIES,44762009,Bacillus species,,44762009,Bacillus species,1.00,ok,
+80084,PROTEUS SPECIES,50517009,Proteus species,,50517009,Proteus species,1.00,ok,
+80085,CORYNEBACTERIUM SPECIES (DIPHTHEROIDS),77086004,Corynebacterium species,,77086004,Corynebacterium species,0.95,ok,FSN Genus Corynebacterium matches input; diphtheroids is synonym
+80086,ACIDFAST BACILLI,243365003,Acid-fast bacillus,,243365003,Acid-fast bacillus,0.85,ok,FSN matches input exactly
+80087,STENOTROPHOMONAS MALTOPHILIA,113697002,Stenotrophomonas maltophilia,,113697002,Stenotrophomonas maltophilia,1.00,ok,
+80088,LACTOBACILLUS SPECIES,43690008,Lactobacillus species,,43690008,Lactobacillus species,1.00,ok,
+80089,GAMMA(I.E. NON-HEMOLYTIC) STREPTOCOCCUS,22339002,Gamma-haemolytic Streptococcus,,22339002,Gamma-haemolytic Streptococcus,0.97,ok,FSN matches input exactly
+80090,SERRATIA SPECIES,42025004,Serratia species,,42025004,Serratia species,1.00,ok,
+80091,LISTERIA MONOCYTOGENES,36094007,Listeria monocytogenes,,36094007,Listeria monocytogenes,1.00,ok,
+80092,AEROCOCCUS VIRIDANS,78803006,Aerococcus viridans,,78803006,Aerococcus viridans,1.00,ok,
+80093,MYCOBACTERIUM GORDONAE,24871004,Mycobacterium gordonae,,24871004,Mycobacterium gordonae,1.00,ok,
+80094,KLEBSIELLA SPECIES,75032006,Klebsiella species,,75032006,Klebsiella species,1.00,ok,
+80095,MYCOBACTERIUM FORTUITUM,243378003,Mycobacterium fortuitum,,243378003,Mycobacterium fortuitum,1.00,ok,
+80096,STREPTOMYCES SPECIES,47304000,Streptomyces species,,47304000,Streptomyces species,1.00,ok,
+80097,PROVIDENCIA SPECIES,112284001,Providencia species,,112284001,Providencia species,1.00,ok,
+80098,CITROBACTER SPECIES,75972000,Citrobacter species,,75972000,Citrobacter species,1.00,ok,
+80099,CANDIDA PARAPSILOSIS,61302002,Candida parapsilosis,,61302002,Candida parapsilosis,1.00,ok,
+80100,CANDIDA GUILLIERMONDII,29812000,Meyerozyma guilliermondii,,29812000,Meyerozyma guilliermondii,0.95,ok,
+80101,CANDIDA KRUSEI,16452009,Pichia kudriavzevii,,16452009,Pichia kudriavzevii,0.95,ok,
+80102,SACCHAROMYCES CEREVISIAE,58296003,Saccharomyces cerevisiae,,58296003,Saccharomyces cerevisiae,1.00,ok,
+80103,SPOROBOLOMYCES SALMONICOLOR,243446007,Sporobolomyces salmonicolor,,243446007,Sporobolomyces salmonicolor,1.00,ok,
+80105,RHIZOPUS SPECIES,17683005,Rhizopus species,,17683005,Rhizopus species,1.00,ok,
+80106,CANDIDA TROPICALIS,47885008,Candida tropicalis,,47885008,Candida tropicalis,1.00,ok,
+80107,CAMPYLOBACTER SPECIES,35408001,Campylobacter species,,35408001,Campylobacter species,1.00,ok,
+80108,PROPIONIBACTERIUM ACNES,39473003,Cutibacterium acnes,,39473003,Cutibacterium acnes,0.95,ok,
+80110,MUCOR SP.,49782006,Mucor species,,49782006,Mucor species,0.97,ok,FSN Genus Mucor matches 'Mucor sp.' at genus level
+80111,ENTEROCOCCUS AVIUM,87875008,Enterococcus avium,,87875008,Enterococcus avium,1.00,ok,
+80112,BACTEROIDES FRAGILIS GROUP,417375007,Bacteroides fragilis group,,417375007,Bacteroides fragilis group,1.00,ok,
+80113,ENTEROBACTER SPECIES,58683007,Enterobacter species,,58683007,Enterobacter species,1.00,ok,
+80114,ASPERGILLUS FLAVUS,66821001,Aspergillus flavus,,66821001,Aspergillus flavus,1.00,ok,
+80115,PROPIONIBACTERIUM SPECIES,34844008,Propionibacterium species,,34844008,Propionibacterium species,1.00,ok,
+80116,FUSARIUM SPECIES,35238009,Fusarium species,,35238009,Fusarium species,1.00,ok,
+80117,AUREOBASIDIUM PULLULANS,39129008,Aureobasidium pullulans,,39129008,Aureobasidium pullulans,1.00,ok,
+80118,STREPTOCOCCUS SALIVARIUS,39888004,Streptococcus salivarius,,39888004,Streptococcus salivarius,1.00,ok,
+80119,NUTRITIONALLY VARIANT STREPTOCOCCUS,698214003,Nutritionally variant streptococci,,698214003,Nutritionally variant streptococci,0.97,ok,FSN matches input exactly
+80121,BACTEROIDES FRAGILIS,55247009,Bacteroides fragilis,,55247009,Bacteroides fragilis,1.00,ok,
+80122,KLUYVERA SPECIES,61161003,Kluyvera species,,61161003,Kluyvera species,1.00,ok,
+80123,ANAEROBIC BACTERIA,59343002,Anaerobic bacteria,,59343002,Anaerobic bacteria,1.00,ok,
+80124,EXOPHIALA JEANSELMEI COMPLEX,38224003,Exophiala jeanselmei,,38224003,Exophiala jeanselmei,0.90,ok,FSN matches the named organism in the complex
+80125,FUSOBACTERIUM SPECIES,33562003,Fusobacterium species,,33562003,Fusobacterium species,1.00,ok,
+80126,CLADOSPORIUM SPECIES,32043002,Cladosporium species,,32043002,Cladosporium species,1.00,ok,
+80127,FUNGUS,414561005,Fungi,,414561005,Fungi,0.95,ok,
+80128,FUSOBACTERIUM NUCLEATUM,32763000,Fusobacterium nucleatum,,32763000,Fusobacterium nucleatum,1.00,ok,
+80129,CLOSTRIDIUM SEPTICUM,33101000,Clostridium septicum,,33101000,Clostridium septicum,1.00,ok,
+80130,MYCELIA STERILIA,243555008,Mycelia sterilia,,243555008,Mycelia sterilia,1.00,ok,
+80131,SALMONELLA HADAR,49491006,Salmonella Hadar,,49491006,Salmonella Hadar,1.00,ok,
+80132,ENTAMOEBA COLI,79235009,Entamoeba coli,,79235009,Entamoeba coli,1.00,ok,
+80133,GIARDIA LAMBLIA,78181009,Giardia duodenalis,,78181009,Giardia duodenalis,0.93,ok,
+80134,ENDOLIMAX NANA,53272006,Endolimax nana,,53272006,Endolimax nana,1.00,ok,
+80135,ASCARIS LUMBRICOIDES,19061001,Ascaris lumbricoides,,19061001,Ascaris lumbricoides,1.00,ok,
+80136,ACTINOMYCES ODONTOLYTICUS,12069003,Actinomyces odontolyticus,,12069003,Actinomyces odontolyticus,1.00,ok,
+80137,CANDIDA LUSITANIAE,50164000,Clavispora lusitaniae,,50164000,Clavispora lusitaniae,0.95,ok,
+80138,STAPHYLOCOCCUS SPECIES,65119002,Staphylococcus species,,65119002,Staphylococcus species,1.00,ok,
+80139,CLOSTRIDIUM DIFFICILE,5933001,Clostridium difficile,,5933001,Clostridium difficile,1.00,ok,
+80140,BLASTOCYSTIS HOMINIS,28923009,Blastocystis hominis,,28923009,Blastocystis hominis,1.00,ok,
+80141,CORYNEBACTERIUM JEIKEIUM (C.D.C. GROUP JK),63410006,Corynebacterium jeikeium,,63410006,Corynebacterium jeikeium (organism),0.98,ok,FSN matches input exactly
+80142,FUSOBACTERIUM NECROPHORUM,27274008,Fusobacterium necrophorum,,27274008,Fusobacterium necrophorum,1.00,ok,
+80143,CYTOMEGALOVIRUS,407444007,Cytomegalovirus species,,407444007,Cytomegalovirus species,0.95,ok,
+80144,HERPES SIMPLEX VIRUS TYPE 1,15302007,Human herpes simplex virus type 1,,15302007,Human herpes simplex virus type 1,0.95,ok,FSN and synonyms match input exactly
+80145,HERPES SIMPLEX VIRUS TYPE 2,13687007,Human herpes simplex virus type 2,,13687007,Human herpes simplex virus type 2,0.97,ok,FSN matches input exactly; synonym Herpes simplex virus 2
+80146,ADENOVIRUS,424470006,Adenoviridae,,424470006,Adenoviridae,0.85,ok,Generic 'adenovirus' maps to family Adenoviridae; species candidates overstep
+80147,CHLAMYDIA TRACHOMATIS,63938009,Chlamydia trachomatis,,63938009,Chlamydia trachomatis,1.00,ok,
+80148,ASPERGILLUS VERSICOLOR GROUP,415881005,Aspergillus versicolor Group,,415881005,Aspergillus versicolor Group,1.00,ok,
+80149,PAECILOMYCES SPECIES,26001000,Paecilomyces species,,26001000,Paecilomyces species,1.00,ok,
+80150,TRICHODERMA SP.,83597000,Trichoderma species,,83597000,Trichoderma species,0.95,ok,FSN Genus Trichoderma matches unspecified species
+80151,CITROBACTER KOSERI,114264004,Citrobacter koseri,,114264004,Citrobacter koseri,1.00,ok,
+80152,ESCHERICHIA FERGUSONII,72461005,Escherichia fergusonii,,72461005,Escherichia fergusonii,1.00,ok,
+80153,MORAXELLA OSLOENSIS,72401008,Moraxella osloensis,,72401008,Moraxella osloensis,1.00,ok,
+80155,"STAPHYLOCOCCUS, COAGULASE NEGATIVE",116197008,"Staphylococcus, coagulase negative",,116197008,"Staphylococcus, coagulase negative",1.00,ok,
+80156,CORYNEBACTERIUM STRIATUM,63815007,Corynebacterium striatum,,63815007,Corynebacterium striatum,1.00,ok,
+80157,ACREMONIUM SPECIES,63996006,Acremonium species,,63996006,Acremonium species,1.00,ok,
+80158,MYCOBACTERIUM AVIUM COMPLEX,58503001,"Mycobacterium, avium-intracellulare group",,58503001,"Mycobacterium, avium-intracellulare group",0.95,ok,
+80159,MYCOBACTERIUM TUBERCULOSIS COMPLEX,113858008,Mycobacterium tuberculosis complex,,113858008,Mycobacterium tuberculosis complex,1.00,ok,
+80160,BACILLUS SUBTILIS,83512007,Bacillus subtilis,,83512007,Bacillus subtilis,1.00,ok,
+80161,STRONGYLOIDES STERCORALIS,42625000,Strongyloides stercoralis,,42625000,Strongyloides stercoralis,1.00,ok,
+80162,STAPHYLOCOCCUS LUGDUNENSIS,103494005,Staphylococcus lugdunensis,,103494005,Staphylococcus lugdunensis,1.00,ok,
+80163,MOLD,84489001,Mould,,84489001,Mould,0.95,ok,
+80164,ENTEROBACTER ASBURIAE,33115003,Enterobacter asburiae,,33115003,Enterobacter asburiae,1.00,ok,
+80165,TRICHOPHYTON SPECIES,88578003,Trichophyton species,,88578003,Trichophyton species,1.00,ok,
+80168,ENTEROCOCCUS FAECIUM,90272000,Enterococcus faecium,,90272000,Enterococcus faecium,1.00,ok,
+80169,ENTAMOEBA HARTMANNI,70632005,Entamoeba hartmanni,,70632005,Entamoeba hartmanni,1.00,ok,
+80170,LEUCONOSTOC SPECIES,43639007,Leuconostoc species,,43639007,Leuconostoc species,1.00,ok,
+80171,STREPTOCOCCUS ANGINOSUS,44304009,Streptococcus anginosus,,44304009,Streptococcus anginosus,1.00,ok,
+80172,ENTEROCOCCUS FAECALIS,78065002,Enterococcus faecalis,,78065002,Enterococcus faecalis,1.00,ok,
+80173,VEILLONELLA SPECIES,29875005,Veillonella species,,29875005,Veillonella species,1.00,ok,
+80174,CURVULARIA SP.,5214001,Curvularia species,,5214001,Curvularia species,0.97,ok,FSN Genus Curvularia matches 'Curvularia sp.' exactly
+80175,VIRUS,49872002,Virus,,49872002,Virus,1.00,ok,
+80176,VARICELLA-ZOSTER VIRUS,19551004,Human herpesvirus 3,,19551004,Human herpesvirus 3,0.95,ok,
+80177,RESPIRATORY SYNCYTIAL VIRUS (RSV),6415009,Human respiratory syncytial virus,,6415009,Human respiratory syncytial virus,0.92,ok,FSN matches RSV; synonym 'Respiratory syncytial virus; RSV' exact
+80178,INFLUENZA A VIRUS,407479009,Influenza A virus,,407479009,Influenza A virus,1.00,ok,
+80179,INFLUENZA B VIRUS,407480007,Influenza B virus,,407480007,Influenza B virus,1.00,ok,
+80180,PARAINFLUENZA VIRUS TYPE 1,407489008,Human parainfluenza virus 1,,407489008,Human parainfluenza virus 1,0.97,ok,FSN matches input exactly
+80181,PARAINFLUENZA VIRUS TYPE 3,407493002,Human parainfluenza virus 3,,407493002,Human parainfluenza virus 3,0.85,ok,Parainfluenza virus type 3 refers to human HPIV-3
+80182,OCHROBACTRUM ANTHROPI,116490002,Brucella anthropi,,116490002,Brucella anthropi,0.95,ok,
+80183,GEMELLA MORBILLORUM,113765006,Gemella morbillorum,,113765006,Gemella morbillorum,1.00,ok,
+80184,ENTEROCOCCUS GALLINARUM,53233007,Enterococcus gallinarum,,53233007,Enterococcus gallinarum,1.00,ok,
+80185,CAMPYLOBACTER JEJUNI,66543000,Campylobacter jejuni,,66543000,Campylobacter jejuni,1.00,ok,
+80186,PSEUDALLESCHERIA BOYDII,24305000,Scedosporium boydii,,24305000,Scedosporium boydii,0.95,ok,
+80187,NOCARDIA ASTEROIDES COMPLEX,414864009,Nocardia asteroides complex,,414864009,Nocardia asteroides complex,1.00,ok,
+80188,SCEDOSPORIUM (APIOSPERMUM) BOYDII COMPLEX,51221000112104,Scedosporium apiospermum complex,,51221000112104,Scedosporium apiospermum complex,0.95,ok,FSN matches input exactly
+80189,PEDIOCOCCUS SPECIES,243236007,Pediococcus species,,243236007,Pediococcus species,1.00,ok,
+80190,SYNCEPHALASTRUM SPECIES,62678005,Syncephalastrum species,,62678005,Syncephalastrum species,1.00,ok,
+80191,"HAEMOPHILUS INFLUENZAE, BETA-LACTAMASE POSITIVE",722353005,"Haemophilus influenzae, beta lactamase positive",,722353005,"Haemophilus influenzae, beta lactamase positive",0.98,ok,FSN matches input exactly
+80192,"HAEMOPHILUS INFLUENZAE, BETA-LACTAMASE NEGATIVE",722351007,"Haemophilus influenzae, beta lactamase negative",,722351007,"Haemophilus influenzae, beta lactamase negative",0.98,ok,FSN matches input exactly
+80193,CORYNEBACTERIUM UREALYTICUM SP. NOV.,113613004,Corynebacterium urealyticum,,113613004,Corynebacterium urealyticum (organism),0.95,ok,FSN matches input exactly
+80194,ACINETOBACTER BAUMANNII,91288006,Acinetobacter baumannii,,91288006,Acinetobacter baumannii,1.00,ok,
+80195,AEROMONAS SPECIES,88529008,Aeromonas species,,88529008,Aeromonas species,1.00,ok,
+80196,SALMONELLA SPECIES,27268008,Salmonella species,,27268008,Salmonella species,1.00,ok,
+80197,CITROBACTER YOUNGAE,114443001,Citrobacter youngae,,114443001,Citrobacter youngae,1.00,ok,
+80198,HAEMOPHILUS INFLUENZAE,44470000,Haemophilus influenzae,,44470000,Haemophilus influenzae,1.00,ok,
+80199,MALASSEZIA FURFUR,29619007,Malassezia furfur,,29619007,Malassezia furfur,1.00,ok,
+80200,CHAETOMIUM SPECIES,10210008,Chaetomium species,,10210008,Chaetomium species,1.00,ok,
+80201,CITROBACTER KOSERI,114264004,Citrobacter koseri,,114264004,Citrobacter koseri,1.00,ok,
+80202,LEGIONELLA PNEUMOPHILA,80897008,Legionella pneumophila,,80897008,Legionella pneumophila,1.00,ok,
+80204,ENTEROCOCCUS CASSELIFLAVUS,30949009,Enterococcus casseliflavus,,30949009,Enterococcus casseliflavus,1.00,ok,
+80205,BACTEROIDES UREOLYTICUS GROUP,450602004,Campylobacter ureolyticus,,450602004,Campylobacter ureolyticus,0.85,ok,Synonym 'Bacteroides ureolyticus' matches; 'group' is non-coded qualifier
+80206,RHINOVIRUS,1838001,Human rhinovirus,,1838001,Human rhinovirus,0.90,ok,Generic rhinovirus maps to the general human rhinovirus species
+80207,STREPTOCOCCUS SPECIES,58800005,Streptococcus species,,58800005,Streptococcus species,1.00,ok,
+80208,BURKHOLDERIA SPECIES,414324002,Burkholderia species,,414324002,Burkholderia species,1.00,ok,
+80209,LISTERIA SPECIES,23566007,Listeria species,,23566007,Listeria species,1.00,ok,
+80210,CAPNOCYTOPHAGA SPECIES,22294008,Capnocytophaga species,,22294008,Capnocytophaga species,1.00,ok,
+80211,STACHYBOTRYS SPP.,61175005,Stachybotrys species,,61175005,Stachybotrys species,0.85,ok,FSN Genus Stachybotrys matches 'spp.' exactly
+80212,PORPHYROMONAS SPECIES,114154000,Porphyromonas species,,114154000,Porphyromonas species,1.00,ok,
+80213,"BETA STREPTOCOCCI, NOT GROUP A",713922006,"Beta-hemolytic Streptococcus, non-Group A",,713922006,"Beta-hemolytic Streptococcus, non-Group A",0.97,ok,FSN matches input exactly
+80215,ASPERGILLUS NIDULANS,60264008,Aspergillus nidulans,,60264008,Aspergillus nidulans,1.00,ok,
+80216,ACINETOBACTER SP.,7757008,Acinetobacter species,,7757008,Acinetobacter species,0.95,ok,FSN Genus Acinetobacter matches input exactly
+80217,ENTAMOEBA HISTOLYTICA/DISPAR,363769000,Entamoeba histolytica/Entamoeba dispar complex,,363769000,Entamoeba histolytica/Entamoeba dispar complex,0.97,ok,FSN matches input exactly
+80218,ENTEROBACTERIACEAE,106544002,Enterobacteriaceae,,106544002,Enterobacteriaceae,1.00,ok,
+80220,AFB GROWN IN CULTURE; ADDITIONAL INFORMATION TO FOLLOW,243365003,Acid-fast bacillus,,243365003,Acid-fast bacillus,0.85,ok,AFB grown in culture maps to Acid-fast bacillus organism
+80221,CORYNEBCATERIUM AMYCOLATUM,113611002,Corynebacterium amycolatum,,113611002,Corynebacterium amycolatum,0.95,ok,FSN matches input (typo corrected)
+80222,POSITIVE FOR GROUP B BETA STREPTOCOCCI,43492007,Group B streptococcus,,43492007,Group B streptococcus,0.95,ok,FSN Streptococcus agalactiae; synonym Beta-hemolytic Streptococcus group B matches input
+80223,PROBABLE ENTEROCOCCUS,2785000,Enterococcus species,,2785000,Enterococcus species,0.85,ok,Probable is a certainty qualifier; base concept is Enterococcus genus
+80224,BETA STREPTOCOCCUS NOT GROUP A OR B,406609007,"Beta-haemolytic streptococcus, non-Group A, non-Group B",,406609007,"Beta-haemolytic streptococcus, non-Group A, non-Group B",0.97,ok,FSN matches input exactly
+80225,"NON-FERMENTER, NOT PSEUDOMONAS AERUGINOSA",243328000,Non-fermentative Gram-negative bacillus,,243328000,Non-fermentative Gram-negative bacillus,0.85,ok,FSN/synonym 'Non-fermenter' matches; exclusion of P. aeruginosa is a qualifier
+80227,PROBABLE GARDNERELLA VAGINALIS,64071004,Gardnerella vaginalis,,64071004,Gardnerella vaginalis,0.90,ok,Probable is a certainty qualifier; organism matches exactly
+80228,CANDIDA GLABRATA,444877006,Nakaseomyces glabratus,,444877006,Nakaseomyces glabratus,0.95,ok,
+80229,PRESUMPTIVE STREPTOCOCCUS BOVIS,415599007,Streptococcus bovis group,,415599007,Streptococcus bovis group,0.90,ok,Presumptive is a non-coded qualifier; base concept is Streptococcus bovis group
+80230,POSITIVE FOR INFLUENZA A VIRAL ANTIGEN,407479009,Influenza A virus,,407479009,Influenza A virus,0.85,ok,FSN matches Influenza A virus organism
+80232,PRESUMPTIVE VEILLONELLA SPECIES,29875005,Veillonella species,,29875005,Veillonella species,0.90,ok,FSN Genus Veillonella matches; 'presumptive' is non-coded qualifier
+80233,PRESUMPTIVE PEPTOSTREPTOCOCCUS SPECIES,243417000,Peptostreptococcus species,,243417000,Peptostreptococcus species,0.95,ok,FSN matches; 'presumptive' is non-coded qualifier
+80234,PRESUMPTIVE PROPIONIBACTERIUM ACNES,39473003,Cutibacterium acnes,,39473003,Cutibacterium acnes,0.90,ok,FSN matches organism; 'presumptive' is non-coded qualifier
+80235,STREPTOCOCCUS ANGINOSUS (MILLERI) GROUP,,,"code-search proposed 415597009 |Streptococcus anginosus group| at 0.62, below the 0.8 threshold.",415597009,Streptococcus anginosus group,0.62,below-threshold,
+80236,PRESUMPTIVE CLOSTRIDIUM PERFRINGENS,8331005,Clostridium perfringens,,8331005,Clostridium perfringens,0.90,ok,FSN matches organism; 'presumptive' is non-coded qualifier
+80237,PRESUMPTIVE CLOSTRIDIUM SEPTICUM,33101000,Clostridium septicum,,33101000,Clostridium septicum,0.90,ok,FSN matches organism; 'presumptive' is non-coded qualifier
+80238,CLOSTRIDIUM SPECIES NOT C. PERFRINGENS OR C. SEPTICUM,715871002,"Clostridium species, not Clostridium perfringens and not Clostridium septicum",,715871002,"Clostridium species, not Clostridium perfringens and not Clostridium septicum",0.98,ok,FSN matches input exactly
+80239,"ASPERGILLUS SP. NOT FUMIGATUS, FLAVUS OR NIGER",719038009,"Aspergillus species, not Aspergillus fumigatus and not Aspergillus niger and not Aspergillus flavus",,719038009,"Aspergillus species, not Aspergillus fumigatus and not Aspergillus niger and not Aspergillus flavus",0.98,ok,FSN matches input exactly
+80240,PRESUMPTIVE FUSOBACTERIUM MORTIFERUM/VARIUM GROUP,,,"code-search proposed 112330001 |Fusobacterium mortiferum| at 0.70, below the 0.8 threshold.",112330001,Fusobacterium mortiferum,0.70,below-threshold,One member of the presumptive group
+80241,PROBABLE MICROCOCCUS SPECIES,52864008,Micrococcus species,,52864008,Micrococcus species,0.90,ok,FSN matches Micrococcus species; 'probable' is non-coded qualifier
+80242,RESEMBLING MICROCOCCUS/STOMATOCOCCUS SPECIES,52864008,Micrococcus species,,52864008,Micrococcus species,0.85,ok,Input describes organism resembling Micrococcus/Stomatococcus; genus Micrococcus best captures meaning
+80243,PORPHYROMONAS SPECIES,114154000,Porphyromonas species,,114154000,Porphyromonas species,1.00,ok,
+80244,PREVOTELLA SPECIES,114129000,Prevotella species,,114129000,Prevotella species,1.00,ok,
+80245,FUSOBACTERIUM SPECIES,33562003,Fusobacterium species,,33562003,Fusobacterium species,1.00,ok,
+80248,CITROBACTER FREUNDII COMPLEX,782522004,Citrobacter freundii complex,,782522004,Citrobacter freundii complex,1.00,ok,
+80249,FEW BLASTOCYSTIS HOMINIS,28923009,Blastocystis hominis,,28923009,Blastocystis hominis (organism),0.95,ok,"FSN matches organism; 'few' is a count qualifier, not a life stage"
+80250,MODERATE BLASTOCYSTIS HOMINIS,28923009,Blastocystis hominis,,28923009,Blastocystis hominis,0.90,ok,FSN matches; 'moderate' is non-coded qualifier
+80251,MANY BLASTOCYSTIS HOMINIS,28923009,Blastocystis hominis,,28923009,Blastocystis hominis,0.90,ok,FSN matches organism; 'many' is a quantifier not a qualifier
+80252,ALCALIGENES XYLOSOXIDANS,413424009,Achromobacter xylosoxidans,,413424009,Achromobacter xylosoxidans,0.95,ok,
+80253,"YEAST, PRESUMPTIVELY NOT C. ALBICANS",714313009,Candida species not Candida albicans,,714313009,Candida species not Candida albicans,0.90,ok,FSN matches yeast not C. albicans; presumptively is unstated qualifier
+80254,"CANDIDA ALBICANS, PRESUMPTIVE IDENTIFICATION",53326005,Candida albicans,,53326005,Candida albicans,0.90,ok,FSN matches organism; presumptive identification is a non-coded qualifier
+80255,"STAPHYLOCOCCUS SAPROPHYTICUS, PRESUMPTIVE IDENTIFICATION",19743000,Staphylococcus saprophyticus,,19743000,Staphylococcus saprophyticus,0.90,ok,FSN matches organism; presumptive identification is a non-coded qualifier
+80256,HAEMOPHILUS SPECIES NOT INFLUENZAE,713920003,"Haemophilus, not Haemophilus influenzae",,713920003,"Haemophilus, not Haemophilus influenzae",0.95,ok,FSN matches input exactly
+80257,POSITIVE FOR INFLUENZA B VIRAL ANTIGEN,407480007,Influenza B virus,,407480007,Influenza B virus,0.85,ok,Organism matching influenza B viral antigen
+80258,MICROSPORIDIUM SPECIES SEEN,243662007,Microsporidium species,,243662007,Microsporidium species,0.95,ok,FSN matches input exactly; 'seen' is a non-coded qualifier
+80259,POSITIVE FOR M. TUBERCULOSIS BY MTD,113861009,Mycobacterium tuberculosis,,113861009,Mycobacterium tuberculosis,0.85,ok,"Organism detected; MTD is test method, not part of organism"
+80262,"STAPHYLOCOCCUS, COAGULASE NEGATIVE, PRESUMPTIVELY NOT S. SAPROPHYTICUS",786829004,"Coagulase-negative Staphylococcus species, not Staphylococcus saprophyticus",,786829004,"Coagulase-negative Staphylococcus species, not Staphylococcus saprophyticus (organism)",0.97,ok,FSN matches input exactly
+80263,ORGANISM,410607006,Organism,,410607006,Organism,1.00,ok,
+80264,ACTINOMYCETE,314421007,Actinomycetes,,314421007,Actinomycetes,0.85,ok,
+80265,2ND ISOLATE,,,code-search returned no match within <<410607006.,,,,no-match,
+80266,PANTOEA (ENTEROBACTER) AGGLOMERANS,115015008,Pantoea agglomerans,,115015008,Pantoea agglomerans (organism),0.95,ok,FSN matches; Enterobacter agglomerans is a synonym
+80267,CRYPTOSPORIDIUM PARVUM OOCYSTS SEEN,51504002,Cryptosporidium parvum,,51504002,Cryptosporidium parvum (organism),0.90,ok,Primary organism; species matches input
+80268,PITHOMYCES SP.,12760009,Pithomyces species,,12760009,Pithomyces species,0.97,ok,FSN Genus Pithomyces matches 'Pithomyces sp.' exactly
+80270,CANDIDA DUBLINIENSIS,115952006,Candida dubliniensis,,115952006,Candida dubliniensis,1.00,ok,
+80271,STREPTOCOCCUS ORALIS,19870004,Streptococcus oralis,,19870004,Streptococcus oralis,1.00,ok,
+80272,STREPTOCOCCUS VESTIBULARIS,113998009,Streptococcus vestibularis,,113998009,Streptococcus vestibularis,1.00,ok,
+80274,NO GROWTH,,,code-search returned no match within <<410607006.,,,,no-match,
+80278,DEMATIACEOUS MOLD,20911002,Dematiaceous fungi imperfecti,,20911002,Dematiaceous fungi imperfecti,0.85,ok,Dematiaceous mold = dematiaceous fungi; exact concept match
+80279,STREPTOCOCCUS MILLERI GROUP,415597009,Streptococcus anginosus group,,415597009,Streptococcus anginosus group,0.95,ok,
+80280,VIRIDANS STREPTOCOCCI,31703004,"Streptococcus, viridans group",,31703004,"Streptococcus, viridans group",0.97,ok,FSN matches input exactly
+80281,BACILLUS SPECIES; NOT ANTHRACIS,413352001,Bacillus species not Bacillus anthracis,,413352001,Bacillus species not Bacillus anthracis,0.97,ok,FSN matches input exactly
+80282,FONSECAEA PEDROSOI,69356007,Fonsecaea pedrosoi,,69356007,Fonsecaea pedrosoi,1.00,ok,
+80284,ACHROMOBACTER (ALCALIGENES) XYLOSOXIDANS SS DENTRIFICANS,413414001,Achromobacter denitrificans,,413414001,Achromobacter denitrificans,0.95,ok,Synonym matches input exactly
+80285,CANDIDA KEFYR,243431000,Kluyveromyces marxianus,,243431000,Kluyveromyces marxianus,0.85,ok,Candida kefyr is a synonym of Kluyveromyces marxianus
+80286,GORDONIA SPECIES,115143001,Gordonia species,,115143001,Gordonia species,1.00,ok,
+80288,CANDIDA KRUSEI / CANDIDA INCONSPICUA,16452009,Pichia kudriavzevii,,16452009,Pichia kudriavzevii,0.95,ok,FSN matches Candida krusei (synonym)
+80289,MORAXELLA CATARRHALIS,24226003,Moraxella catarrhalis,,24226003,Moraxella catarrhalis,1.00,ok,
+80290,SHEWANELLA SPECIES,115158009,Shewanella species,,115158009,Shewanella species,1.00,ok,
+80291,BASIDIOMYCETE,106559008,Basidiomycota,,106559008,Basidiomycota,0.81,ok,
+80292,"NEISSERIA SPECIES, NOT GONORRHOEAE",414811005,Neisseria species not Neisseria gonococci,,414811005,Neisseria species not Neisseria gonococci,0.95,ok,FSN matches input exactly; excludes only gonorrhoeae
+80293,POSITIVE FOR METHICILLIN RESISTANT STAPH AUREUS,115329001,Methicillin resistant Staphylococcus aureus,,115329001,Methicillin resistant Staphylococcus aureus,0.95,ok,FSN matches input exactly; 'positive for' is a result qualifier
+80294,BURKHOLDERIA CEPACIA GROUP,131281002,Burkholderia cepacia complex,,131281002,Burkholderia cepacia complex (organism),0.95,ok,FSN matches 'cepacia group' (complex) exactly
+80295,PRESUMPTIVE GARDNERELLA VAGINALIS,64071004,Gardnerella vaginalis,,64071004,Gardnerella vaginalis,0.90,ok,FSN matches organism; 'presumptive' is a non-coded qualifier
+80298,GEMELLA SPECIES,11590002,Gemella species,,11590002,Gemella species,1.00,ok,
+80299,MYCOPLASMA HOMINIS,1290001,Mycoplasma hominis,,1290001,Mycoplasma hominis,1.00,ok,
+80300,POSITIVE FOR PNEUMOCYSTIS JIROVECII (CARINII),79909001,Pneumocystis jirovecii,,79909001,Pneumocystis jirovecii,0.85,ok,Organism matching input; carinii is old name
+80301,CHRYSEOBACTERIUM MENINGOSEPTICUM,425774009,Elizabethkingia meningoseptica,,425774009,Elizabethkingia meningoseptica,0.85,ok,Chryseobacterium meningosepticum is a synonym of Elizabethkingia meningoseptica
+80302,PANTOEA SPECIES,115013001,Pantoea species,,115013001,Pantoea species,1.00,ok,
+80303,ABIOTROPHIA/GRANULICATELLA SPECIES,115161005,Abiotrophia species,,115161005,Abiotrophia species,0.95,ok,FSN matches Abiotrophia genus
+80304,ACINETOBACTER BAUMANNII COMPLEX,113376007,Acinetobacter calcoaceticus-Acinetobacter baumannii complex,,113376007,Acinetobacter calcoaceticus-Acinetobacter baumannii complex,0.95,ok,FSN matches input exactly
+80305,PSEUDOMONAS LUTEOLA,33919008,Chryseomonas luteola,,33919008,Chryseomonas luteola,0.95,ok,
+80306,MICROCOCCUS/STOMATOCOCCUS SPECIES,52864008,Micrococcus species,,52864008,Micrococcus species,0.85,ok,Genus Micrococcus matches primary meaning; Stomatococcus is a synonym of Rothia mucilaginosa
+80307,LEPTOTRICHIA TREVISANII,431794003,Leptotrichia trevisanii,,431794003,Leptotrichia trevisanii,1.00,ok,
+80308,POSITIVE FOR CYTOMEGALOVIRUS,407444007,Cytomegalovirus species,,407444007,Cytomegalovirus species,0.85,ok,FSN Genus Cytomegalovirus matches organism; 'positive for' is a qualifier
+80309,POSITIVE FOR VARICELLA ZOSTER,19551004,Human herpesvirus 3,,19551004,Human herpesvirus 3,0.90,ok,Varicella-zoster virus organism; 'positive for' is presence qualifier
+80310,POSITIVE FOR HERPES SIMPLEX TYPE 1 (HSV1),15302007,Human herpes simplex virus type 1,,15302007,Human herpes simplex virus type 1,0.95,ok,FSN matches HSV1 organism; 'positive for' is qualifier
+80311,POSITIVE FOR HERPES SIMPLEX TYPE 2 (HSV2),13687007,Human herpes simplex virus type 2,,13687007,Human herpes simplex virus type 2,0.95,ok,FSN matches HSV2 organism; 'positive for' is a qualifier
+80312,PSEUDOMONAS PUTIDA/FLUORESCENS,68608003,Pseudomonas putida,,68608003,Pseudomonas putida,0.95,ok,FSN matches one component of compound input
+90276,YERSINIA ENTEROCOLITICA,65255000,Yersinia enterocolitica,,65255000,Yersinia enterocolitica,1.00,ok,
+90279,SHIGELLA BOYDII,55462008,Shigella boydii,,55462008,Shigella boydii,1.00,ok,
+90280,SHIGELLA SONNEI,4298009,Shigella sonnei,,4298009,Shigella sonnei,1.00,ok,
+90282,SALMONELLA SPECIES,27268008,Salmonella species,,27268008,Salmonella species,1.00,ok,
+90283,SALMONELLA TYPHI,5595000,Salmonella Typhi,,5595000,Salmonella Typhi,1.00,ok,
+90287,ACINETOBACTER LWOFFII,83088009,Acinetobacter lwoffii,,83088009,Acinetobacter lwoffii,1.00,ok,
+90292,SPHINGOMONAS PAUCIMOBILIS,243350004,Sphingomonas paucimobilis,,243350004,Sphingomonas paucimobilis,1.00,ok,
+90294,PLESIOMONAS SHIGELLOIDES,38643006,Plesiomonas shigelloides,,38643006,Plesiomonas shigelloides,1.00,ok,
+90295,VIBRIO CHOLERAE,75953000,Vibrio cholerae,,75953000,Vibrio cholerae,1.00,ok,
+90296,VIBRIO ALGINOLYTICUS,45749000,Vibrio alginolyticus,,45749000,Vibrio alginolyticus,1.00,ok,
+90297,VIBRIO PARAHAEMOLYTICUS,11736008,Vibrio parahaemolyticus,,11736008,Vibrio parahaemolyticus,1.00,ok,
+90301,BRUCELLA SPECIES,26250004,Brucella species,,26250004,Brucella species,1.00,ok,
+90302,ANAEROBIC GRAM NEGATIVE COCCI,243397003,Anaerobic Gram-negative coccus,,243397003,Anaerobic Gram-negative coccus,0.97,ok,FSN matches input exactly
+90305,MYCOBACTERIUM SPECIES,243368001,Mycobacterium species,,243368001,Mycobacterium species,1.00,ok,
+90310,HAEMOPHILUS APHROPHILUS,442683005,Aggregatibacter aphrophilus,,442683005,Aggregatibacter aphrophilus,0.95,ok,
+90313,BACTEROIDES SPECIES,57522007,Bacteroides species,,57522007,Bacteroides species,1.00,ok,
+90322,MYCOPLASMA SPECIES,78981005,Mycoplasma species,,78981005,Mycoplasma species,1.00,ok,
+90324,PSEUDOMONAS STUTZERI,58024003,Stutzerimonas stutzeri,,58024003,Stutzerimonas stutzeri,0.93,ok,
+90327,CARDIOBACTERIUM HOMINIS,7333005,Cardiobacterium hominis,,7333005,Cardiobacterium hominis,1.00,ok,
+90330,MYCOBACTERIUM CHELONAE,243377008,Mycobacteroides chelonae,,243377008,Mycobacteroides chelonae,0.95,ok,
+90331,SERRATIA ODORIFERA,10413007,Serratia odorifera,,10413007,Serratia odorifera,1.00,ok,
+90333,MYCOBACTERIUM KANSASII,1507005,Mycobacterium kansasii,,1507005,Mycobacterium kansasii,1.00,ok,
+90336,CANDIDA RUGOSA,23773004,Candida rugosa,,23773004,Candida rugosa,1.00,ok,
+90339,CRYPTOCOCCUS LAURENTII,7299008,Papiliotrema laurentii,,7299008,Papiliotrema laurentii,0.95,ok,
+90340,GEOTRICHIUM SPECIES,,,"code-search proposed 34324005 |Geotrichum species| at 0.65, below the 0.8 threshold.",34324005,Geotrichum species,0.65,below-threshold,
+90346,PREVOTELLA MELANINOGENICA,114144004,Prevotella melaninogenica,,114144004,Prevotella melaninogenica,1.00,ok,
+90349,MYCOBACTERIUM TERRAE,45662006,Mycobacterium terrae,,45662006,Mycobacterium terrae,1.00,ok,
+90350,STREPTOCOCCUS MUTANS,214001,Streptococcus mutans,,214001,Streptococcus mutans,1.00,ok,
+90352,CLOSTRIDIUM CLOSTRIDIIFORME,,,"code-search proposed 53220001 |Clostridium clostridioforme| at 0.65, below the 0.8 threshold.",53220001,Clostridium clostridioforme,0.65,below-threshold,
+90353,MYCOBACTERIUM SCROFULACEUM,20141004,Mycobacterium scrofulaceum,,20141004,Mycobacterium scrofulaceum,1.00,ok,
+90355,STREPTOCOCCUS INTERMEDIUS,62170002,Streptococcus intermedius,,62170002,Streptococcus intermedius,1.00,ok,
+90359,NEISSERIA SUBFLAVA,77700001,Neisseria subflava,,77700001,Neisseria subflava,1.00,ok,
+90361,HEMOPHILUS HEMOLYTICUS,54950008,Haemophilus haemolyticus,,54950008,Haemophilus haemolyticus,0.85,ok,FSN matches input exactly
+90362,VERTICILLIUM SP.,50734003,Verticillium species,,50734003,Verticillium species,0.95,ok,FSN matches Verticillium genus exactly
+90363,HAEMOPHILUS PARAHAEMOLYTICUS,89800007,Haemophilus parahaemolyticus,,89800007,Haemophilus parahaemolyticus,1.00,ok,
+90368,SALMONELLA PARATYPHI A,79128009,Salmonella Paratyphi A,,79128009,Salmonella Paratyphi A,1.00,ok,
+90370,SERRATIA FONTICOLA,112329006,Serratia fonticola,,112329006,Serratia fonticola,1.00,ok,
+90372,YERSINIA INTERMEDIA,10334001,Yersinia intermedia,,10334001,Yersinia intermedia,1.00,ok,
+90374,CLOSTRIDIUM TERTIUM,81909005,Clostridium tertium,,81909005,Clostridium tertium,1.00,ok,
+90377,CLOSTRIDIUM RAMOSUM,42706008,Clostridium ramosum,,42706008,Clostridium ramosum,1.00,ok,
+90378,ROTHIA DENTOCARIOSA,35379007,Rothia dentocariosa,,35379007,Rothia dentocariosa,1.00,ok,
+90379,CAPNOCYTOPHAGA OCHRACEA,4256006,Capnocytophaga ochracea,,4256006,Capnocytophaga ochracea,1.00,ok,
+90380,SCOPULARIOPSIS SP.,39949000,Scopulariopsis species,,39949000,Scopulariopsis species,0.95,ok,"FSN matches genus-level Scopulariopsis, unspecified species"
+90383,ACTINOBACILLUS ACTINOMYCETEMCOMITANS,442680008,Aggregatibacter actinomycetemcomitans,,442680008,Aggregatibacter actinomycetemcomitans,0.95,ok,
+90386,ACTINOMYCES NAESLUNDII,8940004,Actinomyces naeslundii,,8940004,Actinomyces naeslundii,1.00,ok,
+90387,MYCOBACTERIUM BOVIS,27142009,Mycobacterium bovis,,27142009,Mycobacterium bovis,1.00,ok,
+90390,TRICHOPHYTON RUBRUM,372008,Trichophyton rubrum,,372008,Trichophyton rubrum,1.00,ok,
+90392,ARCANOBACTERIUM HAEMOLYTICUM,44723000,Arcanobacterium haemolyticum,,44723000,Arcanobacterium haemolyticum,1.00,ok,
+90398,ACTINOMYCES ISRAELII,46369004,Actinomyces israelii,,46369004,Actinomyces israelii,1.00,ok,
+90399,SALMONELLA TYPHIMURIUM,50136005,Salmonella Typhimurium,,50136005,Salmonella Typhimurium,1.00,ok,
+90403,ESCHERICHIA VULNERIS,53013003,Escherichia vulneris,,53013003,Escherichia vulneris,1.00,ok,
+90404,SALMONELLA MUENSTER,68916009,Salmonella Muenster,,68916009,Salmonella Muenster,1.00,ok,
+90405,SALMONELLA MONTEVIDEO,80268001,Salmonella Montevideo,,80268001,Salmonella Montevideo,1.00,ok,
+90406,SALMONELLA AGONA,80627004,Salmonella Agona,,80627004,Salmonella Agona,1.00,ok,
+90407,CLOSTRIDIUM INNOCUUM,19415008,Clostridium innocuum,,19415008,Clostridium innocuum,1.00,ok,
+90408,ENTAMOEBA SP.,38324000,Entamoeba species,,38324000,Entamoeba species,0.97,ok,FSN matches input exactly at genus level
+90410,CHILOMASTIX MESNILI,41340007,Chilomastix mesnili,,41340007,Chilomastix mesnili,1.00,ok,
+90411,GIARDIA CYSTS,608946009,Cyst form of Giardia species,,608946009,Cyst form of Giardia species,0.81,ok,
+90412,SALMONELLA HEIDELBERG,71865006,Salmonella Heidelberg,,71865006,Salmonella Heidelberg,1.00,ok,
+90415,SALMONELLA NEWPORT,56077000,Salmonella Newport,,56077000,Salmonella Newport,1.00,ok,
+90418,SALMONELLA MUENCHEN,77584005,Salmonella Muenchen,,77584005,Salmonella Muenchen,1.00,ok,
+90420,TAENIA SP.,28625000,Taenia species,,28625000,Taenia species (organism),0.95,ok,FSN matches Taenia genus exactly
+90421,STRONGYLOIDES,10823008,Strongyloides species,,10823008,Strongyloides species,0.95,ok,
+90422,HOOKWORM,359762003,Family Ancylostomatidae,,359762003,Family Ancylostomatidae,0.95,ok,
+90425,DIENTAMOEBA FRAGILIS,41542000,Dientamoeba fragilis,,41542000,Dientamoeba fragilis,1.00,ok,
+90426,TAENIA SAGINATA,61085008,Taenia saginata,,61085008,Taenia saginata,1.00,ok,
+90427,SALMONELLA THOMPSON,4361005,Salmonella Thompson,,4361005,Salmonella Thompson,1.00,ok,
+90429,HERPES SIMPLEX VIRUS,19965007,Human herpes simplex virus,,19965007,Human herpes simplex virus,0.95,ok,
+90430,SALMONELLA DUBLIN,62136003,Salmonella Dublin,,62136003,Salmonella Dublin,1.00,ok,
+90431,"LEGIONELLA PNEUMOPHILA, GROUP 1",103463005,Legionella pneumophila serogroup 1,,103463005,Legionella pneumophila serogroup 1,0.95,ok,FSN matches input exactly
+90433,MYCOBACTERIUM FLAVESCENS,5885000,Mycobacterium flavescens,,5885000,Mycobacterium flavescens,1.00,ok,
+90434,SALMONELLA SAINTPAUL,2820001,Salmonella Saintpaul,,2820001,Salmonella Saintpaul,1.00,ok,
+90438,FRANCISELLA TULARENSIS,51526001,Francisella tularensis,,51526001,Francisella tularensis,1.00,ok,
+90439,CUNNINGHAMELLA SP.,24861001,Cunninghamella species,,24861001,Cunninghamella species (organism),0.97,ok,FSN matches genus-level Cunninghamella exactly
+90440,SALMONELLA SCHWARZENGRUND,45651006,Salmonella Schwarzengrund,,45651006,Salmonella Schwarzengrund,1.00,ok,
+90443,ALTERNARIA SP.,75059003,Alternaria species,,75059003,Alternaria species,0.97,ok,FSN Genus Alternaria matches 'Alternaria sp.' exactly
+90444,EPIDERMOPHYTON FLOCCOSUM,26403006,Epidermophyton floccosum,,26403006,Epidermophyton floccosum,1.00,ok,
+90447,ENTEROBIUS VERMICULARIS,55008000,Enterobius vermicularis,,55008000,Enterobius vermicularis,1.00,ok,
+90448,SALMONELLA BRAENDERUP,35225001,Salmonella Braenderup,,35225001,Salmonella Braenderup,1.00,ok,
+90450,MORAXELLA NONLIQUIFACIENS,,,"code-search proposed 46455003 |Moraxella nonliquefaciens| at 0.65, below the 0.8 threshold.",46455003,Moraxella nonliquefaciens,0.65,below-threshold,
+90452,ENTEROBACTER AMNIGENUS 2,114453000,Enterobacter amnigenus biogroup II,,114453000,Enterobacter amnigenus biogroup II (organism),0.85,ok,'2' maps to biogroup II of Enterobacter amnigenus
+90453,ESCHERICHIA HERMANNII,85786000,Escherichia hermannii,,85786000,Escherichia hermannii,1.00,ok,
+90454,PROTEUS PENNERI,45298005,Proteus penneri,,45298005,Proteus penneri,1.00,ok,
+90456,LECLERCIA ADECARBOXYLATA,57459006,Leclercia adecarboxylata,,57459006,Leclercia adecarboxylata,1.00,ok,
+90457,AGROBACTERIUM RADIOBACTER,1772001,Agrobacterium radiobacter,,1772001,Agrobacterium radiobacter,1.00,ok,
+90459,NEISSERIA MUCOSA,81795000,Neisseria mucosa,,81795000,Neisseria mucosa,1.00,ok,
+90461,KINGELLA SPECIES,32017003,Kingella species,,32017003,Kingella species,1.00,ok,
+90462,MICROSPORUM CANIS,19018004,Microsporum canis,,19018004,Microsporum canis,1.00,ok,
+90464,SALMONELLA JAVIANA,88022005,Salmonella Javiana,,88022005,Salmonella Javiana,1.00,ok,
+90466,LACTOBACILLUS SALIVARIUS SS. SALIVARIUS,62761005,Lactobacillus salivarius ss. salivarius,,62761005,Lactobacillus salivarius ss. salivarius,1.00,ok,
+90470,GARDNERELLA  VAGINALIS,64071004,Gardnerella vaginalis,,64071004,Gardnerella vaginalis,1.00,ok,
+90472,ALCALIGENES FAECALIS,25223004,Alcaligenes faecalis,,25223004,Alcaligenes faecalis,1.00,ok,
+90476,MYCOBACTERIUM AVIUM,83723009,Mycobacterium avium,,83723009,Mycobacterium avium,1.00,ok,
+90484,SALMONELLA ORANIENBURG,46667007,Salmonella Oranienburg,,46667007,Salmonella Oranienburg,1.00,ok,
+90486,STAPHYLOCOCCUS SACCHAROLYTICUS,41103009,Staphylococcus saccharolyticus,,41103009,Staphylococcus saccharolyticus,1.00,ok,
+90487,ACHROMOBACTER (ALCALIGENES) DENTRIFICANS,413414001,Achromobacter denitrificans,,413414001,Achromobacter denitrificans,0.95,ok,FSN matches input organism exactly
+90489,MYCOBACTERIUM SZULGAI,65613000,Mycobacterium szulgai,,65613000,Mycobacterium szulgai,1.00,ok,
+90491,ULOCLADIUM SP.,65789000,Ulocladium species,,65789000,Ulocladium species,0.97,ok,FSN Genus Ulocladium matches 'Ulocladium sp.' exactly
+90492,RHODOTORULA GLUTINIS,69250004,Rhodotorula glutinis,,69250004,Rhodotorula glutinis,1.00,ok,
+90494,ASPERGILLUS TERREUS,26406003,Aspergillus terreus,,26406003,Aspergillus terreus,1.00,ok,
+90497,MICROCOCCUS LUTEUS,48299003,Micrococcus luteus,,48299003,Micrococcus luteus,1.00,ok,
+90498,MYCOBACTERIUM XENOPI,58663006,Mycobacterium xenopi,,58663006,Mycobacterium xenopi,1.00,ok,
+90500,STAPHYLOCOCCUS SCHLEIFERI,131360000,Staphylococcus schleiferi,,131360000,Staphylococcus schleiferi,1.00,ok,
+90501,PEPTOSTREPTOCOCCUS SP.,243417000,Peptostreptococcus species,,243417000,Peptostreptococcus species,0.97,ok,FSN Genus Peptostreptococcus matches 'sp.' exactly
+90502,TRICHOSPORON SPECIES,62289009,Trichosporon species,,62289009,Trichosporon species,1.00,ok,
+90503,SALMONELLA INFANTIS,82071007,Salmonella Infantis,,82071007,Salmonella Infantis,1.00,ok,
+90507,SALMONELLA STANLEY,88091007,Salmonella Stanley,,88091007,Salmonella Stanley,1.00,ok,
+90508,ACTINOMYCES SP.,40560008,Actinomyces species,,40560008,Actinomyces species,0.95,ok,FSN Genus Actinomyces matches genus-level input exactly
+90509,YERSINIA SP.,4668009,Yersinia species,,4668009,Yersinia species,0.97,ok,FSN 'Genus Yersinia' matches Yersinia sp. exactly
+90511,STAPHYLOCOCCUS INTERMEDIUS,34605002,Staphylococcus intermedius,,34605002,Staphylococcus intermedius,1.00,ok,
+90512,DERMATOPHYTE,115651002,Dermatophyte,,115651002,Dermatophyte,1.00,ok,
+90513,TRICHOMONAS VAGINALIS,22417000,Trichomonas vaginalis,,22417000,Trichomonas vaginalis,1.00,ok,
+90514,MYCOBACTERIUM MARINUM,58869008,Mycobacterium marinum,,58869008,Mycobacterium marinum,1.00,ok,
+90518,ENTEROCOCCUS RAFFINOSUS,103437000,Enterococcus raffinosus,,103437000,Enterococcus raffinosus,1.00,ok,
+90519,LEUCONOSTOC MESENTEROIDES,71403009,Leuconostoc mesenteroides,,71403009,Leuconostoc mesenteroides,1.00,ok,
+90522,CAMPYLOBACTER UPSALIENSIS,103427005,Campylobacter upsaliensis,,103427005,Campylobacter upsaliensis,1.00,ok,
+90526,PARAINFLUENZA VIRUS TYPE 2,407491000,Human parainfluenza virus 2,,407491000,Human parainfluenza virus 2,0.95,ok,
+90528,PREVOTELLA (BACTEROIDES) SPECIES,114129000,Prevotella species,,114129000,Prevotella species (organism),0.95,ok,FSN Genus Prevotella matches input; Bacteroides is former name
+90530,PSEUDOMONAS FLUORESCENS,39289003,Pseudomonas fluorescens,,39289003,Pseudomonas fluorescens,1.00,ok,
+90532,CAMPYLOBACTER COLI,40614002,Campylobacter coli,,40614002,Campylobacter coli,1.00,ok,
+90533,HYMENOLEPIS NANA,74311004,Rodentolepis nana,,74311004,Rodentolepis nana,0.95,ok,
+90536,ESCHERICHIA COLI O157:H7,457914007,Escherichia coli serotype O157:H7,,457914007,Escherichia coli serotype O157:H7,0.97,ok,FSN matches input exactly
+90537,SPHINGOBACTERIUM MULTIVORUM,51595006,Sphingobacterium multivorum,,51595006,Sphingobacterium multivorum,1.00,ok,
+90543,OLIGELLA URETHRALIS,90341001,Oligella urethralis,,90341001,Oligella urethralis,1.00,ok,
+90544,STAPHYLOCOCCUS SCIURI,70806002,Staphylococcus sciuri,,70806002,Staphylococcus sciuri,1.00,ok,
+90549,ENTEROCOCCUS DURANS,46464008,Enterococcus durans,,46464008,Enterococcus durans,1.00,ok,
+90550,MALASSEZIA SPECIES,18097004,Malassezia species,,18097004,Malassezia species,1.00,ok,
+90552,ROSEOMONAS GILARDII,113710007,Roseomonas gilardii,,113710007,Roseomonas gilardii,1.00,ok,
+90557,NOCARDIA OTITIDISCAVIARUM (CAVIAE),63087008,Nocardia otitidis caviarum,,63087008,Nocardia otitidiscaviarum,0.95,ok,FSN matches input exactly
+90559,ESCHERICHIA SPECIES,64735005,Escherichia species,,64735005,Escherichia species,1.00,ok,
+90560,MYCOBACTERIUM CELATUM,103475000,Mycobacterium celatum,,103475000,Mycobacterium celatum,1.00,ok,
+90564,NOCARDIA BRASILIENSIS,58970008,Nocardia brasiliensis,,58970008,Nocardia brasiliensis,1.00,ok,
+90566,NOCARDIA NOVA,37621001,Nocardia nova,,37621001,Nocardia nova,1.00,ok,
+90567,CYCLOSPORA SPECIES,103560006,Cyclospora species,,103560006,Cyclospora species,1.00,ok,
+90571,BURKHOLDERIA GLADIOLI,113671008,Burkholderia gladioli,,113671008,Burkholderia gladioli,1.00,ok,
+90574,ENTEROVIRUS,243633006,Enterovirus species,,243633006,Enterovirus species,0.95,ok,
+90579,DIPHYLLOBOTHRIUM SP.,48262003,Diphyllobothrium species,,48262003,Diphyllobothrium species,0.97,ok,FSN matches genus-level species exactly
+90581,EXOPHIALA SPECIES,12210004,Exophiala species,,12210004,Exophiala species,1.00,ok,
+90584,ANAEROBIC GRAM POSITIVE BACTERIA,,,code-search returned no match within <<410607006.,,,,no-match,
+90585,PENICILLIUM MARNEFFEI,71825007,Penicillium marneffei,,71825007,Penicillium marneffei,1.00,ok,
+90590,PREVOTELLA ORALIS,114146002,Prevotella oralis,,114146002,Prevotella oralis,1.00,ok,
+90592,TSUKAMURELLA SPECIES,115135006,Tsukamurella species,,115135006,Tsukamurella species,1.00,ok,
+90596,CAMPYLOBACTER LARI,116386003,Campylobacter lari,,116386003,Campylobacter lari,1.00,ok,
+90598,EXOPHIALA (WANGIELLA) DERMATITIDIS,20586007,Wangiella dermatitidis,,20586007,Wangiella dermatitidis,0.95,ok,FSN Exophiala dermatitidis matches input exactly
+90601,MYCOBACTERIUM MALMOENSE,73576007,Mycobacterium malmoense,,73576007,Mycobacterium malmoense,1.00,ok,
+90606,CORYNEBACTERIUM ACCOLANS (CDC GROUP 6),243254006,Corynebacterium accolens,,243254006,Corynebacterium accolens,0.85,ok,FSN matches Corynebacterium accolens; accolans is a typo
+90609,WORM,,,code-search returned no match within <<410607006.,,,,no-match,
+90620,TICK CONSISTENT WITH IXODES SPECIES,27524005,Ixodes species,,27524005,Ixodes species,0.85,ok,FSN 'Ixodes (organism)' matches input exactly
+90621,TICK NOT CONSISTENT WITH IXODES SPECIES,,,"code-search proposed 106831000 |Ixodides| at 0.70, below the 0.8 threshold.",106831000,Ixodides,0.70,below-threshold,General tick organism; negative Ixodes qualifier not codable as organism
+90623,SALMONELLA SANDIEGO,112287008,Salmonella Sandiego,,112287008,Salmonella Sandiego,1.00,ok,
+90626,STAPHYLOCOCCUS SIMULANS,52122005,Staphylococcus simulans,,52122005,Staphylococcus simulans,1.00,ok,
+90627,LEGIONELLA SPECIES,7527002,Legionella species,,7527002,Legionella species,1.00,ok,
+90634,POSITIVE FOR MICROSPORIDIA SPECIES,418382009,Phylum Microsporidia,,418382009,Phylum Microsporidia,0.85,ok,FSN matches Microsporidia organism
+90635,SALMONELLA OSLO,35454005,Salmonella Oslo,,35454005,Salmonella Oslo,1.00,ok,
+90636,IODAMOEBA BUTSCHLII,53605000,Iodamoeba bütschlii,,53605000,Iodamoeba bütschlii,0.95,ok,
+90638,RARE BLASTOCYSTIS HOMINIS,28923009,Blastocystis hominis,,28923009,Blastocystis hominis,0.90,ok,FSN matches organism; 'rare' is non-coded qualifier
+90639,BACTEROIDIES THETAIOTAOMICRON,,,"code-search proposed 34236001 |Bacteroides thetaiotaomicron| at 0.65, below the 0.8 threshold.",34236001,Bacteroides thetaiotaomicron,0.65,below-threshold,
+90640,BIPOLARIS SPECIES,24145000,Bipolaris species,,24145000,Bipolaris species,1.00,ok,
+90641,MYCOBACTERIUM ABSCESSUS,113838007,Mycobacteroides abscessus,,113838007,Mycobacteroides abscessus,0.95,ok,
+90644,GIARDIA LAMBLIA SEEN,78181009,Giardia duodenalis,,78181009,Giardia duodenalis,0.90,ok,Synonym Giardia lamblia matches organism; 'seen' is non-coded qualifier
+90645,PINWORM EGG(S) SEEN,609080003,Egg of Enterobius vermicularis,,609080003,Egg of Enterobius vermicularis,0.85,ok,Pinworm is Enterobius vermicularis; egg form matches input
+90646,TRICHOMONAS VAGINALIS SEEN,22417000,Trichomonas vaginalis,,22417000,Trichomonas vaginalis,0.95,ok,FSN matches organism exactly
+90650,SCOPULARIOPSIS BREVICAULIS,3245004,Scopulariopsis brevicaulis,,3245004,Scopulariopsis brevicaulis,1.00,ok,
+90653,SALMONELLA MBANDAKA,9506004,Salmonella Mbandaka,,9506004,Salmonella Mbandaka,1.00,ok,
+90655,ROSEOMONAS MUCOSA,415351006,Roseomonas mucosa,,415351006,Roseomonas mucosa,1.00,ok,
+90656,SPHINGOMONAS SPECIES,115130001,Sphingomonas species,,115130001,Sphingomonas species,1.00,ok,
+90657,SALMONELLA ANATUM,37261005,Salmonella Anatum,,37261005,Salmonella Anatum,1.00,ok,
+90660,PHOMA SPECIES,61019006,Phoma species,,61019006,Phoma species,1.00,ok,
+90665,EPICOCCUM SPECIES,7633000,Epicoccum species,,7633000,Epicoccum species,1.00,ok,
+90667,TRICHOSPORON MUCOIDES,243478004,Trichosporon mucoides,,243478004,Trichosporon mucoides,1.00,ok,
+90669,SALMONELLA TELELKEBIR,64636003,Salmonella Telelkebir,,64636003,Salmonella Telelkebir,1.00,ok,
+90671,STEMPHYLIUM SP.,90824006,Stemphylium species,,90824006,Stemphylium species,0.95,ok,FSN Genus Stemphylium matches input exactly
+90672,NIGROSPORA SPECIES,41278006,Nigrospora species,,41278006,Nigrospora species,1.00,ok,
+90678,MICROBACTERIUM SPECIES,114199008,Microbacterium species,,114199008,Microbacterium species,1.00,ok,
+90679,STAPHYLOCOCCUS HAEMOLYTICUS,83452006,Staphylococcus haemolyticus,,83452006,Staphylococcus haemolyticus,1.00,ok,
+90680,SALMONELLA CORVALLIS,45548005,Salmonella Corvallis,,45548005,Salmonella Corvallis,1.00,ok,
+90681,STAPHYLOCOCCUS CAPRAE/CAPITIS,76969000,Staphylococcus caprae,,76969000,Staphylococcus caprae (organism),0.95,ok,FSN matches first organism in input
+90683,PROTEUS VULGARIS GROUP,45834001,Proteus vulgaris,,45834001,Proteus vulgaris,0.85,ok,FSN matches the named organism in the group
+90688,ERYSIPELOTHRIX RHUSIOPATHIAE,48666005,Erysipelothrix rhusiopathiae,,48666005,Erysipelothrix rhusiopathiae,1.00,ok,
+90689,SALMONELLA KIAMBU,11901002,Salmonella Kiambu,,11901002,Salmonella Kiambu,1.00,ok,
+90693,BEAUVERIA BASSIANA,65562008,Beauveria bassiana,,65562008,Beauveria bassiana,1.00,ok,
+90695,DELFTIA ACIDOVORANS,20432002,Delftia acidovorans,,20432002,Delftia acidovorans,1.00,ok,
+90697,ACTINOMYCES TURICENSIS,113422006,Actinomyces turicensis,,113422006,Actinomyces turicensis,1.00,ok,
+90698,HUMICOLA SPECIES,601008,Humicola species,,601008,Humicola species,1.00,ok,
+90702,ENTEROBACTER CANCEROGENUS,114451003,Enterobacter cancerogenus,,114451003,Enterobacter cancerogenus,1.00,ok,
+90705,PSEUDOMONAS ORYZIHABITANS,113931000,Flavimonas oryzihabitans,,113931000,Flavimonas oryzihabitans,0.95,ok,
+90706,CUNNINGHAMELLA BERTHOLLETIAE,60182000,Cunninghamella bertholletiae,,60182000,Cunninghamella bertholletiae,1.00,ok,
+90707,BETA STREP NOT GROUP A OR ANGINOSUS (MILLERI),713922006,"Beta-hemolytic Streptococcus, non-Group A",,713922006,"Beta-hemolytic Streptococcus, non-Group A (organism)",0.90,ok,FSN matches 'beta strep not group A' exactly
+90708,"BETA STREP NOT GROUP A, B OR ANGINOSUS (MILLERI)",406609007,"Beta-haemolytic streptococcus, non-Group A, non-Group B",,406609007,"Beta-haemolytic streptococcus, non-Group A, non-Group B (organism)",0.80,ok,"Closest broader match; excludes groups A and B as requested, though includes anginosus (milleri) subset"
+90709,CHRYSEOBACTERIUM INDOLOGENES,113549008,Chryseobacterium indologenes,,113549008,Chryseobacterium indologenes,1.00,ok,
+90710,SYTALIDIUM SPECIES,12678008,Scytalidium species,,12678008,Scytalidium species,0.95,ok,FSN Genus Scytalidium matches input; misspelling of Scytalidium
+90711,AEROMONAS HYDROPHILA COMPLEX,816086002,Aeromonas hydrophilia complex,,816086002,Aeromonas hydrophilia complex,0.95,ok,
+90712,MYROIDES SPECIES,115127008,Myroides species,,115127008,Myroides species,1.00,ok,
+90713,MYCOBACTERIUM MUCOGENICUM,113856007,Mycobacterium mucogenicum,,113856007,Mycobacterium mucogenicum,1.00,ok,
+90714,CONIDIOBOLUS SPECIES,42178002,Conidiobolus species,,42178002,Conidiobolus species,1.00,ok,
+90715,SALMONELLA BARRANQUILLA,87933008,Salmonella Barranquilla,,87933008,Salmonella Barranquilla,1.00,ok,
+90716,CUPRIAVIDUS METALLIDURANS,423135006,Cupriavidus metallidurans,,423135006,Cupriavidus metallidurans,1.00,ok,
+90717,LACTOBACILLUS GASSERI,71158000,Lactobacillus gasseri,,71158000,Lactobacillus gasseri,1.00,ok,
+90718,AEROCOCCUS SPECIES,9008009,Aerococcus species,,9008009,Aerococcus species,1.00,ok,
+90719,PHAEOACREMONIUM SPECIES,415948008,Phaeoacremonium species,,415948008,Phaeoacremonium species,1.00,ok,
+90721,POSITIVE FOR PARAINFLUENZA TYPE 1,407489008,Human parainfluenza virus 1,,407489008,Human parainfluenza virus 1,0.85,ok,FSN matches parainfluenza type 1 organism
+90722,POSITIVE FOR PARAINFLUENZA TYPE 2,407491000,Human parainfluenza virus 2,,407491000,Human parainfluenza virus 2,0.90,ok,Organism matches parainfluenza type 2; 'positive for' is a finding qualifier
+90723,POSITIVE FOR PARAINFLUENZA TYPE 3,407493002,Human parainfluenza virus 3,,407493002,Human parainfluenza virus 3,0.85,ok,FSN matches parainfluenza type 3 organism
+90724,POSITIVE FOR ADENOVIRUS,,,code-search returned no match within <<410607006.,,,,no-match,
+90725,POSITIVE FOR RESPIRATORY SYNCYTIAL VIRUS (RSV),6415009,Human respiratory syncytial virus,,6415009,Human respiratory syncytial virus,0.90,ok,FSN matches RSV organism; 'positive for' is a presence qualifier
+90726,POSITIVE FOR PARAINFLUENZA VIRUS,407498006,Human parainfluenza virus,,407498006,Human parainfluenza virus,0.85,ok,Generic parainfluenza virus; human type matches without overstepping to specific serotype
+90727,POSITIVE FOR HERPES SIMPLEX (HSV),19965007,Human herpes simplex virus,,19965007,Human herpes simplex virus,0.90,ok,FSN matches herpes simplex without unstated type specificity
+90728,SERRATIA LIQUEFACIENS COMPLEX,722258003,Serratia liquefaciens complex,,722258003,Serratia liquefaciens complex,1.00,ok,
+90729,DESULFOVIBRIO DESULFURICANS,243394005,Desulfovibrio desulfuricans,,243394005,Desulfovibrio desulfuricans,1.00,ok,
+90730,BURKHOLDERIA XENOVORANS,431176003,Paraburkholderia xenovorans,,431176003,Paraburkholderia xenovorans,0.95,ok,
+90733,PEPTONIPHILUS (PEPTOSTREPTOCOCCUS) SPECIES,430742009,Peptoniphilus species,,430742009,Peptoniphilus species,0.90,ok,Genus-level match for Peptoniphilus species; parenthetical is alternative name
+90734,FINEGOLDIA (PEPTOSTREPTOCOCCUS) SPECIES,417248002,Finegoldia species,,417248002,Finegoldia species,0.95,ok,FSN Genus Finegoldia matches input exactly
+90735,AGGREGATIBACTER SPECIES,441718002,Aggregatibacter species,,441718002,Aggregatibacter species,1.00,ok,
+90736,AGGREGATIBACTER (HAEMOPHILUS) APHROPHILUS,442683005,Aggregatibacter aphrophilus,,442683005,Aggregatibacter aphrophilus,0.95,ok,FSN matches input exactly
+90737,ALCALIGENES SPECIES,68571003,Alcaligenes species,,68571003,Alcaligenes species,1.00,ok,
+90738,ELIZABETHKINGIA (CHRYSEOBACTERIUM) MENIGOSEPTICA,425774009,Elizabethkingia meningoseptica,,425774009,Elizabethkingia meningoseptica,0.95,ok,FSN matches input organism exactly
+90739,GLOBICATELLA SPECIES,414344008,Globicatella species,,414344008,Globicatella species,1.00,ok,
+90740,LACTOCOCCUS SPECIES,9879003,Lactococcus species,,9879003,Lactococcus species,1.00,ok,
+90741,ROTHIA MUCILAGINOSA,416544005,Rothia mucilaginosa,,416544005,Rothia mucilaginosa,1.00,ok,
+90742,STAPHYLOCOCCUS CAPITIS,40347003,Staphylococcus capitis,,40347003,Staphylococcus capitis,1.00,ok,
+90743,STAPHYLOCOCCUS CAPRAE,76969000,Staphylococcus caprae,,76969000,Staphylococcus caprae,1.00,ok,
+90744,STAPHYLOCOCCUS HOMINIS,44827007,Staphylococcus hominis,,44827007,Staphylococcus hominis,1.00,ok,
+90745,STAPHYLOCOCCUS SAPROPHYTICUS,19743000,Staphylococcus saprophyticus,,19743000,Staphylococcus saprophyticus,1.00,ok,
+90746,STAPHYLOCOCCUS WARNERI,63550006,Staphylococcus warneri,,63550006,Staphylococcus warneri,1.00,ok,
+90747,STREPTOCOCCUS MITIS/ORALIS,127539005,Streptococcus mitis group,,127539005,Streptococcus mitis group,0.85,ok,Mitis/oralis denotes the mitis group; FSN matches group concept
+90748,STREPTOCOCCUS INFANTARIUS SSP. COLI (STREPTOCOCCUS BOVIS),437915004,Streptococcus infantarius subspecies coli,,437915004,Streptococcus infantarius subspecies coli,0.98,ok,FSN matches input exactly
+90749,STREPTOCOCCUS SALIVARUS,,,"code-search proposed 39888004 |Streptococcus salivarius| at 0.65, below the 0.8 threshold.",39888004,Streptococcus salivarius,0.65,below-threshold,
+90750,RHIZOBIUM RADIOBACTER,1772001,Agrobacterium radiobacter,,1772001,Agrobacterium radiobacter,0.95,ok,
+90752,MALASSEZIA PACHYDERMATIS,51257000,Malassezia pachydermatis,,51257000,Malassezia pachydermatis,1.00,ok,
+90753,IXODES SPECIES,27524005,Ixodes species,,27524005,Ixodes species,1.00,ok,
+90754,PASTEURELLA SPECIES,87579009,Pasteurella species,,87579009,Pasteurella species,1.00,ok,
+90755,STREPTOCOCCUS GALLOLYTICUS SSP. PASTEURIANUS (STREPTOCOCCUS BOVIS),421253004,Streptococcus gallolyticus subspecies pasteurianus,,421253004,Streptococcus gallolyticus subspecies pasteurianus (organism),0.97,ok,FSN matches input exactly
+90756,HERBASPIRILLUM SPECIES,116406001,Herbaspirillum species,,116406001,Herbaspirillum species,1.00,ok,
+90757,ROSEOMONAS SPECIES,115159001,Roseomonas species,,115159001,Roseomonas species,1.00,ok,
+90758,STAPHYLOCOCCUS WARNERI/PASTEURI,63550006,Staphylococcus warneri,,63550006,Staphylococcus warneri (organism),0.95,ok,FSN matches first organism in compound input
+90759,RAOULTELLA ORNITHINOLYTICA,416832000,Raoultella ornithinolytica,,416832000,Raoultella ornithinolytica,1.00,ok,
+90760,CANCELLED,,,code-search returned no match within <<410607006.,,,,no-match,
+90761,MYCOBATERIUM HAEMOPHILUM,,,"code-search proposed 21996001 |Mycobacterium haemophilum| at 0.65, below the 0.8 threshold.",21996001,Mycobacterium haemophilum,0.65,below-threshold,
+90762,NEOSCYTALIDIUM DIMIDIATUM,715363007,Neoscytalidium dimidiatum,,715363007,Neoscytalidium dimidiatum,1.00,ok,
+90763,ENTEROBACTER CLOACAE COMPLEX,414102007,Enterobacter cloacae complex,,414102007,Enterobacter cloacae complex,1.00,ok,
+90764,LEPTOTRICHIA HOFSTADII,432196009,Leptotrichia hofstadii,,432196009,Leptotrichia hofstadii,1.00,ok,
+90765,DOLOSIGRANULUM PIGRUM,363765006,Dolosigranulum pigrum,,363765006,Dolosigranulum pigrum,1.00,ok,
+90766,SLACKIA EXIGUA,434236002,Slackia exigua,,434236002,Slackia exigua,1.00,ok,
+90767,OCHROBACTRUM SPECIES,116423005,Ochrobactrum species,,116423005,Ochrobactrum species,1.00,ok,
+90768,TICK,,,"code-search proposed 106831000 |Ixodides| at 0.79, below the 0.8 threshold.",106831000,Ixodides,0.79,below-threshold,
+90769,NOCARDIA FARCINICA,85516007,Nocardia farcinica,,85516007,Nocardia farcinica,1.00,ok,
+90771,OCHROBACTRUM INTERMEDIUM,414926008,Brucella intermedia,,414926008,Brucella intermedia,0.95,ok,
+90772,GRAPHIUM EUMORPHUM,157961000146103,Graphium eumorphum,,157961000146103,Graphium eumorphum,1.00,ok,
+90773,GEMELLA HAEMOLYSANS,37511002,Gemella haemolysans,,37511002,Gemella haemolysans,1.00,ok,
+90774,ENTEROCOCCUS HIRAE,73852008,Enterococcus hirae,,73852008,Enterococcus hirae,1.00,ok,
+90775,USTILAGO SPECIES,49086004,Ustilago species,,49086004,Ustilago species,1.00,ok,
+90776,STREPTOCOCCUS GALLOLYTICUS SSP. GALLOLYTICUS (STREPTOCOCCUS BOVIS),421544007,Streptococcus gallolyticus subspecies gallolyticus,,421544007,Streptococcus gallolyticus subspecies gallolyticus,0.97,ok,FSN matches input exactly
+90778,ACHROMOBACTER SPECIES,91620006,Achromobacter species,,91620006,Achromobacter species,1.00,ok,
+90779,ACHROMOBACTER  DENTRIFICANS,,,"code-search proposed 413414001 |Achromobacter denitrificans| at 0.65, below the 0.8 threshold.",413414001,Achromobacter denitrificans,0.65,below-threshold,
+90780,ACHROMOBACTER (ALCALIGENES) XYLOSOXIDANS,413424009,Achromobacter xylosoxidans,,413424009,Achromobacter xylosoxidans,0.95,ok,FSN matches; synonym Alcaligenes xylosoxidans
+90783,STREPTOCOCCUS BOVIS GROUP,415599007,Streptococcus bovis group,,415599007,Streptococcus bovis group,1.00,ok,
+90784,PSEUDOMONAS MENDOCINA,59419001,Pseudomonas mendocina,,59419001,Pseudomonas mendocina,1.00,ok,
+90785,MIXED BACTERIAL FLORA,,,code-search returned no match within <<410607006.,,,,no-match,
+90786,STREPTOCOCCUS MITIS GROUP,127539005,Streptococcus mitis group,,127539005,Streptococcus mitis group,1.00,ok,
+90787,STREPTOCCUS SALIVARIUS GROUP,127537007,Streptococcus salivarius group,,127537007,Streptococcus salivarius group,0.98,ok,FSN matches input exactly
+90789,MYCOBACTERIUM ABSCESSUS GROUP,113838007,Mycobacteroides abscessus,,113838007,Mycobacteroides abscessus,0.90,ok,"FSN matches; 'group' = complex, captured by synonym"
+90791,GORDONIA SPUTI,113648006,Gordonia sputi,,113648006,Gordonia sputi,1.00,ok,
+90793,EMMONSIA SPECIES,780915007,Emmonsia species,,780915007,Emmonsia species,1.00,ok,
+90794,BREVIBACTERIUM CASEI,6405003,Brevibacterium casei,,6405003,Brevibacterium casei,1.00,ok,
+90795,CANDIDA FAMATA,243428001,Debaryomyces hansenii,,243428001,Debaryomyces hansenii,0.95,ok,
+90796,SPOROTHRIX SCHENCKII COMPLEX,468671000124100,Sporothrix schenckii complex,,468671000124100,Sporothrix schenckii complex,1.00,ok,
+90797,NOCARDIA TRANSVALENSIS COMPLEX,131341007,Nocardia transvalensis complex,,131341007,Nocardia transvalensis complex,1.00,ok,
+90798,ALLOIOCOCCUS OTITIS,396454000,Alloiococcus otitis,,396454000,Alloiococcus otitis,1.00,ok,
+90799,STREPTOCOCCUS INFANTARIUS SSP. INFANTARIUS (STREPTOCOCCUS BOVIS),432506009,Streptococcus infantarius subspecies infantarius,,432506009,Streptococcus infantarius subspecies infantarius,0.95,ok,FSN matches input exactly
+90801,LACTOBACILLUS RHAMNOSUS,113798001,Lactobacillus rhamnosus,,113798001,Lactobacillus rhamnosus,1.00,ok,
+90802,ALACALIGENES SPECIES,,,"code-search proposed 68571003 |Alcaligenes species| at 0.65, below the 0.8 threshold.",68571003,Alcaligenes species,0.65,below-threshold,
+90803,STREPTOCOCCUS PORCINUS,59512008,Streptococcus porcinus,,59512008,Streptococcus porcinus,1.00,ok,
+90804,STREPTOCOCCUS PORCINUS/PSEUDOPORCINUS,59512008,Streptococcus porcinus,,59512008,Streptococcus porcinus,0.95,ok,FSN matches one component of input
+90805,PASTEURELLA CANIS,7784009,Pasteurella canis,,7784009,Pasteurella canis,1.00,ok,
+90806,SHEWANELLA ALGAE,113702006,Shewanella algae,,113702006,Shewanella algae,1.00,ok,
+90807,ACHROMOBACTER SP.,91620006,Achromobacter species,,91620006,Achromobacter species,0.97,ok,FSN Genus Achromobacter matches 'Achromobacter sp.' exactly
+90808,MICROMONOSPORA SPECIES,416958001,Micromonospora species,,416958001,Micromonospora species,1.00,ok,
+90809,STAPHYLOCOCCUS PSEUDINTERMEDIUS,427316000,Staphylococcus pseudintermedius,,427316000,Staphylococcus pseudintermedius,1.00,ok,
+90811,COCCIDIOIDES IMMITIS/POSADASII,8672004,Coccidioides species,,8672004,Coccidioides species,0.85,ok,Input refers to immitis/posadasii complex; parent captures both without overstepping
+90812,AEROCOCCUS URINAE,243230001,Aerococcus urinae,,243230001,Aerococcus urinae,1.00,ok,
+90813,ACINETOBACTER RADIORESISTENS,113381003,Acinetobacter radioresistens,,113381003,Acinetobacter radioresistens,1.00,ok,
+90814,ARTHROGRAPHIS SPECIES,112406004,Arthrographis species,,112406004,Arthrographis species,1.00,ok,
+90815,RAOULTELLA PLANTICOLA,416264004,Raoultella planticola,,416264004,Raoultella planticola,1.00,ok,
+90816,ACHROMOBACTER XYLOSOXIDANS,413424009,Achromobacter xylosoxidans,,413424009,Achromobacter xylosoxidans,1.00,ok,
+90817,GRANULICATELLA ADIACENS,113713009,Granulicatella adiacens,,113713009,Granulicatella adiacens,1.00,ok,
+90818,PRESUMPTIVE POSITIVE FOR LEGIONELLA SEROGROUP 1 ANTIGEN,103463005,Legionella pneumophila serogroup 1,,103463005,Legionella pneumophila serogroup 1,0.80,ok,Organism VS; presumptive positive for serogroup 1 antigen maps to the organism
+90819,POSITIVE FOR CRYPTOCOCCAL ANTIGEN,,,code-search returned no match within <<410607006.,,,,no-match,
+90820,BREVUNDIMONAS VESICULARIS,113690000,Brevundimonas vesicularis,,113690000,Brevundimonas vesicularis,1.00,ok,
+90821,MYCOBACTERIUM CHIMAERA INTRACELLULARE GROUP,431504009,Mycobacterium chimaera,,431504009,Mycobacterium chimaera,0.85,ok,FSN 'Mycobacterium intracellulare subspecies chimaera' captures chimaera+intracellulare meaning
+90822,MYCOBACTERIUM MAGERITENSE,385507005,Mycobacterium mageritense,,385507005,Mycobacterium mageritense,1.00,ok,
+90823,LOMENTOSPORA PROLIFICANS (FORMERLY SCEDOSPORIUM PROLIFICANS),69564000,Scedosporium prolificans,,69564000,Scedosporium prolificans,0.85,ok,FSN matches; Lomentospora prolificans is a synonym
+90824,STREPTOCOCCUS SANGUINIS,113993000,Streptococcus sanguinis,,113993000,Streptococcus sanguinis,1.00,ok,
+90825,RHINOCLADIELLA SP.,21690009,Rhinocladiella species,,21690009,Rhinocladiella species,0.97,ok,FSN Genus Rhinocladiella matches input exactly
+90826,STAPHYLOCOCCUS AURICULARIS,45654003,Staphylococcus auricularis,,45654003,Staphylococcus auricularis,1.00,ok,
+90827,CANDIDA AURIS,3491000146109,Candidozyma auris,,3491000146109,Candidozyma auris,0.95,ok,
+90828,ZYGOSACCHAROMYCES FERMENTATI,4981000146101,Lachancea fermentati,,4981000146101,Lachancea fermentati,0.85,ok,Zygosaccharomyces fermentati is a synonym of Lachancea fermentati
+90829,ACRODONTIUM SALMONEUM,28811000087104,Acrodontium salmoneum,,28811000087104,Acrodontium salmoneum,1.00,ok,
+90830,STREPTOCOCCUS GORDONII,113986004,Streptococcus gordonii,,113986004,Streptococcus gordonii,1.00,ok,
+90831,MUCOR IRREGULARIS,714009008,Mucor irregularis,,714009008,Mucor irregularis,1.00,ok,
+90832,BACTEROIDES DOREI/VULGATUS,450957004,Bacteroides dorei,,450957004,Bacteroides dorei,0.95,ok,FSN Phocaeicola dorei matches input organism
+90834,ASPERGILLUS FUMIGATUS COMPLEX,719029007,Aspergillus fumigatus species complex,,719029007,Aspergillus fumigatus species complex,0.97,ok,FSN matches input exactly
+90835,PARACOCCUS YEEI,415033004,Paracoccus yeei,,415033004,Paracoccus yeei,1.00,ok,
+90836,STREPTOCOCCUS PARASANGUINIS,113990002,Streptococcus parasanguinis,,113990002,Streptococcus parasanguinis,1.00,ok,
+90837,PROTEUS HAUSERI,417592004,Proteus hauseri,,417592004,Proteus hauseri,1.00,ok,
+90838,MYCOBACTERIUM ASIATICUM,44760001,Mycobacterium asiaticum,,44760001,Mycobacterium asiaticum,1.00,ok,
+90839,ACTINOTIGNUM SANGUINIS,716527002,Actinotignum sanguinis,,716527002,Actinotignum sanguinis,1.00,ok,
+90840,S. AUREUS POSITIVE; MRSA POSITIVE,115329001,Methicillin resistant Staphylococcus aureus,,115329001,Methicillin resistant Staphylococcus aureus,0.90,ok,MRSA captures both S. aureus and methicillin resistance
+90841,SAPROCHAETE (FORMERLY GEOTRICHUM) CAPITATA,67999003,Magnusiomyces capitatus,,67999003,Magnusiomyces capitatus (organism),0.90,ok,FSN matches organism; synonym covers former Geotrichum name
+90843,CITROBACTER SEDLAKII,114265003,Citrobacter sedlakii,,114265003,Citrobacter sedlakii,1.00,ok,
+90844,GEMELLA BERGERI,131310006,Gemella bergeri,,131310006,Gemella bergeri,1.00,ok,
+90845,MYCOBACTERIUM LENTIFLAVUM,113853004,Mycobacterium lentiflavum,,113853004,Mycobacterium lentiflavum,1.00,ok,
+90846,CUTIBACTERIUM ACNES,39473003,Cutibacterium acnes,,39473003,Cutibacterium acnes,1.00,ok,
+90847,CUTIBACTERIUM AVIDUM,47473006,Cutibacterium avidum,,47473006,Cutibacterium avidum,1.00,ok,
+90848,KOCURIA KRISTINAE,113772007,Rothia kristinae,,113772007,Rothia kristinae,0.95,ok,
+90849,S. AUREUS POSITIVE; MRSA NEGATIVE,417943000,Methicillin susceptible Staphylococcus aureus,,417943000,Methicillin susceptible Staphylococcus aureus,0.85,ok,"S. aureus positive, MRSA negative = MSSA"
+90850,BACILLUS CIRCULANS GROUP,413619002,Bacillus circulans group,,413619002,Bacillus circulans group,1.00,ok,
+90851,SCEDOSPORIUM APIOSPERMUM COMPLEX,51221000112104,Scedosporium apiospermum complex,,51221000112104,Scedosporium apiospermum complex,1.00,ok,
+90852,BIFIDOBACTERIUM LONGUM,19464000,Bifidobacterium longum,,19464000,Bifidobacterium longum,1.00,ok,
+90853,EUBACTERIUM LIMOSUM,87632000,Eubacterium limosum,,87632000,Eubacterium limosum,1.00,ok,
+90854,DESULFOVIBRIO LEGALLII,1290426005,Desulfovibrio legallii,,1290426005,Desulfovibrio legallii,1.00,ok,
+90855,POSITIVE,,,"code-search proposed 8745002 |Gram-positive bacteria| at 0.75, below the 0.8 threshold.",8745002,Gram-positive bacteria,0.75,below-threshold,Broadest Gram-positive organism; 'positive' alone is vague
+90856,NEGATIVE,,,"code-search proposed 81325006 |Gram-negative bacterium| at 0.70, below the 0.8 threshold.",81325006,Gram-negative bacterium,0.70,below-threshold,NEGATIVE interpreted as Gram-negative; broadest general match
+90858,NEOASCOCHYTA DESMAZIERI,,,code-search returned no match within <<410607006.,,,,no-match,
+90859,RHODATORULA MUCILAGINOSA,,,"code-search proposed 86724009 |Rhodotorula mucilaginosa| at 0.65, below the 0.8 threshold.",86724009,Rhodotorula mucilaginosa,0.65,below-threshold,
+90860,DESULFOVIBRIO SP.,243393004,Desulfovibrio species,,243393004,Desulfovibrio species,0.97,ok,FSN Genus Desulfovibrio matches 'sp.' genus-level meaning
+90861,CUPRIAVIDUS PAUCULUS,429465001,Cupriavidus pauculus,,429465001,Cupriavidus pauculus,1.00,ok,
+90862,MYCOBACTERIUM MARSEILLENSE,434966321000087109,Mycobacterium marseillense,,434966321000087109,Mycobacterium marseillense,1.00,ok,
+90863,NOCARDIA CYRIACIGEORGICA,414866006,Nocardia cyriacigeorgica,,414866006,Nocardia cyriacigeorgica,1.00,ok,
+90864,LACTOBACILLUS CASEI/PARACASEI/ZEAE,1017006,Lactobacillus casei,,1017006,Lactobacillus casei,0.95,ok,FSN matches first organism in compound input
+90865,STAPHYLOCOCCUS LENTUS,40253001,Staphylococcus lentus,,40253001,Staphylococcus lentus,1.00,ok,
+90866,MYCOBACTERIUM TRIPLEX,113860005,Mycobacterium triplex,,113860005,Mycobacterium triplex,1.00,ok,
+90868,YOKENELLA REGENSBURGEI,89477001,Yokenella regensburgei,,89477001,Yokenella regensburgei,1.00,ok,
+90869,STREPTOCOCCUS CONSTELLATUS SSP. CONSTELLATUS,415601009,Streptococcus constellatus subspecies constellatus,,415601009,Streptococcus constellatus subspecies constellatus,0.98,ok,FSN matches input exactly
+90870,STREPTOCOCCUS SALIVARIUS SSP. SALIVARIUS,84684000,Streptococcus salivarius subsp. salivarius,,84684000,Streptococcus salivarius subsp. salivarius,0.98,ok,FSN matches input exactly
+90871,GLOBICATELLA SANGUINIS,414345009,Globicatella sanguinis,,414345009,Globicatella sanguinis,1.00,ok,
+90872,STREPTOCOCCUS INFANTARIUS SSP. COLI (STR. LUTETIENSIS),437915004,Streptococcus infantarius subspecies coli,,437915004,Streptococcus infantarius subspecies coli,0.95,ok,FSN matches input exactly
+90873,HAEMOPHILUS HAEMOLYTICUS,54950008,Haemophilus haemolyticus,,54950008,Haemophilus haemolyticus,1.00,ok,
+90874,KOCURIA ROSEA,113773002,Kocuria rosea,,113773002,Kocuria rosea,1.00,ok,
+90875,ATOPOBIUM RIMAE,113632005,Lancefieldella rimae,,113632005,Lancefieldella rimae,0.95,ok,
+90877,LEPTOTRICHIA SPECIES,52505003,Leptotrichia species,,52505003,Leptotrichia species,1.00,ok,
+90878,CAMPYLOBACTER UREOLYTICUS,450602004,Campylobacter ureolyticus,,450602004,Campylobacter ureolyticus,1.00,ok,
+90879,PENICILLIUM FELLUTANUM,785874004,Penicillium fellutanum,,785874004,Penicillium fellutanum,1.00,ok,
+90880,CUTIBACTERIUM (PROPIONIBACTERIUM) ACNES,39473003,Cutibacterium acnes,,39473003,Cutibacterium acnes,0.97,ok,FSN matches input exactly
+90881,KLEBSIELLA (RAOULTELLA) ORNITHINOLYTICA,416832000,Raoultella ornithinolytica,,416832000,Raoultella ornithinolytica,0.97,ok,FSN matches; synonym Klebsiella ornithinolytica
+90882,KLEBSIELLA (RAOULTELLA) PLANTICOLA,416264004,Raoultella planticola,,416264004,Raoultella planticola,0.95,ok,FSN matches; synonyms include Klebsiella planticola
+90883,PERONEUTYPA SCOPARIA,1388667006,Peroneutypa scoparia,,1388667006,Peroneutypa scoparia,1.00,ok,
+90884,CLOSTRIDIUM SAUDIENSE,879880005,Clostridium saudiense,,879880005,Clostridium saudiense,1.00,ok,
+90885,ACETOBACTER SP.,396949003,Acetobacter species,,396949003,Acetobacter species (organism),0.95,ok,FSN Genus Acetobacter matches 'Acetobacter sp.' exactly
+90887,BACILLUS CEREUS/THURINGIENSIS,413618005,Bacillus cereus group,,413618005,Bacillus cereus group,0.85,ok,Group encompasses both B. cereus and B. thuringiensis
+90888,DIALISTER MICRAEROPHILUS,446809007,Dialister micraerophilus,,446809007,Dialister micraerophilus,1.00,ok,
+90889,CUTIBACTERIUM SPECIES,763051006,Cutibacterium species,,763051006,Cutibacterium species,1.00,ok,
+90890,BREVUNDIMONAS DIMINUTA/VESICULARIS,115154006,Brevundimonas species,,115154006,Brevundimonas species,0.85,ok,Input combines both species; parent genus captures both without overstepping
+90891,CIMEX SPECIES (BEDBUG),18069005,Cimex,,18069005,Cimex,0.85,ok,FSN 'Cimex (organism)' matches genus-level input exactly
+90892,KOCURIA SPECIES,414328004,Kocuria species,,414328004,Kocuria species,1.00,ok,
+90893,PAENIBACILLUS SPECIES,114086007,Paenibacillus species,,114086007,Paenibacillus species,1.00,ok,
+90894,CORYNEBACTERIUM GLUCURONOLYTICUM,413927008,Corynebacterium glucuronolyticum,,413927008,Corynebacterium glucuronolyticum,1.00,ok,
+90896,WAUTERSIELLA FALSENII,450452000,Wautersiella falsenii,,450452000,Wautersiella falsenii,1.00,ok,
+90897,LACTOBACILLUS FERMENTUM,65506008,Lactobacillus fermentum,,65506008,Lactobacillus fermentum,1.00,ok,
+90899,CORYNEBACTERIUM PYRUVICIPRODUCENS,450383002,Corynebacterium pyruviciproducens,,450383002,Corynebacterium pyruviciproducens,1.00,ok,
+90900,MYCOBACTERIUM NEOAURUM,51459000,Mycobacterium neoaurum,,51459000,Mycobacterium neoaurum,1.00,ok,
+90968,STREPTOCOCCUS ALACTOLYTICUS,34228005,Streptococcus alactolyticus,,34228005,Streptococcus alactolyticus,1.00,ok,
+90977,PHIALEMONIUM INFLATUM,721918008,Paecilomyces inflatus,,721918008,Paecilomyces inflatus,0.95,ok,
+90979,NEUROSPORA SITOPHILA (FORMERLY CHRYSONILLA SITOPHILA),531722621000087102,Neurospora sitophila,,531722621000087102,Neurospora sitophila,0.85,ok,FSN matches current name exactly
+90983,ROTHIA SPECIES,90163001,Rothia species,,90163001,Rothia species,1.00,ok,
+90984,IRPEX LACTEUS,765227008,Irpex lacteus,,765227008,Irpex lacteus,1.00,ok,

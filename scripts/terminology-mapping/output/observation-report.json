@@ -4,10 +4,10 @@
  "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-observation-merged-to-standard",
  "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-merged-standard",
  "version": "1.0.0",
- "date": "2026-08-05",
- "source_total": 477,
- "mapped": 314,
- "unmapped": 163,
+ "date": "2026-08-06",
+ "source_total": 2745,
+ "mapped": 2066,
+ "unmapped": 679,
  "by_source": [
   {
    "system": "http://loinc.org",
@@ -18,8 +18,16 @@
    "mapped": 162
   },
   {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-labitems",
+   "mapped": 1130
+  },
+  {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-antibiotic",
    "mapped": 27
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-organism",
+   "mapped": 622
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-test",
@@ -29,24 +37,25 @@
  "by_target_system": [
   {
    "system": "http://loinc.org",
-   "mappings": 213
+   "mappings": 1343
   },
   {
    "system": "http://snomed.info/sct",
-   "mappings": 101
+   "mappings": 723
   }
  ],
  "by_equivalence": {
   "equivalent": 9,
-  "relatedto": 305,
-  "unmatched": 163
+  "relatedto": 2057,
+  "unmatched": 679
  },
  "unmapped_by_reason": {
-  "no-suitable-concept": 163
+  "no-suitable-concept": 679
  },
  "by_stream": [
   {
    "stream": "mimic-observation-type-ed",
+   "source_file": "ValueSet-mimic-observation-type-ed.json",
    "source_system": "http://loinc.org",
    "method": "identity",
    "total": 4,
@@ -64,6 +73,7 @@
   },
   {
    "stream": "mimic-observation-type-vital",
+   "source_file": "ValueSet-mimic-observation-type-vital.json",
    "source_system": "http://loinc.org",
    "method": "identity",
    "total": 5,
@@ -81,6 +91,7 @@
   },
   {
    "stream": "mimic-microbiology-antibiotic",
+   "source_file": "CodeSystem-mimic-microbiology-antibiotic.json",
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-antibiotic",
    "method": "table",
    "total": 27,
@@ -120,6 +131,7 @@
   },
   {
    "stream": "mimic-outputevents-d-items",
+   "source_file": "ValueSet-mimic-outputevents-d-items.json",
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
    "method": "table",
    "total": 77,
@@ -193,6 +205,7 @@
   },
   {
    "stream": "mimic-microbiology-test",
+   "source_file": "CodeSystem-mimic-microbiology-test.json",
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-test",
    "method": "table",
    "total": 176,
@@ -483,6 +496,7 @@
   },
   {
    "stream": "mimic-datetimeevents-d-items",
+   "source_file": "ValueSet-mimic-datetimeevents-d-items.json",
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
    "method": "table",
    "total": 188,
@@ -815,8 +829,1521 @@
      }
     ]
    }
+  },
+  {
+   "stream": "mimic-microbiology-organism",
+   "source_file": "CodeSystem-mimic-microbiology-organism.json",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-organism",
+   "method": "table",
+   "total": 646,
+   "mapped": 622,
+   "unmapped": 24,
+   "coverage_pct": 96.3,
+   "target_systems": [
+    "http://snomed.info/sct"
+   ],
+   "by_equivalence": {
+    "relatedto": 622,
+    "unmatched": 24
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 24
+   },
+   "codesearch": {
+    "status": {
+     "below-threshold": 15,
+     "no-match": 9,
+     "ok": 622
+    },
+    "confidence": {
+     "min": 0.62,
+     "median": 1.0,
+     "mean": 0.966,
+     "max": 1.0
+    },
+    "constraint": "<<410607006",
+    "template": "{}",
+    "confidence_threshold": 0.8,
+    "near_threshold": {
+     "0.05": 2,
+     "0.1": 5,
+     "0.2": 15,
+     "0.3": 15,
+     "0.4": 15
+    },
+    "near_misses": [
+     {
+      "mimic_code": "90768",
+      "mimic_display": "TICK",
+      "proposed_code": "106831000",
+      "proposed_display": "Ixodides",
+      "confidence": 0.79,
+      "gap": 0.01,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "90855",
+      "mimic_display": "POSITIVE",
+      "proposed_code": "8745002",
+      "proposed_display": "Gram-positive bacteria",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Broadest Gram-positive organism; 'positive' alone is vague"
+     },
+     {
+      "mimic_code": "90856",
+      "mimic_display": "NEGATIVE",
+      "proposed_code": "81325006",
+      "proposed_display": "Gram-negative bacterium",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "NEGATIVE interpreted as Gram-negative; broadest general match"
+     },
+     {
+      "mimic_code": "80240",
+      "mimic_display": "PRESUMPTIVE FUSOBACTERIUM MORTIFERUM/VARIUM GROUP",
+      "proposed_code": "112330001",
+      "proposed_display": "Fusobacterium mortiferum",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "One member of the presumptive group"
+     },
+     {
+      "mimic_code": "90621",
+      "mimic_display": "TICK NOT CONSISTENT WITH IXODES SPECIES",
+      "proposed_code": "106831000",
+      "proposed_display": "Ixodides",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "General tick organism; negative Ixodes qualifier not codable as organism"
+     },
+     {
+      "mimic_code": "90779",
+      "mimic_display": "ACHROMOBACTER  DENTRIFICANS",
+      "proposed_code": "413414001",
+      "proposed_display": "Achromobacter denitrificans",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "90802",
+      "mimic_display": "ALACALIGENES SPECIES",
+      "proposed_code": "68571003",
+      "proposed_display": "Alcaligenes species",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "90639",
+      "mimic_display": "BACTEROIDIES THETAIOTAOMICRON",
+      "proposed_code": "34236001",
+      "proposed_display": "Bacteroides thetaiotaomicron",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "90352",
+      "mimic_display": "CLOSTRIDIUM CLOSTRIDIIFORME",
+      "proposed_code": "53220001",
+      "proposed_display": "Clostridium clostridioforme",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "90340",
+      "mimic_display": "GEOTRICHIUM SPECIES",
+      "proposed_code": "34324005",
+      "proposed_display": "Geotrichum species",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "90450",
+      "mimic_display": "MORAXELLA NONLIQUIFACIENS",
+      "proposed_code": "46455003",
+      "proposed_display": "Moraxella nonliquefaciens",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "90761",
+      "mimic_display": "MYCOBATERIUM HAEMOPHILUM",
+      "proposed_code": "21996001",
+      "proposed_display": "Mycobacterium haemophilum",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "90859",
+      "mimic_display": "RHODATORULA MUCILAGINOSA",
+      "proposed_code": "86724009",
+      "proposed_display": "Rhodotorula mucilaginosa",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "90749",
+      "mimic_display": "STREPTOCOCCUS SALIVARUS",
+      "proposed_code": "39888004",
+      "proposed_display": "Streptococcus salivarius",
+      "confidence": 0.65,
+      "gap": 0.15,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "80235",
+      "mimic_display": "STREPTOCOCCUS ANGINOSUS (MILLERI) GROUP",
+      "proposed_code": "415597009",
+      "proposed_display": "Streptococcus anginosus group",
+      "confidence": 0.62,
+      "gap": 0.18,
+      "reasoning": ""
+     }
+    ]
+   }
+  },
+  {
+   "stream": "mimic-d-labitems",
+   "source_file": "CodeSystem-mimic-d-labitems.json",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-labitems",
+   "method": "table",
+   "total": 1622,
+   "mapped": 1130,
+   "unmapped": 492,
+   "coverage_pct": 69.7,
+   "target_systems": [
+    "http://loinc.org"
+   ],
+   "by_equivalence": {
+    "relatedto": 1130,
+    "unmatched": 492
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 492
+   },
+   "codesearch": {
+    "status": {
+     "below-threshold": 143,
+     "no-match": 342,
+     "not-searchable": 7,
+     "ok": 1130
+    },
+    "confidence": {
+     "min": 0.5,
+     "median": 0.85,
+     "mean": 0.836,
+     "max": 0.97
+    },
+    "constraint": "(http://loinc.org)(CLASSTYPE=1,STATUS=ACTIVE)",
+    "template": "Hospital laboratory analyte measured in {fluid}: {label}",
+    "confidence_threshold": 0.8,
+    "near_threshold": {
+     "0.05": 64,
+     "0.1": 127,
+     "0.2": 139,
+     "0.3": 143,
+     "0.4": 143
+    },
+    "near_misses": [
+     {
+      "mimic_code": "52409",
+      "mimic_display": "Budding Yeast",
+      "proposed_code": "21033-6",
+      "proposed_display": "Yeast.budding [Presence] in Urine sediment",
+      "confidence": 0.78,
+      "gap": 0.02,
+      "reasoning": "Budding yeast qualitative test in urine; sediment qualifier unstated but closest match"
+     },
+     {
+      "mimic_code": "53118",
+      "mimic_display": "Alpha-2",
+      "proposed_code": "17497-9",
+      "proposed_display": "Alpha 2 globulin [Mass/volume] in Body fluid by Electrophoresis",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No Ascites-specific code; Body fluid is closest broader match for ascitic fluid"
+     },
+     {
+      "mimic_code": "52078",
+      "mimic_display": "Antithrombin III",
+      "proposed_code": "3174-0",
+      "proposed_display": "Antithrombin [Units/volume] in Platelet poor plasma by Chromogenic method",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Standard Antithrombin III activity assay; blood specimen, no exact 'in Blood' match"
+     },
+     {
+      "mimic_code": "51931",
+      "mimic_display": "Beta",
+      "proposed_code": "56041-7",
+      "proposed_display": "Beta defensin [Mass/mass] in Stool.wet",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Beta analyte measured in Stool; wet/dried not specified"
+     },
+     {
+      "mimic_code": "53119",
+      "mimic_display": "Beta",
+      "proposed_code": "59217-0",
+      "proposed_display": "Beta-2-Microglobulin [Mass/volume] in Peritoneal fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Beta analyte measured in ascites (peritoneal fluid); 'Beta' ambiguous but this is the top relevance match"
+     },
+     {
+      "mimic_code": "51811",
+      "mimic_display": "Bicarbonate,Joint Fluid",
+      "proposed_code": "16459-0",
+      "proposed_display": "Bicarbonate [Moles/volume] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No joint-fluid-specific code; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "52216",
+      "mimic_display": "BlasFlg",
+      "proposed_code": "15154-8",
+      "proposed_display": "Blasts [Presence] in Blood by Automated count",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "BlasFlg = blasts flag/presence in blood; method unspecified"
+     },
+     {
+      "mimic_code": "52324",
+      "mimic_display": "CD62",
+      "proposed_code": "32855-9",
+      "proposed_display": "CD62 cells/cells in Specimen",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "CD62 analyte; no Bone Marrow-specific LOINC code exists, generic Specimen term closest"
+     },
+     {
+      "mimic_code": "51471",
+      "mimic_display": "Cellular Cast",
+      "proposed_code": "88971-7",
+      "proposed_display": "Mixed cellular casts [#/area] in Urine sediment",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Generic cellular cast in urine; least method-specific candidate"
+     },
+     {
+      "mimic_code": "52098",
+      "mimic_display": "Clot Lysis",
+      "proposed_code": "66745-1",
+      "proposed_display": "Clot Lysis [Length fraction] in Blood by Thromboelastography --30 minutes post maximum clot amplitude",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Matches clot lysis analyte in blood; method/timing are LOINC structural details"
+     },
+     {
+      "mimic_code": "50910",
+      "mimic_display": "Creatine Kinase (CK)",
+      "proposed_code": "50756-6",
+      "proposed_display": "Creatine kinase [Mass/volume] in Blood",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Blood specimen matches; mass/volume vs enzymatic activity is a minor property mismatch"
+     },
+     {
+      "mimic_code": "51816",
+      "mimic_display": "Cryptococ",
+      "proposed_code": "16692-6",
+      "proposed_display": "Cryptococcus sp Ag [Presence] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match; body fluid broader than joint fluid, no joint-specific code exists"
+     },
+     {
+      "mimic_code": "52209",
+      "mimic_display": "EosFlg",
+      "proposed_code": "32173-7",
+      "proposed_display": "Eosinophils [Presence] in Blood by Wright stain",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "EosFlg = eosinophils flag/presence in blood; method qualifier unstated"
+     },
+     {
+      "mimic_code": "53107",
+      "mimic_display": "FLUA1",
+      "proposed_code": "44557-7",
+      "proposed_display": "Influenza virus A Ab [Presence] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "FLUA1 = Influenza virus A; body fluid specimen matches"
+     },
+     {
+      "mimic_code": "53109",
+      "mimic_display": "FLUB1",
+      "proposed_code": "44569-2",
+      "proposed_display": "Influenza virus B Ab [Presence] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "FLUB1=Influenza B; best body-fluid analyte match available"
+     },
+     {
+      "mimic_code": "53110",
+      "mimic_display": "FLUB2",
+      "proposed_code": "44569-2",
+      "proposed_display": "Influenza virus B Ab [Presence] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "FLUB2 = Influenza virus B; closest body fluid analyte match"
+     },
+     {
+      "mimic_code": "51420",
+      "mimic_display": "FMC-7",
+      "proposed_code": "17220-5",
+      "proposed_display": "FMC7 cells/cells in Blood",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "FMC7 analyte; specimen (Other Body Fluid) not available, closest is Blood"
+     },
+     {
+      "mimic_code": "51203",
+      "mimic_display": "Factor IX",
+      "proposed_code": "3186-4",
+      "proposed_display": "Coagulation factor IX activity [Units/volume] in Platelet poor plasma by Coagulation assay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest to generic Factor IX analyte; adds PPP/method specificity"
+     },
+     {
+      "mimic_code": "52840",
+      "mimic_display": "Factor IX",
+      "proposed_code": "3186-4",
+      "proposed_display": "Coagulation factor IX activity [Units/volume] in Platelet poor plasma by Coagulation assay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest to generic Factor IX analyte; adds PPP/method specificity"
+     },
+     {
+      "mimic_code": "51210",
+      "mimic_display": "Factor XII",
+      "proposed_code": "3231-8",
+      "proposed_display": "Coagulation factor XII activity [Units/volume] in Platelet poor plasma by Coagulation assay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Factor XII analyte in blood; activity assay is closest, method unspecified"
+     },
+     {
+      "mimic_code": "52853",
+      "mimic_display": "Factor XII",
+      "proposed_code": "3231-8",
+      "proposed_display": "Coagulation factor XII activity [Units/volume] in Platelet poor plasma by Coagulation assay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Factor XII analyte in blood; activity assay is closest, method unspecified"
+     },
+     {
+      "mimic_code": "51033",
+      "mimic_display": "FetalFN",
+      "proposed_code": "20403-2",
+      "proposed_display": "Fibronectin.fetal [Mass/volume] in Vaginal fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Fetal fibronectin lab analyte; closest to body fluid measurement"
+     },
+     {
+      "mimic_code": "52199",
+      "mimic_display": "FragFlg",
+      "proposed_code": "40746-0",
+      "proposed_display": "Fragments [Presence] in Blood by Automated count",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "FragFlg interpreted as fragments flag; automated presence test in blood is closest match"
+     },
+     {
+      "mimic_code": "50930",
+      "mimic_display": "Globulin",
+      "proposed_code": "2336-6",
+      "proposed_display": "Globulin [Mass/volume] in Serum",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Globulin analyte; serum is standard specimen for blood globulin"
+     },
+     {
+      "mimic_code": "53152",
+      "mimic_display": "HIV FINAL",
+      "proposed_code": "73906-0",
+      "proposed_display": "HIV 1+2 IgG Ab [Presence] in Blood by Rapid immunoassay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "HIV test in blood; only blood-specimen candidate, adds IgG/rapid method"
+     },
+     {
+      "mimic_code": "51657",
+      "mimic_display": "HPE1",
+      "proposed_code": "49562-2",
+      "proposed_display": "Holoprosencephaly gene targeted mutation analysis in Blood or Tissue by Molecular genetics method",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "HPE1 is a holoprosencephaly gene; blood analyte test matches"
+     },
+     {
+      "mimic_code": "51229",
+      "mimic_display": "Heparin, LMW",
+      "proposed_code": "32684-3",
+      "proposed_display": "LMW Heparin [Units/volume] in Platelet poor plasma",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "LMW Heparin quantitative analyte; specimen differs (PPP vs Blood)"
+     },
+     {
+      "mimic_code": "52298",
+      "mimic_display": "Histiocyte",
+      "proposed_code": "40489-7",
+      "proposed_display": "Histiocytes/cells in Synovial fluid by Manual count",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Only joint/synovial fluid histiocyte code; adds manual count qualifier"
+     },
+     {
+      "mimic_code": "51338",
+      "mimic_display": "Immunophenotyping",
+      "proposed_code": "101119-6",
+      "proposed_display": "Leukemia and lymphoma immunophenotyping in Specimen Document by Flow cytometry (FC)",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Only immunophenotyping code; matches analyte concept though Document type"
+     },
+     {
+      "mimic_code": "51869",
+      "mimic_display": "Influenza A, Rapid Antigen",
+      "proposed_code": "31859-2",
+      "proposed_display": "Influenza virus A Ag [Presence] in Specimen",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Influenza A antigen test; specimen/method structural details not exact"
+     },
+     {
+      "mimic_code": "51870",
+      "mimic_display": "Influenza A, Rapid Antigen",
+      "proposed_code": "31859-2",
+      "proposed_display": "Influenza virus A Ag [Presence] in Specimen",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Influenza A antigen test; specimen/method structural details not exact"
+     },
+     {
+      "mimic_code": "51235",
+      "mimic_display": "Inhibitor Screen",
+      "proposed_code": "50391-2",
+      "proposed_display": "Coag.Surface induced circulating inhibitor [Presence] in Platelet poor plasma by Coagulation assay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest to generic inhibitor screen; specimen PPP vs Blood minor mismatch"
+     },
+     {
+      "mimic_code": "51425",
+      "mimic_display": "Kappa",
+      "proposed_code": "46238-2",
+      "proposed_display": "Kappa lymphocytes/Lymphocytes in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Kappa analyte measured in body fluid; closest available match"
+     },
+     {
+      "mimic_code": "51054",
+      "mimic_display": "Lactate Dehydrogenase, Pleural",
+      "proposed_code": "60022-1",
+      "proposed_display": "Lactate dehydrogenase [Enzymatic activity/volume] in Pleural fluid by Lactate to pyruvate reaction",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "General LDH in pleural fluid; reaction method unstated but closest match"
+     },
+     {
+      "mimic_code": "50959",
+      "mimic_display": "Macro Prolactin",
+      "proposed_code": "78984-2",
+      "proposed_display": "Macroprolactin/Prolactin in Serum or Plasma",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest macroprolactin blood analyte; ratio form, minor specificity mismatch"
+     },
+     {
+      "mimic_code": "51378",
+      "mimic_display": "Metamyelocytes",
+      "proposed_code": "35031-4",
+      "proposed_display": "Metamyelocytes [#/volume] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No Joint Fluid code exists; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "51449",
+      "mimic_display": "Metamyelocytes",
+      "proposed_code": "35031-4",
+      "proposed_display": "Metamyelocytes [#/volume] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No pleural-specific code; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "51451",
+      "mimic_display": "Myelocytes",
+      "proposed_code": "35016-5",
+      "proposed_display": "Myelocytes [#/volume] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No pleural-specific myelocyte code; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "52362",
+      "mimic_display": "Myelos#",
+      "proposed_code": "42925-8",
+      "proposed_display": "Myeloid cells/cells in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Myelos = myeloid cells measured in body fluid"
+     },
+     {
+      "mimic_code": "52387",
+      "mimic_display": "Myelos#",
+      "proposed_code": "42925-8",
+      "proposed_display": "Myeloid cells/cells in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Myeloid cells in body fluid; pleural is a body fluid, broader match"
+     },
+     {
+      "mimic_code": "53112",
+      "mimic_display": "N2 GENE ENDPT",
+      "proposed_code": "94308-4",
+      "proposed_display": "SARS-CoV-2 (COVID-19) N gene [Presence] in Specimen by Nucleic acid amplification using CDC primer-probe set N2",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "N2 gene endpoint test; specimen 'Other Body Fluid' not exact, generic Specimen closest"
+     },
+     {
+      "mimic_code": "52149",
+      "mimic_display": "NFletcher",
+      "proposed_code": "4669-8",
+      "proposed_display": "Prekallikrein (Fletcher Factor) [Mass/volume] in Platelet poor plasma",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Fletcher Factor = Prekallikrein; analyte matches, specimen is PPP not whole blood"
+     },
+     {
+      "mimic_code": "51945",
+      "mimic_display": "Norovirus Genogroup I",
+      "proposed_code": "40863-3",
+      "proposed_display": "Norovirus genogroup I Ag [Presence] in Stool",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Norovirus GI in stool; Ag unspecified in input but closest general match"
+     },
+     {
+      "mimic_code": "51820",
+      "mimic_display": "Osmolality, Joint Fluid",
+      "proposed_code": "15200-9",
+      "proposed_display": "Osmolality of Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No specific synovial/joint fluid code; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "51490",
+      "mimic_display": "Oval Fat Body",
+      "proposed_code": "50228-6",
+      "proposed_display": "Oval fat bodies (globules) [Presence] in Urine by Computer assisted method",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Oval fat bodies in urine; method not specified in input"
+     },
+     {
+      "mimic_code": "52158",
+      "mimic_display": "Plasminogen",
+      "proposed_code": "5970-9",
+      "proposed_display": "Plasminogen [Units/volume] in Platelet poor plasma by Chromogenic method",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Standard functional plasminogen assay; specimen PPP approximates blood, method unstated in input"
+     },
+     {
+      "mimic_code": "52310",
+      "mimic_display": "Promyelo#",
+      "proposed_code": "34996-9",
+      "proposed_display": "Promyelocytes [#/volume] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No synovial-specific code; Body fluid is closest broader match for joint fluid"
+     },
+     {
+      "mimic_code": "52311",
+      "mimic_display": "Promyelocytes",
+      "proposed_code": "34996-9",
+      "proposed_display": "Promyelocytes [#/volume] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Joint fluid is a body fluid; no joint-specific code, broader match"
+     },
+     {
+      "mimic_code": "51273",
+      "mimic_display": "Protein S, Functional",
+      "proposed_code": "5892-5",
+      "proposed_display": "Protein S [Units/volume] in Platelet poor plasma by Coagulation assay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Functional Protein S assay = activity method (coagulation); specimen PPP vs Blood minor qualifier"
+     },
+     {
+      "mimic_code": "51774",
+      "mimic_display": "RFXHCV",
+      "proposed_code": "16128-1",
+      "proposed_display": "Hepatitis C virus Ab [Presence] in Serum",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "RFXHCV = reflex HCV test in blood; generic serum HCV antibody test"
+     },
+     {
+      "mimic_code": "53113",
+      "mimic_display": "Rapid Respiratory Syncytial Virus",
+      "proposed_code": "5876-8",
+      "proposed_display": "Respiratory syncytial virus Ag [Presence] in Specimen by Immunoassay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match: RSV rapid (immunoassay) in specimen; no exact Other Body Fluid code"
+     },
+     {
+      "mimic_code": "51714",
+      "mimic_display": "Reflex HIV Confirmation",
+      "proposed_code": "86233-4",
+      "proposed_display": "HIV 1 Ab [Presence] in Serum, Plasma or Blood by Immunoblot",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Confirmatory HIV antibody test in blood; reflex confirmation"
+     },
+     {
+      "mimic_code": "52205",
+      "mimic_display": "RetScat",
+      "proposed_code": "33516-6",
+      "proposed_display": "Immature reticulocytes/Reticulocytes.total in Blood",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "RetScat = reticulocyte scatter; IRF is the scatter-derived analyte in blood"
+     },
+     {
+      "mimic_code": "51823",
+      "mimic_display": "Sodium, Joint Fluid",
+      "proposed_code": "2950-4",
+      "proposed_display": "Sodium [Moles/volume] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No exact joint/synovial fluid code; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "51499",
+      "mimic_display": "Sperm",
+      "proposed_code": "33232-0",
+      "proposed_display": "Spermatozoa [Presence] in Urine by Automated",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Spermatozoa measured in Urine; method qualifier unstated"
+     },
+     {
+      "mimic_code": "51894",
+      "mimic_display": "Strep A, Rapid Antigen",
+      "proposed_code": "6558-1",
+      "proposed_display": "Streptococcus pyogenes Ag [Presence] in Specimen by Immunoassay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Strep A (S. pyogenes) Ag by immunoassay; specimen broader than body fluid"
+     },
+     {
+      "mimic_code": "51895",
+      "mimic_display": "Strep A, Rapid Antigen",
+      "proposed_code": "6558-1",
+      "proposed_display": "Streptococcus pyogenes Ag [Presence] in Specimen by Immunoassay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Strep A (S. pyogenes) Ag by immunoassay; specimen broader than body fluid"
+     },
+     {
+      "mimic_code": "51297",
+      "mimic_display": "Thrombin",
+      "proposed_code": "21032-8",
+      "proposed_display": "Thrombin time [Interpretation] in Blood by Coagulation assay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Thrombin analyte measured in blood; closest match to input"
+     },
+     {
+      "mimic_code": "52948",
+      "mimic_display": "Thrombin",
+      "proposed_code": "21032-8",
+      "proposed_display": "Thrombin time [Interpretation] in Blood by Coagulation assay",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Thrombin analyte measured in blood; closest match to input"
+     },
+     {
+      "mimic_code": "51803",
+      "mimic_display": "Triglycerides, CSF",
+      "proposed_code": "12228-3",
+      "proposed_display": "Triglyceride [Mass/volume] in Body fluid",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No CSF-specific code; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "51950",
+      "mimic_display": "Triglycerides, Stool",
+      "proposed_code": "77360-6",
+      "proposed_display": "Triglyceride [Mass/mass] in 24 hour Stool",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest stool triglyceride test; 24H specifier unstated"
+     },
+     {
+      "mimic_code": "51951",
+      "mimic_display": "Urea Nitrogen, Stool",
+      "proposed_code": "47798-4",
+      "proposed_display": "Urea [Moles/volume] in Stool",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match; no urea nitrogen stool code exists, urea is the analyte"
+     },
+     {
+      "mimic_code": "51513",
+      "mimic_display": "Urine Specimen Type",
+      "proposed_code": "66746-9",
+      "proposed_display": "Specimen type",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest match: generic specimen type observation; no urine-specific specimen type code exists"
+     },
+     {
+      "mimic_code": "51515",
+      "mimic_display": "Waxy Casts",
+      "proposed_code": "41187-6",
+      "proposed_display": "Waxy casts [#/volume] in Urine sediment",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Quantitative waxy casts in urine, no unstated method"
+     },
+     {
+      "mimic_code": "52081",
+      "mimic_display": "ASD & NA-F",
+      "proposed_code": "1852-3",
+      "proposed_display": "Androstenedione [Mass/volume] in Capillary blood",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "ASD = androstenedione; closest blood specimen match"
+     },
+     {
+      "mimic_code": "52316",
+      "mimic_display": "Acid Phosphatase Stain",
+      "proposed_code": "21391-8",
+      "proposed_display": "Microscopic observation [Identifier] in Bone by Acid phosphatase stain",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Acid phosphatase stain matches; specimen Bone vs Bone marrow minor mismatch"
+     },
+     {
+      "mimic_code": "51837",
+      "mimic_display": "Alpha-1",
+      "proposed_code": "29146-8",
+      "proposed_display": "Alpha 1 antitrypsin [Mass/volume] in Body fluid",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "'Alpha-1' most commonly refers to Alpha-1 antitrypsin; top-ranked candidate in Body fluid"
+     },
+     {
+      "mimic_code": "53141",
+      "mimic_display": "Alpha-1",
+      "proposed_code": "54348-8",
+      "proposed_display": "Alpha-1-Fetoprotein [Mass/volume] in Cord blood",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "'Alpha-1' most commonly denotes Alpha-1-fetoprotein; specimen is cord blood"
+     },
+     {
+      "mimic_code": "51912",
+      "mimic_display": "Alpha-2",
+      "proposed_code": "17497-9",
+      "proposed_display": "Alpha 2 globulin [Mass/volume] in Body fluid by Electrophoresis",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No exact Pleural code; Body fluid is closest broader specimen for Alpha 2 globulin"
+     },
+     {
+      "mimic_code": "51140",
+      "mimic_display": "Antithrombin",
+      "proposed_code": "3174-0",
+      "proposed_display": "Antithrombin [Units/volume] in Platelet poor plasma by Chromogenic method",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Antithrombin analyte; specimen is PPP not whole blood"
+     },
+     {
+      "mimic_code": "53088",
+      "mimic_display": "Asparate Aminotransferase",
+      "proposed_code": "16412-9",
+      "proposed_display": "Aspartate aminotransferase [Enzymatic activity/volume] in Red Blood Cells",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "AST analyte in blood; specimen is RBC, a blood component"
+     },
+     {
+      "mimic_code": "51913",
+      "mimic_display": "Beta",
+      "proposed_code": "9620-6",
+      "proposed_display": "Lipoprotein.beta [Mass/volume] in Pleural fluid",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Beta analyte in pleural; closest generic match"
+     },
+     {
+      "mimic_code": "51844",
+      "mimic_display": "C diff Toxin Antigen Assay",
+      "proposed_code": "13957-6",
+      "proposed_display": "Clostridioides difficile toxin A [Presence] in Stool by Immunoassay",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "C diff toxin antigen assay; specimen differs (stool vs other body fluid)"
+     },
+     {
+      "mimic_code": "51390",
+      "mimic_display": "CD117",
+      "proposed_code": "51185-7",
+      "proposed_display": "CD117 Ag [Presence] in Specimen by Immune stain",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "CD117 analyte measurement; specimen broader than Other Body Fluid"
+     },
+     {
+      "mimic_code": "51156",
+      "mimic_display": "CD13",
+      "proposed_code": "13838-8",
+      "proposed_display": "CD13 blasts/Blasts in Blood",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest CD13 analyte measured in Blood; blast-specific qualifier is narrower"
+     },
+     {
+      "mimic_code": "51316",
+      "mimic_display": "CD22",
+      "proposed_code": "51124-6",
+      "proposed_display": "CD22 blasts/Blasts in Bone marrow",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest CD22 bone marrow analyte; input unspecified re blasts"
+     },
+     {
+      "mimic_code": "52095",
+      "mimic_display": "CD62",
+      "proposed_code": "32855-9",
+      "proposed_display": "CD62 cells/cells in Specimen",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only generic CD62 code; specimen unspecified vs Blood"
+     },
+     {
+      "mimic_code": "51813",
+      "mimic_display": "Chloride, Joint Fluid",
+      "proposed_code": "2072-7",
+      "proposed_display": "Chloride [Moles/volume] in Body fluid",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No joint-specific chloride code; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "51973",
+      "mimic_display": "Copi",
+      "proposed_code": "54163-1",
+      "proposed_display": "Cytomegalovirus DNA [#/volume] (viral load) in Urine by Probe and target amplification method detection limit = 200 copies/ml",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Viral load measured in copies in Urine; top-ranked match for 'Copi' in urine"
+     },
+     {
+      "mimic_code": "51594",
+      "mimic_display": "Creatine Kinase, Isoenzyme BB",
+      "proposed_code": "2152-7",
+      "proposed_display": "Creatine kinase.BB [Enzymatic activity/volume] in Serum or Plasma by Electrophoresis",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest CK BB analyte; specimen Serum/Plasma vs Blood minor mismatch"
+     },
+     {
+      "mimic_code": "51596",
+      "mimic_display": "Creatine Kinase, Isoenzyme MM",
+      "proposed_code": "2155-0",
+      "proposed_display": "Creatine kinase.MM [Enzymatic activity/volume] in Serum or Plasma by Electrophoresis",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest MM isoenzyme in blood; method unstated overstep"
+     },
+     {
+      "mimic_code": "52103",
+      "mimic_display": "Cross Imm",
+      "proposed_code": "46715-9",
+      "proposed_display": "B cell crossmatch [Presence] in Blood",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Crossmatch analyte measured in Blood; closest match"
+     },
+     {
+      "mimic_code": "51915",
+      "mimic_display": "Cryptococ",
+      "proposed_code": "16692-6",
+      "proposed_display": "Cryptococcus sp Ag [Presence] in Body fluid",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No pleural-specific code; body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "51473",
+      "mimic_display": "Cysteine Crystals",
+      "proposed_code": "34277-4",
+      "proposed_display": "Cysteine [Moles/volume] in Urine",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No cysteine crystals code; closest analyte is Cysteine in Urine"
+     },
+     {
+      "mimic_code": "51474",
+      "mimic_display": "Eosinophils",
+      "proposed_code": "25156-1",
+      "proposed_display": "Eosinophils [Presence] in Urine sediment by Light microscopy",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Standard urine eosinophil test; adds method/sediment specificity"
+     },
+     {
+      "mimic_code": "51616",
+      "mimic_display": "Epstein-Barr Virus IgG Ab Value",
+      "proposed_code": "7885-7",
+      "proposed_display": "Epstein Barr virus capsid IgG Ab [Units/volume] in Serum",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "EBV IgG Ab value in blood; capsid subtype unstated but most representative"
+     },
+     {
+      "mimic_code": "53108",
+      "mimic_display": "FLUA2",
+      "proposed_code": "44557-7",
+      "proposed_display": "Influenza virus A Ab [Presence] in Body fluid",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "FLUA2=Influenza virus A; closest match in Body fluid, though specifies Ab"
+     },
+     {
+      "mimic_code": "51335",
+      "mimic_display": "FMC-7",
+      "proposed_code": "44065-1",
+      "proposed_display": "CD20+FMC7+ cells [#/volume] in Bone marrow",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "FMC7 analyte in bone marrow; adds CD20+ co-marker as no plain FMC7 bone marrow code exists"
+     },
+     {
+      "mimic_code": "51211",
+      "mimic_display": "Factor XIII",
+      "proposed_code": "3237-5",
+      "proposed_display": "Coagulation factor XIII activity [Units/volume] in Platelet poor plasma by Coagulation assay",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Factor XIII lab analyte; closest match though specimen/method unstated"
+     },
+     {
+      "mimic_code": "52855",
+      "mimic_display": "Factor XIII",
+      "proposed_code": "3237-5",
+      "proposed_display": "Coagulation factor XIII activity [Units/volume] in Platelet poor plasma by Coagulation assay",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Factor XIII lab analyte; closest match though specimen/method unstated"
+     },
+     {
+      "mimic_code": "52117",
+      "mimic_display": "Fibrinogen, Immunologic",
+      "proposed_code": "3256-5",
+      "proposed_display": "Fibrinogen Ag [Mass/volume] in Platelet poor plasma by Immunoassay",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Immunologic fibrinogen assay; specimen PPP vs blood mismatch"
+     },
+     {
+      "mimic_code": "52121",
+      "mimic_display": "Fletcher",
+      "proposed_code": "4669-8",
+      "proposed_display": "Prekallikrein (Fletcher Factor) [Mass/volume] in Platelet poor plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Fletcher = prekallikrein; generic quantitative assay, though specimen is PPP not whole blood"
+     },
+     {
+      "mimic_code": "51629",
+      "mimic_display": "Fructosamine Plus",
+      "proposed_code": "33805-3",
+      "proposed_display": "Fructosamine [Mass/volume] in Serum or Plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Fructosamine test in blood; closest match, 'Plus' panel not coded"
+     },
+     {
+      "mimic_code": "52123",
+      "mimic_display": "G6PD, Qualitative",
+      "proposed_code": "33287-4",
+      "proposed_display": "Glucose-6-Phosphate dehydrogenase [Presence] in DBS",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Qualitative G6PD in blood-derived specimen; closest to 'in Blood, Qualitative'"
+     },
+     {
+      "mimic_code": "51336",
+      "mimic_display": "Glyco A",
+      "proposed_code": "4548-4",
+      "proposed_display": "Hemoglobin A1c/Hemoglobin.total in Blood",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Glyco A = glycated hemoglobin A1c; specimen (bone marrow) differs from blood"
+     },
+     {
+      "mimic_code": "51667",
+      "mimic_display": "H. pylori IgG Ab Value",
+      "proposed_code": "103617-7",
+      "proposed_display": "Helicobacter pylori IgG Ab [Presence] in Blood by Immunoassay",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only candidate; matches analyte and Blood specimen, but input 'Value' implies quantitative while candidate is qualitative"
+     },
+     {
+      "mimic_code": "53094",
+      "mimic_display": "HBV VL CT",
+      "proposed_code": "49362-7",
+      "proposed_display": "Hepatitis B virus DNA [#/volume] (viral load) in Specimen by NAA with probe detection",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest available: HBV viral load test; no LOINC code exists for HBV DNA cycle threshold in blood"
+     },
+     {
+      "mimic_code": "50936",
+      "mimic_display": "HCG, Maternal Screen",
+      "proposed_code": "48800-7",
+      "proposed_display": "Second trimester quad maternal screen panel - Serum or Plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Maternal screen panel measuring HCG in blood; trimester unspecified"
+     },
+     {
+      "mimic_code": "51658",
+      "mimic_display": "HPE2",
+      "proposed_code": "49562-2",
+      "proposed_display": "Holoprosencephaly gene targeted mutation analysis in Blood or Tissue by Molecular genetics method",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "HPE2 analyte in blood maps to holoprosencephaly gene analysis in blood"
+     },
+     {
+      "mimic_code": "51663",
+      "mimic_display": "HPE7",
+      "proposed_code": "49562-2",
+      "proposed_display": "Holoprosencephaly gene targeted mutation analysis in Blood or Tissue by Molecular genetics method",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "HPE7 is holoprosencephaly gene 7; closest LOINC code covers holoprosencephaly gene analysis in blood, broader but same type"
+     },
+     {
+      "mimic_code": "51651",
+      "mimic_display": "Hepatitis C Viral Load",
+      "proposed_code": "49380-9",
+      "proposed_display": "Hepatitis C virus RNA [#/volume] (viral load) in Specimen by NAA with probe detection",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "HCV RNA viral load; generic Specimen broader than stated Blood"
+     },
+     {
+      "mimic_code": "52297",
+      "mimic_display": "Histio#",
+      "proposed_code": "40489-7",
+      "proposed_display": "Histiocytes/cells in Synovial fluid by Manual count",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Histiocytes in joint/synovial fluid; adds unstated /cells and Manual count"
+     },
+     {
+      "mimic_code": "52130",
+      "mimic_display": "Histiocytes",
+      "proposed_code": "44721-9",
+      "proposed_display": "Histiocytes [Presence] in Blood by Light microscopy",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only blood histiocyte analyte; adds method/scale qualifiers"
+     },
+     {
+      "mimic_code": "51669",
+      "mimic_display": "Htlv Ab",
+      "proposed_code": "55162-2",
+      "proposed_display": "HTLV I+II Ab panel - Serum",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic HTLV Ab in blood; panel covers both subtypes, closest broader match"
+     },
+     {
+      "mimic_code": "52300",
+      "mimic_display": "Hypersegmented Neutrophils #",
+      "proposed_code": "26504-1",
+      "proposed_display": "Neutrophils [#/volume] in Synovial fluid",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No hypersegmented-in-joint-fluid code exists; closest broader captures cell type and specimen"
+     },
+     {
+      "mimic_code": "51874",
+      "mimic_display": "Influenza B, Rapid Antigen",
+      "proposed_code": "80383-3",
+      "proposed_display": "Influenza virus B Ag [Presence] in Upper respiratory specimen by Rapid immunoassay",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Influenza B rapid antigen; specimen differs from body fluid"
+     },
+     {
+      "mimic_code": "51875",
+      "mimic_display": "Influenza B, Rapid Antigen",
+      "proposed_code": "80383-3",
+      "proposed_display": "Influenza virus B Ag [Presence] in Upper respiratory specimen by Rapid immunoassay",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Influenza B rapid antigen; specimen differs from body fluid"
+     },
+     {
+      "mimic_code": "51373",
+      "mimic_display": "Joint Crystals, Number",
+      "proposed_code": "5781-0",
+      "proposed_display": "Crystals [type] in Synovial fluid by Light microscopy",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "General crystals-in-joint-fluid concept; property is type not number"
+     },
+     {
+      "mimic_code": "52140",
+      "mimic_display": "LS",
+      "proposed_code": "3731-7",
+      "proposed_display": "Lysergate diethylamide [Mass/volume] in Serum or Plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "LS maps to Lysergate diethylamide (LSD); measured in blood = Serum/Plasma quantitative"
+     },
+     {
+      "mimic_code": "51944",
+      "mimic_display": "Lactate Dehydrogenase, Stool",
+      "proposed_code": "32324-6",
+      "proposed_display": "Lactate dehydrogenase [Enzymatic activity/volume] in Specimen",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No stool-specific LDH code; generic Specimen is closest broader match"
+     },
+     {
+      "mimic_code": "51426",
+      "mimic_display": "Lambda",
+      "proposed_code": "48772-8",
+      "proposed_display": "Lambda light chains [Mass/volume] in Cerebral spinal fluid",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Lambda analyte in a body fluid; closest match though CSF-specific"
+     },
+     {
+      "mimic_code": "51486",
+      "mimic_display": "Leukocytes",
+      "proposed_code": "33052-2",
+      "proposed_display": "Leukocytes [Presence] in Urine",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic urine leukocyte analyte; scale unspecified, presence is most representative"
+     },
+     {
+      "mimic_code": "51985",
+      "mimic_display": "Leukocytes",
+      "proposed_code": "33052-2",
+      "proposed_display": "Leukocytes [Presence] in Urine",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Generic urine leukocyte analyte; scale unspecified, presence is most representative"
+     },
+     {
+      "mimic_code": "51696",
+      "mimic_display": "Neural Tube Defect Risk",
+      "proposed_code": "48803-1",
+      "proposed_display": "Neural tube defect risk [Likelihood] in Fetus",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Analyte+property match; specimen differs (Fetus vs Blood)"
+     },
+     {
+      "mimic_code": "51881",
+      "mimic_display": "Norovirus Genogroup II",
+      "proposed_code": "97532-6",
+      "proposed_display": "Norovirus genogroup II RNA [Presence] in Specimen by NAA with probe detection",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Norovirus genogroup II in Other Body Fluid (XXX specimen); method added but closest match"
+     },
+     {
+      "mimic_code": "51797",
+      "mimic_display": "Osmolality, CSF",
+      "proposed_code": "15200-9",
+      "proposed_display": "Osmolality of Body fluid",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No CSF-specific code; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "51702",
+      "mimic_display": "Park",
+      "proposed_code": "95283-8",
+      "proposed_display": "PARK7 gene deletion in Blood or Tissue by Molecular genetics method",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Park analyte in blood; PARK7 gene best match, some ambiguity"
+     },
+     {
+      "mimic_code": "52390",
+      "mimic_display": "Promyelocytes#",
+      "proposed_code": "34996-9",
+      "proposed_display": "Promyelocytes [#/volume] in Body fluid",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No pleural-specific promyelocyte code; Body fluid is closest broader match"
+     },
+     {
+      "mimic_code": "51270",
+      "mimic_display": "Protein C, Antigen",
+      "proposed_code": "4672-2",
+      "proposed_display": "Protein C Ag [Mass/volume] in Platelet poor plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Protein C antigen; specimen PPP vs Blood is minor qualifier mismatch"
+     },
+     {
+      "mimic_code": "51271",
+      "mimic_display": "Protein C, Functional",
+      "proposed_code": "6007-9",
+      "proposed_display": "Protein C [Units/volume] in Platelet poor plasma by Coagulation assay",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Functional Protein C assay; method/specimen not specified in input"
+     },
+     {
+      "mimic_code": "52171",
+      "mimic_display": "RBC Morphology",
+      "proposed_code": "18225-3",
+      "proposed_display": "Erythrocyte shape [Morphology] in Blood",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "RBC morphology test in blood; class query, shape is representative"
+     },
+     {
+      "mimic_code": "53114",
+      "mimic_display": "RSV1",
+      "proposed_code": "31950-9",
+      "proposed_display": "Respiratory syncytial virus Ag [Presence] in Specimen",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "No RSV code in Body fluid exists; closest broader match is in Specimen"
+     },
+     {
+      "mimic_code": "51286",
+      "mimic_display": "Ristocetin",
+      "proposed_code": "4680-5",
+      "proposed_display": "von Willebrand factor (vWf) ristocetin cofactor [Units/volume] in Platelet poor plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Ristocetin analyte; specimen is PPP not Blood"
+     },
+     {
+      "mimic_code": "52175",
+      "mimic_display": "Ristocetin Response",
+      "proposed_code": "5998-0",
+      "proposed_display": "Platelet aggregation in Platelet rich plasma by ristocetin induced",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Ristocetin response = ristocetin-induced platelet aggregation; generic code without dose"
+     },
+     {
+      "mimic_code": "51731",
+      "mimic_display": "Single Stranded DNA",
+      "proposed_code": "5132-6",
+      "proposed_display": "DNA single strand Ab [Units/volume] in Serum",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Closest LOINC analyte for single stranded DNA in blood; antibody qualifier and serum specimen are minor mismatches"
+     },
+     {
+      "mimic_code": "52312",
+      "mimic_display": "Total Nucleated Cells, Joint",
+      "proposed_code": "98999-6",
+      "proposed_display": "Nucleated cells [#/volume] in Synovial fluid by Automated count",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Total nucleated cells in joint/synovial fluid; method not specified, closest available"
+     },
+     {
+      "mimic_code": "51005",
+      "mimic_display": "Uptake Ratio",
+      "proposed_code": "3050-2",
+      "proposed_display": "Triiodothyronine resin uptake (T3RU) in Serum or Plasma",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Uptake ratio measured in blood; closest match"
+     },
+     {
+      "mimic_code": "51333",
+      "mimic_display": "CD71",
+      "proposed_code": "21169-8",
+      "proposed_display": "CD71 cells/cells in Specimen",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "No CD71-in-Bone-marrow code exists; generic Specimen CD71 is closest broader match"
+     },
+     {
+      "mimic_code": "51968",
+      "mimic_display": "Camp",
+      "proposed_code": "6868-4",
+      "proposed_display": "Adenosine monophosphate.cyclic [Mass/volume] in Urine",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "'Camp' in urine context = cyclic AMP; no Campylobacter urine test exists"
+     },
+     {
+      "mimic_code": "51846",
+      "mimic_display": "Chlamydia trachomatis",
+      "proposed_code": "45130-2",
+      "proposed_display": "Chlamydia trachomatis Ab [Presence] in Body fluid",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Body fluid Chlamydia trachomatis; Ab/Ag unstated, both fit type"
+     },
+     {
+      "mimic_code": "51914",
+      "mimic_display": "Clostrid",
+      "proposed_code": "618-9",
+      "proposed_display": "Bacteria identified in Pleural fluid by Culture",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "No Clostridium-specific pleural code; closest broader match captures pleural culture context"
+     },
+     {
+      "mimic_code": "51605",
+      "mimic_display": "Delta/Dlt",
+      "proposed_code": "40727-0",
+      "proposed_display": "Hepatitis D virus Ab [Presence] in Serum by Immunoassay",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Delta/Dlt = Hepatitis D virus; generic analyte, no Ab/Ag specified"
+     },
+     {
+      "mimic_code": "52131",
+      "mimic_display": "HIT-Ab Interpreted Result",
+      "proposed_code": "73816-1",
+      "proposed_display": "Heparin induced platelet IgG Ab [Interpretation] in Serum Narrative",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Closest HIT-Ab interpretation result; IgG/Serum specifiers unstated in input"
+     },
+     {
+      "mimic_code": "52055",
+      "mimic_display": "Hyperseg",
+      "proposed_code": "30449-3",
+      "proposed_display": "Neutrophils.hypersegmented [#/volume] in Blood",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Hypersegmented neutrophils analyte; no ascites specimen code exists, blood used"
+     },
+     {
+      "mimic_code": "52056",
+      "mimic_display": "Hyperseg#",
+      "proposed_code": "30449-3",
+      "proposed_display": "Neutrophils.hypersegmented [#/volume] in Blood",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Hyperseg# = hypersegmented neutrophils; no ascites specimen code exists, blood is closest"
+     },
+     {
+      "mimic_code": "52355",
+      "mimic_display": "Hypersegmented Neutrophils",
+      "proposed_code": "30449-3",
+      "proposed_display": "Neutrophils.hypersegmented [#/volume] in Blood",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Hypersegmented neutrophils analyte; no Other Body Fluid variant exists, blood is closest"
+     },
+     {
+      "mimic_code": "52262",
+      "mimic_display": "Immunophenotyping",
+      "proposed_code": "101119-6",
+      "proposed_display": "Leukemia and lymphoma immunophenotyping in Specimen Document by Flow cytometry (FC)",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Only immunophenotyping code; specimen is generic (XXX) not CSF"
+     },
+     {
+      "mimic_code": "51023",
+      "mimic_display": "LD, Joint Fluid",
+      "proposed_code": "68453-0",
+      "proposed_display": "Lactate dehydrogenase [Enzymatic activity/volume] in Synovial fluid by Lactate to pyruvate reaction",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "LD in joint fluid; only codes add unstated reaction method"
+     },
+     {
+      "mimic_code": "51686",
+      "mimic_display": "Lip2",
+      "proposed_code": "2569-2",
+      "proposed_display": "Lipids [Mass/volume] in Serum",
+      "confidence": 0.6,
+      "gap": 0.2,
+      "reasoning": "Lipid analyte measured in blood; 'Lip2' ambiguous but closest lipid-in-blood match"
+     },
+     {
+      "mimic_code": "52336",
+      "mimic_display": "Atyps#",
+      "proposed_code": "66133-0",
+      "proposed_display": "Mononuclear cells atypical/Leukocytes in Body fluid by Manual count",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "Only body-fluid atypical cell code; adds mononuclear/fraction/manual-count specifics"
+     },
+     {
+      "mimic_code": "52320",
+      "mimic_display": "CD30",
+      "proposed_code": "51289-7",
+      "proposed_display": "CD30 cells/cells in Bone marrow",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "CD30 in bone marrow; cells variant closest to generic analyte"
+     },
+     {
+      "mimic_code": "51328",
+      "mimic_display": "CD56",
+      "proposed_code": "42622-1",
+      "proposed_display": "CD13+CD56+ cells/cells in Bone marrow",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "CD56 in bone marrow; all candidates specify subsets, none plain CD56"
+     },
+     {
+      "mimic_code": "52356",
+      "mimic_display": "Hypersegmented Neutrophils#",
+      "proposed_code": "32709-8",
+      "proposed_display": "Neutrophils [#/volume] in Body fluid",
+      "confidence": 0.5,
+      "gap": 0.3,
+      "reasoning": "No hypersegmented body-fluid code exists; broader neutrophil-in-body-fluid match"
+     }
+    ]
+   }
   }
  ],
- "target_valueset_codes": 174,
+ "target_valueset_codes": 1575,
  "extras": {}
 }

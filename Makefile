@@ -50,14 +50,16 @@ MICRO_SUSC_TABLE := $(TERM)/conceptmaps/build_micro_susc_table.py
 MICRO_TEST_TABLE := $(TERM)/conceptmaps/build_micro_test_table.py
 OUTPUTEVENTS_TABLE := $(TERM)/conceptmaps/build_outputevents_table.py
 DATETIMEEVENTS_TABLE := $(TERM)/conceptmaps/build_datetimeevents_table.py
+MICRO_ORG_TABLE := $(TERM)/conceptmaps/build_micro_org_table.py
+LABEVENTS_TABLE := $(TERM)/conceptmaps/build_labevents_table.py
 STATISTICS := $(TERM)/build_statistics.py
 UPLOAD_MAPPINGS := $(TERM)/upload.py
 
 .PHONY: verify-inputs update-manifest terminology deploy-terminology \
         condition procedure observation observation-component verify-mappings \
         verify-curated d-items-table micro-susc-table micro-test-table \
-        outputevents-table datetimeevents-table mappings statistics \
-        upload-mappings ig
+        outputevents-table datetimeevents-table micro-org-table \
+        labevents-table mappings statistics upload-mappings ig
 
 verify-inputs: ## check ICD source files against input-manifest.json
 	uv run $(TERM)/verify_inputs.py
@@ -122,6 +124,11 @@ verify-mappings: ## check coverage + invariants; non-zero while codes are unmapp
 # honest: `make observation` refreshes its own report and this reads the
 # committed reports for every other field. The field targets above run it
 # --quiet so the files never go stale; this target is the loud version.
+#
+# If occurrences/code-occurrences.csv is present — the committed per-code counts
+# from the HPC node, see occurrences/README.md — every coverage figure also gains
+# an occurrence-weighted twin and output/occurrence-buckets.csv is written.
+# Auto-detected: no flag, no separate target, and nothing changes without it.
 statistics: ## per-stream coverage table from the field reports (csv + html + terminal)
 	uv run $(STATISTICS)
 
@@ -194,6 +201,49 @@ outputevents-table: ## regenerate conceptmaps/outputevents-loinc.csv from code-s
 #   make datetimeevents-table ARGS="--only 224288,224284 --insecure"   probe a few
 datetimeevents-table: ## regenerate conceptmaps/datetimeevents-snomed.csv from code-search
 	uv run $(DATETIMEEVENTS_TABLE) $(ARGS)
+
+# The 646 microbiology organism names — the largest stream in the Observation
+# map so far. Same standing as the four above: network, writes a build input,
+# never part of `mappings`.
+#
+# The first generator here that sends the label with NO context template. Its
+# labels are already taxonomic names rather than flowsheet column headings, and
+# probing three candidate wrappers found all three answering a NEGATED label
+# (`BETA STREP NOT GROUP A OR ANGINOSUS (MILLERI)`) with the very taxon it
+# excludes. Its constraint is `<<410607006 |Organism|` alone: unconstrained, the
+# `POSITIVE FOR ...` labels come back as findings and substances at 0.90-0.95,
+# above several correct answers, and widening to include clinical findings was
+# built, probed and dropped because it broke three control rows while rescuing
+# none. It also carries WRONG_TAXON, a (itemid, code) pair reject list for the
+# one failure the constraint cannot catch — a real organism inside the
+# constraint that is wrong about which organism — currently empty, and validated
+# both before the run (the concept is real) and after it (the pairing actually
+# occurred), because the one entry it shipped with was written from a probe the
+# population run did not reproduce. The generator's docstring carries the
+# evidence, including why no prefix-stripping rule is applied and why the 0.8
+# threshold stays despite 13 of the 15 rows below it looking defensible.
+#
+#   make micro-org-table ARGS="--only 90707,80249 --insecure"   probe a few
+micro-org-table: ## regenerate conceptmaps/micro-org-snomed.csv from code-search
+	uv run $(MICRO_ORG_TABLE) $(ARGS)
+
+# The largest stream in the Observation map, 1,622 analytes, and the only one
+# whose search text is not the source label: it joins MIMIC's own d_labitems
+# dictionary and injects the `fluid` column, because that column is the LOINC
+# System axis and only 807 of the 1,622 analytes are blood. Without it every one
+# of the 815 non-blood analytes resolves against serum or plasma. `category` is
+# deliberately NOT injected — it reaches a better System axis and makes the 52
+# `Delete` / `Voided Specimen` rows answer with a blood-gas panel above
+# threshold. The generator's docstring carries that evidence, the regression
+# that rejected widening the constraint with `CLASS=PULM`, and the one known
+# defect (`50823 Required O2`) that no setting catches.
+#
+# 1,622 items collapse to 1,479 searches on (label, fluid), so this is a long
+# run; --only is the way to probe a handful.
+#
+#   make labevents-table ARGS="--only 50983,51516 --insecure"   probe a few
+labevents-table: ## regenerate conceptmaps/labevents-loinc.csv from code-search
+	uv run $(LABEVENTS_TABLE) $(ARGS)
 
 # --- stage 3: publish, gated ------------------------------------------------ #
 

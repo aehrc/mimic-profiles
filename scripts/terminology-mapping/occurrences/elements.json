@@ -1,0 +1,61 @@
+{
+ "description": "The bound coded elements whose per-code occurrence counts the mapping statistics cross-reference. Read by BOTH sides: occurrences/count_occurrences.py on the HPC node (which needs resource_type + extract_path) and common/occurrences.py locally (which needs bound_valuesets to classify a code as in-a-built-stream, in-an-unbuilt-population, or in no bound enumeration at all). One file so the two sides cannot disagree about what the field list is.",
+ "elements": [
+  {
+   "element": "Condition.code",
+   "resource_type": "Condition",
+   "extract_path": "code.coding",
+   "bound_valuesets": [
+    "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-diagnosis-icd"
+   ]
+  },
+  {
+   "element": "Procedure.code",
+   "resource_type": "Procedure",
+   "extract_path": "code.coding",
+   "bound_valuesets": [
+    "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-procedure-merged-code"
+   ]
+  },
+  {
+   "element": "Observation.code",
+   "resource_type": "Observation",
+   "extract_path": "code.coding",
+   "bound_valuesets": [
+    "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-merged-code"
+   ]
+  },
+  {
+   "element": "Observation.component.code",
+   "resource_type": "Observation",
+   "extract_path": "component.code.coding",
+   "bound_valuesets": [
+    "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-observation-component-vital"
+   ]
+  },
+  {
+   "element": "Specimen.type",
+   "resource_type": "Specimen",
+   "extract_path": "type.coding",
+   "bound_valuesets": [
+    "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-specimen-type"
+   ]
+  },
+  {
+   "element": "MedicationAdministration.medication[x]",
+   "resource_type": "MedicationAdministration",
+   "extract_path": "medication.ofType(CodeableConcept).coding",
+   "bound_valuesets": [
+    "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication-administration-merged-code"
+   ]
+  },
+  {
+   "element": "MedicationRequest.medication[x]",
+   "resource_type": "MedicationRequest",
+   "extract_path": "medication.ofType(CodeableConcept).coding",
+   "bound_valuesets": [
+    "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-medication"
+   ]
+  }
+ ]
+}

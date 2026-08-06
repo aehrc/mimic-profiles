@@ -161,6 +161,13 @@ def build_groups(sources, element, built):
             # The IG resource id, which is the name a stream is invoked by:
             # ValueSet-mimic-observation-type-ed.json -> mimic-observation-type-ed
             "stream": resource_path(source).stem.split("-", 1)[1],
+            # The same resource, un-abbreviated. Stripping the prefix above is
+            # not invertible — mimic-microbiology-antibiotic exists as BOTH a
+            # CodeSystem and a ValueSet, and only the CodeSystem enumerates
+            # anything — so anything needing this stream's code list reads the
+            # file named here rather than guessing at the prefix. That is how
+            # common/occurrences.py attaches occurrence counts to streams.
+            "source_file": resource_path(source).name,
             "source_system": source["system"],
             "method": ("identity" if source.get("identity")
                        else "table" if "table" in source else "notation"),

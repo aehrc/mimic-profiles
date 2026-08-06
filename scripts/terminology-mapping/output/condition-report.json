@@ -51,6 +51,7 @@
  "by_stream": [
   {
    "stream": "mimic-diagnosis-icd10",
+   "source_file": "CodeSystem-mimic-diagnosis-icd10.json",
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10",
    "method": "notation",
    "total": 18450,
@@ -68,6 +69,7 @@
   },
   {
    "stream": "mimic-diagnosis-icd9",
+   "source_file": "CodeSystem-mimic-diagnosis-icd9.json",
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9",
    "method": "notation",
    "total": 9463,

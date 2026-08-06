@@ -64,6 +64,7 @@
  "by_stream": [
   {
    "stream": "mimic-procedure-icd10",
+   "source_file": "CodeSystem-mimic-procedure-icd10.json",
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd10",
    "method": "notation",
    "total": 10031,
@@ -81,6 +82,7 @@
   },
   {
    "stream": "mimic-procedure-icd9",
+   "source_file": "CodeSystem-mimic-procedure-icd9.json",
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd9",
    "method": "notation",
    "total": 2544,
@@ -100,6 +102,7 @@
   },
   {
    "stream": "mimic-procedure-types-ed",
+   "source_file": "ValueSet-mimic-procedure-types-ed.json",
    "source_system": "http://snomed.info/sct",
    "method": "identity",
    "total": 2,
@@ -117,6 +120,7 @@
   },
   {
    "stream": "mimic-procedureevents-d-items",
+   "source_file": "ValueSet-mimic-procedureevents-d-items.json",
    "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
    "method": "table",
    "total": 169,

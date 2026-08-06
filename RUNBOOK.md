@@ -52,6 +52,8 @@ Artifacts crossing the boundary:
 | `scripts/terminology-mapping/output/ConceptMap-*.json` | laptop → server | the mapping rules, committed; the only place they live |
 | `scripts/terminology-mapping/output/ValueSet-mimic-{diagnosis,procedure}.json` | laptop → server | enumerated target value sets, committed |
 | `scripts/binding-analysis/work-items.json` | laptop → node | drove the one-time phase-1 extraction |
+| `scripts/terminology-mapping/occurrences/{count_occurrences.py,elements.json,count_occurrences.slurm}` | laptop → node | the occurrence count job |
+| `scripts/terminology-mapping/occurrences/{code-occurrences.csv,occurrence-summary.json}` | node → laptop | per-code counts, committed; optional input to `make statistics` |
 
 Repeatable stages: `verify-inputs`, `terminology`, `ig`, `deploy-terminology`,
 `mappings`, `upload-mappings`. One-time analysis (documented in §5–6, re-runnable
@@ -160,6 +162,14 @@ only releases built here, and no ICD-9 procedure code mapped to an ICD-10-PCS
 grouper. Rebuilds from unchanged inputs are byte-identical, so
 `make mappings && git diff --exit-code` is a valid test.
 
+`make statistics` (run by every field target, and last in `mappings`) flattens the
+reports into `output/mapping-statistics.{csv,html}`. If
+`occurrences/code-occurrences.csv` is present it also weights every coverage
+figure by how often each code occurs in the warehouse and writes
+`output/occurrence-buckets.csv` — the counts come from the node job in §6, are
+committed, and are verified against their summary's sha256, so this stage stays
+offline and byte-identical either way. Absent, nothing changes.
+
 ### upload-mappings
 `make upload-mappings`. Runs `verify-mappings` first and **refuses to publish
 while any code is unmapped** — read `unmapped-<field>.csv`, fix the input that is
@@ -249,6 +259,7 @@ the reproduction path — the pipeline rebuilds from their committed outputs.
 | `scripts/binding-analysis/phase0_candidates.py` | laptop | `work-items.json` (131 candidates) | needs a built `output/package.tgz` |
 | `scripts/binding-analysis/phase1_extract_distinct.py` | node | `distinct-codes.ndjson`, `extract-summary.json` | `uv run … --data $MIMIC_WAREHOUSE` (see `--help`); PathlingContext must own the SparkSession; Pathling 7+ `view()` not `extract()` |
 | `scripts/binding-analysis/phase2_crosscheck.py` | laptop | `binding-report.{json,md}` | offline, stdlib-only over package.tgz + distinct-codes |
+| `scripts/terminology-mapping/occurrences/count_occurrences.py` | node | `code-occurrences.csv`, `occurrence-summary.json` | `sbatch count_occurrences.slurm` on Petrichor — read-only, never writes to the warehouse. Self-contained (stdlib + pathling only) because the node's uv env is Python 3.12, not this repo's 3.14. Full procedure incl. login-node smoke test: `occurrences/README.md`. Re-run only after the warehouse itself changes |
 | `scripts/icd-migration/check_icd_codes.py` | laptop | `display-map.json`, `validation-*.csv`, `unmapped-*.csv` | `make check-codes` — requires the terminology deployed first (`deploy-terminology` + package upload); `--insecure` available for cert issues. `display-map.json` is already committed; regenerate only after a terminology change, and confirm `unmapped-*.csv` stay empty |
 
 Current findings state: FINDINGS.md — all decisions D1–D4 resolved 2026-07-10 and

@@ -570,6 +570,48 @@ report is the committed one, and the CSV assembled from all of them stays
 complete. Every field target regenerates it quietly, so it can never go
 stale.
 
+### Weighting coverage by how much data a code carries
+
+Coverage over codes says how much of the dictionary was mapped. It cannot say
+how likely a data point is to carry a code `$translate` cannot resolve, and
+those diverge whenever the unmapped codes are the frequently used ones — which
+is the case worth catching, because missing a code recorded on every admission
+is not the same failure as missing one recorded twice in 2012.
+
+So `occurrences/count_occurrences.py` runs once on the HPC node against the full
+Delta warehouse and counts every distinct coded value for the seven bound
+elements in `occurrences/elements.json`. Its two outputs are committed
+(`code-occurrences.csv`, `occurrence-summary.json` — the latter carries each
+Delta table's version and the CSV's sha256, which `build_statistics.py`
+verifies), so everything downstream stays offline. See
+`occurrences/README.md` for the re-run procedure and for why neither
+`binding-analysis/distinct-codes.ndjson` nor the Pathling MCP tool's
+`get_cardinality_and_top_values` could serve.
+
+With the artifact present, `build_statistics.py` adds `occurrences_total`,
+`occurrences_mapped` and `occurrence_coverage_pct` to each stream row, writes
+`output/occurrence-buckets.csv`, and gives the HTML a per-element section with
+the head of the distribution and each code's status. The buckets partition every
+occurrence four ways, and the last three are deliberately not one number:
+
+| bucket | meaning |
+|---|---|
+| `mapped` | resolvable via `$translate` |
+| `declined` | a built stream considered the code and said no; its reason is in `unmapped-<field>.csv` |
+| `no-stream-yet` | a bound population nobody has built (labevents, chartevents, both `medication[x]`, `Specimen.type`) — a backlog, in rows |
+| `not-in-enumeration` | a code the data carries that no bound ValueSet admits; under a `required` binding that is an ETL or binding defect, so it should be empty |
+
+Only `declined` is a judgement this repo would defend. Reporting it together
+with a 1,622-code unbuilt population would misrepresent both, which is why the
+element-level view exists alongside the per-stream one rather than instead of it.
+
+Attribution of a count to a stream is by code membership, not by source system:
+`mimic-d-items` serves three populations, so only the enumerations can say which
+stream a given d-item belongs to. Each stream therefore records the IG resource
+its codes came from as `source_file` — the `stream` name alone is not enough,
+because `mimic-microbiology-antibiotic` exists as both a CodeSystem and a
+ValueSet and only the CodeSystem enumerates anything.
+
 ### How unmapped codes are recorded
 
 A code MIMIC uses that has no counterpart in any built release is recorded in
@@ -623,10 +665,18 @@ verify/             the checks, and stage 3's gate
   verify_mappings.py            verify_curated_snomed.py (needs the network)
 upload.py           stage 3 — the only script that writes to a server
 build_statistics.py flattens the reports' by_stream into the statistics table
+occurrences/        how often each coded value occurs; extracted once on the node
+  count_occurrences.py          the node script (+ --dry-run, needs no warehouse)
+  count_occurrences.slurm       the Petrichor job; read-only, never writes data
+  elements.json                 the seven bound elements, read by BOTH sides
+  code-occurrences.csv          the counts, committed — optional input to
+                                build_statistics.py
+  occurrence-summary.json       what was counted, and the CSV's sha256
 output/             every generated resource, flat, ResourceType-id.json
   <field>-report.json           coverage per population, comparable across them
   mapping-statistics.csv        one row per stream across all fields — see
                                 "Per-stream statistics"
+  occurrence-buckets.csv        where every occurrence of a bound element goes
   d-items-generation-log.json   what the last generator run saw, per row
 input-manifest.json sha256 of every input that influences a generated resource
 ```

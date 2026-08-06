@@ -7,7 +7,7 @@
  "title": "MIMIC merged Observation codes as standard terminology",
  "status": "active",
  "experimental": false,
- "date": "2026-08-05",
+ "date": "2026-08-06",
  "publisher": "CSIRO",
  "description": "Every code the merged MIMIC Observation profile admits on Observation.code, in standard terminology. Derived from ConceptMap/mimic-observation-merged-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Neither the LOINC nor the SNOMED CT include carries a version: this repo builds no LOINC or SNOMED release, so pinning one would name something it cannot reproduce. Grows as each code-search stream is added to the map.",
  "compose": {
@@ -16,24 +16,236 @@
     "system": "http://loinc.org",
     "concept": [
      {
+      "code": "101557-7",
+      "display": "Clostridioides difficile DNA [Presence] in Stool by NAA with probe detection"
+     },
+     {
+      "code": "103227-5",
+      "display": "Testosterone Free [Mass/volume] in Serum or Plasma by Calculation"
+     },
+     {
+      "code": "10334-1",
+      "display": "Cancer Ag 125 [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "10355-6",
+      "display": "Microscopic observation [Identifier] in Bone marrow by Wright Giemsa stain"
+     },
+     {
+      "code": "103617-7",
+      "display": "Helicobacter pylori IgG Ab [Presence] in Blood by Immunoassay"
+     },
+     {
+      "code": "10371-3",
+      "display": "Bite cells [Presence] in Blood by Light microscopy"
+     },
+     {
+      "code": "10374-7",
+      "display": "Helmet cells [Presence] in Blood by Light microscopy"
+     },
+     {
+      "code": "10376-2",
+      "display": "Oval macrocytes [Presence] in Blood by Light microscopy"
+     },
+     {
+      "code": "10377-0",
+      "display": "Pencil cells [Presence] in Blood by Light microscopy"
+     },
+     {
+      "code": "104322-3",
+      "display": "Lambda lymphocytes/Lymphocytes in Bone marrow"
+     },
+     {
+      "code": "104435-3",
+      "display": "Norovirus genogroup II Ag [Presence] in Stool"
+     },
+     {
+      "code": "104544-2",
+      "display": "Kappa light chains.free [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "104546-7",
+      "display": "Kappa light chains.free/Lambda light chains.free [Mass Ratio] in Serum or Plasma"
+     },
+     {
+      "code": "104700-0",
+      "display": "Platelet clump [Presence] in Blood"
+     },
+     {
+      "code": "104701-8",
+      "display": "Blood smear finding [Identifier] in Blood"
+     },
+     {
+      "code": "104704-2",
+      "display": "Acanthocytes [Presence] in Blood"
+     },
+     {
+      "code": "104710-9",
+      "display": "Target cells [Presence] in Blood"
+     },
+     {
+      "code": "104713-3",
+      "display": "Stomatocytes [Presence] in Blood"
+     },
+     {
       "code": "104715-8",
       "display": "Hepatitis C virus RNA [Presence] in Serum or Plasma by Molecular genetics method"
+     },
+     {
+      "code": "104718-2",
+      "display": "Elliptocytes [Presence] in Blood"
+     },
+     {
+      "code": "104726-5",
+      "display": "Dacrocytes [Presence] in Blood"
      },
      {
       "code": "104742-2",
       "display": "Ova and parasites identified in Specimen"
      },
      {
+      "code": "104750-5",
+      "display": "Ovalocytes [Presence] in Blood"
+     },
+     {
+      "code": "104753-9",
+      "display": "Burr cells [Presence] in Blood"
+     },
+     {
+      "code": "104754-7",
+      "display": "Polychromasia [Presence] in Blood"
+     },
+     {
+      "code": "104761-2",
+      "display": "Poikilocytosis [Presence] in Blood"
+     },
+     {
+      "code": "104779-4",
+      "display": "Schistocytes [Presence] in Blood"
+     },
+     {
+      "code": "104795-0",
+      "display": "Sickle cells [Presence] in Blood"
+     },
+     {
+      "code": "104798-4",
+      "display": "Basophilic stippling [Presence] in Blood"
+     },
+     {
+      "code": "104799-2",
+      "display": "Alpha 2 globulin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "104800-8",
+      "display": "Spherocytes [Presence] in Blood"
+     },
+     {
+      "code": "104802-4",
+      "display": "Variant lymphocytes [Presence] in Blood"
+     },
+     {
+      "code": "104816-4",
+      "display": "Beta hydroxybutyrate [Moles/volume] in Blood"
+     },
+     {
+      "code": "10501-5",
+      "display": "Lutropin [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "105054-1",
+      "display": "Crystals [type] in Urine sediment by Microscopy"
+     },
+     {
       "code": "105060-8",
       "display": "Trichomonas vaginalis [Presence] in Specimen"
+     },
+     {
+      "code": "105086-3",
+      "display": "Granular casts [#/area] in Urine"
+     },
+     {
+      "code": "105089-7",
+      "display": "Epithelial cells.non-squamous [Presence] in Urine"
+     },
+     {
+      "code": "105091-3",
+      "display": "Hyaline casts [#/volume] in Urine"
+     },
+     {
+      "code": "105096-2",
+      "display": "Trichomonas vaginalis [Presence] in Urine sediment"
+     },
+     {
+      "code": "105102-8",
+      "display": "Leukocyte clumps [#/volume] in Urine"
+     },
+     {
+      "code": "105126-7",
+      "display": "C reactive protein [Mass/volume] in Serum, Plasma or Blood"
+     },
+     {
+      "code": "10535-3",
+      "display": "Digoxin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "10548-6",
+      "display": "Phenytoin Free/Phenytoin.total in Serum or Plasma"
+     },
+     {
+      "code": "105872-6",
+      "display": "Platelets Large [Presence] in Blood"
+     },
+     {
+      "code": "105873-4",
+      "display": "Other cells [#/volume] in Blood"
+     },
+     {
+      "code": "105897-3",
+      "display": "Calcium oxalate crystals [#/area] in Urine"
      },
      {
       "code": "105904-7",
       "display": "Vancomycin resistant enterococcus [Presence] in Specimen"
      },
      {
+      "code": "105906-2",
+      "display": "Blood [Presence] in Urine"
+     },
+     {
       "code": "10644-3",
       "display": "Arthropod identified in Specimen"
+     },
+     {
+      "code": "106604-2",
+      "display": "Staphylococcus aureus DNA [Presence] in Body fluid by NAA with non-probe detection"
+     },
+     {
+      "code": "106943-4",
+      "display": "CD3+TCR alpha beta+ cells/Cells in Bone marrow by Flow cytometry (FC)"
+     },
+     {
+      "code": "10701-1",
+      "display": "Ova and parasites identified in Stool by Concentration"
+     },
+     {
+      "code": "107047-3",
+      "display": "CD3+TCR gamma delta+ cells/Cells in Bone marrow by Flow cytometry (FC)"
+     },
+     {
+      "code": "107082-0",
+      "display": "CD20 cells/Cells in Bone marrow by Flow cytometry (FC)"
+     },
+     {
+      "code": "107175-2",
+      "display": "Hematocrit [Volume Fraction] of Peritoneal fluid"
+     },
+     {
+      "code": "10753-2",
+      "display": "Fat.microscopic observation [Identifier] in Stool by Sudan IV stain"
+     },
+     {
+      "code": "10763-1",
+      "display": "Microscopic observation [Identifier] in Body fluid by Sudan black stain"
      },
      {
       "code": "108163-7",
@@ -48,20 +260,504 @@
       "display": "Varicella zoster virus [Presence] in Specimen by Organism specific culture"
      },
      {
+      "code": "10998-3",
+      "display": "oxyCODONE [Presence] in Urine"
+     },
+     {
+      "code": "11016-3",
+      "display": "Microscopic observation [Identifier] in Blood or Marrow by Esterase stain.non-specific"
+     },
+     {
+      "code": "11017-1",
+      "display": "Microscopic observation [Identifier] in Blood or Marrow by Chloracetate esterase stain"
+     },
+     {
+      "code": "11018-9",
+      "display": "Microscopic observation [Identifier] in Blood or Marrow by Peroxidase stain"
+     },
+     {
+      "code": "11019-7",
+      "display": "Microscopic observation [Identifier] in Blood or Marrow by Sudan black B stain"
+     },
+     {
+      "code": "11020-5",
+      "display": "Microscopic observation [Identifier] in Blood or Marrow by Tartrate-resistant acid phosphatase stain"
+     },
+     {
+      "code": "11050-2",
+      "display": "Kappa light chains [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "11051-0",
+      "display": "Lambda light chains [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "11067-6",
+      "display": "Bleeding time"
+     },
+     {
+      "code": "11125-2",
+      "display": "Platelets [Morphology] in Blood"
+     },
+     {
+      "code": "11153-4",
+      "display": "Hematocrit [Volume Fraction] of Body fluid by calculation"
+     },
+     {
+      "code": "11207-8",
+      "display": "Alpha-1-Fetoprotein [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "11212-8",
+      "display": "Coproporphyrin [Mass/volume] in Urine"
+     },
+     {
+      "code": "11227-6",
+      "display": "Pyruvate kinase [Presence] in Blood"
+     },
+     {
+      "code": "11228-4",
+      "display": "Uroporphyrin [Mass/volume] in Urine"
+     },
+     {
+      "code": "11235-9",
+      "display": "fentaNYL [Presence] in Urine"
+     },
+     {
+      "code": "11253-2",
+      "display": "Tacrolimus [Mass/volume] in Blood"
+     },
+     {
+      "code": "11279-7",
+      "display": "Urine sediment comments by Light microscopy Narrative"
+     },
+     {
       "code": "11545-1",
       "display": "Microscopic observation [Identifier] in Specimen by Acid fast stain"
+     },
+     {
+      "code": "11555-0",
+      "display": "Base excess in Blood by calculation"
+     },
+     {
+      "code": "11556-8",
+      "display": "Oxygen [Partial pressure] in Blood"
+     },
+     {
+      "code": "11557-6",
+      "display": "Carbon dioxide [Partial pressure] in Blood"
+     },
+     {
+      "code": "11558-4",
+      "display": "pH of Blood"
+     },
+     {
+      "code": "11572-5",
+      "display": "Rheumatoid factor [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "12173-1",
+      "display": "Non prostatic acid phosphatase [Enzymatic activity/volume] in Serum or Plasma"
+     },
+     {
+      "code": "12183-0",
+      "display": "Cholesterol [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "12185-5",
+      "display": "aPTT in Blood from Control by Coagulation assay"
+     },
+     {
+      "code": "12190-5",
+      "display": "Creatinine [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "12191-3",
+      "display": "Creatinine [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "12228-3",
+      "display": "Triglyceride [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "12242-4",
+      "display": "Phosphate [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "12265-5",
+      "display": "Urea nitrogen [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "12556-7",
+      "display": "Copper [Mass/volume] in Blood"
+     },
+     {
+      "code": "13169-8",
+      "display": "Immunoelectrophoresis for Serum or Plasma"
      },
      {
       "code": "13317-3",
       "display": "Methicillin resistant Staphylococcus aureus [Presence] in Specimen by Organism specific culture"
      },
      {
+      "code": "13362-9",
+      "display": "Specimen collection [Time] of Urine"
+     },
+     {
+      "code": "13440-3",
+      "display": "Immunofixation for Urine"
+     },
+     {
+      "code": "13457-7",
+      "display": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation"
+     },
+     {
+      "code": "13507-9",
+      "display": "Lupus erythematosus cells [Presence] in Blood"
+     },
+     {
+      "code": "13512-9",
+      "display": "Microscopic observation [Identifier] in Bone marrow by Butyrate esterase stain"
+     },
+     {
+      "code": "13513-7",
+      "display": "Iron.microscopic observation [Identifier] in Bone marrow by Potassium ferrocyanide stain"
+     },
+     {
+      "code": "13658-0",
+      "display": "Urobilinogen [Presence] in Urine"
+     },
+     {
+      "code": "13902-2",
+      "display": "Urate [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
       "code": "13956-8",
       "display": "Mycobacterium tuberculosis DNA [Presence] in Specimen by NAA with probe detection"
      },
      {
+      "code": "13977-4",
+      "display": "Gamma globulin/Protein.total in Cerebral spinal fluid by Electrophoresis"
+     },
+     {
+      "code": "13995-6",
+      "display": "Gamma globulin/Protein.total in Urine by Electrophoresis"
+     },
+     {
+      "code": "14000-4",
+      "display": "Urea nitrogen [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "14018-6",
+      "display": "CD23 cells/cells in Blood"
+     },
+     {
+      "code": "14113-5",
+      "display": "CD56 cells [#/volume] in Blood"
+     },
+     {
+      "code": "14135-8",
+      "display": "CD3+CD8+ (T8 suppressor) cells [#/volume] in Blood"
+     },
+     {
+      "code": "14136-6",
+      "display": "CD34 cells [#/volume] in Blood"
+     },
+     {
+      "code": "14172-1",
+      "display": "Potassium [Moles/volume] in Synovial fluid"
+     },
+     {
+      "code": "14196-0",
+      "display": "Reticulocytes [#/volume] in Blood"
+     },
+     {
+      "code": "14241-4",
+      "display": "Parietal cell Ab [Presence] in Serum"
+     },
+     {
+      "code": "14252-1",
+      "display": "Smooth muscle Ab [Presence] in Serum"
+     },
+     {
+      "code": "14316-4",
+      "display": "Benzodiazepines [Presence] in Urine by Screen method"
+     },
+     {
+      "code": "14388-3",
+      "display": "Amylase [Enzymatic activity/volume] in Synovial fluid"
+     },
+     {
+      "code": "14389-1",
+      "display": "Amylase [Enzymatic activity/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "14394-1",
+      "display": "Urea nitrogen [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "14396-6",
+      "display": "Urea nitrogen [Mass/volume] in Synovial fluid"
+     },
+     {
+      "code": "14398-2",
+      "display": "Creatinine [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "14399-0",
+      "display": "Creatinine [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "14401-4",
+      "display": "Creatinine [Mass/volume] in Synovial fluid"
+     },
+     {
+      "code": "14421-2",
+      "display": "Bilirubin.total [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "14422-0",
+      "display": "Bilirubin.total [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "14423-8",
+      "display": "Bilirubin.total [Mass/volume] in Synovial fluid"
+     },
+     {
+      "code": "14439-4",
+      "display": "Cholesterol [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "14441-0",
+      "display": "Cholesterol [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "14443-6",
+      "display": "Cholesterol [Mass/volume] in Synovial fluid"
+     },
+     {
+      "code": "14447-7",
+      "display": "Triglyceride [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "14449-3",
+      "display": "Triglyceride [Mass/volume] in Synovial fluid"
+     },
+     {
+      "code": "14725-6",
+      "display": "[Type] of Body fluid"
+     },
+     {
+      "code": "14803-1",
+      "display": "Lactate dehydrogenase [Enzymatic activity/volume] in Body fluid by Lactate to pyruvate reaction"
+     },
+     {
+      "code": "14887-4",
+      "display": "Primidone [Moles/volume] in Serum or Plasma"
+     },
+     {
+      "code": "14976-5",
+      "display": "Lecithin/Sphingomyelin [Ratio] in Amniotic fluid"
+     },
+     {
+      "code": "15067-2",
+      "display": "Follitropin [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "15082-1",
+      "display": "Methemoglobin [Mass/volume] in Blood"
+     },
+     {
+      "code": "15128-2",
+      "display": "Gamma globulin/Protein.total in Synovial fluid by Electrophoresis"
+     },
+     {
+      "code": "15155-5",
+      "display": "Calcium [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "15158-9",
+      "display": "Chloride [Moles/volume] in Stool"
+     },
+     {
+      "code": "15183-7",
+      "display": "IgG [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "15200-9",
+      "display": "Osmolality of Body fluid"
+     },
+     {
+      "code": "15202-5",
+      "display": "Potassium [Moles/volume] in Stool"
+     },
+     {
+      "code": "15207-4",
+      "display": "Sodium [Moles/volume] in Stool"
+     },
+     {
+      "code": "15210-8",
+      "display": "Thyroglobulin Ab [Presence] in Serum"
+     },
+     {
+      "code": "15212-4",
+      "display": "Lipase [Enzymatic activity/volume] in Body fluid"
+     },
+     {
+      "code": "16128-1",
+      "display": "Hepatitis C virus Ab [Presence] in Serum"
+     },
+     {
+      "code": "16137-2",
+      "display": "Centromere Ab [Presence] in Serum"
+     },
+     {
+      "code": "16459-0",
+      "display": "Bicarbonate [Moles/volume] in Body fluid"
+     },
+     {
+      "code": "16460-8",
+      "display": "Bicarbonate [Moles/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "1656-8",
+      "display": "11-Deoxycorticosterone [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "1666-7",
+      "display": "17-Hydroxycorticosteroids [Mass/volume] in Urine"
+     },
+     {
+      "code": "16692-6",
+      "display": "Cryptococcus sp Ag [Presence] in Body fluid"
+     },
+     {
+      "code": "16695-9",
+      "display": "Cobalamin (Vitamin B12) [Mass/volume] in Blood"
+     },
+     {
       "code": "16825-2",
       "display": "Epstein Barr virus nuclear IgG Ab [Presence] in Body fluid"
+     },
+     {
+      "code": "16853-4",
+      "display": "Fat [Mass] in Stool"
+     },
+     {
+      "code": "16933-4",
+      "display": "Hepatitis B virus core Ab [Presence] in Serum"
+     },
+     {
+      "code": "16935-9",
+      "display": "Hepatitis B virus surface Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "17100-9",
+      "display": "CD103 cells/cells in Blood"
+     },
+     {
+      "code": "1711-1",
+      "display": "Acid phosphatase [Enzymatic activity/volume] in Blood"
+     },
+     {
+      "code": "1714-5",
+      "display": "Prostatic acid phosphatase [Enzymatic activity/volume] in Serum"
+     },
+     {
+      "code": "17172-8",
+      "display": "CD52 cells/cells in Blood"
+     },
+     {
+      "code": "17183-5",
+      "display": "CD64 cells/cells in Blood"
+     },
+     {
+      "code": "17220-5",
+      "display": "FMC7 cells/cells in Blood"
+     },
+     {
+      "code": "1724-4",
+      "display": "Adenosine diphosphate [Mass/volume] in Serum"
+     },
+     {
+      "code": "17351-8",
+      "display": "Neutrophil cytoplasmic Ab [Presence] in Serum"
+     },
+     {
+      "code": "1746-7",
+      "display": "Albumin [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "1747-5",
+      "display": "Albumin [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "1748-3",
+      "display": "Albumin [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "1749-1",
+      "display": "Albumin [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "1752-5",
+      "display": "Albumin [Mass/volume] in Synovial fluid"
+     },
+     {
+      "code": "1754-1",
+      "display": "Albumin [Mass/volume] in Urine"
+     },
+     {
+      "code": "1762-4",
+      "display": "Aldosterone [Mass/volume] in Blood"
+     },
+     {
+      "code": "17784-0",
+      "display": "Parasite identified in Blood by Light microscopy"
+     },
+     {
+      "code": "17809-5",
+      "display": "Hematocrit [Volume Fraction] of Urine by calculation"
+     },
+     {
+      "code": "17814-5",
+      "display": "Alpha 2 globulin/Protein.total in Body fluid by Electrophoresis"
+     },
+     {
+      "code": "17818-6",
+      "display": "Gamma globulin/Protein.total in Body fluid by Electrophoresis"
+     },
+     {
+      "code": "17822-8",
+      "display": "CD3+CD4+ (T4 helper) cells/cells in Body fluid"
+     },
+     {
+      "code": "17823-6",
+      "display": "CD45 (Lymphs) cells/cells in Body fluid"
+     },
+     {
+      "code": "17824-4",
+      "display": "CD3+CD8+ (T8 suppressor) cells/cells in Body fluid"
+     },
+     {
+      "code": "17828-5",
+      "display": "CD16 cells/cells in Body fluid"
+     },
+     {
+      "code": "17829-3",
+      "display": "CD19 cells/cells in Body fluid"
+     },
+     {
+      "code": "1783-0",
+      "display": "Alkaline phosphatase [Enzymatic activity/volume] in Blood"
+     },
+     {
+      "code": "17842-6",
+      "display": "Cancer Ag 27-29 [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "17862-4",
+      "display": "Calcium [Mass/volume] in Urine"
      },
      {
       "code": "17928-3",
@@ -70,6 +766,50 @@
      {
       "code": "17934-1",
       "display": "Bacteria identified in Blood by Anaerobe culture"
+     },
+     {
+      "code": "1795-4",
+      "display": "Amylase [Enzymatic activity/volume] in Body fluid"
+     },
+     {
+      "code": "1796-2",
+      "display": "Amylase [Enzymatic activity/volume] in Pleural fluid"
+     },
+     {
+      "code": "1797-0",
+      "display": "Amylase [Enzymatic activity/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "1799-6",
+      "display": "Amylase [Enzymatic activity/volume] in Urine"
+     },
+     {
+      "code": "18182-6",
+      "display": "Osmolality of Serum or Plasma by calculated by sum of electrolytes"
+     },
+     {
+      "code": "1825-9",
+      "display": "Alpha 1 antitrypsin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "18266-7",
+      "display": "CD3+CD4+ (T4 helper) cells/CD3+CD8+ (T8 suppressor cells) cells [# Ratio] in Body fluid"
+     },
+     {
+      "code": "18268-3",
+      "display": "CD16+CD56+ cells/cells in Body fluid"
+     },
+     {
+      "code": "18286-5",
+      "display": "Donath Landsteiner Ab [Presence] in Blood"
+     },
+     {
+      "code": "1832-5",
+      "display": "Alpha-1-Fetoprotein [Mass/volume] in Amniotic fluid"
+     },
+     {
+      "code": "1834-1",
+      "display": "Alpha-1-Fetoprotein [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "18482-0",
@@ -172,28 +912,300 @@
       "display": "Vancomycin [Susceptibility]"
      },
      {
+      "code": "19124-7",
+      "display": "Magnesium [Mass/volume] in Urine"
+     },
+     {
+      "code": "19141-1",
+      "display": "Propoxyphene [Presence] in Urine"
+     },
+     {
       "code": "19162-7",
       "display": "Varicella zoster virus IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "1920-8",
+      "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+     },
+     {
+      "code": "19270-8",
+      "display": "Barbiturates [Presence] in Urine by Screen method"
+     },
+     {
+      "code": "19295-5",
+      "display": "Opiates [Presence] in Urine by Screen method"
+     },
+     {
+      "code": "19343-3",
+      "display": "Amphetamine [Presence] in Urine by Screen method"
+     },
+     {
+      "code": "1952-1",
+      "display": "Beta-2-Microglobulin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "1959-6",
+      "display": "Bicarbonate [Moles/volume] in Blood"
+     },
+     {
+      "code": "1964-6",
+      "display": "Bicarbonate [Moles/volume] in Urine"
+     },
+     {
+      "code": "1965-3",
+      "display": "Bile [Presence] in Stool"
+     },
+     {
+      "code": "19670-9",
+      "display": "Phenothiazines [Presence] in Urine by Screen method"
+     },
+     {
+      "code": "1968-7",
+      "display": "Bilirubin.direct [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "1970-3",
+      "display": "Bilirubin.delta [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "1971-1",
+      "display": "Bilirubin.indirect [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "1973-7",
+      "display": "Bilirubin.total [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "1974-5",
+      "display": "Bilirubin.total [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "1976-0",
+      "display": "Bilirubin.total [Presence] in Stool"
+     },
+     {
+      "code": "1977-8",
+      "display": "Bilirubin.total [Presence] in Urine"
+     },
+     {
+      "code": "1990-1",
+      "display": "Cholecalciferol (Vit D3) [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "1994-3",
+      "display": "Calcium.ionized [Moles/volume] in Blood"
+     },
+     {
+      "code": "1996-8",
+      "display": "Calcium [Moles/volume] in Blood"
+     },
+     {
+      "code": "2023-0",
+      "display": "Carbon dioxide [Partial pressure] in Body fluid"
+     },
+     {
+      "code": "2039-6",
+      "display": "Carcinoembryonic Ag [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "20402-4",
+      "display": "CD16+CD56+ cells [#/volume] in Blood"
+     },
+     {
+      "code": "20416-4",
+      "display": "Hepatitis C virus RNA [#/volume] (viral load) in Serum or Plasma by NAA with probe detection"
+     },
+     {
+      "code": "20450-3",
+      "display": "Alpha-1-Fetoprotein [Multiple of the median] in Serum or Plasma"
+     },
+     {
+      "code": "20464-4",
+      "display": "Toxoplasma gondii Ab [Interpretation] in Serum"
+     },
+     {
+      "code": "20465-1",
+      "display": "Choriogonadotropin [Multiple of the median] in Serum or Plasma"
+     },
+     {
+      "code": "20466-9",
+      "display": "Estriol (E3).unconjugated [Multiple of the median] in Serum or Plasma"
+     },
+     {
+      "code": "20476-8",
+      "display": "CD1a cells/cells in Blood"
      },
      {
       "code": "20479-2",
       "display": "Measles virus IgG Ab [Presence] in Serum"
      },
      {
+      "code": "20482-6",
+      "display": "Granulocytes [#/volume] in Blood by Automated count"
+     },
+     {
       "code": "20508-8",
       "display": "Reagin Ab [Units/volume] in Serum or Plasma by RPR"
+     },
+     {
+      "code": "20510-4",
+      "display": "Lipoprotein fractions [Interpretation] in Serum or Plasma by Electrophoresis"
+     },
+     {
+      "code": "2052-9",
+      "display": "Carotene [Mass/volume] in Blood"
+     },
+     {
+      "code": "20565-8",
+      "display": "Carbon dioxide, total [Moles/volume] in Blood"
+     },
+     {
+      "code": "2057-8",
+      "display": "Catecholamines [Mass/volume] in Urine"
+     },
+     {
+      "code": "20570-8",
+      "display": "Hematocrit [Volume Fraction] of Blood by calculation"
+     },
+     {
+      "code": "20575-7",
+      "display": "Hepatitis A virus Ab [Presence] in Serum"
+     },
+     {
+      "code": "20578-1",
+      "display": "Vancomycin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "20598-9",
+      "display": "CD3 cells [#/volume] in Specimen"
      },
      {
       "code": "20629-2",
       "display": "levoFLOXacin [Susceptibility]"
      },
      {
+      "code": "2069-3",
+      "display": "Chloride [Moles/volume] in Blood"
+     },
+     {
+      "code": "2070-1",
+      "display": "Chloride [Moles/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "2078-4",
+      "display": "Chloride [Moles/volume] in Urine"
+     },
+     {
+      "code": "2084-2",
+      "display": "Cholesterol esters [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2085-9",
+      "display": "Cholesterol in HDL [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2089-1",
+      "display": "Cholesterol in LDL [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2093-3",
+      "display": "Cholesterol [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "21000-5",
+      "display": "Erythrocyte distribution width [Entitic volume] by Automated count"
+     },
+     {
       "code": "21008-8",
       "display": "HIV 1 RNA [#/volume] (viral load) in Serum or Plasma by Probe"
      },
      {
+      "code": "21012-0",
+      "display": "CD15 cells [#/volume] in Blood"
+     },
+     {
+      "code": "21013-8",
+      "display": "CD22 cells [#/volume] in Blood"
+     },
+     {
+      "code": "21015-3",
+      "display": "CD33 cells [#/volume] in Blood"
+     },
+     {
+      "code": "21016-1",
+      "display": "CD41 cells [#/volume] in Blood"
+     },
+     {
+      "code": "21018-7",
+      "display": "CD61 cells [#/volume] in Blood"
+     },
+     {
+      "code": "21023-7",
+      "display": "Neutrophil cytoplasmic Ab [Titer] in Serum"
+     },
+     {
+      "code": "21032-8",
+      "display": "Thrombin time [Interpretation] in Blood by Coagulation assay"
+     },
+     {
+      "code": "2106-3",
+      "display": "Choriogonadotropin [Presence] in Urine"
+     },
+     {
+      "code": "21176-3",
+      "display": "Cerebroventricular lining cells [Presence] in Cerebral spinal fluid by Light microscopy"
+     },
+     {
+      "code": "2118-8",
+      "display": "Choriogonadotropin [Presence] in Serum or Plasma"
+     },
+     {
+      "code": "2120-4",
+      "display": "Chylomicrons [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2132-9",
+      "display": "Cobalamin (Vitamin B12) [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "21377-7",
+      "display": "Magnesium [Mass/volume] in Blood"
+     },
+     {
+      "code": "2141-0",
+      "display": "Corticotropin [Mass/volume] in Plasma"
+     },
+     {
+      "code": "21416-3",
+      "display": "Neisseria gonorrhoeae DNA [Presence] in Urine by NAA with probe detection"
+     },
+     {
+      "code": "2143-6",
+      "display": "Cortisol [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2144-4",
+      "display": "Cortisol [Mass/volume] in Urine"
+     },
+     {
+      "code": "2161-8",
+      "display": "Creatinine [Mass/volume] in Urine"
+     },
+     {
       "code": "21613-5",
       "display": "Chlamydia trachomatis DNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "2162-6",
+      "display": "Creatinine [Mass/time] in 24 hour Urine"
+     },
+     {
+      "code": "2191-5",
+      "display": "Dehydroepiandrosterone sulfate (DHEA-S) [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "22064-0",
+      "display": "Alpha 1 globulin [Mass/volume] in Urine"
      },
      {
       "code": "22128-3",
@@ -208,12 +1220,44 @@
       "display": "Cytomegalovirus IgG Ab [Presence] in Serum or Plasma"
      },
      {
+      "code": "2230-1",
+      "display": "EPINEPHrine [Mass/volume] in Plasma"
+     },
+     {
       "code": "22310-7",
       "display": "Helicobacter pylori Ab [Presence] in Serum"
      },
      {
+      "code": "22314-9",
+      "display": "Hepatitis A virus IgM Ab [Presence] in Serum"
+     },
+     {
+      "code": "22320-6",
+      "display": "Hepatitis B virus e Ab [Presence] in Serum"
+     },
+     {
+      "code": "22322-2",
+      "display": "Hepatitis B virus surface Ab [Presence] in Serum"
+     },
+     {
       "code": "22415-4",
       "display": "Mumps virus IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "2243-4",
+      "display": "Estradiol (E2) [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "22496-4",
+      "display": "Rubella virus Ab [Presence] in Serum"
+     },
+     {
+      "code": "2250-9",
+      "display": "Estriol (E3).unconjugated [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2252-5",
+      "display": "Estriol (E3) [Mass/volume] in Urine"
      },
      {
       "code": "22568-0",
@@ -224,8 +1268,160 @@
       "display": "Toxoplasma gondii IgG Ab [Presence] in Serum"
      },
      {
+      "code": "22585-4",
+      "display": "Treponema pallidum Ab [Units/volume] in Blood"
+     },
+     {
+      "code": "2271-5",
+      "display": "Fat [Mass/time] in 72 hour Stool"
+     },
+     {
+      "code": "2272-3",
+      "display": "Fat [Presence] in Urine"
+     },
+     {
+      "code": "2282-2",
+      "display": "Folate [Mass/volume] in Blood"
+     },
+     {
+      "code": "2284-8",
+      "display": "Folate [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2324-2",
+      "display": "Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2333-3",
+      "display": "Gastrin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2339-0",
+      "display": "Glucose [Mass/volume] in Blood"
+     },
+     {
+      "code": "2342-4",
+      "display": "Glucose [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "2344-0",
+      "display": "Glucose [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "2346-5",
+      "display": "Glucose [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "2347-3",
+      "display": "Glucose [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "2348-1",
+      "display": "Glucose [Mass/volume] in Synovial fluid"
+     },
+     {
+      "code": "2349-9",
+      "display": "Glucose [Presence] in Urine"
+     },
+     {
+      "code": "23869-1",
+      "display": "Hepatitis B virus DNA [Mass/volume] (viral load) in Serum by Probe"
+     },
+     {
+      "code": "23883-2",
+      "display": "Inhibin A [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "24108-3",
+      "display": "Cancer Ag 19-9 [Units/volume] in Serum or Plasma"
+     },
+     {
       "code": "24111-7",
       "display": "Neisseria gonorrhoeae DNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "24351-9",
+      "display": "Protein electrophoresis panel - Serum or Plasma"
+     },
+     {
+      "code": "24373-3",
+      "display": "Ferritin [Mass/volume] in Blood"
+     },
+     {
+      "code": "24374-1",
+      "display": "Platelet associated Ab [Presence] in Blood"
+     },
+     {
+      "code": "24467-3",
+      "display": "CD3+CD4+ (T4 helper) cells [#/volume] in Blood"
+     },
+     {
+      "code": "2458-8",
+      "display": "IgA [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2462-0",
+      "display": "IgE [Mass/volume] in Serum"
+     },
+     {
+      "code": "2464-6",
+      "display": "IgG [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "2465-3",
+      "display": "IgG [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2472-9",
+      "display": "IgM [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2498-4",
+      "display": "Iron [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2500-7",
+      "display": "Iron binding capacity [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2502-3",
+      "display": "Iron saturation [Mass Fraction] in Serum or Plasma"
+     },
+     {
+      "code": "2504-9",
+      "display": "Iron [Mass/volume] in Urine"
+     },
+     {
+      "code": "25158-7",
+      "display": "Oval fat bodies (globules) [Presence] in Urine sediment by Light microscopy"
+     },
+     {
+      "code": "25303-9",
+      "display": "Alpha 1 antitrypsin [Mass/mass] in Stool"
+     },
+     {
+      "code": "2537-9",
+      "display": "Lactate dehydrogenase 1 [Enzymatic activity/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2540-3",
+      "display": "Lactate dehydrogenase 2 [Enzymatic activity/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2543-7",
+      "display": "Lactate dehydrogenase 3 [Enzymatic activity/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2546-0",
+      "display": "Lactate dehydrogenase 4 [Enzymatic activity/volume] in Serum or Plasma"
+     },
+     {
+      "code": "25461-5",
+      "display": "Lithium, [Moles/volume] in Blood"
+     },
+     {
+      "code": "2549-4",
+      "display": "Lactate dehydrogenase 5 [Enzymatic activity/volume] in Serum or Plasma"
      },
      {
       "code": "25514-1",
@@ -236,24 +1432,392 @@
       "display": "Toxoplasma gondii IgM Ab [Presence] in Serum"
      },
      {
+      "code": "25700-6",
+      "display": "Immunofixation for Serum or Plasma"
+     },
+     {
+      "code": "2612-0",
+      "display": "Methemalbumin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2641-9",
+      "display": "Myoglobin [Mass/volume] in Urine"
+     },
+     {
+      "code": "26444-0",
+      "display": "Basophils [#/volume] in Blood"
+     },
+     {
+      "code": "26449-9",
+      "display": "Eosinophils [#/volume] in Blood"
+     },
+     {
+      "code": "26453-1",
+      "display": "Erythrocytes [#/volume] in Blood"
+     },
+     {
+      "code": "26454-9",
+      "display": "Erythrocytes [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "26455-6",
+      "display": "Erythrocytes [#/volume] in Body fluid"
+     },
+     {
+      "code": "26456-4",
+      "display": "Erythrocytes [#/volume] in Pleural fluid"
+     },
+     {
+      "code": "26457-2",
+      "display": "Erythrocytes [#/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "26458-0",
+      "display": "Erythrocytes [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "26459-8",
+      "display": "Nucleated erythrocytes [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "26460-6",
+      "display": "Nucleated erythrocytes [#/volume] in Body fluid"
+     },
+     {
+      "code": "26462-2",
+      "display": "Large unstained cells [#/volume] in Blood"
+     },
+     {
+      "code": "26464-8",
+      "display": "Leukocytes [#/volume] in Blood"
+     },
+     {
+      "code": "26474-7",
+      "display": "Lymphocytes [#/volume] in Blood"
+     },
+     {
+      "code": "26475-4",
+      "display": "Lymphocytes [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "26476-2",
+      "display": "Lymphocytes [#/volume] in Body fluid"
+     },
+     {
+      "code": "26478-8",
+      "display": "Lymphocytes/Leukocytes in Blood"
+     },
+     {
+      "code": "26479-6",
+      "display": "Lymphocytes/Leukocytes in Cerebral spinal fluid"
+     },
+     {
+      "code": "26484-6",
+      "display": "Monocytes [#/volume] in Blood"
+     },
+     {
+      "code": "26498-6",
+      "display": "Myelocytes/Leukocytes in Blood"
+     },
+     {
+      "code": "26499-4",
+      "display": "Neutrophils [#/volume] in Blood"
+     },
+     {
+      "code": "26500-9",
+      "display": "Neutrophils [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "26501-7",
+      "display": "Neutrophils [#/volume] in Pleural fluid"
+     },
+     {
+      "code": "26502-5",
+      "display": "Neutrophils [#/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "26504-1",
+      "display": "Neutrophils [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "26507-4",
+      "display": "Band form neutrophils [#/volume] in Blood"
+     },
+     {
+      "code": "26523-1",
+      "display": "Promyelocytes [#/volume] in Blood"
+     },
+     {
+      "code": "26728-6",
+      "display": "CD38 cells [#/volume] in Blood"
+     },
+     {
+      "code": "2690-6",
+      "display": "Osmolality of Pleural fluid"
+     },
+     {
+      "code": "2691-4",
+      "display": "Osmolality of Peritoneal fluid"
+     },
+     {
+      "code": "2692-2",
+      "display": "Osmolality of Serum or Plasma"
+     },
+     {
+      "code": "2693-0",
+      "display": "Osmolality of Stool"
+     },
+     {
+      "code": "2695-5",
+      "display": "Osmolality of Urine"
+     },
+     {
+      "code": "27011-6",
+      "display": "CD14 cells [#/volume] in Blood"
+     },
+     {
+      "code": "2706-0",
+      "display": "Oxygen [Partial pressure] in Body fluid"
+     },
+     {
+      "code": "27071-0",
+      "display": "CD45 (Lymphs) cells [#/volume] in Blood"
+     },
+     {
       "code": "2708-6",
       "display": "Oxygen saturation in Arterial blood"
+     },
+     {
+      "code": "2731-8",
+      "display": "Parathyrin.intact [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "27353-2",
+      "display": "Glucose mean value [Mass/volume] in Blood Estimated from glycated hemoglobin"
+     },
+     {
+      "code": "2748-2",
+      "display": "pH of Body fluid"
+     },
+     {
+      "code": "2756-5",
+      "display": "pH of Urine"
+     },
+     {
+      "code": "2766-4",
+      "display": "Phenylalanine [Mass/volume] in Urine"
+     },
+     {
+      "code": "2774-8",
+      "display": "Phosphate [Mass/volume] in Blood"
+     },
+     {
+      "code": "2778-9",
+      "display": "Phosphate [Mass/volume] in Urine"
+     },
+     {
+      "code": "2784-7",
+      "display": "Phosphatidylcholine.saturated [Mass/volume] in Amniotic fluid"
+     },
+     {
+      "code": "28009-9",
+      "display": "Volume of Urine"
+     },
+     {
+      "code": "2809-2",
+      "display": "Porphobilinogen [Presence] in Urine"
+     },
+     {
+      "code": "2819-1",
+      "display": "Potassium [Moles/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "2821-7",
+      "display": "Potassium [Moles/volume] in Body fluid"
+     },
+     {
+      "code": "2828-2",
+      "display": "Potassium [Moles/volume] in Urine"
+     },
+     {
+      "code": "2839-9",
+      "display": "Progesterone [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2842-3",
+      "display": "Prolactin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "28540-3",
+      "display": "MCHC [Entitic Mass/volume] in Red Blood Cells"
+     },
+     {
+      "code": "28542-9",
+      "display": "Platelet [Entitic mean volume] in Blood"
      },
      {
       "code": "28549-4",
       "display": "Yersinia sp identified in Stool by Organism specific culture"
      },
      {
+      "code": "2857-1",
+      "display": "Prostate specific Ag [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2864-7",
+      "display": "Alpha 1 globulin [Mass/volume] in Cerebral spinal fluid by Electrophoresis"
+     },
+     {
+      "code": "2866-2",
+      "display": "Alpha 1 globulin [Mass/volume] in Synovial fluid by Electrophoresis"
+     },
+     {
+      "code": "2867-0",
+      "display": "Alpha 2 globulin [Mass/volume] in Cerebral spinal fluid by Electrophoresis"
+     },
+     {
+      "code": "2869-6",
+      "display": "Alpha 2 globulin [Mass/volume] in Synovial fluid by Electrophoresis"
+     },
+     {
+      "code": "2872-0",
+      "display": "Beta globulin [Mass/volume] in Synovial fluid by Electrophoresis"
+     },
+     {
+      "code": "2880-3",
+      "display": "Protein [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "2881-1",
+      "display": "Protein [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "2882-9",
+      "display": "Protein [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "2883-7",
+      "display": "Protein [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "2885-2",
+      "display": "Protein [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2886-0",
+      "display": "Protein [Mass/volume] in Synovial fluid"
+     },
+     {
+      "code": "2888-6",
+      "display": "Protein [Mass/volume] in Urine"
+     },
+     {
+      "code": "2889-4",
+      "display": "Protein [Mass/time] in 24 hour Urine"
+     },
+     {
+      "code": "2903-3",
+      "display": "Pyrimidine-5'-Nucleotidase [Enzymatic activity/volume] in Blood"
+     },
+     {
+      "code": "29247-4",
+      "display": "Sirolimus [Mass/volume] in Blood"
+     },
+     {
       "code": "29258-1",
       "display": "Linezolid [Susceptibility]"
+     },
+     {
+      "code": "29263-1",
+      "display": "Fibrin degradation products [Presence] in Blood by Agglutination"
+     },
+     {
+      "code": "29340-7",
+      "display": "CD71 cells [#/volume] in Blood"
+     },
+     {
+      "code": "29350-6",
+      "display": "CD42 cells [#/volume] in Blood"
+     },
+     {
+      "code": "29365-4",
+      "display": "Magnesium [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "2942-1",
+      "display": "Sex hormone binding globulin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2947-0",
+      "display": "Sodium [Moles/volume] in Blood"
+     },
+     {
+      "code": "2948-8",
+      "display": "Sodium [Moles/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "2950-4",
+      "display": "Sodium [Moles/volume] in Body fluid"
      },
      {
       "code": "29533-7",
       "display": "Cryptococcus sp Ag [Presence] in Specimen"
      },
      {
+      "code": "2955-3",
+      "display": "Sodium [Moles/volume] in Urine"
+     },
+     {
+      "code": "29587-3",
+      "display": "Toxicology panel - Blood"
+     },
+     {
+      "code": "29604-6",
+      "display": "Cytomegalovirus DNA [#/volume] (viral load) in Blood by NAA with probe detection"
+     },
+     {
+      "code": "2963-7",
+      "display": "Somatotropin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2965-2",
+      "display": "Specific gravity of Urine"
+     },
+     {
       "code": "29770-5",
       "display": "Karyotype [Identifier] in Blood or Tissue Nominal"
+     },
+     {
+      "code": "2986-8",
+      "display": "Testosterone [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2991-8",
+      "display": "Testosterone Free [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "29953-7",
+      "display": "Nuclear Ab [Titer] in Serum"
+     },
+     {
+      "code": "30077-2",
+      "display": "Amylase/Creatinine renal clearance [Ratio] in Urine and Serum or Plasma"
+     },
+     {
+      "code": "3013-0",
+      "display": "Thyroglobulin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "3015-5",
+      "display": "Thyrotropin [Units/volume] in Blood"
+     },
+     {
+      "code": "3020-5",
+      "display": "Thyroxine binding globulin [Mass/volume] in Blood"
+     },
+     {
+      "code": "3025-4",
+      "display": "Thyroxine (T4) [Mass/volume] in Blood"
      },
      {
       "code": "30325-5",
@@ -264,20 +1828,196 @@
       "display": "Epstein Barr virus capsid IgG Ab [Presence] in Serum"
      },
      {
+      "code": "3034-6",
+      "display": "Transferrin [Mass/volume] in Serum or Plasma"
+     },
+     {
       "code": "30340-4",
       "display": "Epstein Barr virus capsid IgM Ab [Presence] in Serum"
+     },
+     {
+      "code": "30341-2",
+      "display": "Erythrocyte [Sedimentation Rate] in Blood"
+     },
+     {
+      "code": "30376-8",
+      "display": "Blasts [#/volume] in Blood"
+     },
+     {
+      "code": "30383-4",
+      "display": "Epithelial cells [#/volume] in Urine"
+     },
+     {
+      "code": "30391-7",
+      "display": "Erythrocytes [#/volume] in Urine"
+     },
+     {
+      "code": "30392-5",
+      "display": "Nucleated erythrocytes [#/volume] in Blood"
+     },
+     {
+      "code": "30398-2",
+      "display": "Hematocrit [Volume Fraction] of Cerebral spinal fluid by calculation"
+     },
+     {
+      "code": "3040-3",
+      "display": "Lipase [Enzymatic activity/volume] in Serum or Plasma"
+     },
+     {
+      "code": "30400-6",
+      "display": "Hypochromia [Presence] in Blood"
+     },
+     {
+      "code": "30404-8",
+      "display": "Leukocytes [#/volume] in Stool"
+     },
+     {
+      "code": "30405-5",
+      "display": "Leukocytes [#/volume] in Urine"
+     },
+     {
+      "code": "30406-3",
+      "display": "Leukocytes other [#/volume] in Blood"
+     },
+     {
+      "code": "30411-3",
+      "display": "Leukocytes Left Shift [Presence] in Blood"
+     },
+     {
+      "code": "30412-1",
+      "display": "Abnormal lymphocytes [#/volume] in Blood"
+     },
+     {
+      "code": "30424-6",
+      "display": "Macrocytes [Presence] in Blood"
+     },
+     {
+      "code": "30428-7",
+      "display": "MCV [Entitic mean volume] in Red Blood Cells"
+     },
+     {
+      "code": "3043-7",
+      "display": "Triglyceride [Mass/volume] in Blood"
+     },
+     {
+      "code": "30433-7",
+      "display": "Metamyelocytes [#/volume] in Blood"
+     },
+     {
+      "code": "30434-5",
+      "display": "Microcytes [Presence] in Blood"
+     },
+     {
+      "code": "30435-2",
+      "display": "Monocytes [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "30449-3",
+      "display": "Neutrophils.hypersegmented [#/volume] in Blood"
+     },
+     {
+      "code": "30458-4",
+      "display": "Plasma cells [#/volume] in Blood"
+     },
+     {
+      "code": "3052-8",
+      "display": "Triiodothyronine (T3).reverse [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "3053-6",
+      "display": "Triiodothyronine (T3) [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "30562-3",
+      "display": "Surfactant/Albumin [Mass Ratio] in Amniotic fluid"
+     },
+     {
+      "code": "3084-1",
+      "display": "Urate [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "3085-8",
+      "display": "Urate [Mass/volume] in Synovial fluid"
+     },
+     {
+      "code": "3086-6",
+      "display": "Urate [Mass/volume] in Urine"
+     },
+     {
+      "code": "3093-2",
+      "display": "Urea nitrogen [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "3095-7",
+      "display": "Urea nitrogen [Mass/volume] in Urine"
+     },
+     {
+      "code": "31074-8",
+      "display": "CD30 cells [#/volume] in Blood"
+     },
+     {
+      "code": "31123-3",
+      "display": "CD25 cells [#/volume] in Blood"
      },
      {
       "code": "31147-2",
       "display": "Reagin Ab [Titer] in Serum by RPR"
      },
      {
+      "code": "31157-1",
+      "display": "Carboxyhemoglobin [Mass/volume] in Blood"
+     },
+     {
+      "code": "31204-1",
+      "display": "Hepatitis B virus core IgM Ab [Presence] in Serum"
+     },
+     {
+      "code": "3128-6",
+      "display": "Viscosity of Serum"
+     },
+     {
+      "code": "3134-4",
+      "display": "Xylose [Mass/volume] in Blood"
+     },
+     {
+      "code": "3135-1",
+      "display": "Xylose [Mass/volume] in Urine"
+     },
+     {
       "code": "31418-7",
       "display": "Heterophile Ab [Presence] in Serum"
      },
      {
+      "code": "31627-3",
+      "display": "Smith extractable nuclear Ab [Presence] in Serum"
+     },
+     {
+      "code": "3173-2",
+      "display": "aPTT in Blood by Coagulation assay"
+     },
+     {
+      "code": "31788-3",
+      "display": "Cryptococcus sp Ag [Presence] in Cerebral spinal fluid"
+     },
+     {
       "code": "31792-5",
       "display": "Cryptococcus sp Ag [Units/volume] in Specimen"
+     },
+     {
+      "code": "3181-5",
+      "display": "Cardiolipin IgG Ab [Units/volume] in Serum by Immunoassay"
+     },
+     {
+      "code": "3182-3",
+      "display": "Cardiolipin IgM Ab [Units/volume] in Serum by Immunoassay"
+     },
+     {
+      "code": "31844-4",
+      "display": "Hepatitis B virus e Ag [Presence] in Serum"
+     },
+     {
+      "code": "3185-6",
+      "display": "Coagulation factor IX inhibitor [Units/volume] in Platelet poor plasma by Coagulation assay"
      },
      {
       "code": "31859-2",
@@ -288,6 +2028,10 @@
       "display": "Influenza virus B Ag [Presence] in Specimen"
      },
      {
+      "code": "3192-2",
+      "display": "Coagulation factor V activity [Units/volume] in Platelet poor plasma by Coagulation assay"
+     },
+     {
       "code": "31950-9",
       "display": "Respiratory syncytial virus Ag [Presence] in Specimen"
      },
@@ -296,60 +2040,792 @@
       "display": "Varicella zoster virus Ag [Presence] in Specimen"
      },
      {
+      "code": "3204-5",
+      "display": "Coagulation factor VIII inhibitor [Units/volume] in Platelet poor plasma by Coagulation assay"
+     },
+     {
+      "code": "3208-6",
+      "display": "Coagulation factor VIII activity [Units/volume] in Platelet poor plasma by Coagulation assay"
+     },
+     {
+      "code": "3213-6",
+      "display": "Coagulation factor VIII Ag [Units/volume] in Platelet poor plasma by Immunoassay"
+     },
+     {
+      "code": "3214-4",
+      "display": "Coagulation factor VIII Ag [Units/volume] in Platelet poor plasma by Immunoelectrophoresis"
+     },
+     {
+      "code": "3215-1",
+      "display": "Coagulation factor VIII Ag [Mass/volume] in Platelet poor plasma by Immunoassay"
+     },
+     {
+      "code": "32215-6",
+      "display": "Thyroxine (T4) free index in Serum or Plasma by calculation"
+     },
+     {
+      "code": "32294-1",
+      "display": "Albumin/Creatinine [Ratio] in Urine"
+     },
+     {
       "code": "32355-0",
       "display": "Bacteria identified in Specimen by Respiratory culture"
+     },
+     {
+      "code": "32493-9",
+      "display": "CD25 cells/cells in Bone marrow"
+     },
+     {
+      "code": "32497-0",
+      "display": "CD57 cells/cells in Bone marrow"
+     },
+     {
+      "code": "32507-6",
+      "display": "CD14 cells/cells in Bone marrow"
+     },
+     {
+      "code": "32524-1",
+      "display": "CD19 cells [#/volume] in Bone marrow"
+     },
+     {
+      "code": "32526-6",
+      "display": "CD2 cells [#/volume] in Bone marrow"
+     },
+     {
+      "code": "32528-2",
+      "display": "CD3 cells [#/volume] in Bone marrow"
+     },
+     {
+      "code": "32533-2",
+      "display": "CD3+CD4+ (T4 helper) cells/cells in Bone marrow"
+     },
+     {
+      "code": "32534-0",
+      "display": "CD3+CD8+ (T8 suppressor) cells [#/volume] in Bone marrow"
+     },
+     {
+      "code": "32536-5",
+      "display": "CD3-CD16+CD56+ (Natural killer) cells [#/volume] in Bone marrow"
+     },
+     {
+      "code": "3255-7",
+      "display": "Fibrinogen [Mass/volume] in Platelet poor plasma by Coagulation assay"
+     },
+     {
+      "code": "32621-5",
+      "display": "HLA-DR [Presence]"
+     },
+     {
+      "code": "32664-5",
+      "display": "Ammonia [Mass/volume] in Blood"
+     },
+     {
+      "code": "32693-4",
+      "display": "Lactate [Moles/volume] in Blood"
+     },
+     {
+      "code": "32700-7",
+      "display": "Microscopic observation [Identifier] in Blood by Malaria smear"
+     },
+     {
+      "code": "32709-8",
+      "display": "Neutrophils [#/volume] in Body fluid"
+     },
+     {
+      "code": "32710-6",
+      "display": "Nitrite [Presence] in Urine"
+     },
+     {
+      "code": "32722-1",
+      "display": "Lipase [Enzymatic activity/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "32724-7",
+      "display": "Trichomonas sp [Presence] in Urine by Light microscopy"
      },
      {
       "code": "32781-7",
       "display": "Legionella sp Ag [Presence] in Urine"
      },
      {
+      "code": "32855-9",
+      "display": "CD62 cells/cells in Specimen"
+     },
+     {
       "code": "33006-8",
       "display": "Cytomegalovirus DNA [#/volume] (viral load) in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "33202-3",
+      "display": "CD11c cells/cells in Bone marrow"
+     },
+     {
+      "code": "33233-8",
+      "display": "Urate crystals [Presence] in Urine by Computer assisted method"
+     },
+     {
+      "code": "33236-1",
+      "display": "Bilirubin crystals [Presence] in Urine by Computer assisted method"
+     },
+     {
+      "code": "33238-7",
+      "display": "Triple phosphate crystals [Presence] in Urine by Computer assisted method"
+     },
+     {
+      "code": "33241-1",
+      "display": "Calcium carbonate crystals [Presence] in Urine by Computer assisted method"
+     },
+     {
+      "code": "33250-2",
+      "display": "CD55 cells [Presence] in Blood"
+     },
+     {
+      "code": "33366-6",
+      "display": "Chloride [Moles/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "33558-8",
+      "display": "Creatinine renal clearance in Urine and Serum or Plasma collected for unspecified duration"
+     },
+     {
+      "code": "33664-4",
+      "display": "CD59 cells [Presence] in Blood"
+     },
+     {
+      "code": "3376-1",
+      "display": "Barbiturates [Presence] in Serum, Plasma or Blood"
+     },
+     {
+      "code": "33805-3",
+      "display": "Fructosamine [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "33903-6",
+      "display": "Ketones [Presence] in Urine"
+     },
+     {
+      "code": "33944-0",
+      "display": "Lambda light chains.free [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "3397-7",
+      "display": "Cocaine [Presence] in Urine"
+     },
+     {
+      "code": "34188-3",
+      "display": "Nucleated erythrocytes [Presence] in Blood"
+     },
+     {
+      "code": "34222-0",
+      "display": "17-Ketosteroids [Moles/volume] in Urine"
+     },
+     {
+      "code": "34235-2",
+      "display": "Amylase/Creatinine [Ratio] in Urine"
+     },
+     {
+      "code": "3426-4",
+      "display": "Tetrahydrocannabinol [Presence] in Urine"
+     },
+     {
+      "code": "3432-2",
+      "display": "carBAMazepine [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "34366-5",
+      "display": "Protein/Creatinine [Ratio] in Urine"
+     },
+     {
+      "code": "34440-8",
+      "display": "Immunoelectrophoresis for Urine"
      },
      {
       "code": "34468-9",
       "display": "Clostridioides difficile toxin A+B [Presence] in Stool by Immunoassay"
      },
      {
+      "code": "34487-9",
+      "display": "Influenza virus A RNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "34539-7",
+      "display": "Protein electrophoresis panel - Urine"
+     },
+     {
+      "code": "34571-0",
+      "display": "aPTT.lupus sensitive (LA screen)"
+     },
+     {
+      "code": "34670-0",
+      "display": "Choriogonadotropin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "34712-0",
+      "display": "Clostridioides difficile [Presence] in Stool"
+     },
+     {
       "code": "34713-8",
       "display": "Clostridioides difficile toxin A+B [Presence] in Stool"
+     },
+     {
+      "code": "34714-6",
+      "display": "INR in Blood by Coagulation assay"
+     },
+     {
+      "code": "34942-3",
+      "display": "Borrelia burgdorferi IgG and IgM panel - Serum"
+     },
+     {
+      "code": "34958-9",
+      "display": "Eosinophils [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "34995-1",
+      "display": "Promyelocytes [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "34996-9",
+      "display": "Promyelocytes [#/volume] in Body fluid"
+     },
+     {
+      "code": "35013-2",
+      "display": "Band form neutrophils [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "35014-0",
+      "display": "Band form neutrophils [#/volume] in Body fluid"
+     },
+     {
+      "code": "35015-7",
+      "display": "Band form neutrophils [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "35016-5",
+      "display": "Myelocytes [#/volume] in Body fluid"
+     },
+     {
+      "code": "35017-3",
+      "display": "Myelocytes [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "35026-4",
+      "display": "Monocytes [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "35027-2",
+      "display": "Monocytes [#/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "35028-0",
+      "display": "Monocytes [#/volume] in Pleural fluid"
+     },
+     {
+      "code": "35030-6",
+      "display": "Metamyelocytes [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "35031-4",
+      "display": "Metamyelocytes [#/volume] in Body fluid"
+     },
+     {
+      "code": "35032-2",
+      "display": "Mesothelial cells [#/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "35033-0",
+      "display": "Mesothelial cells [#/volume] in Pleural fluid"
+     },
+     {
+      "code": "35034-8",
+      "display": "Mesothelial cells [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "35035-5",
+      "display": "Mesothelial cells [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "35036-3",
+      "display": "Macrophages [#/volume] in Body fluid"
+     },
+     {
+      "code": "35037-1",
+      "display": "Macrophages [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "35038-9",
+      "display": "Macrophages [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "35041-3",
+      "display": "Variant lymphocytes [#/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "35042-1",
+      "display": "Variant lymphocytes [#/volume] in Pleural fluid"
+     },
+     {
+      "code": "35048-8",
+      "display": "Abnormal lymphocytes [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "35049-6",
+      "display": "Lymphocytes [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "35056-1",
+      "display": "Histiocytes [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "35057-9",
+      "display": "Histiocytes [#/volume] in Body fluid"
+     },
+     {
+      "code": "35060-3",
+      "display": "Eosinophils [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "35061-1",
+      "display": "Eosinophils [#/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "35062-9",
+      "display": "Eosinophils [#/volume] in Pleural fluid"
+     },
+     {
+      "code": "35063-7",
+      "display": "Eosinophils [#/volume] in Body fluid"
+     },
+     {
+      "code": "35064-5",
+      "display": "Blasts [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "35065-2",
+      "display": "Blasts [#/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "35066-0",
+      "display": "Blasts [#/volume] in Pleural fluid"
+     },
+     {
+      "code": "35067-8",
+      "display": "Blasts [#/volume] in Body fluid"
+     },
+     {
+      "code": "35068-6",
+      "display": "Blasts [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "35071-0",
+      "display": "Basophils [#/volume] in Body fluid"
+     },
+     {
+      "code": "35072-8",
+      "display": "Basophils [#/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "35073-6",
+      "display": "Basophils [#/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "35074-4",
+      "display": "Basophils [#/volume] in Synovial fluid"
+     },
+     {
+      "code": "35075-1",
+      "display": "Basophils [#/volume] in Pleural fluid"
+     },
+     {
+      "code": "35076-9",
+      "display": "Monocytes [#/volume] in Body fluid"
+     },
+     {
+      "code": "35079-3",
+      "display": "Mesothelial cells [#/volume] in Body fluid"
+     },
+     {
+      "code": "35097-5",
+      "display": "Lymphocytes [#/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "35098-3",
+      "display": "Lymphocytes [#/volume] in Pleural fluid"
+     },
+     {
+      "code": "35168-4",
+      "display": "Arachidonate (C20:4w6) [Moles/volume] in Serum or Plasma"
+     },
+     {
+      "code": "3520-4",
+      "display": "cycloSPORINE [Mass/volume] in Blood"
+     },
+     {
+      "code": "35285-6",
+      "display": "Tissue transglutaminase IgA Ab [Presence] in Serum"
+     },
+     {
+      "code": "35477-9",
+      "display": "Ciliated columnar lining cells/Leukocytes [# Ratio] in Body fluid"
+     },
+     {
+      "code": "35492-8",
+      "display": "Methicillin resistant Staphylococcus aureus (MRSA) DNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "35570-1",
+      "display": "Renin [Mass/volume] in Plasma"
+     },
+     {
+      "code": "3559-2",
+      "display": "Digitoxin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "35640-2",
+      "display": "CD5 cells/cells in Bone marrow"
+     },
+     {
+      "code": "35641-0",
+      "display": "CD7 cells/cells in Bone marrow"
+     },
+     {
+      "code": "35651-9",
+      "display": "Synovial lining cells/cells in Synovial fluid"
+     },
+     {
+      "code": "35668-3",
+      "display": "Gentamicin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "35669-1",
+      "display": "Amikacin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "35670-9",
+      "display": "Tobramycin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "3576-6",
+      "display": "Disopyramide [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "35789-7",
       "display": "DAPTOmycin [Susceptibility]"
      },
      {
+      "code": "3714-3",
+      "display": "Lidocaine [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "3774-7",
+      "display": "Methadone [Mass/volume] in Urine"
+     },
+     {
+      "code": "3793-7",
+      "display": "Methotrexate [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "38352-1",
+      "display": "Interleukin 2 receptor [Units/volume] in Specimen"
+     },
+     {
       "code": "38354-7",
       "display": "Bartonella sp identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "38483-4",
+      "display": "Creatinine [Mass/volume] in Blood"
+     },
+     {
+      "code": "38892-6",
+      "display": "Anisocytosis [Presence] in Blood"
+     },
+     {
+      "code": "3968-5",
+      "display": "Phenytoin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "3969-3",
+      "display": "Phenytoin Free [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "3982-6",
+      "display": "Procainamide [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "4014-7",
+      "display": "quiNIDine [Mass/volume] in Blood"
+     },
+     {
+      "code": "4042-8",
+      "display": "Sulfonamide [Mass/volume] in Urine"
+     },
+     {
+      "code": "4047-7",
+      "display": "Theophylline [Mass/volume] in Blood"
+     },
+     {
+      "code": "40516-7",
+      "display": "Histiocytes/cells in Peritoneal fluid by Manual count"
+     },
+     {
+      "code": "40519-1",
+      "display": "Histiocytes/cells in Pleural fluid by Manual count"
+     },
+     {
+      "code": "40522-5",
+      "display": "Plasma cells/Leukocytes in Pleural fluid by Manual count"
+     },
+     {
+      "code": "40665-2",
+      "display": "Reticulocytes [#/volume] in Blood by Manual count"
+     },
+     {
+      "code": "40685-0",
+      "display": "Immunoelectrophoresis for Cerebral spinal fluid"
+     },
+     {
+      "code": "40720-5",
+      "display": "Hemoglobin C [Presence] in Blood"
+     },
+     {
+      "code": "40740-3",
+      "display": "Osmotic fragility of Red Blood Cells--Incubated"
+     },
+     {
+      "code": "4086-5",
+      "display": "Valproate [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "40982-1",
+      "display": "Influenza virus B RNA [Presence] in Specimen by NAA with probe detection"
      },
      {
       "code": "41122-3",
       "display": "Treponema pallidum Ab [Units/volume] in Specimen"
      },
      {
+      "code": "41276-7",
+      "display": "Anion gap in Blood by calculation"
+     },
+     {
       "code": "41488-8",
       "display": "Cryptosporidium sp [Presence] in Specimen by Acid fast stain"
+     },
+     {
+      "code": "41498-7",
+      "display": "HIV 1 RNA [#/volume] (viral load) in Cerebral spinal fluid by NAA with probe detection"
+     },
+     {
+      "code": "41867-3",
+      "display": "von Willebrand factor (vWf) Ag [Units/volume] in Platelet poor plasma"
+     },
+     {
+      "code": "41995-2",
+      "display": "Hemoglobin A1c [Mass/volume] in Blood"
+     },
+     {
+      "code": "42620-5",
+      "display": "Terminal deoxyribonucleotidyl transferase cells/cells in Bone marrow"
+     },
+     {
+      "code": "42719-5",
+      "display": "Bilirubin.total [Mass/volume] in Blood"
+     },
+     {
+      "code": "42725-2",
+      "display": "Bromide [Mass/volume] in Blood"
+     },
+     {
+      "code": "42757-5",
+      "display": "Troponin I.cardiac [Mass/volume] in Blood"
+     },
+     {
+      "code": "42864-9",
+      "display": "CD103 cells/cells in Body fluid"
+     },
+     {
+      "code": "42866-4",
+      "display": "CD117 cells/cells in Bone marrow"
+     },
+     {
+      "code": "42870-6",
+      "display": "CD138 cells/cells in Bone marrow"
+     },
+     {
+      "code": "42871-4",
+      "display": "CD138 cells/cells in Body fluid"
+     },
+     {
+      "code": "42875-5",
+      "display": "CD22 cells/cells in Body fluid"
+     },
+     {
+      "code": "42885-4",
+      "display": "CD52 cells/cells in Body fluid"
+     },
+     {
+      "code": "42886-2",
+      "display": "CD52 cells/cells in Bone marrow"
      },
      {
       "code": "43365-6",
       "display": "Nocardia sp identified in Specimen by Organism specific culture"
      },
      {
+      "code": "43935-6",
+      "display": "CD55 cells/cells in Body fluid"
+     },
+     {
+      "code": "43938-0",
+      "display": "CD59 cells/cells in Body fluid"
+     },
+     {
+      "code": "43950-5",
+      "display": "CD2 cells [#/volume] in Body fluid"
+     },
+     {
+      "code": "43995-0",
+      "display": "Trisomy 21 risk [Likelihood] in Fetus"
+     },
+     {
+      "code": "4477-6",
+      "display": "Complement C1 esterase inhibitor [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "4478-4",
+      "display": "Complement C1q [Mass/volume] in Serum or Plasma"
+     },
+     {
       "code": "44797-9",
       "display": "Brucella sp [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "44834-0",
+      "display": "Acid phosphatase tartrate resistant [Presence] in Bone marrow"
+     },
+     {
+      "code": "4484-2",
+      "display": "Complement C2 [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "4485-9",
+      "display": "Complement C3 [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "4498-2",
+      "display": "Complement C4 [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "4505-4",
+      "display": "Complement C5 [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "4507-0",
+      "display": "Complement C6 [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "45155-9",
+      "display": "Heparin induced platelet Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "4532-8",
+      "display": "Complement total hemolytic CH50 [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "4542-7",
+      "display": "Haptoglobin [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "4544-3",
+      "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+     },
+     {
+      "code": "4546-8",
+      "display": "Hemoglobin A/Hemoglobin.total in Blood"
+     },
+     {
+      "code": "4547-6",
+      "display": "Hemoglobin A1/Hemoglobin.total in Blood"
+     },
+     {
+      "code": "4548-4",
+      "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+     },
+     {
+      "code": "4551-8",
+      "display": "Hemoglobin A2/Hemoglobin.total in Blood"
+     },
+     {
+      "code": "4579-9",
+      "display": "Hemoglobin F [Presence] in Blood"
+     },
+     {
+      "code": "4621-9",
+      "display": "Hemoglobin S [Presence] in Blood"
+     },
+     {
+      "code": "46237-4",
+      "display": "Kappa lymphocytes/Lymphocytes in Bone marrow"
+     },
+     {
+      "code": "4644-1",
+      "display": "Hemosiderin [Presence] in Urine"
+     },
+     {
+      "code": "4659-9",
+      "display": "Leukocyte phosphatase [Enzymatic activity/volume] in Leukocytes"
+     },
+     {
+      "code": "4667-2",
+      "display": "Osmotic fragility of Red Blood Cells"
+     },
+     {
+      "code": "4683-9",
+      "display": "Sulfhemoglobin [Mass/volume] in Blood"
+     },
+     {
+      "code": "46976-7",
+      "display": "Benzodiazepines [Presence] in Serum or Plasma by Screen method"
+     },
+     {
+      "code": "47418-9",
+      "display": "Lipase [Enzymatic activity/volume] in Pleural fluid"
+     },
+     {
+      "code": "47610-1",
+      "display": "Creatinine [Moles/volume] in Stool"
+     },
+     {
+      "code": "47739-8",
+      "display": "Protein [Mass/volume] in Stool"
      },
      {
       "code": "48062-4",
       "display": "Giardia lamblia+Cryptosporidium parvum Ag [Presence] in Stool by Immunofluorescence"
      },
      {
+      "code": "48068-1",
+      "display": "Heinz bodies [Presence] in Blood"
+     },
+     {
       "code": "48174-7",
       "display": "Mycobacterium tuberculosis complex rRNA [Presence] in Specimen by NAA with probe detection"
      },
      {
+      "code": "48425-3",
+      "display": "Troponin T.cardiac [Mass/volume] in Blood"
+     },
+     {
       "code": "48575-5",
       "display": "Hepatitis C virus genotype [Identifier] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "49008-6",
+      "display": "Clot Retraction [Volume Fraction] in Blood"
+     },
+     {
+      "code": "49136-5",
+      "display": "Creatine kinase.MB/Creatine kinase.total [Ratio] in Serum or Plasma"
      },
      {
       "code": "49362-7",
@@ -360,12 +2836,264 @@
       "display": "Hepatitis C virus RNA [#/volume] (viral load) in Specimen by NAA with probe detection"
      },
      {
+      "code": "49502-8",
+      "display": "Glucose-6-Phosphate dehydrogenase [Entitic Catalytic Activity] in Blood"
+     },
+     {
+      "code": "49551-5",
+      "display": "Creatine kinase.MB [Mass/volume] in Blood"
+     },
+     {
+      "code": "49564-8",
+      "display": "Epstein Barr virus band pattern [Interpretation] in Specimen by Immunoblot Narrative"
+     },
+     {
+      "code": "49761-0",
+      "display": "Alpha-1-Fetoprotein [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "49762-8",
+      "display": "Alpha-1-Fetoprotein [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "49765-1",
+      "display": "Calcium [Mass/volume] in Blood"
+     },
+     {
+      "code": "49778-4",
+      "display": "Immune complex [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "49789-1",
+      "display": "Potassium [Moles/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "49790-9",
+      "display": "Sodium [Moles/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "50196-5",
+      "display": "Occult blood panel - Stool"
+     },
+     {
+      "code": "50223-7",
+      "display": "Cholesterol crystals [Presence] in Urine by Computer assisted method"
+     },
+     {
+      "code": "50226-0",
+      "display": "Erythrocyte clumps [Presence] in Urine by Computer assisted method"
+     },
+     {
       "code": "50687-3",
       "display": "Plasmodium sp Ag [Presence] in Blood"
      },
      {
+      "code": "50957-0",
+      "display": "Manual differential performed [Presence] in Blood"
+     },
+     {
+      "code": "50972-9",
+      "display": "CD138 cells [#/volume] in Blood"
+     },
+     {
+      "code": "50975-2",
+      "display": "TCR alpha beta cells [#/volume] in Blood"
+     },
+     {
+      "code": "50976-0",
+      "display": "TCR gamma delta cells [#/volume] in Blood"
+     },
+     {
+      "code": "51184-0",
+      "display": "CD117 Ag [Presence] in Blood by Immune stain"
+     },
+     {
+      "code": "51186-5",
+      "display": "CD15 Ag [Presence] in Bone marrow by Immune stain"
+     },
+     {
+      "code": "51187-3",
+      "display": "CD15 Ag [Presence] in Blood by Immune stain"
+     },
+     {
+      "code": "51188-1",
+      "display": "CD15 Ag [Presence] in Specimen by Immune stain"
+     },
+     {
+      "code": "51197-2",
+      "display": "Iron [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "51216-0",
+      "display": "CD10 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51217-8",
+      "display": "CD10 cells/cells in Body fluid"
+     },
+     {
+      "code": "51221-0",
+      "display": "CD103 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51232-7",
+      "display": "CD11c cells/cells in Body fluid"
+     },
+     {
+      "code": "51237-6",
+      "display": "CD13 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51238-4",
+      "display": "CD13 cells/cells in Body fluid"
+     },
+     {
+      "code": "51248-3",
+      "display": "CD14 cells/cells in Body fluid"
+     },
+     {
+      "code": "51268-1",
+      "display": "CD23 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51269-9",
+      "display": "CD23 cells/cells in Body fluid"
+     },
+     {
+      "code": "51290-5",
+      "display": "CD30 cells/cells in Body fluid"
+     },
+     {
+      "code": "51293-9",
+      "display": "CD33 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51294-7",
+      "display": "CD33 cells/cells in Body fluid"
+     },
+     {
+      "code": "51298-8",
+      "display": "CD38 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51299-6",
+      "display": "CD38 cells/cells in Body fluid"
+     },
+     {
+      "code": "51319-2",
+      "display": "CD41 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51320-0",
+      "display": "CD41 cells/cells in Body fluid"
+     },
+     {
+      "code": "51323-4",
+      "display": "CD42 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51324-2",
+      "display": "CD42 cells/cells in Body fluid"
+     },
+     {
+      "code": "51340-8",
+      "display": "CD45 (Lymphs) cells/cells in Bone marrow"
+     },
+     {
+      "code": "51344-0",
+      "display": "CD55 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51358-0",
+      "display": "CD59 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51361-4",
+      "display": "CD61 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51362-2",
+      "display": "CD61 cells/cells in Body fluid"
+     },
+     {
+      "code": "51365-5",
+      "display": "CD64 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51366-3",
+      "display": "CD64 cells/cells in Body fluid"
+     },
+     {
+      "code": "51380-4",
+      "display": "HLA-DR+ cells/cells in Bone marrow"
+     },
+     {
+      "code": "51381-2",
+      "display": "HLA-DR+ cells/cells in Body fluid"
+     },
+     {
+      "code": "51584-1",
+      "display": "Immature granulocytes [#/volume] in Blood"
+     },
+     {
+      "code": "51595-7",
+      "display": "Glucose [Presence] in Stool"
+     },
+     {
+      "code": "51631-0",
+      "display": "Platelet distribution width [Ratio] in Blood"
+     },
+     {
       "code": "51724-3",
       "display": "Cefuroxime [Susceptibility]"
+     },
+     {
+      "code": "5195-3",
+      "display": "Hepatitis B virus surface Ag [Presence] in Serum"
+     },
+     {
+      "code": "51980-1",
+      "display": "Glomerular basement membrane Ab [Mass/volume] in Serum"
+     },
+     {
+      "code": "5225-8",
+      "display": "HIV 2 Ab [Presence] in Serum by Immunoblot"
+     },
+     {
+      "code": "52873-7",
+      "display": "CD1a cells/cells in Body fluid"
+     },
+     {
+      "code": "52874-5",
+      "display": "CD1a cells/cells in Bone marrow"
+     },
+     {
+      "code": "53222-6",
+      "display": "Coagulation factor XI activity [Units/volume] in Platelet poor plasma by Coagulation assay"
+     },
+     {
+      "code": "53275-4",
+      "display": "Transitional cells [#/volume] in Urine by Computer assisted method"
+     },
+     {
+      "code": "53612-8",
+      "display": "Urate [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "53627-6",
+      "display": "Chloride [Moles/volume] in Pleural fluid"
+     },
+     {
+      "code": "53833-0",
+      "display": "Myoglobin [Mass/volume] in Blood"
+     },
+     {
+      "code": "53857-9",
+      "display": "Hemoglobin F [Mass/volume] in Blood"
+     },
+     {
+      "code": "54218-3",
+      "display": "CD3+CD4+ (T4 helper) cells/CD3+CD8+ (T8 suppressor cells) cells [# Ratio] in Blood"
      },
      {
       "code": "54245-6",
@@ -376,20 +3104,144 @@
       "display": "Mycobacterium sp identified in Specimen by Organism specific culture"
      },
      {
+      "code": "54346-2",
+      "display": "Albumin [Mass/volume] in Stool"
+     },
+     {
+      "code": "54360-3",
+      "display": "Bicarbonate [Moles/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "54361-1",
+      "display": "Bicarbonate [Moles/volume] in Pleural fluid"
+     },
+     {
+      "code": "54370-2",
+      "display": "Chloride [Mass/volume] in Body fluid"
+     },
+     {
+      "code": "54901-4",
+      "display": "IgG [Mass/volume] in Peritoneal fluid"
+     },
+     {
       "code": "551-2",
       "display": "Brucella sp identified in Blood by Organism specific culture"
+     },
+     {
+      "code": "5565-7",
+      "display": "Terminal deoxyribonucleotidyl transferase [Units/volume] in Leukocytes"
+     },
+     {
+      "code": "55793-4",
+      "display": "Nucleated cells [#/volume] in Body fluid"
+     },
+     {
+      "code": "55850-2",
+      "display": "Cobalamin (Vitamin B12) [Mass/volume] in Urine"
      },
      {
       "code": "560-3",
       "display": "Chlamydia sp identified in Specimen by Organism specific culture"
      },
      {
+      "code": "5632-5",
+      "display": "Copper [Mass/volume] in Urine"
+     },
+     {
+      "code": "5640-8",
+      "display": "Ethanol [Mass/volume] in Blood"
+     },
+     {
+      "code": "5645-7",
+      "display": "Ethanol [Mass/volume] in Urine"
+     },
+     {
+      "code": "5646-5",
+      "display": "Ethylene glycol [Mass/volume] in Serum, Plasma or Blood"
+     },
+     {
       "code": "56839-4",
       "display": "Acuity assessment Narrative"
      },
      {
+      "code": "57400-4",
+      "display": "CD34 cells/cells in Bone marrow"
+     },
+     {
+      "code": "57409-5",
+      "display": "CD3+TCR alpha beta+ cells/cells in Body fluid"
+     },
+     {
+      "code": "57418-6",
+      "display": "CD20 cells/cells in Body fluid"
+     },
+     {
+      "code": "57423-6",
+      "display": "CD5 cells/cells in Body fluid"
+     },
+     {
+      "code": "57424-4",
+      "display": "CD56 cells/cells in Body fluid"
+     },
+     {
+      "code": "57425-1",
+      "display": "CD7 cells/cells in Body fluid"
+     },
+     {
+      "code": "57426-9",
+      "display": "CD71 cells/cells in Body fluid"
+     },
+     {
+      "code": "57429-3",
+      "display": "CD3+TCR gamma delta+ cells/cells in Body fluid"
+     },
+     {
+      "code": "57439-2",
+      "display": "Terminal deoxyribonucleotidyl transferase cells [Presence] in Body fluid"
+     },
+     {
+      "code": "5764-6",
+      "display": "Zinc [Mass/volume] in Urine"
+     },
+     {
+      "code": "5766-1",
+      "display": "Ammonium urate crystals [Presence] in Urine sediment by Light microscopy"
+     },
+     {
+      "code": "5767-9",
+      "display": "Appearance of Urine"
+     },
+     {
+      "code": "5775-2",
+      "display": "Calcium phosphate crystals [Presence] in Urine sediment by Light microscopy"
+     },
+     {
+      "code": "57776-7",
+      "display": "Gliadin peptide IgA and IgG panel - Serum"
+     },
+     {
+      "code": "5778-6",
+      "display": "Color of Urine"
+     },
+     {
+      "code": "5781-0",
+      "display": "Crystals [type] in Synovial fluid by Light microscopy"
+     },
+     {
+      "code": "57838-5",
+      "display": "dRVVT W excess phospholipid (LA confirm)"
+     },
+     {
+      "code": "57916-9",
+      "display": "Borrelia burgdorferi C6 Ab [Presence] in Serum"
+     },
+     {
       "code": "580-1",
       "display": "Fungus identified in Specimen by Culture"
+     },
+     {
+      "code": "5809-9",
+      "display": "Reducing substances [Presence] in Urine"
      },
      {
       "code": "5838-8",
@@ -400,6 +3252,10 @@
       "display": "Enterovirus identified in Specimen by Organism specific culture"
      },
      {
+      "code": "58470-6",
+      "display": "Nucleated cells [#/volume] in Cerebral spinal fluid"
+     },
+     {
       "code": "5859-4",
       "display": "Herpes simplex virus identified in Specimen by Organism specific culture"
      },
@@ -408,16 +3264,72 @@
       "display": "Streptococcus agalactiae [Presence] in Specimen by Organism specific culture"
      },
      {
+      "code": "5892-5",
+      "display": "Protein S [Units/volume] in Platelet poor plasma by Coagulation assay"
+     },
+     {
+      "code": "58939-0",
+      "display": "CD34 cells [#/volume] in Body fluid"
+     },
+     {
+      "code": "5901-4",
+      "display": "Prothrombin time (PT) in Platelet poor plasma from Control by Coagulation assay"
+     },
+     {
+      "code": "59185-9",
+      "display": "Hemoglobin H inclusion bodies [Presence] in Blood"
+     },
+     {
       "code": "593-4",
       "display": "Legionella sp identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "5942-8",
+      "display": "Reptilase time in Platelet poor plasma from Control by Coagulation assay"
+     },
+     {
+      "code": "5955-0",
+      "display": "Thrombin time in Platelet poor plasma from Control by Coagulation assay"
      },
      {
       "code": "596-7",
       "display": "Bacteria identified in Amniotic fluid by Culture"
      },
      {
+      "code": "5964-2",
+      "display": "Prothrombin time (PT) in Blood by Coagulation assay"
+     },
+     {
+      "code": "5965-9",
+      "display": "Plasmin inhibitor [Units/volume] in Platelet poor plasma by Chromogenic method"
+     },
+     {
+      "code": "59826-8",
+      "display": "Creatinine [Moles/volume] in Blood"
+     },
+     {
+      "code": "60042-9",
+      "display": "N-acetylprocainamide [Mass/volume] in Blood"
+     },
+     {
+      "code": "60048-6",
+      "display": "Acetaminophen [Mass/volume] in Blood"
+     },
+     {
       "code": "601-5",
       "display": "Fungus identified in Blood by Culture"
+     },
+     {
+      "code": "60201-1",
+      "display": "Salicylates [Mass/volume] in Blood"
+     },
+     {
+      "code": "60469-4",
+      "display": "Urate [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "60474-4",
+      "display": "Reticulocytes [#/volume] in Blood by Automated count"
      },
      {
       "code": "60541-0",
@@ -448,12 +3360,32 @@
       "display": "Chromosome analysis panel - Amniotic fluid by G-banded"
      },
      {
+      "code": "62438-7",
+      "display": "Nucleated erythrocytes [#/volume] in Synovial fluid by Automated count"
+     },
+     {
       "code": "625-4",
       "display": "Bacteria identified in Stool by Culture"
      },
      {
+      "code": "6298-4",
+      "display": "Potassium [Moles/volume] in Blood"
+     },
+     {
+      "code": "6299-2",
+      "display": "Urea nitrogen [Mass/volume] in Blood"
+     },
+     {
       "code": "630-4",
       "display": "Bacteria identified in Urine by Culture"
+     },
+     {
+      "code": "6303-2",
+      "display": "dRVVT in Platelet poor plasma by Coagulation assay"
+     },
+     {
+      "code": "6357-8",
+      "display": "Chlamydia trachomatis DNA [Presence] in Urine by NAA with probe detection"
      },
      {
       "code": "64412-0",
@@ -466,6 +3398,10 @@
      {
       "code": "653-6",
       "display": "Microscopic observation [Identifier] in Urine by Gram stain"
+     },
+     {
+      "code": "65343-6",
+      "display": "Oxygen [Partial pressure] saturation adjusted to 0.5 in Blood"
      },
      {
       "code": "655-1",
@@ -488,6 +3424,46 @@
       "display": "Enterobius vermicularis [Presence] in Anal by Pinworm exam"
      },
      {
+      "code": "6683-7",
+      "display": "Reptilase time"
+     },
+     {
+      "code": "66878-0",
+      "display": "Skin Ab [Titer] in Serum"
+     },
+     {
+      "code": "6742-1",
+      "display": "Erythrocyte [Morphology] in Blood"
+     },
+     {
+      "code": "68409-2",
+      "display": "Macrophages [#/volume] in Peritoneal fluid by Manual count"
+     },
+     {
+      "code": "68410-0",
+      "display": "Macrophages [#/volume] in Pleural fluid by Manual count"
+     },
+     {
+      "code": "6874-2",
+      "display": "Calcium [Mass/time] in 24 hour Urine"
+     },
+     {
+      "code": "6888-2",
+      "display": "Alpha 2 globulin [Mass/volume] in Urine"
+     },
+     {
+      "code": "6924-5",
+      "display": "Gliadin IgA Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "69420-8",
+      "display": "Heterophile Ab [Presence] in Blood by Immunoassay"
+     },
+     {
+      "code": "69739-1",
+      "display": "Drugs of abuse panel - Urine by Screen method"
+     },
+     {
       "code": "698-1",
       "display": "Neisseria gonorrhoeae [Presence] in Specimen by Organism specific culture"
      },
@@ -496,16 +3472,188 @@
       "display": "Pneumocystis jirovecii Ag [Presence] in Specimen by Immunofluorescence"
      },
      {
+      "code": "70051-8",
+      "display": "Multiple inhalant allergen IgE Ab [Presence] in Serum by Immunoassay"
+     },
+     {
+      "code": "70168-0",
+      "display": "Hematocrit [Volume Fraction] of Synovial fluid by calculation"
+     },
+     {
+      "code": "70169-8",
+      "display": "Hematocrit [Volume Fraction] of Pleural fluid by calculation"
+     },
+     {
+      "code": "70170-6",
+      "display": "Nucleated erythrocytes/cells in Pleural fluid"
+     },
+     {
+      "code": "70171-4",
+      "display": "Nucleated erythrocytes/cells in Peritoneal fluid"
+     },
+     {
+      "code": "711-2",
+      "display": "Eosinophils [#/volume] in Blood by Automated count"
+     },
+     {
+      "code": "71425-3",
+      "display": "Natriuretic peptide.B prohormone N-Terminal [Mass/volume] in Blood by Immunoassay"
+     },
+     {
+      "code": "71426-1",
+      "display": "C reactive protein [Mass/volume] in Blood by High sensitivity method"
+     },
+     {
+      "code": "71775-1",
+      "display": "Mycobacterium tuberculosis stimulated gamma interferon panel - Blood"
+     },
+     {
+      "code": "718-7",
+      "display": "Hemoglobin [Mass/volume] in Blood"
+     },
+     {
+      "code": "71853-6",
+      "display": "Oxygen saturation [Pure mass fraction] in Blood"
+     },
+     {
+      "code": "72337-9",
+      "display": "Protein S Ag [Units/volume] in Platelet poor plasma by Immunoassay"
+     },
+     {
+      "code": "72496-3",
+      "display": "DNA double strand [Mass/volume] in Specimen"
+     },
+     {
+      "code": "725-2",
+      "display": "Hemoglobin [Presence] in Urine"
+     },
+     {
+      "code": "72695-0",
+      "display": "Erythrocyte enzyme panel - Red Blood Cells"
+     },
+     {
+      "code": "731-0",
+      "display": "Lymphocytes [#/volume] in Blood by Automated count"
+     },
+     {
+      "code": "73557-1",
+      "display": "Thyroxine (T4) free [Mass/volume] in Cord blood"
+     },
+     {
       "code": "73704-9",
       "display": "Fluid output.nasogastric tube Measured"
+     },
+     {
+      "code": "73906-0",
+      "display": "HIV 1+2 IgG Ab [Presence] in Blood by Rapid immunoassay"
+     },
+     {
+      "code": "73978-9",
+      "display": "von Willebrand factor (vWf).activity [Units/volume] in Platelet poor plasma by Immunoassay"
+     },
+     {
+      "code": "73984-7",
+      "display": "Hemoglobin.other [Type] in Blood"
+     },
+     {
+      "code": "742-7",
+      "display": "Monocytes [#/volume] in Blood by Automated count"
      },
      {
       "code": "74759-2",
       "display": "Yeast [Presence] in Specimen by Gram stain"
      },
      {
+      "code": "75056-2",
+      "display": "Pyridoxal phosphate [Moles/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "751-8",
+      "display": "Neutrophils [#/volume] in Blood by Automated count"
+     },
+     {
+      "code": "75407-7",
+      "display": "Hepatitis B virus e Ab [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
+     },
+     {
+      "code": "75408-5",
+      "display": "Hepatitis B virus e Ag [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
+     },
+     {
+      "code": "76350-8",
+      "display": "Other cells/Leukocytes in Body fluid"
+     },
+     {
+      "code": "76625-3",
+      "display": "Alanine aminotransferase [Enzymatic activity/volume] in Blood"
+     },
+     {
+      "code": "76630-3",
+      "display": "Amylase [Enzymatic activity/volume] in Blood"
+     },
+     {
+      "code": "76631-1",
+      "display": "Albumin [Mass/volume] in Blood by Bromocresol purple (BCP) dye binding method"
+     },
+     {
+      "code": "76686-5",
+      "display": "Reticulocyte cellular hemoglobin distribution width [Entitic mass] in Blood by calculation"
+     },
+     {
+      "code": "77147-7",
+      "display": "Glomerular filtration rate [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)/1.73 sq M"
+     },
+     {
+      "code": "77621-1",
+      "display": "Natriuretic peptide.B prohormone N-Terminal [Mass/volume] in Pleural fluid by Immunoassay"
+     },
+     {
+      "code": "777-3",
+      "display": "Platelets [#/volume] in Blood by Automated count"
+     },
+     {
       "code": "77924-9",
       "display": "Enterobacteriaceae.carbapenem resistant [Presence] in Anorectal or stool specimen by Organism specific culture"
+     },
+     {
+      "code": "7793-3",
+      "display": "Howell-Jolly bodies [Presence] in Blood by Light microscopy"
+     },
+     {
+      "code": "7795-8",
+      "display": "Pappenheimer bodies [Presence] in Blood by Light microscopy"
+     },
+     {
+      "code": "7797-4",
+      "display": "Rouleaux [Presence] in Blood by Light microscopy"
+     },
+     {
+      "code": "78355-5",
+      "display": "Abnormal lymphocytes [Presence] in Blood by Manual count"
+     },
+     {
+      "code": "7852-7",
+      "display": "Cytomegalovirus IgG Ab [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "7853-5",
+      "display": "Cytomegalovirus IgM Ab [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "78766-3",
+      "display": "fentaNYL [Mass/volume] in Urine -- adjusted for lean body mass+urine creatinine"
+     },
+     {
+      "code": "7883-2",
+      "display": "Epstein Barr virus nuclear IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "7886-5",
+      "display": "Epstein Barr virus capsid IgM Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "78989-1",
+      "display": "Cryoglobulin [Mass/volume] in Serum"
      },
      {
       "code": "79549-2",
@@ -528,8 +3676,116 @@
       "display": "Fluid output enteral tube [Volume] Measured"
      },
      {
+      "code": "7962-4",
+      "display": "Measles virus IgG Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "7966-5",
+      "display": "Mumps virus IgG Ab [Units/volume] in Serum"
+     },
+     {
       "code": "8014-3",
       "display": "Rubella virus IgG Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "80146-4",
+      "display": "Tricyclic antidepressants [Presence] in Blood by Screen method"
+     },
+     {
+      "code": "8039-0",
+      "display": "Toxoplasma gondii IgG Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "8040-8",
+      "display": "Toxoplasma gondii IgM Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "8047-3",
+      "display": "Varicella zoster virus IgG Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "8061-4",
+      "display": "Nuclear Ab [Presence] in Serum"
+     },
+     {
+      "code": "8091-1",
+      "display": "Ribonucleoprotein extractable nuclear Ab [Presence] in Serum"
+     },
+     {
+      "code": "8093-7",
+      "display": "Sjogrens syndrome-A extractable nuclear Ab [Presence] in Serum"
+     },
+     {
+      "code": "8094-5",
+      "display": "Sjogrens syndrome-B extractable nuclear Ab [Presence] in Serum"
+     },
+     {
+      "code": "8099-4",
+      "display": "Thyroperoxidase Ab [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "8101-8",
+      "display": "CD3+CD8+ (T8 suppressor) cells/cells in Blood"
+     },
+     {
+      "code": "8109-1",
+      "display": "CD11c cells/cells in Blood"
+     },
+     {
+      "code": "8112-5",
+      "display": "CD3-CD16+CD56+ (Natural killer) cells/cells in Blood"
+     },
+     {
+      "code": "8115-8",
+      "display": "CD16 cells/cells in Blood"
+     },
+     {
+      "code": "8116-6",
+      "display": "CD19 cells [#/volume] in Blood"
+     },
+     {
+      "code": "8117-4",
+      "display": "CD19 cells/cells in Blood"
+     },
+     {
+      "code": "8119-0",
+      "display": "CD20 cells/cells in Blood"
+     },
+     {
+      "code": "8122-4",
+      "display": "CD3 cells [#/volume] in Blood"
+     },
+     {
+      "code": "8123-2",
+      "display": "CD3+CD4+ (T4 helper) cells/cells in Blood"
+     },
+     {
+      "code": "8124-0",
+      "display": "CD3 cells/cells in Blood"
+     },
+     {
+      "code": "8132-3",
+      "display": "CD5 cells/cells in Blood"
+     },
+     {
+      "code": "8133-1",
+      "display": "CD56 cells/cells in Blood"
+     },
+     {
+      "code": "8134-9",
+      "display": "CD57 cells/cells in Blood"
+     },
+     {
+      "code": "81423-6",
+      "display": "Microscopic observation [Identifier] in Bone marrow by Acetate esterase stain"
+     },
+     {
+      "code": "81426-9",
+      "display": "Microscopic observation [Identifier] in Venous blood by Acetate esterase stain"
+     },
+     {
+      "code": "8245-3",
+      "display": "Zinc [Mass/volume] in Blood"
      },
      {
       "code": "8310-5",
@@ -540,8 +3796,24 @@
       "display": "Blood pressure panel with all children optional"
      },
      {
+      "code": "86233-4",
+      "display": "HIV 1 Ab [Presence] in Serum, Plasma or Blood by Immunoblot"
+     },
+     {
       "code": "8661-1",
       "display": "Chief complaint - Reported"
+     },
+     {
+      "code": "87827-2",
+      "display": "Casts [Presence] in Urine"
+     },
+     {
+      "code": "87829-8",
+      "display": "Bacteria [Presence] in Urine"
+     },
+     {
+      "code": "87831-4",
+      "display": "Yeast [Presence] in Urine"
      },
      {
       "code": "87944-5",
@@ -556,8 +3828,48 @@
       "display": "Heart rate"
      },
      {
+      "code": "88698-6",
+      "display": "Protein electrophoresis panel - Body fluid"
+     },
+     {
       "code": "8884-9",
       "display": "Heart rate rhythm"
+     },
+     {
+      "code": "88967-5",
+      "display": "Leucine crystals [#/area] in Urine sediment"
+     },
+     {
+      "code": "88969-1",
+      "display": "Tyrosine crystals [#/area] in Urine sediment"
+     },
+     {
+      "code": "88970-9",
+      "display": "RBC casts [#/area] in Urine sediment"
+     },
+     {
+      "code": "88972-5",
+      "display": "Broad casts [#/area] in Urine sediment"
+     },
+     {
+      "code": "88975-8",
+      "display": "Fatty casts [#/area] in Urine sediment"
+     },
+     {
+      "code": "88976-6",
+      "display": "WBC casts [#/area] in Urine sediment"
+     },
+     {
+      "code": "88977-4",
+      "display": "Epithelial casts [#/area] in Urine sediment"
+     },
+     {
+      "code": "88979-0",
+      "display": "Mucus [Presence] in Urine sediment"
+     },
+     {
+      "code": "90044-9",
+      "display": "Epithelial cells.renal [Presence] in Urine sediment"
      },
      {
       "code": "9110-8",
@@ -588,12 +3900,20 @@
       "display": "Fluid output gastric tube"
      },
      {
+      "code": "91556-1",
+      "display": "Fibrin D-dimer [Mass/volume] in Blood by Immunoassay.DDU"
+     },
+     {
       "code": "9161-1",
       "display": "Fluid output miscellaneous Measured"
      },
      {
       "code": "9168-6",
       "display": "Fluid output pericardial drain"
+     },
+     {
+      "code": "91685-8",
+      "display": "Glutathione [Mass/volume] in Blood"
      },
      {
       "code": "9187-6",
@@ -616,8 +3936,76 @@
       "display": "Respiratory rate"
      },
      {
+      "code": "9425-0",
+      "display": "Acetone [Mass/volume] in Blood"
+     },
+     {
+      "code": "94312-6",
+      "display": "SARS-CoV-2 (COVID-19) N gene [Cycle Threshold #] in Specimen by Nucleic acid amplification using CDC primer-probe set N2"
+     },
+     {
+      "code": "94509-7",
+      "display": "SARS-related coronavirus E gene [Cycle Threshold #] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "94768-9",
+      "display": "SARS-CoV-2 (COVID-19) IgA Ab [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
+     },
+     {
+      "code": "9554-7",
+      "display": "CD10 cells [#/volume] in Blood"
+     },
+     {
+      "code": "9557-0",
+      "display": "CD2 cells [#/volume] in Blood"
+     },
+     {
+      "code": "9558-8",
+      "display": "CD20 cells [#/volume] in Blood"
+     },
+     {
+      "code": "9559-6",
+      "display": "CD5 cells [#/volume] in Blood"
+     },
+     {
+      "code": "9563-8",
+      "display": "CD7 cells [#/volume] in Blood"
+     },
+     {
+      "code": "9618-0",
+      "display": "Cholesterol [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "9619-8",
+      "display": "Triglyceride [Mass/volume] in Pleural fluid"
+     },
+     {
+      "code": "9624-8",
+      "display": "Vanillylmandelate [Mass/volume] in Urine"
+     },
+     {
+      "code": "97016-0",
+      "display": "Fibrinogen [Mass/volume] in Blood by calculation"
+     },
+     {
       "code": "97513-6",
       "display": "Campylobacter sp [Presence] in Specimen by Organism specific culture"
+     },
+     {
+      "code": "97525-0",
+      "display": "Norovirus genogroup I RNA [Presence] in Specimen by NAA with probe detection"
+     },
+     {
+      "code": "97614-2",
+      "display": "Clostridium perfringens [Presence] in Synovial fluid by NAA with non-probe detection"
+     },
+     {
+      "code": "97642-3",
+      "display": "dRVVT/dRVVT.excess phospholipid [Ratio] normalized in Platelet poor plasma by Coagulation assay"
+     },
+     {
+      "code": "9786-5",
+      "display": "Microscopic observation [Identifier] in Blood or Marrow by Periodic acid-Schiff stain"
      },
      {
       "code": "9788-1",
@@ -626,6 +4014,18 @@
      {
       "code": "98137-3",
       "display": "Pain assessment report"
+     },
+     {
+      "code": "9830-1",
+      "display": "Cholesterol.total/Cholesterol in HDL [Mass Ratio] in Serum or Plasma"
+     },
+     {
+      "code": "99603-3",
+      "display": "Band form neutrophils/Leukocytes in Peritoneal fluid by Manual count"
+     },
+     {
+      "code": "99604-1",
+      "display": "Band form neutrophils/Leukocytes in Pleural fluid by Manual count"
      }
     ]
    },
@@ -633,8 +4033,344 @@
     "system": "http://snomed.info/sct",
     "concept": [
      {
+      "code": "1017006",
+      "display": "Lactobacillus casei"
+     },
+     {
+      "code": "10210008",
+      "display": "Chaetomium species"
+     },
+     {
+      "code": "10334001",
+      "display": "Yersinia intermedia"
+     },
+     {
+      "code": "103427005",
+      "display": "Campylobacter upsaliensis"
+     },
+     {
+      "code": "103437000",
+      "display": "Enterococcus raffinosus"
+     },
+     {
+      "code": "103463005",
+      "display": "Legionella pneumophila serogroup 1"
+     },
+     {
+      "code": "103475000",
+      "display": "Mycobacterium celatum"
+     },
+     {
+      "code": "103494005",
+      "display": "Staphylococcus lugdunensis"
+     },
+     {
+      "code": "103560006",
+      "display": "Cyclospora species"
+     },
+     {
+      "code": "10413007",
+      "display": "Serratia odorifera"
+     },
+     {
+      "code": "10620008",
+      "display": "Bordetella bronchiseptica"
+     },
+     {
+      "code": "106544002",
+      "display": "Enterobacteriaceae"
+     },
+     {
+      "code": "106559008",
+      "display": "Basidiomycota"
+     },
+     {
+      "code": "10823008",
+      "display": "Strongyloides species"
+     },
+     {
+      "code": "10879005",
+      "display": "Pasteurella multocida"
+     },
+     {
+      "code": "112283007",
+      "display": "Escherichia coli"
+     },
+     {
+      "code": "112284001",
+      "display": "Providencia species"
+     },
+     {
+      "code": "112287008",
+      "display": "Salmonella Sandiego"
+     },
+     {
+      "code": "112329006",
+      "display": "Serratia fonticola"
+     },
+     {
+      "code": "112406004",
+      "display": "Arthrographis species"
+     },
+     {
+      "code": "113376007",
+      "display": "Acinetobacter calcoaceticus-Acinetobacter baumannii complex"
+     },
+     {
+      "code": "113381003",
+      "display": "Acinetobacter radioresistens"
+     },
+     {
+      "code": "113422006",
+      "display": "Actinomyces turicensis"
+     },
+     {
+      "code": "113549008",
+      "display": "Chryseobacterium indologenes"
+     },
+     {
+      "code": "113611002",
+      "display": "Corynebacterium amycolatum"
+     },
+     {
+      "code": "113613004",
+      "display": "Corynebacterium urealyticum"
+     },
+     {
+      "code": "113632005",
+      "display": "Lancefieldella rimae"
+     },
+     {
+      "code": "113648006",
+      "display": "Gordonia sputi"
+     },
+     {
+      "code": "113669008",
+      "display": "Burkholderia cepacia"
+     },
+     {
+      "code": "113671008",
+      "display": "Burkholderia gladioli"
+     },
+     {
+      "code": "113690000",
+      "display": "Brevundimonas vesicularis"
+     },
+     {
+      "code": "113697002",
+      "display": "Stenotrophomonas maltophilia"
+     },
+     {
+      "code": "113702006",
+      "display": "Shewanella algae"
+     },
+     {
+      "code": "113710007",
+      "display": "Roseomonas gilardii"
+     },
+     {
+      "code": "113713009",
+      "display": "Granulicatella adiacens"
+     },
+     {
+      "code": "113765006",
+      "display": "Gemella morbillorum"
+     },
+     {
+      "code": "113772007",
+      "display": "Rothia kristinae"
+     },
+     {
+      "code": "113773002",
+      "display": "Kocuria rosea"
+     },
+     {
+      "code": "113798001",
+      "display": "Lactobacillus rhamnosus"
+     },
+     {
+      "code": "113838007",
+      "display": "Mycobacteroides abscessus"
+     },
+     {
+      "code": "113853004",
+      "display": "Mycobacterium lentiflavum"
+     },
+     {
+      "code": "113856007",
+      "display": "Mycobacterium mucogenicum"
+     },
+     {
+      "code": "113858008",
+      "display": "Mycobacterium tuberculosis complex"
+     },
+     {
+      "code": "113860005",
+      "display": "Mycobacterium triplex"
+     },
+     {
+      "code": "113861009",
+      "display": "Mycobacterium tuberculosis"
+     },
+     {
+      "code": "113931000",
+      "display": "Flavimonas oryzihabitans"
+     },
+     {
+      "code": "113986004",
+      "display": "Streptococcus gordonii"
+     },
+     {
+      "code": "113990002",
+      "display": "Streptococcus parasanguinis"
+     },
+     {
+      "code": "113993000",
+      "display": "Streptococcus sanguinis"
+     },
+     {
+      "code": "113998009",
+      "display": "Streptococcus vestibularis"
+     },
+     {
+      "code": "114086007",
+      "display": "Paenibacillus species"
+     },
+     {
+      "code": "114129000",
+      "display": "Prevotella species"
+     },
+     {
+      "code": "114144004",
+      "display": "Prevotella melaninogenica"
+     },
+     {
+      "code": "114146002",
+      "display": "Prevotella oralis"
+     },
+     {
+      "code": "114154000",
+      "display": "Porphyromonas species"
+     },
+     {
+      "code": "114199008",
+      "display": "Microbacterium species"
+     },
+     {
+      "code": "114264004",
+      "display": "Citrobacter koseri"
+     },
+     {
+      "code": "114265003",
+      "display": "Citrobacter sedlakii"
+     },
+     {
+      "code": "114443001",
+      "display": "Citrobacter youngae"
+     },
+     {
+      "code": "114451003",
+      "display": "Enterobacter cancerogenus"
+     },
+     {
+      "code": "114453000",
+      "display": "Enterobacter amnigenus biogroup II"
+     },
+     {
+      "code": "115013001",
+      "display": "Pantoea species"
+     },
+     {
+      "code": "115015008",
+      "display": "Pantoea agglomerans"
+     },
+     {
+      "code": "115127008",
+      "display": "Myroides species"
+     },
+     {
+      "code": "115130001",
+      "display": "Sphingomonas species"
+     },
+     {
+      "code": "115135006",
+      "display": "Tsukamurella species"
+     },
+     {
+      "code": "115143001",
+      "display": "Gordonia species"
+     },
+     {
+      "code": "115154006",
+      "display": "Brevundimonas species"
+     },
+     {
+      "code": "115158009",
+      "display": "Shewanella species"
+     },
+     {
+      "code": "115159001",
+      "display": "Roseomonas species"
+     },
+     {
+      "code": "115161005",
+      "display": "Abiotrophia species"
+     },
+     {
+      "code": "115329001",
+      "display": "Methicillin resistant Staphylococcus aureus"
+     },
+     {
+      "code": "115651002",
+      "display": "Dermatophyte"
+     },
+     {
+      "code": "11590002",
+      "display": "Gemella species"
+     },
+     {
+      "code": "115952006",
+      "display": "Candida dubliniensis"
+     },
+     {
+      "code": "116197008",
+      "display": "Staphylococcus, coagulase negative"
+     },
+     {
+      "code": "116386003",
+      "display": "Campylobacter lari"
+     },
+     {
+      "code": "116406001",
+      "display": "Herbaspirillum species"
+     },
+     {
+      "code": "116423005",
+      "display": "Ochrobactrum species"
+     },
+     {
+      "code": "116490002",
+      "display": "Brucella anthropi"
+     },
+     {
       "code": "117073009",
       "display": "Blood product unit expired"
+     },
+     {
+      "code": "11736008",
+      "display": "Vibrio parahaemolyticus"
+     },
+     {
+      "code": "11901002",
+      "display": "Salmonella Kiambu"
+     },
+     {
+      "code": "12069003",
+      "display": "Actinomyces odontolyticus"
+     },
+     {
+      "code": "12210004",
+      "display": "Exophiala species"
      },
      {
       "code": "1230246000",
@@ -645,8 +4381,108 @@
       "display": "Replacement of dressing of insertion site of cannula"
      },
      {
+      "code": "12678008",
+      "display": "Scytalidium species"
+     },
+     {
+      "code": "127537007",
+      "display": "Streptococcus salivarius group"
+     },
+     {
+      "code": "127539005",
+      "display": "Streptococcus mitis group"
+     },
+     {
+      "code": "12760009",
+      "display": "Pithomyces species"
+     },
+     {
+      "code": "1290001",
+      "display": "Mycoplasma hominis"
+     },
+     {
+      "code": "1290426005",
+      "display": "Desulfovibrio legallii"
+     },
+     {
+      "code": "131281002",
+      "display": "Burkholderia cepacia complex"
+     },
+     {
+      "code": "131310006",
+      "display": "Gemella bergeri"
+     },
+     {
+      "code": "131341007",
+      "display": "Nocardia transvalensis complex"
+     },
+     {
+      "code": "131360000",
+      "display": "Staphylococcus schleiferi"
+     },
+     {
+      "code": "13687007",
+      "display": "Human herpes simplex virus type 2"
+     },
+     {
+      "code": "1388667006",
+      "display": "Peroneutypa scoparia"
+     },
+     {
+      "code": "14196002",
+      "display": "Providencia rettgeri"
+     },
+     {
+      "code": "14385002",
+      "display": "Enterobacter cloacae"
+     },
+     {
+      "code": "1445008",
+      "display": "Providencia stuartii"
+     },
+     {
+      "code": "1507005",
+      "display": "Mycobacterium kansasii"
+     },
+     {
+      "code": "15302007",
+      "display": "Human herpes simplex virus type 1"
+     },
+     {
+      "code": "157961000146103",
+      "display": "Graphium eumorphum"
+     },
+     {
+      "code": "16452009",
+      "display": "Pichia kudriavzevii"
+     },
+     {
       "code": "16965008",
       "display": "Insertion of intra-aortic balloon pump"
+     },
+     {
+      "code": "17683005",
+      "display": "Rhizopus species"
+     },
+     {
+      "code": "1772001",
+      "display": "Agrobacterium radiobacter"
+     },
+     {
+      "code": "17872004",
+      "display": "Neisseria meningitidis"
+     },
+     {
+      "code": "18069005",
+      "display": "Cimex"
+     },
+     {
+      "code": "18097004",
+      "display": "Malassezia species"
+     },
+     {
+      "code": "1838001",
+      "display": "Human rhinovirus"
      },
      {
       "code": "184099003",
@@ -657,40 +4493,812 @@
       "display": "Change of dressing"
      },
      {
+      "code": "19018004",
+      "display": "Microsporum canis"
+     },
+     {
+      "code": "19061001",
+      "display": "Ascaris lumbricoides"
+     },
+     {
+      "code": "19415008",
+      "display": "Clostridium innocuum"
+     },
+     {
+      "code": "19464000",
+      "display": "Bifidobacterium longum"
+     },
+     {
+      "code": "19551004",
+      "display": "Human herpesvirus 3"
+     },
+     {
+      "code": "19743000",
+      "display": "Staphylococcus saprophyticus"
+     },
+     {
+      "code": "19870004",
+      "display": "Streptococcus oralis"
+     },
+     {
+      "code": "19965007",
+      "display": "Human herpes simplex virus"
+     },
+     {
+      "code": "20141004",
+      "display": "Mycobacterium scrofulaceum"
+     },
+     {
+      "code": "20432002",
+      "display": "Delftia acidovorans"
+     },
+     {
+      "code": "20586007",
+      "display": "Wangiella dermatitidis"
+     },
+     {
+      "code": "20911002",
+      "display": "Dematiaceous fungi imperfecti"
+     },
+     {
+      "code": "214001",
+      "display": "Streptococcus mutans"
+     },
+     {
+      "code": "21690009",
+      "display": "Rhinocladiella species"
+     },
+     {
+      "code": "22294008",
+      "display": "Capnocytophaga species"
+     },
+     {
+      "code": "22339002",
+      "display": "Gamma-haemolytic Streptococcus"
+     },
+     {
+      "code": "22417000",
+      "display": "Trichomonas vaginalis"
+     },
+     {
       "code": "230940006",
       "display": "Insertion of intracranial pressure catheter"
+     },
+     {
+      "code": "23566007",
+      "display": "Listeria species"
+     },
+     {
+      "code": "23773004",
+      "display": "Candida rugosa"
+     },
+     {
+      "code": "23787004",
+      "display": "Serratia liquefaciens"
+     },
+     {
+      "code": "24145000",
+      "display": "Bipolaris species"
+     },
+     {
+      "code": "24226003",
+      "display": "Moraxella catarrhalis"
+     },
+     {
+      "code": "2429008",
+      "display": "Aspergillus species"
+     },
+     {
+      "code": "24305000",
+      "display": "Scedosporium boydii"
+     },
+     {
+      "code": "243230001",
+      "display": "Aerococcus urinae"
+     },
+     {
+      "code": "243236007",
+      "display": "Pediococcus species"
+     },
+     {
+      "code": "243254006",
+      "display": "Corynebacterium accolens"
+     },
+     {
+      "code": "243288000",
+      "display": "Gram-variable bacillus"
+     },
+     {
+      "code": "243301005",
+      "display": "Morganella morganii"
+     },
+     {
+      "code": "243328000",
+      "display": "Non-fermentative Gram-negative bacillus"
+     },
+     {
+      "code": "243350004",
+      "display": "Sphingomonas paucimobilis"
+     },
+     {
+      "code": "243365003",
+      "display": "Acid-fast bacillus"
+     },
+     {
+      "code": "243368001",
+      "display": "Mycobacterium species"
+     },
+     {
+      "code": "243377008",
+      "display": "Mycobacteroides chelonae"
+     },
+     {
+      "code": "243378003",
+      "display": "Mycobacterium fortuitum"
+     },
+     {
+      "code": "243386003",
+      "display": "Anaerobic Gram-negative bacillus"
+     },
+     {
+      "code": "243393004",
+      "display": "Desulfovibrio species"
+     },
+     {
+      "code": "243394005",
+      "display": "Desulfovibrio desulfuricans"
+     },
+     {
+      "code": "243397003",
+      "display": "Anaerobic Gram-negative coccus"
+     },
+     {
+      "code": "243398008",
+      "display": "Anaerobic Gram-positive bacillus"
+     },
+     {
+      "code": "243416009",
+      "display": "Anaerobic Gram-positive coccus"
+     },
+     {
+      "code": "243417000",
+      "display": "Peptostreptococcus species"
+     },
+     {
+      "code": "243428001",
+      "display": "Debaryomyces hansenii"
+     },
+     {
+      "code": "243431000",
+      "display": "Kluyveromyces marxianus"
+     },
+     {
+      "code": "243446007",
+      "display": "Sporobolomyces salmonicolor"
+     },
+     {
+      "code": "243478004",
+      "display": "Trichosporon mucoides"
+     },
+     {
+      "code": "243555008",
+      "display": "Mycelia sterilia"
+     },
+     {
+      "code": "243633006",
+      "display": "Enterovirus species"
+     },
+     {
+      "code": "243662007",
+      "display": "Microsporidium species"
+     },
+     {
+      "code": "24861001",
+      "display": "Cunninghamella species"
+     },
+     {
+      "code": "24871004",
+      "display": "Mycobacterium gordonae"
+     },
+     {
+      "code": "25223004",
+      "display": "Alcaligenes faecalis"
+     },
+     {
+      "code": "26001000",
+      "display": "Paecilomyces species"
+     },
+     {
+      "code": "26250004",
+      "display": "Brucella species"
+     },
+     {
+      "code": "26403006",
+      "display": "Epidermophyton floccosum"
+     },
+     {
+      "code": "26406003",
+      "display": "Aspergillus terreus"
      },
      {
       "code": "265764009",
       "display": "Renal dialysis"
      },
      {
+      "code": "27142009",
+      "display": "Mycobacterium bovis"
+     },
+     {
+      "code": "27268008",
+      "display": "Salmonella species"
+     },
+     {
+      "code": "27274008",
+      "display": "Fusobacterium necrophorum"
+     },
+     {
+      "code": "27524005",
+      "display": "Ixodes species"
+     },
+     {
+      "code": "2785000",
+      "display": "Enterococcus species"
+     },
+     {
+      "code": "2820001",
+      "display": "Salmonella Saintpaul"
+     },
+     {
+      "code": "28625000",
+      "display": "Taenia species"
+     },
+     {
+      "code": "28811000087104",
+      "display": "Acrodontium salmoneum"
+     },
+     {
+      "code": "28923009",
+      "display": "Blastocystis hominis"
+     },
+     {
+      "code": "29619007",
+      "display": "Malassezia furfur"
+     },
+     {
+      "code": "29812000",
+      "display": "Meyerozyma guilliermondii"
+     },
+     {
+      "code": "29875005",
+      "display": "Veillonella species"
+     },
+     {
+      "code": "30092002",
+      "display": "Nocardia asteroides"
+     },
+     {
+      "code": "3092008",
+      "display": "Staphylococcus aureus"
+     },
+     {
+      "code": "30949009",
+      "display": "Enterococcus casseliflavus"
+     },
+     {
+      "code": "314421007",
+      "display": "Actinomycetes"
+     },
+     {
+      "code": "31703004",
+      "display": "Streptococcus, viridans group"
+     },
+     {
+      "code": "32017003",
+      "display": "Kingella species"
+     },
+     {
+      "code": "32043002",
+      "display": "Cladosporium species"
+     },
+     {
+      "code": "3245004",
+      "display": "Scopulariopsis brevicaulis"
+     },
+     {
+      "code": "3265006",
+      "display": "Candida species"
+     },
+     {
+      "code": "32684000",
+      "display": "Aspergillus fumigatus"
+     },
+     {
+      "code": "32763000",
+      "display": "Fusobacterium nucleatum"
+     },
+     {
+      "code": "33101000",
+      "display": "Clostridium septicum"
+     },
+     {
+      "code": "33115003",
+      "display": "Enterobacter asburiae"
+     },
+     {
+      "code": "33522002",
+      "display": "Serratia marcescens"
+     },
+     {
+      "code": "33562003",
+      "display": "Fusobacterium species"
+     },
+     {
+      "code": "33919008",
+      "display": "Chryseomonas luteola"
+     },
+     {
+      "code": "34228005",
+      "display": "Streptococcus alactolyticus"
+     },
+     {
+      "code": "34605002",
+      "display": "Staphylococcus intermedius"
+     },
+     {
+      "code": "34844008",
+      "display": "Propionibacterium species"
+     },
+     {
+      "code": "34872001",
+      "display": "Vibrio species"
+     },
+     {
+      "code": "3491000146109",
+      "display": "Candidozyma auris"
+     },
+     {
+      "code": "35225001",
+      "display": "Salmonella Braenderup"
+     },
+     {
+      "code": "35238009",
+      "display": "Fusarium species"
+     },
+     {
+      "code": "35379007",
+      "display": "Rothia dentocariosa"
+     },
+     {
+      "code": "35408001",
+      "display": "Campylobacter species"
+     },
+     {
+      "code": "35454005",
+      "display": "Salmonella Oslo"
+     },
+     {
+      "code": "359762003",
+      "display": "Family Ancylostomatidae"
+     },
+     {
+      "code": "36094007",
+      "display": "Listeria monocytogenes"
+     },
+     {
+      "code": "36361003",
+      "display": "Moraxella species"
+     },
+     {
+      "code": "363765006",
+      "display": "Dolosigranulum pigrum"
+     },
+     {
+      "code": "363769000",
+      "display": "Entamoeba histolytica/Entamoeba dispar complex"
+     },
+     {
+      "code": "372008",
+      "display": "Trichophyton rubrum"
+     },
+     {
+      "code": "37261005",
+      "display": "Salmonella Anatum"
+     },
+     {
+      "code": "37511002",
+      "display": "Gemella haemolysans"
+     },
+     {
+      "code": "37621001",
+      "display": "Nocardia nova"
+     },
+     {
+      "code": "38224003",
+      "display": "Exophiala jeanselmei"
+     },
+     {
+      "code": "38324000",
+      "display": "Entamoeba species"
+     },
+     {
+      "code": "385507005",
+      "display": "Mycobacterium mageritense"
+     },
+     {
+      "code": "38643006",
+      "display": "Plesiomonas shigelloides"
+     },
+     {
+      "code": "39129008",
+      "display": "Aureobasidium pullulans"
+     },
+     {
       "code": "392247006",
       "display": "Catheterisation of artery"
+     },
+     {
+      "code": "39289003",
+      "display": "Pseudomonas fluorescens"
+     },
+     {
+      "code": "39473003",
+      "display": "Cutibacterium acnes"
+     },
+     {
+      "code": "396454000",
+      "display": "Alloiococcus otitis"
+     },
+     {
+      "code": "396949003",
+      "display": "Acetobacter species"
      },
      {
       "code": "397958003",
       "display": "Accessing of implantable venous access port"
      },
      {
+      "code": "39888004",
+      "display": "Streptococcus salivarius"
+     },
+     {
       "code": "399423000",
       "display": "Date of admission"
+     },
+     {
+      "code": "39949000",
+      "display": "Scopulariopsis species"
+     },
+     {
+      "code": "40253001",
+      "display": "Staphylococcus lentus"
+     },
+     {
+      "code": "40347003",
+      "display": "Staphylococcus capitis"
+     },
+     {
+      "code": "40560008",
+      "display": "Actinomyces species"
+     },
+     {
+      "code": "40614002",
+      "display": "Campylobacter coli"
      },
      {
       "code": "406544004",
       "display": "Time of visit"
      },
      {
+      "code": "406609007",
+      "display": "Beta-haemolytic streptococcus, non-Group A, non-Group B"
+     },
+     {
+      "code": "407444007",
+      "display": "Cytomegalovirus species"
+     },
+     {
+      "code": "407479009",
+      "display": "Influenza A virus"
+     },
+     {
+      "code": "407480007",
+      "display": "Influenza B virus"
+     },
+     {
+      "code": "407489008",
+      "display": "Human parainfluenza virus 1"
+     },
+     {
+      "code": "407491000",
+      "display": "Human parainfluenza virus 2"
+     },
+     {
+      "code": "407493002",
+      "display": "Human parainfluenza virus 3"
+     },
+     {
+      "code": "407498006",
+      "display": "Human parainfluenza virus"
+     },
+     {
+      "code": "40886007",
+      "display": "Klebsiella oxytoca"
+     },
+     {
+      "code": "409822003",
+      "display": "Domain Bacteria"
+     },
+     {
+      "code": "410607006",
+      "display": "Organism"
+     },
+     {
+      "code": "41103009",
+      "display": "Staphylococcus saccharolyticus"
+     },
+     {
+      "code": "41278006",
+      "display": "Nigrospora species"
+     },
+     {
+      "code": "413352001",
+      "display": "Bacillus species not Bacillus anthracis"
+     },
+     {
+      "code": "41340007",
+      "display": "Chilomastix mesnili"
+     },
+     {
+      "code": "413414001",
+      "display": "Achromobacter denitrificans"
+     },
+     {
+      "code": "413424009",
+      "display": "Achromobacter xylosoxidans"
+     },
+     {
+      "code": "413618005",
+      "display": "Bacillus cereus group"
+     },
+     {
+      "code": "413619002",
+      "display": "Bacillus circulans group"
+     },
+     {
+      "code": "413643004",
+      "display": "Beta-haemolytic Streptococcus, group A"
+     },
+     {
+      "code": "413927008",
+      "display": "Corynebacterium glucuronolyticum"
+     },
+     {
+      "code": "414102007",
+      "display": "Enterobacter cloacae complex"
+     },
+     {
+      "code": "414324002",
+      "display": "Burkholderia species"
+     },
+     {
+      "code": "414328004",
+      "display": "Kocuria species"
+     },
+     {
+      "code": "414344008",
+      "display": "Globicatella species"
+     },
+     {
+      "code": "414345009",
+      "display": "Globicatella sanguinis"
+     },
+     {
+      "code": "414561005",
+      "display": "Fungi"
+     },
+     {
+      "code": "414811005",
+      "display": "Neisseria species not Neisseria gonococci"
+     },
+     {
+      "code": "414864009",
+      "display": "Nocardia asteroides complex"
+     },
+     {
+      "code": "414866006",
+      "display": "Nocardia cyriacigeorgica"
+     },
+     {
+      "code": "414926008",
+      "display": "Brucella intermedia"
+     },
+     {
+      "code": "415033004",
+      "display": "Paracoccus yeei"
+     },
+     {
+      "code": "415351006",
+      "display": "Roseomonas mucosa"
+     },
+     {
+      "code": "41542000",
+      "display": "Dientamoeba fragilis"
+     },
+     {
+      "code": "415597009",
+      "display": "Streptococcus anginosus group"
+     },
+     {
+      "code": "415599007",
+      "display": "Streptococcus bovis group"
+     },
+     {
+      "code": "415601009",
+      "display": "Streptococcus constellatus subspecies constellatus"
+     },
+     {
+      "code": "415881005",
+      "display": "Aspergillus versicolor Group"
+     },
+     {
+      "code": "415948008",
+      "display": "Phaeoacremonium species"
+     },
+     {
+      "code": "416264004",
+      "display": "Raoultella planticola"
+     },
+     {
       "code": "416504003",
       "display": "Vascular line exchange over wire"
+     },
+     {
+      "code": "416544005",
+      "display": "Rothia mucilaginosa"
+     },
+     {
+      "code": "416832000",
+      "display": "Raoultella ornithinolytica"
+     },
+     {
+      "code": "416958001",
+      "display": "Micromonospora species"
+     },
+     {
+      "code": "417248002",
+      "display": "Finegoldia species"
+     },
+     {
+      "code": "417375007",
+      "display": "Bacteroides fragilis group"
+     },
+     {
+      "code": "417592004",
+      "display": "Proteus hauseri"
+     },
+     {
+      "code": "417943000",
+      "display": "Methicillin susceptible Staphylococcus aureus"
+     },
+     {
+      "code": "418382009",
+      "display": "Phylum Microsporidia"
+     },
+     {
+      "code": "42025004",
+      "display": "Serratia species"
+     },
+     {
+      "code": "421253004",
+      "display": "Streptococcus gallolyticus subspecies pasteurianus"
+     },
+     {
+      "code": "421544007",
+      "display": "Streptococcus gallolyticus subspecies gallolyticus"
+     },
+     {
+      "code": "42178002",
+      "display": "Conidiobolus species"
+     },
+     {
+      "code": "423135006",
+      "display": "Cupriavidus metallidurans"
+     },
+     {
+      "code": "424470006",
+      "display": "Adenoviridae"
      },
      {
       "code": "425196008",
       "display": "Peripherally inserted central catheterisation"
      },
      {
+      "code": "4256006",
+      "display": "Capnocytophaga ochracea"
+     },
+     {
+      "code": "425774009",
+      "display": "Elizabethkingia meningoseptica"
+     },
+     {
+      "code": "42625000",
+      "display": "Strongyloides stercoralis"
+     },
+     {
+      "code": "42706008",
+      "display": "Clostridium ramosum"
+     },
+     {
+      "code": "427316000",
+      "display": "Staphylococcus pseudintermedius"
+     },
+     {
+      "code": "429465001",
+      "display": "Cupriavidus pauculus"
+     },
+     {
+      "code": "4298009",
+      "display": "Shigella sonnei"
+     },
+     {
+      "code": "42993004",
+      "display": "Penicillium species"
+     },
+     {
+      "code": "430742009",
+      "display": "Peptoniphilus species"
+     },
+     {
+      "code": "431176003",
+      "display": "Paraburkholderia xenovorans"
+     },
+     {
+      "code": "431504009",
+      "display": "Mycobacterium chimaera"
+     },
+     {
+      "code": "431794003",
+      "display": "Leptotrichia trevisanii"
+     },
+     {
+      "code": "432196009",
+      "display": "Leptotrichia hofstadii"
+     },
+     {
+      "code": "432506009",
+      "display": "Streptococcus infantarius subspecies infantarius"
+     },
+     {
+      "code": "434236002",
+      "display": "Slackia exigua"
+     },
+     {
+      "code": "43492007",
+      "display": "Group B streptococcus"
+     },
+     {
+      "code": "434966321000087109",
+      "display": "Mycobacterium marseillense"
+     },
+     {
+      "code": "4361005",
+      "display": "Salmonella Thompson"
+     },
+     {
+      "code": "43639007",
+      "display": "Leuconostoc species"
+     },
+     {
+      "code": "43690008",
+      "display": "Lactobacillus species"
+     },
+     {
       "code": "43748006",
       "display": "Removal of bladder catheter"
+     },
+     {
+      "code": "437915004",
+      "display": "Streptococcus infantarius subspecies coli"
      },
      {
       "code": "439272007",
@@ -701,20 +5309,1016 @@
       "display": "Date of event"
      },
      {
+      "code": "441718002",
+      "display": "Aggregatibacter species"
+     },
+     {
       "code": "442309004",
       "display": "Insertion of tunnelled central venous catheter"
+     },
+     {
+      "code": "442680008",
+      "display": "Aggregatibacter actinomycetemcomitans"
+     },
+     {
+      "code": "442683005",
+      "display": "Aggregatibacter aphrophilus"
      },
      {
       "code": "442864001",
       "display": "Date of discharge"
      },
      {
+      "code": "44304009",
+      "display": "Streptococcus anginosus"
+     },
+     {
+      "code": "44470000",
+      "display": "Haemophilus influenzae"
+     },
+     {
+      "code": "444877006",
+      "display": "Nakaseomyces glabratus"
+     },
+     {
+      "code": "445562004",
+      "display": "Cronobacter sakazakii"
+     },
+     {
       "code": "446583004",
       "display": "Indwelling catheterisation of urinary bladder"
      },
      {
+      "code": "446809007",
+      "display": "Dialister micraerophilus"
+     },
+     {
+      "code": "44723000",
+      "display": "Arcanobacterium haemolyticum"
+     },
+     {
+      "code": "44760001",
+      "display": "Mycobacterium asiaticum"
+     },
+     {
+      "code": "44762009",
+      "display": "Bacillus species"
+     },
+     {
+      "code": "44827007",
+      "display": "Staphylococcus hominis"
+     },
+     {
+      "code": "450383002",
+      "display": "Corynebacterium pyruviciproducens"
+     },
+     {
+      "code": "450452000",
+      "display": "Wautersiella falsenii"
+     },
+     {
+      "code": "450602004",
+      "display": "Campylobacter ureolyticus"
+     },
+     {
+      "code": "450957004",
+      "display": "Bacteroides dorei"
+     },
+     {
+      "code": "45298005",
+      "display": "Proteus penneri"
+     },
+     {
+      "code": "45548005",
+      "display": "Salmonella Corvallis"
+     },
+     {
+      "code": "45651006",
+      "display": "Salmonella Schwarzengrund"
+     },
+     {
+      "code": "45654003",
+      "display": "Staphylococcus auricularis"
+     },
+     {
+      "code": "45662006",
+      "display": "Mycobacterium terrae"
+     },
+     {
+      "code": "45749000",
+      "display": "Vibrio alginolyticus"
+     },
+     {
+      "code": "457914007",
+      "display": "Escherichia coli serotype O157:H7"
+     },
+     {
+      "code": "45834001",
+      "display": "Proteus vulgaris"
+     },
+     {
+      "code": "46369004",
+      "display": "Actinomyces israelii"
+     },
+     {
+      "code": "46464008",
+      "display": "Enterococcus durans"
+     },
+     {
+      "code": "46667007",
+      "display": "Salmonella Oranienburg"
+     },
+     {
+      "code": "4668009",
+      "display": "Yersinia species"
+     },
+     {
+      "code": "468671000124100",
+      "display": "Sporothrix schenckii complex"
+     },
+     {
+      "code": "47304000",
+      "display": "Streptomyces species"
+     },
+     {
+      "code": "47473006",
+      "display": "Cutibacterium avidum"
+     },
+     {
+      "code": "47885008",
+      "display": "Candida tropicalis"
+     },
+     {
+      "code": "48262003",
+      "display": "Diphyllobothrium species"
+     },
+     {
+      "code": "48299003",
+      "display": "Micrococcus luteus"
+     },
+     {
+      "code": "48666005",
+      "display": "Erysipelothrix rhusiopathiae"
+     },
+     {
+      "code": "49086004",
+      "display": "Ustilago species"
+     },
+     {
+      "code": "49491006",
+      "display": "Salmonella Hadar"
+     },
+     {
+      "code": "49782006",
+      "display": "Mucor species"
+     },
+     {
+      "code": "4981000146101",
+      "display": "Lachancea fermentati"
+     },
+     {
+      "code": "49872002",
+      "display": "Virus"
+     },
+     {
+      "code": "50136005",
+      "display": "Salmonella Typhimurium"
+     },
+     {
+      "code": "50164000",
+      "display": "Clavispora lusitaniae"
+     },
+     {
+      "code": "50517009",
+      "display": "Proteus species"
+     },
+     {
+      "code": "50734003",
+      "display": "Verticillium species"
+     },
+     {
+      "code": "51221000112104",
+      "display": "Scedosporium apiospermum complex"
+     },
+     {
+      "code": "51257000",
+      "display": "Malassezia pachydermatis"
+     },
+     {
+      "code": "51459000",
+      "display": "Mycobacterium neoaurum"
+     },
+     {
+      "code": "51504002",
+      "display": "Cryptosporidium parvum"
+     },
+     {
+      "code": "51526001",
+      "display": "Francisella tularensis"
+     },
+     {
+      "code": "51593004",
+      "display": "Haemophilus parainfluenzae"
+     },
+     {
+      "code": "51595006",
+      "display": "Sphingobacterium multivorum"
+     },
+     {
+      "code": "51976007",
+      "display": "Rhodotorula species"
+     },
+     {
+      "code": "52122005",
+      "display": "Staphylococcus simulans"
+     },
+     {
+      "code": "5214001",
+      "display": "Curvularia species"
+     },
+     {
+      "code": "52499004",
+      "display": "Pseudomonas aeruginosa"
+     },
+     {
+      "code": "52505003",
+      "display": "Leptotrichia species"
+     },
+     {
+      "code": "52591004",
+      "display": "Eikenella corrodens"
+     },
+     {
+      "code": "52864008",
+      "display": "Micrococcus species"
+     },
+     {
+      "code": "53013003",
+      "display": "Escherichia vulneris"
+     },
+     {
+      "code": "531722621000087102",
+      "display": "Neurospora sitophila"
+     },
+     {
+      "code": "53233007",
+      "display": "Enterococcus gallinarum"
+     },
+     {
+      "code": "53272006",
+      "display": "Endolimax nana"
+     },
+     {
+      "code": "53326005",
+      "display": "Candida albicans"
+     },
+     {
+      "code": "53490009",
+      "display": "Beta-haemolytic Streptococcus"
+     },
+     {
+      "code": "53605000",
+      "display": "Iodamoeba b\u00fctschlii"
+     },
+     {
+      "code": "54950008",
+      "display": "Haemophilus haemolyticus"
+     },
+     {
+      "code": "55008000",
+      "display": "Enterobius vermicularis"
+     },
+     {
+      "code": "55247009",
+      "display": "Bacteroides fragilis"
+     },
+     {
+      "code": "55462008",
+      "display": "Shigella boydii"
+     },
+     {
+      "code": "55744003",
+      "display": "Citrobacter amalonaticus"
+     },
+     {
+      "code": "55825002",
+      "display": "Serratia rubidaea"
+     },
+     {
+      "code": "5595000",
+      "display": "Salmonella Typhi"
+     },
+     {
+      "code": "56077000",
+      "display": "Salmonella Newport"
+     },
+     {
+      "code": "56415008",
+      "display": "Klebsiella pneumoniae"
+     },
+     {
+      "code": "57032008",
+      "display": "Pseudomonas species"
+     },
+     {
+      "code": "57459006",
+      "display": "Leclercia adecarboxylata"
+     },
+     {
+      "code": "57522007",
+      "display": "Bacteroides species"
+     },
+     {
+      "code": "57997003",
+      "display": "Streptococcus mitis"
+     },
+     {
+      "code": "58024003",
+      "display": "Stutzerimonas stutzeri"
+     },
+     {
+      "code": "58296003",
+      "display": "Saccharomyces cerevisiae"
+     },
+     {
+      "code": "58503001",
+      "display": "Mycobacterium, avium-intracellulare group"
+     },
+     {
+      "code": "58663006",
+      "display": "Mycobacterium xenopi"
+     },
+     {
+      "code": "58683007",
+      "display": "Enterobacter species"
+     },
+     {
+      "code": "58800005",
+      "display": "Streptococcus species"
+     },
+     {
+      "code": "5885000",
+      "display": "Mycobacterium flavescens"
+     },
+     {
+      "code": "58869008",
+      "display": "Mycobacterium marinum"
+     },
+     {
+      "code": "58970008",
+      "display": "Nocardia brasiliensis"
+     },
+     {
+      "code": "59083001",
+      "display": "Neisseria species"
+     },
+     {
+      "code": "59206002",
+      "display": "Gram-positive coccus"
+     },
+     {
+      "code": "5933001",
+      "display": "Clostridium difficile"
+     },
+     {
+      "code": "59343002",
+      "display": "Anaerobic bacteria"
+     },
+     {
+      "code": "59419001",
+      "display": "Pseudomonas mendocina"
+     },
+     {
+      "code": "59512008",
+      "display": "Streptococcus porcinus"
+     },
+     {
+      "code": "59674005",
+      "display": "Nocardia species"
+     },
+     {
+      "code": "601008",
+      "display": "Humicola species"
+     },
+     {
+      "code": "60182000",
+      "display": "Cunninghamella bertholletiae"
+     },
+     {
+      "code": "60264008",
+      "display": "Aspergillus nidulans"
+     },
+     {
+      "code": "60631002",
+      "display": "Alpha-haemolytic streptococcus"
+     },
+     {
+      "code": "60875001",
+      "display": "Staphylococcus epidermidis"
+     },
+     {
+      "code": "608946009",
+      "display": "Cyst form of Giardia species"
+     },
+     {
+      "code": "609080003",
+      "display": "Egg of Enterobius vermicularis"
+     },
+     {
+      "code": "61019006",
+      "display": "Phoma species"
+     },
+     {
+      "code": "61085008",
+      "display": "Taenia saginata"
+     },
+     {
+      "code": "61161003",
+      "display": "Kluyvera species"
+     },
+     {
+      "code": "61175005",
+      "display": "Stachybotrys species"
+     },
+     {
+      "code": "61302002",
+      "display": "Candida parapsilosis"
+     },
+     {
+      "code": "62093005",
+      "display": "Yeast"
+     },
+     {
+      "code": "62136003",
+      "display": "Salmonella Dublin"
+     },
+     {
+      "code": "62170002",
+      "display": "Streptococcus intermedius"
+     },
+     {
+      "code": "62289009",
+      "display": "Trichosporon species"
+     },
+     {
+      "code": "62592009",
+      "display": "Enterobacter aerogenes"
+     },
+     {
+      "code": "62678005",
+      "display": "Syncephalastrum species"
+     },
+     {
+      "code": "62761005",
+      "display": "Lactobacillus salivarius ss. salivarius"
+     },
+     {
+      "code": "63087008",
+      "display": "Nocardia otitidis caviarum"
+     },
+     {
+      "code": "63410006",
+      "display": "Corynebacterium jeikeium"
+     },
+     {
+      "code": "63550006",
+      "display": "Staphylococcus warneri"
+     },
+     {
+      "code": "63815007",
+      "display": "Corynebacterium striatum"
+     },
+     {
+      "code": "63938009",
+      "display": "Chlamydia trachomatis"
+     },
+     {
+      "code": "63996006",
+      "display": "Acremonium species"
+     },
+     {
+      "code": "6405003",
+      "display": "Brevibacterium casei"
+     },
+     {
+      "code": "64071004",
+      "display": "Gardnerella vaginalis"
+     },
+     {
+      "code": "6415009",
+      "display": "Human respiratory syncytial virus"
+     },
+     {
+      "code": "64636003",
+      "display": "Salmonella Telelkebir"
+     },
+     {
+      "code": "64735005",
+      "display": "Escherichia species"
+     },
+     {
+      "code": "65119002",
+      "display": "Staphylococcus species"
+     },
+     {
+      "code": "65255000",
+      "display": "Yersinia enterocolitica"
+     },
+     {
+      "code": "65506008",
+      "display": "Lactobacillus fermentum"
+     },
+     {
+      "code": "65562008",
+      "display": "Beauveria bassiana"
+     },
+     {
+      "code": "65613000",
+      "display": "Mycobacterium szulgai"
+     },
+     {
       "code": "65677008",
       "display": "Pulmonary catheterisation with Swan-Ganz catheter"
+     },
+     {
+      "code": "65789000",
+      "display": "Ulocladium species"
+     },
+     {
+      "code": "66543000",
+      "display": "Campylobacter jejuni"
+     },
+     {
+      "code": "66821001",
+      "display": "Aspergillus flavus"
+     },
+     {
+      "code": "67168003",
+      "display": "Cryptococcus neoformans"
+     },
+     {
+      "code": "67999003",
+      "display": "Magnusiomyces capitatus"
+     },
+     {
+      "code": "68571003",
+      "display": "Alcaligenes species"
+     },
+     {
+      "code": "68608003",
+      "display": "Pseudomonas putida"
+     },
+     {
+      "code": "68704007",
+      "display": "Neisseria gonorrhoeae"
+     },
+     {
+      "code": "68916009",
+      "display": "Salmonella Muenster"
+     },
+     {
+      "code": "69250004",
+      "display": "Rhodotorula glutinis"
+     },
+     {
+      "code": "69356007",
+      "display": "Fonsecaea pedrosoi"
+     },
+     {
+      "code": "69564000",
+      "display": "Scedosporium prolificans"
+     },
+     {
+      "code": "698214003",
+      "display": "Nutritionally variant streptococci"
+     },
+     {
+      "code": "70632005",
+      "display": "Entamoeba hartmanni"
+     },
+     {
+      "code": "70806002",
+      "display": "Staphylococcus sciuri"
+     },
+     {
+      "code": "71158000",
+      "display": "Lactobacillus gasseri"
+     },
+     {
+      "code": "71268004",
+      "display": "Haemophilus species"
+     },
+     {
+      "code": "713920003",
+      "display": "Haemophilus, not Haemophilus influenzae"
+     },
+     {
+      "code": "713922006",
+      "display": "Beta-hemolytic Streptococcus, non-Group A"
+     },
+     {
+      "code": "714009008",
+      "display": "Mucor irregularis"
+     },
+     {
+      "code": "71403009",
+      "display": "Leuconostoc mesenteroides"
+     },
+     {
+      "code": "714313009",
+      "display": "Candida species not Candida albicans"
+     },
+     {
+      "code": "715363007",
+      "display": "Neoscytalidium dimidiatum"
+     },
+     {
+      "code": "715871002",
+      "display": "Clostridium species, not Clostridium perfringens and not Clostridium septicum"
+     },
+     {
+      "code": "716346000",
+      "display": "Pluralibacter gergoviae"
+     },
+     {
+      "code": "716527002",
+      "display": "Actinotignum sanguinis"
+     },
+     {
+      "code": "71825007",
+      "display": "Penicillium marneffei"
+     },
+     {
+      "code": "71865006",
+      "display": "Salmonella Heidelberg"
+     },
+     {
+      "code": "719029007",
+      "display": "Aspergillus fumigatus species complex"
+     },
+     {
+      "code": "719038009",
+      "display": "Aspergillus species, not Aspergillus fumigatus and not Aspergillus niger and not Aspergillus flavus"
+     },
+     {
+      "code": "721918008",
+      "display": "Paecilomyces inflatus"
+     },
+     {
+      "code": "722258003",
+      "display": "Serratia liquefaciens complex"
+     },
+     {
+      "code": "722351007",
+      "display": "Haemophilus influenzae, beta lactamase negative"
+     },
+     {
+      "code": "722353005",
+      "display": "Haemophilus influenzae, beta lactamase positive"
+     },
+     {
+      "code": "72401008",
+      "display": "Moraxella osloensis"
+     },
+     {
+      "code": "72461005",
+      "display": "Escherichia fergusonii"
+     },
+     {
+      "code": "72646003",
+      "display": "Streptococcus equinus"
+     },
+     {
+      "code": "7299008",
+      "display": "Papiliotrema laurentii"
+     },
+     {
+      "code": "7333005",
+      "display": "Cardiobacterium hominis"
+     },
+     {
+      "code": "73457008",
+      "display": "Proteus mirabilis"
+     },
+     {
+      "code": "73525009",
+      "display": "Salmonella Enteritidis"
+     },
+     {
+      "code": "73576007",
+      "display": "Mycobacterium malmoense"
+     },
+     {
+      "code": "73852008",
+      "display": "Enterococcus hirae"
+     },
+     {
+      "code": "74311004",
+      "display": "Rodentolepis nana"
+     },
+     {
+      "code": "75012005",
+      "display": "Streptococcus, group G"
+     },
+     {
+      "code": "75032006",
+      "display": "Klebsiella species"
+     },
+     {
+      "code": "75059003",
+      "display": "Alternaria species"
+     },
+     {
+      "code": "7527002",
+      "display": "Legionella species"
+     },
+     {
+      "code": "75953000",
+      "display": "Vibrio cholerae"
+     },
+     {
+      "code": "75972000",
+      "display": "Citrobacter species"
+     },
+     {
+      "code": "763051006",
+      "display": "Cutibacterium species"
+     },
+     {
+      "code": "7633000",
+      "display": "Epicoccum species"
+     },
+     {
+      "code": "765227008",
+      "display": "Irpex lacteus"
+     },
+     {
+      "code": "76694001",
+      "display": "Hafnia alvei"
+     },
+     {
+      "code": "76969000",
+      "display": "Staphylococcus caprae"
+     },
+     {
+      "code": "77086004",
+      "display": "Corynebacterium species"
+     },
+     {
+      "code": "7757008",
+      "display": "Acinetobacter species"
+     },
+     {
+      "code": "77584005",
+      "display": "Salmonella Muenchen"
+     },
+     {
+      "code": "77700001",
+      "display": "Neisseria subflava"
+     },
+     {
+      "code": "7784009",
+      "display": "Pasteurella canis"
+     },
+     {
+      "code": "78065002",
+      "display": "Enterococcus faecalis"
+     },
+     {
+      "code": "780915007",
+      "display": "Emmonsia species"
+     },
+     {
+      "code": "78181009",
+      "display": "Giardia duodenalis"
+     },
+     {
+      "code": "782522004",
+      "display": "Citrobacter freundii complex"
+     },
+     {
+      "code": "785874004",
+      "display": "Penicillium fellutanum"
+     },
+     {
+      "code": "786829004",
+      "display": "Coagulase-negative Staphylococcus species, not Staphylococcus saprophyticus"
+     },
+     {
+      "code": "78803006",
+      "display": "Aerococcus viridans"
+     },
+     {
+      "code": "78981005",
+      "display": "Mycoplasma species"
+     },
+     {
+      "code": "79128009",
+      "display": "Salmonella Paratyphi A"
+     },
+     {
+      "code": "79235009",
+      "display": "Entamoeba coli"
+     },
+     {
+      "code": "79909001",
+      "display": "Pneumocystis jirovecii"
+     },
+     {
+      "code": "80268001",
+      "display": "Salmonella Montevideo"
+     },
+     {
+      "code": "80627004",
+      "display": "Salmonella Agona"
+     },
+     {
+      "code": "80897008",
+      "display": "Legionella pneumophila"
+     },
+     {
+      "code": "816086002",
+      "display": "Aeromonas hydrophilia complex"
+     },
+     {
+      "code": "81795000",
+      "display": "Neisseria mucosa"
+     },
+     {
+      "code": "81909005",
+      "display": "Clostridium tertium"
+     },
+     {
+      "code": "8191000",
+      "display": "Clostridium species"
+     },
+     {
+      "code": "82071007",
+      "display": "Salmonella Infantis"
+     },
+     {
+      "code": "83088009",
+      "display": "Acinetobacter lwoffii"
+     },
+     {
+      "code": "8331005",
+      "display": "Clostridium perfringens"
+     },
+     {
+      "code": "83410001",
+      "display": "Gram-negative diplococcus"
+     },
+     {
+      "code": "83452006",
+      "display": "Staphylococcus haemolyticus"
+     },
+     {
+      "code": "83512007",
+      "display": "Bacillus subtilis"
+     },
+     {
+      "code": "83514008",
+      "display": "Gram-positive bacillus"
+     },
+     {
+      "code": "83597000",
+      "display": "Trichoderma species"
+     },
+     {
+      "code": "83723009",
+      "display": "Mycobacterium avium"
+     },
+     {
+      "code": "84489001",
+      "display": "Mould"
+     },
+     {
+      "code": "84684000",
+      "display": "Streptococcus salivarius subsp. salivarius"
+     },
+     {
+      "code": "85516007",
+      "display": "Nocardia farcinica"
+     },
+     {
+      "code": "85729005",
+      "display": "Shigella flexneri"
+     },
+     {
+      "code": "85786000",
+      "display": "Escherichia hermannii"
+     },
+     {
+      "code": "85823000",
+      "display": "Aeromonas hydrophila"
+     },
+     {
+      "code": "8672004",
+      "display": "Coccidioides species"
+     },
+     {
+      "code": "87172008",
+      "display": "Gram-negative bacillus"
+     },
+     {
+      "code": "8745002",
+      "display": "Gram-positive bacteria"
+     },
+     {
+      "code": "87579009",
+      "display": "Pasteurella species"
+     },
+     {
+      "code": "87632000",
+      "display": "Eubacterium limosum"
+     },
+     {
+      "code": "87875008",
+      "display": "Enterococcus avium"
+     },
+     {
+      "code": "87933008",
+      "display": "Salmonella Barranquilla"
+     },
+     {
+      "code": "879880005",
+      "display": "Clostridium saudiense"
+     },
+     {
+      "code": "88022005",
+      "display": "Salmonella Javiana"
+     },
+     {
+      "code": "88091007",
+      "display": "Salmonella Stanley"
+     },
+     {
+      "code": "88529008",
+      "display": "Aeromonas species"
+     },
+     {
+      "code": "88578003",
+      "display": "Trichophyton species"
+     },
+     {
+      "code": "89181007",
+      "display": "Streptococcus, group C"
+     },
+     {
+      "code": "89354002",
+      "display": "Aspergillus niger"
+     },
+     {
+      "code": "8940004",
+      "display": "Actinomyces naeslundii"
+     },
+     {
+      "code": "89477001",
+      "display": "Yokenella regensburgei"
+     },
+     {
+      "code": "89800007",
+      "display": "Haemophilus parahaemolyticus"
+     },
+     {
+      "code": "9008009",
+      "display": "Aerococcus species"
+     },
+     {
+      "code": "90163001",
+      "display": "Rothia species"
+     },
+     {
+      "code": "90272000",
+      "display": "Enterococcus faecium"
+     },
+     {
+      "code": "90341001",
+      "display": "Oligella urethralis"
+     },
+     {
+      "code": "90824006",
+      "display": "Stemphylium species"
+     },
+     {
+      "code": "91288006",
+      "display": "Acinetobacter baumannii"
+     },
+     {
+      "code": "91620006",
+      "display": "Achromobacter species"
+     },
+     {
+      "code": "9506004",
+      "display": "Salmonella Mbandaka"
+     },
+     {
+      "code": "9861002",
+      "display": "Streptococcus pneumoniae"
+     },
+     {
+      "code": "9879003",
+      "display": "Lactococcus species"
      }
     ]
    }

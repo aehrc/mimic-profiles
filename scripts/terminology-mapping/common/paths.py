@@ -15,3 +15,8 @@ SOURCES = Path(os.environ.get("ICD_SOURCE_DIR", ROOT / "sources"))
 
 # Generated FHIR resources, flat, named ResourceType-id.json.
 OUTPUT = ROOT / "output"
+
+# Per-code occurrence counts extracted once on the HPC node and committed. An
+# OPTIONAL input: without it build_statistics.py reports code coverage alone.
+# See occurrences/README.md.
+OCCURRENCES = ROOT / "occurrences"

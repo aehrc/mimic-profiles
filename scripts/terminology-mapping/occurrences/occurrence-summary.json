@@ -1,0 +1,81 @@
+{
+ "generated": "2026-08-06T00:36:55+00:00",
+ "host": "c348",
+ "warehouse": "/scratch3/nau025/mimic-on-fhir-delta/spark_warehouse",
+ "csv": "code-occurrences.csv",
+ "csv_sha256": "a552e98d8f9cecb4419d5285ec73f500c2a6420a67b37e1cc8c44ff1b1283483",
+ "versions": {
+  "python": "3.12.3",
+  "spark": "4.0.2",
+  "pathling": "9.6.0"
+ },
+ "tables": {
+  "Condition": {
+   "delta_version": 2,
+   "committed": "2026-07-27 15:34:40",
+   "rows": 5655376
+  },
+  "Procedure": {
+   "delta_version": 1,
+   "committed": "2026-07-27 15:35:54",
+   "rows": 3354975
+  },
+  "Observation": {
+   "delta_version": 1,
+   "committed": "2026-07-23 13:47:29",
+   "rows": 461098908
+  },
+  "Specimen": {
+   "delta_version": 1,
+   "committed": "2026-07-27 15:36:01",
+   "rows": 14963904
+  },
+  "MedicationAdministration": {
+   "delta_version": 1,
+   "committed": "2026-07-27 15:35:11",
+   "rows": 36733071
+  },
+  "MedicationRequest": {
+   "delta_version": 1,
+   "committed": "2026-07-27 15:35:39",
+   "rows": 15416901
+  }
+ },
+ "elements": {
+  "Condition.code": {
+   "codings": 5655376,
+   "distinct_codes": 27564,
+   "codings_without_code": 0
+  },
+  "Procedure.code": {
+   "codings": 3354975,
+   "distinct_codes": 12734,
+   "codings_without_code": 0
+  },
+  "Observation.code": {
+   "codings": 461098908,
+   "distinct_codes": 4241,
+   "codings_without_code": 0
+  },
+  "Observation.component.code": {
+   "codings": 3979394,
+   "distinct_codes": 2,
+   "codings_without_code": 0
+  },
+  "Specimen.type": {
+   "codings": 14963903,
+   "distinct_codes": 113,
+   "codings_without_code": 0
+  },
+  "MedicationAdministration.medication[x]": {
+   "codings": 36733071,
+   "distinct_codes": 6135,
+   "codings_without_code": 0
+  },
+  "MedicationRequest.medication[x]": {
+   "codings": 1883681,
+   "distinct_codes": 2890,
+   "codings_without_code": 0
+  }
+ }
+}

@@ -10,15 +10,31 @@ Three views of the same numbers, all derived, none hand-edited:
                                      derived view, regenerate any time.
     the terminal table               printed on every run unless --quiet.
 
-This script recomputes nothing. It reads the `by_stream` arrays the builders
+This script recomputes no mapping. It reads the `by_stream` arrays the builders
 wrote (see lib/report.py) and flattens them, which is what keeps a partial run
 honest: `make observation` refreshes observation-report.json, every other
 field's report is the committed one, and the CSV assembled from all of them is
 complete and current. Offline, deterministic, byte-identical from unchanged
 reports — `make mappings && git diff --exit-code` stays a valid test.
 
+One optional addition to that: if occurrences/code-occurrences.csv is present —
+the committed per-code counts extracted once on the HPC node — every coverage
+figure gains an occurrence-weighted twin, plus
+
+    output/occurrence-buckets.csv    where every occurrence of a bound element
+                                     goes: mapped, declined, no stream yet, or
+                                     admitted by no bound ValueSet. Committed.
+
+and the HTML grows a per-field section showing the head of the distribution with
+each code's mapping status. Coverage over codes says how much of the dictionary
+was mapped; coverage over occurrences says how likely a data point is to carry a
+code $translate cannot resolve, and only the second is a claim about the data.
+Both inputs are committed, so this stays offline and deterministic either way;
+without the artifact everything behaves exactly as it did before it existed.
+See common/occurrences.py and occurrences/README.md.
+
 Usage:
-  uv run scripts/terminology-mapping/build_statistics.py [--quiet]
+  uv run scripts/terminology-mapping/build_statistics.py [--quiet] [--top-n 25]
 """
 
 import argparse
@@ -29,7 +45,7 @@ import math
 import sys
 from pathlib import Path
 
-from common import paths
+from common import occurrences, paths
 
 # The flat scalar columns. The nested Tier-B detail that does not flatten
 # (confidence spread, constraint text, template) stays in the reports'
@@ -41,11 +57,32 @@ FIXED_COLUMNS = ["field", "element", "stream", "source_system", "method",
                  "coverage_pct", "equivalent", "relatedto", "unmatched",
                  "confidence_threshold", "confidence_median"]
 
+# Present only when the occurrence artifact is, and placed immediately after
+# coverage_pct rather than appended: the whole point is reading the weighted
+# percentage against the unweighted one, which means they belong side by side.
+OCCURRENCE_COLUMNS = ["occurrences_total", "occurrences_mapped",
+                      "occurrence_coverage_pct", "codes_never_used",
+                      "declined_never_used"]
+
 BAR_WIDTH = 20
 
 # equivalent / relatedto / unmatched, in the HTML bars and nowhere else.
 COLORS = {"equivalent": "#2f9e44", "relatedto": "#1971c2",
           "unmatched": "#adb5bd"}
+
+# The four occurrence buckets. Green for what $translate resolves, orange for a
+# decision this repo made and will defend, grey for a backlog, red for a code no
+# bound ValueSet admits — which under a required binding is a defect, so it is
+# the one colour that should never appear.
+BUCKET_COLORS = {occurrences.MAPPED: "#2f9e44",
+                 occurrences.DECLINED: "#e8590c",
+                 occurrences.NO_STREAM: "#adb5bd",
+                 occurrences.NOT_IN_ENUMERATION: "#c92a2a"}
+
+BUCKET_LABELS = {occurrences.MAPPED: "mapped",
+                 occurrences.DECLINED: "declined",
+                 occurrences.NO_STREAM: "no stream yet",
+                 occurrences.NOT_IN_ENUMERATION: "in no bound ValueSet"}
 
 # The code-search status split, in the order the second HTML table reads best:
 # what the gate accepted, what it rejected on confidence, then the cases where
@@ -151,12 +188,18 @@ def codesearch_streams(reports):
 
 
 def columns_for(rows):
-    """Fixed columns, the within_ rungs in numeric order, then whatever
-    status_/reason_ columns the data has."""
-    dynamic = {k for row in rows for k in row} - set(FIXED_COLUMNS)
+    """Fixed columns (occurrence ones spliced in after coverage_pct if present),
+    the within_ rungs in numeric order, then whatever status_/reason_ columns the
+    data has."""
+    present = {k for row in rows for k in row}
+    fixed = list(FIXED_COLUMNS)
+    if present & set(OCCURRENCE_COLUMNS):
+        at = fixed.index("coverage_pct") + 1
+        fixed[at:at] = OCCURRENCE_COLUMNS
+    dynamic = present - set(fixed)
     within = sorted((k for k in dynamic if k.startswith("within_")),
                     key=lambda k: float(k.split("_", 1)[1]))
-    return FIXED_COLUMNS + within + sorted(dynamic - set(within))
+    return fixed + within + sorted(dynamic - set(within))
 
 
 def write_csv(rows, out_dir):
@@ -165,6 +208,31 @@ def write_csv(rows, out_dir):
         writer = csv.DictWriter(fh, fieldnames=columns_for(rows), restval="")
         writer.writeheader()
         writer.writerows(rows)
+    return path
+
+
+def apply_occurrences(rows, stream_stats):
+    """Merge the per-stream occurrence numbers into the flat rows, in place.
+
+    A stream with no entry keeps no occurrence columns at all rather than zeros:
+    "this stream's codes never occur" and "nobody counted this element" are
+    different statements, and only the first is a zero.
+    """
+    for row in rows:
+        stats = stream_stats.get((row["field"], row["stream"]))
+        if stats:
+            row.update(stats)
+    return rows
+
+
+def write_buckets_csv(buckets, out_dir):
+    """Where every occurrence of every bound element goes. Committed."""
+    path = out_dir / "occurrence-buckets.csv"
+    with open(path, "w", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=["element", "bucket", "codes",
+                                               "occurrences", "share_pct"])
+        writer.writeheader()
+        writer.writerows(buckets)
     return path
 
 
@@ -193,6 +261,23 @@ def print_table(rows):
         print(f"  {indent}{label:{22 + stream_width + 10 - len(indent)}s}"
               f"{mapped:>6,}/{total:<6,} {'':{BAR_WIDTH}s} {pct:>6.2f}%",
               file=sys.stderr)
+
+
+def print_occurrences(buckets):
+    """The element-level headline: what share of the DATA the maps resolve.
+
+    Printed under the per-stream table because it answers a different question
+    from every line above it — not "how much of the dictionary did we map" but
+    "how often does a code the map cannot resolve actually turn up".
+    """
+    summary = occurrences.element_summary(buckets)
+    width = max([len(element) for element, *_ in summary] + [len("element")])
+    print(f"\n  {'element':{width}s} {'occurrences mapped':>22s} "
+          f"{'cov':>7s}  {'unmapped chance':>15s}", file=sys.stderr)
+    print("  " + "-" * (width + 49), file=sys.stderr)
+    for element, mapped, total, pct in summary:
+        print(f"  {element:{width}s} {mapped:>10,}/{total:<11,} "
+              f"{pct:>6.2f}%  {100 - pct:>14.2f}%", file=sys.stderr)
 
 
 def codesearch_table(streams):
@@ -283,8 +368,140 @@ precision rather than simply recovering lost matches.</p>
 """
 
 
-def write_html(rows, codesearch, out_dir):
+def occurrence_section(reports, counts, buckets, top):
+    """Per bound element: the two percentages, the four buckets, and the head of
+    the distribution with each code's status.
+
+    The coverage table above this page's fold can only say a code went unmapped.
+    This says how much data sat behind it — and the top-N table is where the two
+    percentages diverging becomes legible, because you can read down the most
+    frequent codes and see which of them nothing resolves.
+    """
+    if not counts:
+        return ""
+    by_element = {r["element"]: r for r in reports}
+    rows_by_element = {}
+    for row in buckets:
+        rows_by_element.setdefault(row["element"], []).append(row)
+
+    def stacked(element_rows, total):
+        parts = []
+        for row in element_rows:
+            if not row["occurrences"]:
+                continue
+            share = 100 * row["occurrences"] / total
+            parts.append(
+                f'<div class="seg" style="width:{share:.2f}%;'
+                f'background:{BUCKET_COLORS[row["bucket"]]}" '
+                f'title="{BUCKET_LABELS[row["bucket"]]}: '
+                f'{row["occurrences"]:,} ({share:.2f}%)"></div>')
+        return f'<div class="bar">{"".join(parts)}</div>'
+
+    def status(entry):
+        label = BUCKET_LABELS[entry["bucket"]]
+        if entry["bucket"] == occurrences.MAPPED and entry["target"]:
+            return f'mapped <code>{html.escape(entry["target"])}</code>'
+        if entry["bucket"] == occurrences.NO_STREAM:
+            return (f'{label} <span class="dim">'
+                    f'{html.escape(entry["system"].rsplit("/", 1)[-1])}</span>')
+        return label
+
+    def top_table(element):
+        entries = top.get(element, [])
+        if not entries:
+            return ""
+        cells = "".join(
+            f'<tr class="{"miss" if e["bucket"] != occurrences.MAPPED else ""}">'
+            f'<td class="n">{e["rank"]}</td>'
+            f'<td><code>{html.escape(e["code"])}</code></td>'
+            f'<td>{html.escape(e["display"])}</td>'
+            f'<td class="n">{e["occurrences"]:,}</td>'
+            f'<td class="n">{e["share_pct"]:.2f}%</td>'
+            f"<td>{status(e)}</td></tr>"
+            for e in entries)
+        return (f"<details><summary>{len(entries)} most frequent codes</summary>"
+                '<table class="top"><tr><th class="n">#</th><th>code</th>'
+                '<th>display</th><th class="n">occurrences</th>'
+                '<th class="n">share</th><th>status</th></tr>'
+                f"{cells}</table></details>")
+
+    blocks = []
+    for element, mapped, total, pct in occurrences.element_summary(buckets):
+        report = by_element.get(element)
+        if report:
+            code_total = report["source_total"]
+            code_pct = 100 * report["mapped"] / code_total if code_total else 0.0
+            code_row = (f'<tr><td>codes</td>'
+                        f'<td class="n">{report["mapped"]:,}&thinsp;/&thinsp;'
+                        f'{code_total:,}</td><td class="n">{code_pct:.1f}%</td>'
+                        f'<td class="dim">of the bound dictionary</td></tr>')
+        else:
+            # No ConceptMap for this element yet. Its whole occurrence count is
+            # backlog, and saying so is the point of listing it here at all.
+            code_row = ('<tr><td>codes</td><td class="n">&mdash;</td>'
+                        '<td class="n"></td><td class="dim">no ConceptMap for '
+                        'this element yet</td></tr>')
+        legend = "".join(
+            f'<span class="key"><span class="swatch" '
+            f'style="background:{BUCKET_COLORS[b]}"></span>'
+            f"{BUCKET_LABELS[b]}</span>" for b in occurrences.BUCKETS)
+        blocks.append(f"""
+<h3>{html.escape(element)}</h3>
+<table class="pair">
+{code_row}
+<tr><td>occurrences</td><td class="n">{mapped:,}&thinsp;/&thinsp;{total:,}</td>
+<td class="n">{pct:.2f}%</td>
+<td class="dim">&rarr; a data point here has a
+<strong>{100 - pct:.2f}%</strong> chance of carrying an unresolvable code</td></tr>
+</table>
+{stacked(rows_by_element.get(element, []), total) if total else ""}
+<p class="legend">{legend}</p>
+{top_table(element)}
+""")
+
+    summary = counts.summary
+    tables = ", ".join(
+        f"{name} v{info['delta_version']}"
+        for name, info in sorted(summary.get("tables", {}).items())
+        if "delta_version" in info)
+    return f"""
+<h2>Occurrence-weighted coverage</h2>
+<p>Every figure above counts each source code once. These count it as often as
+it occurs in the warehouse, which is the difference between &ldquo;how much of
+the dictionary did we map&rdquo; and &ldquo;how likely is a data point to carry
+a code <code>$translate</code> cannot resolve&rdquo;. The two diverging is the
+finding: a stream can map three quarters of its codes and a small fraction of
+its rows.</p>
+<p><em>declined</em> is a built stream that considered a code and said no, with
+its reason in <code>unmapped-&lt;field&gt;.csv</code>; <em>no stream yet</em> is
+a bound population nobody has built, which is a backlog rather than a mapping
+failure; <em>in no bound ValueSet</em> is a code the data carries that no bound
+ValueSet admits, and under a required binding that is a defect, so it should be
+empty.</p>
+<p class="dim">Counted on {html.escape(summary.get('host', '?'))} at
+{html.escape(summary.get('generated', '?'))} from
+<code>{html.escape(summary.get('warehouse', '?'))}</code>{f' ({html.escape(tables)})' if tables else ''}.
+See <code>occurrences/README.md</code>.</p>
+{"".join(blocks)}
+"""
+
+
+def write_html(rows, codesearch, out_dir, occurrence_html=""):
     """Self-contained table + stacked bars. A view, not a deliverable."""
+    # Two extra per-stream columns, only when the occurrence artifact supplied
+    # them: the weighted percentage next to the unweighted one is the whole
+    # comparison, and it should not need a second file to be read.
+    weighted = any("occurrence_coverage_pct" in row for row in rows)
+
+    def occurrence_cells(row):
+        if not weighted:
+            return ""
+        if "occurrence_coverage_pct" not in row:
+            return "<td class='n sep'></td><td class='n'></td>"
+        return (f"<td class='n sep'>{row['occurrences_mapped']:,}"
+                f"&thinsp;/&thinsp;{row['occurrences_total']:,}</td>"
+                f"<td class='n'>{row['occurrence_coverage_pct']:.1f}%</td>")
+
     def stacked(row):
         if not row["total"]:
             return ""
@@ -306,6 +523,7 @@ def write_html(rows, codesearch, out_dir):
         f"<td>{html.escape(r['target_systems'])}</td>"
         f"<td class='n'>{r['mapped']:,}/{r['total']:,}</td>"
         f"<td class='n'>{r['coverage_pct']:.1f}%</td>"
+        + occurrence_cells(r) +
         f"<td class='bar-cell'>{stacked(r)}</td>"
         f"<td class='n'>{r['equivalent']:,}</td>"
         f"<td class='n'>{r['relatedto']:,}</td>"
@@ -374,6 +592,19 @@ def write_html(rows, codesearch, out_dir):
   .arrow {{ color: #868e96; }}
   .why {{ color: #868e96; font-size: .9em; }}
   code {{ background: #f1f3f5; padding: 0 .25rem; border-radius: 2px; }}
+  .dim {{ color: #868e96; }}
+  table .sep {{ border-left: 2px solid #dee2e6; }}
+  h3 {{ margin: 2rem 0 .4rem; font-family: ui-monospace, monospace; }}
+  table.pair {{ max-width: 46rem; margin-bottom: .6rem; }}
+  table.pair td {{ border-bottom: none; padding: .1rem .6rem .1rem 0; }}
+  table.pair td:first-child {{ color: #495057; width: 7rem; }}
+  table.pair td.n {{ width: 9rem; }}
+  p.legend {{ margin: .5rem 0 0; }}
+  table.top {{ margin: .4rem 0 1rem; }}
+  table.top td {{ padding: .2rem .6rem; }}
+  /* A row the map cannot resolve, marked so the head of the distribution can be
+     skimmed for holes rather than read cell by cell. */
+  table.top tr.miss td {{ background: #fff5f5; }}
 </style>
 <h1>MIMIC mapping statistics, per stream</h1>
 <p>Derived from the <code>by_stream</code> arrays of every
@@ -389,10 +620,13 @@ about.</p>
 <table class="summary">
 {summary_rows}
 </table>
+{occurrence_html}
 <h2>Per stream</h2>
 <table>
 <tr><th>field</th><th>stream</th><th>method</th><th>targets</th>
-<th class="n">mapped</th><th class="n">coverage</th><th>equivalence</th>
+<th class="n">mapped</th><th class="n">coverage</th>
+{'<th class="n sep">occurrences</th><th class="n">occ coverage</th>' if weighted else ''}
+<th>equivalence</th>
 <th class="n">equivalent</th><th class="n">relatedto</th>
 <th class="n">unmatched</th><th class="n">threshold</th>
 <th class="n">median conf</th></tr>
@@ -413,6 +647,12 @@ def main():
                     help=f"where the reports are (default: {paths.OUTPUT})")
     ap.add_argument("--quiet", action="store_true",
                     help="write the files, skip the terminal table")
+    ap.add_argument("--occurrences-dir", type=Path, default=paths.OCCURRENCES,
+                    help=f"per-code occurrence counts, if extracted "
+                         f"(default: {paths.OCCURRENCES})")
+    ap.add_argument("--top-n", type=int, default=25,
+                    help="how many of the most frequent codes per element the "
+                         "HTML lists (default: 25)")
     args = ap.parse_args()
 
     reports = load_reports(args.out_dir)
@@ -421,13 +661,28 @@ def main():
         sys.exit("no <field>-report.json with a by_stream array found — "
                  "run a builder first (make mappings)")
 
+    # Optional: absent, every number below is the code-weighted one, as before.
+    counts = occurrences.load(args.occurrences_dir)
+    buckets, top, occurrence_html, buckets_path = [], {}, "", None
+    if counts:
+        stream_stats, buckets, top = occurrences.analyse(
+            reports, counts, args.out_dir, args.top_n)
+        apply_occurrences(rows, stream_stats)
+        buckets_path = write_buckets_csv(buckets, args.out_dir)
+        occurrence_html = occurrence_section(reports, counts, buckets, top)
+
     csv_path = write_csv(rows, args.out_dir)
-    html_path = write_html(rows, codesearch_streams(reports), args.out_dir)
+    html_path = write_html(rows, codesearch_streams(reports), args.out_dir,
+                           occurrence_html)
     if not args.quiet:
         print(f"== mapping statistics ({len(rows)} streams across "
               f"{len(reports)} fields) ==", file=sys.stderr)
         print_table(rows)
-    print(f"  wrote {csv_path.name}, {html_path.name}", file=sys.stderr)
+        if buckets:
+            print_occurrences(buckets)
+    written = ", ".join(p.name for p in
+                        (csv_path, html_path, buckets_path) if p)
+    print(f"  wrote {written}", file=sys.stderr)
     return 0
 
 

@@ -71,7 +71,13 @@ def main() -> None:
 
     print(f"\nConverting {len(by_stem)} file(s) → {len(set(map(tuple, by_stem.values())))} "
           f"table(s) in {target} …")
-    pc = PathlingContext.create(enable_delta=True, enable_terminology=False)
+    # Extensions must be on: the server encodes with them (EncodingConfiguration
+    # defaults enableExtensions=true), so a warehouse written without them lacks
+    # the _fid / _extension columns the server's analysis expects, and every
+    # ViewDefinition fails with DELTA_SCHEMA_CHANGE_SINCE_ANALYSIS.
+    pc = PathlingContext.create(
+        enable_delta=True, enable_terminology=False, enable_extensions=True
+    )
 
     # Pathling hands the mapper every entry in the directory with its extension
     # stripped, including the target warehouse when it is nested inside the
