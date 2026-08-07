@@ -1,0 +1,172 @@
+{
+ "field": "specimen",
+ "element": "Specimen.type",
+ "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-specimen-to-standard",
+ "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-specimen-standard",
+ "version": "1.0.0",
+ "date": "2026-08-07",
+ "source_total": 116,
+ "mapped": 90,
+ "unmapped": 26,
+ "by_source": [
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-lab-fluid",
+   "mapped": 9
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc",
+   "mapped": 81
+  }
+ ],
+ "by_target_system": [
+  {
+   "system": "http://snomed.info/sct",
+   "mappings": 90
+  }
+ ],
+ "by_equivalence": {
+  "relatedto": 90,
+  "unmatched": 26
+ },
+ "unmapped_by_reason": {
+  "no-suitable-concept": 26
+ },
+ "by_stream": [
+  {
+   "stream": "mimic-lab-fluid",
+   "source_file": "CodeSystem-mimic-lab-fluid.json",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-lab-fluid",
+   "method": "table",
+   "total": 12,
+   "mapped": 9,
+   "unmapped": 3,
+   "coverage_pct": 75.0,
+   "target_systems": [
+    "http://snomed.info/sct"
+   ],
+   "by_equivalence": {
+    "relatedto": 9,
+    "unmatched": 3
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 3
+   },
+   "codesearch": {
+    "status": {
+     "no-content": 2,
+     "not-in-constraint": 1,
+     "ok": 9
+    },
+    "confidence": {
+     "min": 0.85,
+     "median": 0.95,
+     "mean": 0.935,
+     "max": 1.0
+    },
+    "constraint": "<<123038009",
+    "template": "{}",
+    "confidence_threshold": 0.8,
+    "near_threshold": {
+     "0.05": 0,
+     "0.1": 0,
+     "0.2": 0,
+     "0.3": 0,
+     "0.4": 0
+    },
+    "near_misses": []
+   }
+  },
+  {
+   "stream": "mimic-spec-type-desc",
+   "source_file": "CodeSystem-mimic-spec-type-desc.json",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc",
+   "method": "table",
+   "total": 104,
+   "mapped": 81,
+   "unmapped": 23,
+   "coverage_pct": 77.9,
+   "target_systems": [
+    "http://snomed.info/sct"
+   ],
+   "by_equivalence": {
+    "relatedto": 81,
+    "unmatched": 23
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 23
+   },
+   "codesearch": {
+    "status": {
+     "below-threshold": 5,
+     "no-match": 18,
+     "ok": 81
+    },
+    "confidence": {
+     "min": 0.7,
+     "median": 0.9,
+     "mean": 0.898,
+     "max": 1.0
+    },
+    "constraint": "<<123038009",
+    "template": "{}",
+    "confidence_threshold": 0.8,
+    "near_threshold": {
+     "0.05": 3,
+     "0.1": 5,
+     "0.2": 5,
+     "0.3": 5,
+     "0.4": 5
+    },
+    "near_misses": [
+     {
+      "mimic_code": "70038",
+      "mimic_display": "FECAL SWAB",
+      "proposed_code": "258528007",
+      "proposed_display": "Rectal swab",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "No exact 'fecal swab' code; rectal swab is the closest swab specimen for fecal collection"
+     },
+     {
+      "mimic_code": "70055",
+      "mimic_display": "POSTMORTEM CULTURE",
+      "proposed_code": "258484005",
+      "proposed_display": "Postmortem tissue specimen",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Postmortem specimen; culture aspect not captured"
+     },
+     {
+      "mimic_code": "90935",
+      "mimic_display": "VIRAL CULTURE",
+      "proposed_code": "621000009105",
+      "proposed_display": "Viral isolate specimen",
+      "confidence": 0.75,
+      "gap": 0.05,
+      "reasoning": "Closest specimen concept for viral culture"
+     },
+     {
+      "mimic_code": "70006",
+      "mimic_display": "ANORECTAL/VAGINAL",
+      "proposed_code": "1371684001",
+      "proposed_display": "Combined specimen from swab of rectum and vaginal introitus",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Only code capturing both anorectal and vaginal specimen concepts"
+     },
+     {
+      "mimic_code": "90921",
+      "mimic_display": "POST-MORTEM VIRAL CULTURE",
+      "proposed_code": "258484005",
+      "proposed_display": "Postmortem tissue specimen",
+      "confidence": 0.7,
+      "gap": 0.1,
+      "reasoning": "Specimen type; captures postmortem, viral culture unstated"
+     }
+    ]
+   }
+  }
+ ],
+ "target_valueset_codes": 53,
+ "extras": {}
+}

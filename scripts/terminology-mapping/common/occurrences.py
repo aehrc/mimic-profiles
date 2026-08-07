@@ -17,15 +17,21 @@ Three things are produced, in ascending order of how much they claim:
                denominator as the code count, each code counted as often as it
                occurs.
 
-  per element  every occurrence of the element partitioned four ways —
+  per element  every occurrence of the element partitioned five ways —
                MAPPED, DECLINED (a built stream considered it and said no, with
-               a reason on record), NO_STREAM (a bound population nobody has
+               a reason on record), BLOCKED (a built stream that maps nothing
+               because the obstacle is outside terminology — an ETL or
+               modelling defect), NO_STREAM (a bound population nobody has
                built yet: labevents, chartevents), NOT_IN_ENUMERATION (a code in
                the data that no bound ValueSet admits, which under a required
-               binding is an ETL or binding defect). The last two are kept apart
-               from DECLINED on purpose: only DECLINED is a judgement this repo
-               would defend, and reporting a 1,622-code backlog as if it were
-               one would misrepresent both.
+               binding is an ETL or binding defect). The last three are kept
+               apart from DECLINED on purpose: only DECLINED is a judgement this
+               repo would defend, and reporting a 1,622-code backlog or a
+               mis-modelled column as if it were one would misrepresent both.
+
+               BLOCKED is also what makes the element's coverage reportable two
+               ways — against every occurrence, and against the occurrences a
+               code system could ever have covered. See element_summary.
 
   top N        the most frequent codes with their status, which is where the
                divergence between the two percentages becomes readable: you look
@@ -52,9 +58,21 @@ REGISTRY_NAME = "elements.json"
 
 MAPPED = "mapped"
 DECLINED = "declined"
+# A stream that is built and complete but maps nothing, because the reason its
+# codes cannot be mapped sits OUTSIDE terminology — an ETL or modelling defect
+# this repo cannot fix from here. Split out of DECLINED deliberately: that
+# bucket means "a stream considered this code and said no", which is a
+# judgement about terminology and the only one this repo would defend. A code
+# that was never a candidate for a code system is a different fact, and folding
+# the two together would both overstate what was judged and make an element's
+# coverage look like a mapping failure when it is a data-model one.
+BLOCKED = "blocked-upstream"
+# Kept in step with lib/assemble.py by hand rather than imported: this module is
+# read by the HPC-node side too, which has no conceptmaps/ package on its path.
+NOT_OBSERVED = "not-observed-in-data"
 NO_STREAM = "no-stream-yet"
 NOT_IN_ENUMERATION = "not-in-enumeration"
-BUCKETS = (MAPPED, DECLINED, NO_STREAM, NOT_IN_ENUMERATION)
+BUCKETS = (MAPPED, DECLINED, BLOCKED, NO_STREAM, NOT_IN_ENUMERATION)
 
 # The IG resources every enumeration is read from. Both directories, because the
 # MIMIC CodeSystems ship in input/resources/ while the FSH-authored ValueSets
@@ -245,13 +263,28 @@ def _stream_codes(source_file, source_system, index):
 # --------------------------------------------------------------------------- #
 
 def _declined(field_key, out_dir):
-    """{(system, code)} the builders considered and deliberately left unmapped."""
+    """{(system, code)} the builders considered and deliberately left unmapped.
+
+    NOT every row of the CSV. A stream declaring `observed_only` also writes a
+    row for each code the bound ValueSet admits but the data never carries, so
+    that a consumer meeting one is told the assumption rather than met with
+    silence — see lib/assemble.py NOT_OBSERVED. Those were never considered and
+    never declined: counting them here would report a code nobody looked at as a
+    judgement this repo would defend, which is precisely the distinction the
+    DECLINED bucket exists to preserve.
+
+    They cannot move the occurrence arithmetic either way, since a never-observed
+    code occurs zero times by construction. What they would corrupt is the code
+    COUNT and the cross-check against the report, and the check is worth keeping
+    honest: it is what catches a builder and its CSV disagreeing.
+    """
     path = out_dir / f"unmapped-{field_key}.csv"
     if not path.is_file():
         return set()
     with open(path, newline="") as fh:
         return {(row["source_system"], row["mimic_code"])
-                for row in csv.DictReader(fh)}
+                for row in csv.DictReader(fh)
+                if row.get("reason") != NOT_OBSERVED}
 
 
 def _targets(report, out_dir):
@@ -305,7 +338,7 @@ def analyse(reports, counts, out_dir, top_n=25):
 
         # Per stream, and at the same time the element-level mapped/declined
         # sets — both are the same walk over the streams' enumerations.
-        mapped_keys, declined_keys = set(), set()
+        mapped_keys, declined_keys, blocked_keys = set(), set(), set()
         for stream in (report["by_stream"] if report else []):
             source_file = stream.get("source_file")
             if not source_file:
@@ -315,8 +348,14 @@ def analyse(reports, counts, out_dir, top_n=25):
             codes = _stream_codes(source_file, stream["source_system"], index)
             in_stream_declined = {k for k in codes if k in declined_codes}
             in_stream_mapped = set(codes) - in_stream_declined
+            if stream.get("blocked_upstream"):
+                # Its unmapped codes are blocked, not declined. Anything it DID
+                # map still counts as mapped — the flag is about why the gap
+                # exists, not a licence to ignore the stream's successes.
+                blocked_keys |= in_stream_declined
+            else:
+                declined_keys |= in_stream_declined
             mapped_keys |= in_stream_mapped
-            declined_keys |= in_stream_declined
 
             # The report counted the same thing from the other direction; a
             # disagreement means the enumeration and the map have drifted apart.
@@ -350,6 +389,8 @@ def analyse(reports, counts, out_dir, top_n=25):
         for key, n in counts.by_element[element].items():
             if key in mapped_keys:
                 bucket = MAPPED
+            elif key in blocked_keys:
+                bucket = BLOCKED
             elif key in declined_keys:
                 bucket = DECLINED
             elif key in bound:
@@ -392,18 +433,46 @@ def analyse(reports, counts, out_dir, top_n=25):
 
 
 def element_summary(buckets):
-    """[(element, mapped occurrences, total occurrences, pct)] for the headline.
+    """Per element: mapped, total, and the coverage figure reported TWO ways.
 
-    The complement of the mapped share is the number Felix asked for: the chance
-    that a data point encountered in this element carries a code $translate
-    cannot resolve.
+    [(element, mapped, total, pct, achievable_total, achievable_pct)]
+
+    The complement of the mapped share is the number this view exists for: the
+    chance that a data point encountered in this element carries a code
+    $translate cannot resolve.
+
+    Why two denominators. An element can bind a population that terminology
+    cannot serve at all, because the codes are not the kind of thing the target
+    code system names — MedicationRequest.medication[x] carries 167,144
+    occurrences of `IV therapy` and `TPN`, which are order flags rather than
+    substances. Against every occurrence, that element reads 88.19%; against
+    what a code system could ever have covered, 96.77%. Reporting only the
+    first blames the mapping for a data-model defect; reporting only the second
+    hides 8.9% of the element's traffic behind a denominator quietly chosen to
+    flatter it. Both, always, and `blocked-upstream` is exactly the difference
+    between them — so the second figure can never be moved except by declaring
+    a stream blocked, in the builder, where a reviewer sees it.
+
+    When nothing is blocked the two are identical, which is the common case and
+    costs a reader nothing.
     """
-    per_element = defaultdict(lambda: {"mapped": 0, "total": 0})
+    per_element = defaultdict(lambda: {"mapped": 0, "total": 0, "blocked": 0})
     for row in buckets:
-        per_element[row["element"]]["total"] += row["occurrences"]
+        entry = per_element[row["element"]]
+        entry["total"] += row["occurrences"]
         if row["bucket"] == MAPPED:
-            per_element[row["element"]]["mapped"] += row["occurrences"]
-    return [(element, value["mapped"], value["total"],
-             int(10000 * value["mapped"] / value["total"]) / 100
-             if value["total"] else 0.0)
-            for element, value in sorted(per_element.items())]
+            entry["mapped"] += row["occurrences"]
+        elif row["bucket"] == BLOCKED:
+            entry["blocked"] += row["occurrences"]
+
+    def pct(mapped, total):
+        # Floored, not rounded: only a genuinely complete element may show 100.
+        return int(10000 * mapped / total) / 100 if total else 0.0
+
+    out = []
+    for element, value in sorted(per_element.items()):
+        achievable = value["total"] - value["blocked"]
+        out.append((element, value["mapped"], value["total"],
+                    pct(value["mapped"], value["total"]),
+                    achievable, pct(value["mapped"], achievable)))
+    return out

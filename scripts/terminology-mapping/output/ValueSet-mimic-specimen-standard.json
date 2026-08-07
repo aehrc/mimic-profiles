@@ -1,0 +1,234 @@
+{
+ "resourceType": "ValueSet",
+ "id": "mimic-specimen-standard",
+ "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-specimen-standard",
+ "version": "1.0.0",
+ "name": "MimicSpecimenStandard",
+ "title": "MIMIC Specimen types as SNOMED CT",
+ "status": "active",
+ "experimental": false,
+ "date": "2026-08-07",
+ "publisher": "CSIRO",
+ "description": "The SNOMED CT specimen concepts every mapped MIMIC Specimen.type code resolves to. Derived from ConceptMap/mimic-specimen-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Every member is inside `<<123038009 |Specimen|` and in the SNOMED international core \u2014 the generator gates on both, which is what keeps this value set resolvable on a server other than the one it was built against. The SNOMED CT include carries no version: this repo builds no SNOMED release, so pinning one would name something it cannot reproduce. Note that several MIMIC codes legitimately share a member: SNOMED files no neonate-qualified or post-mortem-qualified blood-culture specimen, so three distinct MIMIC specimen types resolve to 446131002 |Blood specimen obtained for blood culture| and cannot be told apart after translation.",
+ "compose": {
+  "include": [
+   {
+    "system": "http://snomed.info/sct",
+    "concept": [
+     {
+      "code": "1003711005",
+      "display": "Specimen from prosthetic joint"
+     },
+     {
+      "code": "119295008",
+      "display": "Specimen obtained by aspiration"
+     },
+     {
+      "code": "119297000",
+      "display": "Blood specimen"
+     },
+     {
+      "code": "119303007",
+      "display": "Microbial isolate"
+     },
+     {
+      "code": "119304001",
+      "display": "Specimen from blood bag"
+     },
+     {
+      "code": "119312009",
+      "display": "Catheter tip submitted as specimen"
+     },
+     {
+      "code": "119326000",
+      "display": "Hair specimen"
+     },
+     {
+      "code": "119335007",
+      "display": "Coughed sputum specimen"
+     },
+     {
+      "code": "119339001",
+      "display": "Faeces specimen"
+     },
+     {
+      "code": "119341000",
+      "display": "Bile specimen"
+     },
+     {
+      "code": "119359002",
+      "display": "Bone marrow specimen"
+     },
+     {
+      "code": "119371008",
+      "display": "Specimen from abscess"
+     },
+     {
+      "code": "119373006",
+      "display": "Amniotic fluid"
+     },
+     {
+      "code": "119376003",
+      "display": "Tissue specimen"
+     },
+     {
+      "code": "119389009",
+      "display": "Specimen from throat"
+     },
+     {
+      "code": "119399004",
+      "display": "Specimen from eye"
+     },
+     {
+      "code": "122551003",
+      "display": "Peripheral blood specimen"
+     },
+     {
+      "code": "122566000",
+      "display": "Fluid specimen from wound"
+     },
+     {
+      "code": "122575003",
+      "display": "Urine specimen"
+     },
+     {
+      "code": "122609004",
+      "display": "Specimen from lung obtained by bronchial washing procedure"
+     },
+     {
+      "code": "1380394001",
+      "display": "Tissue impression specimen"
+     },
+     {
+      "code": "168139001",
+      "display": "Peritoneal fluid"
+     },
+     {
+      "code": "2531000181101",
+      "display": "Urine specimen obtained after prostatic massage"
+     },
+     {
+      "code": "257261003",
+      "display": "Swab"
+     },
+     {
+      "code": "258415003",
+      "display": "Biopsy specimen"
+     },
+     {
+      "code": "258442002",
+      "display": "Fluid sample"
+     },
+     {
+      "code": "258450006",
+      "display": "CSF specimen"
+     },
+     {
+      "code": "258454002",
+      "display": "Dialysate specimen"
+     },
+     {
+      "code": "258485006",
+      "display": "Corneal scrapings specimen"
+     },
+     {
+      "code": "258528007",
+      "display": "Rectal swab"
+     },
+     {
+      "code": "258529004",
+      "display": "Throat swab"
+     },
+     {
+      "code": "258565009",
+      "display": "Chorionic villi specimen"
+     },
+     {
+      "code": "258576008",
+      "display": "Suprapubic aspirate"
+     },
+     {
+      "code": "258607008",
+      "display": "Bronchoalveolar lavage fluid"
+     },
+     {
+      "code": "258664003",
+      "display": "Scotch tape slide specimen"
+     },
+     {
+      "code": "309051001",
+      "display": "Body fluid"
+     },
+     {
+      "code": "309165001",
+      "display": "Ear specimen"
+     },
+     {
+      "code": "309176002",
+      "display": "Bronchial brushings specimen"
+     },
+     {
+      "code": "418564007",
+      "display": "Pleural fluid"
+     },
+     {
+      "code": "431361003",
+      "display": "Joint fluid"
+     },
+     {
+      "code": "445447003",
+      "display": "Specimen from trachea obtained by aspiration"
+     },
+     {
+      "code": "446131002",
+      "display": "Blood specimen obtained for blood culture"
+     },
+     {
+      "code": "446907008",
+      "display": "Urine specimen obtained from kidney"
+     },
+     {
+      "code": "446952006",
+      "display": "Specimen from skin obtained by scraping"
+     },
+     {
+      "code": "447098004",
+      "display": "Specimen from nail obtained by scraping"
+     },
+     {
+      "code": "447103002",
+      "display": "Foreign body submitted as specimen"
+     },
+     {
+      "code": "473433009",
+      "display": "Protected specimen brush submitted as specimen"
+     },
+     {
+      "code": "57731000052104",
+      "display": "Stem cell specimen"
+     },
+     {
+      "code": "593961000052105",
+      "display": "Mini-bronchoalveolar lavage fluid specimen"
+     },
+     {
+      "code": "621000009105",
+      "display": "Viral isolate specimen"
+     },
+     {
+      "code": "704663000",
+      "display": "Parasitic worm specimen"
+     },
+     {
+      "code": "734338009",
+      "display": "Arthropod material submitted as specimen"
+     },
+     {
+      "code": "878861003",
+      "display": "Blood specimen in blood culture bottle"
+     }
+    ]
+   }
+  ]
+ }
+}

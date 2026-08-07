@@ -1,0 +1,16 @@
+{
+ "description": "Derived from the RxNorm designations reachable through constraint_vcl. Committed so the deterministic tier of build_medication_name_table.py is a pure function of this repo. The counts and the digest are tripwires: a RxNorm release bump changes them, which makes it a reviewable diff instead of a silent change to committed answers.",
+ "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+ "version": "20231106",
+ "constraint_vcl": "(http://www.nlm.nih.gov/research/umls/rxnorm)(TTY=IN;TTY=PIN;TTY=MIN;TTY=BN;TTY=SCD;TTY=GPCK;TTY=BPCK)",
+ "codes": 73214,
+ "terms": 121471,
+ "keys": 114502,
+ "ambiguous_keys_dropped": 3,
+ "ambiguous_keys": [
+  "aminolevulinic acid hydrochloride 20 % topical solution",
+  "dexchlorpheniramine maleate 0.4 mg/ml / hydrocodone bitartrate 0.8 mg/ml / phenylephrine hydrochloride 1 mg/ml oral solution",
+  "dextromethorphan hydrobromide 15 mg / guaifenesin 25 mg / pseudoephedrine hydrochloride 30 mg per 5 ml oral solution"
+ ],
+ "tsv_sha256": "86b4d65e69c53de700da66f1f9573174e90c2cb7fefae11adb9722b4530ac2e9"
+}

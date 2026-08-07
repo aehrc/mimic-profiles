@@ -1,0 +1,1292 @@
+{
+ "resourceType": "ConceptMap",
+ "id": "mimic-specimen-to-standard",
+ "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-specimen-to-standard",
+ "version": "1.0.0",
+ "name": "MimicSpecimenToStandard",
+ "title": "MIMIC Specimen types to SNOMED CT",
+ "status": "active",
+ "experimental": false,
+ "date": "2026-08-07",
+ "publisher": "CSIRO",
+ "description": "Maps the codes the MIMIC Specimen profile admits on Specimen.type onto SNOMED CT specimen concepts, so a consumer can translate the whole Specimen.type column through a single ConceptMap. Every target is drawn from `<<123038009 |Specimen|` and nowhere else: MIMIC's specimen labels name substances, body structures, disorders and physical objects when read literally, and an unconstrained search returns those confidently and at higher scores than the correct specimen concepts, so the hierarchy constraint rather than the confidence score is what makes a target of this map legal for the element. The FHIR R4 example binding to HL7 v2 table 0487 is deliberately not used \u2014 the binding is example strength, and that table has no code for the most frequent MIMIC specimen labels. Both source CodeSystems are present, so every one of the 116 codes this map's sourceCanonical admits has been considered. Coverage is deliberately partial nonetheless \u2014 about a fifth of the microbiology specimen descriptions name a laboratory TEST rather than a specimen, and Specimen.type cannot legally hold one \u2014 and a code this map does not resolve is declared as an unmatched element carrying its reason, never silently omitted.",
+ "purpose": "Lets a consumer translate the Specimen.type column with a single $translate. Every mapping here is 'relatedto', because there is no identity group and no notation rule in this field: not one MIMIC specimen code is already SNOMED CT, and the relationship between a MIMIC collection label and a SNOMED specimen concept is one this repo does not establish a direction for. The consequence is stronger here than in the other maps and consumers must act on it \u2014 filtering on equivalence 'equivalent' returns NOTHING from this field, not a subset. Test for a present target code instead, and drop the 'unmatched' elements, which report 'considered, no target' by carrying a system and no code. Two further caveats. A target is a SPECIMEN, so a consumer must not read one as the substance or body site it names \u2014 119297000 |Blood specimen| is not 87612001 |Blood|, and the second is what an unconstrained search returns for the same label. And the map's groups now cover both of its source CodeSystems, so a Specimen.type value that translates to nothing is a code this map considered and declined rather than a population nobody has built \u2014 the reason is in unmapped-specimen.csv, and the commonest one by far is that the MIMIC label names a laboratory test rather than any material.",
+ "sourceCanonical": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-specimen-type",
+ "targetCanonical": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-specimen-standard",
+ "group": [
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-lab-fluid",
+   "target": "http://snomed.info/sct",
+   "element": [
+    {
+     "code": "Blood",
+     "display": "Blood",
+     "target": [
+      {
+       "code": "119297000",
+       "equivalence": "relatedto",
+       "display": "Blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "Bone Marrow",
+     "display": "Bone Marrow",
+     "target": [
+      {
+       "code": "119359002",
+       "equivalence": "relatedto",
+       "display": "Bone marrow specimen"
+      }
+     ]
+    },
+    {
+     "code": "Cerebrospinal Fluid",
+     "display": "Cerebrospinal Fluid",
+     "target": [
+      {
+       "code": "258450006",
+       "equivalence": "relatedto",
+       "display": "CSF specimen"
+      }
+     ]
+    },
+    {
+     "code": "Fluid",
+     "display": "Fluid",
+     "target": [
+      {
+       "code": "309051001",
+       "equivalence": "relatedto",
+       "display": "Body fluid"
+      }
+     ]
+    },
+    {
+     "code": "Joint Fluid",
+     "display": "Joint Fluid",
+     "target": [
+      {
+       "code": "431361003",
+       "equivalence": "relatedto",
+       "display": "Joint fluid"
+      }
+     ]
+    },
+    {
+     "code": "Other Body Fluid",
+     "display": "Other Body Fluid",
+     "target": [
+      {
+       "code": "309051001",
+       "equivalence": "relatedto",
+       "display": "Body fluid"
+      }
+     ]
+    },
+    {
+     "code": "Pleural",
+     "display": "Pleural",
+     "target": [
+      {
+       "code": "418564007",
+       "equivalence": "relatedto",
+       "display": "Pleural fluid"
+      }
+     ]
+    },
+    {
+     "code": "Stool",
+     "display": "Stool",
+     "target": [
+      {
+       "code": "119339001",
+       "equivalence": "relatedto",
+       "display": "Faeces specimen"
+      }
+     ]
+    },
+    {
+     "code": "Urine",
+     "display": "Urine",
+     "target": [
+      {
+       "code": "122575003",
+       "equivalence": "relatedto",
+       "display": "Urine specimen"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc",
+   "target": "http://snomed.info/sct",
+   "element": [
+    {
+     "code": "70002",
+     "display": "THROAT FOR STREP",
+     "target": [
+      {
+       "code": "258529004",
+       "equivalence": "relatedto",
+       "display": "Throat swab"
+      }
+     ]
+    },
+    {
+     "code": "70003",
+     "display": "ABSCESS",
+     "target": [
+      {
+       "code": "119371008",
+       "equivalence": "relatedto",
+       "display": "Specimen from abscess"
+      }
+     ]
+    },
+    {
+     "code": "70004",
+     "display": "ARTHROPOD",
+     "target": [
+      {
+       "code": "734338009",
+       "equivalence": "relatedto",
+       "display": "Arthropod material submitted as specimen"
+      }
+     ]
+    },
+    {
+     "code": "70005",
+     "display": "ASPIRATE",
+     "target": [
+      {
+       "code": "119295008",
+       "equivalence": "relatedto",
+       "display": "Specimen obtained by aspiration"
+      }
+     ]
+    },
+    {
+     "code": "70007",
+     "display": "BLOOD BAG FLUID",
+     "target": [
+      {
+       "code": "119304001",
+       "equivalence": "relatedto",
+       "display": "Specimen from blood bag"
+      }
+     ]
+    },
+    {
+     "code": "70008",
+     "display": "BRONCHIAL BRUSH - PROTECTED",
+     "target": [
+      {
+       "code": "473433009",
+       "equivalence": "relatedto",
+       "display": "Protected specimen brush submitted as specimen"
+      }
+     ]
+    },
+    {
+     "code": "70009",
+     "display": "BILE",
+     "target": [
+      {
+       "code": "119341000",
+       "equivalence": "relatedto",
+       "display": "Bile specimen"
+      }
+     ]
+    },
+    {
+     "code": "70010",
+     "display": "BIOPSY",
+     "target": [
+      {
+       "code": "258415003",
+       "equivalence": "relatedto",
+       "display": "Biopsy specimen"
+      }
+     ]
+    },
+    {
+     "code": "70011",
+     "display": "BLOOD CULTURE ( MYCO/F LYTIC BOTTLE)",
+     "target": [
+      {
+       "code": "878861003",
+       "equivalence": "relatedto",
+       "display": "Blood specimen in blood culture bottle"
+      }
+     ]
+    },
+    {
+     "code": "70012",
+     "display": "BLOOD CULTURE",
+     "target": [
+      {
+       "code": "446131002",
+       "equivalence": "relatedto",
+       "display": "Blood specimen obtained for blood culture"
+      }
+     ]
+    },
+    {
+     "code": "70013",
+     "display": "FLUID RECEIVED IN BLOOD CULTURE BOTTLES",
+     "target": [
+      {
+       "code": "878861003",
+       "equivalence": "relatedto",
+       "display": "Blood specimen in blood culture bottle"
+      }
+     ]
+    },
+    {
+     "code": "70014",
+     "display": "BLOOD CULTURE - NEONATE",
+     "target": [
+      {
+       "code": "446131002",
+       "equivalence": "relatedto",
+       "display": "Blood specimen obtained for blood culture"
+      }
+     ]
+    },
+    {
+     "code": "70015",
+     "display": "BLOOD",
+     "target": [
+      {
+       "code": "119297000",
+       "equivalence": "relatedto",
+       "display": "Blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "70016",
+     "display": "BLOOD CULTURE (POST-MORTEM)",
+     "target": [
+      {
+       "code": "446131002",
+       "equivalence": "relatedto",
+       "display": "Blood specimen obtained for blood culture"
+      }
+     ]
+    },
+    {
+     "code": "70017",
+     "display": "SEROLOGY/BLOOD",
+     "target": [
+      {
+       "code": "119297000",
+       "equivalence": "relatedto",
+       "display": "Blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "70018",
+     "display": "BONE MARROW",
+     "target": [
+      {
+       "code": "119359002",
+       "equivalence": "relatedto",
+       "display": "Bone marrow specimen"
+      }
+     ]
+    },
+    {
+     "code": "70019",
+     "display": "BONE MARROW - CYTOGENETICS",
+     "target": [
+      {
+       "code": "119359002",
+       "equivalence": "relatedto",
+       "display": "Bone marrow specimen"
+      }
+     ]
+    },
+    {
+     "code": "70020",
+     "display": "BRONCHIAL BRUSH",
+     "target": [
+      {
+       "code": "309176002",
+       "equivalence": "relatedto",
+       "display": "Bronchial brushings specimen"
+      }
+     ]
+    },
+    {
+     "code": "70021",
+     "display": "BRONCHOALVEOLAR LAVAGE",
+     "target": [
+      {
+       "code": "258607008",
+       "equivalence": "relatedto",
+       "display": "Bronchoalveolar lavage fluid"
+      }
+     ]
+    },
+    {
+     "code": "70022",
+     "display": "BRONCHIAL WASHINGS",
+     "target": [
+      {
+       "code": "122609004",
+       "equivalence": "relatedto",
+       "display": "Specimen from lung obtained by bronchial washing procedure"
+      }
+     ]
+    },
+    {
+     "code": "70023",
+     "display": "CATHETER TIP-IV",
+     "target": [
+      {
+       "code": "119312009",
+       "equivalence": "relatedto",
+       "display": "Catheter tip submitted as specimen"
+      }
+     ]
+    },
+    {
+     "code": "70024",
+     "display": "VIRAL CULTURE: R/O CYTOMEGALOVIRUS",
+     "target": [
+      {
+       "code": "621000009105",
+       "equivalence": "relatedto",
+       "display": "Viral isolate specimen"
+      }
+     ]
+    },
+    {
+     "code": "70026",
+     "display": "CSF;SPINAL FLUID",
+     "target": [
+      {
+       "code": "258450006",
+       "equivalence": "relatedto",
+       "display": "CSF specimen"
+      }
+     ]
+    },
+    {
+     "code": "70027",
+     "display": "CORNEAL EYE SCRAPINGS",
+     "target": [
+      {
+       "code": "258485006",
+       "equivalence": "relatedto",
+       "display": "Corneal scrapings specimen"
+      }
+     ]
+    },
+    {
+     "code": "70029",
+     "display": "DIALYSIS FLUID",
+     "target": [
+      {
+       "code": "258454002",
+       "equivalence": "relatedto",
+       "display": "Dialysate specimen"
+      }
+     ]
+    },
+    {
+     "code": "70031",
+     "display": "EAR",
+     "target": [
+      {
+       "code": "309165001",
+       "equivalence": "relatedto",
+       "display": "Ear specimen"
+      }
+     ]
+    },
+    {
+     "code": "70032",
+     "display": "Blood (EBV)",
+     "target": [
+      {
+       "code": "119297000",
+       "equivalence": "relatedto",
+       "display": "Blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "70033",
+     "display": "EYE",
+     "target": [
+      {
+       "code": "119399004",
+       "equivalence": "relatedto",
+       "display": "Specimen from eye"
+      }
+     ]
+    },
+    {
+     "code": "70034",
+     "display": "FOREIGN BODY",
+     "target": [
+      {
+       "code": "447103002",
+       "equivalence": "relatedto",
+       "display": "Foreign body submitted as specimen"
+      }
+     ]
+    },
+    {
+     "code": "70035",
+     "display": "FLUID,OTHER",
+     "target": [
+      {
+       "code": "258442002",
+       "equivalence": "relatedto",
+       "display": "Fluid sample"
+      }
+     ]
+    },
+    {
+     "code": "70036",
+     "display": "FLUID WOUND",
+     "target": [
+      {
+       "code": "122566000",
+       "equivalence": "relatedto",
+       "display": "Fluid specimen from wound"
+      }
+     ]
+    },
+    {
+     "code": "70040",
+     "display": "SWAB",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "70043",
+     "display": "Influenza A/B by DFA - Bronch Lavage",
+     "target": [
+      {
+       "code": "258607008",
+       "equivalence": "relatedto",
+       "display": "Bronchoalveolar lavage fluid"
+      }
+     ]
+    },
+    {
+     "code": "70047",
+     "display": "JOINT FLUID",
+     "target": [
+      {
+       "code": "431361003",
+       "equivalence": "relatedto",
+       "display": "Joint fluid"
+      }
+     ]
+    },
+    {
+     "code": "70048",
+     "display": "NAIL SCRAPINGS",
+     "target": [
+      {
+       "code": "447098004",
+       "equivalence": "relatedto",
+       "display": "Specimen from nail obtained by scraping"
+      }
+     ]
+    },
+    {
+     "code": "70051",
+     "display": "FLUID,OTHER",
+     "target": [
+      {
+       "code": "258442002",
+       "equivalence": "relatedto",
+       "display": "Fluid sample"
+      }
+     ]
+    },
+    {
+     "code": "70052",
+     "display": "PERIPHERAL BLOOD LYMPHOCYTES",
+     "target": [
+      {
+       "code": "122551003",
+       "equivalence": "relatedto",
+       "display": "Peripheral blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "70053",
+     "display": "PERITONEAL FLUID",
+     "target": [
+      {
+       "code": "168139001",
+       "equivalence": "relatedto",
+       "display": "Peritoneal fluid"
+      }
+     ]
+    },
+    {
+     "code": "70054",
+     "display": "PLEURAL FLUID",
+     "target": [
+      {
+       "code": "418564007",
+       "equivalence": "relatedto",
+       "display": "Pleural fluid"
+      }
+     ]
+    },
+    {
+     "code": "70056",
+     "display": "RECTAL - R/O GC",
+     "target": [
+      {
+       "code": "258528007",
+       "equivalence": "relatedto",
+       "display": "Rectal swab"
+      }
+     ]
+    },
+    {
+     "code": "70059",
+     "display": "Staph aureus swab",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "70060",
+     "display": "Stem Cell - Blood Culture",
+     "target": [
+      {
+       "code": "57731000052104",
+       "equivalence": "relatedto",
+       "display": "Stem cell specimen"
+      }
+     ]
+    },
+    {
+     "code": "70061",
+     "display": "SKIN SCRAPINGS",
+     "target": [
+      {
+       "code": "446952006",
+       "equivalence": "relatedto",
+       "display": "Specimen from skin obtained by scraping"
+      }
+     ]
+    },
+    {
+     "code": "70062",
+     "display": "SPUTUM",
+     "target": [
+      {
+       "code": "119335007",
+       "equivalence": "relatedto",
+       "display": "Coughed sputum specimen"
+      }
+     ]
+    },
+    {
+     "code": "70064",
+     "display": "STOOL",
+     "target": [
+      {
+       "code": "119339001",
+       "equivalence": "relatedto",
+       "display": "Faeces specimen"
+      }
+     ]
+    },
+    {
+     "code": "70065",
+     "display": "SCOTCH TAPE PREP/PADDLE",
+     "target": [
+      {
+       "code": "258664003",
+       "equivalence": "relatedto",
+       "display": "Scotch tape slide specimen"
+      }
+     ]
+    },
+    {
+     "code": "70066",
+     "display": "STOOL (RECEIVED IN TRANSPORT SYSTEM)",
+     "target": [
+      {
+       "code": "119339001",
+       "equivalence": "relatedto",
+       "display": "Faeces specimen"
+      }
+     ]
+    },
+    {
+     "code": "70067",
+     "display": "SWAB",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "70068",
+     "display": "SWAB",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "70069",
+     "display": "SWAB",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "70070",
+     "display": "SWAB",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "70071",
+     "display": "SWAB - R/O YEAST",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "70072",
+     "display": "TRACHEAL ASPIRATE",
+     "target": [
+      {
+       "code": "445447003",
+       "equivalence": "relatedto",
+       "display": "Specimen from trachea obtained by aspiration"
+      }
+     ]
+    },
+    {
+     "code": "70073",
+     "display": "TISSUE",
+     "target": [
+      {
+       "code": "119376003",
+       "equivalence": "relatedto",
+       "display": "Tissue specimen"
+      }
+     ]
+    },
+    {
+     "code": "70074",
+     "display": "THROAT",
+     "target": [
+      {
+       "code": "119389009",
+       "equivalence": "relatedto",
+       "display": "Specimen from throat"
+      }
+     ]
+    },
+    {
+     "code": "70075",
+     "display": "THROAT CULTURE",
+     "target": [
+      {
+       "code": "258529004",
+       "equivalence": "relatedto",
+       "display": "Throat swab"
+      }
+     ]
+    },
+    {
+     "code": "70076",
+     "display": "TISSUE",
+     "target": [
+      {
+       "code": "119376003",
+       "equivalence": "relatedto",
+       "display": "Tissue specimen"
+      }
+     ]
+    },
+    {
+     "code": "70077",
+     "display": "URINE",
+     "target": [
+      {
+       "code": "122575003",
+       "equivalence": "relatedto",
+       "display": "Urine specimen"
+      }
+     ]
+    },
+    {
+     "code": "70078",
+     "display": "URINE,PROSTATIC MASSAGE",
+     "target": [
+      {
+       "code": "2531000181101",
+       "equivalence": "relatedto",
+       "display": "Urine specimen obtained after prostatic massage"
+      }
+     ]
+    },
+    {
+     "code": "70079",
+     "display": "URINE",
+     "target": [
+      {
+       "code": "122575003",
+       "equivalence": "relatedto",
+       "display": "Urine specimen"
+      }
+     ]
+    },
+    {
+     "code": "70080",
+     "display": "URINE,KIDNEY",
+     "target": [
+      {
+       "code": "446907008",
+       "equivalence": "relatedto",
+       "display": "Urine specimen obtained from kidney"
+      }
+     ]
+    },
+    {
+     "code": "70081",
+     "display": "URINE",
+     "target": [
+      {
+       "code": "122575003",
+       "equivalence": "relatedto",
+       "display": "Urine specimen"
+      }
+     ]
+    },
+    {
+     "code": "70082",
+     "display": "URINE,SUPRAPUBIC ASPIRATE",
+     "target": [
+      {
+       "code": "258576008",
+       "equivalence": "relatedto",
+       "display": "Suprapubic aspirate"
+      }
+     ]
+    },
+    {
+     "code": "70084",
+     "display": "SWAB",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "70085",
+     "display": "WORM",
+     "target": [
+      {
+       "code": "704663000",
+       "equivalence": "relatedto",
+       "display": "Parasitic worm specimen"
+      }
+     ]
+    },
+    {
+     "code": "70087",
+     "display": "Blood (CMV AB)",
+     "target": [
+      {
+       "code": "119297000",
+       "equivalence": "relatedto",
+       "display": "Blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "70088",
+     "display": "Blood (EBV)",
+     "target": [
+      {
+       "code": "119297000",
+       "equivalence": "relatedto",
+       "display": "Blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "70089",
+     "display": "Blood (Malaria)",
+     "target": [
+      {
+       "code": "119297000",
+       "equivalence": "relatedto",
+       "display": "Blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "70090",
+     "display": "Mini-BAL",
+     "target": [
+      {
+       "code": "593961000052105",
+       "equivalence": "relatedto",
+       "display": "Mini-bronchoalveolar lavage fluid specimen"
+      }
+     ]
+    },
+    {
+     "code": "70092",
+     "display": "SWAB, R/O GC",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "70093",
+     "display": "Blood (Toxo)",
+     "target": [
+      {
+       "code": "119297000",
+       "equivalence": "relatedto",
+       "display": "Blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "90902",
+     "display": "AMNIOTIC FLUID",
+     "target": [
+      {
+       "code": "119373006",
+       "equivalence": "relatedto",
+       "display": "Amniotic fluid"
+      }
+     ]
+    },
+    {
+     "code": "90909",
+     "display": "CHORIONIC VILLUS SAMPLE",
+     "target": [
+      {
+       "code": "258565009",
+       "equivalence": "relatedto",
+       "display": "Chorionic villi specimen"
+      }
+     ]
+    },
+    {
+     "code": "90912",
+     "display": "Foreign Body - Sonication Culture",
+     "target": [
+      {
+       "code": "447103002",
+       "equivalence": "relatedto",
+       "display": "Foreign body submitted as specimen"
+      }
+     ]
+    },
+    {
+     "code": "90913",
+     "display": "HAIR",
+     "target": [
+      {
+       "code": "119326000",
+       "equivalence": "relatedto",
+       "display": "Hair specimen"
+      }
+     ]
+    },
+    {
+     "code": "90915",
+     "display": "Isolate",
+     "target": [
+      {
+       "code": "119303007",
+       "equivalence": "relatedto",
+       "display": "Microbial isolate"
+      }
+     ]
+    },
+    {
+     "code": "90919",
+     "display": "Blood (LYME)",
+     "target": [
+      {
+       "code": "119297000",
+       "equivalence": "relatedto",
+       "display": "Blood specimen"
+      }
+     ]
+    },
+    {
+     "code": "90920",
+     "display": "PROSTHETIC JOINT FLUID",
+     "target": [
+      {
+       "code": "1003711005",
+       "equivalence": "relatedto",
+       "display": "Specimen from prosthetic joint"
+      }
+     ]
+    },
+    {
+     "code": "90928",
+     "display": "Swab",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "90929",
+     "display": "Swab R/O Yeast Screen",
+     "target": [
+      {
+       "code": "257261003",
+       "equivalence": "relatedto",
+       "display": "Swab"
+      }
+     ]
+    },
+    {
+     "code": "90930",
+     "display": "Touch Prep/Sections",
+     "target": [
+      {
+       "code": "1380394001",
+       "equivalence": "relatedto",
+       "display": "Tissue impression specimen"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-lab-fluid",
+   "target": "http://snomed.info/sct",
+   "element": [
+    {
+     "code": "Ascites",
+     "display": "Ascites",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 389026000 |Ascites| at 0.95 but the server does not place that concept in <<123038009, so it is not a specimen."
+      }
+     ]
+    },
+    {
+     "code": "I",
+     "display": "I",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "I is a single letter with no clinical content and no expansion in MIMIC's own dictionary, so it was not sent to code-search: there is no text for an answer to be right about."
+      }
+     ]
+    },
+    {
+     "code": "Q",
+     "display": "Q",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Q is a single letter with no clinical content and no expansion in MIMIC's own dictionary, so it was not sent to code-search: there is no text for an answer to be right about."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc",
+   "target": "http://snomed.info/sct",
+   "element": [
+    {
+     "code": "70006",
+     "display": "ANORECTAL/VAGINAL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 1371684001 |Combined specimen from swab of rectum and vaginal introitus| at 0.70, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "70025",
+     "display": "CRE Screen",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70028",
+     "display": "Direct Antigen Test for Herpes Simplex Virus Types 1 & 2",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70030",
+     "display": "DIRECT ANTIGEN TEST FOR VARICELLA-ZOSTER VIRUS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70037",
+     "display": "FOOT CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70038",
+     "display": "FECAL SWAB",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 258528007 |Rectal swab| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "70041",
+     "display": "VIRAL CULTURE:R/O HERPES SIMPLEX VIRUS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70042",
+     "display": "Influenza A/B by DFA",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70045",
+     "display": "Immunology (CMV)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70046",
+     "display": "IMMUNOLOGY",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70049",
+     "display": "NEOPLASTIC BLOOD",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70055",
+     "display": "POSTMORTEM CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 258484005 |Postmortem tissue specimen| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "70057",
+     "display": "Rapid Respiratory Viral Screen & Culture",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70058",
+     "display": "RAPID RESPIRATORY VIRAL ANTIGEN TEST",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70083",
+     "display": "VARICELLA-ZOSTER CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70086",
+     "display": "XXX",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "70091",
+     "display": "MRSA SCREEN",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "90906",
+     "display": "C, E, & A Screening",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "90908",
+     "display": "Cipro Resistant Screen",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "90914",
+     "display": "Infection Control Yeast",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "90921",
+     "display": "POST-MORTEM VIRAL CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 258484005 |Postmortem tissue specimen| at 0.70, below the 0.8 threshold."
+      }
+     ]
+    },
+    {
+     "code": "90922",
+     "display": "MICRO PROBLEM PATIENT",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search returned no match within <<123038009."
+      }
+     ]
+    },
+    {
+     "code": "90935",
+     "display": "VIRAL CULTURE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "code-search proposed 621000009105 |Viral isolate specimen| at 0.75, below the 0.8 threshold."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

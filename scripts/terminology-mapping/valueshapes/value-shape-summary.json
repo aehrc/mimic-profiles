@@ -1,0 +1,41 @@
+{
+ "generated": "2026-08-06T10:33:25+00:00",
+ "host": "c069",
+ "warehouse": "/scratch3/nau025/mimic-on-fhir-delta/spark_warehouse",
+ "shapes_csv": "observation-value-shapes.csv",
+ "shapes_csv_sha256": "5522f924c47286954981569fbc1760d9fa1c8edbdc25ab6b15d7404610bd70f7",
+ "domains_csv": "observation-value-domains.csv",
+ "domains_csv_sha256": "65ab0c27e837b5388e1aa6ddac4e6d4dc742aa07471b97b25725640273e8ae05",
+ "caps": {
+  "top_values": 40,
+  "max_value_chars": 200,
+  "enum_max": 200,
+  "quantitative_or_stringish_fraction": 0.95
+ },
+ "versions": {
+  "python": "3.12.3",
+  "spark": "4.0.2",
+  "pathling": "9.6.0"
+ },
+ "tables": {
+  "Observation": {
+   "delta_version": 2,
+   "committed": "2026-08-06 11:00:57",
+   "rows": 461098908
+  }
+ },
+ "elements": {
+  "Observation.code": {
+   "codings": 461098908,
+   "distinct_codes": 4241,
+   "domains_truncated": 65,
+   "shapes": {
+    "enumerated": 2413,
+    "free-text": 7,
+    "mixed": 309,
+    "no-value": 72,
+    "quantitative": 1440
+   }
+  }
+ }
+}

@@ -18,12 +18,22 @@ ICD10_CM = "http://hl7.org/fhir/sid/icd-10-cm"
 ICD10_PCS = "http://www.cms.gov/Medicare/Coding/ICD10"
 SNOMED = "http://snomed.info/sct"
 LOINC = "http://loinc.org"
+RXNORM = "http://www.nlm.nih.gov/research/umls/rxnorm"
 
 # Systems we map INTO but do not build a CodeSystem for, so no release can be
 # pinned and there is nothing for the "only releases we built" check to verify.
 # A version-less group or include in any other system is a bug, not a choice.
-# RxNorm belongs here as soon as a population maps into it.
-UNVERSIONED_SYSTEMS = {SNOMED, LOINC}
+#
+# RxNorm joined when MedicationRequest.medication[x] landed. Note the tension it
+# makes explicit: the medication table IS derived from one RxNorm release
+# (20231106, the only one velonto holds), and its generator asserts that release
+# on every run. But asserting a release while generating and PINNING it into a
+# published artefact are different claims — pinning says "this repo can
+# reproduce that release", which is exactly what check 3 exists to enforce and
+# exactly what this repo cannot do for RxNorm. So the release is recorded in the
+# generation log, where it is evidence, and not in the map, where it would be a
+# promise.
+UNVERSIONED_SYSTEMS = {SNOMED, LOINC, RXNORM}
 
 MIMIC_BASE = "http://mimic.mit.edu/fhir/mimic"
 

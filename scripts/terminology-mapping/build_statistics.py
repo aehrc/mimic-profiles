@@ -64,23 +64,39 @@ OCCURRENCE_COLUMNS = ["occurrences_total", "occurrences_mapped",
                       "occurrence_coverage_pct", "codes_never_used",
                       "declined_never_used"]
 
+# Present only for streams that narrowed their own population, and spliced in
+# next to `total` so the narrowed denominator is read beside the number it
+# narrowed. Dynamic for the same reason OCCURRENCE_COLUMNS is: a repo with no
+# such stream gets a byte-identical CSV.
+#
+# `total` is the population the stream set out to map and `coverage_pct` is
+# scored over it; `enumerated_total` is what the bound ValueSet admits. Both
+# are carried because either one alone misleads — the first hides that a
+# narrowing happened, the second describes a job nobody attempted.
+RESTRICTION_COLUMNS = ["restriction", "enumerated_total", "not_observed"]
+
 BAR_WIDTH = 20
 
 # equivalent / relatedto / unmatched, in the HTML bars and nowhere else.
 COLORS = {"equivalent": "#2f9e44", "relatedto": "#1971c2",
           "unmatched": "#adb5bd"}
 
-# The four occurrence buckets. Green for what $translate resolves, orange for a
-# decision this repo made and will defend, grey for a backlog, red for a code no
-# bound ValueSet admits — which under a required binding is a defect, so it is
-# the one colour that should never appear.
+# The occurrence buckets. Green for what $translate resolves, orange for a
+# decision this repo made and will defend, purple for a stream blocked by
+# something outside terminology, grey for a backlog, red for a code no bound
+# ValueSet admits — which under a required binding is a defect, so it is the one
+# colour that should never appear.
 BUCKET_COLORS = {occurrences.MAPPED: "#2f9e44",
                  occurrences.DECLINED: "#e8590c",
+                 # Hatched-looking mid grey-purple: not a mapping failure, so it
+                 # must not read as one, but not neutral backlog either.
+                 occurrences.BLOCKED: "#7048e8",
                  occurrences.NO_STREAM: "#adb5bd",
                  occurrences.NOT_IN_ENUMERATION: "#c92a2a"}
 
 BUCKET_LABELS = {occurrences.MAPPED: "mapped",
                  occurrences.DECLINED: "declined",
+                 occurrences.BLOCKED: "blocked upstream",
                  occurrences.NO_STREAM: "no stream yet",
                  occurrences.NOT_IN_ENUMERATION: "in no bound ValueSet"}
 
@@ -133,6 +149,15 @@ def flatten(reports):
                 "confidence_threshold": search.get("confidence_threshold", ""),
                 "confidence_median": confidence.get("median", ""),
             }
+            # Not a CSV column: prose does not belong in a citable table, and
+            # the HTML is where a reader meets the number that needs it.
+            if stream.get("note"):
+                row["_note"] = stream["note"]
+                row["_note_url"] = stream.get("note_url", "")
+            if stream.get("restriction"):
+                row["restriction"] = stream["restriction"]
+                row["enumerated_total"] = stream.get("enumerated_total", "")
+                row["not_observed"] = stream.get("not_observed", "")
             # Blank, not zero, for a stream that never ran a code search: "no
             # proposal was ever scored" and "no proposal landed near the gate"
             # are different claims, and only the second is a zero.
@@ -188,14 +213,19 @@ def codesearch_streams(reports):
 
 
 def columns_for(rows):
-    """Fixed columns (occurrence ones spliced in after coverage_pct if present),
-    the within_ rungs in numeric order, then whatever status_/reason_ columns the
-    data has."""
-    present = {k for row in rows for k in row}
+    """Fixed columns (occurrence and restriction ones spliced in where they
+    belong, if present), the within_ rungs in numeric order, then whatever
+    status_/reason_ columns the data has."""
+    # `_`-prefixed keys are HTML-only annotations (see write_html); the CSV is
+    # the citable table and carries numbers, not prose.
+    present = {k for row in rows for k in row if not k.startswith("_")}
     fixed = list(FIXED_COLUMNS)
     if present & set(OCCURRENCE_COLUMNS):
         at = fixed.index("coverage_pct") + 1
         fixed[at:at] = OCCURRENCE_COLUMNS
+    if present & set(RESTRICTION_COLUMNS):
+        at = fixed.index("total")
+        fixed[at:at] = RESTRICTION_COLUMNS
     dynamic = present - set(fixed)
     within = sorted((k for k in dynamic if k.startswith("within_")),
                     key=lambda k: float(k.split("_", 1)[1]))
@@ -205,7 +235,13 @@ def columns_for(rows):
 def write_csv(rows, out_dir):
     path = out_dir / "mapping-statistics.csv"
     with open(path, "w", newline="") as fh:
-        writer = csv.DictWriter(fh, fieldnames=columns_for(rows), restval="")
+        # extrasaction: columns_for() already drops the `_`-prefixed HTML-only
+        # annotations from the header, and without this DictWriter then refuses
+        # the rows that carry them. Narrow by construction — every other key a
+        # row can hold is picked up dynamically, so this cannot silently swallow
+        # a real column.
+        writer = csv.DictWriter(fh, fieldnames=columns_for(rows), restval="",
+                                extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
     return path
@@ -272,12 +308,21 @@ def print_occurrences(buckets):
     """
     summary = occurrences.element_summary(buckets)
     width = max([len(element) for element, *_ in summary] + [len("element")])
+    # `achievable` shows only when something is blocked, so an element with
+    # nothing blocked reads exactly as it did before.
+    any_blocked = any(achievable != total
+                      for _, _, total, _, achievable, _ in summary)
+    extra = f"{'achievable':>11s}" if any_blocked else ""
     print(f"\n  {'element':{width}s} {'occurrences mapped':>22s} "
-          f"{'cov':>7s}  {'unmapped chance':>15s}", file=sys.stderr)
-    print("  " + "-" * (width + 49), file=sys.stderr)
-    for element, mapped, total, pct in summary:
+          f"{'cov':>7s}  {'unmapped chance':>15s}{extra}", file=sys.stderr)
+    print("  " + "-" * (width + 49 + len(extra)), file=sys.stderr)
+    for element, mapped, total, pct, achievable, achievable_pct in summary:
+        tail = ""
+        if any_blocked:
+            tail = (f"{achievable_pct:>10.2f}%" if achievable != total
+                    else f"{'—':>11s}")
         print(f"  {element:{width}s} {mapped:>10,}/{total:<11,} "
-              f"{pct:>6.2f}%  {100 - pct:>14.2f}%", file=sys.stderr)
+              f"{pct:>6.2f}%  {100 - pct:>14.2f}%{tail}", file=sys.stderr)
 
 
 def codesearch_table(streams):
@@ -425,8 +470,27 @@ def occurrence_section(reports, counts, buckets, top):
                 '<th class="n">share</th><th>status</th></tr>'
                 f"{cells}</table></details>")
 
+    def achievable_row(mapped, total, achievable, achievable_pct):
+        """The second denominator, shown only when it differs from the first.
+
+        Excluding the occurrences that were never a candidate for the target
+        code system, so the figure says how well the MAPPING did rather than how
+        well the data was modelled. Both are on the page because either alone
+        misleads — see occurrences.element_summary.
+        """
+        if achievable == total:
+            return ""
+        blocked = total - achievable
+        return (f'<tr><td>&nbsp;&nbsp;achievable</td>'
+                f'<td class="n">{mapped:,}&thinsp;/&thinsp;{achievable:,}</td>'
+                f'<td class="n">{achievable_pct:.2f}%</td>'
+                f'<td class="dim">excluding {blocked:,} occurrence(s) in '
+                f'streams blocked upstream, which no code system could have '
+                f'covered &mdash; see the per-stream footnote</td></tr>')
+
     blocks = []
-    for element, mapped, total, pct in occurrences.element_summary(buckets):
+    for (element, mapped, total, pct, achievable,
+         achievable_pct) in occurrences.element_summary(buckets):
         report = by_element.get(element)
         if report:
             code_total = report["source_total"]
@@ -453,6 +517,7 @@ def occurrence_section(reports, counts, buckets, top):
 <td class="n">{pct:.2f}%</td>
 <td class="dim">&rarr; a data point here has a
 <strong>{100 - pct:.2f}%</strong> chance of carrying an unresolvable code</td></tr>
+{achievable_row(mapped, total, achievable, achievable_pct)}
 </table>
 {stacked(rows_by_element.get(element, []), total) if total else ""}
 <p class="legend">{legend}</p>
@@ -515,10 +580,39 @@ def write_html(rows, codesearch, out_dir, occurrence_html=""):
                     f'</div>')
         return f'<div class="bar">{"".join(parts)}</div>'
 
+    # Footnotes, numbered in the order the streams appear so the markers read
+    # top-to-bottom. A stream carries one when its numbers need prose to be
+    # read correctly — a correct 0% is the motivating case.
+    noted = [r for r in rows if r.get("_note")]
+    marker = {id(r): n for n, r in enumerate(noted, 1)}
+
+    def note_marker(row):
+        if id(row) not in marker:
+            return ""
+        n = marker[id(row)]
+        return (f'<sup class="fn"><a href="#fn{n}" id="ref{n}">{n}</a></sup>')
+
+    def note_item(row):
+        n = marker[id(row)]
+        link = ""
+        if (url := row.get("_note_url")):
+            # A GitHub issue URL ends in its number, so "#26" is the label a
+            # reader expects. Anything else is shown as itself.
+            tail = url.rstrip("/").rsplit("/", 1)[-1]
+            label = f"#{tail}" if tail.isdigit() else url
+            link = f' <a href="{html.escape(url)}">{html.escape(label)}</a>'
+        return (f'<li id="fn{n}">'
+                f'<a class="back" href="#ref{n}">&#8593;</a> '
+                f'<strong>{html.escape(row["stream"])}</strong> — '
+                f'{html.escape(row["_note"])}{link}</li>')
+
+    notes_html = (f'<ol class="notes">{"".join(note_item(r) for r in noted)}</ol>'
+                  if noted else "")
+
     cells = "".join(
         "<tr>"
         f"<td>{html.escape(r['field'])}</td>"
-        f"<td>{html.escape(r['stream'])}</td>"
+        f"<td>{html.escape(r['stream'])}{note_marker(r)}</td>"
         f"<td>{html.escape(r['method'])}</td>"
         f"<td>{html.escape(r['target_systems'])}</td>"
         f"<td class='n'>{r['mapped']:,}/{r['total']:,}</td>"
@@ -600,6 +694,15 @@ def write_html(rows, codesearch, out_dir, occurrence_html=""):
   table.pair td:first-child {{ color: #495057; width: 7rem; }}
   table.pair td.n {{ width: 9rem; }}
   p.legend {{ margin: .5rem 0 0; }}
+  /* Stream footnotes. A coverage figure that is correct but reads as a failure
+     needs its reason on the same page as the number, not in a commit message. */
+  sup.fn {{ font-size: .7em; margin-left: .15rem; }}
+  sup.fn a {{ color: #c92a2a; text-decoration: none; font-weight: 600; }}
+  ol.notes {{ max-width: 52rem; margin: .8rem 0 0; padding-left: 1.4rem;
+              color: #495057; font-size: .92em; }}
+  ol.notes li {{ margin-bottom: .5rem; line-height: 1.5; }}
+  ol.notes a.back {{ text-decoration: none; color: #868e96;
+                     margin-right: .25rem; }}
   table.top {{ margin: .4rem 0 1rem; }}
   table.top td {{ padding: .2rem .6rem; }}
   /* A row the map cannot resolve, marked so the head of the distribution can be
@@ -632,6 +735,7 @@ about.</p>
 <th class="n">median conf</th></tr>
 {cells}
 </table>
+{notes_html}
 {codesearch_table(codesearch)}
 """
     path = out_dir / "mapping-statistics.html"

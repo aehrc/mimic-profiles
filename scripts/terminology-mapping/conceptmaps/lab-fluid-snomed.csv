@@ -1,0 +1,13 @@
+mimic_code,mimic_display,snomed_code,snomed_display,comment,codesearch_target,codesearch_display,codesearch_confidence,codesearch_status,codesearch_reasoning
+Ascites,Ascites,,,"code-search proposed 389026000 |Ascites| at 0.95 but the server does not place that concept in <<123038009, so it is not a specimen.",389026000,Ascites,0.95,not-in-constraint,FSN 'Ascites' matches input exactly
+Blood,Blood,119297000,Blood specimen,,119297000,Blood specimen,0.95,ok,FSN matches input exactly
+Bone Marrow,Bone Marrow,119359002,Bone marrow specimen,,119359002,Bone marrow specimen,0.95,ok,FSN matches input exactly
+Cerebrospinal Fluid,Cerebrospinal Fluid,258450006,CSF specimen,,258450006,CSF specimen,0.95,ok,FSN matches input exactly; specimen type
+Fluid,Fluid,309051001,Body fluid,,309051001,Body fluid,0.90,ok,Generic fluid concept; matches input without overstepping
+I,I,,,"I is a single letter with no clinical content and no expansion in MIMIC's own dictionary, so it was not sent to code-search: there is no text for an answer to be right about.",,,,no-content,
+Joint Fluid,Joint Fluid,431361003,Joint fluid,,431361003,Joint fluid,1.00,ok,
+Other Body Fluid,Other Body Fluid,309051001,Body fluid,,309051001,Body fluid specimen,0.90,ok,FSN 'Body fluid specimen' matches generic body fluid meaning
+Pleural,Pleural,418564007,Pleural fluid,,418564007,Pleural fluid (specimen),0.85,ok,Most general pleural specimen; matches input without overstepping
+Q,Q,,,"Q is a single letter with no clinical content and no expansion in MIMIC's own dictionary, so it was not sent to code-search: there is no text for an answer to be right about.",,,,no-content,
+Stool,Stool,119339001,Faeces specimen,,119339001,Faeces specimen,0.95,ok,FSN 'Stool specimen' matches input exactly
+Urine,Urine,122575003,Urine specimen,,122575003,Urine specimen,0.95,ok,FSN matches input exactly; general urine specimen

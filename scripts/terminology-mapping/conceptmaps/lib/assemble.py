@@ -27,7 +27,14 @@ from collections import Counter, defaultdict
 
 from .built import find
 from .curated import DEFAULT_TARGET_COLUMNS, is_mixed, load_table
-from .igsource import resource_path, source_concepts
+from .igsource import partition_observed, resource_path, source_concepts
+
+# The reason recorded for a code that is in the bound ValueSet but that the
+# warehouse never puts on this element. It is deliberately NOT one of the
+# resolver's failure reasons: nothing was searched for and nothing was
+# declined, so folding it in with them would inflate every "we tried and
+# failed" number in the statistics. See igsource.partition_observed.
+NOT_OBSERVED = "not-observed-in-data"
 
 Target = dict  # {system, rule, kind, predicate}
 
@@ -63,6 +70,34 @@ def build_groups(sources, element, built):
 
     for source in sources:
         concepts = list(source_concepts(source))
+        enumerated_total = len(concepts)
+        # A code in the bound ValueSet that the data never carries is DECLARED,
+        # not dropped: it gets an `unmatched` element and a CSV row exactly like
+        # a resolver failure, so a consumer translating one is told the
+        # assumption out loud instead of getting silence. It is only kept out of
+        # this stream's coverage arithmetic below.
+        concepts, never_observed = partition_observed(source, element, concepts)
+        for code, display in never_observed:
+            unmapped.append({
+                "field": element, "source_system": source["system"],
+                "mimic_code": code, "mimic_display": display,
+                # The system that WOULD have been searched, not the source's
+                # own: `X -> X  unmatched` would read as "we looked in the
+                # source system and found nothing", which is nonsense. This
+                # also merges these into the one unmatched group per (source,
+                # searched system), where the per-element comment and the CSV's
+                # `reason` column are what tell the two kinds of gap apart.
+                "expected_code": "",
+                "expected_system": source["targets"][0]["system"],
+                "reason": NOT_OBSERVED,
+                "comment": (
+                    f"In {resource_path(source).stem}, which {element} is bound "
+                    f"to, but never recorded on {element} in the warehouse "
+                    f"extract this map was built against. Deliberately not "
+                    f"mapped rather than not considered: if you are translating "
+                    f"this code, the assumption it was left out under does not "
+                    f"hold for your data."),
+            })
         hits = 0
         unmapped_before = len(unmapped)
         target_systems = set()
@@ -198,8 +233,33 @@ def build_groups(sources, element, built):
             "total": len(concepts),
             "mapped": hits,
             "unmapped": len(missed),
+            # Over the population the stream SET OUT to map. For an
+            # observed_only stream that is the observed subset, and the two
+            # keys below say so — reporting 2,888 mapped out of a 9,971-code
+            # enumeration would describe a job nobody attempted, while hiding
+            # the narrowing entirely would be worse. Both numbers, always.
             "coverage_pct": round(100 * hits / len(concepts), 1)
                             if concepts else 0.0,
+            # Only for a stream that narrowed itself, so a report for a field
+            # that did not stays byte-identical. See RESTRICTION_COLUMNS.
+            **({"restriction": "observed-only",
+                "enumerated_total": enumerated_total,
+                "not_observed": len(never_observed)}
+               if source.get("observed_only") else {}),
+            # Free prose a stream declares about its own numbers, surfaced as a
+            # footnote by build_statistics.py. For the case where a coverage
+            # figure is correct but reads as a failure without context — see the
+            # poe-iv entry in build_medication_cm_vs.py. Declared next to the
+            # SOURCES entry it describes, so it cannot drift from the stream.
+            # Declares that this stream's gaps are NOT a terminology judgement:
+            # the obstacle is upstream, so common/occurrences.py buckets them
+            # apart from `declined` and the element reports its coverage both
+            # with and without them. Costs nothing when absent.
+            **({"blocked_upstream": True}
+               if source.get("blocked_upstream") else {}),
+            **({"note": source["note"]} if source.get("note") else {}),
+            **({"note_url": source["note_url"]}
+               if source.get("note_url") else {}),
             "target_systems": sorted(target_systems),
             "by_equivalence": dict(sorted(by_equivalence.items())),
             "unmapped_by_reason": dict(sorted(Counter(

@@ -91,8 +91,77 @@ would have come from, so the constraint PREVENTS them rather than rejecting them
 afterwards. Four of the six score 1.00. This is the `Foley Catheter` lesson of
 build_d_items_table.py for the seventh time.
 
-THE LOINC CONSTRAINT IS THE UNION OF CLASSTYPE 1 AND 2, and that is a change of
-mind recorded here because the reasoning matters. Probing on one code-search
+THE LOINC CONSTRAINT IS THE UNION OF CLASSTYPE 1, 2 AND 4, and both the union
+and the later addition of 4 are changes of mind recorded here because the
+reasoning matters.
+
+SURVEY (CLASSTYPE=4) WAS ADDED SECOND, and the argument for it is that this
+population is largely nursing assessment and CLASSTYPE=4 is where LOINC keeps
+nursing assessment instruments. The first table generated without it covered
+`param_type = Numeric` items at 85.3% of occurrences and `Text` items at 50.3%,
+and Text is 69.7% of the stream — so the gap is qualitative nursing
+documentation, which is exactly Survey's content.
+
+IT IS NOT ADDITIVE, and this paragraph is a correction of what this docstring
+claimed before the widening was run. The claim was that widening "cannot displace
+an existing mapping", on the evidence that every code the 1|2 constraint landed
+on is itself CLASSTYPE=2 (`91380-6`, `83186-7`, `80344-5`, `8693-4`, ...). That
+check was real but it does not support that conclusion: it shows no existing
+target was EXCLUDED from the widened pool, not that none would be OUTCOMPETED
+inside it. This stream runs ONE union query, so a Survey code that scores higher
+displaces the answer that used to win. Measured on the first full run, 56
+mappings moved to a CLASSTYPE=4 target, carrying 8.5M occurrences.
+
+Some of those displacements are clearly better — `227341 History of falling
+(within 3 mnths)` moved from `91380-6 |Number of falls in the past 3 months|` to
+`59454-9 |History of falling … [Morse Fall Scale]|`, and `227343 Ambulatory aid`
+from SNOMED `165251008 |Walking aid use|` to `59456-4 |Ambulatory aid [Morse Fall
+Scale]|`, which is the instrument MIMIC is actually charting. That is the
+argument for the widening. It is not the argument that was originally written
+here, and "additive" was simply wrong.
+
+WHAT THE WIDENING ACTUALLY BOUGHT, from the first full run under it: 147 of the
+866 LOINC mappings target a CLASSTYPE=4 code, carrying 11.1M occurrences —
+Morse Fall Scale, NIH Stroke Scale, NSRAS, CAM-ICU, OMAHA and CCC items, which
+is exactly the nursing-assessment content the stream was missing. A 12-label
+probe had predicted one threshold crossing; the population produced 147. The
+probe understated it by two orders of magnitude, which is the general lesson
+about probes in this file.
+
+THE CACHE MAKES A CONSTRAINT CHANGE EXPENSIVE TO INTERPRET, and this is the part
+to read before trusting a diff. code-search caches on (text, url, system), so
+changing CONSTRAINT_VCL changes the URL and every LOINC query becomes a fresh LLM
+evaluation. On the first run under 1|2|4, 202 mappings changed target and only 76
+of them are attributable to either deliberate change — 56 to Survey and 20 to the
+scale gate. The remaining 126, carrying 12.3M occurrences, moved for no reason
+this repo can name: same label, same pool, different answer. Two of those are
+regressions on high-volume items:
+
+    220277 O2 saturation pulseoxymetry  59408-5 |… by Pulse oximetry|
+                                     -> 2708-6  |Oxygen saturation in Arterial
+                                                 blood|      6.3M occ, LESS
+                                                 specific than the item is
+    223983 LLE Color                    SNOMED 248412009 |Colour of extremity|
+                                     -> 39107-8 |Color of Skin|
+
+`248412009` is the concept THE SNOMED CONSTRAINT section above cites as a case
+where SNOMED earns its place, so that one moved against this file's own stated
+judgement.
+
+So the headline moved +0.38 points while 8% of the stream changed target, mostly
+for unattributable reasons. A NEXT STEP THAT WOULD SETTLE IT: re-run with a
+semantically identical but textually different constraint — `CLASSTYPE/"2|1"`
+instead of `CLASSTYPE/"1|2"` — which changes the cache key without changing the
+pool, and diff against the committed 1|2 table. That isolates pure run-to-run
+LLM variance from any constraint effect, and it is the measured variance this
+docstring has admitted twice that it does not have. Note that re-running the
+ORIGINAL `1|2` cannot do this: it is a cache HIT and would replay bit-identical
+answers by construction.
+
+THE 1-AND-2 UNION CAME FIRST, and this is the argument it rested on, kept because
+adding Survey does not retire it: the question of whether to merge classes or run
+them as disjoint passes is the same question whether there are two classes or
+three. Probing on one code-search
 deployment, `Heart rate Alarm - High` came back as a UNION-ONLY answer — both
 narrow class passes declined it and the union proposed `19946-3 |Maximum heart
 rate setting Apnea Monitor Alarm|`, a code that is itself CLASSTYPE=2 and was
@@ -350,16 +419,23 @@ from verify.verify_curated_snomed import INTL_MODULE, lookup  # noqa: E402
 # The stated rules
 # --------------------------------------------------------------------------- #
 
-# LOINC's Laboratory AND Clinical class types, active codes only — 85,008 of
-# LOINC's 247,255 (60,009 + 24,999, which the server's $expand confirms sum
-# exactly, so neither class is silently dropped by the regex form).
+# LOINC's Laboratory, Clinical AND Survey class types, active codes only.
 #
-# BOTH classes, because this population spans both: `category = Labs` is 160
-# bedside analytes whose targets are CLASSTYPE=1 only, and the vital signs and
-# assessments are CLASSTYPE=2. See THE LOINC CONSTRAINT IS THE UNION in the
-# module docstring for the two-disjoint-passes alternative that was probed, and
-# why the merge failure it rested on does not reproduce on this deployment.
-CONSTRAINT_VCL = '(http://loinc.org)(CLASSTYPE/"1|2",STATUS=ACTIVE)'
+# THREE classes, because this population spans all three: `category = Labs` is
+# 160 bedside analytes whose targets are CLASSTYPE=1 only, the vital signs and
+# assessments are CLASSTYPE=2, and the nursing assessment instruments are
+# CLASSTYPE=4. See THE LOINC CONSTRAINT IS THE UNION in the module docstring for
+# the two-disjoint-passes alternative that was probed, why the merge failure it
+# rested on does not reproduce on this deployment, and the evidence for adding
+# Survey.
+#
+# The 1|2 pool was measured at 85,008 of LOINC's 247,255 (60,009 + 24,999, which
+# $expand confirmed sum exactly, so neither class is silently dropped by the
+# regex form). What Survey adds has NOT been measured on the generating
+# deployment — tx.fhir.org will not honour a CLASSTYPE filter, and no number is
+# asserted here that this repo cannot show its working for. The generation log
+# records the constraint verbatim, so the count is derivable from any run.
+CONSTRAINT_VCL = '(http://loinc.org)(CLASSTYPE/"1|2|4",STATUS=ACTIVE)'
 
 # SNOMED CT observable entities, and deliberately NOT the procedure/finding/event
 # union the two ICU procedure streams use. A finding belongs in
@@ -411,6 +487,272 @@ DECLINED_CATEGORIES = {
                           "happened, not an observation of the patient"),
 }
 
+# --------------------------------------------------------------------------- #
+# THE SCALE GATE
+# --------------------------------------------------------------------------- #
+#
+# The three checks in gate() below assert that a proposed target is in the
+# constraint, exists, is active, and has a confirmed display. None of them can
+# see the defect that actually dominates this stream: a target whose SCALE
+# contradicts the data. Audited over all 848 committed LOINC mappings against
+# valueshapes/observation-value-shapes.csv, 185 of them (21%, 26.3M occurrences)
+# name a code whose SCALE_TYP disagrees with what MIMIC records.
+#
+# EVERY COUNT IN THE FOUR CLAUSES BELOW IS FROM THAT AUDIT — i.e. against the
+# table as committed BEFORE this gate existed and before CONSTRAINT_VCL gained
+# CLASSTYPE=4. They are what the rule was designed against, not what it did.
+#
+# WHAT IT ACTUALLY DID, on the first run under both changes: 111 rejections on the
+# LOINC pass and 114 warnings. 27 of the 111 recovered a SNOMED target, so 84 rows
+# end up unmapped with a decisive status of `scale-mismatch` — which is the number
+# that reaches mapping-statistics.csv, and the reason that column and the log
+# disagree by 27 is worth knowing before someone reconciles them.
+#
+# The design prediction was that coverage would FALL, to roughly 56.7%. It rose,
+# to 57.81%, because the Survey widening landed 147 mappings while the gate
+# removed 84. Those two changes were priced in one run and their effects are
+# therefore entangled; see THE CACHE MAKES A CONSTRAINT CHANGE EXPENSIVE TO
+# INTERPRET for what that costs.
+#
+# One prediction was WRONG in a way worth recording. `223907 Pupil Size Right`
+# was expected to lose `8642-1 |Right pupil Diameter Auto|` and fall through to
+# SNOMED `363953003 |Size of pupil|`. It did not, and it should not have: 97% of
+# its value mass is `3mm`/`2mm`/`4mm`, so the numeric-as-string clause below
+# classifies it WARN and keeps the target. The earlier estimate had been computed
+# before that clause existed and was not revised when it was added. The clause is
+# right and the prediction was stale — but `363953003` remains the better concept
+# for a penlight observation, and that is now a COMMENT_OVERRIDES question rather
+# than something the gate will fix.
+#
+# That 185 is NOT 185 bad mappings, and the difference is the whole design:
+#
+#   REJECT  SCALE_TYP is `Doc` or `-`                    69 rows,  5.22M occ
+#           A document type or a panel. `223792 Pain Management` ->
+#           `34858-1 |Pain medicine Note|`, `224101 Chest PT R/L` ->
+#           `42272-5 |XR Chest PA and Lateral|` (chest physiotherapy coded as a
+#           chest X-ray), `225135 Consults` -> `11488-4 |Consult note|`. A panel
+#           code is a grouping code and `hasMember` is empty on every chartevents
+#           Observation, so it groups nothing. Unconditional: no threshold, no
+#           per-item judgement.
+#
+#   REJECT  SCALE_TYP=Qn but the observed domain is QUALITATIVE  18 rows, 2.82M
+#           `224027 Skin Temperature` -> `60839-8` Qn, charted `Warm | Cool |
+#           Hot | Cold`; `223951 Capillary Refill R` -> `44971-0 |Capillary
+#           refill [Time]|` Qn, charted `Normal <3 Seconds | Abnormal >3
+#           Seconds`; `224373 Sputum Amount` -> `38200-2 |Volume of Sputum|` Qn,
+#           charted `Small | Moderate | Scant | Copious`. Each asserts a measured
+#           number that was never measured.
+#
+#   WARN    SCALE_TYP=Qn but the domain is a NUMBER WEARING A UNIT  10 rows,
+#           4.24M occ. `224415 ETT Mark (cm)` charts `23cm`, `22cm`;
+#           `223837 ETT Size (ID)` charts `7.5mm`. The target is RIGHT and the
+#           ETL is wrong — it should emit valueQuantity. Rejecting these would
+#           destroy correct mappings to fix someone else's bug, so they are
+#           reported and kept. NUMERIC_VALUE_RE is what tells the two apart.
+#
+#   WARN    a Nom/Ord target carrying numeric data  88 rows, 14.0M occ. The
+#           inverse, and mostly NOT a mapping defect: `9267-6 |Glasgow coma score
+#           eye opening|` is Ord and unambiguously the right code for GCS eye
+#           opening; all six Braden subscales are the same. MIMIC emits `4` as a
+#           Quantity where LOINC expects a coded ordinal, which is a
+#           representation question. Gating these would destroy 88 correct
+#           mappings, so it does not.
+#
+# EXPECTED EFFECT, measured before writing this: 87 rejections, 8.04M
+# occurrences. Coverage GOES DOWN — 57.44% -> 56.74% by occurrence and 1217 ->
+# 1153 codes, or as far as 54.87% / 1130 if none of the SNOMED fallthroughs
+# survive membership. A gate removes wrong answers; it does not find right ones,
+# and a stream whose coverage rose after adding one would be evidence the gate
+# was not working.
+#
+# What it buys is that 23 of the rejections (5.86M occ) fall through to a
+# MATERIALLY BETTER SNOMED target, because rejecting the LOINC answer is what
+# lets the resolution rule reach one:
+#
+#     223907 Pupil Size Right   8642-1 |Right pupil Diameter Auto| (Qn)
+#                            -> 363953003 |Size of pupil|              0.85
+#     224027 Skin Temperature   60839-8 |Skin temperature| (Qn)
+#                            -> 364537001 |Temperature of skin|        0.95
+#     223951 Capillary Refill R 44971-0 |Capillary refill [Time]| (Qn)
+#                            -> 15527001 |Capillary filling|           0.95
+#
+# `363953003 |Size of pupil|` is exactly the concept COMMENT_OVERRIDES below
+# records as the one this stream could not reach; the scale gate reaches it
+# without being told about that item.
+#
+# THE GATE IS ASYMMETRIC AND THAT IS A REAL COST, stated because it will not be
+# visible in the statistics. SNOMED models the same fact as `370132008 |Scale
+# type|`, so the check could in principle be symmetric — but it is populated on
+# only 4 of the 173 distinct SNOMED concepts this table targets, 0.0% by
+# occurrence. So LOINC answers are checkable and SNOMED answers are not, and
+# since the resolution rule falls through to SNOMED when LOINC declines, adding
+# this gate SHIFTS volume from the checkable system to the uncheckable one. The
+# rejections above are still worth it — a wrong LOINC code is not improved by
+# being unfalsifiable — but nobody should read the result as SNOMED having earned
+# those rows on merit.
+#
+# The observed shape is a committed build input, not a live query: see
+# valueshapes/README.md for the HPC job that produces it. Absent that file this
+# gate disables itself with a warning rather than failing the build, because a
+# scale check that cannot run is not the same failure as a scale check that
+# fails.
+
+# LOINC publishes SCALE_TYP on every concept; a terminology server may answer
+# with either the abbreviation or the LOINC Part code that carries it, so both
+# spellings are accepted. Measured against tx.fhir.org, which returns Parts.
+SCALE_TYP_PARTS = {
+    "LP7753-9": "Qn", "LP7750-5": "Nom", "LP7751-3": "Ord", "LP7747-1": "-",
+    "LP32888-7": "Doc", "LP7752-1": "OrdQn", "LP7749-7": "Nar",
+    "LP7748-9": "Multi", "LP436123-6": "SemiQn",
+}
+
+# A document type or a panel is never a legal Observation.code for a single
+# flowsheet value.
+SCALE_TYP_NEVER = {"Doc", "-"}
+
+# Which SCALE_TYP values are compatible with each shape the warehouse observed.
+# `SemiQn` counts as quantitative: LOINC files the blood-gas pH codes there
+# (`2744-1`), and the four rows affected chart ordinary numbers.
+SCALE_COMPATIBLE = {
+    "Qn": {"Qn", "OrdQn", "SemiQn"},
+    "NomOrd": {"Nom", "Ord", "OrdQn", "Multi", "Nar"},
+    "Nar": {"Nar", "Nom", "Multi"},
+}
+
+# A value that is a number wearing a unit — `23cm`, `7.5mm`, `14 French`,
+# `3mm`. An item whose value mass is mostly these is quantitative data that the
+# ETL stringified, so a Qn target is correct and the defect is upstream. The
+# threshold is on OCCURRENCE mass rather than on distinct values, because
+# `Pupil Size Right` charts `3mm` 1418 times and `Pinpoint` 44 times and it is
+# the 44 that must not decide the item's shape.
+NUMERIC_VALUE_RE = re.compile(r"^[<>]?=?\s*\d+(\.\d+)?\s*[A-Za-z%/°]*\.?$")
+NUMERIC_VALUE_FRACTION = 0.90
+
+# --------------------------------------------------------------------------- #
+# THE SCALE RESCUE — BUILT, MEASURED, AND REJECTED
+# --------------------------------------------------------------------------- #
+#
+# There is no sub-threshold acceptance in this stream. A LOINC proposal below
+# CONFIDENCE_THRESHOLD is discarded, as in every other generator here. This block
+# records an attempt to change that, because it was implemented and run rather
+# than argued about, and the numbers are the reason it is gone.
+#
+# THE IDEA: accept a LOINC proposal in the 0.70–0.80 band IF the scale check
+# positively agrees with the observed value shape. The argument was that 0.8 is
+# calibrated for `equivalent` while this table asserts `relatedto` on every row
+# (fixed by lib/assemble.py), that under relatedto a target coarser than the item
+# is a TRUE statement, and that coarseness is what the 0.70–0.80 band is full of —
+# so a service confidence and a deterministic scale match agreeing is different
+# evidence from one signal at 0.8.
+#
+# IT WORKED, in the sense of moving the number: 238 rows admitted, 17.5M
+# occurrences, taking the stream from 58.48% to 64.04% by occurrence and from
+# 1,243 to 1,481 mapped codes. It also found real things, including the defect
+# NOT collapsed: LATERALITY says has no clean instrument — `224771 RLE Temp`,
+# `224773 LLE Temp` and `224769 LUE Temp` all landing on the one non-lateralised
+# `81673-6 |Temperature of Extremity|`, which is correct.
+#
+# IT WAS REJECTED ON PRECISION. 167 of the 238 sat at exactly 0.70, the floor,
+# carrying 12.7M of the 17.5M — so most of the gain came from the least confident
+# value the rule would accept. Inspection of both bands found roughly one in eight
+# admitted rows naming the wrong concept at the right scale:
+#
+#     228412 Strength R Arm       -> 83174-3 |Grip strength … Dynamometer|
+#     224701 PSV Level            -> 11726-7 |Circulatory system Peak systolic|
+#                                    PSV here is Pressure Support Ventilation
+#     224289 Arterial line Site   -> 99716-3 |Dialysis access site appearance|
+#     224281 Multi Lumen Site     -> 99716-3 |Dialysis access site appearance|
+#     224106 Cooling Device       -> 88668-9 |Prehospital therapeutic hypothermia|
+#     223976 RUE Color            -> 39107-8 |Color of Skin|, where NOT collapsed:
+#                                    LATERALITY names SNOMED `248412009 |Colour of
+#                                    extremity|` as the right answer for this item
+#
+# Raising the floor to 0.75 was measured and does NOT fix this: it drops 167 rows
+# and 12.7M occurrences while leaving a comparable error rate, because
+# `Multi Lumen Site Appear` and `Cooling Device` are both 0.75 rows. It buys less
+# volume at the same precision, which is the worst of the three options.
+#
+# So scale agreement is NECESSARY evidence and not SUFFICIENT evidence. A
+# deterministic check can tell that a target is the wrong KIND of thing; it cannot
+# tell that it is the wrong thing. Removing the rescue restores an invariant worth
+# more than the 5.5 points it costs: every mapping in this table cleared 0.8 and
+# passed the gate, with no exceptions to explain.
+#
+# What is NOT reverted is THE SECOND PASS below, which survives on its own terms —
+# 69 of its 109 wins cleared 0.8 unaided. Its other 40 depended on this rescue and
+# are now refused.
+#
+# Do not reintroduce this as a hand-reviewed accept list. Picking the good rows out
+# of the 238 is curation against rows seen to fail, which COMMENT_OVERRIDES exists
+# to forbid.
+
+# --------------------------------------------------------------------------- #
+# THE SECOND PASS
+# --------------------------------------------------------------------------- #
+#
+# When BOTH systems answer `no-match` on the bare label, and only then, the two
+# searches are retried with the item's observed value domain appended. 889 codes
+# are in that state carrying 43.6M occurrences, 13.89% of the stream — the
+# largest single block left.
+#
+# WHY IT IS SAFE HERE AND NOWHERE ELSE. Sending the value domain as part of every
+# query was tried as a template (T3) and REJECTED: over the item set TEMPLATE IS
+# THE IDENTITY WRAPPER describes, it fixed real defects but displaced two correct
+# controls — `224093 Position` moved off `397155001 |Body position|` and
+# `224082 Turn` off `282984004 |Ability to turn|` — and compressed confidences
+# toward 0.85, flattening the signal a reviewer triages on. That is the same
+# failure T1 and T2 were rejected for.
+#
+# A row where both systems returned no-match HAS NO TARGET TO DISPLACE. The
+# entire objection to T3 was collateral damage, so restricting it to this bucket
+# removes the objection rather than arguing with it. The worst case is an
+# additional wrong mapping where there was previously nothing, which the
+# constraint, the threshold and the scale gate all still stand in the way of.
+#
+# MEASURED on the labels in this bucket: `224650 Ectopy Type 1` — 5.27M
+# occurrences and the second-largest unmapped item in the stream — goes from
+# no-match in both systems to `76281-5 |Type of arrhythmia on EKG|` at 0.85 once
+# its domain (`None`, `PVC's`, `PAC's`, `Vent. Bigeminy`) is sent.
+# `226732 O2 Delivery Device(s)` reaches `107117-4 |Method of oxygen delivery|`
+# at 0.75, the right concept, which the scale rescue above may now admit.
+#
+# The augmented text is recorded in `codesearch_query_2` so that a row mapped by
+# this pass is distinguishable from one mapped on the bare label — they are
+# different claims and should not be read as the same one.
+#
+# WHAT IT ACTUALLY DID on the first run: fired on 365 rows (the 889 minus those
+# with no string domain to send), mapped 109 of them — 95 LOINC, 14 SNOMED —
+# carrying 8.2M occurrences. `226732 O2 Delivery Device(s)` landed
+# `107117-4 |Method of oxygen delivery|` at 0.85 as predicted.
+#
+# THE PREDICTED HEADLINE WIN DID NOT LAND, and the likely reason is a defect in
+# this design rather than variance. `224650 Ectopy Type 1` — 5.27M occurrences,
+# the largest item in the bucket — was expected to reach
+# `76281-5 |Type of arrhythmia on EKG|` at 0.85, measured in a probe. On the real
+# run it came back LOINC no-match. The probe and the run do not send the same
+# string:
+#
+#     probe  Ectopy Type 1 (recorded values: Atrial Bigeminy, Nod/Junc Escape,
+#            Nodal Bigeminy, None, PAC's, PVC's, Vent. Bigeminy, ...)
+#     run    Ectopy Type (recorded values: None, PVC's, PAC's, Vent. Bigeminy,
+#            Atrial Bigeminy, ...)
+#
+# Two differences, and the second is the suspect. The label loses its instance
+# index to the collapse, which is correct. But the values are FREQUENCY RANKED,
+# and the modal value of a nursing flowsheet field is very often a sentinel —
+# `None`, `Not applicable`, `---`, `Other`. Ranking by occurrence therefore leads
+# the list with the one value that carries no clinical content, and buries the
+# ones that say what the field is. The probe's alphabetical order happened to put
+# `Atrial Bigeminy` first and answered; the run's frequency order puts `None`
+# first and did not.
+#
+# Frequency ranking is right for the SCALE gate, where occurrence mass is exactly
+# the question. It looks actively wrong for the QUERY. The untested fix is to drop
+# sentinel values from the augmentation, or to send informative values first; both
+# are single-line changes and neither has been measured, so the ranking is left as
+# it is rather than swapped on a hunch. This is the next thing to probe.
+SECOND_PASS_VALUES = 12
+
 # An alarm limit does not stop being an alarm limit because the dictionary filed
 # it under the device rather than under `Alarms`. 17 items match this outside the
 # three categories above — the Centrimag, ECMO, HeartWare, VAD and IABP flow and
@@ -445,6 +787,15 @@ LOG_JSON = TERM / "output" / "chartevents-generation-log.json"
 # mappings` offline.
 D_ITEMS_GZ = TERM / "sources" / "mimic-iv-demo" / "2.2" / "icu" / "d_items.csv.gz"
 
+# What the FULL warehouse records next to each Observation.code — the observed
+# shape the scale gate compares LOINC's SCALE_TYP against. Committed build
+# inputs from one HPC run, exactly like occurrences/code-occurrences.csv; see
+# valueshapes/README.md.
+VALUE_SHAPES_CSV = TERM / "valueshapes" / "observation-value-shapes.csv"
+VALUE_DOMAINS_CSV = TERM / "valueshapes" / "observation-value-domains.csv"
+CHART_SYSTEM = ("http://mimic.mit.edu/fhir/mimic/CodeSystem/"
+                "mimic-chartevents-d-items")
+
 TARGET_COLUMNS = MIXED_TARGET_COLUMNS
 CURATED = curated_columns(TARGET_COLUMNS)
 
@@ -465,12 +816,23 @@ CURATED = curated_columns(TARGET_COLUMNS)
 # the resolution rule makes it the common case.
 PROVENANCE_COLUMNS = [
     "codesearch_query",
+    # The augmented text, present only on rows the SECOND PASS was run for. Blank
+    # therefore means "the bare label was enough, or a candidate was found and no
+    # retry was warranted" — and a row mapped from this column is a different
+    # claim from one mapped on the bare label.
+    "codesearch_query_2",
     "codesearch_target", "codesearch_display", "codesearch_confidence",
     "codesearch_status", "codesearch_reasoning",
     "codesearch_loinc_status", "codesearch_loinc_target",
     "codesearch_loinc_display", "codesearch_loinc_confidence",
     "codesearch_snomed_status", "codesearch_snomed_target",
     "codesearch_snomed_display", "codesearch_snomed_confidence",
+    # The scale gate's three inputs and its finding, recorded on EVERY row the
+    # LOINC pass reached a gate on — including the rows it passed. A gate whose
+    # verdict is only visible when it fires cannot be audited from the committed
+    # diff, and "this row was checked and agreed" is the fact that makes the
+    # 489 agreeing mappings evidence rather than absence of evidence.
+    "observed_shape", "loinc_scale_typ", "scale_note",
 ]
 
 # Recorded per row in the log only. `path` (cached / fast / agentic) says how
@@ -544,6 +906,123 @@ def dictionary(expected):
                  f"one whose mapping should be re-read, not one to generate "
                  f"around.")
     return rows
+
+
+def observed_shapes():
+    """mimic_code -> ('Qn'|'NomOrd'|'Nar'|'', numeric_value_fraction).
+
+    Read from the two committed valueshapes CSVs. Returns {} with a warning if
+    they are absent: a scale check that cannot run is a weaker build, not a
+    broken one, and requiring the files would make this generator unrunnable for
+    anyone who has not fetched them.
+
+    The numeric fraction is computed over the value domain's OCCURRENCE mass, so
+    it says "this item is numbers wearing units" rather than "this item has some
+    values that look numeric" — see NUMERIC_VALUE_RE.
+    """
+    if not VALUE_SHAPES_CSV.is_file():
+        print(f"  WARNING: {VALUE_SHAPES_CSV.name} not found — the scale gate "
+              f"is DISABLED for this run. 87 mapping(s) that contradict the "
+              f"observed value shape will be accepted. Fetch it per "
+              f"valueshapes/README.md.", file=sys.stderr)
+        return {}
+
+    hints = {}
+    with open(VALUE_SHAPES_CSV, newline="") as fh:
+        for row in csv.DictReader(fh):
+            if row["system"] == CHART_SYSTEM:
+                hints[row["code"]] = row["scale_hint"]
+
+    mass, numeric, values = {}, {}, {}
+    if VALUE_DOMAINS_CSV.is_file():
+        with open(VALUE_DOMAINS_CSV, newline="") as fh:
+            for row in csv.DictReader(fh):
+                if row["system"] != CHART_SYSTEM:
+                    continue
+                count = int(row["occurrences"])
+                code = row["code"]
+                mass[code] = mass.get(code, 0) + count
+                if NUMERIC_VALUE_RE.match(row["value"].strip()):
+                    numeric[code] = numeric.get(code, 0) + count
+                # (rank, value) so the frequency order the HPC job established
+                # survives being read back, rather than being re-sorted here.
+                values.setdefault(code, []).append((int(row["rank"]),
+                                                    row["value"]))
+
+    return {code: {"hint": hint,
+                   "numeric": numeric.get(code, 0),
+                   "mass": mass.get(code, 0),
+                   "values": [v for _, v in sorted(values.get(code, []))]}
+            for code, hint in hints.items()}
+
+
+def query_shape(codes, shapes):
+    """The observed shape for one COLLAPSED LABEL, over every itemid sharing it.
+
+    The gate runs per query, not per item, because search_query does — so the
+    members' shapes have to be reconciled into one. Members that DISAGREE yield
+    a blank hint, which makes the gate abstain: the same rule the label collapse
+    applies everywhere else, that a family which cannot agree is not a family a
+    machine should decide for.
+
+    The numeric fraction is summed over the members' occurrence mass rather than
+    averaged over the members, so `Impaired Skin Site #1` charted 90,000 times
+    is not outvoted by `#10` charted twice.
+    """
+    seen = [shapes[c] for c in codes if c in shapes]
+    hints = {s["hint"] for s in seen if s["hint"]}
+    mass = sum(s["mass"] for s in seen)
+    numeric = sum(s["numeric"] for s in seen)
+    # The value domain for the second pass: the members' domains merged and
+    # re-ranked by the occurrence mass each value actually carries, so a family
+    # asks about the values its patients were charted rather than about whichever
+    # member the dictionary happens to list first.
+    pooled = {}
+    for s in seen:
+        for rank, value in enumerate(s["values"]):
+            # No per-value counts survive into the shapes dict, so members are
+            # merged on rank — worse than merging on count, and the reason the
+            # single-member case (which is most of them) is exact and the
+            # multi-member case is only approximately frequency-ordered.
+            pooled[value] = min(pooled.get(value, 10 ** 6), rank)
+    return {"hint": hints.pop() if len(hints) == 1 else "",
+            "numeric_fraction": (numeric / mass) if mass else 0.0,
+            "members_observed": len(seen),
+            "values": [v for v, _ in sorted(pooled.items(),
+                                            key=lambda kv: (kv[1], kv[0]))]}
+
+
+def scale_verdict(scale_typ, hint, numeric_fraction):
+    """('ok'|'reject'|'warn', why) for one (SCALE_TYP, observed shape) pair.
+
+    The stated rule, applied identically to every row — see THE SCALE GATE.
+    Split out from gate() so it is testable without a terminology server, and so
+    the WARN cases can be reported without being silently dropped.
+    """
+    if scale_typ is None:
+        return "ok", "SCALE_TYP not published by the server"
+    if scale_typ in SCALE_TYP_NEVER:
+        kind = ("a document type" if scale_typ == "Doc" else "a panel")
+        return "reject", (f"LOINC SCALE_TYP={scale_typ}, i.e. {kind}, which is "
+                          f"not a legal Observation.code for a single flowsheet "
+                          f"value")
+    if not hint:
+        return "ok", "no usable observed shape (mixed, unused, or absent)"
+    if scale_typ in SCALE_COMPATIBLE[hint]:
+        return "ok", ""
+    if hint == "NomOrd" and scale_typ in ("Qn", "SemiQn"):
+        if numeric_fraction >= NUMERIC_VALUE_FRACTION:
+            return "warn", (f"LOINC SCALE_TYP={scale_typ} but MIMIC records "
+                            f"strings; {numeric_fraction:.0%} of the value mass "
+                            f"is a number wearing a unit, so the target is right "
+                            f"and the ETL should emit valueQuantity")
+        return "reject", (f"LOINC SCALE_TYP={scale_typ} but MIMIC records a "
+                          f"qualitative domain ({numeric_fraction:.0%} of the "
+                          f"value mass is numeric), so this target asserts a "
+                          f"measurement that was never made")
+    return "warn", (f"LOINC SCALE_TYP={scale_typ} but MIMIC records "
+                    f"{hint} data — a representation mismatch rather than a "
+                    f"wrong target")
 
 
 def collapsed(label):
@@ -703,6 +1182,34 @@ def preferred_display(fhir_base, system, code):
     return None
 
 
+def loinc_scale_typ(fhir_base, code):
+    """LOINC's SCALE_TYP for `code`, normalised to its abbreviation.
+
+    None means the server did not publish it, which the scale rule treats as
+    "cannot check" rather than "incompatible" — the same posture the rest of this
+    file takes toward a question the server declines to answer.
+    """
+    query = urllib.parse.urlencode({"system": LOINC, "code": code,
+                                    "property": "SCALE_TYP"})
+    status, body = http(
+        "GET", f"{fhir_base.rstrip('/')}/CodeSystem/$lookup?{query}")
+    if status != 200 or not body:
+        return None
+    for parameter in body.get("parameter", []):
+        if parameter["name"] != "property":
+            continue
+        key = value = None
+        for part in parameter.get("part", []):
+            if part["name"] == "code":
+                key = part.get("valueCode")
+            elif part["name"].startswith("value"):
+                value = (part.get("valueString") or part.get("valueCode")
+                         or (part.get("valueCoding") or {}).get("code"))
+        if key == "SCALE_TYP" and value:
+            return SCALE_TYP_PARTS.get(value, value)
+    return None
+
+
 def gate(fhir_base, system, code):
     """('ok', display) if `code` is usable, else (reason, None).
 
@@ -811,15 +1318,21 @@ def decline_unasked(row, why_not):
     return row
 
 
-def one_pass(service, fhir_base, text, system, timeout):
+def one_pass(service, fhir_base, text, system, timeout, shape=None):
     """Run one system's search and gate it. Returns a dict describing the pass.
 
     `code` and `display` are set only when the pass produced a usable target;
     `status` says what happened either way, and `target`/`confidence` keep the
     proposal even where it was then rejected.
+
+    `shape` is the observed value shape for this query, from query_shape(). It is
+    consulted only on the LOINC pass, because SNOMED publishes `370132008 |Scale
+    type|` on 4 of the 173 concepts this table targets and a check that can
+    answer for 2% of rows is not a check — see THE GATE IS ASYMMETRIC.
     """
     result = {"status": "", "target": "", "display": "", "confidence": "",
-              "reasoning": "", "path": "", "code": "", "preferred": ""}
+              "reasoning": "", "path": "", "code": "", "preferred": "",
+              "scale_typ": "", "scale_note": ""}
     try:
         answer = find_code(service, text, system, timeout)
     except Exception as exc:                          # noqa: BLE001
@@ -838,19 +1351,43 @@ def one_pass(service, fhir_base, text, system, timeout):
     result["reasoning"] = (match.get("reasoning") or "").strip()
     result["target"] = match["code"]
     result["display"] = match.get("display", "")
+    # No exceptions: a sub-threshold proposal is discarded unread, in this stream
+    # as in every other generator here. A scale-agreement carve-out for the
+    # 0.70–0.80 band was built, run and rejected on precision — see THE SCALE
+    # RESCUE for the numbers, so that it is not proposed again as if untried.
     if confidence < CONFIDENCE_THRESHOLD:
         result["status"] = "below-threshold"
         return result
 
     status, display = gate(fhir_base, system, match["code"])
     result["status"] = status
-    if status == "ok":
-        result["code"] = match["code"]
-        result["preferred"] = display
+    if status != "ok":
+        return result
+
+    # The scale gate runs LAST, after membership: a code that is not in the
+    # constraint has already failed for a more basic reason, and asking the
+    # server for its SCALE_TYP would be a request whose answer cannot matter.
+    if system == LOINC and shape is not None:
+        scale_typ = loinc_scale_typ(fhir_base, match["code"])
+        result["scale_typ"] = scale_typ or ""
+        verdict, why = scale_verdict(scale_typ, shape["hint"],
+                                     shape["numeric_fraction"])
+        # Only a WARN or a REJECT gets a note. scale_verdict explains its `ok`
+        # cases too, which is useful at a prompt and misleading in a column: the
+        # report counts warnings by the presence of this field, and an `ok` row
+        # carrying "no usable observed shape" would be tallied as a defect.
+        # `loinc_scale_typ` plus `observed_shape` already say a row was checked.
+        result["scale_note"] = why if verdict != "ok" else ""
+        if verdict == "reject":
+            result["status"] = "scale-mismatch"
+            return result
+
+    result["code"] = match["code"]
+    result["preferred"] = display
     return result
 
 
-def search_query(label, fhir_base, service, timeout):
+def search_query(label, fhir_base, service, timeout, shape=None):
     """The two passes for one collapsed label, resolved into one answer.
 
     LOINC first; SNOMED only where LOINC did not produce a usable target. See
@@ -870,8 +1407,11 @@ def search_query(label, fhir_base, service, timeout):
               + list(TARGET_COLUMNS) + ["comment"]}
     answer["codesearch_query"] = text
 
-    loinc = one_pass(service, fhir_base, text, LOINC, timeout)
+    loinc = one_pass(service, fhir_base, text, LOINC, timeout, shape)
     _record(answer, "loinc", loinc)
+    answer["observed_shape"] = (shape or {}).get("hint", "")
+    answer["loinc_scale_typ"] = loinc["scale_typ"]
+    answer["scale_note"] = loinc["scale_note"]
     if loinc["code"]:
         _decide(answer, LOINC, loinc)
         return answer
@@ -882,6 +1422,38 @@ def search_query(label, fhir_base, service, timeout):
         _decide(answer, SNOMED, snomed)
         return answer
 
+    # SECOND PASS. Both systems answered `no-match` on the bare label, so there
+    # is no target to displace and the value domain can be sent without the
+    # collateral damage that rejected it as a template. Any other pair of
+    # statuses — below-threshold, out-of-constraint, scale-mismatch — means a
+    # candidate WAS found and the bare-label answer stands; retrying those would
+    # be T3 again by the back door.
+    if (shape and shape.get("values")
+            and loinc["status"] == "no-match"
+            and snomed["status"] == "no-match"):
+        values = ", ".join(shape["values"][:SECOND_PASS_VALUES])
+        text_2 = f"{label} (recorded values: {values})"
+        answer["codesearch_query_2"] = text_2
+
+        loinc_2 = one_pass(service, fhir_base, text_2, LOINC, timeout, shape)
+        _record(answer, "loinc", loinc_2)
+        answer["loinc_scale_typ"] = loinc_2["scale_typ"]
+        answer["scale_note"] = loinc_2["scale_note"]
+        if loinc_2["code"]:
+            _decide(answer, LOINC, loinc_2)
+            return answer
+
+        snomed_2 = one_pass(service, fhir_base, text_2, SNOMED, timeout)
+        _record(answer, "snomed", snomed_2)
+        if snomed_2["code"]:
+            _decide(answer, SNOMED, snomed_2)
+            return answer
+
+        # The second pass also declined. Report ITS statuses, not the bare
+        # label's: they are what the row's comment has to rest on, and keeping
+        # the first pass's `no-match` would claim less was tried than was.
+        loinc, snomed = loinc_2, snomed_2
+
     # Neither pass produced a target. The DECISIVE block mirrors the LOINC pass,
     # because that is the one every item is asked in and the one whose rejection
     # a reader meets first; the SNOMED pass is recorded in its own block and
@@ -890,7 +1462,8 @@ def search_query(label, fhir_base, service, timeout):
     failed = next((p for p in (loinc, snomed)
                    if p["status"].startswith("error")), None)
     _decide(answer, LOINC, failed or loinc)
-    answer["comment"] = declined_comment(text, loinc, snomed)
+    answer["comment"] = declined_comment(
+        answer["codesearch_query_2"] or text, loinc, snomed)
     return answer
 
 
@@ -929,6 +1502,10 @@ def declined_comment(text, loinc, snomed):
     Names BOTH searches, because on this table "unmapped" means two terminologies
     were asked and neither answered — a comment naming only LOINC would understate
     what was tried and invite someone to re-try SNOMED by hand.
+
+    `text` is whichever string was actually sent last: for a row the SECOND PASS
+    ran on, that is the value-augmented one, so the comment says the domain was
+    tried rather than leaving a reader to wonder.
     """
     return (f"{_pass_comment(text, loinc, LOINC)} "
             f"{_pass_comment(text, snomed, SNOMED)}")
@@ -953,6 +1530,8 @@ def _pass_comment(text, result, system):
                       f"international core module."),
         "no-display": (f"{name}: proposed {proposal}, whose display the server "
                        f"does not confirm."),
+        "scale-mismatch": (f"{name}: proposed {proposal}, which passed the "
+                           f"constraint but {result['scale_note']}."),
     }.get(status, f"{name}: {status}.")
 
 
@@ -1049,6 +1628,61 @@ def report(rows, queries):
             print(f"    {code:<12} {display[:38]:<40} {len(group):>3}  "
                   f"{labels[:56]}")
 
+    # The scale gate's own account of itself. Printed whether or not it fired,
+    # because "checked and agreed" is a result and a silent gate is not
+    # auditable — and because the WARN rows are defects this script deliberately
+    # does NOT act on, so they have to be reported or they vanish.
+    checked = [r for r in rows if r["loinc_scale_typ"]]
+    if checked:
+        rejected = [r for r in rows
+                    if r["codesearch_loinc_status"] == "scale-mismatch"]
+        warned = [r for r in checked if r["scale_note"] and r not in rejected]
+        print(f"\n  scale gate: {len(checked)} row(s) had a LOINC SCALE_TYP to "
+              f"check, {len(rejected)} rejected, {len(warned)} kept with a "
+              f"warning")
+        for row in sorted(rejected, key=lambda r: r["mimic_code"])[:20]:
+            print(f"    REJECT {row['mimic_code']} "
+                  f"{row['mimic_display'][:26]:<28} "
+                  f"{row['codesearch_loinc_target']:<10} "
+                  f"SCALE_TYP={row['loinc_scale_typ']:<5} "
+                  f"observed={row['observed_shape'] or '—'}")
+        if len(rejected) > 20:
+            print(f"    … and {len(rejected) - 20} more")
+        for row in sorted(warned, key=lambda r: r["mimic_code"])[:12]:
+            print(f"    warn   {row['mimic_code']} "
+                  f"{row['mimic_display'][:26]:<28} "
+                  f"{row['target_code'] or '—':<10} "
+                  f"SCALE_TYP={row['loinc_scale_typ']:<5} "
+                  f"observed={row['observed_shape'] or '—'}")
+        if len(warned) > 12:
+            print(f"    … and {len(warned) - 12} more — see `scale_note` in "
+                  f"{OUT_CSV.name}")
+
+    # The two additive changes, each reported on its own so the run says which
+    # one earned what.
+    #
+    # THEY ARE NOT DISJOINT, contrary to what was claimed when they were
+    # implemented together. The argument was that the second pass fires only on
+    # no-match-in-both while the rescue needs a candidate, so no row could be
+    # touched by both. Wrong: the second pass's RETRY can return a sub-threshold
+    # candidate, which the rescue then accepts. 40 rows did exactly that on the
+    # first run under both — `224088 Pressure Reducing Device` reaches
+    # `54973-3 |Pressure reducing device for bed…|` at 0.75 on the augmented
+    # query and is admitted by the rescue, not by the threshold. The two compose,
+    # which is useful, but it means neither block below is a clean attribution and
+    # the overlap is printed rather than assumed away.
+    second = [r for r in rows if r["codesearch_query_2"]]
+    if second:
+        won = [r for r in second if r["target_code"]]
+        print(f"\n  second pass: {len(second)} row(s) retried with their value "
+              f"domain, {len(won)} mapped")
+        for row in sorted(won, key=lambda r: r["mimic_code"])[:20]:
+            print(f"    {row['mimic_code']} {row['mimic_display'][:26]:<28} "
+                  f"{row['target_system'].rsplit('/', 1)[-1]:<9} "
+                  f"{row['target_code']:<12} {row['target_display'][:34]}")
+        if len(won) > 20:
+            print(f"    … and {len(won) - 20} more")
+
     commented = [r for r in rows if r["target_code"] and r["comment"]]
     if commented:
         print(f"\n  {len(commented)} mapped row(s) carrying a reviewed comment")
@@ -1095,6 +1729,7 @@ def main():
                  "is missing from input/resources/, so this would write an "
                  "empty table over a real one.")
     items_dict = dictionary(codes)
+    shapes = observed_shapes()
     items = sorted(codes.items())
     if args.only:
         wanted = {c.strip() for c in args.only.split(",") if c.strip()}
@@ -1162,10 +1797,19 @@ def main():
     print(f"  snomed:     {CONSTRAINT_ECL}")
     print(f"  template:   {TEMPLATE!r} (identity — the bare label)")
     print(f"  threshold:  {CONFIDENCE_THRESHOLD}")
-    print(f"  comments:   {len(COMMENT_OVERRIDES)}\n")
+    print(f"  comments:   {len(COMMENT_OVERRIDES)}")
+    if shapes:
+        observed = sum(1 for c in codes if c in shapes)
+        print(f"  scale gate: ON, {observed}/{len(codes)} item(s) have an "
+              f"observed shape ({VALUE_SHAPES_CSV.name}); LOINC pass only")
+    else:
+        print("  scale gate: OFF (no observed shapes — see the warning above)")
+    print()
 
     def work(label):
-        answer = search_query(label, args.fhir_base, args.service, args.timeout)
+        answer = search_query(label, args.fhir_base, args.service, args.timeout,
+                              query_shape(queries[label], shapes)
+                              if shapes else None)
         members = sorted(queries[label])
         fanned = f"x{len(members)}" if len(members) > 1 else ""
         system = (answer["target_system"].rsplit("/", 1)[-1]
@@ -1251,9 +1895,39 @@ def main():
         },
         "resolution_rule": ("LOINC first; SNOMED CT only where the LOINC pass "
                             "produced no usable target. The two are never "
-                            "compared on confidence."),
+                            "compared on confidence. Where BOTH answer "
+                            "no-match on the bare label, both are retried once "
+                            "with the item's observed value domain appended."),
+        "second_pass": {"values_sent": SECOND_PASS_VALUES,
+                        "fires_when": "loinc and snomed both no-match",
+                        "source": (str(VALUE_DOMAINS_CSV.relative_to(
+                            TERM.parents[1]))
+                            if VALUE_DOMAINS_CSV.is_file() else None)},
         "template": TEMPLATE,
         "confidence_threshold": CONFIDENCE_THRESHOLD,
+        # The scale gate's settings and inputs, so a table's diff can be read
+        # against the rule that produced it. `enabled` is false when the
+        # valueshapes CSVs were absent, which is the one way this generator can
+        # produce a WEAKER table without anything looking wrong.
+        "scale_gate": {
+            "enabled": bool(shapes),
+            "shapes_csv": (str(VALUE_SHAPES_CSV.relative_to(TERM.parents[1]))
+                           if VALUE_SHAPES_CSV.is_file() else None),
+            "systems_checked": [LOINC],
+            "never": sorted(SCALE_TYP_NEVER),
+            "compatible": {k: sorted(v)
+                           for k, v in sorted(SCALE_COMPATIBLE.items())},
+            "numeric_value_fraction": NUMERIC_VALUE_FRACTION,
+            # Recorded as an explicit null so a reader of an old log beside a
+            # new one can see the carve-out was REMOVED rather than never
+            # existing. See THE SCALE RESCUE — BUILT, MEASURED, AND REJECTED.
+            "sub_threshold_rescue": None,
+            "snomed_not_checked_because": (
+                "SNOMED models this as 370132008 |Scale type| but publishes it "
+                "on 4 of the 173 concepts this table targets, 0.0% by "
+                "occurrence, so the check would abstain on 98% of SNOMED rows "
+                "while appearing to have run"),
+        },
         "pre_filter": {
             "dictionary": str(D_ITEMS_GZ.relative_to(TERM.parents[1])),
             "declined_categories": DECLINED_CATEGORIES,

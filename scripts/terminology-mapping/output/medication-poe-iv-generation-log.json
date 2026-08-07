@@ -1,0 +1,39 @@
+{
+ "element": "MedicationRequest.medication[x]",
+ "constraint_vcl": null,
+ "template": null,
+ "confidence_threshold": null,
+ "note": "No terminology service was contacted. Both codes are declared unmapped by decision; see the module docstring and issue #26.",
+ "rows": [
+  {
+   "mimic_code": "IV therapy",
+   "mimic_display": "IV therapy",
+   "target_system": "",
+   "target_code": "",
+   "target_display": "",
+   "comment": "Not a medication. `IV therapy` is a POE order type recording that intravenous therapy was ordered; the product infused is recorded elsewhere on the prescription. RxNorm names drug products and has no concept for an administration modality at any term type. A SNOMED CT procedure concept exists but is deliberately not used: this element is MedicationRequest.medication[x], and a procedure code here would resolve correctly while making the data mean something else. See issue #26.",
+   "method": "declared",
+   "join_rung": "",
+   "codesearch_target": "",
+   "codesearch_display": "",
+   "codesearch_confidence": "",
+   "codesearch_status": "not-attempted",
+   "codesearch_reasoning": ""
+  },
+  {
+   "mimic_code": "TPN",
+   "mimic_display": "TPN",
+   "target_system": "",
+   "target_code": "",
+   "target_display": "",
+   "comment": "Not a medication. `TPN` names total parenteral nutrition, a patient-specific compounded admixture whose composition the code does not carry. RxNorm has no concept for it because it is not a manufactured product. Declined for the same reason as `IV therapy`, and tracked in issue #26.",
+   "method": "declared",
+   "join_rung": "",
+   "codesearch_target": "",
+   "codesearch_display": "",
+   "codesearch_confidence": "",
+   "codesearch_status": "not-attempted",
+   "codesearch_reasoning": ""
+  }
+ ]
+}

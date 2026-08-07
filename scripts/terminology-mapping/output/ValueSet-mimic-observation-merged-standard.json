@@ -7,7 +7,7 @@
  "title": "MIMIC merged Observation codes as standard terminology",
  "status": "active",
  "experimental": false,
- "date": "2026-08-06",
+ "date": "2026-08-07",
  "publisher": "CSIRO",
  "description": "Every code the merged MIMIC Observation profile admits on Observation.code, in standard terminology. Derived from ConceptMap/mimic-observation-merged-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Neither the LOINC nor the SNOMED CT include carries a version: this repo builds no LOINC or SNOMED release, so pinning one would name something it cannot reproduce. Grows as each code-search stream is added to the map.",
  "compose": {
@@ -16,12 +16,12 @@
     "system": "http://loinc.org",
     "concept": [
      {
-      "code": "100231-0",
-      "display": "Endobronchial ultrasound study"
+      "code": "100180-9",
+      "display": "Assistive mobility devices used"
      },
      {
-      "code": "101439-8",
-      "display": "Change in mental status"
+      "code": "100822-6",
+      "display": "Cardiopulmonary resuscitation orders"
      },
      {
       "code": "101440-6",
@@ -42,10 +42,6 @@
      {
       "code": "101970-2",
       "display": "Breathing patterns"
-     },
-     {
-      "code": "102122-9",
-      "display": "Oxygen/Gas total [Partial pressure] in Arterial blood and Inhaled gas"
      },
      {
       "code": "10230-1",
@@ -90,6 +86,14 @@
      {
       "code": "103847-0",
       "display": "Extracorporeal membrane oxygenation ECMO device"
+     },
+     {
+      "code": "103929-6",
+      "display": "Blood flow rate Unspecified body region CVVH"
+     },
+     {
+      "code": "103997-3",
+      "display": "Type of mechanical circulatory support"
      },
      {
       "code": "104322-3",
@@ -192,12 +196,12 @@
       "display": "Beta hydroxybutyrate [Moles/volume] in Blood"
      },
      {
-      "code": "104907-1",
-      "display": "Indication Narrative"
-     },
-     {
       "code": "104951-9",
       "display": "Care plan identifier"
+     },
+     {
+      "code": "104959-2",
+      "display": "Device fitting or implant status"
      },
      {
       "code": "10501-5",
@@ -264,10 +268,6 @@
       "display": "Blood [Presence] in Urine"
      },
      {
-      "code": "106199-3",
-      "display": "Status"
-     },
-     {
       "code": "10644-3",
       "display": "Arthropod identified in Specimen"
      },
@@ -300,12 +300,16 @@
       "display": "Readmission indicator"
      },
      {
-      "code": "107175-2",
-      "display": "Hematocrit [Volume Fraction] of Peritoneal fluid"
+      "code": "107117-4",
+      "display": "Method of oxygen delivery"
      },
      {
-      "code": "107273-5",
-      "display": "RF Guidance for reposition of CV catheter in Unspecified body region"
+      "code": "107146-3",
+      "display": "Pulse pressure"
+     },
+     {
+      "code": "107175-2",
+      "display": "Hematocrit [Volume Fraction] of Peritoneal fluid"
      },
      {
       "code": "107454-1",
@@ -404,6 +408,22 @@
       "display": "fentaNYL [Presence] in Urine"
      },
      {
+      "code": "112494-0",
+      "display": "Pain"
+     },
+     {
+      "code": "112496-5",
+      "display": "Drowsiness (feeling sleepy)"
+     },
+     {
+      "code": "112497-3",
+      "display": "Nausea"
+     },
+     {
+      "code": "112501-2",
+      "display": "Anxiety (feeling nervous)"
+     },
+     {
       "code": "11253-2",
       "display": "Tacrolimus [Mass/volume] in Blood"
      },
@@ -424,16 +444,12 @@
       "display": "History of Tobacco use"
      },
      {
+      "code": "11376-1",
+      "display": "Injury location"
+     },
+     {
       "code": "11450-4",
       "display": "Problem list - Reported"
-     },
-     {
-      "code": "11488-4",
-      "display": "Consult note"
-     },
-     {
-      "code": "11506-3",
-      "display": "Progress note"
      },
      {
       "code": "11545-1",
@@ -458,14 +474,6 @@
      {
       "code": "11572-5",
       "display": "Rheumatoid factor [Units/volume] in Serum or Plasma"
-     },
-     {
-      "code": "11726-7",
-      "display": "Circulatory system Peak systolic flow velocity US.doppler"
-     },
-     {
-      "code": "12008-9",
-      "display": "Pulsatility index US.doppler"
      },
      {
       "code": "12173-1",
@@ -578,6 +586,10 @@
      {
       "code": "14172-1",
       "display": "Potassium [Moles/volume] in Synovial fluid"
+     },
+     {
+      "code": "14190-3",
+      "display": "Phenytoin Free [Mass/volume] in Saliva (oral fluid)"
      },
      {
       "code": "14196-0",
@@ -716,6 +728,10 @@
       "display": "Lipase [Enzymatic activity/volume] in Body fluid"
      },
      {
+      "code": "15309-8",
+      "display": "Urinary bladder Volume by derived from height, width and length (US)"
+     },
+     {
       "code": "16128-1",
       "display": "Hepatitis C virus Ab [Presence] in Serum"
      },
@@ -832,10 +848,6 @@
       "display": "Albumin [Mass/volume] in Urine"
      },
      {
-      "code": "17607-3",
-      "display": "Volume of Cerebral spinal fluid"
-     },
-     {
       "code": "1762-4",
       "display": "Aldosterone [Mass/volume] in Blood"
      },
@@ -878,6 +890,10 @@
      {
       "code": "1783-0",
       "display": "Alkaline phosphatase [Enzymatic activity/volume] in Blood"
+     },
+     {
+      "code": "17838-4",
+      "display": "Alkaline phosphatase.bone [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "17842-6",
@@ -954,10 +970,6 @@
      {
       "code": "18483-8",
       "display": "Yeast [Presence] in Genital specimen by Organism specific culture"
-     },
-     {
-      "code": "18842-5",
-      "display": "Discharge summary"
      },
      {
       "code": "18860-7",
@@ -1152,16 +1164,12 @@
       "display": "Bilirubin.total [Presence] in Urine"
      },
      {
-      "code": "19777-2",
-      "display": "Indications Endoscopy"
-     },
-     {
-      "code": "19789-7",
-      "display": "Medications [Identifier]"
-     },
-     {
       "code": "19817-6",
       "display": "Complications"
+     },
+     {
+      "code": "19826-7",
+      "display": "Informed consent obtained"
      },
      {
       "code": "19834-1",
@@ -1198,10 +1206,6 @@
      {
       "code": "19991-9",
       "display": "Alveolar-arterial oxygen Partial pressure difference"
-     },
-     {
-      "code": "20058-4",
-      "display": "Airway pressure Ventilator --at peak inspiratory flow setting"
      },
      {
       "code": "20077-4",
@@ -1242,6 +1246,10 @@
      {
       "code": "2023-0",
       "display": "Carbon dioxide [Partial pressure] in Body fluid"
+     },
+     {
+      "code": "2030-5",
+      "display": "Carboxyhemoglobin/Hemoglobin.total in Arterial blood"
      },
      {
       "code": "20354-7",
@@ -1612,10 +1620,6 @@
       "display": "Neisseria gonorrhoeae DNA [Presence] in Specimen by NAA with probe detection"
      },
      {
-      "code": "24341-0",
-      "display": "Gas and Carbon monoxide panel - Arterial blood"
-     },
-     {
       "code": "24351-9",
       "display": "Protein electrophoresis panel - Serum or Plasma"
      },
@@ -1632,20 +1636,12 @@
       "display": "CD3+CD4+ (T4 helper) cells [#/volume] in Blood"
      },
      {
-      "code": "24558-9",
-      "display": "US Abdomen"
-     },
-     {
       "code": "2458-8",
       "display": "IgA [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "2462-0",
       "display": "IgE [Mass/volume] in Serum"
-     },
-     {
-      "code": "24631-4",
-      "display": "RF Unspecified body region Views for central venous catheter placement check"
      },
      {
       "code": "2464-6",
@@ -1664,16 +1660,8 @@
       "display": "Iron [Mass/volume] in Serum or Plasma"
      },
      {
-      "code": "24998-7",
-      "display": "RF Placement check of gastrostomy tube W contrast via GI tube"
-     },
-     {
       "code": "2500-7",
       "display": "Iron binding capacity [Mass/volume] in Serum or Plasma"
-     },
-     {
-      "code": "25019-1",
-      "display": "US Urinary bladder"
      },
      {
       "code": "2502-3",
@@ -1726,10 +1714,6 @@
      {
       "code": "25700-6",
       "display": "Immunofixation for Serum or Plasma"
-     },
-     {
-      "code": "2593-2",
-      "display": "Magnesium [Moles/volume] in Blood"
      },
      {
       "code": "2612-0",
@@ -1972,8 +1956,24 @@
       "display": "Porphobilinogen [Presence] in Urine"
      },
      {
+      "code": "28101-4",
+      "display": "Fear [CCC]"
+     },
+     {
+      "code": "28137-8",
+      "display": "Auditory alteration [CCC]"
+     },
+     {
+      "code": "28138-6",
+      "display": "Bathing/hygiene deficit [CCC]"
+     },
+     {
       "code": "2819-1",
       "display": "Potassium [Moles/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "28208-7",
+      "display": "Skin integrity impairment [CCC]"
      },
      {
       "code": "2821-7",
@@ -1984,12 +1984,24 @@
       "display": "Potassium [Moles/volume] in Serum or Plasma"
      },
      {
+      "code": "28256-6",
+      "display": "Circulation Status [OMAHA]"
+     },
+     {
       "code": "2828-2",
       "display": "Potassium [Moles/volume] in Urine"
      },
      {
+      "code": "28385-3",
+      "display": "Fever [HIV-SSC]"
+     },
+     {
       "code": "2839-9",
       "display": "Progesterone [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "28390-3",
+      "display": "Muscle aches [HIV-SSC]"
      },
      {
       "code": "2842-3",
@@ -2288,24 +2300,12 @@
       "display": "Triiodothyronine (T3).reverse [Mass/volume] in Serum or Plasma"
      },
      {
-      "code": "30525-0",
-      "display": "Age"
-     },
-     {
       "code": "3053-6",
       "display": "Triiodothyronine (T3) [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "30562-3",
       "display": "Surfactant/Albumin [Mass Ratio] in Amniotic fluid"
-     },
-     {
-      "code": "30637-3",
-      "display": "RF Guidance for placement of tube in Gastrointestinal tract"
-     },
-     {
-      "code": "30643-1",
-      "display": "US Guidance for placement of CV catheter in Vein"
      },
      {
       "code": "3084-1",
@@ -2378,10 +2378,6 @@
      {
       "code": "3135-1",
       "display": "Xylose [Mass/volume] in Urine"
-     },
-     {
-      "code": "3141-9",
-      "display": "Body weight Measured"
      },
      {
       "code": "31418-7",
@@ -2484,12 +2480,20 @@
       "display": "Albumin/Creatinine [Ratio] in Urine"
      },
      {
+      "code": "32329-5",
+      "display": "Magnesium [Moles/volume] in Specimen"
+     },
+     {
       "code": "32355-0",
       "display": "Bacteria identified in Specimen by Respiratory culture"
      },
      {
       "code": "3243-3",
       "display": "Thrombin time"
+     },
+     {
+      "code": "32433-5",
+      "display": "Physical findings of Gait"
      },
      {
       "code": "32474-9",
@@ -2584,6 +2588,10 @@
       "display": "CD62 cells/cells in Specimen"
      },
      {
+      "code": "32892-2",
+      "display": "Side [Identifier] Tooth"
+     },
+     {
       "code": "33006-8",
       "display": "Cytomegalovirus DNA [#/volume] (viral load) in Specimen by NAA with probe detection"
      },
@@ -2618,10 +2626,6 @@
      {
       "code": "33366-6",
       "display": "Chloride [Moles/volume] in Peritoneal fluid"
-     },
-     {
-      "code": "33433-4",
-      "display": "Pop off setting [Pressure] Ventilator alarm"
      },
      {
       "code": "33440-9",
@@ -2726,14 +2730,6 @@
      {
       "code": "34714-6",
       "display": "INR in Blood by Coagulation assay"
-     },
-     {
-      "code": "34841-7",
-      "display": "Social worker Consult note"
-     },
-     {
-      "code": "34858-1",
-      "display": "Pain medicine Note"
      },
      {
       "code": "34942-3",
@@ -2996,14 +2992,6 @@
       "display": "Methotrexate [Mass/volume] in Serum or Plasma"
      },
      {
-      "code": "38199-6",
-      "display": "Intrinsic PEEP Respiratory system"
-     },
-     {
-      "code": "38200-2",
-      "display": "Volume of Sputum"
-     },
-     {
       "code": "38204-4",
       "display": "Pain primary location - Reported"
      },
@@ -3070,18 +3058,6 @@
      {
       "code": "39121-9",
       "display": "Dressing for Wound"
-     },
-     {
-      "code": "39125-0",
-      "display": "Width of Wound"
-     },
-     {
-      "code": "39126-8",
-      "display": "Length of Wound"
-     },
-     {
-      "code": "39137-5",
-      "display": "Oral assessment panel"
      },
      {
       "code": "3948-7",
@@ -3200,10 +3176,6 @@
       "display": "Hemoglobin A1c [Mass/volume] in Blood"
      },
      {
-      "code": "42272-5",
-      "display": "XR Chest PA and Lateral"
-     },
-     {
       "code": "42620-5",
       "display": "Terminal deoxyribonucleotidyl transferase cells/cells in Bone marrow"
      },
@@ -3292,10 +3264,6 @@
       "display": "Complement C3 [Mass/volume] in Serum or Plasma"
      },
      {
-      "code": "44971-0",
-      "display": "Capillary refill [Time]"
-     },
-     {
       "code": "44972-8",
       "display": "Edema site"
      },
@@ -3336,6 +3304,14 @@
       "display": "Hemoglobin A/Hemoglobin.total in Blood"
      },
      {
+      "code": "45466-0",
+      "display": "Legal guardian [Minimum Data Set]"
+     },
+     {
+      "code": "45468-6",
+      "display": "Health care durable power attorney [Minimum Data Set]"
+     },
+     {
       "code": "4547-6",
       "display": "Hemoglobin A1/Hemoglobin.total in Blood"
      },
@@ -3348,8 +3324,52 @@
       "display": "Hemoglobin A2/Hemoglobin.total in Blood"
      },
      {
+      "code": "45524-6",
+      "display": "Range of motion Neck [Minimum Data Set]"
+     },
+     {
+      "code": "45628-5",
+      "display": "Indwelling catheter [Minimum Data Set]"
+     },
+     {
+      "code": "45678-0",
+      "display": "Renal failure [Minimum Data Set]"
+     },
+     {
+      "code": "45715-0",
+      "display": "Headache [Minimum Data Set]"
+     },
+     {
       "code": "4579-9",
       "display": "Hemoglobin F [Presence] in Blood"
+     },
+     {
+      "code": "45846-3",
+      "display": "Ostomy care [Minimum Data Set]"
+     },
+     {
+      "code": "45850-5",
+      "display": "Tracheostomy care [Minimum Data Set]"
+     },
+     {
+      "code": "45871-1",
+      "display": "Bed rails - other types of side rails used [Minimum Data Set]"
+     },
+     {
+      "code": "46007-1",
+      "display": "ADL self performance or support Set"
+     },
+     {
+      "code": "46020-4",
+      "display": "Endocrine, metabolic or nutritional diseases or conditions Set"
+     },
+     {
+      "code": "46048-5",
+      "display": "Type of ulcer Set"
+     },
+     {
+      "code": "46050-1",
+      "display": "Skin treatments Set"
      },
      {
       "code": "4621-9",
@@ -3490,10 +3510,6 @@
      {
       "code": "50957-0",
       "display": "Manual differential performed [Presence] in Blood"
-     },
-     {
-      "code": "50971-1",
-      "display": "Cytology report of Bronchial brush Cyto stain"
      },
      {
       "code": "50972-9",
@@ -3656,14 +3672,6 @@
       "display": "Cefuroxime [Susceptibility]"
      },
      {
-      "code": "51848-0",
-      "display": "Evaluation note"
-     },
-     {
-      "code": "51850-6",
-      "display": "Physical findings of Head and Ears and Eyes and Nose and Throat"
-     },
-     {
       "code": "5195-3",
       "display": "Hepatitis B virus surface Ag [Presence] in Serum"
      },
@@ -3676,8 +3684,8 @@
       "display": "HIV 2 Ab [Presence] in Serum by Immunoblot"
      },
      {
-      "code": "52797-8",
-      "display": "Diagnosis ICD code [Identifier]"
+      "code": "52837-2",
+      "display": "Type of nursing unit or service [NDNQI]"
      },
      {
       "code": "52873-7",
@@ -3694,6 +3702,10 @@
      {
       "code": "53275-4",
       "display": "Transitional cells [#/volume] in Urine by Computer assisted method"
+     },
+     {
+      "code": "53414-9",
+      "display": "FDA product label OTC - Pregnancy or breast feeding section"
      },
      {
       "code": "53612-8",
@@ -3744,6 +3756,26 @@
       "display": "Interpreter needed"
      },
      {
+      "code": "54628-3",
+      "display": "Inattention in last 7 days [CAM.CMS]"
+     },
+     {
+      "code": "54629-1",
+      "display": "Disorganized thinking in last 7 days [CAM.CMS]"
+     },
+     {
+      "code": "54632-5",
+      "display": "Acute onset mental status change [CAM.CMS]"
+     },
+     {
+      "code": "54720-8",
+      "display": "Resident prefers receiving bed bath [MDSv3]"
+     },
+     {
+      "code": "54829-7",
+      "display": "Pain presence during assessment period [CMS Assessment]"
+     },
+     {
       "code": "54901-4",
       "display": "IgG [Mass/volume] in Peritoneal fluid"
      },
@@ -3772,10 +3804,6 @@
       "display": "Chlamydia sp identified in Specimen by Organism specific culture"
      },
      {
-      "code": "56007-8",
-      "display": "Platelet aggregation in Blood by arachidonate induced 500 ug/mL"
-     },
-     {
       "code": "5632-5",
       "display": "Copper [Mass/volume] in Urine"
      },
@@ -3802,6 +3830,10 @@
      {
       "code": "56872-5",
       "display": "Constitutional symptoms Narrative"
+     },
+     {
+      "code": "57088-7",
+      "display": "Fetal Movement - Reported"
      },
      {
       "code": "57400-4",
@@ -3888,6 +3920,10 @@
       "display": "Reducing substances [Presence] in Urine"
      },
      {
+      "code": "58157-9",
+      "display": "Delirium - care area triggered [MDSv3]"
+     },
+     {
       "code": "5838-8",
       "display": "Cytomegalovirus [Presence] in Specimen by Organism specific culture"
      },
@@ -3924,36 +3960,24 @@
       "display": "Prothrombin time (PT)"
      },
      {
-      "code": "59032-3",
-      "display": "Lactate [Mass/volume] in Blood"
-     },
-     {
       "code": "59185-9",
       "display": "Hemoglobin H inclusion bodies [Presence] in Blood"
-     },
-     {
-      "code": "59284-0",
-      "display": "Consent Document"
      },
      {
       "code": "593-4",
       "display": "Legionella sp identified in Specimen by Organism specific culture"
      },
      {
-      "code": "59408-5",
-      "display": "Oxygen saturation in Arterial blood by Pulse oximetry"
-     },
-     {
-      "code": "59412-7",
-      "display": "Oxygen saturation in Arterial blood by Pulse oximetry --post exercise"
-     },
-     {
-      "code": "59417-6",
-      "display": "Oxygen saturation in Arterial blood by Pulse oximetry --resting"
-     },
-     {
       "code": "5942-8",
       "display": "Reptilase time in Platelet poor plasma from Control by Coagulation assay"
+     },
+     {
+      "code": "59454-9",
+      "display": "History of falling; immediate or within 3 months [Morse Fall Scale]"
+     },
+     {
+      "code": "59456-4",
+      "display": "Ambulatory aid [Morse Fall Scale]"
      },
      {
       "code": "5955-0",
@@ -3970,10 +3994,6 @@
      {
       "code": "5965-9",
       "display": "Plasmin inhibitor [Units/volume] in Platelet poor plasma by Chromogenic method"
-     },
-     {
-      "code": "59768-2",
-      "display": "Procedure indications [Interpretation] Narrative"
      },
      {
       "code": "59770-8",
@@ -4024,6 +4044,10 @@
       "display": "Cytomegalovirus early Ag [Presence] in Specimen"
      },
      {
+      "code": "60721-8",
+      "display": "Rolling - elicited from the arms (left) [TIMP]"
+     },
+     {
       "code": "60740-8",
       "display": "Inspiration [Time] Respiratory system"
      },
@@ -4046,10 +4070,6 @@
      {
       "code": "60834-9",
       "display": "Blood temperature"
-     },
-     {
-      "code": "60839-8",
-      "display": "Skin temperature --in microenvironment"
      },
      {
       "code": "60842-2",
@@ -4082,10 +4102,6 @@
      {
       "code": "611-4",
       "display": "Bacteria identified in Body fluid by Culture"
-     },
-     {
-      "code": "61146-7",
-      "display": "Goals Narrative"
      },
      {
       "code": "61367-9",
@@ -4136,10 +4152,6 @@
       "display": "Chlamydia trachomatis DNA [Presence] in Urine by NAA with probe detection"
      },
      {
-      "code": "64298-3",
-      "display": "Power of attorney"
-     },
-     {
       "code": "64412-0",
       "display": "Mycobacterium sp [Presence] in Blood by Organism specific culture"
      },
@@ -4160,10 +4172,6 @@
       "display": "Microscopic observation [Identifier] in Specimen by Acid fast stain.Kinyoun modified"
      },
      {
-      "code": "65702-3",
-      "display": "Leg agility - left [UPDRS]"
-     },
-     {
       "code": "6579-7",
       "display": "Vibrio sp identified in Stool by Organism specific culture"
      },
@@ -4172,24 +4180,12 @@
       "display": "Virus identified in Specimen by Culture"
      },
      {
-      "code": "6598-7",
-      "display": "Troponin T.cardiac [Mass/volume] in Serum or Plasma"
-     },
-     {
       "code": "66236-1",
       "display": "Do you lose your balance because of dizziness or do you ever lose consciousness [Revised PARQ]"
      },
      {
-      "code": "66247-8",
-      "display": "Sit to stand frequency in 30 seconds"
-     },
-     {
       "code": "664-3",
       "display": "Microscopic observation [Identifier] in Specimen by Gram stain"
-     },
-     {
-      "code": "66483-9",
-      "display": "Heparin unfractionated [Units/volume] in Platelet poor plasma"
      },
      {
       "code": "6676-1",
@@ -4244,16 +4240,8 @@
       "display": "Heart rate --standing"
      },
      {
-      "code": "69003-2",
-      "display": "Mononuclear cells atypical/Leukocytes in Blood by Manual count"
-     },
-     {
       "code": "6924-5",
       "display": "Gliadin IgA Ab [Units/volume] in Serum"
-     },
-     {
-      "code": "69408-3",
-      "display": "Orthostatic heart rate [Difference in rate]"
      },
      {
       "code": "69420-8",
@@ -4300,8 +4288,32 @@
       "display": "Nucleated erythrocytes/cells in Peritoneal fluid"
      },
      {
+      "code": "70190-4",
+      "display": "Motor arm Left arm [NIH Stroke Scale]"
+     },
+     {
+      "code": "70191-2",
+      "display": "Motor leg Leg - left [NIH Stroke Scale]"
+     },
+     {
+      "code": "70195-3",
+      "display": "Dysarthria [NIH Stroke Scale]"
+     },
+     {
       "code": "704-7",
       "display": "Basophils [#/volume] in Blood by Automated count"
+     },
+     {
+      "code": "70456-9",
+      "display": "I am bothered by the amount of swelling in the past 7 days [FACIT]"
+     },
+     {
+      "code": "70967-5",
+      "display": "Motor arm Right arm [NIH Stroke Scale]"
+     },
+     {
+      "code": "70968-3",
+      "display": "Motor leg Leg - right [NIH Stroke Scale]"
      },
      {
       "code": "711-2",
@@ -4314,10 +4326,6 @@
      {
       "code": "71426-1",
       "display": "C reactive protein [Mass/volume] in Blood by High sensitivity method"
-     },
-     {
-      "code": "71576-3",
-      "display": "Airway device placement confirmation method"
      },
      {
       "code": "71775-1",
@@ -4336,6 +4344,14 @@
       "display": "Oxygen saturation [Pure mass fraction] in Blood"
      },
      {
+      "code": "72050-8",
+      "display": "Dialysis access"
+     },
+     {
+      "code": "72185-2",
+      "display": "Medical history [RHEA]"
+     },
+     {
       "code": "72288-4",
       "display": "Odor of Exudate from wound"
      },
@@ -4348,8 +4364,20 @@
       "display": "Tunneling of Wound"
      },
      {
+      "code": "72301-5",
+      "display": "Description of Periwound"
+     },
+     {
+      "code": "72305-6",
+      "display": "Wound closure type"
+     },
+     {
       "code": "72337-9",
       "display": "Protein S Ag [Units/volume] in Platelet poor plasma by Immunoassay"
+     },
+     {
+      "code": "72371-8",
+      "display": "Appearance of Wound base"
      },
      {
       "code": "72496-3",
@@ -4358,10 +4386,6 @@
      {
       "code": "725-2",
       "display": "Hemoglobin [Presence] in Urine"
-     },
-     {
-      "code": "72514-3",
-      "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
      },
      {
       "code": "72695-0",
@@ -4380,8 +4404,8 @@
       "display": "Fluid output.nasogastric tube Measured"
      },
      {
-      "code": "73830-2",
-      "display": "Fall risk assessment"
+      "code": "73786-6",
+      "display": "Activity [NSRAS]"
      },
      {
       "code": "73906-0",
@@ -4396,16 +4420,12 @@
       "display": "Hemoglobin.other [Type] in Blood"
      },
      {
-      "code": "74105-8",
-      "display": "Oxygen saturation Calculated from oxygen partial pressure in Mixed venous blood"
-     },
-     {
       "code": "742-7",
       "display": "Monocytes [#/volume] in Blood by Automated count"
      },
      {
-      "code": "74204-9",
-      "display": "Drug use [NTDS]"
+      "code": "74369-0",
+      "display": "Nitric oxide [Moles/volume] in Exhaled gas"
      },
      {
       "code": "74719-6",
@@ -4432,12 +4452,8 @@
       "display": "Neutrophils [#/volume] in Blood by Automated count"
      },
      {
-      "code": "75287-3",
-      "display": "Food and beverage intake panel"
-     },
-     {
-      "code": "75305-3",
-      "display": "Nutrition status"
+      "code": "75161-0",
+      "display": "Bilevel positive airway pressure (BPAP) activity Ventilator"
      },
      {
       "code": "75407-7",
@@ -4448,8 +4464,12 @@
       "display": "Hepatitis B virus e Ag [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
      },
      {
-      "code": "75787-2",
-      "display": "Advance directive - request for intubation"
+      "code": "75521-5",
+      "display": "Information source for data [PCORnet]"
+     },
+     {
+      "code": "75773-2",
+      "display": "Goals, preferences, and priorities for medical treatment Narrative - Reported"
      },
      {
       "code": "75918-3",
@@ -4476,8 +4496,8 @@
       "display": "Airway resistance --during inspiration"
      },
      {
-      "code": "75971-2",
-      "display": "IEEE 11073 Rosetta skin transcutaneous panel Transcutaneous monitor"
+      "code": "75959-7",
+      "display": "Volume expired per minute Respiratory system"
      },
      {
       "code": "75994-4",
@@ -4494,10 +4514,6 @@
      {
       "code": "76203-9",
       "display": "Pressure.occlusion Respiratory system airway --negative inspiratory force maneuver"
-     },
-     {
-      "code": "76221-1",
-      "display": "Tidal volume.inspired"
      },
      {
       "code": "76228-6",
@@ -4534,6 +4550,10 @@
      {
       "code": "76519-8",
       "display": "Left ventricular Cardiac output by Continuous"
+     },
+     {
+      "code": "76525-5",
+      "display": "Thoracic fluid conductivity [Fluid Conductance] Chest"
      },
      {
       "code": "76528-9",
@@ -4584,14 +4604,6 @@
       "display": "Ankle-brachial index"
      },
      {
-      "code": "77422-4",
-      "display": "Critical care medicine procedure note"
-     },
-     {
-      "code": "77442-2",
-      "display": "Cardiology Plan of care note"
-     },
-     {
       "code": "77621-1",
       "display": "Natriuretic peptide.B prohormone N-Terminal [Mass/volume] in Pleural fluid by Immunoassay"
      },
@@ -4620,16 +4632,8 @@
       "display": "Hospital stay duration"
      },
      {
-      "code": "78253-2",
-      "display": "Family medicine Consult note"
-     },
-     {
       "code": "78355-5",
       "display": "Abnormal lymphocytes [Presence] in Blood by Manual count"
-     },
-     {
-      "code": "78451-2",
-      "display": "Nutrition and dietetics Education note"
      },
      {
       "code": "7852-7",
@@ -4650,10 +4654,6 @@
      {
       "code": "7886-5",
       "display": "Epstein Barr virus capsid IgM Ab [Units/volume] in Serum"
-     },
-     {
-      "code": "78945-3",
-      "display": "Catheterization device Guiding catheter size"
      },
      {
       "code": "78989-1",
@@ -4752,10 +4752,6 @@
       "display": "Temporal orientation - time"
      },
      {
-      "code": "80310-6",
-      "display": "Pupil assessment panel"
-     },
-     {
       "code": "80314-8",
       "display": "Neurological assessment [Interpretation]"
      },
@@ -4766,6 +4762,10 @@
      {
       "code": "80319-7",
       "display": "Breath sounds by Auscultation"
+     },
+     {
+      "code": "80322-1",
+      "display": "Muscle strength"
      },
      {
       "code": "80341-1",
@@ -4792,26 +4792,6 @@
       "display": "Nuclear Ab [Presence] in Serum"
      },
      {
-      "code": "80740-4",
-      "display": "Hematology Plan of care note"
-     },
-     {
-      "code": "80761-0",
-      "display": "Neurology Plan of care note"
-     },
-     {
-      "code": "80772-7",
-      "display": "Respiratory therapy Plan of care note"
-     },
-     {
-      "code": "80791-7",
-      "display": "Nutrition and dietetics Plan of care note"
-     },
-     {
-      "code": "80855-0",
-      "display": "US Extremity musculoskeletal tissue"
-     },
-     {
       "code": "8091-1",
       "display": "Ribonucleoprotein extractable nuclear Ab [Presence] in Serum"
      },
@@ -4826,10 +4806,6 @@
      {
       "code": "8099-4",
       "display": "Thyroperoxidase Ab [Units/volume] in Serum or Plasma"
-     },
-     {
-      "code": "80998-8",
-      "display": "Intra-aortic balloon pump used"
      },
      {
       "code": "8101-8",
@@ -4864,6 +4840,10 @@
       "display": "CD3 cells [#/volume] in Blood"
      },
      {
+      "code": "81227-1",
+      "display": "Fall risk [CCC]"
+     },
+     {
       "code": "8123-2",
       "display": "CD3+CD4+ (T4 helper) cells/cells in Blood"
      },
@@ -4892,10 +4872,6 @@
       "display": "Microscopic observation [Identifier] in Venous blood by Acetate esterase stain"
      },
      {
-      "code": "81660-3",
-      "display": "Nausea [Presence]"
-     },
-     {
       "code": "81663-7",
       "display": "Diet [Type]"
      },
@@ -4920,10 +4896,6 @@
       "display": "Secondary diagnosis"
      },
      {
-      "code": "82287-4",
-      "display": "Physical activity panel"
-     },
-     {
       "code": "8245-3",
       "display": "Zinc [Mass/volume] in Blood"
      },
@@ -4932,20 +4904,12 @@
       "display": "Clot size [Length] in Platelet poor plasma --30 minutes post incubation"
      },
      {
-      "code": "82810-3",
-      "display": "Pregnancy status"
-     },
-     {
       "code": "8302-2",
       "display": "Body height"
      },
      {
       "code": "8310-5",
       "display": "Body temperature"
-     },
-     {
-      "code": "83180-0",
-      "display": "Self-care activities - functional ability panel"
      },
      {
       "code": "83181-8",
@@ -4960,10 +4924,6 @@
       "display": "Feeding or eating - functional ability"
      },
      {
-      "code": "83186-7",
-      "display": "Ambulation - functional ability"
-     },
-     {
       "code": "8327-9",
       "display": "Body temperature measurement site"
      },
@@ -4972,16 +4932,16 @@
       "display": "Left ventricular Intrachamber diastolic pressure"
      },
      {
+      "code": "8377-4",
+      "display": "Right ventricular Intrachamber diastolic pressure"
+     },
+     {
       "code": "8385-7",
       "display": "Pulmonary artery Diastolic blood pressure"
      },
      {
       "code": "8391-5",
       "display": "Left ventricular End diastolic blood pressure"
-     },
-     {
-      "code": "8393-1",
-      "display": "Pulmonary artery End diastolic blood pressure"
      },
      {
       "code": "8400-4",
@@ -5004,12 +4964,12 @@
       "display": "Pulmonary artery Systolic blood pressure"
      },
      {
-      "code": "8453-3",
-      "display": "Diastolic blood pressure--sitting"
-     },
-     {
       "code": "8454-1",
       "display": "Diastolic blood pressure--standing"
+     },
+     {
+      "code": "8455-8",
+      "display": "Diastolic blood pressure--supine"
      },
      {
       "code": "8462-4",
@@ -5032,20 +4992,36 @@
       "display": "Brachial artery - right Diastolic blood pressure"
      },
      {
+      "code": "85341-6",
+      "display": "Pathology report reviewed [Identifier] in Specimen"
+     },
+     {
       "code": "85354-9",
       "display": "Blood pressure panel with all children optional"
      },
      {
-      "code": "85443-0",
-      "display": "Hematology Note"
+      "code": "85398-6",
+      "display": "Admitted from Facility"
      },
      {
       "code": "8547-2",
       "display": "Brachial artery - right Systolic blood pressure"
      },
      {
+      "code": "8565-4",
+      "display": "Posterior tibial artery - left Systolic blood pressure"
+     },
+     {
+      "code": "8579-5",
+      "display": "Systolic blood pressure Posterior tibial artery - left/Brachial artery"
+     },
+     {
       "code": "8587-8",
       "display": "Pulmonary artery wedge Mean blood pressure"
+     },
+     {
+      "code": "85926-4",
+      "display": "Lying to sitting on side of bed - functional ability during assessment period [CMS Assessment]"
      },
      {
       "code": "8596-9",
@@ -5080,6 +5056,10 @@
       "display": "Chief complaint - Reported"
      },
      {
+      "code": "86675-6",
+      "display": "Shortness of breath during assessment period [CMS Assessment]"
+     },
+     {
       "code": "8668-6",
       "display": "History of Endocrine system disorders"
      },
@@ -5092,24 +5072,16 @@
       "display": "Mental status"
      },
      {
-      "code": "8700-7",
-      "display": "Physical findings of Genitourinary tract"
+      "code": "8694-2",
+      "display": "Physical findings of Abdomen"
      },
      {
-      "code": "87109-5",
-      "display": "Guidance for placement of Swan-Ganz catheter in Chest"
-     },
-     {
-      "code": "87144-2",
-      "display": "Guidance for placement of peripherally-inserted central venous catheter in Upper extremity"
+      "code": "8697-5",
+      "display": "Physical findings of Neurologic deep tendon reflexes"
      },
      {
       "code": "8719-7",
       "display": "Surgical operation note postoperative diagnosis"
-     },
-     {
-      "code": "8736-1",
-      "display": "Left ventricular Cardiac output by Fick method"
      },
      {
       "code": "8741-1",
@@ -5152,32 +5124,32 @@
       "display": "Right atrium Oxygen saturation"
      },
      {
-      "code": "88639-0",
-      "display": "Pain medicine Controlled substance agreement"
+      "code": "8852-6",
+      "display": "Main pulmonary artery Oxygen saturation"
      },
      {
       "code": "88654-9",
       "display": "History of Coronary artery bypass graft surgery"
      },
      {
+      "code": "88661-4",
+      "display": "Number of unsuccessful attempts"
+     },
+     {
       "code": "8867-4",
       "display": "Heart rate"
+     },
+     {
+      "code": "88672-1",
+      "display": "Warming method"
      },
      {
       "code": "88698-6",
       "display": "Protein electrophoresis panel - Body fluid"
      },
      {
-      "code": "88699-4",
-      "display": "Procainamide and N-acetylprocainamide panel - Serum or Plasma"
-     },
-     {
       "code": "8884-9",
       "display": "Heart rate rhythm"
-     },
-     {
-      "code": "8893-0",
-      "display": "Heart rate Peripheral artery by palpation"
      },
      {
       "code": "88967-5",
@@ -5210,6 +5182,10 @@
      {
       "code": "88979-0",
       "display": "Mucus [Presence] in Urine sediment"
+     },
+     {
+      "code": "8898-9",
+      "display": "Pulse intensity Brachial artery - left by palpation"
      },
      {
       "code": "8899-7",
@@ -5272,8 +5248,8 @@
       "display": "Chest tube site"
      },
      {
-      "code": "89428-7",
-      "display": "Blood or blood product transfusion consent Document"
+      "code": "8981-3",
+      "display": "Intravascular tube site"
      },
      {
       "code": "90044-9",
@@ -5314,10 +5290,6 @@
      {
       "code": "91371-5",
       "display": "Body temperature - Brain"
-     },
-     {
-      "code": "91380-6",
-      "display": "Number of falls in the past 3 months - Reported"
      },
      {
       "code": "9149-6",
@@ -5376,10 +5348,6 @@
       "display": "Glasgow coma score motor"
      },
      {
-      "code": "9269-2",
-      "display": "Glasgow coma score total"
-     },
-     {
       "code": "9270-0",
       "display": "Glasgow coma score verbal"
      },
@@ -5396,10 +5364,6 @@
       "display": "Color of Stool"
      },
      {
-      "code": "94024-7",
-      "display": "Anxiety score"
-     },
-     {
       "code": "9425-0",
       "display": "Acetone [Mass/volume] in Blood"
      },
@@ -5408,32 +5372,16 @@
       "display": "SARS-CoV-2 (COVID-19) N gene [Cycle Threshold #] in Specimen by Nucleic acid amplification using CDC primer-probe set N2"
      },
      {
-      "code": "94440-5",
-      "display": "HLA-DP and DQ and DR (class II) IgG panel - Serum or Plasma by Flow cytometry (FC)"
-     },
-     {
       "code": "94509-7",
       "display": "SARS-related coronavirus E gene [Cycle Threshold #] in Specimen by NAA with probe detection"
-     },
-     {
-      "code": "94664-0",
-      "display": "Anticipated discharge date"
      },
      {
       "code": "94768-9",
       "display": "SARS-CoV-2 (COVID-19) IgA Ab [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
      },
      {
-      "code": "95049-3",
-      "display": "Type of bag-mask ventilation used"
-     },
-     {
       "code": "95050-1",
       "display": "Difficult intubation"
-     },
-     {
-      "code": "95368-7",
-      "display": "Intensive care unit (ICU) discharge date"
      },
      {
       "code": "9554-7",
@@ -5460,6 +5408,10 @@
       "display": "CD7 cells [#/volume] in Blood"
      },
      {
+      "code": "95815-7",
+      "display": "Altered level of consciousness during assessment period [CAM.CMS]"
+     },
+     {
       "code": "95933-8",
       "display": "Transpulmonary pressure gradient"
      },
@@ -5476,28 +5428,16 @@
       "display": "Vanillylmandelate [Mass/volume] in Urine"
      },
      {
-      "code": "96259-7",
-      "display": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by Calculated by Martin-Hopkins"
-     },
-     {
-      "code": "96269-6",
-      "display": "Fractional concentration of exhaled nitric oxide"
-     },
-     {
-      "code": "96384-3",
-      "display": "Health-related behaviors"
-     },
-     {
-      "code": "96767-9",
-      "display": "Grooming - functional ability"
+      "code": "96710-9",
+      "display": "Clot [Presence] of Body fluid Qualitative"
      },
      {
       "code": "96790-1",
       "display": "SOFA Total Score"
      },
      {
-      "code": "96828-9",
-      "display": "Renal [Score] SOFA"
+      "code": "96873-5",
+      "display": "Illegal or recreational drug(s) used in past 3 months"
      },
      {
       "code": "97016-0",
@@ -5506,6 +5446,10 @@
      {
       "code": "97063-2",
       "display": "Family history of Diabetes"
+     },
+     {
+      "code": "97071-5",
+      "display": "Pregnant or nursing"
      },
      {
       "code": "97513-6",
@@ -5528,6 +5472,10 @@
       "display": "dRVVT/dRVVT.excess phospholipid [Ratio] normalized in Platelet poor plasma by Coagulation assay"
      },
      {
+      "code": "97847-8",
+      "display": "Last (Family) name Person"
+     },
+     {
       "code": "9786-5",
       "display": "Microscopic observation [Identifier] in Blood or Marrow by Periodic acid-Schiff stain"
      },
@@ -5544,16 +5492,12 @@
       "display": "Cholesterol.total/Cholesterol in HDL [Mass Ratio] in Serum or Plasma"
      },
      {
-      "code": "98497-1",
-      "display": "Visual acuity panel"
+      "code": "98531-7",
+      "display": "Lives in an environment with extreme changes in temperature"
      },
      {
-      "code": "98606-7",
-      "display": "Stimulation site Nerve"
-     },
-     {
-      "code": "98856-8",
-      "display": "US Urinary bladder Volume post void"
+      "code": "98971-5",
+      "display": "Severely ill"
      },
      {
       "code": "99603-3",
@@ -5604,16 +5548,12 @@
       "display": "Pacemaker rate"
      },
      {
-      "code": "99686-8",
-      "display": "Pacemaker type"
-     },
-     {
       "code": "99689-2",
       "display": "Pacemaker Ventricular electrical activity captured"
      },
      {
-      "code": "99692-6",
-      "display": "Pacemaker Ventricular sensitivity threshold"
+      "code": "99691-8",
+      "display": "Pacemaker Ventricular sensitivity setting"
      },
      {
       "code": "99693-4",
@@ -5622,6 +5562,10 @@
      {
       "code": "99694-2",
       "display": "Temporary pacemaker Ventricular stimulation threshold"
+     },
+     {
+      "code": "99695-9",
+      "display": "Pacemaker Ventricular wire"
      },
      {
       "code": "99696-7",
@@ -5917,6 +5861,10 @@
       "display": "Lactobacillus rhamnosus"
      },
      {
+      "code": "113811000052109",
+      "display": "Paediatric early warning score"
+     },
+     {
       "code": "113838007",
       "display": "Mycobacteroides abscessus"
      },
@@ -6109,8 +6057,8 @@
       "display": "Salmonella Kiambu"
      },
      {
-      "code": "1191000124107",
-      "display": "Wound bed appearance"
+      "code": "11953005",
+      "display": "Renal function"
      },
      {
       "code": "12069003",
@@ -6127,10 +6075,6 @@
      {
       "code": "1230247009",
       "display": "Replacement of dressing of insertion site of cannula"
-     },
-     {
-      "code": "123820005",
-      "display": "Partial pressure of oxygen in blood"
      },
      {
       "code": "12678008",
@@ -6157,20 +6101,12 @@
       "display": "Intra-arterial waveform"
      },
      {
+      "code": "1284857008",
+      "display": "Numeric Pain Rating Scale score"
+     },
+     {
       "code": "1285244000",
       "display": "Mean arterial pressure"
-     },
-     {
-      "code": "1285536004",
-      "display": "Mobility of lower right limb"
-     },
-     {
-      "code": "1285537008",
-      "display": "Mobility of upper left limb"
-     },
-     {
-      "code": "1285539006",
-      "display": "Mobility of upper right limb"
      },
      {
       "code": "1290001",
@@ -6225,6 +6161,10 @@
       "display": "Confusion Assessment Method score"
      },
      {
+      "code": "13621006",
+      "display": "Tidal volume"
+     },
+     {
       "code": "13687007",
       "display": "Human herpes simplex virus type 2"
      },
@@ -6257,6 +6197,10 @@
       "display": "Human herpes simplex virus type 1"
      },
      {
+      "code": "15527001",
+      "display": "Capillary filling"
+     },
+     {
       "code": "157961000146103",
       "display": "Graphium eumorphum"
      },
@@ -6269,16 +6213,16 @@
       "display": "Menopause"
      },
      {
+      "code": "163035008",
+      "display": "Sitting blood pressure"
+     },
+     {
       "code": "16452009",
       "display": "Pichia kudriavzevii"
      },
      {
       "code": "165250009",
       "display": "Ability to bathe self"
-     },
-     {
-      "code": "165251008",
-      "display": "Walking aid use"
      },
      {
       "code": "167826004",
@@ -6311,6 +6255,10 @@
      {
       "code": "18097004",
       "display": "Malassezia species"
+     },
+     {
+      "code": "183797002",
+      "display": "Duration of hospital stay"
      },
      {
       "code": "1838001",
@@ -6395,6 +6343,10 @@
      {
       "code": "224209007",
       "display": "Residence and accommodation circumstances"
+     },
+     {
+      "code": "229918000",
+      "display": "Food and drink intake"
      },
      {
       "code": "230940006",
@@ -6553,6 +6505,10 @@
       "display": "Character of cough"
      },
      {
+      "code": "248598005",
+      "display": "Sputum volume"
+     },
+     {
       "code": "248603002",
       "display": "Consistency of sputum"
      },
@@ -6593,6 +6549,10 @@
       "display": "Pulmonary artery pressure"
      },
      {
+      "code": "250774007",
+      "display": "Inspired oxygen concentration"
+     },
+     {
       "code": "250811004",
       "display": "Minute volume"
      },
@@ -6621,12 +6581,20 @@
       "display": "Fluid output"
      },
      {
+      "code": "251844004",
+      "display": "Fluid output from surgical drain"
+     },
+     {
       "code": "251890007",
       "display": "Alveolar-arterial oxygen tension difference"
      },
      {
       "code": "252067003",
       "display": "Arterial velocity waveform"
+     },
+     {
+      "code": "252068008",
+      "display": "Pulsatility index, arterial velocity waveform"
      },
      {
       "code": "25223004",
@@ -6667,6 +6635,10 @@
      {
       "code": "27142009",
       "display": "Mycobacterium bovis"
+     },
+     {
+      "code": "271649006",
+      "display": "Systolic blood pressure"
      },
      {
       "code": "271773007",
@@ -6725,12 +6697,16 @@
       "display": "Ability to change position"
      },
      {
-      "code": "282929007",
-      "display": "Ability to move from lying to sitting"
+      "code": "282881008",
+      "display": "Ability to stand from sitting"
      },
      {
       "code": "282984004",
       "display": "Ability to turn"
+     },
+     {
+      "code": "284912005",
+      "display": "Ability to use commode"
      },
      {
       "code": "28625000",
@@ -6885,10 +6861,6 @@
       "display": "Fusarium species"
      },
      {
-      "code": "35331000087107",
-      "display": "Presence of pain"
-     },
-     {
       "code": "35379007",
       "display": "Rothia dentocariosa"
      },
@@ -6937,12 +6909,20 @@
       "display": "Seizure observable"
      },
      {
+      "code": "363896009",
+      "display": "Behaviour observable"
+     },
+     {
       "code": "363898005",
       "display": "Habits"
      },
      {
       "code": "363918005",
       "display": "Speech observable"
+     },
+     {
+      "code": "363951001",
+      "display": "Pupil observable"
      },
      {
       "code": "363953003",
@@ -6961,8 +6941,8 @@
       "display": "Cardiovascular observable"
      },
      {
-      "code": "364105007",
-      "display": "Blood, lymphatics/immune system observable"
+      "code": "364075005",
+      "display": "Heart rate"
      },
      {
       "code": "364111005",
@@ -6993,16 +6973,24 @@
       "display": "Lochia feature"
      },
      {
+      "code": "364403006",
+      "display": "Head and neck region observable"
+     },
+     {
+      "code": "364528001",
+      "display": "Skin observable"
+     },
+     {
       "code": "364533002",
       "display": "Colour of skin"
      },
      {
-      "code": "364535009",
-      "display": "Integrity of skin"
-     },
-     {
       "code": "364536005",
       "display": "Odour of skin"
+     },
+     {
+      "code": "364537001",
+      "display": "Temperature of skin"
      },
      {
       "code": "364561008",
@@ -7027,6 +7015,10 @@
      {
       "code": "364671000",
       "display": "Dialysis observable"
+     },
+     {
+      "code": "364698001",
+      "display": "Ventilator observable"
      },
      {
       "code": "364709006",
@@ -7073,12 +7065,20 @@
       "display": "Entamoeba species"
      },
      {
+      "code": "384759009",
+      "display": "Nutrition"
+     },
+     {
       "code": "385507005",
       "display": "Mycobacterium mageritense"
      },
      {
       "code": "38643006",
       "display": "Plesiomonas shigelloides"
+     },
+     {
+      "code": "386725007",
+      "display": "Body temperature"
      },
      {
       "code": "39129008",
@@ -7129,6 +7129,14 @@
       "display": "Scopulariopsis species"
      },
      {
+      "code": "401238003",
+      "display": "Length of wound"
+     },
+     {
+      "code": "401239006",
+      "display": "Width of wound"
+     },
+     {
       "code": "40253001",
       "display": "Staphylococcus lentus"
      },
@@ -7141,12 +7149,16 @@
       "display": "Parasiticidal activity"
      },
      {
-      "code": "404979006",
-      "display": "Neck joint - range of movement"
-     },
-     {
       "code": "404995006",
       "display": "Blood coagulation status"
+     },
+     {
+      "code": "405082005",
+      "display": "Pain control behaviour"
+     },
+     {
+      "code": "405159006",
+      "display": "Comfort level"
      },
      {
       "code": "405166007",
@@ -7207,10 +7219,6 @@
      {
       "code": "407498006",
       "display": "Human parainfluenza virus"
-     },
-     {
-      "code": "408582004",
-      "display": "Legal guardian details"
      },
      {
       "code": "40886007",
@@ -7401,8 +7409,8 @@
       "display": "Serratia species"
      },
      {
-      "code": "420340005",
-      "display": "Brachial pulse, function"
+      "code": "420592002",
+      "display": "Pressure injury stage"
      },
      {
       "code": "421253004",
@@ -7431,10 +7439,6 @@
      {
       "code": "423135006",
       "display": "Cupriavidus metallidurans"
-     },
-     {
-      "code": "423484008",
-      "display": "Grade of oedema"
      },
      {
       "code": "424470006",
@@ -7503,6 +7507,10 @@
      {
       "code": "431176003",
       "display": "Paraburkholderia xenovorans"
+     },
+     {
+      "code": "431314004",
+      "display": "Peripheral oxygen saturation"
      },
      {
       "code": "431504009",
@@ -7581,10 +7589,6 @@
       "display": "Aggregatibacter species"
      },
      {
-      "code": "442239006",
-      "display": "European pressure ulcer advisory panel classification"
-     },
-     {
       "code": "442309004",
       "display": "Insertion of tunnelled central venous catheter"
      },
@@ -7619,10 +7623,6 @@
      {
       "code": "444877006",
       "display": "Nakaseomyces glabratus"
-     },
-     {
-      "code": "444981005",
-      "display": "Resting heart rate"
      },
      {
       "code": "445520006",
@@ -7877,6 +7877,10 @@
       "display": "Iodamoeba b\u00fctschlii"
      },
      {
+      "code": "54718008",
+      "display": "Peripheral pulse"
+     },
+     {
       "code": "54731003",
       "display": "Deglutition"
      },
@@ -7939,10 +7943,6 @@
      {
       "code": "58024003",
       "display": "Stutzerimonas stutzeri"
-     },
-     {
-      "code": "58190003",
-      "display": "Vascular flow"
      },
      {
       "code": "58296003",
@@ -8205,10 +8205,6 @@
       "display": "Fonsecaea pedrosoi"
      },
      {
-      "code": "6942003",
-      "display": "Level of consciousness"
-     },
-     {
       "code": "69564000",
       "display": "Scedosporium prolificans"
      },
@@ -8217,12 +8213,12 @@
       "display": "Nutritionally variant streptococci"
      },
      {
-      "code": "699113009",
-      "display": "Expiratory positive airway pressure"
-     },
-     {
       "code": "70337006",
       "display": "Cardiovascular function"
+     },
+     {
+      "code": "704435007",
+      "display": "Personal grooming activities"
      },
      {
       "code": "70632005",
@@ -8239,10 +8235,6 @@
      {
       "code": "71268004",
       "display": "Haemophilus species"
-     },
-     {
-      "code": "713194001",
-      "display": "Central venous oxygenation saturation"
      },
      {
       "code": "713920003",
@@ -8279,6 +8271,10 @@
      {
       "code": "716527002",
       "display": "Actinotignum sanguinis"
+     },
+     {
+      "code": "716795003",
+      "display": "Functional Independence Measure score"
      },
      {
       "code": "718059008",
@@ -8479,10 +8475,6 @@
      {
       "code": "79235009",
       "display": "Entamoeba coli"
-     },
-     {
-      "code": "79519003",
-      "display": "Drowsiness"
      },
      {
       "code": "79909001",

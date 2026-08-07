@@ -43,25 +43,38 @@ OBSERVATION := $(TERM)/conceptmaps/build_observation_cm_vs.py
 # Observation.component.code is its own bound element with its own binding, so
 # its own builder and its own target — not a sub-step of `observation`.
 OBSERVATION_COMPONENT := $(TERM)/conceptmaps/build_observation_component_cm_vs.py
+# Specimen.type — the fifth bound element, and the cheapest one left: 116 codes
+# carrying the third-largest occurrence count of any bound element.
+SPECIMEN := $(TERM)/conceptmaps/build_specimen_cm_vs.py
+# MedicationRequest.medication[x] — the sixth bound element, the first targeting
+# RxNorm, and the first whose primary method is NOT code-search: a deterministic
+# term join answers most of it and the service sees only the residual. Also the
+# first scoped to the codes the data actually uses; see the builder's docstring.
+MEDICATION := $(TERM)/conceptmaps/build_medication_cm_vs.py
 VERIFY := $(TERM)/verify/verify_mappings.py
 VERIFY_CURATED := $(TERM)/verify/verify_curated_snomed.py
 D_ITEMS_TABLE := $(TERM)/conceptmaps/build_d_items_table.py
 MICRO_SUSC_TABLE := $(TERM)/conceptmaps/build_micro_susc_table.py
+MEDICATION_NAME_TABLE := $(TERM)/conceptmaps/build_medication_name_table.py
+MEDICATION_POE_IV_TABLE := $(TERM)/conceptmaps/build_medication_poe_iv_table.py
 MICRO_TEST_TABLE := $(TERM)/conceptmaps/build_micro_test_table.py
 OUTPUTEVENTS_TABLE := $(TERM)/conceptmaps/build_outputevents_table.py
 DATETIMEEVENTS_TABLE := $(TERM)/conceptmaps/build_datetimeevents_table.py
 MICRO_ORG_TABLE := $(TERM)/conceptmaps/build_micro_org_table.py
 LABEVENTS_TABLE := $(TERM)/conceptmaps/build_labevents_table.py
 CHARTEVENTS_TABLE := $(TERM)/conceptmaps/build_chartevents_table.py
+LAB_FLUID_TABLE := $(TERM)/conceptmaps/build_lab_fluid_table.py
+SPEC_TYPE_TABLE := $(TERM)/conceptmaps/build_spec_type_table.py
 STATISTICS := $(TERM)/build_statistics.py
 UPLOAD_MAPPINGS := $(TERM)/upload.py
 
 .PHONY: verify-inputs update-manifest terminology deploy-terminology \
-        condition procedure observation observation-component verify-mappings \
+        condition procedure observation observation-component specimen \
+        verify-mappings \
         verify-curated d-items-table micro-susc-table micro-test-table \
         outputevents-table datetimeevents-table micro-org-table \
-        labevents-table chartevents-table mappings statistics \
-        upload-mappings ig
+        labevents-table chartevents-table lab-fluid-table spec-type-table \
+        mappings statistics upload-mappings ig
 
 verify-inputs: ## check ICD source files against input-manifest.json
 	uv run $(TERM)/verify_inputs.py
@@ -118,6 +131,21 @@ observation-component: ## build the Observation.component.code ConceptMap + targ
 	uv run $(OBSERVATION_COMPONENT)
 	uv run $(STATISTICS) --quiet
 
+# Reads only input/resources/ — both source CodeSystems ship with the IG rather
+# than being FSH-authored — so unlike `observation` this needs no `sushi .` run.
+#
+# Both source populations are now present — mimic-lab-fluid (12) and
+# mimic-spec-type-desc (104) — so every one of the 116 codes this map's
+# sourceCanonical admits has been considered, and a code it does not resolve is
+# declared unmatched with a reason rather than being absent.
+specimen: ## build the Specimen.type ConceptMap + target ValueSet
+	uv run $(SPECIMEN)
+	uv run $(STATISTICS) --quiet
+
+medication: ## build the MedicationRequest.medication[x] ConceptMap + target ValueSet
+	uv run $(MEDICATION)
+	uv run $(STATISTICS) --quiet
+
 verify-mappings: ## check coverage + invariants; non-zero while codes are unmapped
 	uv run $(VERIFY)
 
@@ -136,7 +164,7 @@ statistics: ## per-stream coverage table from the field reports (csv + html + te
 
 # `statistics` before `verify-mappings`: the verifier is non-zero by design
 # while anything is unmapped, and the coverage table is most useful exactly then.
-mappings: condition procedure observation observation-component statistics verify-mappings ## build every population, then verify
+mappings: condition procedure observation observation-component specimen medication statistics verify-mappings ## build every population, then verify
 
 # NOT part of `mappings`: it needs the network, while the builders are offline
 # and instant. Run it when you touch a mapping table.
@@ -267,6 +295,77 @@ labevents-table: ## regenerate conceptmaps/labevents-loinc.csv from code-search
 #   make chartevents-table ARGS="--only 220045,224093 --insecure"   probe a few
 chartevents-table: ## regenerate conceptmaps/chartevents-standard.csv from code-search
 	uv run $(CHARTEVENTS_TABLE) $(ARGS)
+
+# The first stream of a new bound element, Specimen.type, and the smallest in the
+# repo: 12 codes, no family collapse, no dictionary join. Same standing as every
+# generator above — network, writes a build input, never part of `mappings`.
+#
+# Its constraint is `<<123038009 |Specimen|`, and this population makes the case
+# for constraining more sharply than any before it: of 24 labels probed
+# unconstrained over all of SNOMED, only 2 answers were legal Specimen.type
+# codes, ELEVEN of the wrong ones scored exactly 1.00, and on two labels the
+# wrong concept and the right concept carry the SAME display string
+# (1382308001 vs 257261003 |Swab|). The bare label is sent with NO context
+# template — a `Laboratory specimen submitted for testing: {}` wrapper changed no
+# correct answer's code, cost confidence on three rows, and made two rows accept
+# a fabricated specimen they had correctly declined bare.
+#
+# It is also the first SNOMED generator whose gate ASSERTS VALUE-SET MEMBERSHIP
+# via ValueSet/$validate-code, ordered ahead of the active / core-module /
+# display checks. The three SNOMED generators before it took membership on trust,
+# and on `BLOOD CULTURE` that trust was misplaced: code-search matched an
+# inactive concept on an exact FSN hit, followed a SAME_AS association out of the
+# requested value set, and returned an AU-extension PROCEDURE at 0.95 while
+# declaring `inVS: false` in its own response. Fixed service-side since; the
+# check stays, because "the service currently complies" is not a property a
+# committed table should rest on.
+#
+#   make lab-fluid-table ARGS="--only Blood,Ascites --insecure"   probe a few
+lab-fluid-table: ## regenerate conceptmaps/lab-fluid-snomed.csv from code-search
+	uv run $(LAB_FLUID_TABLE) $(ARGS)
+
+# The 104 microbiology specimen descriptions — the second Specimen.type stream,
+# and the one that completes the field. Same standing as every generator above:
+# network, writes a build input, never part of `mappings`.
+#
+# It INHERITS its whole query setup from lab-fluid-table (same `<<123038009`,
+# same identity template, same 0.8) because the two are the same bound element
+# read off two MIMIC columns. What is its own is the CASE-FOLDED family collapse
+# — 104 codes to 93 labels, and MIMIC files 7 itemids as `SWAB`/`Swab`, which
+# must not receive different targets — and the absence of a pre-filter. That
+# absence is a finding, not an omission: the ~20 labels naming a laboratory TEST
+# rather than a specimen (`MRSA SCREEN`, `IMMUNOLOGY`, `CRE Screen`) are declined
+# by the search itself, 13 of 16 probed returning no candidate at all, so a
+# reject list would duplicate what the constraint already does. `XXX` and
+# `MICRO PROBLEM PATIENT` likewise decline unaided, which is why the sibling
+# stream's NO_CLINICAL_CONTENT rule is not extended here.
+#
+# The generator's docstring carries the evidence, including the one known defect
+# (`70024 VIRAL CULTURE: R/O CYTOMEGALOVIRUS` fabricates a viral isolate
+# specimen at exactly 0.80) and why no reject list was added for it — its sibling
+# `70041` differs only by a missing space after the colon, declines today, and so
+# could not be given an entry without failing the build.
+#
+#   make spec-type-table ARGS="--only 70012,70091 --insecure"   probe a few
+spec-type-table: ## regenerate conceptmaps/spec-type-snomed.csv from code-search
+	uv run $(SPEC_TYPE_TABLE) $(ARGS)
+
+# The medication table has TWO network steps, and only the first is a service
+# call. `--refresh-index` re-pulls RxNorm's designations into the committed term
+# index, which is a build input; run it deliberately and review the diff, not on
+# every generation. Without it the run reads the committed index and contacts
+# code-search only for what the index cannot answer.
+#
+#   make medication-name-table ARGS="--refresh-index --insecure"   re-pull index
+#   make medication-name-table ARGS=--insecure                     generate
+#   make medication-name-table ARGS="--only Senna,Insulin --insecure"   probe
+medication-name-table: ## regenerate conceptmaps/medication-name-standard.csv
+	uv run $(MEDICATION_NAME_TABLE) $(ARGS)
+
+# No network and no arguments: it declares two codes unmapped with their reason.
+# See its docstring for why it is a script rather than a hand-written CSV.
+medication-poe-iv-table: ## regenerate conceptmaps/medication-poe-iv-standard.csv
+	uv run $(MEDICATION_POE_IV_TABLE)
 
 # --- stage 3: publish, gated ------------------------------------------------ #
 

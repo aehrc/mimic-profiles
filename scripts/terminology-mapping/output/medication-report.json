@@ -1,0 +1,895 @@
+{
+ "field": "medication",
+ "element": "MedicationRequest.medication[x]",
+ "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-medication-to-standard",
+ "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-medication-standard",
+ "version": "1.0.0",
+ "date": "2026-08-07",
+ "source_total": 9973,
+ "mapped": 2732,
+ "unmapped": 7241,
+ "by_source": [
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name",
+   "mapped": 2732
+  }
+ ],
+ "by_target_system": [
+  {
+   "system": "http://snomed.info/sct",
+   "mappings": 129
+  },
+  {
+   "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+   "mappings": 2603
+  }
+ ],
+ "by_equivalence": {
+  "relatedto": 2732,
+  "unmatched": 7241
+ },
+ "unmapped_by_reason": {
+  "no-suitable-concept": 158,
+  "not-observed-in-data": 7083
+ },
+ "by_stream": [
+  {
+   "stream": "mimic-medication-name",
+   "source_file": "CodeSystem-mimic-medication-name.json",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name",
+   "method": "table",
+   "total": 2888,
+   "mapped": 2732,
+   "unmapped": 156,
+   "coverage_pct": 94.6,
+   "restriction": "observed-only",
+   "enumerated_total": 9971,
+   "not_observed": 7083,
+   "target_systems": [
+    "http://snomed.info/sct",
+    "http://www.nlm.nih.gov/research/umls/rxnorm"
+   ],
+   "by_equivalence": {
+    "relatedto": 2732,
+    "unmatched": 156
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 156
+   },
+   "codesearch": {
+    "status": {
+     "below-threshold": 86,
+     "gate-failed": 11,
+     "no-match": 59,
+     "not-needed": 1677,
+     "ok": 1055
+    },
+    "confidence": {
+     "min": 0.5,
+     "median": 0.85,
+     "mean": 0.874,
+     "max": 1.0
+    },
+    "constraint": "(http://www.nlm.nih.gov/research/umls/rxnorm)(TTY=IN;TTY=PIN;TTY=MIN;TTY=BN;TTY=SCD;TTY=GPCK;TTY=BPCK)",
+    "template": "{}",
+    "confidence_threshold": 0.85,
+    "near_threshold": {
+     "0.05": 31,
+     "0.1": 42,
+     "0.2": 73,
+     "0.3": 85,
+     "0.4": 86
+    },
+    "near_misses": [
+     {
+      "mimic_code": "digestive enzymes",
+      "mimic_display": "digestive enzymes",
+      "proposed_code": "21891005",
+      "proposed_display": "Digestive enzyme",
+      "confidence": 0.83,
+      "gap": 0.02,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "Amphetamine-Dextroamphetamine XR",
+      "mimic_display": "Amphetamine-Dextroamphetamine XR",
+      "proposed_code": "253146",
+      "proposed_display": "amphetamine / dextroamphetamine",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Base concept matches; XR qualifier not captured"
+     },
+     {
+      "mimic_code": "Budesonide Nasal Inhaler",
+      "mimic_display": "Budesonide Nasal Inhaler",
+      "proposed_code": "395726003",
+      "proposed_display": "Budesonide",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Substance VS; nasal inhaler is delivery form, substance is Budesonide"
+     },
+     {
+      "mimic_code": "Bupivacaine 0.75%",
+      "mimic_display": "Bupivacaine 0.75%",
+      "proposed_code": "778565002",
+      "proposed_display": "Product containing only bupivacaine in parenteral dose form",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Replacement for bupivacaine 0.75% injection; bupivacaine-only, no epinephrine overstep"
+     },
+     {
+      "mimic_code": "Centravites 50 Plus",
+      "mimic_display": "Centravites 50 Plus",
+      "proposed_code": "412250002",
+      "proposed_display": "Multivitamin agent",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Centravites is a multivitamin supplement brand; matches substance type"
+     },
+     {
+      "mimic_code": "Centrum Silver",
+      "mimic_display": "Centrum Silver",
+      "proposed_code": "438681000124106",
+      "proposed_display": "Multivitamin multimineral supplement",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Centrum Silver is a multivitamin multimineral supplement brand"
+     },
+     {
+      "mimic_code": "Collagenase Ointment",
+      "mimic_display": "Collagenase Ointment",
+      "proposed_code": "772213007",
+      "proposed_display": "Collagenase",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Substance VS; ointment is dosage form, substance is collagenase"
+     },
+     {
+      "mimic_code": "Cranberry Concentrate",
+      "mimic_display": "Cranberry Concentrate",
+      "proposed_code": "227421003",
+      "proposed_display": "Cranberry extract",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Cranberry concentrate closest to cranberry extract substance"
+     },
+     {
+      "mimic_code": "Ensure",
+      "mimic_display": "Ensure",
+      "proposed_code": "819018009",
+      "proposed_display": "Nutritionally complete liquid supplement",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Ensure is a nutritionally complete liquid supplement brand"
+     },
+     {
+      "mimic_code": "Ensure Clear",
+      "mimic_display": "Ensure Clear",
+      "proposed_code": "819018009",
+      "proposed_display": "Nutritionally complete liquid supplement",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Ensure Clear is a clear liquid nutritional supplement drink"
+     },
+     {
+      "mimic_code": "Ethanol 70% Catheter DWELL (Tunneled Access Line)",
+      "mimic_display": "Ethanol 70% Catheter DWELL (Tunneled Access Line)",
+      "proposed_code": "419442005",
+      "proposed_display": "Ethanol",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Base substance Ethanol; 70% concentration not separately coded"
+     },
+     {
+      "mimic_code": "Fiber Gummies (with chromium)",
+      "mimic_display": "Fiber Gummies (with chromium)",
+      "proposed_code": "37202001",
+      "proposed_display": "Plant fiber",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Fiber gummies are a dietary fiber supplement; plant fiber matches the fiber component"
+     },
+     {
+      "mimic_code": "Fluoridex Daily Defense",
+      "mimic_display": "Fluoridex Daily Defense",
+      "proposed_code": "6910009",
+      "proposed_display": "Sodium fluoride",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Fluoridex is a fluoride toothpaste brand; active substance is sodium fluoride"
+     },
+     {
+      "mimic_code": "Formoterol 20mcg/Placebo",
+      "mimic_display": "Formoterol 20mcg/Placebo",
+      "proposed_code": "414289007",
+      "proposed_display": "Formoterol",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Substance is Formoterol; placebo is non-coded study arm qualifier"
+     },
+     {
+      "mimic_code": "Gaviscon Extra Strength",
+      "mimic_display": "Gaviscon Extra Strength",
+      "proposed_code": "75876003",
+      "proposed_display": "Sodium alginate",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Gaviscon is an alginate antacid; active substance is sodium alginate"
+     },
+     {
+      "mimic_code": "GenTeal Severe",
+      "mimic_display": "GenTeal Severe",
+      "proposed_code": "395936001",
+      "proposed_display": "Carbomer",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "GenTeal Severe is an artificial tear containing carbomer"
+     },
+     {
+      "mimic_code": "GenTeal Tears",
+      "mimic_display": "GenTeal Tears",
+      "proposed_code": "395936001",
+      "proposed_display": "Carbomer",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "GenTeal Tears is an artificial tears product whose active lubricant is carbomer"
+     },
+     {
+      "mimic_code": "Glucose Tab",
+      "mimic_display": "Glucose Tab",
+      "proposed_code": "4850",
+      "proposed_display": "glucose",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Ingredient glucose matches; 'Tab' is dosage form not in ingredient VS"
+     },
+     {
+      "mimic_code": "Ibuprofen Suspension",
+      "mimic_display": "Ibuprofen Suspension",
+      "proposed_code": "779527000",
+      "proposed_display": "Ibuprofen only product in oral dose form",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Input generic, no strength; parent captures ibuprofen oral suspension without overstepping"
+     },
+     {
+      "mimic_code": "IronUp",
+      "mimic_display": "IronUp",
+      "proposed_code": "438641000124100",
+      "proposed_display": "Iron supplement",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Brand name for iron supplement; clear clinical referent"
+     },
+     {
+      "mimic_code": "LamoTRIgine Rectal Susp",
+      "mimic_display": "LamoTRIgine Rectal Susp",
+      "proposed_code": "28439",
+      "proposed_display": "lamotrigine",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Ingredient matches; route/form not part of RxNorm ingredient VS"
+     },
+     {
+      "mimic_code": "Lithium Oral Solution",
+      "mimic_display": "Lithium Oral Solution",
+      "proposed_code": "85899009",
+      "proposed_display": "Lithium",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Substance VS; oral solution is dose-form qualifier, base substance is Lithium"
+     },
+     {
+      "mimic_code": "Maalox/Lidocaine",
+      "mimic_display": "Maalox/Lidocaine",
+      "proposed_code": "372794006",
+      "proposed_display": "Antacid",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Maalox is an antacid brand; primary substance"
+     },
+     {
+      "mimic_code": "Morphine Sulfate For Inhalation",
+      "mimic_display": "Morphine Sulfate For Inhalation",
+      "proposed_code": "60886004",
+      "proposed_display": "Morphine sulfate",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Substance matches; 'for inhalation' route not captured by any candidate"
+     },
+     {
+      "mimic_code": "Ocuvite Adult 50 Plus",
+      "mimic_display": "Ocuvite Adult 50 Plus",
+      "proposed_code": "438681000124106",
+      "proposed_display": "Multivitamin multimineral supplement",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Ocuvite is a multivitamin/multimineral supplement; no exact brand match"
+     },
+     {
+      "mimic_code": "One-A-Day Womens Prenatal 1",
+      "mimic_display": "One-A-Day Womens Prenatal 1",
+      "proposed_code": "438681000124106",
+      "proposed_display": "Multivitamin multimineral supplement",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Prenatal vitamin is a multivitamin multimineral supplement"
+     },
+     {
+      "mimic_code": "Posaconazole Delayed Release Tablet",
+      "mimic_display": "Posaconazole Delayed Release Tablet",
+      "proposed_code": "421747003",
+      "proposed_display": "Posaconazole",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Substance VS; posaconazole is the core clinical referent, dose form is a qualifier"
+     },
+     {
+      "mimic_code": "Prenatal Plus",
+      "mimic_display": "Prenatal Plus",
+      "proposed_code": "438681000124106",
+      "proposed_display": "Multivitamin multimineral supplement",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Prenatal Plus is a prenatal multivitamin/multimineral supplement brand"
+     },
+     {
+      "mimic_code": "Systane",
+      "mimic_display": "Systane",
+      "proposed_code": "1415561000168103",
+      "proposed_display": "Systane 0.4% / 0.3% eye drops",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Base Systane product matches brand input"
+     },
+     {
+      "mimic_code": "Tiger Balm",
+      "mimic_display": "Tiger Balm",
+      "proposed_code": "466600",
+      "proposed_display": "camphor / menthol",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Tiger Balm is a topical analgesic of camphor and menthol"
+     },
+     {
+      "mimic_code": "autologous 20% diluted serum tears",
+      "mimic_display": "autologous 20% diluted serum tears",
+      "proposed_code": "67922002",
+      "proposed_display": "Serum",
+      "confidence": 0.8,
+      "gap": 0.05,
+      "reasoning": "Substance type matches; dilution/autologous are non-coded qualifiers"
+     },
+     {
+      "mimic_code": "Bupivacaine 0.1%",
+      "mimic_display": "Bupivacaine 0.1%",
+      "proposed_code": "778565002",
+      "proposed_display": "Bupivacaine only product in parenteral dose form",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "No candidate matches 0.1% (1 mg/mL) concentration; broader parenteral bupivacaine product is the active replacement for the 0.1% infusion concept."
+     },
+     {
+      "mimic_code": "Bupivacaine 0.1% 1mg/ml",
+      "mimic_display": "Bupivacaine 0.1% 1mg/ml",
+      "proposed_code": "1815",
+      "proposed_display": "bupivacaine",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "Base concept matches; concentration not captured in candidates"
+     },
+     {
+      "mimic_code": "Cidofovir 1% Topical Paste",
+      "mimic_display": "Cidofovir 1% Topical Paste",
+      "proposed_code": "83171",
+      "proposed_display": "cidofovir",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "RxNorm ingredient; formulation not separately coded"
+     },
+     {
+      "mimic_code": "Dextran 40 in NaCl",
+      "mimic_display": "Dextran 40 in NaCl",
+      "proposed_code": "66322002",
+      "proposed_display": "Dextran 40",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "Primary ingredient; no combination code for Dextran 40 in NaCl available"
+     },
+     {
+      "mimic_code": "Fleet Enema (Saline)",
+      "mimic_display": "Fleet Enema (Saline)",
+      "proposed_code": "1690241000168106",
+      "proposed_display": "Fleet Ready-to-Use enema, 133 mL",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "Fleet enema product matches brand; 'Saline' qualifier differs from sodium phosphate content"
+     },
+     {
+      "mimic_code": "Mesalamine Enema",
+      "mimic_display": "Mesalamine Enema",
+      "proposed_code": "370184002",
+      "proposed_display": "Mesalazine 66.7 mg/mL rectal suspension",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "Rectal suspension is the enema formulation; adds unstated strength"
+     },
+     {
+      "mimic_code": "Orabase w/ Benzocaine Paste",
+      "mimic_display": "Orabase w/ Benzocaine Paste",
+      "proposed_code": "1399",
+      "proposed_display": "benzocaine",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "Ingredient VS; active ingredient is benzocaine"
+     },
+     {
+      "mimic_code": "Prenatal Complete",
+      "mimic_display": "Prenatal Complete",
+      "proposed_code": "438681000124106",
+      "proposed_display": "Multivitamin multimineral supplement",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "Prenatal Complete is a prenatal multivitamin supplement; closest substance match"
+     },
+     {
+      "mimic_code": "Prenatal Vitamin",
+      "mimic_display": "Prenatal Vitamin",
+      "proposed_code": "412250002",
+      "proposed_display": "Multivitamin agent",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "No active prenatal vitamin concept; multivitamin captures core meaning"
+     },
+     {
+      "mimic_code": "Probiotic",
+      "mimic_display": "Probiotic",
+      "proposed_code": "412232009",
+      "proposed_display": "Microbial agent",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "Active replacement for inactive 'Probiotic agent'; broader but closest match"
+     },
+     {
+      "mimic_code": "QUEtiapine extended-release",
+      "mimic_display": "QUEtiapine extended-release",
+      "proposed_code": "51272",
+      "proposed_display": "quetiapine",
+      "confidence": 0.75,
+      "gap": 0.1,
+      "reasoning": "No extended-release form found; base quetiapine is closest broader match"
+     },
+     {
+      "mimic_code": "Artificial Tear Ointment",
+      "mimic_display": "Artificial Tear Ointment",
+      "proposed_code": "1086895",
+      "proposed_display": "Tears Again Ointment",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Brand artificial tear ointment; matches product type"
+     },
+     {
+      "mimic_code": "Autodrop",
+      "mimic_display": "Autodrop",
+      "proposed_code": "412410003",
+      "proposed_display": "Hypromellose",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Autodrop is a brand of artificial tears; active substance hypromellose"
+     },
+     {
+      "mimic_code": "Autologus 20% Diluted Serum tears",
+      "mimic_display": "Autologus 20% Diluted Serum tears",
+      "proposed_code": "67922002",
+      "proposed_display": "Serum",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Base substance; autologous/diluted qualifiers not separately coded"
+     },
+     {
+      "mimic_code": "Bengay Cream",
+      "mimic_display": "Bengay Cream",
+      "proposed_code": "386988003",
+      "proposed_display": "Methyl salicylate",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Bengay is a topical analgesic; active ingredient methyl salicylate"
+     },
+     {
+      "mimic_code": "Bupivacaine 0.2% 2mg/hr",
+      "mimic_display": "Bupivacaine 0.2% 2mg/hr",
+      "proposed_code": "714215004",
+      "proposed_display": "Product containing bupivacaine in parenteral dose form",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "All candidates are 0.25%; input specifies 0.2%, so parent (bupivacaine parenteral) is closest non-overstepping match"
+     },
+     {
+      "mimic_code": "Citrate Dextrose 3% (ACD-A) CRRT",
+      "mimic_display": "Citrate Dextrose 3% (ACD-A) CRRT",
+      "proposed_code": "372862008",
+      "proposed_display": "Anticoagulant",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "ACD-A is an anticoagulant solution; no exact substance code, broader category captures role"
+     },
+     {
+      "mimic_code": "Critic-Aid",
+      "mimic_display": "Critic-Aid",
+      "proposed_code": "75399008",
+      "proposed_display": "Citric acid",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Critic-Aid likely typo for citric acid; substance match"
+     },
+     {
+      "mimic_code": "Culturelle Probiotics",
+      "mimic_display": "Culturelle Probiotics",
+      "proposed_code": "1311551000168108",
+      "proposed_display": "Lactobacillus rhamnosus",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Culturelle is a probiotic brand; active organism is Lactobacillus rhamnosus"
+     },
+     {
+      "mimic_code": "Hemorrhoidal Suppository",
+      "mimic_display": "Hemorrhoidal Suppository",
+      "proposed_code": "91821",
+      "proposed_display": "Anusol Hemorrhoidal Suppositories",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Closest product match for generic hemorrhoidal suppository"
+     },
+     {
+      "mimic_code": "Hydrocerin",
+      "mimic_display": "Hydrocerin",
+      "proposed_code": "373380003",
+      "proposed_display": "Emollient",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Hydrocerin is a moisturizer/emollient; closest broader match"
+     },
+     {
+      "mimic_code": "Influenza Virus Vaccine",
+      "mimic_display": "Influenza Virus Vaccine",
+      "proposed_code": "260210008",
+      "proposed_display": "Influenza virus antigen",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "No generic vaccine substance; antigen is the active immunizing component"
+     },
+     {
+      "mimic_code": "Lidocaine 4%",
+      "mimic_display": "Lidocaine 4%",
+      "proposed_code": "433379006",
+      "proposed_display": "Lidocaine hydrochloride 40 mg/mL oropharyngeal solution",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "4% lidocaine; form unspecified in input, oropharyngeal is common referent"
+     },
+     {
+      "mimic_code": "MultiChew",
+      "mimic_display": "MultiChew",
+      "proposed_code": "412250002",
+      "proposed_display": "Multivitamin agent",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "MultiChew is a multivitamin chewable brand; closest substance match"
+     },
+     {
+      "mimic_code": "Neutra-Phos",
+      "mimic_display": "Neutra-Phos",
+      "proposed_code": "259296007",
+      "proposed_display": "Phosphate",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Neutra-Phos is a phosphate supplement; no exact brand code, Phosphate is the closest substance"
+     },
+     {
+      "mimic_code": "Nicotine Lozenge",
+      "mimic_display": "Nicotine Lozenge",
+      "proposed_code": "7407",
+      "proposed_display": "nicotine",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Ingredient VS; lozenge form not coded, nicotine is closest"
+     },
+     {
+      "mimic_code": "OcuSoft Lid Scrub",
+      "mimic_display": "OcuSoft Lid Scrub",
+      "proposed_code": "1143673",
+      "proposed_display": "Ocusoft",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Brand name for eyelid cleanser product"
+     },
+     {
+      "mimic_code": "Piperacillin-Tazobactam-Heparin Lock",
+      "mimic_display": "Piperacillin-Tazobactam-Heparin Lock",
+      "proposed_code": "346628003",
+      "proposed_display": "Piperacillin + tazobactam",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Combination product; no single code for all three components"
+     },
+     {
+      "mimic_code": "Prenatal",
+      "mimic_display": "Prenatal",
+      "proposed_code": "87708000",
+      "proposed_display": "Vitamin (substance)",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Replacement for inactive 'Prenatal vitamin'; substance context match"
+     },
+     {
+      "mimic_code": "Prenatal Gummies",
+      "mimic_display": "Prenatal Gummies",
+      "proposed_code": "412250002",
+      "proposed_display": "Multivitamin agent",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Prenatal gummies are a multivitamin supplement; no prenatal-specific code"
+     },
+     {
+      "mimic_code": "Prenatal Gummy",
+      "mimic_display": "Prenatal Gummy",
+      "proposed_code": "412250002",
+      "proposed_display": "Multivitamin agent",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Prenatal gummy is a multivitamin; no prenatal-specific code, broader match"
+     },
+     {
+      "mimic_code": "Prenatal Multi",
+      "mimic_display": "Prenatal Multi",
+      "proposed_code": "412250002",
+      "proposed_display": "Multivitamin agent",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Prenatal multivitamin; closest broader match, no prenatal-specific code"
+     },
+     {
+      "mimic_code": "Prenatal Vitamins",
+      "mimic_display": "Prenatal Vitamins",
+      "proposed_code": "412250002",
+      "proposed_display": "Multivitamin agent",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Prenatal vitamins are a multivitamin; no specific prenatal code active"
+     },
+     {
+      "mimic_code": "Refresh Optive Advanced",
+      "mimic_display": "Refresh Optive Advanced",
+      "proposed_code": "51224002",
+      "proposed_display": "Carmellose sodium",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Brand maps to active substance carmellose sodium"
+     },
+     {
+      "mimic_code": "Stye Lubricant",
+      "mimic_display": "Stye Lubricant",
+      "proposed_code": "2586177",
+      "proposed_display": "Stye Soothing Relief",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Closest stye product; 'Lubricant' vs 'Soothing Relief' minor mismatch"
+     },
+     {
+      "mimic_code": "Systane Nighttime",
+      "mimic_display": "Systane Nighttime",
+      "proposed_code": "8030004",
+      "proposed_display": "Macrogol",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Systane Nighttime is PEG-based lubricant; base substance matches"
+     },
+     {
+      "mimic_code": "Talc (Sterile) + Lidocaine 1%",
+      "mimic_display": "Talc (Sterile) + Lidocaine 1%",
+      "proposed_code": "10323",
+      "proposed_display": "talc",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Primary component; no combined talc/lidocaine product exists"
+     },
+     {
+      "mimic_code": "Vancomycin 25mg/mL Ear Drops",
+      "mimic_display": "Vancomycin 25mg/mL Ear Drops",
+      "proposed_code": "372735009",
+      "proposed_display": "Vancomycin",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Input is vancomycin ear drops; substance VS best match is vancomycin substance"
+     },
+     {
+      "mimic_code": "calcium gluconate in 0.9% NaCl",
+      "mimic_display": "calcium gluconate in 0.9% NaCl",
+      "proposed_code": "684651000168104",
+      "proposed_display": "Calcium gluconate monohydrate 953 mg/10 mL injection, vial",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Calcium gluconate injection; 0.9% NaCl diluent and strength not coded"
+     },
+     {
+      "mimic_code": "estrogens-methyltestosterone",
+      "mimic_display": "estrogens-methyltestosterone",
+      "proposed_code": "126098001",
+      "proposed_display": "Conjugated estrogens",
+      "confidence": 0.7,
+      "gap": 0.15,
+      "reasoning": "Estrogen component of combination; no single combined code"
+     },
+     {
+      "mimic_code": "OXALIiplatin",
+      "mimic_display": "OXALIiplatin",
+      "proposed_code": "395814003",
+      "proposed_display": "Oxaliplatin",
+      "confidence": 0.65,
+      "gap": 0.2,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "SulfaSALAzine_",
+      "mimic_display": "SulfaSALAzine_",
+      "proposed_code": "387248006",
+      "proposed_display": "Sulfasalazine",
+      "confidence": 0.65,
+      "gap": 0.2,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "Clofazamine",
+      "mimic_display": "Clofazamine",
+      "proposed_code": "387410004",
+      "proposed_display": "Clofazimine",
+      "confidence": 0.64,
+      "gap": 0.21,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "clofazamine",
+      "mimic_display": "clofazamine",
+      "proposed_code": "387410004",
+      "proposed_display": "Clofazimine",
+      "confidence": 0.64,
+      "gap": 0.21,
+      "reasoning": ""
+     },
+     {
+      "mimic_code": "Critic-Aid Clear AF",
+      "mimic_display": "Critic-Aid Clear AF",
+      "proposed_code": "1351620007",
+      "proposed_display": "Digestif drink",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "Product name for a digestive aid drink; substance type matches"
+     },
+     {
+      "mimic_code": "Fluzone Trival/Quad vaccine",
+      "mimic_display": "Fluzone Trival/Quad vaccine",
+      "proposed_code": "1928358",
+      "proposed_display": "influenza virus vaccine 2017-2018 (quadrivalent generic for Fluzone - Hong Kong/Michigan/Brisbane/Phuket) 0.5 ML Prefilled Syringe",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "Generic quadrivalent Fluzone; input ambiguous Trival/Quad, no year specified"
+     },
+     {
+      "mimic_code": "Gelclair",
+      "mimic_display": "Gelclair",
+      "proposed_code": "5463",
+      "proposed_display": "hyaluronic acid",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "Gelclair is a brand; primary active ingredient is hyaluronic acid"
+     },
+     {
+      "mimic_code": "HYDROmorphone-bupiv (PF)-NaCL",
+      "mimic_display": "HYDROmorphone-bupiv (PF)-NaCL",
+      "proposed_code": "44508008",
+      "proposed_display": "Hydromorphone",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "Combination product; no single code, primary component"
+     },
+     {
+      "mimic_code": "INV-REGN1979 Diluent Flush",
+      "mimic_display": "INV-REGN1979 Diluent Flush",
+      "proposed_code": "373757009",
+      "proposed_display": "Sodium chloride solution",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "Diluent flush is saline; no exact product match"
+     },
+     {
+      "mimic_code": "Lubricant Eye Drops",
+      "mimic_display": "Lubricant Eye Drops",
+      "proposed_code": "385124005",
+      "proposed_display": "Eye drops",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "Closest broader match; no candidate captures 'lubricant' substance meaning"
+     },
+     {
+      "mimic_code": "Mepilex",
+      "mimic_display": "Mepilex",
+      "proposed_code": "878817006",
+      "proposed_display": "Polyurethane foam",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "Mepilex is a foam dressing; polyurethane foam is the closest substance match"
+     },
+     {
+      "mimic_code": "Prenatal One",
+      "mimic_display": "Prenatal One",
+      "proposed_code": "438681000124106",
+      "proposed_display": "Multivitamin multimineral supplement",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "Prenatal One is a prenatal multivitamin brand; no prenatal-specific substance found, closest is multivitamin multimineral supplement"
+     },
+     {
+      "mimic_code": "Vancomycin (0.5 mg/mL)-Heparin (100 units/mL) Lock",
+      "mimic_display": "Vancomycin (0.5 mg/mL)-Heparin (100 units/mL) Lock",
+      "proposed_code": "372735009",
+      "proposed_display": "Vancomycin",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "Combination lock solution; no single code, primary substance"
+     },
+     {
+      "mimic_code": "arginine oxoglurate",
+      "mimic_display": "arginine oxoglurate",
+      "proposed_code": "1091",
+      "proposed_display": "arginine",
+      "confidence": 0.6,
+      "gap": 0.25,
+      "reasoning": "No exact arginine oxoglutarate code; arginine is closest broader match"
+     },
+     {
+      "mimic_code": "Caphosol",
+      "mimic_display": "Caphosol",
+      "proposed_code": "44044007",
+      "proposed_display": "Calcium phosphate",
+      "confidence": 0.5,
+      "gap": 0.35,
+      "reasoning": "Caphosol is a calcium phosphate mouth rinse; no exact brand match, closest substance"
+     }
+    ]
+   }
+  },
+  {
+   "stream": "mimic-medication-poe-iv",
+   "source_file": "CodeSystem-mimic-medication-poe-iv.json",
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-poe-iv",
+   "method": "table",
+   "total": 2,
+   "mapped": 0,
+   "unmapped": 2,
+   "coverage_pct": 0.0,
+   "restriction": "observed-only",
+   "enumerated_total": 2,
+   "not_observed": 0,
+   "blocked_upstream": true,
+   "note": "Maps nothing by design. `IV therapy` and `TPN` are POE order flags, not substances, so no RxNorm concept exists for either at any term type \u2014 and a SNOMED procedure code, which does exist, would put a procedure in a column whose FHIRPath is medication[x]. The 0% is the honest result of a modelling defect one layer down, in the ETL, not of a mapping that failed.",
+   "note_url": "https://github.com/fhnaumann/master_thesis_pipeline/issues/26",
+   "target_systems": [],
+   "by_equivalence": {
+    "unmatched": 2
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 2
+   },
+   "codesearch": {
+    "status": {
+     "not-attempted": 2
+    },
+    "constraint": null,
+    "template": null,
+    "confidence_threshold": null
+   }
+  }
+ ],
+ "target_valueset_codes": 2005,
+ "extras": {}
+}

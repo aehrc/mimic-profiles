@@ -1,0 +1,105 @@
+mimic_code,mimic_display,snomed_code,snomed_display,comment,codesearch_query,codesearch_target,codesearch_display,codesearch_confidence,codesearch_status,codesearch_reasoning
+70002,THROAT FOR STREP,258529004,Throat swab,,THROAT FOR STREP,258529004,Throat swab,0.85,ok,Specimen VS; throat swab for strep testing
+70003,ABSCESS,119371008,Specimen from abscess,,ABSCESS,119371008,Specimen from abscess,0.90,ok,"General specimen from abscess, no unstated site"
+70004,ARTHROPOD,734338009,Arthropod material submitted as specimen,,ARTHROPOD,734338009,Arthropod material submitted as specimen,0.90,ok,Specimen concept matching Arthropod in Specimen VS
+70005,ASPIRATE,119295008,Specimen obtained by aspiration,,ASPIRATE,119295008,Specimen obtained by aspiration,0.95,ok,
+70006,ANORECTAL/VAGINAL,,,"code-search proposed 1371684001 |Combined specimen from swab of rectum and vaginal introitus| at 0.70, below the 0.8 threshold.",ANORECTAL/VAGINAL,1371684001,Combined specimen from swab of rectum and vaginal introitus,0.70,below-threshold,Only code capturing both anorectal and vaginal specimen concepts
+70007,BLOOD BAG FLUID,119304001,Specimen from blood bag,,BLOOD BAG FLUID,119304001,Specimen from blood bag,0.85,ok,FSN captures blood bag specimen; other candidates add unstated specificity
+70008,BRONCHIAL BRUSH - PROTECTED,473433009,Protected specimen brush submitted as specimen,,BRONCHIAL BRUSH - PROTECTED,473433009,Protected specimen brush submitted as specimen,0.95,ok,FSN matches protected bronchial brush specimen exactly
+70009,BILE,119341000,Bile specimen,,BILE,119341000,Bile specimen,0.97,ok,FSN matches input exactly
+70010,BIOPSY,258415003,Biopsy specimen,,BIOPSY,258415003,Biopsy specimen,0.95,ok,FSN matches generic 'biopsy' input; other candidates add unstated site specificity
+70011,BLOOD CULTURE ( MYCO/F LYTIC BOTTLE),878861003,Blood specimen in blood culture bottle,,BLOOD CULTURE ( MYCO/F LYTIC BOTTLE),878861003,Blood specimen in blood culture bottle,0.80,ok,No Myco/F Lytic-specific code; generic blood culture bottle captures meaning without overstepping
+70012,BLOOD CULTURE,446131002,Blood specimen obtained for blood culture,,BLOOD CULTURE,446131002,Blood specimen obtained for blood culture,0.85,ok,"Specimen VS; generic blood culture specimen, no unstated bottle/plate specifier"
+70013,FLUID RECEIVED IN BLOOD CULTURE BOTTLES,878861003,Blood specimen in blood culture bottle,,FLUID RECEIVED IN BLOOD CULTURE BOTTLES,878861003,Blood specimen in blood culture bottle,0.90,ok,FSN matches fluid in blood culture bottle; general form avoids unstated aerobic/anaerobic specificity
+70014,BLOOD CULTURE - NEONATE,446131002,Blood specimen obtained for blood culture,,BLOOD CULTURE - NEONATE,446131002,Blood specimen obtained for blood culture,0.85,ok,FSN matches blood culture specimen; neonate is unstated qualifier
+70015,BLOOD,119297000,Blood specimen,,BLOOD,119297000,Blood specimen,0.95,ok,FSN matches input exactly
+70016,BLOOD CULTURE (POST-MORTEM),446131002,Blood specimen obtained for blood culture,,BLOOD CULTURE (POST-MORTEM),446131002,Blood specimen obtained for blood culture,0.85,ok,Blood culture specimen; post-mortem qualifier not coded
+70017,SEROLOGY/BLOOD,119297000,Blood specimen,,SEROLOGY/BLOOD,119297000,Blood specimen,0.85,ok,Serology test on blood; specimen is blood
+70018,BONE MARROW,119359002,Bone marrow specimen,,BONE MARROW,119359002,Bone marrow specimen,0.95,ok,FSN matches input exactly
+70019,BONE MARROW - CYTOGENETICS,119359002,Bone marrow specimen,,BONE MARROW - CYTOGENETICS,119359002,Bone marrow specimen,0.90,ok,"Specimen is bone marrow; cytogenetics is the test, not a specimen qualifier"
+70020,BRONCHIAL BRUSH,309176002,Bronchial brushings specimen,,BRONCHIAL BRUSH,309176002,Bronchial brushings specimen,0.95,ok,FSN matches input; lobe-specific variants overstep
+70021,BRONCHOALVEOLAR LAVAGE,258607008,Bronchoalveolar lavage fluid,,BRONCHOALVEOLAR LAVAGE,258607008,Bronchoalveolar lavage fluid,0.90,ok,Specimen VS; BAL fluid specimen matches input meaning
+70022,BRONCHIAL WASHINGS,122609004,Specimen from lung obtained by bronchial washing procedure,,BRONCHIAL WASHINGS,122609004,Specimen from lung obtained by bronchial washing procedure,0.90,ok,"FSN matches bronchial washings specimen; general concept, not lobe-specific"
+70023,CATHETER TIP-IV,119312009,Catheter tip submitted as specimen,,CATHETER TIP-IV,119312009,Catheter tip submitted as specimen,0.85,ok,IV catheter tip; general catheter tip specimen matches without overstepping
+70024,VIRAL CULTURE: R/O CYTOMEGALOVIRUS,621000009105,Viral isolate specimen,,VIRAL CULTURE: R/O CYTOMEGALOVIRUS,621000009105,Viral isolate specimen,0.80,ok,"Viral culture specimen; R/O CMV is test indication, not specimen type"
+70025,CRE Screen,,,code-search returned no match within <<123038009.,CRE Screen,,,,no-match,
+70026,CSF;SPINAL FLUID,258450006,CSF specimen,,CSF;SPINAL FLUID,258450006,CSF specimen,0.95,ok,FSN Cerebrospinal fluid specimen matches CSF/spinal fluid exactly
+70027,CORNEAL EYE SCRAPINGS,258485006,Corneal scrapings specimen,,CORNEAL EYE SCRAPINGS,258485006,Corneal scrapings specimen,0.95,ok,FSN matches input exactly
+70028,Direct Antigen Test for Herpes Simplex Virus Types 1 & 2,,,code-search returned no match within <<123038009.,Direct Antigen Test for Herpes Simplex Virus Types 1 & 2,,,,no-match,
+70029,DIALYSIS FLUID,258454002,Dialysate specimen,,DIALYSIS FLUID,258454002,Dialysate specimen,0.95,ok,Synonym 'Dialysis fluid specimen' matches input exactly
+70030,DIRECT ANTIGEN TEST FOR VARICELLA-ZOSTER VIRUS,,,code-search returned no match within <<123038009.,DIRECT ANTIGEN TEST FOR VARICELLA-ZOSTER VIRUS,,,,no-match,
+70031,EAR,309165001,Ear specimen,,EAR,309165001,Ear specimen,0.95,ok,FSN matches input exactly; broadest ear specimen
+70032,Blood (EBV),119297000,Blood specimen,,Blood (EBV),119297000,Blood specimen,0.85,ok,Blood specimen captures the specimen type; EBV is test context
+70033,EYE,119399004,Specimen from eye,,EYE,119399004,Specimen from eye,0.90,ok,FSN captures eye specimen generally without overstepping
+70034,FOREIGN BODY,447103002,Foreign body submitted as specimen,,FOREIGN BODY,447103002,Foreign body submitted as specimen,0.95,ok,FSN matches input in specimen context
+70035,"FLUID,OTHER",258442002,Fluid sample,,"FLUID,OTHER",258442002,Fluid specimen,0.85,ok,"Generic fluid specimen matches 'FLUID,OTHER' specimen type"
+70036,FLUID WOUND,122566000,Fluid specimen from wound,,FLUID WOUND,122566000,Fluid specimen from wound,0.90,ok,FSN matches 'fluid wound' exactly; exudate is narrower
+70037,FOOT CULTURE,,,code-search returned no match within <<123038009.,FOOT CULTURE,,,,no-match,
+70038,FECAL SWAB,,,"code-search proposed 258528007 |Rectal swab| at 0.75, below the 0.8 threshold.",FECAL SWAB,258528007,Rectal swab,0.75,below-threshold,No exact 'fecal swab' code; rectal swab is the closest swab specimen for fecal collection
+70040,SWAB,257261003,Swab,,SWAB,257261003,Swab,1.00,ok,
+70041,VIRAL CULTURE:R/O HERPES SIMPLEX VIRUS,,,code-search returned no match within <<123038009.,VIRAL CULTURE:R/O HERPES SIMPLEX VIRUS,,,,no-match,
+70042,Influenza A/B by DFA,,,code-search returned no match within <<123038009.,Influenza A/B by DFA,,,,no-match,
+70043,Influenza A/B by DFA - Bronch Lavage,258607008,Bronchoalveolar lavage fluid,,Influenza A/B by DFA - Bronch Lavage,258607008,Bronchoalveolar lavage fluid (specimen),0.85,ok,Specimen type is bronchial lavage; general BAL fluid specimen matches without lobe overstepping
+70045,Immunology (CMV),,,code-search returned no match within <<123038009.,Immunology (CMV),,,,no-match,
+70046,IMMUNOLOGY,,,code-search returned no match within <<123038009.,IMMUNOLOGY,,,,no-match,
+70047,JOINT FLUID,431361003,Joint fluid,,JOINT FLUID,431361003,Joint fluid,1.00,ok,
+70048,NAIL SCRAPINGS,447098004,Specimen from nail obtained by scraping,,NAIL SCRAPINGS,447098004,Specimen from nail obtained by scraping,0.85,ok,FSN captures both nail and scraping exactly
+70049,NEOPLASTIC BLOOD,,,code-search returned no match within <<123038009.,NEOPLASTIC BLOOD,,,,no-match,
+70051,"FLUID,OTHER",258442002,Fluid sample,,"FLUID,OTHER",258442002,Fluid specimen,0.85,ok,"Generic fluid specimen matches 'FLUID,OTHER' specimen type"
+70052,PERIPHERAL BLOOD LYMPHOCYTES,122551003,Peripheral blood specimen,,PERIPHERAL BLOOD LYMPHOCYTES,122551003,Peripheral blood specimen,0.85,ok,Specimen VS; peripheral blood specimen matches the specimen type
+70053,PERITONEAL FLUID,168139001,Peritoneal fluid,,PERITONEAL FLUID,168139001,Peritoneal fluid,1.00,ok,
+70054,PLEURAL FLUID,418564007,Pleural fluid,,PLEURAL FLUID,418564007,Pleural fluid,1.00,ok,
+70055,POSTMORTEM CULTURE,,,"code-search proposed 258484005 |Postmortem tissue specimen| at 0.75, below the 0.8 threshold.",POSTMORTEM CULTURE,258484005,Postmortem tissue specimen,0.75,below-threshold,Postmortem specimen; culture aspect not captured
+70056,RECTAL - R/O GC,258528007,Rectal swab,,RECTAL - R/O GC,258528007,Rectal swab,0.85,ok,Rectal specimen for GC testing; rectal swab is the specimen type
+70057,Rapid Respiratory Viral Screen & Culture,,,code-search returned no match within <<123038009.,Rapid Respiratory Viral Screen & Culture,,,,no-match,
+70058,RAPID RESPIRATORY VIRAL ANTIGEN TEST,,,code-search returned no match within <<123038009.,RAPID RESPIRATORY VIRAL ANTIGEN TEST,,,,no-match,
+70059,Staph aureus swab,257261003,Swab,,Staph aureus swab,257261003,Swab,0.80,ok,"Swab specimen; Staph aureus is the organism tested, not a specimen type"
+70060,Stem Cell - Blood Culture,57731000052104,Stem cell specimen,,Stem Cell - Blood Culture,57731000052104,Stem cell specimen,0.85,ok,Primary concept is stem cell specimen
+70061,SKIN SCRAPINGS,446952006,Specimen from skin obtained by scraping,,SKIN SCRAPINGS,446952006,Specimen from skin obtained by scraping,0.85,ok,FSN matches input exactly
+70062,SPUTUM,119335007,Coughed sputum specimen,,SPUTUM,119335007,Coughed sputum specimen,0.93,ok,
+70064,STOOL,119339001,Faeces specimen,,STOOL,119339001,Faeces specimen,0.95,ok,FSN 'Stool specimen' matches input exactly
+70065,SCOTCH TAPE PREP/PADDLE,258664003,Scotch tape slide specimen,,SCOTCH TAPE PREP/PADDLE,258664003,Scotch tape slide specimen,0.90,ok,FSN matches scotch tape prep specimen
+70066,STOOL (RECEIVED IN TRANSPORT SYSTEM),119339001,Faeces specimen,,STOOL (RECEIVED IN TRANSPORT SYSTEM),119339001,Faeces specimen,0.85,ok,FSN 'Stool specimen' matches; transport qualifier non-coded
+70067,SWAB,257261003,Swab,,SWAB,257261003,Swab,1.00,ok,
+70068,SWAB,257261003,Swab,,SWAB,257261003,Swab,1.00,ok,
+70069,SWAB,257261003,Swab,,SWAB,257261003,Swab,1.00,ok,
+70070,SWAB,257261003,Swab,,SWAB,257261003,Swab,1.00,ok,
+70071,SWAB - R/O YEAST,257261003,Swab,,SWAB - R/O YEAST,257261003,Swab (specimen),0.85,ok,R/O yeast is test purpose; specimen is generic swab
+70072,TRACHEAL ASPIRATE,445447003,Specimen from trachea obtained by aspiration,,TRACHEAL ASPIRATE,445447003,Specimen from trachea obtained by aspiration,0.95,ok,
+70073,TISSUE,119376003,Tissue specimen,,TISSUE,119376003,Tissue specimen,0.95,ok,FSN matches generic tissue specimen concept
+70074,THROAT,119389009,Specimen from throat,,THROAT,119389009,Specimen from throat,0.90,ok,General throat specimen matches input without overstepping
+70075,THROAT CULTURE,258529004,Throat swab,,THROAT CULTURE,258529004,Throat swab,0.85,ok,Throat swab is the standard specimen for throat culture
+70076,TISSUE,119376003,Tissue specimen,,TISSUE,119376003,Tissue specimen,0.95,ok,FSN matches generic tissue specimen concept
+70077,URINE,122575003,Urine specimen,,URINE,122575003,Urine specimen,0.95,ok,FSN matches input exactly; general urine specimen
+70078,"URINE,PROSTATIC MASSAGE",2531000181101,Urine specimen obtained after prostatic massage,,"URINE,PROSTATIC MASSAGE",2531000181101,Urine specimen obtained after prostatic massage,0.95,ok,FSN matches input exactly
+70079,URINE,122575003,Urine specimen,,URINE,122575003,Urine specimen,0.95,ok,FSN matches input exactly; general urine specimen
+70080,"URINE,KIDNEY",446907008,Urine specimen obtained from kidney,,"URINE,KIDNEY",446907008,Urine specimen obtained from kidney,0.95,ok,FSN matches input exactly
+70081,URINE,122575003,Urine specimen,,URINE,122575003,Urine specimen,0.95,ok,FSN matches input exactly; general urine specimen
+70082,"URINE,SUPRAPUBIC ASPIRATE",258576008,Suprapubic aspirate,,"URINE,SUPRAPUBIC ASPIRATE",258576008,Suprapubic aspirate (specimen),0.95,ok,FSN matches input exactly
+70083,VARICELLA-ZOSTER CULTURE,,,code-search returned no match within <<123038009.,VARICELLA-ZOSTER CULTURE,,,,no-match,
+70084,SWAB,257261003,Swab,,SWAB,257261003,Swab,1.00,ok,
+70085,WORM,704663000,Parasitic worm specimen,,WORM,704663000,Parasitic worm specimen,0.95,ok,
+70086,XXX,,,code-search returned no match within <<123038009.,XXX,,,,no-match,
+70087,Blood (CMV AB),119297000,Blood specimen,,Blood (CMV AB),119297000,Blood specimen,0.85,ok,Input is a blood specimen for CMV antibody testing; blood group candidates are type mismatch
+70088,Blood (EBV),119297000,Blood specimen,,Blood (EBV),119297000,Blood specimen,0.85,ok,Blood specimen captures the specimen type; EBV is test context
+70089,Blood (Malaria),119297000,Blood specimen,,Blood (Malaria),119297000,Blood specimen,0.85,ok,Blood specimen captures the specimen type; malaria is test context
+70090,Mini-BAL,593961000052105,Mini-bronchoalveolar lavage fluid specimen,,Mini-BAL,593961000052105,Mini-bronchoalveolar lavage fluid specimen,0.85,ok,FSN matches Mini-BAL exactly
+70091,MRSA SCREEN,,,code-search returned no match within <<123038009.,MRSA SCREEN,,,,no-match,
+70092,"SWAB, R/O GC",257261003,Swab,,"SWAB, R/O GC",257261003,Swab (specimen),0.90,ok,"Input is a swab specimen; no site specified, generic swab captures meaning without overstepping"
+70093,Blood (Toxo),119297000,Blood specimen,,Blood (Toxo),119297000,Blood specimen,0.85,ok,Blood specimen captures the specimen type; Toxo is test qualifier
+90902,AMNIOTIC FLUID,119373006,Amniotic fluid,,AMNIOTIC FLUID,119373006,Amniotic fluid,1.00,ok,
+90906,"C, E, & A Screening",,,code-search returned no match within <<123038009.,"C, E, & A Screening",,,,no-match,
+90908,Cipro Resistant Screen,,,code-search returned no match within <<123038009.,Cipro Resistant Screen,,,,no-match,
+90909,CHORIONIC VILLUS SAMPLE,258565009,Chorionic villi specimen,,CHORIONIC VILLUS SAMPLE,258565009,Chorionic villi specimen,0.95,ok,Specimen concept with synonym 'Chorionic villi sample'; exact match
+90912,Foreign Body - Sonication Culture,447103002,Foreign body submitted as specimen,,Foreign Body - Sonication Culture,447103002,Foreign body submitted as specimen,0.90,ok,FSN matches specimen type; sonication is method not coded
+90913,HAIR,119326000,Hair specimen,,HAIR,119326000,Hair specimen,0.97,ok,FSN matches input exactly
+90914,Infection Control Yeast,,,code-search returned no match within <<123038009.,Infection Control Yeast,,,,no-match,
+90915,Isolate,119303007,Microbial isolate,,Isolate,119303007,Microbial isolate specimen,0.85,ok,Generic 'isolate' matches microbial isolate; fungal/viral narrower
+90919,Blood (LYME),119297000,Blood specimen,,Blood (LYME),119297000,Blood specimen,0.85,ok,"Specimen is blood; LYME is test context, not specimen type"
+90920,PROSTHETIC JOINT FLUID,1003711005,Specimen from prosthetic joint,,PROSTHETIC JOINT FLUID,1003711005,Specimen from prosthetic joint,0.85,ok,FSN captures specimen from prosthetic joint; fluid implied
+90921,POST-MORTEM VIRAL CULTURE,,,"code-search proposed 258484005 |Postmortem tissue specimen| at 0.70, below the 0.8 threshold.",POST-MORTEM VIRAL CULTURE,258484005,Postmortem tissue specimen,0.70,below-threshold,"Specimen type; captures postmortem, viral culture unstated"
+90922,MICRO PROBLEM PATIENT,,,code-search returned no match within <<123038009.,MICRO PROBLEM PATIENT,,,,no-match,
+90928,Swab,257261003,Swab,,SWAB,257261003,Swab,1.00,ok,
+90929,Swab R/O Yeast Screen,257261003,Swab,,Swab R/O Yeast Screen,257261003,Swab (specimen),0.85,ok,No body site specified; generic Swab best matches
+90930,Touch Prep/Sections,1380394001,Tissue impression specimen,,Touch Prep/Sections,1380394001,Tissue impression specimen,0.85,ok,FSN matches touch prep specimen; 'Sections' not separately coded
+90935,VIRAL CULTURE,,,"code-search proposed 621000009105 |Viral isolate specimen| at 0.75, below the 0.8 threshold.",VIRAL CULTURE,621000009105,Viral isolate specimen,0.75,below-threshold,Closest specimen concept for viral culture
