@@ -1,5 +1,8 @@
 {
- "element": "MedicationRequest.medication[x]",
+ "elements": [
+  "MedicationRequest.medication[x]",
+  "MedicationAdministration.medication[x]"
+ ],
  "constraint_vcl": null,
  "template": null,
  "confidence_threshold": null,
@@ -11,7 +14,7 @@
    "target_system": "",
    "target_code": "",
    "target_display": "",
-   "comment": "Not a medication. `IV therapy` is a POE order type recording that intravenous therapy was ordered; the product infused is recorded elsewhere on the prescription. RxNorm names drug products and has no concept for an administration modality at any term type. A SNOMED CT procedure concept exists but is deliberately not used: this element is MedicationRequest.medication[x], and a procedure code here would resolve correctly while making the data mean something else. See issue #26.",
+   "comment": "Not a medication. `IV therapy` is a POE order type recording that intravenous therapy was ordered; the product infused is recorded elsewhere on the order. RxNorm names drug products and has no concept for an administration modality at any term type. A SNOMED CT procedure concept exists but is deliberately not used: this code sits in a column whose FHIRPath is medication[x], and a procedure code here would resolve correctly while making the data mean something else. See issue #26.",
    "method": "declared",
    "join_rung": "",
    "codesearch_target": "",

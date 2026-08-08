@@ -3,15 +3,25 @@
 
 The only generator in this repo that makes NO network call, because there is
 nothing to ask. `IV therapy` and `TPN` are the whole of
-`mimic-medication-poe-iv`, they are bound to MedicationRequest.medication[x],
-and neither is a medication:
+`mimic-medication-poe-iv`, they are bound to BOTH
+MedicationRequest.medication[x] and MedicationAdministration.medication[x], and
+neither is a medication:
 
     IV therapy   a POE order TYPE. The product being infused is recorded
                  elsewhere on the prescription.
     TPN          total parenteral nutrition: a patient-specific compounded
                  admixture whose composition is not in the code.
 
-Together 167,144 occurrences, 8.9% of the element.
+Together 353,392 occurrences: 167,144 on MedicationRequest.medication[x], which
+is 8.9% of that element, and 186,248 on MedicationAdministration.medication[x].
+
+ONE TABLE FOR BOTH ELEMENTS. Both codes are observed on both, so the population
+is the same two rows either way and the union costs nothing. It still matters
+that it is one file: two tables could state different reasons for declining the
+same code, in two published ConceptMaps, with nothing to compare them. The
+population comes from lib/builders.py, which discovers the fields declaring this
+table rather than taking a list, so the reasons below are written once and
+cannot be phrased against one element while serving two.
 
 WHY THIS EXISTS AT ALL rather than a two-line hand-written CSV. Every mapping
 table in this repo is generated, so that no row rests on a judgement a reader
@@ -33,9 +43,10 @@ naming a drug class, so it stays inside what the column means. The difference is
 the whole reason the SNOMED fallback there is constrained to `<<105590001
 |Substance|` and not to procedures.
 
-So both codes are declared unmapped with their reason, `unmapped-medication.csv`
-carries them, and the ConceptMap carries them as `unmatched` elements. The real
-fix is one layer down, in the ETL, and is tracked in issue #26 of
+So both codes are declared unmapped with their reason, both
+`unmapped-medication.csv` and `unmapped-medication-administration.csv` carry
+them, and both ConceptMaps carry them as `unmatched` elements. The real fix is
+one layer down, in the ETL, and is tracked in issue #26 of
 fhnaumann/master_thesis_pipeline — not here, and not by mapping around it.
 
 RxNorm was checked rather than assumed, at every term type in the sibling
@@ -61,11 +72,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from common import paths                                          # noqa: E402
+from conceptmaps.lib.builders import (describe_population,        # noqa: E402
+                                      table_population)
 from conceptmaps.lib.canonical import TABLE_DIR                    # noqa: E402
-from conceptmaps.lib.igsource import (partition_observed,          # noqa: E402
-                                      source_concepts)
 
-ELEMENT = "MedicationRequest.medication[x]"
 OUT_CSV = TABLE_DIR / "medication-poe-iv-standard.csv"
 LOG_JSON = paths.OUTPUT / "medication-poe-iv-generation-log.json"
 
@@ -82,12 +92,12 @@ REASONS = {
     "IV therapy": (
         "Not a medication. `IV therapy` is a POE order type recording that "
         "intravenous therapy was ordered; the product infused is recorded "
-        "elsewhere on the prescription. RxNorm names drug products and has no "
+        "elsewhere on the order. RxNorm names drug products and has no "
         "concept for an administration modality at any term type. A SNOMED CT "
-        "procedure concept exists but is deliberately not used: this element "
-        "is MedicationRequest.medication[x], and a procedure code here would "
-        "resolve correctly while making the data mean something else. See "
-        "issue #26."),
+        "procedure concept exists but is deliberately not used: this code sits "
+        "in a column whose FHIRPath is medication[x], and a procedure code "
+        "here would resolve correctly while making the data mean something "
+        "else. See issue #26."),
     "TPN": (
         "Not a medication. `TPN` names total parenteral nutrition, a "
         "patient-specific compounded admixture whose composition the code does "
@@ -98,22 +108,27 @@ REASONS = {
 
 
 def ig_codes():
-    """The observed source codes, read from the IG through the one reader."""
-    from conceptmaps.build_medication_cm_vs import SOURCES
+    """The observed source codes for EVERY field that reads this table.
 
-    source = next(s for s in SOURCES if s.get("table") == OUT_CSV)
-    observed, _ = partition_observed(
-        source, ELEMENT, list(source_concepts(source)))
-    return dict(observed)
+    Both bound elements admit both codes and the data uses both on both, so the
+    union is the same two rows either field would produce alone. Discovered
+    rather than hard-coded all the same: a third field adding this table would
+    extend the population with nothing to keep in step, and a code observed only
+    there would otherwise be silently missing from the file. See lib/builders.py.
+    """
+    return table_population(OUT_CSV)
 
 
 def main():
     concepts = ig_codes()
+    for field, element, count in describe_population(OUT_CSV):
+        print(f"  {field:26s} {element:42s} {count:>6,} observed",
+              file=sys.stderr)
     if unknown := set(concepts) - set(REASONS):
         sys.exit(f"  {sorted(unknown)} is in mimic-medication-poe-iv and "
-                 f"observed on {ELEMENT}, but no reason is recorded for it. "
-                 f"This stream declines every code it holds, so a new one is a "
-                 f"decision to make, not a blank to fill.")
+                 f"observed on a bound element, but no reason is recorded for "
+                 f"it. This stream declines every code it holds, so a new one "
+                 f"is a decision to make, not a blank to fill.")
 
     rows = [{**{c: "" for c in HEADER},
              "mimic_code": code, "mimic_display": display,
@@ -130,7 +145,8 @@ def main():
 
     LOG_JSON.parent.mkdir(parents=True, exist_ok=True)
     LOG_JSON.write_text(json.dumps({
-        "element": ELEMENT,
+        "elements": [element for _, element, _ in
+                     describe_population(OUT_CSV)],
         # No constraint, template or threshold: nothing was searched. Recorded
         # as explicit nulls so lib/stats.py finds the keys it looks for and a
         # reader can tell "no search happened" from "the log is incomplete".

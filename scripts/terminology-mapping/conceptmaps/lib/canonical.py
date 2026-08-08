@@ -19,6 +19,10 @@ ICD10_PCS = "http://www.cms.gov/Medicare/Coding/ICD10"
 SNOMED = "http://snomed.info/sct"
 LOINC = "http://loinc.org"
 RXNORM = "http://www.nlm.nih.gov/research/umls/rxnorm"
+# HL7 v3 NullFlavor, published by THO. A source system here rather than only a
+# target: MedicationAdministration.medication[x] admits `UNK` for the
+# administrations whose drug could not be coded, and it maps to itself.
+NULL_FLAVOR = "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
 
 # Systems we map INTO but do not build a CodeSystem for, so no release can be
 # pinned and there is nothing for the "only releases we built" check to verify.
@@ -33,7 +37,13 @@ RXNORM = "http://www.nlm.nih.gov/research/umls/rxnorm"
 # exactly what this repo cannot do for RxNorm. So the release is recorded in the
 # generation log, where it is evidence, and not in the map, where it would be a
 # promise.
-UNVERSIONED_SYSTEMS = {SNOMED, LOINC, RXNORM}
+#
+# v3-NullFlavor joined with MedicationAdministration.medication[x]. It is a THO
+# resource this repo neither builds nor publishes, and the identity group that
+# carries `UNK` through translation would otherwise be the one mapping with a
+# version nothing here can reproduce. velonto holds it at 2.1.0; that is the
+# server's copy, not ours to pin.
+UNVERSIONED_SYSTEMS = {SNOMED, LOINC, RXNORM, NULL_FLAVOR}
 
 MIMIC_BASE = "http://mimic.mit.edu/fhir/mimic"
 

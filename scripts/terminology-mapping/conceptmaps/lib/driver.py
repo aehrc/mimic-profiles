@@ -94,7 +94,7 @@ def run(field_key, sources, meta, version, extras=None):
 
     conceptmap, unmapped, streams = build_conceptmap(
         sources, meta, built, date, args.version)
-    enrich(streams, sources, args.out_dir)
+    enrich(streams, sources, args.out_dir, meta["element"])
     total = sum(len(g["element"]) for g in conceptmap["group"])
     print(f"\n  {conceptmap['url']}", file=sys.stderr)
     report_groups(conceptmap)

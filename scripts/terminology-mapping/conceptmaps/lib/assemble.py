@@ -69,8 +69,9 @@ def build_groups(sources, element, built):
     streams = []
 
     for source in sources:
-        concepts = list(source_concepts(source))
-        enumerated_total = len(concepts)
+        enumerated = list(source_concepts(source))
+        enumerated_total = len(enumerated)
+        concepts = enumerated
         # A code in the bound ValueSet that the data never carries is DECLARED,
         # not dropped: it gets an `unmatched` element and a CSV row exactly like
         # a resolver failure, so a consumer translating one is told the
@@ -108,7 +109,11 @@ def build_groups(sources, element, built):
         # additionally come back keyed `target_system` — see curated.py.
         table_columns = source.get("table_columns", DEFAULT_TARGET_COLUMNS)
         mixed_table = is_mixed(table_columns)
-        table = (load_table(source["table"], dict(concepts),
+        # Validated against the ENUMERATION, not this stream's population: a
+        # table is keyed by its source CodeSystem and may be shared by two
+        # fields observing different subsets of it. Rows outside this
+        # population are simply never looked up below. See lib/curated.py.
+        table = (load_table(source["table"], dict(enumerated),
                             resource_path(source).name, table_columns,
                             allowed_systems={t["system"]
                                              for t in source["targets"]})
@@ -211,8 +216,16 @@ def build_groups(sources, element, built):
                     "reason": "absent-from-all-built-releases",
                 })
 
+        # A shared table carries rows for codes this field does not map, and
+        # they are neither an error nor invisible: load_table can no longer
+        # tell a sibling's row from a row for a code nobody maps, so the count
+        # is printed instead of either being rejected or going unmentioned.
+        foreign = (len(table) - sum(1 for c, _ in concepts if c in table)
+                   if table is not None else 0)
         print(f"  {resource_path(source).name:45s} "
-              f"{hits:>6,}/{len(concepts):<6,} mapped", file=sys.stderr)
+              f"{hits:>6,}/{len(concepts):<6,} mapped"
+              f"{f'  (+{foreign:,} table row(s) for sibling populations)'
+                 if foreign else ''}", file=sys.stderr)
 
         missed = unmapped[unmapped_before:]
         by_equivalence["unmatched"] = len(missed)

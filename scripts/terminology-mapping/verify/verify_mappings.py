@@ -59,7 +59,6 @@ Usage:
 
 import argparse
 import csv
-import importlib
 import json
 import sys
 from pathlib import Path
@@ -67,29 +66,16 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from common import paths  # noqa: E402
+from conceptmaps.lib.builders import discover  # noqa: E402
 from conceptmaps.lib.canonical import (ICD10_PCS, MIMIC_BASE,  # noqa: E402
                                        UNVERSIONED_SYSTEMS)
 from conceptmaps.lib.igsource import source_concepts  # noqa: E402
 from conceptmaps.lib.notation import concept_properties  # noqa: E402
 
-BUILDERS = Path(__file__).resolve().parents[1] / "conceptmaps"
-
-
-def discover():
-    """(field, sources, meta) for every builder script, sorted by field."""
-    found = []
-    for path in sorted(BUILDERS.glob("build_*_cm_vs.py")):
-        module = importlib.import_module(f"conceptmaps.{path.stem}")
-        missing = [a for a in ("FIELD", "SOURCES", "META")
-                   if not hasattr(module, a)]
-        if missing:
-            sys.exit(f"{path.name} declares no {', '.join(missing)} — every "
-                     f"builder must expose FIELD, SOURCES and META so this "
-                     f"check can find its artefacts.")
-        found.append((module.FIELD, module.SOURCES, module.META))
-    if not found:
-        sys.exit(f"no build_*_cm_vs.py in {BUILDERS}")
-    return sorted(found)
+# `discover` moved to conceptmaps/lib/builders.py, which is also where a table
+# generator learns which populations a SHARED table has to cover. Two copies of
+# the glob would be two answers to "which builders exist", and the one that
+# drifted would be silent — see that module.
 
 
 def load(path, what):

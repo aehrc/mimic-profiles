@@ -13,10 +13,20 @@ code-search service and gate every target against a terminology server.
 Determinism comes from that table being committed: a build reads a file, never a
 network service or a SNOMED release that moves under it.
 
-One generator per stream, and therefore one table per stream: each needs its own
-search constraint and its own context template, and a single file spanning
-several of them would be unreviewable. What they share is this loader and the
-shape it enforces.
+One generator per stream, and therefore one table per SOURCE CODE SYSTEM — not
+per field. Each needs its own search constraint and its own context template, and
+a single file spanning several of them would be unreviewable. What they share is
+this loader and the shape it enforces.
+
+Keyed by the source CodeSystem because two bound elements can share one.
+`mimic-medication-name` is bound to both MedicationRequest.medication[x] and
+MedicationAdministration.medication[x], which observe overlapping-but-different
+subsets of it. A table per field over those sets is a way to publish two
+different RxNorm concepts for one MIMIC drug name, in two ConceptMaps, with
+nothing in this repo to notice — the term-join tier would agree by construction,
+but code-search re-asked on the shared residual can answer differently. See
+load_table for what that costs the validation, and lib/builders.py for how a
+generator finds the union it has to cover.
 
 Two shapes, and a table picks one by the columns it declares. A SINGLE-TARGET
 table names its terminology in the column heading (`snomed_code`, `loinc_code`)
@@ -100,15 +110,32 @@ def is_mixed(target_columns):
 CURATED_COLUMNS = curated_columns()
 
 
-def load_table(path, expected, expected_name,
+def load_table(path, known, known_name,
                target_columns=DEFAULT_TARGET_COLUMNS, allowed_systems=None):
     """code -> row, validated against the IG's own enumeration.
 
-    `expected` is {code: display} from igsource.source_concepts. A row naming a
-    code the IG does not have is fatal, and a row whose display has drifted from
-    the IG's is fatal too — an item that got relabelled upstream is exactly one a
-    human should look at again. A code with no row is NOT fatal; it flows to the
-    unmapped CSV as an ordinary gap in the worklist.
+    `known` is {code: display} from igsource.source_concepts for the source
+    resource ENTIRE — before `observed_only` narrows it to the population this
+    stream maps. A row naming a code the IG resource does not have is fatal, and
+    a row whose display has drifted from the IG's is fatal too: an item that got
+    relabelled upstream is exactly one a human should look at again. A code with
+    no row is NOT fatal; it flows to the unmapped CSV as an ordinary gap in the
+    worklist.
+
+    WHY THE UN-NARROWED ENUMERATION, which is the change that makes a table
+    shareable. A table is keyed by its SOURCE CodeSystem, not by the field that
+    reads it, and `mimic-medication-name` is bound to two elements observing
+    overlapping-but-different subsets of it. Checked against one field's
+    population, a shared table's rows for the OTHER field would every one be
+    fatal. Checked against the resource, a row is stale when the IG no longer
+    has that code — which is the thing this check was ever for — and a row
+    belonging to a sibling population is simply never consulted, because
+    assemble.build_groups only looks up the codes in its own population.
+
+    What this deliberately stops detecting is a row for a code that exists but
+    that no field maps. That is now indistinguishable from a sibling's row, so
+    it is COUNTED rather than rejected — see assemble.build_groups, which prints
+    how many rows in a table belong to other populations.
 
     `allowed_systems` is required for a mixed-target table and ignored otherwise:
     a per-row system is data, so it is checked against the systems the source
@@ -116,14 +143,6 @@ def load_table(path, expected, expected_name,
     otherwise reach assemble.build_groups and open a ConceptMap group into a
     terminology this repo never agreed to map into — and check 4 of
     verify_mappings would then fail far away from the row that caused it.
-
-    NOTE for when tables become field-agnostic (keyed by source CodeSystem and
-    target system rather than by field): the "not in `expected`" check has to
-    move from the bound ValueSet to the CodeSystem, because a shared table
-    legitimately carries rows for codes this population's ValueSet does not
-    include. Staleness detection survives that move — a relabelled or deleted
-    itemid still fails — but the check as written here would reject every row
-    belonging to a sibling population.
     """
     if not path.is_file():
         sys.exit(f"  {path} not found — this population has no rule to fall "
@@ -160,13 +179,13 @@ def load_table(path, expected, expected_name,
                 sys.exit(f"{where}: blank mimic_code")
             if code in rows:
                 sys.exit(f"{where}: duplicate mimic_code")
-            if code not in expected:
-                sys.exit(f"{where}: not in {expected_name}. The IG no longer "
+            if code not in known:
+                sys.exit(f"{where}: not in {known_name}. The IG no longer "
                          f"has this code — delete the row.")
-            if row["mimic_display"] != expected[code]:
+            if row["mimic_display"] != known[code]:
                 sys.exit(f"{where}: display drifted. Table says "
                          f"{row['mimic_display']!r}, the IG says "
-                         f"{expected[code]!r}. Re-check the mapping, then "
+                         f"{known[code]!r}. Re-check the mapping, then "
                          f"update the row.")
             # Errors name the column as it is spelled in THIS file, not the
             # internal key, so the message points at something the reader can

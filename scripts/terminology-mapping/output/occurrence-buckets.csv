@@ -4,10 +4,10 @@ Condition.code,declined,0,0,0.0
 Condition.code,blocked-upstream,0,0,0.0
 Condition.code,no-stream-yet,0,0,0.0
 Condition.code,not-in-enumeration,0,0,0.0
-MedicationAdministration.medication[x],mapped,0,0,0.0
-MedicationAdministration.medication[x],declined,0,0,0.0
-MedicationAdministration.medication[x],blocked-upstream,0,0,0.0
-MedicationAdministration.medication[x],no-stream-yet,6135,36733071,100.0
+MedicationAdministration.medication[x],mapped,5633,33449927,91.06
+MedicationAdministration.medication[x],declined,500,3096896,8.43
+MedicationAdministration.medication[x],blocked-upstream,2,186248,0.51
+MedicationAdministration.medication[x],no-stream-yet,0,0,0.0
 MedicationAdministration.medication[x],not-in-enumeration,0,0,0.0
 MedicationRequest.medication[x],mapped,2732,1661240,88.19
 MedicationRequest.medication[x],declined,156,55297,2.94

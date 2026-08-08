@@ -51,12 +51,20 @@ SPECIMEN := $(TERM)/conceptmaps/build_specimen_cm_vs.py
 # term join answers most of it and the service sees only the residual. Also the
 # first scoped to the codes the data actually uses; see the builder's docstring.
 MEDICATION := $(TERM)/conceptmaps/build_medication_cm_vs.py
+# MedicationAdministration.medication[x] — the seventh bound element and the last
+# one in issue #18 with nothing built: 6,135 codes carrying 36.7M occurrences,
+# twenty times the sibling MedicationRequest field. A separate binding, and
+# almost a disjoint population of the same union, so a separate map. Built one
+# stream at a time in the order issue #27 records.
+MEDICATION_ADMINISTRATION := $(TERM)/conceptmaps/build_medication_administration_cm_vs.py
 VERIFY := $(TERM)/verify/verify_mappings.py
 VERIFY_CURATED := $(TERM)/verify/verify_curated_snomed.py
 D_ITEMS_TABLE := $(TERM)/conceptmaps/build_d_items_table.py
 MICRO_SUSC_TABLE := $(TERM)/conceptmaps/build_micro_susc_table.py
 MEDICATION_NAME_TABLE := $(TERM)/conceptmaps/build_medication_name_table.py
 MEDICATION_POE_IV_TABLE := $(TERM)/conceptmaps/build_medication_poe_iv_table.py
+FORMULARY_DRUG_TABLE := $(TERM)/conceptmaps/build_formulary_drug_table.py
+MEDICATION_ICU_TABLE := $(TERM)/conceptmaps/build_medication_icu_table.py
 MICRO_TEST_TABLE := $(TERM)/conceptmaps/build_micro_test_table.py
 OUTPUTEVENTS_TABLE := $(TERM)/conceptmaps/build_outputevents_table.py
 DATETIMEEVENTS_TABLE := $(TERM)/conceptmaps/build_datetimeevents_table.py
@@ -70,7 +78,7 @@ UPLOAD_MAPPINGS := $(TERM)/upload.py
 
 .PHONY: verify-inputs update-manifest terminology deploy-terminology \
         condition procedure observation observation-component specimen \
-        verify-mappings \
+        medication medication-administration verify-mappings \
         verify-curated d-items-table micro-susc-table micro-test-table \
         outputevents-table datetimeevents-table micro-org-table \
         labevents-table chartevents-table lab-fluid-table spec-type-table \
@@ -146,6 +154,17 @@ medication: ## build the MedicationRequest.medication[x] ConceptMap + target Val
 	uv run $(MEDICATION)
 	uv run $(STATISTICS) --quiet
 
+# Every stream reads its codes from a CodeSystem in input/resources/ or from
+# ValueSet-mimic-medication-with-unknown.json, which also ships with the IG, so
+# this needs no `sushi .` run even though the bound ValueSet is FSH-authored.
+#
+# INCOMPLETE ON PURPOSE while the streams are added one at a time. Only the
+# v3-NullFlavor code is present today, mapping to itself — see the builder's
+# docstring and issue #27 for the remaining four streams.
+medication-administration: ## build the MedicationAdministration.medication[x] ConceptMap + target ValueSet
+	uv run $(MEDICATION_ADMINISTRATION)
+	uv run $(STATISTICS) --quiet
+
 verify-mappings: ## check coverage + invariants; non-zero while codes are unmapped
 	uv run $(VERIFY)
 
@@ -164,7 +183,7 @@ statistics: ## per-stream coverage table from the field reports (csv + html + te
 
 # `statistics` before `verify-mappings`: the verifier is non-zero by design
 # while anything is unmapped, and the coverage table is most useful exactly then.
-mappings: condition procedure observation observation-component specimen medication statistics verify-mappings ## build every population, then verify
+mappings: condition procedure observation observation-component specimen medication medication-administration statistics verify-mappings ## build every population, then verify
 
 # NOT part of `mappings`: it needs the network, while the builders are offline
 # and instant. Run it when you touch a mapping table.
@@ -366,6 +385,33 @@ medication-name-table: ## regenerate conceptmaps/medication-name-standard.csv
 # See its docstring for why it is a script rather than a hand-written CSV.
 medication-poe-iv-table: ## regenerate conceptmaps/medication-poe-iv-standard.csv
 	uv run $(MEDICATION_POE_IV_TABLE)
+
+# The pharmacy formulary stream, 71.6% of MedicationAdministration.medication[x]
+# by data volume. It READS the term index that medication-name-table owns and
+# never refreshes it — the two share one constraint, and load_index asserts as
+# much — so there is no --refresh-index here.
+#
+#   make formulary-drug-table ARGS=--insecure                        generate
+#   make formulary-drug-table ARGS="--append --insecure"             fill gaps
+#   make formulary-drug-table ARGS="--only NACLFLUSH,HEPA5I --insecure"  probe
+formulary-drug-table: ## regenerate conceptmaps/formulary-drug-standard.csv
+	uv run $(FORMULARY_DRUG_TABLE) $(ARGS)
+
+# The ICU flowsheet stream, 24.4% of MedicationAdministration.medication[x] by
+# data volume. Reads the same term index as the two streams above and never
+# refreshes it, so there is no --refresh-index here either.
+#
+# It is the one generator whose SNOMED rung is NOT `<<105590001 |Substance|`:
+# asked for the ICU label `Solution` that constraint answers `8537005 |Solution|`
+# at confidence 1.00, a physical-state category on 561,934 occurrences. It is
+# also the one whose SNOMED gate proves membership of its ECL with
+# $validate-code rather than assuming it. Both are argued in its docstring.
+#
+#   make medication-icu-table ARGS=--insecure                     generate
+#   make medication-icu-table ARGS="--append --insecure"          fill gaps
+#   make medication-icu-table ARGS="--only 225158,225943 --insecure"  probe
+medication-icu-table: ## regenerate conceptmaps/medication-icu-standard.csv
+	uv run $(MEDICATION_ICU_TABLE) $(ARGS)
 
 # --- stage 3: publish, gated ------------------------------------------------ #
 

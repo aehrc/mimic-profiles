@@ -209,6 +209,7 @@ copyright). What `lib/` owns is everything that computes, assembles or writes:
 | `lib/notation.py` | dot insertion, `is_pcs_leaf`, `concept_properties` |
 | `lib/canonical.py` | system URLs, `UNVERSIONED_SYSTEMS`, canonical bases |
 | `lib/igsource.py` | `source_concepts` — reading codes from the IG |
+| `lib/builders.py` | which builders exist, and the union population a shared table serves |
 | `lib/curated.py` | loading and validating a mapping table |
 | `lib/built.py` | the built CodeSystems, release resolution, dating |
 | `lib/assemble.py` | declaration → ConceptMap groups, `unmatched` groups |
@@ -277,6 +278,53 @@ single mapping, and any single non-mapping, can be audited from the CSV alone.
 
 There is **no `equivalence` column**: every mapping a table supplies is
 `relatedto`, set by `lib/assemble.py`. See [Equivalence](#equivalence-relatedto-for-every-table-mapping).
+
+### A table is keyed by its source CodeSystem, not by the field that reads it
+
+Two bound elements can share a source CodeSystem. `mimic-medication-name` is one:
+`MedicationRequest.medication[x]` observes 2,888 of its codes and
+`MedicationAdministration.medication[x]` observes 3,620, overlapping in 2,600.
+
+A table per field over those sets is a way for this repo to publish **two
+different RxNorm concepts for one MIMIC drug name**, in two ConceptMaps, with
+nothing to notice. The deterministic term-join tier would agree by construction,
+but code-search re-asked on the shared residual can answer differently, and no
+check compares two tables. Detecting that afterwards is worse than preventing
+it: detection fires only once both generation runs have been paid for, and
+resolving the conflict is then a per-row human judgement — the thing the
+generated-table contract exists to remove.
+
+So the table is shared, and three things follow:
+
+- `load_table` validates rows against the source **CodeSystem's** enumeration
+  rather than one field's population. Staleness detection survives — a row
+  naming a code the IG no longer has is still fatal, as is display drift — and a
+  row belonging to a sibling population is simply never looked up, because
+  `build_groups` only resolves the codes in its own population. What it stops
+  detecting is a row for a code that exists and that no field maps; that is now
+  indistinguishable from a sibling's row, so it is **counted and printed**
+  rather than rejected.
+- The generation population is the **union**, discovered by `lib/builders.py`
+  from the builders themselves rather than declared in a list. A hand-kept list
+  is the registry the builder glob exists to avoid, and its failure mode is
+  silent: a stream added to a second field, its codes missing from the table,
+  and every one of them landing in the unmapped CSV as `no-row-in-curated-table`
+  while the build stays green.
+- `lib/stats.py` filters a table's provenance columns to the stream's own
+  population before computing the confidence spread and status breakdown.
+  Otherwise one field's `codesearch` block would describe the other's rows. For
+  a table serving one field the filter is a no-op, so every committed report
+  stays byte-identical.
+
+**`--append` is what makes sharing cheap.** Without it, adding a second field's
+codes means re-asking the service for the whole union and rewriting rows already
+generated, reviewed and committed. With it the committed rows are kept verbatim
+— including the declined ones, which are answers and are the most expensive
+calls in a run — and only codes with no row are asked. It refuses when the
+committed log's settings differ from the generator's constants: the log states
+one constraint, template and threshold for the whole table, so appending across
+a settings change would attribute today's settings to yesterday's rows. Moving a
+setting means regenerating in full.
 
 **Determinism comes from the table being committed**, not from the strings.
 `make mappings` reads the CSV and never a server, so it stays offline and

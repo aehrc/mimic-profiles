@@ -161,9 +161,36 @@ and it WRITES a build input. Determinism lives in the split — this runs by han
 its output is committed, and the build reads the committed CSV and never a
 server.
 
+THE TABLE IS SHARED BETWEEN TWO BOUND ELEMENTS, and its population is therefore
+not one field's. `mimic-medication-name` is bound to both
+MedicationRequest.medication[x] (2,888 observed codes) and
+MedicationAdministration.medication[x] (3,620), overlapping in 2,600. A table
+per field over those sets is a way to publish two different RxNorm concepts for
+one MIMIC drug name, in two ConceptMaps, with nothing in the repo to notice: the
+term-join tier would agree by construction, but code-search re-asked on the
+shared residual can answer differently, and no check compares two tables.
+
+So the table is keyed by its SOURCE CodeSystem, not by the field that reads it,
+and lib/builders.py discovers which fields those are rather than taking a list —
+adding this table to a third field extends the population with nothing to keep
+in step. lib/curated.py validates rows against the CodeSystem enumeration for
+the same reason; a row belonging to a sibling population is simply never looked
+up by the field that does not map that code.
+
+--append IS WHAT MAKES SHARING CHEAP. Without it, adding one field's 1,020 new
+codes means re-asking the service for all 3,908 and rewriting rows that were
+generated, reviewed and committed for a map that is already built. With it the
+committed rows are kept verbatim — including the declined ones, which are
+answers and are the most expensive calls in the run — and only codes with no row
+are asked. It refuses if the committed log's settings differ from this script's
+constants: the log states one constraint, template and threshold for the whole
+table, so appending across a settings change would attribute today's settings to
+yesterday's rows. Moving a setting means regenerating in full.
+
 Usage:
   uv run .../build_medication_name_table.py --refresh-index --insecure
   uv run .../build_medication_name_table.py --insecure
+  uv run .../build_medication_name_table.py --append --insecure
   uv run .../build_medication_name_table.py --only Senna,Insulin --insecure
 """
 
@@ -177,10 +204,8 @@ import hashlib
 # exactly the transport failures it exists to absorb.
 from http.client import HTTPException
 import json
-import re
 import sys
 import time
-import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -193,15 +218,18 @@ from common import fhirclient                                     # noqa: E402
 from common.cli import add_common_args, DEFAULT_CODE_SEARCH       # noqa: E402
 from common.fhirclient import configure_tls, http                 # noqa: E402
 from common import paths                                          # noqa: E402
+from conceptmaps.lib.builders import (describe_population,        # noqa: E402
+                                      table_population)
 from conceptmaps.lib.canonical import RXNORM, SNOMED, TABLE_DIR    # noqa: E402
-from conceptmaps.lib.igsource import (partition_observed,          # noqa: E402
-                                      source_concepts)
-
-ELEMENT = "MedicationRequest.medication[x]"
+# The keying and the index reader live in lib/ because the index is a COMMITTED
+# file that build_formulary_drug_table.py also joins against. Two copies of r3
+# that drifted by one character would not raise anything — the join would
+# silently shrink and the rows it used to settle would be re-answered by the
+# service. See lib/termindex.py.
+from conceptmaps.lib.termindex import (INDEX_MANIFEST, INDEX_TSV,  # noqa: E402
+                                       load_index, query_rungs, r3, salted)
 
 OUT_CSV = TABLE_DIR / "medication-name-standard.csv"
-INDEX_TSV = TABLE_DIR / "medication-rxnorm-term-index.tsv"
-INDEX_MANIFEST = TABLE_DIR / "medication-rxnorm-term-index.json"
 LOG_JSON = paths.OUTPUT / "medication-name-generation-log.json"
 
 # The RxNorm release the index and the table were built from. Asserted on every
@@ -241,64 +269,12 @@ CURATED_HEADER = [
 ]
 
 # --------------------------------------------------------------------------- #
-# Normalisation. See NORMALISATION IS ASYMMETRIC in the module docstring.
-# --------------------------------------------------------------------------- #
-
-# Stripped from BOTH ends only. Never from the middle: `Sulfameth/Trimethoprim`
-# and `Ipratropium-Albuterol` carry real internal punctuation.
-_EDGE = " \t\r\n.,;:*#\"'`-/\\+"
-
-# Token-wise, applied to whole tokens only, so `nascent` is not rewritten by the
-# `na` entry. Salt names are the one place MIMIC and RxNorm reliably disagree in
-# spelling rather than in meaning.
-_SALT = {
-    "hcl": "hydrochloride", "hbr": "hydrobromide", "na": "sodium",
-    "k": "potassium", "so4": "sulfate", "sulphate": "sulfate",
-    "phos": "phosphate", "mesilate": "mesylate",
-}
-
-_TRAILING_PAREN = re.compile(r"\s*\([^()]*\)\s*$")
-
-
-def r3(text):
-    """The base key: NFKC, casefold, collapse whitespace, strip edge punctuation."""
-    text = unicodedata.normalize("NFKC", text).casefold().strip()
-    text = " ".join(text.split())
-    return text.strip(_EDGE).strip()
-
-
-def salted(key):
-    """`r3` output with salt-name tokens canonicalised, or None if unchanged."""
-    tokens = [_SALT.get(t, t) for t in key.split(" ")]
-    out = " ".join(tokens)
-    return out if out != key else None
-
-
-def deparenthesised(key):
-    """`r3` output with one trailing parenthetical removed, or None if none."""
-    out = _TRAILING_PAREN.sub("", key).strip(_EDGE).strip()
-    return out if out and out != key else None
-
-
-def query_rungs(display):
-    """(rung name, key) in the order they are tried. First unique hit wins.
-
-    Q1/Q2 are lossless. Q3/Q4 discard a trailing qualifier and land on the
-    ingredient — recorded per row so a reader can tell the two apart.
-    """
-    base = r3(display)
-    rungs = [("Q1-exact", base)]
-    if (s := salted(base)):
-        rungs.append(("Q2-salt", s))
-    if (p := deparenthesised(base)):
-        rungs.append(("Q3-paren", p))
-        if (ps := salted(p)):
-            rungs.append(("Q4-paren-salt", ps))
-    return rungs
-
-
-# --------------------------------------------------------------------------- #
 # Tier 1: the term index.
+#
+# The keying (`r3`, `salted`, `deparenthesised`, `query_rungs`) and the reader
+# (`load_index`) moved to lib/termindex.py when a second generator began joining
+# against this same committed file. Refreshing it stays here, because this
+# script's CONSTRAINT_VCL is what decides which RxNorm concepts it covers.
 # --------------------------------------------------------------------------- #
 
 def constraint_url(vcl=None):
@@ -420,26 +396,6 @@ def _assert_version(expansion):
                      f"against {RXNORM}|{RXNORM_VERSION}. Refusing to mix "
                      f"releases: re-pin RXNORM_VERSION and --refresh-index "
                      f"deliberately, and review the resulting diff.")
-
-
-def load_index():
-    """The committed term index, with its manifest verified."""
-    if not INDEX_TSV.is_file():
-        sys.exit(f"  {INDEX_TSV.name} not found. Run with --refresh-index "
-                 f"first; it needs the network.")
-    manifest = json.loads(INDEX_MANIFEST.read_text())
-    actual = hashlib.sha256(INDEX_TSV.read_bytes()).hexdigest()
-    if manifest["tsv_sha256"] != actual:
-        sys.exit(f"  {INDEX_TSV.name} does not match tsv_sha256 in "
-                 f"{INDEX_MANIFEST.name}. A hand-edited index must not become "
-                 f"a mapping.\n    expected {manifest['tsv_sha256']}"
-                 f"\n    actual   {actual}")
-    index = {}
-    with open(INDEX_TSV, newline="") as fh:
-        for line in fh:
-            key, _, rxcui = line.rstrip("\n").partition("\t")
-            index[key] = rxcui
-    return index, manifest
 
 
 # --------------------------------------------------------------------------- #
@@ -613,13 +569,59 @@ def declined_comment(row):
 # --------------------------------------------------------------------------- #
 
 def ig_codes():
-    """The observed source codes, read from the IG through the one reader."""
-    from conceptmaps.build_medication_cm_vs import SOURCES
+    """The observed source codes for EVERY field that reads this table.
 
-    source = next(s for s in SOURCES if s.get("table") == OUT_CSV)
-    observed, _ = partition_observed(
-        source, ELEMENT, list(source_concepts(source)))
-    return dict(observed)
+    Not one element's population. `mimic-medication-name` is bound to both
+    MedicationRequest.medication[x] and MedicationAdministration.medication[x],
+    which observe overlapping-but-different subsets of it, and one table over
+    the union is what stops this repo publishing two different RxNorm concepts
+    for one MIMIC drug name. lib/builders.py discovers which fields those are
+    rather than taking a list, so adding the table to a third field extends the
+    population with nothing to keep in step.
+    """
+    return table_population(OUT_CSV)
+
+
+def read_committed():
+    """The committed table as {code: row}, or {} if there is none yet."""
+    if not OUT_CSV.is_file():
+        return {}
+    with open(OUT_CSV, newline="") as fh:
+        return {row["mimic_code"]: row for row in csv.DictReader(fh)}
+
+
+def assert_same_settings():
+    """Refuse to append onto rows generated under different settings.
+
+    The generation log records constraint, template and threshold ONCE, at top
+    level, and lib/stats.py reads them as the settings that produced every row.
+    Appending to a table whose committed rows predate a settings change would
+    make that a lie — the log would describe the new rows and be quoted for all
+    of them. Fail closed instead, the same shape as the RxNorm version assertion
+    the index already makes: a full regeneration is the correct response to
+    moving a setting.
+    """
+    if not LOG_JSON.is_file():
+        sys.exit(f"  --append needs {LOG_JSON.name} to check the committed "
+                 f"rows were generated under today's settings, and it is "
+                 f"missing. Run a full generation instead.")
+    log = json.loads(LOG_JSON.read_text())
+    current = {"constraint_vcl": CONSTRAINT_VCL,
+               "ingredient_fallback_vcl": INGREDIENT_VCL,
+               "snomed_fallback_ecl": SNOMED_ECL,
+               "template": TEMPLATE,
+               "confidence_threshold": CONFIDENCE_THRESHOLD,
+               "rxnorm_version": RXNORM_VERSION}
+    drifted = {k: (log.get(k), v) for k, v in current.items()
+               if log.get(k) != v}
+    if drifted:
+        detail = "\n".join(f"      {k}: log {was!r} -> now {now!r}"
+                            for k, (was, now) in sorted(drifted.items()))
+        sys.exit(f"  --append refused: the committed rows were generated under "
+                 f"different settings.\n{detail}\n"
+                 f"    The log states one set of settings for the whole table, "
+                 f"so appending would attribute today's to yesterday's rows. "
+                 f"Regenerate the table in full.")
 
 
 def report(rows):
@@ -659,7 +661,13 @@ def main():
     ap.add_argument("--workers", type=int, default=8,
                     help="concurrent code-search calls (default: %(default)s)")
     ap.add_argument("--timeout", type=int, default=120)
-    ap.add_argument("--only", help="comma-separated MIMIC codes, for probing")
+    ap.add_argument("--only", help="comma-separated MIMIC codes, for probing. "
+                                   "WITHOUT --append this REWRITES the table "
+                                   "to just those rows")
+    ap.add_argument("--append", action="store_true",
+                    help="keep every committed row and ask the service only "
+                         "for codes that have none. Refuses if the committed "
+                         "log's settings differ from this script's")
     args = ap.parse_args()
 
     fhir_base = (args.fhir_base or "").rstrip("/")
@@ -671,18 +679,42 @@ def main():
         refresh_index(fhir_base)
         return 0
 
-    index, manifest = load_index()
+    index, manifest = load_index(CONSTRAINT_VCL)
     print(f"  term index: {len(index):,} keys, {manifest['system']}|"
           f"{manifest['version']}", file=sys.stderr)
 
     concepts = ig_codes()
+    for field, element, count in describe_population(OUT_CSV):
+        print(f"  {field:26s} {element:42s} {count:>6,} observed",
+              file=sys.stderr)
+    print(f"  {len(concepts):,} distinct source code(s) across "
+          f"{len(describe_population(OUT_CSV))} field(s)", file=sys.stderr)
+
     if args.only:
         wanted = {c.strip() for c in args.only.split(",")}
         concepts = {k: v for k, v in concepts.items() if k in wanted}
         if missing := wanted - set(concepts):
             sys.exit(f"  --only names code(s) not in the observed population: "
                      f"{sorted(missing)}")
-    print(f"  {len(concepts):,} observed source code(s)", file=sys.stderr)
+
+    carried = {}
+    if args.append:
+        assert_same_settings()
+        carried = read_committed()
+        # Carried rows are kept verbatim, including the declined ones: a row
+        # that says the service found nothing is an answer, and re-asking it
+        # would spend the most expensive calls in the run re-deriving it.
+        concepts = {k: v for k, v in concepts.items() if k not in carried}
+        print(f"  --append: {len(carried):,} committed row(s) kept, "
+              f"{len(concepts):,} to generate", file=sys.stderr)
+        if not concepts:
+            print("  nothing to do — every code already has a row.",
+                  file=sys.stderr)
+            return 0
+    elif args.only:
+        print(f"  WARNING: --only without --append rewrites {OUT_CSV.name} to "
+              f"{len(concepts)} row(s). Add --append to keep the rest.",
+              file=sys.stderr)
 
     rows, failed = [], []
     with concurrent.futures.ThreadPoolExecutor(args.workers) as pool:
@@ -708,6 +740,9 @@ def main():
     for row in rows:
         if not row["target_code"]:
             row["comment"] = declined_comment(row)
+    # Committed rows first so a generated row can never silently replace one;
+    # `concepts` was already narrowed to the codes that had none.
+    rows = list(carried.values()) + rows
     rows.sort(key=lambda r: r["mimic_code"])
 
     with open(OUT_CSV, "w", newline="") as fh:
@@ -719,7 +754,8 @@ def main():
 
     LOG_JSON.parent.mkdir(parents=True, exist_ok=True)
     LOG_JSON.write_text(json.dumps({
-        "element": ELEMENT,
+        "elements": [element for _, element, _ in
+                     describe_population(OUT_CSV)],
         "constraint_vcl": CONSTRAINT_VCL,
         "constraint_url": constraint_url(),
         "ingredient_fallback_vcl": INGREDIENT_VCL,

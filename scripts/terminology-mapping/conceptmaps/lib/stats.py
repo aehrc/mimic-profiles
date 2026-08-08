@@ -32,6 +32,8 @@ import csv
 import json
 import statistics
 
+from .igsource import partition_observed, source_concepts
+
 # Cumulative and inclusive: a proposal counts in every rung at least as wide as
 # its distance below the gate, so `0.1` reads as "what a threshold lowered by
 # 0.1 would have accepted" — including a proposal sitting exactly on that new
@@ -145,12 +147,23 @@ def _rung_key(rung):
     return f"{rung:g}"
 
 
-def enrich(streams, sources, out_dir):
-    """Add the codesearch block to every table-backed stream, in place."""
+def enrich(streams, sources, out_dir, element):
+    """Add the codesearch block to every table-backed stream, in place.
+
+    Rows are filtered to the stream's OWN population first. A table shared
+    between two bound elements holds rows for both, and a confidence spread or
+    status breakdown computed over all of them would describe neither field:
+    `mimic-medication-name` alone would report MedicationRequest's numbers over
+    MedicationAdministration's rows. For a table serving one field the filter is
+    a no-op and every committed report stays byte-identical.
+    """
     for stream, source in zip(streams, sources):
         if "table" not in source:
             continue
-        rows = _read(source["table"])
+        population, _ = partition_observed(
+            source, element, list(source_concepts(source)))
+        mine = {code for code, _ in population}
+        rows = [r for r in _read(source["table"]) if r["mimic_code"] in mine]
         settings = _settings(_log_path(source["table"], out_dir))
         block = _provenance(rows)
         block.update(settings)

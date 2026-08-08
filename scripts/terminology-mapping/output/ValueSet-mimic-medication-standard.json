@@ -7,7 +7,7 @@
  "title": "MIMIC MedicationRequest medications as RxNorm and SNOMED CT",
  "status": "active",
  "experimental": false,
- "date": "2026-08-07",
+ "date": "2026-08-08",
  "publisher": "CSIRO",
  "description": "The RxNorm and SNOMED CT concepts every mapped MIMIC drug name resolves to. Derived from ConceptMap/mimic-medication-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Two systems, because one does not suffice. RxNorm carries the drug products and is the target for all but a handful of codes; SNOMED CT substances cover the labels naming a drug CLASS, which RxNorm does not model \u2014 `Insulin` is the largest, and RxNorm 20231106 has 49 specific insulins and no generic ingredient for it. The RxNorm members were drawn from the ingredient, brand and generic-product term types and deliberately NOT from branded drug products: that term type is where the search reliably asserted a brand, pack size or strength the MIMIC record never stated. The SNOMED members are all inside `<<105590001 |Substance|` and in the international core, which is what keeps this value set resolvable on a server other than the one it was built against. Neither include carries a version. This repo builds no RxNorm or SNOMED release, so pinning one would name something it cannot reproduce; the RxNorm release the table was generated against is recorded in output/medication-name-generation-log.json, where it is evidence rather than a promise. Note that several MIMIC codes legitimately share a member: MIMIC records case variants as distinct codes, so `LORazepam` and `Lorazepam` both resolve to RxCUI 6470 and cannot be told apart after translation.",
  "compose": {
