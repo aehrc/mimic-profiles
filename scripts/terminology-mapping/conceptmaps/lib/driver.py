@@ -1,11 +1,14 @@
-"""The shared build: declaration in, four files out.
+"""The shared build: declaration in, three files out.
 
-Every builder calls run() with its SOURCES and META. What it produces:
+Every builder calls run() with its stream names and META. What it produces:
 
     ConceptMap-<id>.json                  the map
     ValueSet-<target id>.json             the enumerated target value set
-    unmapped-<field>.csv                  what nothing could map, with reasons
-    <field>-report.json                   coverage, comparable across populations
+    <field>-report.json                   per-map totals and canonicals
+
+The per-stream artefacts — unmapped-<stream>.csv and output/stream-report.json
+— are written once per stream by build_stream_reports.py, not once per
+consuming map; `make mappings` runs both.
 
 Offline by design. There is no --fhir-base and no network: a builder is a pure
 function of the committed inputs, which is what makes it fast enough to re-run
@@ -19,19 +22,18 @@ import json
 import sys
 from pathlib import Path
 
-from common import paths
+from common import occurrences, paths
 
 from .assemble import build_groups, unmatched_groups
 from .built import default_date, load_built
 from .canonical import CANONICAL_BASE, PUBLISHER
 from .igsource import source_paths
 from .project import project
-from .report import write_report, write_unmapped
-from .stats import enrich
+from .report import write_report
 
 
-def build_conceptmap(sources, meta, built, date, version):
-    groups, unmapped, streams = build_groups(sources, meta["element"], built)
+def build_conceptmap(sources, meta, built, date, version, observed):
+    groups, unmapped = build_groups(sources, built, observed)
     groups += unmatched_groups(unmapped)
     resource = {
         "resourceType": "ConceptMap",
@@ -52,7 +54,7 @@ def build_conceptmap(sources, meta, built, date, version):
     }
     if meta.get("copyright"):
         resource["copyright"] = meta["copyright"]
-    return resource, unmapped, streams
+    return resource, unmapped
 
 
 def report_groups(resource):
@@ -91,10 +93,12 @@ def run(field_key, sources, meta, version, extras=None):
     print(f"== {field_key} ({meta['element']}) ==", file=sys.stderr)
     print("loading built CodeSystems ...", file=sys.stderr)
     built = load_built(args.out_dir)
+    # Optional: only changes which backlog reason an un-tabled code reports.
+    # None (artifact absent) is a legitimate state; see assemble.resolve_source.
+    observed = occurrences.observed_anywhere()
 
-    conceptmap, unmapped, streams = build_conceptmap(
-        sources, meta, built, date, args.version)
-    enrich(streams, sources, args.out_dir, meta["element"])
+    conceptmap, unmapped = build_conceptmap(
+        sources, meta, built, date, args.version, observed)
     total = sum(len(g["element"]) for g in conceptmap["group"])
     print(f"\n  {conceptmap['url']}", file=sys.stderr)
     report_groups(conceptmap)
@@ -116,16 +120,13 @@ def run(field_key, sources, meta, version, extras=None):
               f"{include.get('version', '(unversioned)')}   "
               f"{len(include['concept']):,} codes", file=sys.stderr)
 
-    csv_path = write_unmapped(field_key, unmapped, args.out_dir)
     if unmapped:
-        print(f"  UNMAPPED: {len(unmapped)} code(s) -> {csv_path.name}",
-              file=sys.stderr)
-    else:
-        print(f"  unmapped: none ({csv_path.name} is empty)", file=sys.stderr)
+        print(f"  UNMAPPED: {len(unmapped)} code(s) — reasons in the "
+              f"per-stream worklists (unmapped-<stream>.csv)", file=sys.stderr)
 
     report_path, _ = write_report(
         field_key, meta["element"], conceptmap, valueset, unmapped,
-        args.out_dir, by_stream=streams,
+        args.out_dir, streams=[s.get("stream", "") for s in sources],
         extras=extras(conceptmap, unmapped) if extras else None)
     print(f"  wrote {report_path.name}", file=sys.stderr)
     return 0

@@ -7,7 +7,7 @@
  "title": "MIMIC merged Observation codes as standard terminology",
  "status": "active",
  "experimental": false,
- "date": "2026-08-07",
+ "date": "2026-08-10",
  "publisher": "CSIRO",
  "description": "Every code the merged MIMIC Observation profile admits on Observation.code, in standard terminology. Derived from ConceptMap/mimic-observation-merged-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Neither the LOINC nor the SNOMED CT include carries a version: this repo builds no LOINC or SNOMED release, so pinning one would name something it cannot reproduce. Grows as each code-search stream is added to the map.",
  "compose": {
@@ -18,6 +18,10 @@
      {
       "code": "100180-9",
       "display": "Assistive mobility devices used"
+     },
+     {
+      "code": "100711-1",
+      "display": "Borrelia burgdorferi.VlsE1+pepC10 Ab [Units/volume] in Serum by Immunoassay"
      },
      {
       "code": "100822-6",
@@ -116,10 +120,6 @@
       "display": "Platelet clump [Presence] in Blood"
      },
      {
-      "code": "104701-8",
-      "display": "Blood smear finding [Identifier] in Blood"
-     },
-     {
       "code": "104704-2",
       "display": "Acanthocytes [Presence] in Blood"
      },
@@ -172,6 +172,10 @@
       "display": "Schistocytes [Presence] in Blood"
      },
      {
+      "code": "104786-9",
+      "display": "Alpha 1 globulin [Mass/volume] in Serum or Plasma"
+     },
+     {
       "code": "104795-0",
       "display": "Sickle cells [Presence] in Blood"
      },
@@ -186,10 +190,6 @@
      {
       "code": "104800-8",
       "display": "Spherocytes [Presence] in Blood"
-     },
-     {
-      "code": "104802-4",
-      "display": "Variant lymphocytes [Presence] in Blood"
      },
      {
       "code": "104816-4",
@@ -208,10 +208,6 @@
       "display": "Lutropin [Units/volume] in Serum or Plasma"
      },
      {
-      "code": "105054-1",
-      "display": "Crystals [type] in Urine sediment by Microscopy"
-     },
-     {
       "code": "105060-8",
       "display": "Trichomonas vaginalis [Presence] in Specimen"
      },
@@ -226,6 +222,10 @@
      {
       "code": "105091-3",
       "display": "Hyaline casts [#/volume] in Urine"
+     },
+     {
+      "code": "105095-4",
+      "display": "Transitional cells [#/area] in Urine sediment"
      },
      {
       "code": "105096-2",
@@ -428,10 +428,6 @@
       "display": "Tacrolimus [Mass/volume] in Blood"
      },
      {
-      "code": "11279-7",
-      "display": "Urine sediment comments by Light microscopy Narrative"
-     },
-     {
       "code": "11362-1",
       "display": "History of Gastrointestinal system disorders"
      },
@@ -556,8 +552,8 @@
       "display": "Mycobacterium tuberculosis DNA [Presence] in Specimen by NAA with probe detection"
      },
      {
-      "code": "13977-4",
-      "display": "Gamma globulin/Protein.total in Cerebral spinal fluid by Electrophoresis"
+      "code": "13965-9",
+      "display": "Homocysteine [Moles/volume] in Serum or Plasma"
      },
      {
       "code": "13995-6",
@@ -566,10 +562,6 @@
      {
       "code": "14000-4",
       "display": "Urea nitrogen [Mass/volume] in Cerebral spinal fluid"
-     },
-     {
-      "code": "14018-6",
-      "display": "CD23 cells/cells in Blood"
      },
      {
       "code": "14113-5",
@@ -594,6 +586,10 @@
      {
       "code": "14196-0",
       "display": "Reticulocytes [#/volume] in Blood"
+     },
+     {
+      "code": "14236-4",
+      "display": "Mitochondria Ab [Presence] in Serum"
      },
      {
       "code": "14241-4",
@@ -660,6 +656,10 @@
       "display": "Cholesterol [Mass/volume] in Synovial fluid"
      },
      {
+      "code": "14446-9",
+      "display": "Triglyceride [Mass/volume] in Cerebral spinal fluid"
+     },
+     {
       "code": "14447-7",
       "display": "Triglyceride [Mass/volume] in Peritoneal fluid"
      },
@@ -668,16 +668,12 @@
       "display": "Triglyceride [Mass/volume] in Synovial fluid"
      },
      {
+      "code": "14626-6",
+      "display": "Beta-2-Microglobulin [Moles/volume] in Serum"
+     },
+     {
       "code": "14725-6",
       "display": "[Type] of Body fluid"
-     },
-     {
-      "code": "14803-1",
-      "display": "Lactate dehydrogenase [Enzymatic activity/volume] in Body fluid by Lactate to pyruvate reaction"
-     },
-     {
-      "code": "14887-4",
-      "display": "Primidone [Moles/volume] in Serum or Plasma"
      },
      {
       "code": "14976-5",
@@ -692,8 +688,12 @@
       "display": "Methemoglobin [Mass/volume] in Blood"
      },
      {
-      "code": "15128-2",
-      "display": "Gamma globulin/Protein.total in Synovial fluid by Electrophoresis"
+      "code": "15152-2",
+      "display": "Bilirubin.conjugated [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "15154-8",
+      "display": "Blasts [Presence] in Blood by Automated count"
      },
      {
       "code": "15155-5",
@@ -730,10 +730,6 @@
      {
       "code": "15309-8",
       "display": "Urinary bladder Volume by derived from height, width and length (US)"
-     },
-     {
-      "code": "16128-1",
-      "display": "Hepatitis C virus Ab [Presence] in Serum"
      },
      {
       "code": "16137-2",
@@ -776,12 +772,12 @@
       "display": "Fat [Mass] in Stool"
      },
      {
-      "code": "16933-4",
-      "display": "Hepatitis B virus core Ab [Presence] in Serum"
-     },
-     {
       "code": "16935-9",
       "display": "Hepatitis B virus surface Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "1694-9",
+      "display": "5-Hydroxyindoleacetate [Mass/volume] in Urine"
      },
      {
       "code": "17100-9",
@@ -812,10 +808,6 @@
       "display": "Adenosine diphosphate [Mass/volume] in Serum"
      },
      {
-      "code": "17351-8",
-      "display": "Neutrophil cytoplasmic Ab [Presence] in Serum"
-     },
-     {
       "code": "1742-6",
       "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
      },
@@ -834,6 +826,10 @@
      {
       "code": "1749-1",
       "display": "Albumin [Mass/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "17497-9",
+      "display": "Alpha 2 globulin [Mass/volume] in Body fluid by Electrophoresis"
      },
      {
       "code": "1751-7",
@@ -860,10 +856,6 @@
       "display": "Hematocrit [Volume Fraction] of Urine by calculation"
      },
      {
-      "code": "17814-5",
-      "display": "Alpha 2 globulin/Protein.total in Body fluid by Electrophoresis"
-     },
-     {
       "code": "17818-6",
       "display": "Gamma globulin/Protein.total in Body fluid by Electrophoresis"
      },
@@ -874,10 +866,6 @@
      {
       "code": "17823-6",
       "display": "CD45 (Lymphs) cells/cells in Body fluid"
-     },
-     {
-      "code": "17824-4",
-      "display": "CD3+CD8+ (T8 suppressor) cells/cells in Body fluid"
      },
      {
       "code": "17828-5",
@@ -936,8 +924,8 @@
       "display": "Amylase [Enzymatic activity/volume] in Urine"
      },
      {
-      "code": "18182-6",
-      "display": "Osmolality of Serum or Plasma by calculated by sum of electrolytes"
+      "code": "18225-3",
+      "display": "Erythrocyte shape [Morphology] in Blood"
      },
      {
       "code": "1825-9",
@@ -956,10 +944,6 @@
       "display": "Donath Landsteiner Ab [Presence] in Blood"
      },
      {
-      "code": "1832-5",
-      "display": "Alpha-1-Fetoprotein [Mass/volume] in Amniotic fluid"
-     },
-     {
       "code": "1834-1",
       "display": "Alpha-1-Fetoprotein [Mass/volume] in Serum or Plasma"
      },
@@ -970,6 +954,10 @@
      {
       "code": "18483-8",
       "display": "Yeast [Presence] in Genital specimen by Organism specific culture"
+     },
+     {
+      "code": "1854-9",
+      "display": "Androstenedione [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "18860-7",
@@ -1064,6 +1052,14 @@
       "display": "Vancomycin [Susceptibility]"
      },
      {
+      "code": "19080-1",
+      "display": "Choriogonadotropin [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "19114-8",
+      "display": "Lamellar bodies [#/volume] in Amniotic fluid"
+     },
+     {
       "code": "19124-7",
       "display": "Magnesium [Mass/volume] in Urine"
      },
@@ -1078,6 +1074,10 @@
      {
       "code": "19162-7",
       "display": "Varicella zoster virus IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "19197-3",
+      "display": "Prostate specific Ag [Moles/volume] in Serum or Plasma"
      },
      {
       "code": "1920-8",
@@ -1096,20 +1096,16 @@
       "display": "Base excess in Arterial blood by calculation"
      },
      {
+      "code": "19261-7",
+      "display": "Amphetamines [Presence] in Urine by Screen method"
+     },
+     {
       "code": "19270-8",
       "display": "Barbiturates [Presence] in Urine by Screen method"
      },
      {
       "code": "19295-5",
       "display": "Opiates [Presence] in Urine by Screen method"
-     },
-     {
-      "code": "19343-3",
-      "display": "Amphetamine [Presence] in Urine by Screen method"
-     },
-     {
-      "code": "1952-1",
-      "display": "Beta-2-Microglobulin [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "1959-6",
@@ -1124,10 +1120,6 @@
       "display": "Bicarbonate [Moles/volume] in Urine"
      },
      {
-      "code": "1965-3",
-      "display": "Bile [Presence] in Stool"
-     },
-     {
       "code": "19670-9",
       "display": "Phenothiazines [Presence] in Urine by Screen method"
      },
@@ -1138,10 +1130,6 @@
      {
       "code": "1970-3",
       "display": "Bilirubin.delta [Mass/volume] in Serum or Plasma"
-     },
-     {
-      "code": "1971-1",
-      "display": "Bilirubin.indirect [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "1973-7",
@@ -1284,6 +1272,10 @@
       "display": "Estriol (E3).unconjugated [Multiple of the median] in Serum or Plasma"
      },
      {
+      "code": "20475-0",
+      "display": "Cytomegalovirus IgG Ab [Interpretation] in Serum or Plasma"
+     },
+     {
       "code": "20476-8",
       "display": "CD1a cells/cells in Blood"
      },
@@ -1336,6 +1328,10 @@
       "display": "Vancomycin [Mass/volume] in Serum or Plasma"
      },
      {
+      "code": "20596-3",
+      "display": "CD22 cells/cells in Specimen"
+     },
+     {
       "code": "20598-9",
       "display": "CD3 cells [#/volume] in Specimen"
      },
@@ -1350,6 +1346,10 @@
      {
       "code": "2070-1",
       "display": "Chloride [Moles/volume] in Cerebral spinal fluid"
+     },
+     {
+      "code": "2072-7",
+      "display": "Chloride [Moles/volume] in Body fluid"
      },
      {
       "code": "2075-0",
@@ -1384,10 +1384,6 @@
       "display": "HIV 1 RNA [#/volume] (viral load) in Serum or Plasma by Probe"
      },
      {
-      "code": "21012-0",
-      "display": "CD15 cells [#/volume] in Blood"
-     },
-     {
       "code": "21013-8",
       "display": "CD22 cells [#/volume] in Blood"
      },
@@ -1408,8 +1404,8 @@
       "display": "Neutrophil cytoplasmic Ab [Titer] in Serum"
      },
      {
-      "code": "21032-8",
-      "display": "Thrombin time [Interpretation] in Blood by Coagulation assay"
+      "code": "21033-6",
+      "display": "Yeast.budding [Presence] in Urine sediment"
      },
      {
       "code": "2106-3",
@@ -1424,16 +1420,16 @@
       "display": "Choriogonadotropin [Presence] in Serum or Plasma"
      },
      {
+      "code": "2119-6",
+      "display": "Choriogonadotropin [Moles/volume] in Serum or Plasma"
+     },
+     {
       "code": "2120-4",
       "display": "Chylomicrons [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "2132-9",
       "display": "Cobalamin (Vitamin B12) [Mass/volume] in Serum or Plasma"
-     },
-     {
-      "code": "21377-7",
-      "display": "Magnesium [Mass/volume] in Blood"
      },
      {
       "code": "2141-0",
@@ -1452,16 +1448,16 @@
       "display": "Cortisol [Mass/volume] in Urine"
      },
      {
+      "code": "2155-0",
+      "display": "Creatine kinase.MM [Enzymatic activity/volume] in Serum or Plasma by Electrophoresis"
+     },
+     {
       "code": "2157-6",
       "display": "Creatine kinase [Enzymatic activity/volume] in Serum or Plasma"
      },
      {
       "code": "2160-0",
       "display": "Creatinine [Mass/volume] in Serum or Plasma"
-     },
-     {
-      "code": "2161-8",
-      "display": "Creatinine [Mass/volume] in Urine"
      },
      {
       "code": "21613-5",
@@ -1476,12 +1472,12 @@
       "display": "Dehydroepiandrosterone sulfate (DHEA-S) [Mass/volume] in Serum or Plasma"
      },
      {
-      "code": "22064-0",
-      "display": "Alpha 1 globulin [Mass/volume] in Urine"
-     },
-     {
       "code": "22128-3",
       "display": "Borrelia burgdorferi IgG Ab [Presence] in Serum"
+     },
+     {
+      "code": "22131-7",
+      "display": "Borrelia burgdorferi IgG+IgM Ab [Presence] in Serum"
      },
      {
       "code": "22135-8",
@@ -1490,10 +1486,6 @@
      {
       "code": "22244-8",
       "display": "Cytomegalovirus IgG Ab [Presence] in Serum or Plasma"
-     },
-     {
-      "code": "2230-1",
-      "display": "EPINEPHrine [Mass/volume] in Plasma"
      },
      {
       "code": "22310-7",
@@ -1520,12 +1512,12 @@
       "display": "Estradiol (E2) [Mass/volume] in Serum or Plasma"
      },
      {
-      "code": "22496-4",
-      "display": "Rubella virus Ab [Presence] in Serum"
-     },
-     {
       "code": "2250-9",
       "display": "Estriol (E3).unconjugated [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2251-7",
+      "display": "Estriol (E3) [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "2252-5",
@@ -1568,6 +1560,10 @@
       "display": "Gastrin [Mass/volume] in Serum or Plasma"
      },
      {
+      "code": "2336-6",
+      "display": "Globulin [Mass/volume] in Serum"
+     },
+     {
       "code": "2339-0",
       "display": "Glucose [Mass/volume] in Blood"
      },
@@ -1596,8 +1592,8 @@
       "display": "Glucose [Mass/volume] in Synovial fluid"
      },
      {
-      "code": "2349-9",
-      "display": "Glucose [Presence] in Urine"
+      "code": "2350-7",
+      "display": "Glucose [Mass/volume] in Urine"
      },
      {
       "code": "23656-2",
@@ -1622,6 +1618,10 @@
      {
       "code": "24351-9",
       "display": "Protein electrophoresis panel - Serum or Plasma"
+     },
+     {
+      "code": "24352-7",
+      "display": "Protein electrophoresis panel - Cerebral spinal fluid"
      },
      {
       "code": "24373-3",
@@ -1676,6 +1676,10 @@
       "display": "Oval fat bodies (globules) [Presence] in Urine sediment by Light microscopy"
      },
      {
+      "code": "25165-2",
+      "display": "CD23 cells [#/volume] in Blood"
+     },
+     {
       "code": "25303-9",
       "display": "Alpha 1 antitrypsin [Mass/mass] in Stool"
      },
@@ -1714,6 +1718,10 @@
      {
       "code": "25700-6",
       "display": "Immunofixation for Serum or Plasma"
+     },
+     {
+      "code": "2593-2",
+      "display": "Magnesium [Moles/volume] in Blood"
      },
      {
       "code": "2612-0",
@@ -1788,6 +1796,10 @@
       "display": "Lymphocytes [#/volume] in Body fluid"
      },
      {
+      "code": "26477-0",
+      "display": "Variant lymphocytes [#/volume] in Blood"
+     },
+     {
       "code": "26478-8",
       "display": "Lymphocytes/Leukocytes in Blood"
      },
@@ -1802,10 +1814,6 @@
      {
       "code": "26485-3",
       "display": "Monocytes/Leukocytes in Blood"
-     },
-     {
-      "code": "26498-6",
-      "display": "Myelocytes/Leukocytes in Blood"
      },
      {
       "code": "26499-4",
@@ -1836,6 +1844,10 @@
       "display": "Band form neutrophils/Leukocytes in Blood"
      },
      {
+      "code": "26510-8",
+      "display": "Band form neutrophils/Leukocytes in Body fluid"
+     },
+     {
       "code": "26511-6",
       "display": "Neutrophils/Leukocytes in Blood"
      },
@@ -1844,8 +1856,8 @@
       "display": "Platelets [#/volume] in Blood"
      },
      {
-      "code": "26523-1",
-      "display": "Promyelocytes [#/volume] in Blood"
+      "code": "26524-9",
+      "display": "Promyelocytes/Leukocytes in Blood"
      },
      {
       "code": "26728-6",
@@ -1888,16 +1900,16 @@
       "display": "Oxygen [Partial pressure] in Body fluid"
      },
      {
-      "code": "27071-0",
-      "display": "CD45 (Lymphs) cells [#/volume] in Blood"
-     },
-     {
       "code": "2708-6",
       "display": "Oxygen saturation in Arterial blood"
      },
      {
       "code": "2713-6",
       "display": "Oxygen saturation Calculated from oxygen partial pressure in Blood"
+     },
+     {
+      "code": "27184-1",
+      "display": "Alpha 1 globulin [Presence] in Urine"
      },
      {
       "code": "2731-8",
@@ -1942,6 +1954,10 @@
      {
       "code": "2778-9",
       "display": "Phosphate [Mass/volume] in Urine"
+     },
+     {
+      "code": "27811-9",
+      "display": "Antithrombin actual/normal in Platelet poor plasma by Chromogenic method"
      },
      {
       "code": "2784-7",
@@ -2008,6 +2024,10 @@
       "display": "Prolactin [Mass/volume] in Serum or Plasma"
      },
      {
+      "code": "28539-5",
+      "display": "MCH [Entitic mass]"
+     },
+     {
       "code": "28540-3",
       "display": "MCHC [Entitic Mass/volume] in Red Blood Cells"
      },
@@ -2018,10 +2038,6 @@
      {
       "code": "28549-4",
       "display": "Yersinia sp identified in Stool by Organism specific culture"
-     },
-     {
-      "code": "2857-1",
-      "display": "Prostate specific Ag [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "2864-7",
@@ -2042,6 +2058,14 @@
      {
       "code": "2872-0",
       "display": "Beta globulin [Mass/volume] in Synovial fluid by Electrophoresis"
+     },
+     {
+      "code": "2873-8",
+      "display": "Gamma globulin [Mass/volume] in Cerebral spinal fluid by Electrophoresis"
+     },
+     {
+      "code": "2875-3",
+      "display": "Gamma globulin [Mass/volume] in Synovial fluid by Electrophoresis"
      },
      {
       "code": "2880-3",
@@ -2144,8 +2168,8 @@
       "display": "Toxicology panel - Blood"
      },
      {
-      "code": "29604-6",
-      "display": "Cytomegalovirus DNA [#/volume] (viral load) in Blood by NAA with probe detection"
+      "code": "29590-7",
+      "display": "Cytomegalovirus DNA [Mass/volume] (viral load) in Blood by Probe"
      },
      {
       "code": "2963-7",
@@ -2162,6 +2186,10 @@
      {
       "code": "2986-8",
       "display": "Testosterone [Mass/volume] in Serum or Plasma"
+     },
+     {
+      "code": "2990-0",
+      "display": "Testosterone.free+weakly bound [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "2991-8",
@@ -2288,6 +2316,10 @@
       "display": "Monocytes [#/volume] in Synovial fluid"
      },
      {
+      "code": "30446-9",
+      "display": "Myelocytes [#/volume] in Blood"
+     },
+     {
       "code": "30449-3",
       "display": "Neutrophils.hypersegmented [#/volume] in Blood"
      },
@@ -2346,10 +2378,6 @@
      {
       "code": "31096-1",
       "display": "Tobramycin [Mass/volume] in Serum or Plasma --random post extended interval dosing"
-     },
-     {
-      "code": "31123-3",
-      "display": "CD25 cells [#/volume] in Blood"
      },
      {
       "code": "31147-2",
@@ -2432,6 +2460,10 @@
       "display": "Influenza virus A Ag [Presence] in Specimen"
      },
      {
+      "code": "3186-4",
+      "display": "Coagulation factor IX activity [Units/volume] in Platelet poor plasma by Coagulation assay"
+     },
+     {
       "code": "31864-2",
       "display": "Influenza virus B Ag [Presence] in Specimen"
      },
@@ -2442,6 +2474,10 @@
      {
       "code": "31950-9",
       "display": "Respiratory syncytial virus Ag [Presence] in Specimen"
+     },
+     {
+      "code": "3197-1",
+      "display": "Coagulation factor VII activity [Units/volume] in Platelet poor plasma by Coagulation assay"
      },
      {
       "code": "31982-2",
@@ -2456,20 +2492,16 @@
       "display": "Coagulation factor VIII inhibitor [Units/volume] in Platelet poor plasma by Coagulation assay"
      },
      {
-      "code": "3208-6",
-      "display": "Coagulation factor VIII activity [Units/volume] in Platelet poor plasma by Coagulation assay"
-     },
-     {
       "code": "3213-6",
       "display": "Coagulation factor VIII Ag [Units/volume] in Platelet poor plasma by Immunoassay"
      },
      {
-      "code": "3214-4",
-      "display": "Coagulation factor VIII Ag [Units/volume] in Platelet poor plasma by Immunoelectrophoresis"
-     },
-     {
       "code": "3215-1",
       "display": "Coagulation factor VIII Ag [Mass/volume] in Platelet poor plasma by Immunoassay"
+     },
+     {
+      "code": "3217-7",
+      "display": "Coagulation factor X activity [Units/volume] in Platelet poor plasma by Coagulation assay"
      },
      {
       "code": "32215-6",
@@ -2488,12 +2520,20 @@
       "display": "Bacteria identified in Specimen by Respiratory culture"
      },
      {
+      "code": "32358-4",
+      "display": "Oligoclonal bands [Presence] in Cerebral spinal fluid"
+     },
+     {
       "code": "3243-3",
       "display": "Thrombin time"
      },
      {
       "code": "32433-5",
       "display": "Physical findings of Gait"
+     },
+     {
+      "code": "3244-1",
+      "display": "Clot Lysis [Time] in Platelet poor plasma by Coagulation assay"
      },
      {
       "code": "32474-9",
@@ -2528,14 +2568,6 @@
       "display": "CD3+CD4+ (T4 helper) cells/cells in Bone marrow"
      },
      {
-      "code": "32534-0",
-      "display": "CD3+CD8+ (T8 suppressor) cells [#/volume] in Bone marrow"
-     },
-     {
-      "code": "32536-5",
-      "display": "CD3-CD16+CD56+ (Natural killer) cells [#/volume] in Bone marrow"
-     },
-     {
       "code": "3255-7",
       "display": "Fibrinogen [Mass/volume] in Platelet poor plasma by Coagulation assay"
      },
@@ -2554,6 +2586,10 @@
      {
       "code": "32673-6",
       "display": "Creatine kinase.MB [Enzymatic activity/volume] in Serum or Plasma"
+     },
+     {
+      "code": "32684-3",
+      "display": "LMW Heparin [Units/volume] in Platelet poor plasma"
      },
      {
       "code": "32693-4",
@@ -2584,10 +2620,6 @@
       "display": "Legionella sp Ag [Presence] in Urine"
      },
      {
-      "code": "32855-9",
-      "display": "CD62 cells/cells in Specimen"
-     },
-     {
       "code": "32892-2",
       "display": "Side [Identifier] Tooth"
      },
@@ -2604,8 +2636,16 @@
       "display": "CD11c cells/cells in Bone marrow"
      },
      {
+      "code": "33232-0",
+      "display": "Spermatozoa [Presence] in Urine by Automated"
+     },
+     {
       "code": "33233-8",
       "display": "Urate crystals [Presence] in Urine by Computer assisted method"
+     },
+     {
+      "code": "33235-3",
+      "display": "Calcium phosphate crystals [Presence] in Urine by Computer assisted method"
      },
      {
       "code": "33236-1",
@@ -2620,12 +2660,12 @@
       "display": "Calcium carbonate crystals [Presence] in Urine by Computer assisted method"
      },
      {
-      "code": "33250-2",
-      "display": "CD55 cells [Presence] in Blood"
-     },
-     {
       "code": "33366-6",
       "display": "Chloride [Moles/volume] in Peritoneal fluid"
+     },
+     {
+      "code": "33371-6",
+      "display": "Variant lymphocytes/Leukocytes in Synovial fluid"
      },
      {
       "code": "33440-9",
@@ -2700,24 +2740,12 @@
       "display": "Clostridioides difficile toxin A+B [Presence] in Stool by Immunoassay"
      },
      {
-      "code": "34487-9",
-      "display": "Influenza virus A RNA [Presence] in Specimen by NAA with probe detection"
-     },
-     {
       "code": "34538-9",
       "display": "Orthostatic blood pressure"
      },
      {
       "code": "34539-7",
       "display": "Protein electrophoresis panel - Urine"
-     },
-     {
-      "code": "34571-0",
-      "display": "aPTT.lupus sensitive (LA screen)"
-     },
-     {
-      "code": "34670-0",
-      "display": "Choriogonadotropin [Mass/volume] in Serum or Plasma"
      },
      {
       "code": "34712-0",
@@ -2730,10 +2758,6 @@
      {
       "code": "34714-6",
       "display": "INR in Blood by Coagulation assay"
-     },
-     {
-      "code": "34942-3",
-      "display": "Borrelia burgdorferi IgG and IgM panel - Serum"
      },
      {
       "code": "34958-9",
@@ -2824,10 +2848,6 @@
       "display": "Variant lymphocytes [#/volume] in Pleural fluid"
      },
      {
-      "code": "35048-8",
-      "display": "Abnormal lymphocytes [#/volume] in Synovial fluid"
-     },
-     {
       "code": "35049-6",
       "display": "Lymphocytes [#/volume] in Synovial fluid"
      },
@@ -2912,10 +2932,6 @@
       "display": "Lymphocytes [#/volume] in Pleural fluid"
      },
      {
-      "code": "35168-4",
-      "display": "Arachidonate (C20:4w6) [Moles/volume] in Serum or Plasma"
-     },
-     {
       "code": "3520-4",
       "display": "cycloSPORINE [Mass/volume] in Blood"
      },
@@ -2924,16 +2940,8 @@
       "display": "Tissue transglutaminase IgA Ab [Presence] in Serum"
      },
      {
-      "code": "35477-9",
-      "display": "Ciliated columnar lining cells/Leukocytes [# Ratio] in Body fluid"
-     },
-     {
       "code": "35492-8",
       "display": "Methicillin resistant Staphylococcus aureus (MRSA) DNA [Presence] in Specimen by NAA with probe detection"
-     },
-     {
-      "code": "35570-1",
-      "display": "Renin [Mass/volume] in Plasma"
      },
      {
       "code": "3559-2",
@@ -2982,10 +2990,6 @@
      {
       "code": "3714-3",
       "display": "Lidocaine [Mass/volume] in Serum or Plasma"
-     },
-     {
-      "code": "3774-7",
-      "display": "Methadone [Mass/volume] in Urine"
      },
      {
       "code": "3793-7",
@@ -3048,6 +3052,10 @@
       "display": "Anisocytosis [Presence] in Blood"
      },
      {
+      "code": "38926-2",
+      "display": "Macroprolactin [Mass/volume] in Serum or Plasma"
+     },
+     {
       "code": "39107-8",
       "display": "Color of Skin"
      },
@@ -3072,6 +3080,10 @@
       "display": "Phenytoin Free [Mass/volume] in Serum or Plasma"
      },
      {
+      "code": "3978-4",
+      "display": "Primidone [Mass/volume] in Serum or Plasma"
+     },
+     {
       "code": "3982-6",
       "display": "Procainamide [Mass/volume] in Serum or Plasma"
      },
@@ -3090,6 +3102,10 @@
      {
       "code": "4047-7",
       "display": "Theophylline [Mass/volume] in Blood"
+     },
+     {
+      "code": "40489-7",
+      "display": "Histiocytes/cells in Synovial fluid by Manual count"
      },
      {
       "code": "40516-7",
@@ -3128,6 +3144,10 @@
       "display": "Hemoglobin C [Presence] in Blood"
      },
      {
+      "code": "40732-0",
+      "display": "HIV 1 IgG Ab [Presence] in Serum by Immunoblot"
+     },
+     {
       "code": "40740-3",
       "display": "Osmotic fragility of Red Blood Cells--Incubated"
      },
@@ -3136,16 +3156,16 @@
       "display": "Valproate [Mass/volume] in Serum or Plasma"
      },
      {
+      "code": "40863-3",
+      "display": "Norovirus genogroup I Ag [Presence] in Stool"
+     },
+     {
       "code": "4090-7",
       "display": "Vancomycin [Mass/volume] in Serum or Plasma --peak"
      },
      {
       "code": "4092-3",
       "display": "Vancomycin [Mass/volume] in Serum or Plasma --trough"
-     },
-     {
-      "code": "40982-1",
-      "display": "Influenza virus B RNA [Presence] in Specimen by NAA with probe detection"
      },
      {
       "code": "41122-3",
@@ -3200,6 +3220,10 @@
       "display": "CD117 cells/cells in Bone marrow"
      },
      {
+      "code": "42867-2",
+      "display": "CD117 cells/cells in Body fluid"
+     },
+     {
       "code": "42870-6",
       "display": "CD138 cells/cells in Bone marrow"
      },
@@ -3208,16 +3232,16 @@
       "display": "CD138 cells/cells in Body fluid"
      },
      {
-      "code": "42875-5",
-      "display": "CD22 cells/cells in Body fluid"
-     },
-     {
       "code": "42885-4",
       "display": "CD52 cells/cells in Body fluid"
      },
      {
       "code": "42886-2",
       "display": "CD52 cells/cells in Bone marrow"
+     },
+     {
+      "code": "43075-1",
+      "display": "Borrelia burgdorferi C6 Ab [Units/volume] in Serum"
      },
      {
       "code": "43365-6",
@@ -3238,6 +3262,18 @@
      {
       "code": "43995-0",
       "display": "Trisomy 21 risk [Likelihood] in Fetus"
+     },
+     {
+      "code": "44422-4",
+      "display": "Interleukin 2 receptor alpha chain soluble [Units/volume] in Serum or Plasma"
+     },
+     {
+      "code": "44557-7",
+      "display": "Influenza virus A Ab [Presence] in Body fluid"
+     },
+     {
+      "code": "44721-9",
+      "display": "Histiocytes [Presence] in Blood by Light microscopy"
      },
      {
       "code": "4477-6",
@@ -3310,10 +3346,6 @@
      {
       "code": "45468-6",
       "display": "Health care durable power attorney [Minimum Data Set]"
-     },
-     {
-      "code": "4547-6",
-      "display": "Hemoglobin A1/Hemoglobin.total in Blood"
      },
      {
       "code": "4548-4",
@@ -3392,6 +3424,10 @@
       "display": "Osmotic fragility of Red Blood Cells"
      },
      {
+      "code": "4672-2",
+      "display": "Protein C Ag [Mass/volume] in Platelet poor plasma"
+     },
+     {
       "code": "4683-9",
       "display": "Sulfhemoglobin [Mass/volume] in Blood"
      },
@@ -3410,6 +3446,14 @@
      {
       "code": "47739-8",
       "display": "Protein [Mass/volume] in Stool"
+     },
+     {
+      "code": "48036-8",
+      "display": "Glucose [Mass/volume] in Stool"
+     },
+     {
+      "code": "48039-2",
+      "display": "Fibronectin.fetal [Presence] in Specimen"
      },
      {
       "code": "48062-4",
@@ -3436,12 +3480,12 @@
       "display": "Hepatitis C virus genotype [Identifier] in Specimen by NAA with probe detection"
      },
      {
-      "code": "49008-6",
-      "display": "Clot Retraction [Volume Fraction] in Blood"
+      "code": "48803-1",
+      "display": "Neural tube defect risk [Likelihood] in Fetus"
      },
      {
-      "code": "49136-5",
-      "display": "Creatine kinase.MB/Creatine kinase.total [Ratio] in Serum or Plasma"
+      "code": "49008-6",
+      "display": "Clot Retraction [Volume Fraction] in Blood"
      },
      {
       "code": "49362-7",
@@ -3464,20 +3508,12 @@
       "display": "Creatine kinase.MB [Mass/volume] in Blood"
      },
      {
-      "code": "49564-8",
-      "display": "Epstein Barr virus band pattern [Interpretation] in Specimen by Immunoblot Narrative"
-     },
-     {
-      "code": "49761-0",
-      "display": "Alpha-1-Fetoprotein [Mass/volume] in Peritoneal fluid"
+      "code": "49562-2",
+      "display": "Holoprosencephaly gene targeted mutation analysis in Blood or Tissue by Molecular genetics method"
      },
      {
       "code": "49762-8",
       "display": "Alpha-1-Fetoprotein [Mass/volume] in Pleural fluid"
-     },
-     {
-      "code": "49765-1",
-      "display": "Calcium [Mass/volume] in Blood"
      },
      {
       "code": "49778-4",
@@ -3492,6 +3528,10 @@
       "display": "Sodium [Moles/volume] in Peritoneal fluid"
      },
      {
+      "code": "50189-0",
+      "display": "Neonatal bilirubin panel [Mass/volume] - Serum or Plasma"
+     },
+     {
       "code": "50196-5",
       "display": "Occult blood panel - Stool"
      },
@@ -3502,6 +3542,10 @@
      {
       "code": "50226-0",
       "display": "Erythrocyte clumps [Presence] in Urine by Computer assisted method"
+     },
+     {
+      "code": "50228-6",
+      "display": "Oval fat bodies (globules) [Presence] in Urine by Computer assisted method"
      },
      {
       "code": "50687-3",
@@ -3524,20 +3568,16 @@
       "display": "TCR gamma delta cells [#/volume] in Blood"
      },
      {
+      "code": "51127-9",
+      "display": "CD22 blasts [Units/volume] in Bone marrow"
+     },
+     {
       "code": "51184-0",
       "display": "CD117 Ag [Presence] in Blood by Immune stain"
      },
      {
-      "code": "51186-5",
-      "display": "CD15 Ag [Presence] in Bone marrow by Immune stain"
-     },
-     {
       "code": "51187-3",
       "display": "CD15 Ag [Presence] in Blood by Immune stain"
-     },
-     {
-      "code": "51188-1",
-      "display": "CD15 Ag [Presence] in Specimen by Immune stain"
      },
      {
       "code": "51197-2",
@@ -3564,12 +3604,16 @@
       "display": "CD13 cells/cells in Bone marrow"
      },
      {
-      "code": "51238-4",
-      "display": "CD13 cells/cells in Body fluid"
-     },
-     {
       "code": "51248-3",
       "display": "CD14 cells/cells in Body fluid"
+     },
+     {
+      "code": "51251-7",
+      "display": "CD15 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51255-8",
+      "display": "CD16+CD56+ cells/cells in Bone marrow"
      },
      {
       "code": "51268-1",
@@ -3580,16 +3624,16 @@
       "display": "CD23 cells/cells in Body fluid"
      },
      {
-      "code": "51290-5",
-      "display": "CD30 cells/cells in Body fluid"
+      "code": "5128-4",
+      "display": "Neutrophil cytoplasmic Ab [Units/volume] in Serum"
+     },
+     {
+      "code": "51289-7",
+      "display": "CD30 cells/cells in Bone marrow"
      },
      {
       "code": "51293-9",
       "display": "CD33 cells/cells in Bone marrow"
-     },
-     {
-      "code": "51294-7",
-      "display": "CD33 cells/cells in Body fluid"
      },
      {
       "code": "51298-8",
@@ -3622,6 +3666,10 @@
      {
       "code": "51344-0",
       "display": "CD55 cells/cells in Bone marrow"
+     },
+     {
+      "code": "51351-5",
+      "display": "CD57 cells/cells in Body fluid"
      },
      {
       "code": "51358-0",
@@ -3660,10 +3708,6 @@
       "display": "Immature granulocytes [#/volume] in Blood"
      },
      {
-      "code": "51595-7",
-      "display": "Glucose [Presence] in Stool"
-     },
-     {
       "code": "51631-0",
       "display": "Platelet distribution width [Ratio] in Blood"
      },
@@ -3674,10 +3718,6 @@
      {
       "code": "5195-3",
       "display": "Hepatitis B virus surface Ag [Presence] in Serum"
-     },
-     {
-      "code": "51980-1",
-      "display": "Glomerular basement membrane Ab [Mass/volume] in Serum"
      },
      {
       "code": "5225-8",
@@ -3696,12 +3736,12 @@
       "display": "CD1a cells/cells in Bone marrow"
      },
      {
-      "code": "53222-6",
-      "display": "Coagulation factor XI activity [Units/volume] in Platelet poor plasma by Coagulation assay"
+      "code": "52996-6",
+      "display": "Terminal deoxyribonucleotidyl transferase cells/Cells in Blood by Flow cytometry (FC)"
      },
      {
-      "code": "53275-4",
-      "display": "Transitional cells [#/volume] in Urine by Computer assisted method"
+      "code": "53321-6",
+      "display": "Mucus [Presence] in Urine by Automated"
      },
      {
       "code": "53414-9",
@@ -3714,6 +3754,10 @@
      {
       "code": "53627-6",
       "display": "Chloride [Moles/volume] in Pleural fluid"
+     },
+     {
+      "code": "53813-2",
+      "display": "Platelet aggregation [Units/volume] in Blood by ADP induced"
      },
      {
       "code": "53833-0",
@@ -3788,16 +3832,8 @@
       "display": "Exercise tolerance"
      },
      {
-      "code": "5565-7",
-      "display": "Terminal deoxyribonucleotidyl transferase [Units/volume] in Leukocytes"
-     },
-     {
       "code": "55793-4",
       "display": "Nucleated cells [#/volume] in Body fluid"
-     },
-     {
-      "code": "55850-2",
-      "display": "Cobalamin (Vitamin B12) [Mass/volume] in Urine"
      },
      {
       "code": "560-3",
@@ -3864,6 +3900,10 @@
       "display": "CD71 cells/cells in Body fluid"
      },
      {
+      "code": "57428-5",
+      "display": "FMC7 cells/cells in Body fluid"
+     },
+     {
       "code": "57429-3",
       "display": "CD3+TCR gamma delta+ cells/cells in Body fluid"
      },
@@ -3876,20 +3916,8 @@
       "display": "Zinc [Mass/volume] in Urine"
      },
      {
-      "code": "5766-1",
-      "display": "Ammonium urate crystals [Presence] in Urine sediment by Light microscopy"
-     },
-     {
       "code": "5767-9",
       "display": "Appearance of Urine"
-     },
-     {
-      "code": "5775-2",
-      "display": "Calcium phosphate crystals [Presence] in Urine sediment by Light microscopy"
-     },
-     {
-      "code": "57776-7",
-      "display": "Gliadin peptide IgA and IgG panel - Serum"
      },
      {
       "code": "5778-6",
@@ -3902,10 +3930,6 @@
      {
       "code": "57838-5",
       "display": "dRVVT W excess phospholipid (LA confirm)"
-     },
-     {
-      "code": "57916-9",
-      "display": "Borrelia burgdorferi C6 Ab [Presence] in Serum"
      },
      {
       "code": "580-1",
@@ -3944,6 +3968,10 @@
       "display": "Streptococcus agalactiae [Presence] in Specimen by Organism specific culture"
      },
      {
+      "code": "58735-2",
+      "display": "Alpha-1-Fetoprotein panel - Amniotic fluid"
+     },
+     {
       "code": "5892-5",
       "display": "Protein S [Units/volume] in Platelet poor plasma by Coagulation assay"
      },
@@ -3960,12 +3988,20 @@
       "display": "Prothrombin time (PT)"
      },
      {
+      "code": "59069-5",
+      "display": "Nuclear Ab [Presence] in Serum by Hep2 substrate"
+     },
+     {
       "code": "59185-9",
       "display": "Hemoglobin H inclusion bodies [Presence] in Blood"
      },
      {
       "code": "593-4",
       "display": "Legionella sp identified in Specimen by Organism specific culture"
+     },
+     {
+      "code": "59419-2",
+      "display": "HIV 1 RNA [#/volume] (viral load) in Plasma by Probe with signal amplification"
      },
      {
       "code": "5942-8",
@@ -3992,10 +4028,6 @@
       "display": "Prothrombin time (PT) in Blood by Coagulation assay"
      },
      {
-      "code": "5965-9",
-      "display": "Plasmin inhibitor [Units/volume] in Platelet poor plasma by Chromogenic method"
-     },
-     {
       "code": "59770-8",
       "display": "Procedure estimated blood loss Narrative"
      },
@@ -4010,6 +4042,10 @@
      {
       "code": "59842-5",
       "display": "Apnea interval Ventilator alarm"
+     },
+     {
+      "code": "60022-1",
+      "display": "Lactate dehydrogenase [Enzymatic activity/volume] in Pleural fluid by Lactate to pyruvate reaction"
      },
      {
       "code": "60042-9",
@@ -4070,6 +4106,10 @@
      {
       "code": "60834-9",
       "display": "Blood temperature"
+     },
+     {
+      "code": "60840-6",
+      "display": "Base excess in Extracellular fluid by calculation"
      },
      {
       "code": "60842-2",
@@ -4148,6 +4188,10 @@
       "display": "dRVVT in Platelet poor plasma by Coagulation assay"
      },
      {
+      "code": "63262-0",
+      "display": "Glomerular basement membrane Ab [Presence] in Serum by Immunoassay"
+     },
+     {
       "code": "6357-8",
       "display": "Chlamydia trachomatis DNA [Presence] in Urine by NAA with probe detection"
      },
@@ -4188,20 +4232,16 @@
       "display": "Microscopic observation [Identifier] in Specimen by Gram stain"
      },
      {
+      "code": "66745-1",
+      "display": "Clot Lysis [Length fraction] in Blood by Thromboelastography --30 minutes post maximum clot amplitude"
+     },
+     {
       "code": "6676-1",
       "display": "Enterobius vermicularis [Presence] in Anal by Pinworm exam"
      },
      {
       "code": "6683-7",
       "display": "Reptilase time"
-     },
-     {
-      "code": "66878-0",
-      "display": "Skin Ab [Titer] in Serum"
-     },
-     {
-      "code": "6742-1",
-      "display": "Erythrocyte [Morphology] in Blood"
      },
      {
       "code": "67543-9",
@@ -4218,10 +4258,6 @@
      {
       "code": "68409-2",
       "display": "Macrophages [#/volume] in Peritoneal fluid by Manual count"
-     },
-     {
-      "code": "68410-0",
-      "display": "Macrophages [#/volume] in Pleural fluid by Manual count"
      },
      {
       "code": "6874-2",
@@ -4252,10 +4288,6 @@
       "display": "Metabolic rate --resting"
      },
      {
-      "code": "69739-1",
-      "display": "Drugs of abuse panel - Urine by Screen method"
-     },
-     {
       "code": "698-1",
       "display": "Neisseria gonorrhoeae [Presence] in Specimen by Organism specific culture"
      },
@@ -4266,10 +4298,6 @@
      {
       "code": "700-5",
       "display": "Pneumocystis jirovecii Ag [Presence] in Specimen by Immunofluorescence"
-     },
-     {
-      "code": "70051-8",
-      "display": "Multiple inhalant allergen IgE Ab [Presence] in Serum by Immunoassay"
      },
      {
       "code": "70168-0",
@@ -4328,20 +4356,12 @@
       "display": "C reactive protein [Mass/volume] in Blood by High sensitivity method"
      },
      {
-      "code": "71775-1",
-      "display": "Mycobacterium tuberculosis stimulated gamma interferon panel - Blood"
-     },
-     {
       "code": "718-7",
       "display": "Hemoglobin [Mass/volume] in Blood"
      },
      {
       "code": "71835-3",
       "display": "Oxygen/Gas total [Pure volume fraction] Inhaled gas"
-     },
-     {
-      "code": "71853-6",
-      "display": "Oxygen saturation [Pure mass fraction] in Blood"
      },
      {
       "code": "72050-8",
@@ -4380,20 +4400,16 @@
       "display": "Appearance of Wound base"
      },
      {
-      "code": "72496-3",
-      "display": "DNA double strand [Mass/volume] in Specimen"
+      "code": "72376-7",
+      "display": "Hepatitis C virus Ab [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
      },
      {
-      "code": "725-2",
-      "display": "Hemoglobin [Presence] in Urine"
+      "code": "72491-4",
+      "display": "Bile acid [Moles/volume] in Stool"
      },
      {
-      "code": "72695-0",
-      "display": "Erythrocyte enzyme panel - Red Blood Cells"
-     },
-     {
-      "code": "731-0",
-      "display": "Lymphocytes [#/volume] in Blood by Automated count"
+      "code": "726-0",
+      "display": "Hemoglobin [Mass/volume] in Urine"
      },
      {
       "code": "73557-1",
@@ -4408,16 +4424,12 @@
       "display": "Activity [NSRAS]"
      },
      {
-      "code": "73906-0",
-      "display": "HIV 1+2 IgG Ab [Presence] in Blood by Rapid immunoassay"
+      "code": "73816-1",
+      "display": "Heparin induced platelet IgG Ab [Interpretation] in Serum Narrative"
      },
      {
       "code": "73978-9",
       "display": "von Willebrand factor (vWf).activity [Units/volume] in Platelet poor plasma by Immunoassay"
-     },
-     {
-      "code": "73984-7",
-      "display": "Hemoglobin.other [Type] in Blood"
      },
      {
       "code": "742-7",
@@ -4444,10 +4456,6 @@
       "display": "Pulse intensity Dorsal pedal artery - right by palpation"
      },
      {
-      "code": "75056-2",
-      "display": "Pyridoxal phosphate [Moles/volume] in Cerebral spinal fluid"
-     },
-     {
       "code": "751-8",
       "display": "Neutrophils [#/volume] in Blood by Automated count"
      },
@@ -4456,12 +4464,20 @@
       "display": "Bilevel positive airway pressure (BPAP) activity Ventilator"
      },
      {
+      "code": "75378-0",
+      "display": "Hepatitis B virus core Ab [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
+     },
+     {
       "code": "75407-7",
       "display": "Hepatitis B virus e Ab [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
      },
      {
       "code": "75408-5",
       "display": "Hepatitis B virus e Ag [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
+     },
+     {
+      "code": "75409-3",
+      "display": "Hepatitis B virus surface Ab [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
      },
      {
       "code": "75521-5",
@@ -4584,10 +4600,6 @@
       "display": "Amylase [Enzymatic activity/volume] in Blood"
      },
      {
-      "code": "76631-1",
-      "display": "Albumin [Mass/volume] in Blood by Bromocresol purple (BCP) dye binding method"
-     },
-     {
       "code": "76676-6",
       "display": "Appearance of Cerebral spinal fluid--2nd tube"
      },
@@ -4632,10 +4644,6 @@
       "display": "Hospital stay duration"
      },
      {
-      "code": "78355-5",
-      "display": "Abnormal lymphocytes [Presence] in Blood by Manual count"
-     },
-     {
       "code": "7852-7",
       "display": "Cytomegalovirus IgG Ab [Units/volume] in Serum or Plasma"
      },
@@ -4646,6 +4654,10 @@
      {
       "code": "78766-3",
       "display": "fentaNYL [Mass/volume] in Urine -- adjusted for lean body mass+urine creatinine"
+     },
+     {
+      "code": "78770-5",
+      "display": "Methadone [Mass/volume] in Urine -- adjusted for lean body mass+urine creatinine"
      },
      {
       "code": "7883-2",
@@ -4710,6 +4722,10 @@
      {
       "code": "79899-1",
       "display": "Left pupil Pupillary response"
+     },
+     {
+      "code": "8013-5",
+      "display": "Rubella virus Ab [Units/volume] in Serum"
      },
      {
       "code": "8014-3",
@@ -4778,10 +4794,6 @@
      {
       "code": "8039-0",
       "display": "Toxoplasma gondii IgG Ab [Units/volume] in Serum"
-     },
-     {
-      "code": "8040-8",
-      "display": "Toxoplasma gondii IgM Ab [Units/volume] in Serum"
      },
      {
       "code": "8047-3",
@@ -4996,8 +5008,7 @@
       "display": "Pathology report reviewed [Identifier] in Specimen"
      },
      {
-      "code": "85354-9",
-      "display": "Blood pressure panel with all children optional"
+      "code": "85354-9"
      },
      {
       "code": "85398-6",
@@ -5052,8 +5063,7 @@
       "display": "History of Cardiovascular system disorders"
      },
      {
-      "code": "8661-1",
-      "display": "Chief complaint - Reported"
+      "code": "8661-1"
      },
      {
       "code": "86675-6",
@@ -5086,10 +5096,6 @@
      {
       "code": "8741-1",
       "display": "Left ventricular Cardiac output"
-     },
-     {
-      "code": "87827-2",
-      "display": "Casts [Presence] in Urine"
      },
      {
       "code": "87829-8",
@@ -5156,12 +5162,20 @@
       "display": "Leucine crystals [#/area] in Urine sediment"
      },
      {
+      "code": "88968-3",
+      "display": "Waxy casts [#/area] in Urine sediment"
+     },
+     {
       "code": "88969-1",
       "display": "Tyrosine crystals [#/area] in Urine sediment"
      },
      {
       "code": "88970-9",
       "display": "RBC casts [#/area] in Urine sediment"
+     },
+     {
+      "code": "88971-7",
+      "display": "Mixed cellular casts [#/area] in Urine sediment"
      },
      {
       "code": "88972-5",
@@ -5178,10 +5192,6 @@
      {
       "code": "88977-4",
       "display": "Epithelial casts [#/area] in Urine sediment"
-     },
-     {
-      "code": "88979-0",
-      "display": "Mucus [Presence] in Urine sediment"
      },
      {
       "code": "8898-9",
@@ -5368,20 +5378,16 @@
       "display": "Acetone [Mass/volume] in Blood"
      },
      {
-      "code": "94312-6",
-      "display": "SARS-CoV-2 (COVID-19) N gene [Cycle Threshold #] in Specimen by Nucleic acid amplification using CDC primer-probe set N2"
-     },
-     {
-      "code": "94509-7",
-      "display": "SARS-related coronavirus E gene [Cycle Threshold #] in Specimen by NAA with probe detection"
-     },
-     {
       "code": "94768-9",
       "display": "SARS-CoV-2 (COVID-19) IgA Ab [Presence] in Serum, Plasma or Blood by Rapid immunoassay"
      },
      {
       "code": "95050-1",
       "display": "Difficult intubation"
+     },
+     {
+      "code": "95523-7",
+      "display": "HIV 1 and 2 Ab panel - Serum or Plasma by Immunoassay"
      },
      {
       "code": "9554-7",
@@ -5456,16 +5462,12 @@
       "display": "Campylobacter sp [Presence] in Specimen by Organism specific culture"
      },
      {
-      "code": "97525-0",
-      "display": "Norovirus genogroup I RNA [Presence] in Specimen by NAA with probe detection"
+      "code": "97532-6",
+      "display": "Norovirus genogroup II RNA [Presence] in Specimen by NAA with probe detection"
      },
      {
       "code": "97549-0",
       "display": "Oxygen saturation in Central venous blood"
-     },
-     {
-      "code": "97614-2",
-      "display": "Clostridium perfringens [Presence] in Synovial fluid by NAA with non-probe detection"
      },
      {
       "code": "97642-3",
@@ -5484,8 +5486,7 @@
       "display": "Streptolysin O Ab [Presence] in Serum"
      },
      {
-      "code": "98137-3",
-      "display": "Pain assessment report"
+      "code": "98137-3"
      },
      {
       "code": "9830-1",
@@ -6891,10 +6892,6 @@
      {
       "code": "363769000",
       "display": "Entamoeba histolytica/Entamoeba dispar complex"
-     },
-     {
-      "code": "363803005",
-      "display": "Mobility"
      },
      {
       "code": "363820009",

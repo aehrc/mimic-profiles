@@ -1,0 +1,6 @@
+ValueSet: MimicMedicationRequestCode
+Id: mimic-medication-request-code
+Title: "MIMIC MedicationRequest.medication[x] code"
+Description: "The codes bound on MedicationRequest.medication[x]. Grouping ValueSet — references mimic-medication and adds nothing, so MEMBERSHIP IS IDENTICAL and no instance that validated before validates differently now. It exists to give the element its own canonical identity, because mimic-medication is bound on four elements (MedicationRequest.medication[x], Medication.code, MedicationDispense.medication[x], MedicationAdministration.medication[x] via mimic-medication-administration-merged-code) while each element gets its own ConceptMap. With one shared sourceCanonical a $translate call cannot say which element its Coding came from, and the element-scoped maps would answer for populations they were never scoped against — a code recorded on MedicationDispense but not on MedicationRequest would come back as 'never observed', which is false. Same purpose as mimic-medication-administration-merged-code, different reason: that one unions sub-types, this one disambiguates elements. Not part of the upstream MIMIC IG."
+
+* include codes from valueset $MimicMedicationCodes

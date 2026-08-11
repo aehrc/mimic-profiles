@@ -40,7 +40,18 @@ Description:    "A MIMIC medication request profile based on the FHIR R4 medicat
 * identifier[POE_ID].value 1..1
 
 // binding to MIMIC terminology
-* medication[x] from $MimicMedicationCodes (required)
+// medication[x] is left as CodeableConcept | Reference(MimicMedication) — the
+// only medication profile here that does not narrow it — because MIMIC uses BOTH
+// branches: the ETL puts prescriptions' drug/gsn/ndc/formulary_drug_cd on a
+// shared Medication resource (see input/includes/map-mimic-hosp-meds.md) and the
+// full-data extract still found 1,883,681 inline codings. Note that this binding
+// governs the CodeableConcept branch ONLY: a required binding cannot constrain a
+// Reference, so for the majority of requests the terminology guarantee is
+// carried by MimicMedication.code's own binding instead.
+// MimicMedicationRequestCode has IDENTICAL membership to $MimicMedicationCodes;
+// it exists so this element's ConceptMap has a sourceCanonical no other element
+// shares. See VS_MimicMedicationRequestCode.fsh.
+* medication[x] from MimicMedicationRequestCode (required)
 * dosageInstruction.timing.code from $MimicMedicationFrequency
 * dosageInstruction.route from $MimicMedicationRoute
 

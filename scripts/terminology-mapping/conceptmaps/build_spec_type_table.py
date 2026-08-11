@@ -179,7 +179,7 @@ for the whole of it:
     NAIL SCRAPINGS      447098004 |Specimen from nail obtained by scraping| 0.85
 
 Do not read the number off this docstring in any case — quote the stream's
-`by_stream` entry in output/specimen-report.json and its row in
+entry in output/stream-report.json and its row in
 output/mapping-statistics.csv, which are computed from the committed table.
 
 READ A `no-match` ACCORDINGLY: it means "the service declined it on that run under

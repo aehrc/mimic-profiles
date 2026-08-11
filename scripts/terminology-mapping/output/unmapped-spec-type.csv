@@ -1,0 +1,24 @@
+stream,source_system,mimic_code,mimic_display,expected_code,expected_system,reason,comment
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70046,IMMUNOLOGY,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70083,VARICELLA-ZOSTER CULTURE,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70042,Influenza A/B by DFA,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,90921,POST-MORTEM VIRAL CULTURE,,http://snomed.info/sct,no-suitable-concept,"code-search proposed 258484005 |Postmortem tissue specimen| at 0.70, below the 0.8 threshold."
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70086,XXX,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,90935,VIRAL CULTURE,,http://snomed.info/sct,no-suitable-concept,"code-search proposed 621000009105 |Viral isolate specimen| at 0.75, below the 0.8 threshold."
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,90908,Cipro Resistant Screen,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70041,VIRAL CULTURE:R/O HERPES SIMPLEX VIRUS,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70006,ANORECTAL/VAGINAL,,http://snomed.info/sct,no-suitable-concept,"code-search proposed 1371684001 |Combined specimen from swab of rectum and vaginal introitus| at 0.70, below the 0.8 threshold."
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,90922,MICRO PROBLEM PATIENT,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70058,RAPID RESPIRATORY VIRAL ANTIGEN TEST,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70045,Immunology (CMV),,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70055,POSTMORTEM CULTURE,,http://snomed.info/sct,no-suitable-concept,"code-search proposed 258484005 |Postmortem tissue specimen| at 0.75, below the 0.8 threshold."
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,90914,Infection Control Yeast,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70091,MRSA SCREEN,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70030,DIRECT ANTIGEN TEST FOR VARICELLA-ZOSTER VIRUS,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70038,FECAL SWAB,,http://snomed.info/sct,no-suitable-concept,"code-search proposed 258528007 |Rectal swab| at 0.75, below the 0.8 threshold."
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70049,NEOPLASTIC BLOOD,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70037,FOOT CULTURE,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70028,Direct Antigen Test for Herpes Simplex Virus Types 1 & 2,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70025,CRE Screen,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,90906,"C, E, & A Screening",,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.
+spec-type,http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc,70057,Rapid Respiratory Viral Screen & Culture,,http://snomed.info/sct,no-suitable-concept,code-search returned no match within <<123038009.

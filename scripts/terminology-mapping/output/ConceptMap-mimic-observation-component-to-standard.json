@@ -7,7 +7,7 @@
  "title": "MIMIC Observation component codes to LOINC",
  "status": "active",
  "experimental": false,
- "date": "2026-08-05",
+ "date": "2026-08-10",
  "publisher": "CSIRO",
  "description": "Maps every code the merged MIMIC Observation profile admits on Observation.component.code \u2014 the systolic and diastolic codes of the blood-pressure panel \u2014 onto standard terminology. Both are already LOINC and map to themselves, so translating the component column preserves the two labels that tell systolic from diastolic instead of dropping them. Separate from ConceptMap/mimic-observation-merged-to-standard because Observation.component.code is a separate column with a separate binding: these codes are not legal values of Observation.code.",
  "purpose": "Lets a consumer translate the Observation.component.code column with a single $translate, the same way it translates Observation.code through its own map. The mappings are identity and are stated rather than omitted because a consumer cannot otherwise tell a code that needs no translation from one the map is missing \u2014 $translate returns nothing in both cases. They are coded 'equivalent' rather than 'equal', matching the other maps, because consumers that pin the equivalence they accept filter 'equal' out.",
@@ -24,8 +24,7 @@
      "target": [
       {
        "code": "8462-4",
-       "equivalence": "equivalent",
-       "display": "Diastolic blood pressure"
+       "equivalence": "equivalent"
       }
      ]
     },
@@ -35,8 +34,7 @@
      "target": [
       {
        "code": "8480-6",
-       "equivalence": "equivalent",
-       "display": "Systolic blood pressure"
+       "equivalence": "equivalent"
       }
      ]
     }

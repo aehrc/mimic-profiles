@@ -5,6 +5,10 @@
  "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-diagnosis",
  "version": "1.0.0",
  "date": "2026-08-05",
+ "streams": [
+  "diagnosis-icd10",
+  "diagnosis-icd9"
+ ],
  "source_total": 27913,
  "mapped": 27913,
  "unmapped": 0,
@@ -48,45 +52,6 @@
   "equivalent": 27913
  },
  "unmapped_by_reason": {},
- "by_stream": [
-  {
-   "stream": "mimic-diagnosis-icd10",
-   "source_file": "CodeSystem-mimic-diagnosis-icd10.json",
-   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10",
-   "method": "notation",
-   "total": 18450,
-   "mapped": 18450,
-   "unmapped": 0,
-   "coverage_pct": 100.0,
-   "target_systems": [
-    "http://hl7.org/fhir/sid/icd-10-cm"
-   ],
-   "by_equivalence": {
-    "equivalent": 18450,
-    "unmatched": 0
-   },
-   "unmapped_by_reason": {}
-  },
-  {
-   "stream": "mimic-diagnosis-icd9",
-   "source_file": "CodeSystem-mimic-diagnosis-icd9.json",
-   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9",
-   "method": "notation",
-   "total": 9463,
-   "mapped": 9463,
-   "unmapped": 0,
-   "coverage_pct": 100.0,
-   "target_systems": [
-    "http://hl7.org/fhir/sid/icd-10-cm",
-    "http://hl7.org/fhir/sid/icd-9-cm"
-   ],
-   "by_equivalence": {
-    "equivalent": 9463,
-    "unmatched": 0
-   },
-   "unmapped_by_reason": {}
-  }
- ],
  "target_valueset_codes": 27907,
  "extras": {}
 }

@@ -70,16 +70,15 @@ No targetVersion, and v3-NullFlavor is therefore on UNVERSIONED_SYSTEMS: this
 repo builds no THO release and pinning one it neither publishes nor controls is
 what verify_mappings check 3 exists to catch.
 
-SCOPED TO OBSERVED CODES, for the reason #25 established and this element makes
-sharper. The bound ValueSet admits 20,289 codes and the warehouse records 6,135
-of them here; 5,733 of the never-observed ones are the whole NDC CodeSystem,
-which appears on no bound element at all. So every source declares
-`observed_only` and lib/igsource.py does the narrowing once, where every stage
-reads it. The codes it sets aside are NOT dropped: each still gets an `unmatched`
-element carrying a comment that states the assumption out loud, so a consumer
-translating a code this map did not expect to exist is told why rather than met
-with silence. What the flag changes is only the coverage denominator — see
-lib/assemble.py NOT_OBSERVED.
+STREAMS, DECLARED ONCE. Every source CodeSystem here is a stream in
+lib/streams.py, resolved identically for this map and both sibling medication
+maps, so no two published maps can assert different concepts for one MIMIC
+code. Table generation is still narrowed — to the codes the warehouse uses on
+ANY bound element (lib/builders.table_population) — so never-used labels cost
+no model calls; they stay in the map as `unmatched` with reason
+`not-observed-in-data`, and codes used somewhere without a table row yet are
+`no-row-in-curated-table`. Per-element usage lives in the statistics
+(output/stream-report.json), not in the map's content.
 
 TARGETS ARE RxNorm AND SNOMED CT for the four MIMIC-local streams, the pair #25
 settled on. RxNorm carries the drug products; SNOMED CT answers only the labels
@@ -105,171 +104,24 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from conceptmaps.lib.assemble import target                       # noqa: E402
-from conceptmaps.lib.canonical import (CANONICAL_BASE, MIMIC_BASE,  # noqa: E402
-                                       NULL_FLAVOR, RXNORM, SNOMED,
-                                       TABLE_DIR)
-from conceptmaps.lib.curated import MIXED_TARGET_COLUMNS          # noqa: E402
+from conceptmaps.lib.canonical import CANONICAL_BASE, MIMIC_BASE  # noqa: E402
 from conceptmaps.lib.driver import run                            # noqa: E402
-from conceptmaps.lib.notation import no_dot                       # noqa: E402
+from conceptmaps.lib.streams import sources                       # noqa: E402
 
 FIELD = "medication-administration"
 
 VERSION = "1.0.0"
 
-SOURCES = [
-    {
-        # One code, `UNK |unknown|`, already standard terminology, so identity.
-        # No table and no generator: there is nothing to look up when a code is
-        # its own target. See the module docstring for why this is an identity
-        # group and not a declared non-mapping.
-        #
-        # It is reached through the ValueSet rather than a CodeSystem because
-        # v3-NullFlavor is a THO resource this IG does not ship: the binding
-        # admits exactly one of its codes, enumerated inline in
-        # ValueSet-mimic-medication-with-unknown.json, and source_concepts
-        # reads that include. That file is in input/resources/, so this needs
-        # no `sushi .` run.
-        "system": NULL_FLAVOR,
-        "file": "ValueSet-mimic-medication-with-unknown.json",
-        # A no-op here — the binding admits one NullFlavor code and the data
-        # uses it — but declared so every stream on this field is scored
-        # against the same population rule, and so a second null flavour
-        # appearing in the binding without appearing in the data is narrowed
-        # the same way the drug codes are.
-        "observed_only": True,
-        # No targetVersion: v3-NullFlavor is on UNVERSIONED_SYSTEMS. velonto
-        # serves 2.1.0; this repo builds no THO release and does not pin one.
-        "identity": True,
-        "targets": [target(NULL_FLAVOR, no_dot)],
-    },
-    {
-        # Two codes, both declared unmapped, and no network call is made for
-        # them. `IV therapy` and `TPN` are not medications — see the module
-        # docstring and issue #26. They are declared here rather than left out
-        # so that the 186,248 occurrences they carry are visibly accounted for.
-        #
-        # THE TABLE IS THE SIBLING FIELD'S, not a copy of it. Both codes are
-        # observed on both elements, so the population this stream adds to
-        # medication-poe-iv-standard.csv is exactly the two rows already in it
-        # — no generation run, no new file, and no way for the two maps to
-        # decline these codes for different stated reasons. See
-        # lib/builders.py.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-medication-poe-iv",
-        "file": "CodeSystem-mimic-medication-poe-iv.json",
-        "observed_only": True,
-        # A stream reporting 0% coverage owes the reader a reason, or it reads
-        # as a stream nobody finished. This one is complete: it maps nothing BY
-        # DECISION, and the decision is not this repo's to reverse. Unlike the
-        # NullFlavor stream above, the obstacle here IS upstream — these codes
-        # should not be on medication[x] at all — so `blocked_upstream` buckets
-        # their occurrences apart from the genuine terminology declines.
-        "blocked_upstream": True,
-        "note": (
-            "Maps nothing by design. `IV therapy` and `TPN` are POE order "
-            "flags, not substances, so no RxNorm concept exists for either at "
-            "any term type — and a SNOMED procedure code, which does exist, "
-            "would put a procedure in a column whose FHIRPath is "
-            "medication[x]. The 0% is the honest result of a modelling defect "
-            "one layer down, in the ETL, not of a mapping that failed. The "
-            "same two codes carry 167,144 more occurrences on "
-            "MedicationRequest.medication[x], and both maps decline them from "
-            "one shared table."),
-        "note_url": "https://github.com/fhnaumann/master_thesis_pipeline/issues/26",
-        "table": TABLE_DIR / "medication-poe-iv-standard.csv",
-        "table_columns": MIXED_TARGET_COLUMNS,
-        "targets": [target(RXNORM, None), target(SNOMED, None)],
-    },
-    {
-        # 9,971 enumerated drug names, 3,620 of them ever used on THIS element.
-        # The sibling field observes 2,888, overlapping in 2,600 — so this is
-        # the stream the shared-table machinery was built for. One table over
-        # the union of 3,908 codes; the alternative was two tables able to
-        # assert different RxNorm concepts for the same MIMIC drug name in two
-        # published maps, with nothing in the repo to compare them.
-        #
-        # The 1,020 codes only this element uses carry 9,902 occurrences — 0.8%
-        # of the stream. The volume was already answered by the table #25
-        # generated; what this stream adds is the long tail.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-medication-name",
-        "file": "CodeSystem-mimic-medication-name.json",
-        "observed_only": True,
-        "table": TABLE_DIR / "medication-name-standard.csv",
-        # Mixed-target because a few labels name a drug class rather than a
-        # product, and SNOMED CT has the class concept where RxNorm has only
-        # the specific products. Same shape as the sibling field's entry —
-        # necessarily so, since it is the same table.
-        "table_columns": MIXED_TARGET_COLUMNS,
-        "targets": [target(RXNORM, None), target(SNOMED, None)],
-    },
-    {
-        # 4,108 enumerated pharmacy formulary codes, 2,188 of them ever used on
-        # this element — and they carry 26,312,387 occurrences, 71.6% of the
-        # whole field. This is the stream that decides the headline number.
-        #
-        # Opaque codes with rich formulary display strings (`HEPA5I Heparin
-        # Sodium 5,000 Unit Vial`), so they are closer to RxNorm's own SCD
-        # phrasing than anything else mapped here — but they also carry pharmacy
-        # noise no other population had: a `*NF*` non-formulary marker, `___`
-        # redaction artefacts, container annotations like `(Mini Bag Plus)`, and
-        # 89 codes whose "display" is the code repeated. The generator strips
-        # the first three from the QUERY only and declares the fourth unmapped
-        # without asking, because a pharmacy mnemonic gets a confident answer to
-        # a string prefix rather than to a drug: `NORE16/250NS` — norepinephrine
-        # — reaches a norethindrone contraceptive patch at exactly the gate.
-        #
-        # NOT shared with the sibling field. Unlike mimic-medication-name, this
-        # CodeSystem is bound to MedicationAdministration.medication[x] alone;
-        # the table is still discovered through lib/builders.py rather than
-        # declared, so binding it to a second element would extend the
-        # generation population with nothing to keep in step.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-medication-formulary-drug-cd",
-        "file": "CodeSystem-mimic-medication-formulary-drug-cd.json",
-        "observed_only": True,
-        "table": TABLE_DIR / "formulary-drug-standard.csv",
-        # Mixed-target for the same reason as the streams above: RxNorm answers
-        # nearly everything, SNOMED CT substances answer the few labels naming a
-        # drug class, and which one answers is a result of the search rather
-        # than a property of the stream.
-        "table_columns": MIXED_TARGET_COLUMNS,
-        "targets": [target(RXNORM, None), target(SNOMED, None)],
-    },
-    {
-        # 474 enumerated ICU flowsheet items, 324 of them ever used on this
-        # element, carrying 8,978,893 occurrences — 24.4% of the field, and the
-        # d_items shape the Procedure map already met: labels written for a
-        # bedside chart rather than for a terminology.
-        #
-        # ROUGHLY A FIFTH OF THIS STREAM'S VOLUME IS NOT A DRUG. `225943
-        # Solution` (561,934 occ), `226452 PO Intake`, `225799 Gastric Meds`,
-        # `226453 GT Flush`, `226089 Piggyback` and seventeen `... Intake`
-        # venue counters are routes, containers and intake categories sitting in
-        # a column whose FHIRPath is medication[x]. They are declared unmapped
-        # rather than mapped to the concept their text literally names — see the
-        # generator's SNOMED_ECL, which is the setting that makes that happen.
-        #
-        # A further 87 codes are branded enteral tube feeds (`Nutren 2.0 (3/4)`,
-        # `Jevity 1.5 (Full)`). An unconstrained $expand over the whole of
-        # RxNorm 20231106 returns no concept for any of them at any term type,
-        # so their non-mapping is a measured fact about RxNorm rather than a
-        # confidence that fell short.
-        #
-        # NOT shared with the sibling field: mimic-medication-icu is bound to
-        # MedicationAdministration.medication[x] alone. The table is still
-        # discovered through lib/builders.py rather than declared.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-medication-icu",
-        "file": "CodeSystem-mimic-medication-icu.json",
-        "observed_only": True,
-        "table": TABLE_DIR / "medication-icu-standard.csv",
-        # Mixed-target, and here SNOMED CT earns its place on a population the
-        # other streams do not have: blood components. `225168 Packed Red Blood
-        # Cells`, `220970 Fresh Frozen Plasma`, `225170 Platelets` and `225171
-        # Cryoprecipitate` are administered and recorded here, and RxNorm has no
-        # concept for any of them.
-        "table_columns": MIXED_TARGET_COLUMNS,
-        "targets": [target(RXNORM, None), target(SNOMED, None)],
-    },
-]
+# One declaration per stream, in lib/streams.py; this map only names
+# which streams its facade ValueSet reaches. Order is group order.
+SOURCES = sources(
+    "medication-with-unknown",
+    "medication-poe-iv",
+    "medication-name",
+    "formulary-drug",
+    "medication-icu",
+    "medication-ndc",
+)
 
 META = {
     "id": "mimic-medication-administration-to-standard",
@@ -294,14 +146,13 @@ META = {
         "columns with different bindings — this one additionally admits "
         "v3-NullFlavor UNK — and the warehouse fills them from almost "
         "disjoint code populations, so neither map describes the other. "
-        "SCOPE: this map covers the codes the MIMIC warehouse actually "
-        "records on this element. The bound ValueSet admits 20,289 codes "
-        "because it is a union serving several medication columns; 6,135 of "
-        "them ever appear here, and the 5,733-code NDC CodeSystem appears on "
-        "no bound element at all. The rest are present as declared "
-        "`unmatched` elements explaining that they were never observed, so a "
-        "consumer that meets one is told the assumption rather than getting "
-        "no answer. "
+        "SCOPE: every code the binding admits has an entry, with the "
+        "answers shared stream-for-stream with the two sibling medication "
+        "maps (see lib/streams.py). The bound ValueSet admits 20,289 codes "
+        "because it is a union serving several medication columns; a code "
+        "with no answer is present as `unmatched` with a reason, so a "
+        "consumer that meets one is told why rather than getting no "
+        "answer. "
         "ALL FIVE CODE POPULATIONS ARE PRESENT: the v3-NullFlavor code, the two "
         "POE order flags, the MIMIC drug names, the pharmacy formulary codes "
         "and the ICU flowsheet items. Complete is not the same as fully "

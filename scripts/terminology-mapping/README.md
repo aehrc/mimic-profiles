@@ -22,24 +22,27 @@ needs a decision from you.
   │  sources/  ──build──►  output/CodeSystem-*.json  ──upload──►     │
   │                                                    $lookup       │
   └──────────────────────────┬───────────────────────────────────────┘
-  ┌─ 2 ─ one builder per bound element, offline ─────────────────────┐
-  │  build_<field>_cm_vs.py   reads: built CodeSystems, the IG's own  │
-  │                                  resources, committed tables      │
+  ┌─ 2 ─ one offline pass, `make mappings` ──────────────────────────┐
   │                                                                   │
-  │  for every code in the bound MIMIC ValueSet:                      │
-  │      resolve it — by notation rule, identity, or table lookup      │
-  │      hit  ──► a ConceptMap group element                           │
-  │      miss ──► an `unmatched` element AND a row in the CSV          │
+  │  STREAMS, declared once in conceptmaps/lib/streams.py:            │
+  │  one source enumeration -> target system(s) via one resolver      │
+  │  (committed table | notation rule | identity). A stream resolves  │
+  │  IDENTICALLY wherever it is consumed.                             │
   │                                                                   │
-  │  writes, in ONE pass:                                             │
-  │      ConceptMap-<id>.json          the map                        │
-  │      ValueSet-<target id>.json     enumerated, == the map's       │
-  │                                    target side by construction    │
-  │      unmapped-<field>.csv          the gaps, with reasons         │
-  │      <field>-report.json           coverage, comparable across    │
-  │                                    populations                    │
+  │  build_<field>_cm_vs.py   one per bound element: projects the     │
+  │      streams its facade ValueSet reaches into                     │
+  │      ConceptMap-<id>.json + ValueSet-<target id>.json             │
+  │      + <field>-report.json (per-map totals and canonicals)        │
+  │                                                                   │
+  │  build_stream_reports.py  resolves every stream once:             │
+  │      output/stream-report.json     THE statistics file            │
+  │      unmapped-<stream>.csv         one worklist per stream        │
+  │      output/occurrence-buckets.csv per-element data coverage      │
+  │                                                                   │
+  │  build_statistics.py      renders stream-report.json into         │
+  │      mapping-statistics.{csv,html} and the terminal table         │
   └──────────────────────────┬───────────────────────────────────────┘
-             ── you read the report and the unmapped CSV ──
+       ── you read the statistics and the per-stream worklists ──
   ┌─ 3 ─────────────────────▼────────────────────────────────────────┐
   │  upload.py — ValueSets first, then ConceptMaps. Refused while     │
   │  anything is unmapped, unless you pass --allow-unmapped           │
@@ -61,6 +64,25 @@ bound element resolves exactly one map:
 | `Procedure.code` | `mimic-procedure-merged-code` | `mimic-procedure-merged-to-standard` | `mimic-procedure-merged-standard` | `build_procedure_cm_vs.py` |
 | `Observation.code` | `mimic-observation-merged-code` | `mimic-observation-merged-to-standard` | `mimic-observation-merged-standard` | `build_observation_cm_vs.py` |
 | `Observation.component.code` | `mimic-observation-component-vital` | `mimic-observation-component-to-standard` | `mimic-observation-component-standard` | `build_observation_component_cm_vs.py` |
+| `Specimen.type` | `mimic-specimen-type` | `mimic-specimen-to-standard` | `mimic-specimen-standard` | `build_specimen_cm_vs.py` |
+| `MedicationRequest.medication[x]` | `mimic-medication-request-code` | `mimic-medication-to-standard` | `mimic-medication-standard` | `build_medication_cm_vs.py` |
+| `Medication.code` | `mimic-medication-code` | `mimic-medication-code-to-standard` | `mimic-medication-code-standard` | `build_medication_code_cm_vs.py` |
+| `MedicationAdministration.medication[x]` | `mimic-medication-administration-merged-code` | `mimic-medication-administration-to-standard` | `mimic-medication-administration-standard` | `build_medication_administration_cm_vs.py` |
+
+`MedicationRequest.medication[x]` and `Medication.code` are **one pair, not two
+populations**: that element is a choice, and at least 87.8% of MIMIC
+prescriptions carry `medicationReference` rather than an inline CodeableConcept,
+so a consumer must dereference and translate `Medication.code`. A required
+binding cannot constrain a Reference — a validator has nothing coded to check —
+so for those prescriptions `Medication.code`'s binding is the only one governing
+the drug code. Two elements bound to the same union, hence the two facade
+ValueSets above; see "One map per element needs one sourceCanonical per element".
+
+Two more elements are inventoried in `occurrences/elements.json` but have **no
+map yet**: `MedicationDispense.medication[x]` (9,372 drug-name codes, 12.7M
+codings — where nearly the whole name CodeSystem is actually used) and
+`MedicationStatement.medication[x]` (the ED medrecon population, bound at the
+coding slices).
 
 **One builder script per ConceptMap, and how it maps is that script's own
 business.** The condition builder does nothing but insert dots; the procedure
@@ -181,9 +203,36 @@ for two reasons that only show up on the consuming side:
   this repo still passes.
 
 Two maps put each code in exactly the one column that can hold it, and both name
-a `sourceCanonical` that already exists in the IG and is published by
-`scripts/publish-conformance.sh`. This repo mints no new source canonical for
-either.
+a `sourceCanonical` published by `scripts/publish-conformance.sh`.
+
+### One map per element needs one sourceCanonical per element
+
+The rule above assumes each bound element has a binding of its own. `mimic-medication`
+breaks that assumption: it is bound `required` on FOUR elements — `MedicationRequest.medication[x]`,
+`Medication.code`, `MedicationDispense.medication[x]`, and `MedicationAdministration.medication[x]`
+through the merged facade — and each element gets its own map. A shared
+`sourceCanonical` then leaves `$translate` unable to tell which element a Coding
+came from, and each element-scoped map answering for populations it was never
+scoped against. That was not hypothetical: `mimic-medication-to-standard` is
+scoped to the 2,888 drug names on `MedicationRequest.medication[x]`, while 9,372
+of them appear on `MedicationDispense.medication[x]` — so 6,741 codes came back
+"never observed" to a Dispense consumer, 701 of them codes this repo has answers
+for.
+
+So two facade ValueSets ARE minted, in `input/fsh/`:
+`mimic-medication-request-code` and `mimic-medication-code`. Each is a grouping
+ValueSet whose whole compose is `include codes from valueset mimic-medication`,
+so **membership is identical and no instance validates differently** — what they
+buy is a canonical identity per element. Same shape as
+`mimic-medication-administration-merged-code`, different reason: that one unions
+sub-types, these disambiguate elements.
+
+Two consequences worth knowing. They are FSH-authored, so they reach a server
+through the IG build and `scripts/publish-conformance.sh`, not through
+`upload.py` (which publishes each map's *target* value set only). And
+`verify_mappings.py` check 5 reads them from `fsh-generated/`, so it needs
+`sushi .` to have run — it says so rather than passing silently when they are
+missing.
 
 ### The one rule about rules
 
@@ -200,22 +249,25 @@ is a target of *both* the diagnosis and the procedure map — differing only by 
 If you find yourself writing `code[:3] + "." + code[3:]` anywhere else in this
 repo, that is the bug.
 
-What each builder owns is its **declaration**: `SOURCES` (which populations, and
-how each resolves) and `META` (ids, canonicals, titles, descriptions, purpose,
-copyright). What `lib/` owns is everything that computes, assembles or writes:
+What each builder owns is its **declaration**: `SOURCES` (which streams it
+consumes, by name — the streams themselves live once in `lib/streams.py`) and
+`META` (ids, canonicals, titles, descriptions, purpose, copyright). What `lib/`
+owns is everything that computes, assembles or writes:
 
 | Module | Holds |
 |---|---|
+| `lib/streams.py` | every stream, declared once; `check_disjoint`, `undeclared` |
 | `lib/notation.py` | dot insertion, `is_pcs_leaf`, `concept_properties` |
 | `lib/canonical.py` | system URLs, `UNVERSIONED_SYSTEMS`, canonical bases |
 | `lib/igsource.py` | `source_concepts` — reading codes from the IG |
-| `lib/builders.py` | which builders exist, and the union population a shared table serves |
+| `lib/builders.py` | which builders exist; a table generator's population |
 | `lib/curated.py` | loading and validating a mapping table |
 | `lib/built.py` | the built CodeSystems, release resolution, dating |
-| `lib/assemble.py` | declaration → ConceptMap groups, `unmatched` groups |
+| `lib/assemble.py` | `resolve_source` — ONE resolution per stream — then stream outcomes → ConceptMap groups, `unmatched` groups |
 | `lib/project.py` | ConceptMap → enumerated target ValueSet |
-| `lib/report.py` | the unmapped CSV and `<field>-report.json` |
-| `lib/driver.py` | the shared build: declaration in, four files out |
+| `lib/report.py` | the per-stream worklists and the per-map report |
+| `lib/stats.py` | the codesearch block, from committed tables and logs |
+| `lib/driver.py` | the shared build: streams in, three files out |
 
 Its other corollary: **source codes are never written out in a builder.**
 `source_concepts` reads them from the IG's own CodeSystems and ValueSets, and
@@ -294,27 +346,21 @@ it: detection fires only once both generation runs have been paid for, and
 resolving the conflict is then a per-row human judgement — the thing the
 generated-table contract exists to remove.
 
-So the table is shared, and three things follow:
+So the table is shared — it belongs to the STREAM, one entry in
+`lib/streams.py`, and every map that consumes the stream reads the same rows
+and publishes the same answers. Two things follow:
 
-- `load_table` validates rows against the source **CodeSystem's** enumeration
-  rather than one field's population. Staleness detection survives — a row
-  naming a code the IG no longer has is still fatal, as is display drift — and a
-  row belonging to a sibling population is simply never looked up, because
-  `build_groups` only resolves the codes in its own population. What it stops
-  detecting is a row for a code that exists and that no field maps; that is now
-  indistinguishable from a sibling's row, so it is **counted and printed**
-  rather than rejected.
-- The generation population is the **union**, discovered by `lib/builders.py`
-  from the builders themselves rather than declared in a list. A hand-kept list
-  is the registry the builder glob exists to avoid, and its failure mode is
-  silent: a stream added to a second field, its codes missing from the table,
-  and every one of them landing in the unmapped CSV as `no-row-in-curated-table`
-  while the build stays green.
-- `lib/stats.py` filters a table's provenance columns to the stream's own
-  population before computing the confidence spread and status breakdown.
-  Otherwise one field's `codesearch` block would describe the other's rows. For
-  a table serving one field the filter is a no-op, so every committed report
-  stays byte-identical.
+- `load_table` validates rows against the stream's whole **enumeration**.
+  Staleness detection survives — a row naming a code the IG no longer has is
+  still fatal, as is display drift — and since every consuming map resolves
+  the full enumeration, there are no sibling-only rows left to mistake for
+  stale ones.
+- The generation population is the codes observed on **any** bound element
+  (`lib/builders.table_population` — the stream's enumeration narrowed by the
+  committed occurrence counts), not one element's usage. A code observed
+  somewhere without a table row lands in the worklist as
+  `no-row-in-curated-table` while the build stays green — the signal to run
+  `make generate-all-tables`, which fills exactly those gaps.
 
 **`--append` is what makes sharing cheap.** Without it, adding a second field's
 codes means re-asking the service for the whole union and rewriting rows already
@@ -531,28 +577,43 @@ make update-manifest      # re-pin them after adding or changing a release
 make terminology          # stage 1, build only
 make deploy-terminology   # stage 1, build + upload + $lookup smoke tests
 
-make mappings             # stage 2 for every population, then verify — the everyday command
-make statistics           # per-stream coverage table (terminal + csv + html)
-make condition            # just Condition.code
-make procedure            # just Procedure.code
-make observation          # just Observation.code
-make observation-component  # just Observation.component.code (separate binding)
+make mappings             # stage 2, everything offline: all ConceptMaps and
+                          # ValueSets, the stream reports, the statistics,
+                          # then verify — the everyday command
+make stream-reports       # just the per-stream artefacts
+make statistics           # stream reports + the coverage table (csv + html + terminal)
 make verify-mappings      # the checks on their own
 make verify-curated       # $lookup every SNOMED code in the mapping tables
 
-make d-items-table ARGS=--insecure   # regenerate the ICU table; network + code-search,
-                                     # never part of `make mappings` — see below
+make <stream>-table ARGS=--insecure   # regenerate ONE stream's mapping table;
+                                      # network + code-search, never part of
+                                      # `make mappings`. One target per
+                                      # table-backed stream: d-items-table,
+                                      # labevents-table, medication-name-table, …
+make generate-all-tables ARGS=--insecure   # fill the gaps in every
+                                      # gap-capable table (--append); asks for
+                                      # confirmation first, FORCE=1 skips it
 
 make upload-mappings UPLOAD_ARGS=--insecure  # stage 3, refuses while codes are unmapped
 make upload-mappings ARGS=--allow-unmapped UPLOAD_ARGS=--insecure   # ... once reviewed
 make upload-mappings ONLY=observation-component ARGS=--allow-unmapped UPLOAD_ARGS=--insecure
-                                     # ... publishing just one population
+                                     # ... publishing just one map
 ```
 
-`make mappings` is what you run while iterating: no network, a few seconds. The
-builders take no `--fhir-base` at all — they are pure functions of the committed
-inputs, which is what makes a build from unchanged inputs byte-identical and
-`make mappings && git diff --exit-code` a valid test.
+`make mappings` is what you run while iterating: no network, seconds. There
+are deliberately NO per-element build targets any more — a ConceptMap consumes
+several streams and the whole offline pipeline is one pass, so a partial build
+bought nothing except the mixed-state artefacts verify check 7 exists to
+catch. The builders take no `--fhir-base` at all — they are pure functions of
+the committed inputs, which is what makes a build from unchanged inputs
+byte-identical and `make mappings && git diff --exit-code` a valid test.
+
+TWO NAMING VOCABULARIES, on purpose. Build and generation are per STREAM
+(`make labevents-table`, `unmapped-labevents.csv`, the rows of
+`mapping-statistics.csv`); publishing is per MAP, so `ONLY=` takes the
+builders' field names (`condition`, `observation-component`,
+`medication-code`, …) — uploads move ConceptMaps and generation moves tables,
+and the two are different sets of things.
 
 `upload-mappings` takes two flag variables because its two steps take different
 flags: `ARGS` reaches the verifier, `UPLOAD_ARGS` reaches the publisher.
@@ -570,16 +631,16 @@ comma-separated list of population names, resolved through the
 built and there is no list to keep in step. A wrong name is a hard error listing
 the real ones.
 
-**One name per population, everywhere.** A population is named for the element
-it maps, so the `make` target, the builder's `FIELD`, the `populations:` line
-`verify-mappings` prints, `unmapped-<field>.csv`, `<field>-report.json` and
-`ONLY=` are all the same word: `condition`, `procedure`, `observation`,
-`observation-component`. `Condition.code` used to answer to `diagnosis` — which
-named MIMIC's input rather than the bound element, and made it the one
-population whose target and artefacts disagreed. Its **canonicals keep their
-names**: `ConceptMap/mimic-diagnosis-icd-to-sid` and `ValueSet/mimic-diagnosis`
-are published and referenced by consumers, and a canonical is an identity rather
-than a label.
+**One name per thing, everywhere.** A map is named for the element it maps
+(`condition`, `observation-component`, `medication-code`), and that one word is
+the builder's `FIELD`, `<field>-report.json` and `ONLY=`. A stream is named
+for its table (`d-items`, `labevents`, `medication-name`), and that one word is
+its registry key in `lib/streams.py`, its `make <stream>-table` target, its
+`unmapped-<stream>.csv` worklist, its generation log and its row in the
+statistics. `Condition.code` used to answer to `diagnosis`; its **canonicals
+keep their names** (`ConceptMap/mimic-diagnosis-icd-to-sid`,
+`ValueSet/mimic-diagnosis`) because a canonical is an identity rather than a
+label.
 
 What it does **not** narrow is the checking: `verify-mappings` still runs over
 every population, because a broken map is broken whether or not this run would
@@ -592,31 +653,62 @@ siblings with it.
 
 ### Per-stream statistics
 
-`<field>-report.json` aggregates per map, but a map cannot yield per-*stream*
-numbers: streams sharing a (source, target) pair merge into one R4 group — the
-two LOINC identity populations deliberately land in a single group — so the
-tallies are collected where stream identity still exists, in
-`build_groups`'s source loop. Each report carries them as `by_stream`, one
-entry per `SOURCES` declaration, keyed by the IG resource id the codes came
-from (`mimic-observation-type-ed`, `mimic-outputevents-d-items`, …).
+A STREAM is the unit every statistic is keyed by: one source enumeration
+resolved into one or more target systems by one resolver, declared exactly once
+in `conceptmaps/lib/streams.py` and consumed by however many ConceptMaps bind
+it. The stream key is the ENUMERATING RESOURCE, not the source CodeSystem —
+`mimic-d-items` is one CodeSystem partitioned across three subset ValueSets
+(procedureevents, datetimeevents, outputevents), each its own stream with its
+own table and target. Streams sharing a system must be pairwise disjoint;
+verify check 8 enforces it.
 
-Table-backed streams additionally carry a `codesearch` block, computed
-offline from committed files: the confidence spread and status breakdown from
-the table's own provenance columns, and the settings that produced it —
-constraint, template, threshold — from `output/<stream>-generation-log.json`.
-So "coverage was 63.9% at threshold 0.8, and 35 of the 61 unmapped had a
-proposal rejected below it" is a sentence the artefacts state rather than one
-someone recomputes.
+The registry is hand-kept, which makes it exactly as complete as someone
+remembered to make it — so the table is built over the **bindings**, not over
+the registry. `lib/streams.undeclared()` expands every `bound_valuesets` entry
+in `occurrences/elements.json`, subtracts what the streams enumerate, and
+`build_stream_reports.py` synthesises a `declared: false` row for whatever is
+left: method `unstreamed`, 0% coverage, its own `unmapped-<name>.csv`, and the
+elements that bind it in the `consumed by` column. Verify check 9 counts those
+codes as unmapped.
 
-`build_statistics.py` flattens every report's `by_stream` into
-`output/mapping-statistics.csv` — one row per stream across all fields, the
-citable table — plus `output/mapping-statistics.html` (a stacked-bar view,
-gitignored: a derived view, never a deliverable) and a terminal table via
-`make statistics`. It recomputes nothing, which is what keeps a partial build
-honest: `make observation` refreshes its own report, every other field's
-report is the committed one, and the CSV assembled from all of them stays
-complete. Every field target regenerates it quietly, so it can never go
-stale.
+The point is the **denominator**. Left out, the 10,548 GSN and ETC codes
+carrying 7.1M occurrences were absent from `all streams (used-in-data)`
+altogether, so declaring a stream for them could only ever move the headline
+figure *down* — a coverage metric that punishes discovering work is pointed the
+wrong way. Disjointness stops the registry double-counting; this is the half
+that stops it under-counting, and the two are not symmetric: an overlap shows up
+as a contradiction, while an omission shows up as nothing at all.
+
+`build_stream_reports.py` resolves every stream once and writes
+`output/stream-report.json`, one block per stream:
+
+    enumerated_total   every code the stream declares
+    used_in_data       codes observed on ANY bound element (union — the same
+                       code is never counted once per consuming field)
+    mapped             codes with an answer, over the whole enumeration
+    mapped_used        the intersection, and the numerator of
+    coverage_pct       THE headline: of the codes the warehouse actually
+                       uses, how many resolve
+    occurrences_*      the same coverage weighted by data volume
+    codesearch         for table-backed streams: threshold, confidence
+                       spread, status split, near-misses — read offline from
+                       the committed table's provenance columns and its
+                       generation log
+
+Occurrence weights mix two artifacts on purpose: event elements weigh by
+`code-occurrences.csv`, dictionary elements (Medication, deduplicated) by
+`reference-occurrences.csv`, which counts each code once per REFERRING
+resource — so the reference branch counts each prescription exactly once and
+dictionary size is never summed with data volume.
+
+Without the occurrence artifacts every used-in-data figure is OMITTED, never
+zeroed and never re-based onto the enumeration: an empty percentage column
+says "nobody counted", a number would quietly change what the column means.
+
+`build_statistics.py` renders that report into `output/mapping-statistics.csv`
+— one row per stream, the citable table — plus `mapping-statistics.html` (a
+stacked-bar view, gitignored: a derived view, never a deliverable) and a
+terminal table via `make statistics`. It recomputes nothing.
 
 ### Weighting coverage by how much data a code carries
 
@@ -627,11 +719,23 @@ is the case worth catching, because missing a code recorded on every admission
 is not the same failure as missing one recorded twice in 2012.
 
 So `occurrences/count_occurrences.py` runs once on the HPC node against the full
-Delta warehouse and counts every distinct coded value for the seven bound
-elements in `occurrences/elements.json`. Its two outputs are committed
+Delta warehouse and counts every distinct coded value for the ten bound
+elements in `occurrences/elements.json`. Its outputs are committed
 (`code-occurrences.csv`, `occurrence-summary.json` — the latter carries each
-Delta table's version and the CSV's sha256, which `build_statistics.py`
-verifies), so everything downstream stays offline. See
+Delta table's version and each CSV's sha256, which `build_statistics.py`
+verifies), so everything downstream stays offline.
+
+Two of those outputs exist because a coding count is not a resource count.
+`MedicationRequest.medication[x]` is a choice, and only its CodeableConcept
+branch carries a Coding, so the count sees 1,883,681 codings against 15,416,901
+rows — at least 87.8% of prescriptions keep their drug code on `Medication.code`
+behind a `medicationReference`. `element-shapes.csv` counts which branch each
+resource took; `reference-occurrences.csv` follows the reference and counts the
+target's codes once per *referring* resource, which is the volume figure
+comparable with the other elements. Note also that `Medication` is
+**deduplicated** — one resource per distinct drug tuple — so its own occurrence
+counts are dictionary size, not data volume; `occurrence_kind` marks that and
+`build_statistics.py` reports the two in separate tables. See
 `occurrences/README.md` for the re-run procedure and for why neither
 `binding-analysis/distinct-codes.ndjson` nor the Pathling MCP tool's
 `get_cardinality_and_top_values` could serve.
@@ -640,18 +744,33 @@ With the artifact present, `build_statistics.py` adds `occurrences_total`,
 `occurrences_mapped` and `occurrence_coverage_pct` to each stream row, writes
 `output/occurrence-buckets.csv`, and gives the HTML a per-element section with
 the head of the distribution and each code's status. The buckets partition every
-occurrence four ways, and the last three are deliberately not one number:
+occurrence seven ways, and everything after `declined` is deliberately not one
+number:
 
-| bucket | meaning |
-|---|---|
-| `mapped` | resolvable via `$translate` |
-| `declined` | a built stream considered the code and said no; its reason is in `unmapped-<field>.csv` |
-| `no-stream-yet` | a bound population nobody has built (labevents, chartevents, both `medication[x]`, `Specimen.type`) — a backlog, in rows |
-| `not-in-enumeration` | a code the data carries that no bound ValueSet admits; under a `required` binding that is an ETL or binding defect, so it should be empty |
+| bucket | meaning | the fix |
+|---|---|---|
+| `mapped` | resolvable via `$translate` | — |
+| `declined` | a built stream considered the code and said no; its reason is in `unmapped-<stream>.csv` | nothing — this is the judgement |
+| `blocked-upstream` | a built stream that maps nothing because the obstacle is outside terminology | the ETL |
+| `unresolved-in-stream` | a stream owns the code and has no answer for it yet | `make generate-all-tables` |
+| `no-map-for-element` | a stream resolved it; this element has no ConceptMap to serve the answer | a `build_*_cm_vs.py` |
+| `no-stream-yet` | **no stream declares this population at all** | a declaration in `lib/streams.py` |
+| `not-in-enumeration` | a code the data carries that no bound ValueSet admits; under a `required` binding that is an ETL or binding defect, so it should be empty | the binding, or the ETL |
 
 Only `declined` is a judgement this repo would defend. Reporting it together
-with a 1,622-code unbuilt population would misrepresent both, which is why the
+with an unbuilt population would misrepresent both, which is why the
 element-level view exists alongside the per-stream one rather than instead of it.
+
+The three backlogs are three buckets because they are three different jobs, and
+one used to hide inside another: before the split,
+`MedicationDispense.medication[x]` reported 14,240,367 occurrences as
+`no-stream-yet` when only 1,550,601 of them had no stream — the other 12.7M were
+streams that resolve perfectly, waiting on a builder for that element. The test
+order in `element_sections` is what keeps them apart, and it runs
+outermost-obstacle-first: no bound ValueSet, then no stream, then blocked, then
+no map, then whatever the stream itself found. With the ConceptMap test first —
+where it used to be — an element with no builder had *every* admitted occurrence
+called backlog, which is how the 1.5M disappeared.
 
 Attribution of a count to a stream is by code membership, not by source system:
 `mimic-d-items` serves three populations, so only the enumerations can say which
@@ -662,22 +781,38 @@ ValueSet and only the CodeSystem enumerates anything.
 
 ### How unmapped codes are recorded
 
-A code MIMIC uses that has no counterpart in any built release is recorded in
-**two** places, and `verify_mappings.py` fails if they disagree:
+A code a stream cannot resolve is recorded in **two** places, and
+`verify_mappings.py` fails if they disagree:
 
-- `unmapped-<field>.csv` — your worklist.
-- the ConceptMap itself, as an element whose target has
-  `equivalence: "unmatched"` and **no code**, in a group with no `target`
-  system, carrying a comment saying which code was expected and why it is
-  absent. This makes "considered, and there is deliberately no target" a
-  machine-readable fact rather than a silent omission.
+- `unmapped-<stream>.csv` — the worklist, one per stream (its audience is
+  whoever fixes a mapping table, and tables are per stream). The `reason`
+  column says which kind of gap each row is:
+
+      no-suitable-concept        the stream considered the code and declined,
+                                 with the table row's comment as the reason —
+                                 the only judgement this repo would defend
+      no-row-in-curated-table    observed in the warehouse, but the table's
+                                 generation population predates it — a backlog;
+                                 `make generate-all-tables` is what fills it
+      not-observed-in-data       used on NO bound element anywhere (a
+                                 union-level fact from the occurrence counts)
+      absent-from-all-built-releases   a notation stream's code missing from
+                                 every built release — build the release
+      no-stream-yet              a bound population NO stream declares. The
+                                 whole file carries this reason: it is the
+                                 synthesised worklist for a gap found by
+                                 `lib/streams.undeclared()`, not a row inside a
+                                 real stream's worklist
+
+- every ConceptMap consuming the stream, as an element whose target has
+  `equivalence: "unmatched"` and **no code**, carrying the same reason. This
+  makes "considered, and there is deliberately no target" a machine-readable
+  fact rather than a silent omission.
 
 Note this is *not* `ConceptMap.group.unmapped`. That element is a fallback
-**rule**, not a list — its modes are `provided` (echo the source code back),
-`fixed` (send everything to one code) and `other-map`. `provided` would make
-`$translate` return `0095` as though it were a valid ICD-9-CM code, i.e. answer
-confidently with something fabricated. A reported gap beats a silent wrong
-answer.
+**rule**, not a list — `provided` would make `$translate` return `0095` as
+though it were a valid ICD-9-CM code, i.e. answer confidently with something
+fabricated. A reported gap beats a silent wrong answer.
 
 ### The refine loop
 
@@ -699,33 +834,44 @@ sources/            external release files, gitignored; per code system, per yea
 common/             shared helpers (TLS, HTTP, upload + $lookup smoke test, CLI)
 terminology/        stage 1 — source files -> CodeSystem, one folder per system
   icd9/  icd10cm/  icd10pcs/
-conceptmaps/        stage 2 — one builder per bound element, plus shared machinery
-  build_condition_cm_vs.py      Condition.code: declaration only, ~90 lines
-  build_procedure_cm_vs.py      Procedure.code: declaration only
-  build_observation_cm_vs.py    Observation.code: declaration only, one stream at a time
+conceptmaps/        stage 2 — builders, the stream registry, shared machinery
+  build_condition_cm_vs.py      Condition.code: names its streams, ~90 lines
+  build_procedure_cm_vs.py      Procedure.code
+  build_observation_cm_vs.py    Observation.code
   build_observation_component_cm_vs.py   Observation.component.code: its own binding
   lib/                          everything executable — see "the one rule about rules"
-  d-items-snomed.csv            the ICU table, generated, read only from a builder
-  build_d_items_table.py        writes that CSV; network + code-search, run by hand
+    streams.py                  EVERY STREAM, DECLARED ONCE: enumeration,
+                                resolver, targets; builders reference names
+  d-items-snomed.csv            one committed table per table-backed stream,
+  labevents-loinc.csv  ...      read only through the registry
+  build_d_items_table.py        one generator per table; network + code-search,
+  build_labevents_table.py ...  run by hand via make <stream>-table
 eval/               the manual table the generator replaced, kept as an answer key
   d-items-snomed-manual.csv     never read by the build
 verify/             the checks, and stage 3's gate
   verify_mappings.py            verify_curated_snomed.py (needs the network)
 upload.py           stage 3 — the only script that writes to a server
-build_statistics.py flattens the reports' by_stream into the statistics table
+build_stream_reports.py resolves every stream once -> the statistics artefacts
+build_statistics.py renders stream-report.json into the csv/html/terminal views
 occurrences/        how often each coded value occurs; extracted once on the node
   count_occurrences.py          the node script (+ --dry-run, needs no warehouse)
   count_occurrences.slurm       the Petrichor job; read-only, never writes data
-  elements.json                 the seven bound elements, read by BOTH sides
+  elements.json                 the ten bound elements, read by BOTH sides
   code-occurrences.csv          the counts, committed — optional input to
                                 build_statistics.py
-  occurrence-summary.json       what was counted, and the CSV's sha256
+  element-shapes.csv            which branch of a choice element each resource
+                                took (only for elements declaring count_shapes)
+  reference-occurrences.csv     codes reached through a Reference, weighted by
+                                referring resources
+  occurrence-summary.json       what was counted, and each CSV's sha256
 output/             every generated resource, flat, ResourceType-id.json
-  <field>-report.json           coverage per population, comparable across them
-  mapping-statistics.csv        one row per stream across all fields — see
+  stream-report.json            one block per stream — THE statistics file
+  unmapped-<stream>.csv         one worklist per stream, with reasons
+  <field>-report.json           per-map totals and canonicals (ONLY= reads it)
+  mapping-statistics.csv        one row per stream — the citable table; see
                                 "Per-stream statistics"
   occurrence-buckets.csv        where every occurrence of a bound element goes
-  d-items-generation-log.json   what the last generator run saw, per row
+  <stream>-generation-log.json  what the last generator run saw, per row
 input-manifest.json sha256 of every input that influences a generated resource
 ```
 
@@ -839,25 +985,43 @@ therefore have exactly one target each, and PCS matches only 7-character leaves.
 
 ## What the verifier checks
 
-`verify/verify_mappings.py` re-derives nothing. It reads the generated artefacts
-and checks properties of them:
+`verify/verify_mappings.py` re-derives nothing. It reads the generated
+artefacts and checks properties of them:
 
-1. **Coverage** — every MIMIC code is either mapped or listed in the unmapped CSV.
-   Nothing may be silently absent from both.
-2. **ValueSet == ConceptMap target side** — the VS is the map's `targetCanonical`,
-   so "member of the value set" and "reachable by `$translate`" must be the same
-   set. Drift means the two were built from different inputs.
-3. **Only releases built here** — a shared terminology server can hold releases
-   this repo has no source for; pinning a code into one produces an artefact that
-   cannot be reproduced or redistributed.
-4. **Only declared systems go unversioned** — a mapping that pins no release is
-   legitimate only into a system on `UNVERSIONED_SYSTEMS` (SNOMED CT, built
-   elsewhere). Checked rather than skipped, so check 3 cannot be bypassed by
-   simply omitting the version.
-5. **No PCS grouper mappings** — the collision above, checked explicitly rather
-   than trusted to stay correct.
+1. **Stream coverage** — every code in each stream's enumeration is mapped by
+   every consuming ConceptMap or listed in `unmapped-<stream>.csv`, and the
+   map's `unmatched` entries and the CSV agree. Nothing may be silently absent
+   from both. (When the occurrence artifacts are absent, rows claiming
+   `not-observed-in-data` are warned about rather than re-verified — the
+   fact they claim lives in those artifacts.)
+2. **ValueSet == ConceptMap target side** — the VS is the map's
+   `targetCanonical`, so "member of the value set" and "reachable by
+   `$translate`" must be the same set.
+3. **Only releases built here** — a pinned release this repo has no source for
+   produces an artefact that cannot be reproduced or redistributed.
+4. **Only declared systems go unversioned** — see `UNVERSIONED_SYSTEMS`.
+5. **No PCS grouper mappings** — the dot-less collision, checked explicitly.
+6. **Completeness against the binding** — every code the element's bound
+   ValueSet admits has an entry in its ConceptMap, mapped or `unmatched`;
+   needs `sushi .` for the FSH-authored facades and says so otherwise.
+7. **Stream ↔ map agreement** — every ConceptMap consuming a stream carries
+   the IDENTICAL answers for that stream's codes. A stream resolves once
+   (lib/assemble.py); two maps disagreeing means an artefact is stale, which
+   is what a partial rebuild produces and why there are no partial builds.
+8. **Partition disjointness** — streams sharing a source system must not
+   overlap, or a code belongs to two streams and every statistic counts it
+   twice.
+9. **Partition coverage** — the other half of 8: every code any binding admits
+   must belong to *some* stream. Disjointness stops the registry
+   double-counting; nothing stopped it under-counting by simply not mentioning
+   a population, and that failure is silent where an overlap is not — a stream
+   that does not exist writes no row, no worklist and no warning. Check 6
+   catches this per *map*, so it is blind to an element with no builder at all,
+   which is where both undeclared populations were sitting.
 
-Checks 2–5 are correctness bugs, and `--allow-unmapped` does not relax them.
+Checks 2–8 are correctness bugs, and `--allow-unmapped` does not relax them.
+Check 9 is a data gap of the same kind the worklists record, so its codes are
+added to the unmapped count and gated the same way.
 
 `verify_curated_snomed.py` is separate because it needs a server. It checks the
 four things about a mapping target that no human can see by reading the CSV:

@@ -1,0 +1,62 @@
+{
+ "field": "medication-dispense",
+ "element": "MedicationDispense.medication[x]",
+ "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-medication-dispense-to-standard",
+ "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-medication-dispense-standard",
+ "version": "1.0.0",
+ "date": "2026-08-11",
+ "streams": [
+  "medication-name",
+  "medication-gsn",
+  "formulary-drug",
+  "medication-icu",
+  "medication-poe-iv",
+  "medication-ndc"
+ ],
+ "source_total": 29635,
+ "mapped": 18794,
+ "unmapped": 10841,
+ "by_source": [
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-formulary-drug-cd",
+   "mapped": 2039
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-gsn",
+   "mapped": 7776
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-icu",
+   "mapped": 214
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name",
+   "mapped": 3656
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-ndc",
+   "mapped": 5109
+  }
+ ],
+ "by_target_system": [
+  {
+   "system": "http://snomed.info/sct",
+   "mappings": 334
+  },
+  {
+   "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+   "mappings": 18460
+  }
+ ],
+ "by_equivalence": {
+  "relatedto": 18794,
+  "unmatched": 10841
+ },
+ "unmapped_by_reason": {
+  "no-row-in-curated-table": 6286,
+  "no-suitable-concept": 2707,
+  "not-observed-in-data": 1848
+ },
+ "target_valueset_codes": 6928,
+ "extras": {}
+}

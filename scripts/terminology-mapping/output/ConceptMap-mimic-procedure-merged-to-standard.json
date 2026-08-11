@@ -7,7 +7,7 @@
  "title": "MIMIC merged Procedure codes to ICD-9-CM Vol 3 / ICD-10-PCS / SNOMED CT",
  "status": "active",
  "experimental": false,
- "date": "2026-08-05",
+ "date": "2026-08-10",
  "publisher": "CSIRO",
  "description": "Maps every code the merged MIMIC Procedure profile admits onto standard terminology, so a consumer can translate the whole Procedure.code column through a single ConceptMap. MIMIC's dot-less ICD codes become official dotted ICD codes pinned to a release; codes that are already SNOMED CT map to themselves, so that translating the column preserves them instead of dropping them.",
  "purpose": "Lets a consumer translate the whole Procedure.code column with a single $translate. The ICD groups are a notation map \u2014 every mapping is 'equivalent' and changes only how the code is written, never which concept it means, and this is NOT an ICD-9-to-ICD-10 GEM. The SNOMED CT groups are different in kind: the ED codes are already SNOMED CT and map to themselves, 'equivalent', while every ICU d_items mapping is 'relatedto'. A flowsheet item like '16 Gauge' has no SNOMED concept of equal meaning, and the relationship to the peripheral cannula insertion it records is not a direction this resource claims to know, so it is not asserted. Consumers must therefore accept 'relatedto' as well as 'equivalent', or they will drop the whole ICU population. Where the code pair alone would mislead, the row carries a comment saying what the mapping does and does not cover.",
@@ -139557,8 +139557,7 @@
      "target": [
       {
        "code": "386478007",
-       "equivalence": "equivalent",
-       "display": "Triage: emergency center (procedure)"
+       "equivalence": "equivalent"
       }
      ]
     },
@@ -139568,8 +139567,7 @@
      "target": [
       {
        "code": "410188000",
-       "equivalence": "equivalent",
-       "display": "Taking patient vital signs assessment (procedure)"
+       "equivalence": "equivalent"
       }
      ]
     }

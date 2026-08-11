@@ -42,6 +42,46 @@ that already name their own specimen (`Chloride, CSF`, `Sodium, Body Fluid`,
 three templates — so the injection buys the hard cases at no cost to the easy
 ones, which is what makes it a rule rather than a trade.
 
+WHERE MIMIC NAMES WHOLE BLOOD ITSELF, the `fluid` column is not the last word.
+`fluid` is a specimen FAMILY, not a LOINC System: it says "this came from blood"
+and cannot say serum, plasma or whole blood. For most analytes that is all MIMIC
+knows and injecting `Blood` is the honest sentence. But for six analytes MIMIC
+draws the distinction in the LABEL — `Potassium, Whole Blood` (50822) sits beside
+a plain `Potassium` (50971), both filed under `fluid = Blood` — and injecting the
+same word for both asked one question for two measurements. Seven of the eight
+such pairs came back on the IDENTICAL LOINC code, the plain sibling carrying
+3.15M, 3.12M, 3.08M and 2.75M observations onto a whole-blood target:
+
+    50822 Potassium, Whole Blood  / Blood Gas   6298-4 |… in Blood|
+    50971 Potassium               / Chemistry   6298-4 |… in Blood|   <- same code
+    50824 Sodium, Whole Blood     / Blood Gas   2947-0 |… in Blood|
+    50983 Sodium                  / Chemistry   2947-0 |… in Blood|   <- same code
+
+MIMIC distinguishes them and the map did not, which is a contradiction internal
+to the source rather than a judgement about LOINC. So where — and ONLY where — a
+`<analyte>, Whole Blood` item exists, its plain sibling in the same fluid and in
+category `Chemistry` is asked as `Serum or Plasma` instead of `Blood`. That is 10
+items across 5 analytes, 15.4M observations. See SPECIMEN_OVERRIDE.
+
+Scoped this tightly on purpose, and the scoping is the argument:
+
+  * It fires only where MIMIC ITSELF names the contrast. An analyte with no
+    `, Whole Blood` sibling — `Urea Nitrogen`, `Magnesium`, `Bilirubin, Total` —
+    keeps `Blood`, because nothing in the source says otherwise and inventing the
+    serum axis from a lab-section name is exactly the mistake below.
+  * `category` is consulted only to pick WHICH member of a named contrast is the
+    whole-blood one, never to decide the axis on its own. It cannot bear more:
+    `51704 Platelet Count` and `51638 Hematocrit` are filed `Chemistry` and are
+    whole-blood haematology, so a blanket "Chemistry means serum" rule would move
+    them onto a serum target and break rows this one leaves alone. Blood Gas
+    siblings keep `Blood` — `50809 Glucose` (Blood Gas, 211K) stays put while
+    `50931 Glucose` (Chemistry, 2.75M) moves.
+  * The sentence keeps its SHAPE. Only the specimen word changes; no new field
+    joins the template, so the failure CATEGORY IS EXCLUDED documents below
+    cannot come back through this door. The two rows it names, `52025 Delete` and
+    `52043 Voided Specimen`, are Blood Gas and Other Body Fluid: neither is in a
+    named contrast, and both are asked the byte-identical sentence they are today.
+
 CATEGORY IS EXCLUDED, and this is the sharper finding. MIMIC also records
 `category` (Chemistry 777 / Hematology 781 / Blood Gas 64). Adding it reaches
 12/12 on the System axis and it still must not be used, because it MANUFACTURES
@@ -56,7 +96,9 @@ that mean "this record was deleted" — 52 items across the two families. An
 isolating probe with the category word removed from the same sentence returns NO
 MATCH for both, so it is `category` and not the phrasing that does it. That is
 the "template rescues junk" failure build_outputevents_table.py documents, and it
-is why the query key below is (label, fluid) and not (label, fluid, category).
+is why the query key below is (label, specimen) and not (label, specimen,
+category) — and why SPECIMEN_OVERRIDE above reads `category` to choose a word
+inside the existing sentence rather than adding it to the sentence as a field.
 
 The one thing category would have bought is `51265 Platelet Count`, where it
 moves the answer off `777-3 |… by Automated count|` onto the methodless
@@ -156,13 +198,19 @@ them was considered and dropped for build_micro_test_table.py's reason: the
 constraint already handles them, and a list of labels seen to come back wrong is
 curation against known rows, which is what COMMENT_OVERRIDES is forbidden to do.
 
-ONE QUERY PER (LABEL, FLUID), 1,615 searchable items collapsing to 1,479
+ONE QUERY PER (LABEL, SPECIMEN), 1,615 searchable items collapsing to ~1,484
 searches, the answer fanned back across the itemids sharing a key. A correctness
 rule and not an optimisation, the same one build_micro_test_table.py makes for
 its three shared labels: nothing distinguishes `50811` and `51222` (both
 `Hemoglobin` in `Blood`) but the itemid and the category, so a map where they
 disagree is wrong however plausible each row looks alone. The fan-out makes
 divergence unrepresentable and main() asserts it anyway.
+
+The key is the SPECIMEN the sentence states, not the raw `fluid` column, which
+matters for exactly the rows SPECIMEN_OVERRIDE moves: `Glucose` in `Blood` used
+to be one key spanning `50809` (Blood Gas) and `50931` (Chemistry), so one answer
+had to serve both. It is now two keys, which is the point — the collapse must not
+outlive the reason the two rows were ever the same question.
 
 The LABEL ALONE would be the wrong key, not merely a coarser one: 1,622 items
 carry 1,170 distinct labels, and `pH` spans four fluids while `Voided Specimen`
@@ -268,7 +316,7 @@ CONSTRAINT_VCL = '(http://loinc.org)(CLASSTYPE=1,STATUS=ACTIVE)'
 # items spanning every fluid — see THE SPECIMEN IS NOT IN THE LABEL and CATEGORY
 # IS EXCLUDED, the latter being why `category` is absent from a sentence that
 # otherwise had a use for it.
-TEMPLATE = "Hospital laboratory analyte measured in {fluid}: {label}"
+TEMPLATE = "Hospital laboratory analyte measured in {specimen}: {label}"
 
 # Below this, code-search's answer is discarded and the item is left unmapped.
 # Matches the five generators before it. The distribution is printed at the end
@@ -304,6 +352,39 @@ SPECIMEN_SUFFIX = {
     "bone marrow": "Bone Marrow",
 }
 SPECIMEN_SUFFIX_RE = re.compile(r",\s*([A-Za-z ]+)$")
+
+# The one place `fluid` is overridden, and it is derived from the dictionary
+# rather than listed here — a hand-written list of itemids would be curation
+# against known rows, which COMMENT_OVERRIDES is forbidden to do and this has no
+# more licence for. See WHERE MIMIC NAMES WHOLE BLOOD ITSELF.
+#
+# The trigger is MIMIC's own `<analyte>, Whole Blood` labels: where one exists,
+# its plain siblings in the same fluid are, by MIMIC's own naming, not whole
+# blood. `category` then says which sibling is which — Blood Gas keeps the fluid
+# word, Chemistry is asked as serum or plasma. Both halves are needed: the label
+# convention establishes THAT a contrast exists, the category says WHICH SIDE a
+# row sits on, and neither is trusted to do the other's job.
+WHOLE_BLOOD_SUFFIX_RE = re.compile(r",\s*whole blood\s*$", re.I)
+SERUM_CATEGORY = "Chemistry"
+SERUM_SPECIMEN = "Serum or Plasma"
+
+
+def specimen_override(labitems):
+    """{itemid: specimen word} for every item the fluid column under-states.
+
+    Empty for all but the analytes MIMIC labels a whole-blood variant of. Keyed
+    on (base label, fluid) so the contrast is scoped to one analyte in one
+    specimen family and cannot leak across fluids.
+    """
+    contrasted = {(WHOLE_BLOOD_SUFFIX_RE.sub("", item["label"].strip())
+                   .strip().casefold(), item["fluid"])
+                  for item in labitems.values()
+                  if WHOLE_BLOOD_SUFFIX_RE.search(item["label"].strip())}
+    return {code: SERUM_SPECIMEN
+            for code, item in labitems.items()
+            if item["category"] == SERUM_CATEGORY
+            and not WHOLE_BLOOD_SUFFIX_RE.search(item["label"].strip())
+            and (item["label"].strip().casefold(), item["fluid"]) in contrasted}
 
 # --------------------------------------------------------------------------- #
 # Paths and provenance
@@ -633,8 +714,8 @@ def decline_unasked(row, why_not):
     return row
 
 
-def search_query(label, fluid, fhir_base, service, timeout):
-    """One code-search call for one (label, fluid), its answer gated.
+def search_query(label, specimen, fhir_base, service, timeout):
+    """One code-search call for one (label, specimen), its answer gated.
 
     Returns the fields to copy onto every itemid sharing that key, so that
     analytes differing only by itemid cannot end up on different targets. The
@@ -643,7 +724,7 @@ def search_query(label, fluid, fhir_base, service, timeout):
     `codesearch_reasoning`, so the committed table shows what was considered and
     on what ground it was declined.
     """
-    text = TEMPLATE.format(label=label, fluid=fluid)
+    text = TEMPLATE.format(label=label, specimen=specimen)
     answer = {c: "" for c in PROVENANCE_COLUMNS + LOG_ONLY_COLUMNS
               + ["loinc_code", "loinc_display", "comment"]}
     answer["codesearch_query"] = text
@@ -678,6 +759,39 @@ def search_query(label, fluid, fhir_base, service, timeout):
 
     answer["comment"] = declined_comment(answer, confidence)
     return answer
+
+
+def recorded_answers(path):
+    """{sentence: answer} for every sentence the committed table records.
+
+    Keyed on `codesearch_query` — the FULL TEMPLATED SENTENCE the service was
+    given — and that key is the whole safety argument for --replay. A reused
+    answer is only ever reused for the identical question, so changing the
+    template, the specimen word or a label invalidates exactly the rows whose
+    sentence changed and nothing else: a new question simply is not in this
+    index, and gets asked. There is no way to launder a stale answer into a
+    changed query, because the query is the key.
+
+    What it does NOT cover is a change to the CONSTRAINT or the THRESHOLD, which
+    change how an answer is judged rather than what was asked. The sentences
+    would all still match and every recorded verdict would be the old rule's.
+    Re-run without --replay after touching either.
+
+    Rows the pre-filter declined carry no sentence and are skipped; they are
+    re-derived from the dictionary on every run anyway.
+    """
+    with open(path, newline="") as fh:
+        return {row["codesearch_query"]: {
+                    **{c: row.get(c, "") for c in PROVENANCE_COLUMNS},
+                    **{c: row.get(c, "") for c in TARGET_COLUMNS},
+                    "comment": row.get("comment", ""),
+                    # LOG_ONLY, and a property of the run that fetched the
+                    # answer rather than of the answer. A replay did not fetch
+                    # it, so it reports none.
+                    "path": "",
+                }
+                for row in csv.DictReader(fh)
+                if row.get("codesearch_query")}
 
 
 def declined_comment(answer, confidence):
@@ -809,6 +923,13 @@ def main():
                              "would drop every item it did not ask about.")
     parser.add_argument("--dry-run", action="store_true",
                         help="report only; do not write the CSV")
+    parser.add_argument("--replay", action="store_true",
+                        help="reuse the committed table's answer for any "
+                             "sentence it already records, and ask code-search "
+                             "only for sentences that are new. Safe across a "
+                             "template or specimen change, which simply produces "
+                             "new sentences; NOT safe across a constraint or "
+                             "threshold change, which re-judges old ones.")
     args = parser.parse_args()
 
     configure_tls(args.ca_bundle, args.insecure)
@@ -833,6 +954,12 @@ def main():
 
     # The pre-filter runs first, so an item the dictionary disqualifies is
     # declined without joining a query and cannot drag a search along with it.
+    # Derived once, off the whole dictionary rather than off `items`, so that
+    # --only cannot change what any surviving row is asked: a subset run that
+    # happened to exclude `50822 Potassium, Whole Blood` would otherwise stop
+    # seeing the contrast and quietly ask `50971` the old sentence.
+    overrides = specimen_override(labitems)
+
     rows_by_code, asked = {}, {}
     for code, label in items:
         row = blank_row(code, label)
@@ -840,6 +967,11 @@ def main():
         # written — the committed table's columns are CURATED + PROVENANCE.
         row["_fluid"] = labitems[code]["fluid"]
         row["_category"] = labitems[code]["category"]
+        # What the SENTENCE will say, which is the fluid column for all but the
+        # rows SPECIMEN_OVERRIDE moves. Kept beside `_fluid` rather than
+        # replacing it: the report breaks coverage down by the dictionary's own
+        # specimen families, and that stays the right axis for reading it.
+        row["_specimen"] = overrides.get(code, labitems[code]["fluid"])
         ok, why_not = searchable(labitems[code])
         if ok:
             asked[code] = row
@@ -847,13 +979,17 @@ def main():
             decline_unasked(row, why_not)
         rows_by_code[code] = row
 
-    # One search per (label, fluid), not per item. The label is the DICTIONARY's,
-    # stripped — `mimic_display` in the committed table stays the IG's exact
-    # string, which load_curated requires, and `codesearch_query` records the
-    # sentence actually sent, so the collapse is visible in the CSV.
+    # One search per (label, specimen), not per item. The label is the
+    # DICTIONARY's, stripped — `mimic_display` in the committed table stays the
+    # IG's exact string, which load_curated requires, and `codesearch_query`
+    # records the sentence actually sent, so the collapse is visible in the CSV.
+    #
+    # Keyed on the specimen the sentence states, not on `fluid`: two rows are the
+    # same question only if they are asked the same question, and after
+    # SPECIMEN_OVERRIDE those are no longer the same thing.
     queries = {}
     for code, row in asked.items():
-        key = (labitems[code]["label"].strip(), labitems[code]["fluid"])
+        key = (labitems[code]["label"].strip(), row["_specimen"])
         queries.setdefault(key, []).append(code)
     ordered = sorted(queries)
 
@@ -863,8 +999,28 @@ def main():
           f"({len(labitems)} matched)")
     print(f"  pre-filter: {len(asked)} searchable; "
           f"{len(items) - len(asked)} declined unasked")
+    # Loaded after the collapse so the count below is against the queries this
+    # run will actually make, which is the number a reader wants to see.
+    recall = None
+    if args.replay:
+        if not OUT_CSV.is_file():
+            sys.exit(f"  --replay needs {OUT_CSV.name} and it does not exist. "
+                     f"Run without --replay to build it once.")
+        recall = recorded_answers(OUT_CSV)
+
     print(f"  queries:    {len(asked)} item(s) collapse to {len(ordered)} "
-          f"distinct (label, fluid) key(s)")
+          f"distinct (label, specimen) key(s)")
+    if args.replay:
+        fresh = [k for k in ordered
+                 if TEMPLATE.format(label=k[0], specimen=k[1]) not in recall]
+        print(f"  mode:       REPLAY — {len(ordered) - len(fresh)} sentence(s) "
+              f"answered from {OUT_CSV.name}, {len(fresh)} to ask")
+        for key in fresh:
+            print(f"                new: "
+                  f"{TEMPLATE.format(label=key[0], specimen=key[1])}")
+    print(f"  specimen:   {len(overrides)} item(s) asked as "
+          f"{SERUM_SPECIMEN!r} rather than their fluid column "
+          f"(MIMIC names a whole-blood sibling)")
     print(f"  gate:       {args.fhir_base}")
     print(f"  service:    {args.service}")
     print(f"  constraint: {CONSTRAINT_VCL}")
@@ -872,13 +1028,21 @@ def main():
     print(f"  threshold:  {CONFIDENCE_THRESHOLD}")
     print(f"  comments:   {len(COMMENT_OVERRIDES)}\n")
 
+    reused = 0
+
     def work(key):
-        label, fluid = key
-        answer = search_query(label, fluid, args.fhir_base, args.service,
+        nonlocal reused
+        label, specimen = key
+        recorded = (recall or {}).get(
+            TEMPLATE.format(label=label, specimen=specimen))
+        if recorded is not None:
+            reused += 1
+            return dict(recorded)
+        answer = search_query(label, specimen, args.fhir_base, args.service,
                               args.timeout)
         members = sorted(queries[key])
         fanned = f"x{len(members)}" if len(members) > 1 else ""
-        print(f"    {label[:28]:<28} {fluid[:18]:<20} "
+        print(f"    {label[:28]:<28} {specimen[:18]:<20} "
               f"{answer['codesearch_status']:<18} "
               f"{answer['loinc_code'] or '—':<10} "
               f"{answer['loinc_display'][:32]:<34} {fanned}", flush=True)
@@ -886,6 +1050,10 @@ def main():
 
     with concurrent.futures.ThreadPoolExecutor(args.workers) as pool:
         answers = dict(zip(ordered, pool.map(work, ordered)))
+
+    if recall is not None:
+        print(f"\n  reused {reused} of {len(ordered)} sentence(s) from "
+              f"{OUT_CSV.name}; {len(ordered) - reused} asked")
 
     # Fan each query's one answer back across the itemids sharing its key. This
     # is what makes `50811` and `51222` — both `Hemoglobin` in `Blood` —
@@ -911,7 +1079,7 @@ def main():
         sys.exit("  Fix the service and re-run; cached answers make the "
                  "retry cheap.")
 
-    # The invariant the (label, fluid) collapse exists to guarantee, asserted
+    # The invariant the (label, specimen) collapse exists to guarantee, asserted
     # rather than assumed. The fan-out above makes divergence structurally
     # impossible, so this can only fire if the grouping and the fan-out ever stop
     # agreeing — and the whole point of the rule is that a reader should not have
@@ -924,8 +1092,8 @@ def main():
         for key, targets in sorted(diverged.items()):
             print(f"    {key}: {targets}", file=sys.stderr)
         sys.exit(f"  {len(diverged)} quer(ies) whose itemids ended up on "
-                 f"different targets, which the (label, fluid) collapse exists "
-                 f"to prevent. NOT writing {OUT_CSV.name}.")
+                 f"different targets, which the (label, specimen) collapse "
+                 f"exists to prevent. NOT writing {OUT_CSV.name}.")
 
     apply_comments(rows)
     report(rows, ordered)
@@ -947,6 +1115,13 @@ def main():
         "constraint_url": constraint_url(),
         "template": TEMPLATE,
         "confidence_threshold": CONFIDENCE_THRESHOLD,
+        # Which mode wrote this file. Under `replay` most answers are the
+        # earlier run's, reused because the sentence was unchanged; a log
+        # claiming a full run would overstate what this file rests on.
+        "run_mode": ("replay" if args.replay else "search"),
+        **({"replay": {"sentences": len(ordered), "reused": reused,
+                       "asked": len(ordered) - reused,
+                       "source": OUT_CSV.name}} if args.replay else {}),
         "pre_filter": {
             "dictionary": str(D_LABITEMS_GZ.relative_to(TERM.parents[1])),
             "specimen_suffix": SPECIMEN_SUFFIX,
@@ -954,11 +1129,25 @@ def main():
                 code: rows_by_code[code]["comment"]
                 for code in sorted(set(codes) - set(asked))},
         },
+        # Every row whose sentence states something other than its `fluid`
+        # column, with the sibling that licensed it, so the override is
+        # auditable without re-deriving it from the dictionary. Empty is the
+        # expected state for a dictionary that names no whole-blood variant.
+        "specimen_override": {
+            "rule": (f"an item whose category is {SERUM_CATEGORY!r} and whose "
+                     f"(label, fluid) also exists as '<label>, Whole Blood' is "
+                     f"asked as {SERUM_SPECIMEN!r}"),
+            "items": {code: {"label": labitems[code]["label"].strip(),
+                             "fluid": labitems[code]["fluid"],
+                             "asked_as": specimen}
+                      for code, specimen in sorted(overrides.items())},
+        },
         # Which itemids shared a query, so the collapse is auditable without
         # re-deriving it from the dictionary.
-        "query_key": ["label", "fluid"],
-        "shared_queries": {f"{label} [{fluid}]": sorted(members)
-                           for (label, fluid), members in sorted(queries.items())
+        "query_key": ["label", "specimen"],
+        "shared_queries": {f"{label} [{specimen}]": sorted(members)
+                           for (label, specimen), members
+                           in sorted(queries.items())
                            if len(members) > 1},
         "comment_overrides": {f"{code}->{target}": comment
                               for (code, target), comment

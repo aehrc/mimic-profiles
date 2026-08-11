@@ -49,29 +49,20 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from conceptmaps.lib.assemble import target                       # noqa: E402
-from conceptmaps.lib.canonical import (CANONICAL_BASE, LOINC,     # noqa: E402
-                                       MIMIC_BASE)
+from conceptmaps.lib.canonical import CANONICAL_BASE, MIMIC_BASE  # noqa: E402
 from conceptmaps.lib.driver import run                            # noqa: E402
-from conceptmaps.lib.notation import no_dot                       # noqa: E402
+from conceptmaps.lib.streams import sources                       # noqa: E402
 
 FIELD = "observation-component"
 
 # This map's own version. See build_condition_cm_vs.py.
 VERSION = "1.0.0"
 
-SOURCES = [
-    {
-        # Already LOINC, so identity. No targetVersion: this repo builds no
-        # LOINC release, and pinning one it neither publishes nor controls is
-        # exactly the irreproducibility verify_mappings check 3 exists to
-        # catch. LOINC is on UNVERSIONED_SYSTEMS.
-        "system": LOINC,
-        "valueset_file": "ValueSet-mimic-observation-component-vital.json",
-        "identity": True,
-        "targets": [target(LOINC, no_dot)],
-    },
-]
+# One declaration per stream, in lib/streams.py; this map only names
+# which streams its facade ValueSet reaches. Order is group order.
+SOURCES = sources(
+    "observation-component-vital",
+)
 
 META = {
     "id": "mimic-observation-component-to-standard",

@@ -367,6 +367,37 @@ core module rather than a national extension — plus the server's preferred ter
 as the display. LOINC needs no active or extension check: STATUS=ACTIVE is
 carried by the constraint itself and LOINC has no national extensions.
 
+TWO GATES RUN AFTER THAT ONE, and they check different things. The SCALE GATE
+asks whether the target's SCALE_TYP can hold the values the warehouse observed,
+and runs on LOINC only, for the reason THE GATE IS ASYMMETRIC gives. The INTENT
+GATE asks whether a label naming a goal, a setting or an ordered value reached a
+target that says so, and runs on BOTH — a `Goal <X>` column mapped to plain `<X>`
+records an intention as a measurement, and two of the four rows it catches are
+SNOMED. See THE INTENT GATE above the constants.
+
+THE REPLAY (`--replay`) re-decides the committed table under the current gates
+instead of searching again, and exists because the two halves of this script age
+at different rates. The search is expensive, non-deterministic and cached
+somewhere else; the gates are pure functions of what the search already returned,
+and every input they need — both passes, their targets, displays, confidences and
+statuses, the observed shape and the LOINC SCALE_TYP — is a column in the
+committed file. Changing a gate therefore does not need 2,766 LLM calls to find
+out what it did, and after a cache reset that is the difference between a minute
+and a full re-run whose answers may not even reproduce.
+
+It is NOT a substitute for a full run, and the boundary is exactly the sentence
+sent: a new constraint, template, threshold or pre-filter changes what was ASKED,
+so nothing in the file answers the new question and replaying it would launder
+stale answers into a file that looks freshly built. `run_mode` in the log records
+which of the two wrote it, for that reason.
+
+One thing a replay genuinely cannot read off the file. THE RESOLUTION RULE asks
+SNOMED only where LOINC produced no usable target, so a row LOINC won has an
+EMPTY SNOMED block — an absence, not a recorded decline. A gate that rejects that
+LOINC answer makes the SNOMED pass relevant for the first time, and declining the
+row without it would rest the decline on a search nobody ran. So the replay makes
+exactly those calls and reports how many.
+
 EQUIVALENCE is not this script's concern. Every mapping a table supplies is
 `relatedto`, set by lib/assemble.py when it builds the group — including across
 both systems, since the resolver and not the row decides it.
@@ -627,6 +658,86 @@ SCALE_COMPATIBLE = {
 # the 44 that must not decide the item's shape.
 NUMERIC_VALUE_RE = re.compile(r"^[<>]?=?\s*\d+(\.\d+)?\s*[A-Za-z%/°]*\.?$")
 NUMERIC_VALUE_FRACTION = 0.90
+
+# --------------------------------------------------------------------------- #
+# THE INTENT GATE
+# --------------------------------------------------------------------------- #
+#
+# A flowsheet column can record what the patient WAS, or what someone INTENDED
+# the patient to be. `223791 Pain Level` is the first; `223794 Pain Level
+# Acceptable` is the second — the pain score this patient has agreed is tolerable
+# — and they are different facts about different things. Dropping the modifier
+# turns a care target into a measurement, and a consumer summing Observation.code
+# cannot tell that it happened, because the code it reads is a perfectly ordinary
+# one that simply is not what the row means.
+#
+# Left unchecked, the two searches did drop it, and at volume:
+#
+#   223794 Pain Level Acceptable        -> 106724-8   |Pain level|            972K
+#   228299 Goal Richmond-RAS Scale      -> 1345050000 |RASS score|            916K
+#   224688 Respiratory Rate (Set)       -> 9279-1     |Respiratory rate|      342K
+#   229742 Activity/Mobility (RN Daily Mobility Goal) -> 363803005 |Mobility|   4K
+#
+# This is the failure the outputevents TOTAL_CODES list and the datetimeevents
+# DEVICE_CARE_CODES list exist to stop, met a third time: a target that is right
+# about the analyte and wrong about what the column is FOR. Unlike those two it
+# needs no list of target codes, because the tell is on the SOURCE side and the
+# check is an agreement between the two — which is why it is a gate here rather
+# than a reject list.
+#
+# THE RULE. If the MIMIC label carries an intent word and the target's server-
+# confirmed display carries none, the answer is declined `intent-dropped`. Both
+# halves matter: the modifier must be present in the label to arm the check, and
+# the check passes as soon as the target says the same thing in any of the words
+# a terminology uses for it. Applied to BOTH systems, unlike the scale gate — two
+# of the four rows above are SNOMED, and a LOINC-only check would have caught
+# half the defect while reporting it as handled.
+#
+# It DECLINES, it does not rescue. `224688 Respiratory Rate (Set)` has a correct
+# target — `33438-3 |Breath rate mechanical --on ventilator|` — and this gate
+# will not go and get it, for build_labevents_table.py's reason: a generator that
+# hand-picks a replacement when it dislikes an answer is curating against known
+# rows, and the row is more useful declined with its proposal recorded than
+# mapped to a code no rule produced.
+#
+# MEASURED over the committed table before being turned on: 51 of the 2,982
+# labels arm it, 12 of those have a target, and it splits them 8 kept / 4
+# declined with nothing misfiled either way. The eight it keeps are the proof it
+# is an agreement check and not a blanket ban on the word — `220339 PEEP set`
+# reaches `20077-4 |… setting Ventilator|` and four temporary-pacemaker rows
+# reach their `… setting` codes, all of which state the modifier and all of which
+# survive. The remaining 39 armed labels are already declined for other reasons,
+# so the gate cannot change them.
+#
+# Word boundaries on both sides, so `Onset`, `Offset` and `Sunset` do not arm it
+# and `Somatosensory` does not satisfy it.
+INTENT_LABEL_RE = re.compile(
+    r"(?<![A-Za-z])(goals?|desired|acceptable|ordered|prescribed|planned"
+    r"|targets?|sett?ings?|set)(?![A-Za-z])", re.I)
+
+# The words a terminology uses when it means the same thing. Wider than the label
+# list on purpose: the label has to name the modifier MIMIC's way, and the target
+# is allowed to name it any of the ways LOINC and SNOMED do.
+INTENT_TARGET_RE = re.compile(
+    r"(?<![A-Za-z])(sett?ings?|set|goals?|targets?|ordered|prescribed"
+    r"|intended|desired|planned|reference|limit)(?![A-Za-z])", re.I)
+
+
+def intent_verdict(label, display):
+    """('ok', '') or ('reject', why) for one (label, target display) pair.
+
+    Abstains — returns ok — when the label carries no intent word, which is the
+    2,931 labels this check has nothing to say about.
+    """
+    modifier = INTENT_LABEL_RE.search(label or "")
+    if not modifier:
+        return "ok", ""
+    if INTENT_TARGET_RE.search(display or ""):
+        return "ok", ""
+    return "reject", (
+        f"the label carries {modifier.group(0)!r}, so the column records an "
+        f"intended or set value, and the target's display states no such "
+        f"modifier — mapping it here would record the intent as a measurement")
 
 # --------------------------------------------------------------------------- #
 # THE SCALE RESCUE — BUILT, MEASURED, AND REJECTED
@@ -1318,7 +1429,7 @@ def decline_unasked(row, why_not):
     return row
 
 
-def one_pass(service, fhir_base, text, system, timeout, shape=None):
+def one_pass(service, fhir_base, text, system, timeout, shape=None, label=None):
     """Run one system's search and gate it. Returns a dict describing the pass.
 
     `code` and `display` are set only when the pass produced a usable target;
@@ -1329,10 +1440,14 @@ def one_pass(service, fhir_base, text, system, timeout, shape=None):
     consulted only on the LOINC pass, because SNOMED publishes `370132008 |Scale
     type|` on 4 of the 173 concepts this table targets and a check that can
     answer for 2% of rows is not a check — see THE GATE IS ASYMMETRIC.
+
+    `label` is the bare MIMIC label, passed separately from `text` because the
+    SECOND PASS appends the value domain to the text and the intent gate must
+    read the modifier off what MIMIC wrote, not off what this script appended.
     """
     result = {"status": "", "target": "", "display": "", "confidence": "",
               "reasoning": "", "path": "", "code": "", "preferred": "",
-              "scale_typ": "", "scale_note": ""}
+              "scale_typ": "", "scale_note": "", "intent_note": ""}
     try:
         answer = find_code(service, text, system, timeout)
     except Exception as exc:                          # noqa: BLE001
@@ -1362,6 +1477,17 @@ def one_pass(service, fhir_base, text, system, timeout, shape=None):
     status, display = gate(fhir_base, system, match["code"])
     result["status"] = status
     if status != "ok":
+        return result
+
+    # The intent gate runs on the SERVER-CONFIRMED display rather than on the
+    # service's `display`, for the same reason the scale gate runs after
+    # membership: the proposal's own display is whatever the service echoed back,
+    # and a check on the modifier has to read the terminology's own words. Both
+    # systems, unlike the scale gate below — see THE INTENT GATE.
+    verdict, why = intent_verdict(label if label is not None else text, display)
+    if verdict == "reject":
+        result["intent_note"] = why
+        result["status"] = "intent-dropped"
         return result
 
     # The scale gate runs LAST, after membership: a code that is not in the
@@ -1407,7 +1533,7 @@ def search_query(label, fhir_base, service, timeout, shape=None):
               + list(TARGET_COLUMNS) + ["comment"]}
     answer["codesearch_query"] = text
 
-    loinc = one_pass(service, fhir_base, text, LOINC, timeout, shape)
+    loinc = one_pass(service, fhir_base, text, LOINC, timeout, shape, label)
     _record(answer, "loinc", loinc)
     answer["observed_shape"] = (shape or {}).get("hint", "")
     answer["loinc_scale_typ"] = loinc["scale_typ"]
@@ -1416,7 +1542,7 @@ def search_query(label, fhir_base, service, timeout, shape=None):
         _decide(answer, LOINC, loinc)
         return answer
 
-    snomed = one_pass(service, fhir_base, text, SNOMED, timeout)
+    snomed = one_pass(service, fhir_base, text, SNOMED, timeout, label=label)
     _record(answer, "snomed", snomed)
     if snomed["code"]:
         _decide(answer, SNOMED, snomed)
@@ -1435,7 +1561,8 @@ def search_query(label, fhir_base, service, timeout, shape=None):
         text_2 = f"{label} (recorded values: {values})"
         answer["codesearch_query_2"] = text_2
 
-        loinc_2 = one_pass(service, fhir_base, text_2, LOINC, timeout, shape)
+        loinc_2 = one_pass(service, fhir_base, text_2, LOINC, timeout, shape,
+                           label)
         _record(answer, "loinc", loinc_2)
         answer["loinc_scale_typ"] = loinc_2["scale_typ"]
         answer["scale_note"] = loinc_2["scale_note"]
@@ -1443,7 +1570,8 @@ def search_query(label, fhir_base, service, timeout, shape=None):
             _decide(answer, LOINC, loinc_2)
             return answer
 
-        snomed_2 = one_pass(service, fhir_base, text_2, SNOMED, timeout)
+        snomed_2 = one_pass(service, fhir_base, text_2, SNOMED, timeout,
+                            label=label)
         _record(answer, "snomed", snomed_2)
         if snomed_2["code"]:
             _decide(answer, SNOMED, snomed_2)
@@ -1465,6 +1593,96 @@ def search_query(label, fhir_base, service, timeout, shape=None):
     answer["comment"] = declined_comment(
         answer["codesearch_query_2"] or text, loinc, snomed)
     return answer
+
+
+def _pass_from_row(row, prefix, preferred=""):
+    """One committed pass's outcome, in the shape one_pass() returns.
+
+    The table keeps each pass in its own block precisely so that "why did this
+    row get a SNOMED code rather than a LOINC one" is answerable from the file,
+    and that is exactly the provenance a replay needs — see THE REPLAY.
+
+    Three fields the blocks do not carry. `reasoning` is written once, on the
+    DECISIVE pass, so it is claimed here only by the pass that matches the
+    decisive block and left blank on the other rather than attributed to a search
+    that did not produce it. `path` says how a run FETCHED an answer and is a
+    property of that run, not of the answer, so a replay has none to report.
+    `preferred` is the server-confirmed display the winning pass earned, which
+    the row holds as `target_display` — supplied by the caller.
+    """
+    decisive = (row["codesearch_status"] == row[f"codesearch_{prefix}_status"]
+                and row["codesearch_target"] == row[f"codesearch_{prefix}_target"])
+    return {
+        "status": row[f"codesearch_{prefix}_status"],
+        "target": row[f"codesearch_{prefix}_target"],
+        "display": row[f"codesearch_{prefix}_display"],
+        "confidence": row[f"codesearch_{prefix}_confidence"],
+        "reasoning": row["codesearch_reasoning"] if decisive else "",
+        "path": "", "code": "", "preferred": preferred,
+        "scale_typ": row["loinc_scale_typ"] if prefix == "loinc" else "",
+        "scale_note": row["scale_note"] if prefix == "loinc" else "",
+        "intent_note": "",
+    }
+
+
+def replay_query(label, row, fhir_base, service, timeout):
+    """Re-decide one committed answer under the current gates. See THE REPLAY.
+
+    Returns (answer, calls) where `calls` is the number of code-search requests
+    it had to make — 0 for all but the rows a gate newly rejects on the LOINC
+    pass, which open a SNOMED pass the committed run never had reason to run.
+    """
+    answer = {c: "" for c in PROVENANCE_COLUMNS + LOG_ONLY_COLUMNS
+              + list(TARGET_COLUMNS) + ["comment"]}
+    for column in PROVENANCE_COLUMNS + list(TARGET_COLUMNS) + ["comment"]:
+        answer[column] = row.get(column, "")
+
+    # A row with no target cannot lose one. Every gate here only ever rejects, so
+    # replaying an already-declined row could not change it and asking the
+    # service about it would be spending a search to confirm a decline.
+    if not answer["target_code"]:
+        return answer, 0
+
+    system = answer["target_system"]
+    prefix = "loinc" if system == LOINC else "snomed"
+    won = _pass_from_row(row, prefix, preferred=answer["target_display"])
+
+    verdict, why = intent_verdict(label, answer["target_display"])
+    if verdict == "ok":
+        return answer, 0
+
+    won.update(status="intent-dropped", intent_note=why)
+    _record(answer, prefix, won)
+    answer["target_system"] = ""
+    answer["target_code"] = ""
+    answer["target_display"] = ""
+
+    loinc = won if prefix == "loinc" else _pass_from_row(row, "loinc")
+    snomed = won if prefix == "snomed" else _pass_from_row(row, "snomed")
+
+    # THE ONE THING A REPLAY CANNOT READ OFF THE FILE. The resolution rule asks
+    # SNOMED only where LOINC produced no usable target, so a row LOINC won has
+    # an EMPTY SNOMED block — not a recorded decline, an absence. Rejecting the
+    # LOINC answer makes that pass relevant for the first time, and skipping it
+    # would decline a row on the strength of a search nobody ran. So this is the
+    # one case the replay goes to the service for, and it is bounded by the
+    # number of rows a gate newly rejects.
+    calls = 0
+    if prefix == "loinc" and not snomed["status"]:
+        snomed = one_pass(service, fhir_base, answer["codesearch_query"],
+                          SNOMED, timeout, label=label)
+        calls = 1
+        _record(answer, "snomed", snomed)
+        if snomed["code"]:
+            _decide(answer, SNOMED, snomed)
+            return answer, calls
+
+    failed = next((p for p in (loinc, snomed)
+                   if p["status"].startswith("error")), None)
+    _decide(answer, LOINC, failed or loinc)
+    answer["comment"] = declined_comment(
+        answer["codesearch_query_2"] or answer["codesearch_query"], loinc, snomed)
+    return answer, calls
 
 
 def _record(answer, prefix, result):
@@ -1532,6 +1750,8 @@ def _pass_comment(text, result, system):
                        f"does not confirm."),
         "scale-mismatch": (f"{name}: proposed {proposal}, which passed the "
                            f"constraint but {result['scale_note']}."),
+        "intent-dropped": (f"{name}: proposed {proposal}, which passed the "
+                           f"constraint but {result['intent_note']}."),
     }.get(status, f"{name}: {status}.")
 
 
@@ -1716,6 +1936,14 @@ def main():
                              "would drop every item it did not ask about.")
     parser.add_argument("--dry-run", action="store_true",
                         help="report only; do not write the CSV")
+    parser.add_argument("--replay", action="store_true",
+                        help="re-decide the COMMITTED table under the current "
+                             "gates instead of searching again. Every proposal "
+                             "this table records is already in the file, so a "
+                             "gate that runs after the search can be re-applied "
+                             "without asking code-search. Use it after changing "
+                             "a gate; use a full run after changing a "
+                             "constraint, a template or the threshold.")
     args = parser.parse_args()
 
     configure_tls(args.ca_bundle, args.insecure)
@@ -1789,8 +2017,29 @@ def main():
     print(f"  pre-filter: {len(asked)} searchable; "
           f"{len(items) - len(asked)} declined unasked "
           f"({', '.join(sorted(DECLINED_CATEGORIES))})")
+    # Loaded AFTER the pre-filter and the collapse, so a replay is checked
+    # against the population this run would have asked about: a committed table
+    # missing a code the dictionary now yields means the two have drifted, and
+    # replaying it would silently carry the old file's coverage forward.
+    committed = None
+    if args.replay:
+        if not OUT_CSV.is_file():
+            sys.exit(f"  --replay needs {OUT_CSV.name} and it does not exist. "
+                     f"Run without --replay to build it once.")
+        with open(OUT_CSV, newline="") as fh:
+            committed = {r["mimic_code"]: r for r in csv.DictReader(fh)}
+        stale = sorted(set(codes) - set(committed))
+        if stale:
+            sys.exit(f"  --replay: {len(stale)} code(s) in the IG are absent "
+                     f"from {OUT_CSV.name} ({', '.join(stale[:5])}"
+                     f"{' …' if len(stale) > 5 else ''}). The table predates the "
+                     f"source; a full run is the only honest way to add them.")
+
     print(f"  queries:    {len(asked)} item(s) collapse to {len(ordered)} "
           f"distinct label(s)")
+    if args.replay:
+        print(f"  mode:       REPLAY — re-deciding {OUT_CSV.name} under the "
+              f"current gates; no search unless a gate opens a new pass")
     print(f"  gate:       {args.fhir_base}")
     print(f"  service:    {args.service}")
     print(f"  loinc:      {CONSTRAINT_VCL}")
@@ -1806,10 +2055,25 @@ def main():
         print("  scale gate: OFF (no observed shapes — see the warning above)")
     print()
 
+    replayed = replay_calls = 0
+
     def work(label):
-        answer = search_query(label, args.fhir_base, args.service, args.timeout,
-                              query_shape(queries[label], shapes)
-                              if shapes else None)
+        nonlocal replayed, replay_calls
+        if committed is not None:
+            # Any member's row: they were fanned from one answer, and the
+            # divergence assertion below is what keeps that true.
+            answer, calls = replay_query(label, committed[sorted(queries[label])[0]],
+                                         args.fhir_base, args.service, args.timeout)
+            replayed += 1
+            replay_calls += calls
+            if not calls and answer["target_code"] == committed[
+                    sorted(queries[label])[0]].get("target_code", ""):
+                return answer                      # unchanged; not worth a line
+        else:
+            answer = search_query(label, args.fhir_base, args.service,
+                                  args.timeout,
+                                  query_shape(queries[label], shapes)
+                                  if shapes else None)
         members = sorted(queries[label])
         fanned = f"x{len(members)}" if len(members) > 1 else ""
         system = (answer["target_system"].rsplit("/", 1)[-1]
@@ -1821,6 +2085,12 @@ def main():
 
     with concurrent.futures.ThreadPoolExecutor(args.workers) as pool:
         answers = dict(zip(ordered, pool.map(work, ordered)))
+
+    if committed is not None:
+        print(f"\n  replayed {replayed} quer(ies) from {OUT_CSV.name}; "
+              f"{replay_calls} code-search call(s) made (a LOINC answer a gate "
+              f"newly rejects opens the SNOMED pass the committed run had no "
+              f"reason to run)")
 
     # Fan each query's one answer back across the itemids sharing its collapsed
     # label. This is what makes `Pressure Ulcer Stage #3` and `#7` disagreeing
@@ -1927,6 +2197,30 @@ def main():
                 "on 4 of the 173 concepts this table targets, 0.0% by "
                 "occurrence, so the check would abstain on 98% of SNOMED rows "
                 "while appearing to have run"),
+        },
+        # Which mode wrote this file. A replay re-decides committed proposals
+        # under the current gates and does NOT re-ask code-search, so a log
+        # claiming a full run would overstate what this file rests on — the
+        # searches behind it are the earlier run's. See THE REPLAY.
+        "run_mode": ("replay" if args.replay else "search"),
+        **({"replay": {"queries": replayed, "codesearch_calls": replay_calls,
+                       "source": OUT_CSV.name}} if args.replay else {}),
+        "intent_gate": {
+            "enabled": True,
+            # Both, unlike the scale gate: the modifier is a property of the
+            # source label and of the target's words, and both terminologies
+            # have words for it. See THE INTENT GATE.
+            "systems_checked": [LOINC, SNOMED],
+            "label_pattern": INTENT_LABEL_RE.pattern,
+            "target_pattern": INTENT_TARGET_RE.pattern,
+            "rule": ("a label carrying an intent word must reach a target whose "
+                     "server-confirmed display states one, or the answer is "
+                     "declined `intent-dropped`"),
+            "declines_only": ("no replacement target is sought; a rescued row "
+                              "would be a hand-picked code no rule produced"),
+            "armed": sorted(
+                code for code, item in items_dict.items()
+                if INTENT_LABEL_RE.search(item["label"].strip())),
         },
         "pre_filter": {
             "dictionary": str(D_ITEMS_GZ.relative_to(TERM.parents[1])),

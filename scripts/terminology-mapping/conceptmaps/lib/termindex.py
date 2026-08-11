@@ -2,8 +2,9 @@
 
 WHY THIS IS IN lib/ RATHER THAN IN THE GENERATOR THAT BUILT IT. The index is
 ONE committed file — conceptmaps/medication-rxnorm-term-index.tsv — and it is
-now read by two generators: build_medication_name_table.py, which owns it and
-refreshes it, and build_formulary_drug_table.py, which only reads it. The keys
+now read by three generators: build_medication_name_table.py, which owns it and
+refreshes it, and build_formulary_drug_table.py and
+build_medication_gsn_table.py, which only read it. The keys
 in that file were written by `r3`/`salted` at refresh time, so a second copy of
 those functions that drifted by one character would not raise anything: it would
 silently stop matching, the deterministic tier would quietly shrink, and the
@@ -53,6 +54,11 @@ _SALT = {
 
 _TRAILING_PAREN = re.compile(r"\s*\([^()]*\)\s*$")
 
+# FDB's `generic [Brand]` display form, which only the GSN column uses. Anchored
+# and non-greedy on the left so `a [b] [c]` splits at the LAST bracket group,
+# and the inner class excludes brackets so a nested one cannot be swallowed.
+_BRACKETED = re.compile(r"^(?P<generic>.*?)\s*\[(?P<brand>[^\[\]]*)\]\s*$")
+
 
 def r3(text):
     """The base key: NFKC, casefold, collapse whitespace, strip edge punctuation."""
@@ -88,6 +94,55 @@ def query_rungs(display):
         rungs.append(("Q3-paren", p))
         if (ps := salted(p)):
             rungs.append(("Q4-paren-salt", ps))
+    return rungs
+
+
+def bracketed_rungs(display):
+    """(rung name, key) for FDB's `generic [Brand]` display form, or [].
+
+    Tried AFTER query_rungs and only by build_medication_gsn_table.py. The GSN
+    column writes a drug two ways in one string — `lamotrigine [Lamictal]`,
+    `hepatitis A and B vaccine (PF) [Twinrix (PF)]` — and neither half is
+    reachable by the rungs above, because the whole string is a key RxNorm has
+    no term for. 2,137 of the 9,347 GSN displays take this form.
+
+    WHY THIS IS OPT-IN RATHER THAN PART OF query_rungs. The bracket is GSN's
+    grammar and nobody else's: of the other three populations that join against
+    this index, `mimic-medication-name` has 0 bracketed displays out of 9,971,
+    `mimic-medication-formulary-drug-cd` 0 of 4,108 and `mimic-medication-icu`
+    0 of 474. Folding these rungs into query_rungs would therefore be a no-op
+    for every committed table — but it would still widen the shared function on
+    the strength of one stream's label convention, and the `join_rung` column
+    exists so a reader can tell WHICH loss a row took. Two functions keep the
+    two grammars, and their two kinds of loss, distinguishable in the CSV.
+
+    B1/B2 land on the generic name the label leads with. B3/B4 additionally
+    discard a trailing parenthetical from it, exactly as Q3/Q4 do. B5/B6 are
+    the last resort and land on the BRAND concept instead — asserting the brand
+    as the drug's identity, which the label does state outright, but at a
+    different specificity from the generic. Generic before brand, because 874
+    GSN displays reach BOTH with different RxCUIs and the generic is what FDB
+    puts first; the rung name is what records which one answered.
+
+    No new ambiguity is possible here. refresh_index deletes every key reaching
+    more than one RxCUI, so a hit is unique by construction and an extra QUERY
+    rung can only ever add lossiness — never a tie to break.
+    """
+    if not (match := _BRACKETED.match(display)):
+        return []
+    rungs = []
+    if (generic := r3(match.group("generic"))):
+        rungs.append(("B1-generic", generic))
+        if (gs := salted(generic)):
+            rungs.append(("B2-generic-salt", gs))
+        if (gp := deparenthesised(generic)):
+            rungs.append(("B3-generic-paren", gp))
+            if (gps := salted(gp)):
+                rungs.append(("B4-generic-paren-salt", gps))
+    if (brand := r3(match.group("brand"))):
+        rungs.append(("B5-brand", brand))
+        if (bp := deparenthesised(brand)):
+            rungs.append(("B6-brand-paren", bp))
     return rungs
 
 

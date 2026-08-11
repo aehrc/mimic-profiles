@@ -121,9 +121,8 @@ def ig_codes():
 
 def main():
     concepts = ig_codes()
-    for field, element, count in describe_population(OUT_CSV):
-        print(f"  {field:26s} {element:42s} {count:>6,} observed",
-              file=sys.stderr)
+    for element, count in describe_population(OUT_CSV):
+        print(f"  {element:42s} {count:>6,} observed", file=sys.stderr)
     if unknown := set(concepts) - set(REASONS):
         sys.exit(f"  {sorted(unknown)} is in mimic-medication-poe-iv and "
                  f"observed on a bound element, but no reason is recorded for "
@@ -145,7 +144,7 @@ def main():
 
     LOG_JSON.parent.mkdir(parents=True, exist_ok=True)
     LOG_JSON.write_text(json.dumps({
-        "elements": [element for _, element, _ in
+        "elements": [element for element, _ in
                      describe_population(OUT_CSV)],
         # No constraint, template or threshold: nothing was searched. Recorded
         # as explicit nulls so lib/stats.py finds the keys it looks for and a

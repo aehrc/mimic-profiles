@@ -1,0 +1,57 @@
+{
+ "field": "medication-code",
+ "element": "Medication.code",
+ "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-medication-code-to-standard",
+ "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-medication-code-standard",
+ "version": "1.0.0",
+ "date": "2026-08-10",
+ "streams": [
+  "medication-name",
+  "formulary-drug",
+  "medication-icu",
+  "medication-poe-iv",
+  "medication-ndc"
+ ],
+ "source_total": 20288,
+ "mapped": 11018,
+ "unmapped": 9270,
+ "by_source": [
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-formulary-drug-cd",
+   "mapped": 2039
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-icu",
+   "mapped": 214
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-name",
+   "mapped": 3656
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-ndc",
+   "mapped": 5109
+  }
+ ],
+ "by_target_system": [
+  {
+   "system": "http://snomed.info/sct",
+   "mappings": 334
+  },
+  {
+   "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+   "mappings": 10684
+  }
+ ],
+ "by_equivalence": {
+  "relatedto": 11018,
+  "unmatched": 9270
+ },
+ "unmapped_by_reason": {
+  "no-row-in-curated-table": 6286,
+  "no-suitable-concept": 1136,
+  "not-observed-in-data": 1848
+ },
+ "target_valueset_codes": 5345,
+ "extras": {}
+}

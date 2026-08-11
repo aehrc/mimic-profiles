@@ -25,12 +25,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from conceptmaps.lib.assemble import target                      # noqa: E402
-from conceptmaps.lib.canonical import (CANONICAL_BASE, ICD9_CM,  # noqa: E402
-                                       ICD10_CM, MIMIC_BASE)
-from conceptmaps.lib.driver import run                           # noqa: E402
-from conceptmaps.lib.notation import (dot_icd9_diagnosis,        # noqa: E402
-                                      dot_icd10cm)
+from conceptmaps.lib.canonical import CANONICAL_BASE, MIMIC_BASE  # noqa: E402
+from conceptmaps.lib.driver import run                            # noqa: E402
+from conceptmaps.lib.streams import sources                       # noqa: E402
 
 # The BOUND ELEMENT, not the source terminology. Every population is named for
 # what it maps — procedure, observation, observation-component — so `make
@@ -50,25 +47,12 @@ FIELD = "condition"
 # population silently relabelled every other population's artefacts.
 VERSION = "1.0.0"
 
-SOURCES = [
-    {
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-diagnosis-icd10",
-        "file": "CodeSystem-mimic-diagnosis-icd10.json",
-        "targets": [target(ICD10_CM, dot_icd10cm)],
-    },
-    {
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-diagnosis-icd9",
-        "file": "CodeSystem-mimic-diagnosis-icd9.json",
-        # Ordered: ICD-9-CM first, ICD-10-CM as the cross-system fallback that
-        # finds the mis-filed relabels. `kind` is required because THO gives
-        # ICD-9-CM diagnoses (Vol 1-2) and procedures (Vol 3) the same canonical
-        # URL, so without it this source would claim procedure codes.
-        "targets": [
-            target(ICD9_CM, dot_icd9_diagnosis, kind="diagnosis"),
-            target(ICD10_CM, dot_icd10cm),
-        ],
-    },
-]
+# One declaration per stream, in lib/streams.py; this map only names
+# which streams its facade ValueSet reaches. Order is group order.
+SOURCES = sources(
+    "diagnosis-icd10",
+    "diagnosis-icd9",
+)
 
 META = {
     "id": "mimic-diagnosis-icd-to-sid",

@@ -1,7 +1,7 @@
 {
  "elements": [
-  "MedicationRequest.medication[x]",
-  "MedicationAdministration.medication[x]"
+  "MedicationAdministration.medication[x]",
+  "MedicationRequest.medication[x]"
  ],
  "constraint_vcl": null,
  "template": null,

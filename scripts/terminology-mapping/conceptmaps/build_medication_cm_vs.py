@@ -13,25 +13,47 @@ normalised-term join against RxNorm's own designations — deterministic, zero
 ambiguity, no model and no confidence threshold — and code-search answers only
 what the join cannot. build_medication_name_table.py owns both tiers.
 
-WHY THIS MAP IS SCOPED TO OBSERVED CODES. `mimic-medication` is a union of five
-MIMIC CodeSystems admitting 20,288 codes, but the warehouse only ever puts two
-of them on THIS element: 2,888 drug names and the 2 `poe-iv` order flags. The
-other three — NDC, formulary-drug-cd, ICU — carry 10,315 codes that appear on
-MedicationAdministration.medication[x] instead, a different binding that gets
-its own map. Sending 17,398 never-used labels through an LLM-backed service to
-populate entries no $translate call can reach would cost hours and would report
-a coverage percentage whose denominator is seven times the real population.
+THIS ELEMENT IS A CHOICE, AND MOST MIMIC PRESCRIPTIONS DO NOT USE THE BRANCH
+THIS MAP SERVES. `mimic-medication-request` leaves medication[x] as
+`CodeableConcept | Reference(MimicMedication)` — the only medication profile in
+the IG that does not narrow it — and the ETL puts prescriptions' drug, gsn, ndc
+and formulary_drug_cd on a shared Medication resource (see
+input/includes/map-mimic-hosp-meds.md; the IG's own example instance uses
+medicationReference). The full-data extract found 1,883,681 inline codings
+against 15,416,901 MedicationRequest rows, so AT LEAST 87.8% of prescriptions
+carry their drug code on Medication.code, which has its own map.
 
-So both sources declare `observed_only`, and lib/igsource.py does the narrowing
-once, where every stage reads it. The codes it sets aside are NOT dropped: each
-one still gets an `unmatched` element carrying a comment that states the
-assumption out loud, so a consumer translating a code this map did not expect to
-exist is told why rather than met with silence. What the flag changes is only
-the coverage denominator — see lib/assemble.py NOT_OBSERVED.
+This map is not widened to cover them, and that is the correct answer rather
+than a gap. $translate takes a Coding; a Reference carries none. A consumer
+holding a medicationReference has nothing to translate until it dereferences,
+and once it has, the Coding it holds came from Medication.code — a different
+element with its own required binding. Folding those codes in here would assert
+they are present on an element that does not carry them, and would compute a
+coverage percentage against a population that does not exist.
 
-The binding itself is correct and must not be narrowed to "fix" this.
-binding-analysis/FINDINGS.md chose `mimic-medication` because it covers 100% of
-the 2,890 codes actually seen, which is the right call under a `required`
+Note also that the `required` binding on this element is INERT on the Reference
+branch: a validator has nothing coded to check. For the majority of MIMIC
+prescriptions the terminology guarantee is carried entirely by Medication.code's
+binding, which is why that element is in occurrences/elements.json.
+
+STREAMS, NOT PER-ELEMENT POPULATIONS. Each of the five source CodeSystems the
+binding admits is one stream, declared once in lib/streams.py and resolved
+identically for every map that consumes it — this one,
+build_medication_code_cm_vs.py and build_medication_administration_cm_vs.py.
+The generation population of each stream's table is still narrowed to the
+codes the warehouse uses SOMEWHERE (lib/builders.table_population): sending
+thousands of never-used labels through an LLM-backed service would cost hours
+to populate rows no $translate call can reach. But the narrowing is by the
+UNION across every bound element, not by this element's own usage, so a code
+observed only behind a medicationReference resolves here exactly as it does on
+Medication.code. Codes used nowhere stay `unmatched` with reason
+`not-observed-in-data`; codes used somewhere but missing from a table are
+`no-row-in-curated-table`, the signal to extend the table's generation
+population.
+
+The binding itself is correct and must not be narrowed to "fix" anything.
+binding-analysis/FINDINGS.md chose `mimic-medication` because it covers 100%
+of the codes actually seen, which is the right call under a `required`
 strength: a tighter ValueSet fails validation the first time a re-extract
 surfaces an unseen drug name.
 
@@ -73,65 +95,36 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from conceptmaps.lib.assemble import target                       # noqa: E402
-from conceptmaps.lib.canonical import (CANONICAL_BASE, MIMIC_BASE,  # noqa: E402
-                                       RXNORM, SNOMED, TABLE_DIR)
-from conceptmaps.lib.curated import MIXED_TARGET_COLUMNS          # noqa: E402
+from conceptmaps.lib.canonical import CANONICAL_BASE, MIMIC_BASE  # noqa: E402
 from conceptmaps.lib.driver import run                            # noqa: E402
+from conceptmaps.lib.streams import sources                       # noqa: E402
 
 FIELD = "medication"
 
 VERSION = "1.0.0"
 
-SOURCES = [
-    {
-        # The whole stream. 9,971 enumerated drug names, 2,888 of them ever
-        # used on this element.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-medication-name",
-        "file": "CodeSystem-mimic-medication-name.json",
-        "observed_only": True,
-        "table": TABLE_DIR / "medication-name-standard.csv",
-        # Mixed-target because a few labels name a drug class rather than a
-        # product, and SNOMED CT has the class concept where RxNorm has only
-        # the specific products. Chosen at the table's creation deliberately:
-        # a single-target table is never migrated to this shape later.
-        "table_columns": MIXED_TARGET_COLUMNS,
-        "targets": [target(RXNORM, None), target(SNOMED, None)],
-    },
-    {
-        # Two codes, both declared unmapped, and no network call is made for
-        # them. `IV therapy` and `TPN` are not medications — see the module
-        # docstring and issue #26. They are declared here rather than left out
-        # so that the 167,144 occurrences they carry are visibly accounted for.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-medication-poe-iv",
-        "file": "CodeSystem-mimic-medication-poe-iv.json",
-        "observed_only": True,
-        # A stream reporting 0% coverage owes the reader a reason, or it reads
-        # as a stream nobody finished. This one is complete: it maps nothing
-        # BY DECISION, and the decision is not this repo's to reverse. The note
-        # is carried through by_stream into the statistics so the number and
-        # its explanation cannot drift apart.
-        "blocked_upstream": True,
-        "note": (
-            "Maps nothing by design. `IV therapy` and `TPN` are POE order "
-            "flags, not substances, so no RxNorm concept exists for either at "
-            "any term type — and a SNOMED procedure code, which does exist, "
-            "would put a procedure in a column whose FHIRPath is "
-            "medication[x]. The 0% is the honest result of a modelling defect "
-            "one layer down, in the ETL, not of a mapping that failed."),
-        "note_url": "https://github.com/fhnaumann/master_thesis_pipeline/issues/26",
-        "table": TABLE_DIR / "medication-poe-iv-standard.csv",
-        "table_columns": MIXED_TARGET_COLUMNS,
-        "targets": [target(RXNORM, None), target(SNOMED, None)],
-    },
-]
+# One declaration per stream, in lib/streams.py; this map only names
+# which streams its facade ValueSet reaches. Order is group order.
+SOURCES = sources(
+    "medication-name",
+    "medication-poe-iv",
+    "formulary-drug",
+    "medication-icu",
+    "medication-ndc",
+)
 
 META = {
     "id": "mimic-medication-to-standard",
     "name": "MimicMedicationToStandard",
     "title": "MIMIC MedicationRequest.medication[x] to RxNorm and SNOMED CT",
     "element": "MedicationRequest.medication[x]",
-    "source_valueset": f"{MIMIC_BASE}/ValueSet/mimic-medication",
+    # The element's own facade, NOT the shared `mimic-medication` union. That
+    # union is bound on four elements and each has its own map, so a shared
+    # sourceCanonical leaves $translate unable to say which element a Coding came
+    # from — and each map would then answer for
+    # populations it was never scoped against. Identical membership, so no
+    # instance validates differently. See VS_MimicMedicationRequestCode.fsh.
+    "source_valueset": f"{MIMIC_BASE}/ValueSet/mimic-medication-request-code",
     "target_valueset": f"{CANONICAL_BASE}/ValueSet/mimic-medication-standard",
     "description": (
         "Maps the MIMIC prescription drug names bound to "
@@ -142,17 +135,33 @@ META = {
         "designations, which is deterministic and unambiguous, and "
         "code-search for the remainder, gated on membership of the search "
         "constraint and on a confidence threshold. "
-        "SCOPE: this map covers the codes the MIMIC warehouse actually "
-        "records on this element. The bound ValueSet mimic-medication admits "
-        "20,288 codes because it is a union serving several medication "
-        "columns; only 2,890 of them ever appear here. The rest are present "
-        "in this map as declared `unmatched` elements explaining that they "
-        "were never observed, so a consumer that meets one is told the "
-        "assumption rather than getting no answer."),
+        "SCOPE: every one of the 20,288 codes the binding admits has an "
+        "entry, and the answers are the STREAMS' — one shared resolution per "
+        "source CodeSystem (see lib/streams.py), so this map, "
+        "ConceptMap/mimic-medication-code-to-standard and "
+        "ConceptMap/mimic-medication-administration-to-standard return the "
+        "identical target for the same Coding. Where no answer exists the "
+        "code is present as `unmatched` with a reason distinguishing a code "
+        "that was considered and declined from one whose stream's table has "
+        "no row for it yet and one the warehouse records nowhere at all. A "
+        "$translate for any code the binding admits therefore returns an "
+        "answer rather than nothing. "
+        "IF YOUR CODING CAME FROM medicationReference you are not translating "
+        "this element: resolve the reference and translate Medication.code "
+        "against ConceptMap/mimic-medication-code-to-standard instead. Most "
+        "MIMIC prescriptions take that branch."),
     "purpose": (
         "One ConceptMap per bound element, so a consumer starting from "
         "MedicationRequest.medication[x] resolves exactly one map. "
-        "CONSUMERS MUST READ THREE THINGS. "
+        "CONSUMERS MUST READ FOUR THINGS. "
+        "Zeroth, and most likely to matter: medication[x] is a CHOICE, and this "
+        "map serves the medicationCodeableConcept branch only. At least 87.8% "
+        "of MIMIC MedicationRequests use medicationReference instead, where "
+        "there is no Coding to translate at all — resolve the reference and "
+        "translate Medication.code against "
+        "ConceptMap/mimic-medication-code-to-standard. A pipeline that reads "
+        "only medicationCodeableConcept will silently see an eighth of the "
+        "prescriptions. "
         "First, every mapping here is `relatedto`, never `equivalent`: a MIMIC "
         "drug name and an RxNorm concept are related, and the direction is not "
         "something this repo establishes. Filtering on `equivalence = "

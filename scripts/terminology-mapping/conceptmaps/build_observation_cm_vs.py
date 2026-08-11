@@ -111,12 +111,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from conceptmaps.lib.assemble import target                       # noqa: E402
-from conceptmaps.lib.canonical import (CANONICAL_BASE, LOINC,     # noqa: E402
-                                       MIMIC_BASE, SNOMED, TABLE_DIR)
-from conceptmaps.lib.curated import MIXED_TARGET_COLUMNS          # noqa: E402
+from conceptmaps.lib.canonical import CANONICAL_BASE, MIMIC_BASE  # noqa: E402
 from conceptmaps.lib.driver import run                            # noqa: E402
-from conceptmaps.lib.notation import no_dot                       # noqa: E402
+from conceptmaps.lib.streams import sources                       # noqa: E402
 
 FIELD = "observation"
 
@@ -125,258 +122,25 @@ VERSION = "1.0.0"
 
 # One table per stream, each committed so the build stays offline and
 # deterministic, each regenerated deliberately by its own `make` target.
-MICRO_SUSC_TABLE = TABLE_DIR / "micro-susc-loinc.csv"
-MICRO_TEST_TABLE = TABLE_DIR / "micro-test-loinc.csv"
-OUTPUTEVENTS_TABLE = TABLE_DIR / "outputevents-loinc.csv"
-DATETIMEEVENTS_TABLE = TABLE_DIR / "datetimeevents-snomed.csv"
-MICRO_ORG_TABLE = TABLE_DIR / "micro-org-snomed.csv"
-LABEVENTS_TABLE = TABLE_DIR / "labevents-loinc.csv"
 # `-standard`, not `-loinc` or `-snomed`: the only MIXED-TARGET table here, so
 # it names its target system per row instead of in its column headings.
-CHARTEVENTS_TABLE = TABLE_DIR / "chartevents-standard.csv"
 
 # No targetVersion on any entry — this repo builds no LOINC release, and pinning
 # one it neither publishes nor controls is exactly the irreproducibility
 # verify_mappings check 3 exists to catch. LOINC is on UNVERSIONED_SYSTEMS.
-SOURCES = [
-    {
-        # mimic-observation-ed: triage acuity, chief complaint, pain, rhythm.
-        "system": LOINC,
-        "valueset_file": "ValueSet-mimic-observation-type-ed.json",
-        "identity": True,
-        "targets": [target(LOINC, no_dot)],
-    },
-    {
-        # mimic-observation-vital-signs: the five panel-level vital codes.
-        "system": LOINC,
-        "valueset_file": "ValueSet-mimic-observation-type-vital.json",
-        "identity": True,
-        "targets": [target(LOINC, no_dot)],
-    },
-    {
-        # mimic-observation-micro-susc: 27 antibiotics, where the code means
-        # 'susceptibility to this drug' rather than the drug. No rule can
-        # derive these — the displays are bare drug names, two of them
-        # abbreviated — so the mapping is data; see build_micro_susc_table.py.
-        #
-        # `file`, not `valueset_file`: ValueSet-mimic-microbiology-antibiotic
-        # is a bare compose with no enumerated concepts, so the CodeSystem is
-        # the only enumeration there is.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-microbiology-antibiotic",
-        "file": "CodeSystem-mimic-microbiology-antibiotic.json",
-        "table": MICRO_SUSC_TABLE,
-        # This table targets LOINC and says so in its own header.
-        "table_columns": ("loinc_code", "loinc_display"),
-        "targets": [target(LOINC, no_dot)],
-    },
-    {
-        # mimic-outputevents-d-items: 77 ICU flowsheet items, every one of them
-        # a volume of fluid out via one route. The label names the route's
-        # device or site and leaves the measurement implicit — `Foley`,
-        # `Jackson Pratt #1`, `T Tube`, `Lumbar` — so no rule can derive these
-        # and the mapping is data; see build_outputevents_table.py.
-        #
-        # Same source CodeSystem as the procedureevents items in the Procedure
-        # map, a different bound ValueSet: mimic-d-items partitions cleanly into
-        # 188 datetimeevents + 77 outputevents + 169 procedureevents = 434, and
-        # each population's table carries only its own rows.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-d-items",
-        "valueset_file": "ValueSet-mimic-outputevents-d-items.json",
-        "table": OUTPUTEVENTS_TABLE,
-        # This table targets LOINC alone. The issue proposed a SNOMED fallback;
-        # probing showed it rescues nothing this constraint declines, so the
-        # table stays single-target — see the generator's docstring.
-        "table_columns": ("loinc_code", "loinc_display"),
-        "targets": [target(LOINC, no_dot)],
-    },
-    {
-        # mimic-microbiology-test: 176 test names from
-        # `microbiologyevents.test_name`. Note the code carries the TEST only —
-        # the specimen is a separate MIMIC column and reaches FHIR as
-        # Observation.specimen — so labels split between those that name their
-        # specimen (`URINE CULTURE`) and those that deliberately do not
-        # (`GRAM STAIN`), and LOINC's `… in Specimen` variants are the right
-        # target for the second kind.
-        #
-        # Not a homogeneous population: BIDMC's cytogenetics lab shares the
-        # microbiology results table, so ~28 of the 176 are karyotyping, FISH
-        # and cell-culture items that LOINC files in MOLPATH and
-        # PANEL.HL7.CYTOGEN rather than MICRO. build_micro_test_table.py
-        # therefore searches two disjoint spaces per item and requires exactly
-        # one to answer; one merged constraint answered the cytogenetic cell
-        # cultures with bacterial cultures, which is a wrong answer no
-        # downstream check can catch. Its docstring carries the evidence.
-        #
-        # `file`, not `valueset_file`: ValueSet-mimic-microbiology-test is a
-        # bare compose with no enumerated concepts, so the CodeSystem is the
-        # only enumeration there is — same as the antibiotics above.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-microbiology-test",
-        "file": "CodeSystem-mimic-microbiology-test.json",
-        "table": MICRO_TEST_TABLE,
-        # Both passes target LOINC, so the table stays single-target and the
-        # two-pass rule is entirely the generator's business.
-        "table_columns": ("loinc_code", "loinc_display"),
-        "targets": [target(LOINC, no_dot)],
-    },
-    {
-        # mimic-datetimeevents-d-items: 188 ICU flowsheet items whose VALUE is a
-        # dateTime, so the code has to name the thing whose date was recorded —
-        # `224288 Arterial line Insertion Date` is an arterial catheterisation
-        # that got written down, not a concept called "insertion date".
-        #
-        # The first stream in this map to target SNOMED CT rather than LOINC, and
-        # the reason is that shape: SNOMED models the administrative dates (date
-        # of birth, date of discharge) as observable entities, and the ICU line
-        # and skin events as procedures, findings and events. So the constraint is
-        # the procedureevents hierarchies plus `<<364713004 |Temporal
-        # observable|`. See build_datetimeevents_table.py, which also records why
-        # 45 of the 188 are unrepresentable in SNOMED at all — there is no
-        # concept for changing a catheter cap — and why the expected coverage is
-        # therefore nearer 40% than the 64% the procedureevents items scored.
-        #
-        # Third population off the same source CodeSystem as the procedureevents
-        # and outputevents items: mimic-d-items partitions cleanly into 188
-        # datetimeevents + 77 outputevents + 169 procedureevents = 434, and each
-        # population's table carries only its own rows. This entry and the
-        # outputevents one above therefore share a source system and differ in
-        # target, which is two groups rather than one — a group is keyed by
-        # (source system, target system, targetVersion).
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-d-items",
-        "valueset_file": "ValueSet-mimic-datetimeevents-d-items.json",
-        "table": DATETIMEEVENTS_TABLE,
-        # The only table in this map that targets SNOMED, so it keeps the default
-        # column names rather than declaring LOINC ones.
-        "table_columns": ("snomed_code", "snomed_display"),
-        # No targetVersion: this repo builds no SNOMED release either, and SNOMED
-        # has been on UNVERSIONED_SYSTEMS since the Procedure map.
-        "targets": [target(SNOMED, no_dot)],
-    },
-    {
-        # mimic-microbiology-organism: 646 organism names from
-        # `microbiologyevents.org_name`. `Observation.value[x]` on
-        # MimicObservationMicroOrg is a plain string, so it is the CODE that
-        # names the organism identified, and the target is a SNOMED organism
-        # TAXON rather than an observable or a laboratory test.
-        #
-        # Consumers must take that literally: `<<363787002 |Observable entity|`
-        # is not a safe assumption about a target of this map. It is the caveat
-        # the README already records for the ICU procedure population — a SNOMED
-        # target is not necessarily a procedure — arriving from the other
-        # direction, and it follows from the IG's modelling rather than from
-        # anything the mapping chose.
-        #
-        # The first stream here sent with NO context template: 528 of the 646
-        # labels are already exact taxonomic names, so the wrapper every previous
-        # stream needed is not only unnecessary but harmful — all three
-        # candidates answered a NEGATED label with the taxon it excludes. See
-        # build_micro_org_table.py, which carries that evidence along with why
-        # the constraint is `<<410607006 |Organism|` alone and why widening it to
-        # include clinical findings was built, probed and dropped.
-        #
-        # `file`, not `valueset_file`: ValueSet-mimic-microbiology-organism is a
-        # bare compose with no enumerated concepts, so the CodeSystem is the only
-        # enumeration there is — same as the antibiotics and the test names.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-microbiology-organism",
-        "file": "CodeSystem-mimic-microbiology-organism.json",
-        "table": MICRO_ORG_TABLE,
-        # The second table in this map to target SNOMED, so it keeps the default
-        # column names rather than declaring LOINC ones. It shares a group with
-        # the datetimeevents stream only if it shares a source system, which it
-        # does not — different source CodeSystem, so a group of its own.
-        "table_columns": ("snomed_code", "snomed_display"),
-        "targets": [target(SNOMED, no_dot)],
-    },
-    {
-        # mimic-d-labitems: 1,622 hospital laboratory analytes, the largest
-        # population in this map and the fourth to target LOINC.
-        #
-        # The one structurally new thing about this stream is that the SEARCH
-        # TEXT IS NOT THE LABEL. MIMIC keeps the specimen in its own `fluid`
-        # column, and only 807 of the 1,622 analytes are blood — the rest are
-        # urine, CSF, pleural, ascitic, synovial, stool and marrow. `fluid` is
-        # the LOINC System axis, so a search on the bare label asks a question
-        # with no specimen in it and gets serum or plasma back by default:
-        # `Potassium` filed under Other Body Fluid answers with a BLOOD code,
-        # and `(Albumin)` under Pleural with a serum one. The generator
-        # therefore joins MIMIC's own openly-downloadable dictionary and injects
-        # the specimen into every query. See build_labevents_table.py, which
-        # carries the measurement (specimen-correct System on the non-blood rows
-        # goes 7/12 -> 11/12) and, more importantly, why `category` is NOT also
-        # injected despite reaching 12/12: it makes the 52 `Delete` and `Voided
-        # Specimen` rows answer with `24338-6 |Gas panel - Blood|` above
-        # threshold and inside the constraint.
-        #
-        # Its docstring also records why the constraint stays
-        # `CLASSTYPE=1,STATUS=ACTIVE` and is NOT widened with `CLASS=PULM` to
-        # reach the blood-gas worksheet's respiratory tail: the widening rescues
-        # one defensible mapping out of eleven and was measured changing the
-        # answer for an ordinary chemistry analyte whose correct target involved
-        # no PULM code at all. Membership is not answer stability.
-        #
-        # `file`, not `valueset_file`: ValueSet-mimic-d-labitems is a bare
-        # compose with no enumerated concepts, so the CodeSystem is the only
-        # enumeration there is — same as the antibiotics, the test names and the
-        # organisms.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-d-labitems",
-        "file": "CodeSystem-mimic-d-labitems.json",
-        "table": LABEVENTS_TABLE,
-        # Targets LOINC, so it declares the LOINC column names. It shares a
-        # group with the other LOINC-targeting streams only if it shares a
-        # source system, which it does not — its own CodeSystem, so its own
-        # group.
-        "table_columns": ("loinc_code", "loinc_display"),
-        "targets": [target(LOINC, no_dot)],
-    },
-    {
-        # mimic-chartevents-d-items: 2,982 ICU bedside flowsheet columns, the
-        # largest population in this map and by some distance the largest coded
-        # Observation population in the warehouse — 313.6M occurrences, 68% of
-        # every occurrence of Observation.code.
-        #
-        # The one structurally new thing about this stream is that it is the
-        # first MIXED-TARGET table: its rows name their own terminology, because
-        # which one answers is a result of the search rather than a property of
-        # the stream. The population is genuinely two things. The 160 `Labs`
-        # items are bedside laboratory analytes whose LOINC targets are
-        # Laboratory-class and which SNOMED cannot express at MIMIC's
-        # granularity at all; the ~1,400 nursing-assessment items — skin and
-        # wound detail, line sites, positioning, limb colour — are refused by
-        # LOINC above threshold and answered correctly by SNOMED observable
-        # entities. Neither terminology covers the population alone, which is
-        # what makes the per-row `target_system` worth its machinery here where
-        # the outputevents and labevents streams both probed a SNOMED second
-        # opinion and rightly rejected it.
-        #
-        # So this ONE source contributes TWO groups, one per system it named — a
-        # group is keyed by (source system, target system, targetVersion), and
-        # lib/curated.py checks every row's system against the `targets` below
-        # so a table cannot open a group into a terminology never declared here.
-        #
-        # See build_chartevents_table.py for the resolution rule (LOINC first,
-        # SNOMED only where LOINC declined, never compared on confidence), for
-        # why the SNOMED constraint is `<<363787002 |Observable entity|` alone
-        # rather than the procedure/finding/event union the two ICU procedure
-        # streams use, and for the 216 documentation, attestation and
-        # alarm-limit items declined without being searched because no
-        # constraint or threshold catches them.
-        #
-        # `file`, not `valueset_file`: ValueSet-mimic-chartevents-d-items is a
-        # bare compose with no enumerated concepts, so the CodeSystem is the
-        # only enumeration there is — same as the antibiotics, the test names,
-        # the organisms and the lab analytes. Note this is its OWN CodeSystem
-        # and not the `mimic-d-items` the three other ICU streams share.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-chartevents-d-items",
-        "file": "CodeSystem-mimic-chartevents-d-items.json",
-        "table": CHARTEVENTS_TABLE,
-        # The mixed-target shape: `target_system` per row rather than a
-        # system-named column pair. See lib/curated.py MIXED_TARGET_COLUMNS.
-        "table_columns": MIXED_TARGET_COLUMNS,
-        # Both systems declared, and load_table rejects a row naming anything
-        # else. `targets[0]` is additionally the system an unmapped row is
-        # reported against — LOINC, the space asked first.
-        "targets": [target(LOINC, no_dot), target(SNOMED, no_dot)],
-    },
-]
+# One declaration per stream, in lib/streams.py; this map only names
+# which streams its facade ValueSet reaches. Order is group order.
+SOURCES = sources(
+    "observation-type-ed",
+    "observation-type-vital",
+    "micro-susc",
+    "outputevents",
+    "micro-test",
+    "datetimeevents",
+    "micro-org",
+    "labevents",
+    "chartevents",
+)
 
 META = {
     "id": "mimic-observation-merged-to-standard",

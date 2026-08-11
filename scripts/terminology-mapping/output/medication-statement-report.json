@@ -1,0 +1,44 @@
+{
+ "field": "medication-statement",
+ "element": "MedicationStatement.medication[x]",
+ "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-medication-statement-to-standard",
+ "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-medication-statement-standard",
+ "version": "1.0.0",
+ "date": "2026-08-11",
+ "streams": [
+  "medication-gsn",
+  "medication-etc"
+ ],
+ "source_total": 10548,
+ "mapped": 8402,
+ "unmapped": 2146,
+ "by_source": [
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-etc",
+   "mapped": 626
+  },
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-gsn",
+   "mapped": 7776
+  }
+ ],
+ "by_target_system": [
+  {
+   "system": "http://snomed.info/sct",
+   "mappings": 626
+  },
+  {
+   "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+   "mappings": 7776
+  }
+ ],
+ "by_equivalence": {
+  "relatedto": 8402,
+  "unmatched": 2146
+ },
+ "unmapped_by_reason": {
+  "no-suitable-concept": 2146
+ },
+ "target_valueset_codes": 3573,
+ "extras": {}
+}

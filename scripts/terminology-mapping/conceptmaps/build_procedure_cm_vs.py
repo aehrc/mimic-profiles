@@ -45,13 +45,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from conceptmaps.lib.assemble import target                       # noqa: E402
-from conceptmaps.lib.canonical import (CANONICAL_BASE, ICD9_CM,    # noqa: E402
-                                       ICD10_PCS, MIMIC_BASE,
-                                       SNOMED, TABLE_DIR)
+from conceptmaps.lib.canonical import CANONICAL_BASE, MIMIC_BASE  # noqa: E402
 from conceptmaps.lib.driver import run                            # noqa: E402
-from conceptmaps.lib.notation import (dot_icd9_procedure,          # noqa: E402
-                                      is_pcs_leaf, no_dot)
+from conceptmaps.lib.streams import sources                       # noqa: E402
 
 FIELD = "procedure"
 
@@ -61,42 +57,15 @@ VERSION = "1.0.0"
 # The ICU table. Committed, so the build stays offline and deterministic; it is
 # regenerated deliberately by `make d-items-table`, which needs the network and
 # an LLM-backed service.
-D_ITEMS_TABLE = TABLE_DIR / "d-items-snomed.csv"
 
-SOURCES = [
-    {
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-procedure-icd10",
-        "file": "CodeSystem-mimic-procedure-icd10.json",
-        "targets": [target(ICD10_PCS, no_dot, predicate=is_pcs_leaf)],
-    },
-    {
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-procedure-icd9",
-        "file": "CodeSystem-mimic-procedure-icd9.json",
-        # Exactly one target. Adding ICD-10-PCS here would map 64 codes onto
-        # body-part groupers. See the module docstring.
-        "targets": [target(ICD9_CM, dot_icd9_procedure, kind="procedure")],
-    },
-    {
-        # mimic-procedure-ed binds these. Already SNOMED CT, so the mapping is
-        # identity — present so a single translate() over the merged column
-        # returns them rather than dropping the row. No targetVersion: this repo
-        # builds no SNOMED release, and pinning one it neither publishes nor
-        # controls is exactly the irreproducibility verify_mappings check 3
-        # exists to catch.
-        "system": SNOMED,
-        "valueset_file": "ValueSet-mimic-procedure-types-ed.json",
-        "identity": True,
-        "targets": [target(SNOMED, no_dot)],
-    },
-    {
-        # The ICU population. No rule can derive these: the displays are
-        # flowsheet labels, not clinical terms — see lib/curated.py.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-d-items",
-        "valueset_file": "ValueSet-mimic-procedureevents-d-items.json",
-        "table": D_ITEMS_TABLE,
-        "targets": [target(SNOMED, no_dot)],
-    },
-]
+# One declaration per stream, in lib/streams.py; this map only names
+# which streams its facade ValueSet reaches. Order is group order.
+SOURCES = sources(
+    "procedure-icd10",
+    "procedure-icd9",
+    "procedure-types-ed",
+    "d-items",
+)
 
 META = {
     "id": "mimic-procedure-merged-to-standard",
@@ -158,44 +127,5 @@ META = {
 }
 
 
-def extras(conceptmap, unmapped):
-    """What only this population has to say: how the ICU table was produced.
-
-    Read back out of the committed table's provenance columns rather than
-    recomputed, so the report says what the table actually records. The columns
-    are absent from a table generated some other way, which is what the `.get`
-    guards are for — a table without them simply reports nothing here.
-
-    No equivalence breakdown: every mapping this table supplies is `relatedto`,
-    so counting them would report a constant. `d_items_commented` is the number
-    that used to be worth having — the mapped rows carrying a reviewed note,
-    i.e. the size of the hand-curated surface.
-    """
-    import csv
-
-    if not D_ITEMS_TABLE.is_file():
-        return {}
-    rows = list(csv.DictReader(open(D_ITEMS_TABLE, newline="")))
-    by_status, confidences = {}, []
-    for row in rows:
-        status = row.get("codesearch_status", "")
-        by_status[status] = by_status.get(status, 0) + 1
-        if row.get("codesearch_confidence"):
-            confidences.append(float(row["codesearch_confidence"]))
-    return {
-        "d_items_table": str(D_ITEMS_TABLE.relative_to(TABLE_DIR.parents[1])),
-        "d_items_rows": len(rows),
-        "d_items_mapped": sum(1 for r in rows if r.get("snomed_code")),
-        "d_items_codesearch_status": dict(sorted(by_status.items())),
-        "d_items_commented": sum(1 for r in rows
-                                 if r.get("snomed_code") and r.get("comment")),
-        "d_items_codesearch_confidence": {
-            "answered": len(confidences),
-            "min": min(confidences) if confidences else None,
-            "max": max(confidences) if confidences else None,
-        },
-    }
-
-
 if __name__ == "__main__":
-    sys.exit(run(FIELD, SOURCES, META, VERSION, extras=extras))
+    sys.exit(run(FIELD, SOURCES, META, VERSION))

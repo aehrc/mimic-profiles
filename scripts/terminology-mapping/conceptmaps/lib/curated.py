@@ -114,9 +114,8 @@ def load_table(path, known, known_name,
                target_columns=DEFAULT_TARGET_COLUMNS, allowed_systems=None):
     """code -> row, validated against the IG's own enumeration.
 
-    `known` is {code: display} from igsource.source_concepts for the source
-    resource ENTIRE — before `observed_only` narrows it to the population this
-    stream maps. A row naming a code the IG resource does not have is fatal, and
+    `known` is {code: display} from igsource.source_concepts — the stream's
+    entire enumeration. A row naming a code the IG resource does not have is fatal, and
     a row whose display has drifted from the IG's is fatal too: an item that got
     relabelled upstream is exactly one a human should look at again. A code with
     no row is NOT fatal; it flows to the unmapped CSV as an ordinary gap in the

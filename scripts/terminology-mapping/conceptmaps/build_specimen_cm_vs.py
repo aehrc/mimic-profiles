@@ -86,7 +86,7 @@ have no target are overwhelmingly the rare ones, so a coverage figure over codes
 understates how much of the DATA resolves and a figure over occurrences
 overstates how much of the DICTIONARY was mapped. This is exactly what
 output/occurrence-buckets.csv exists to expose. Take both numbers from the
-stream's `by_stream` entry in output/specimen-report.json and its row in
+stream's entry in output/stream-report.json and its row in
 output/mapping-statistics.csv rather than from any prose — including this
 docstring.
 
@@ -107,11 +107,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from conceptmaps.lib.assemble import target                       # noqa: E402
-from conceptmaps.lib.canonical import (CANONICAL_BASE,            # noqa: E402
-                                       MIMIC_BASE, SNOMED, TABLE_DIR)
+from conceptmaps.lib.canonical import CANONICAL_BASE, MIMIC_BASE  # noqa: E402
 from conceptmaps.lib.driver import run                            # noqa: E402
-from conceptmaps.lib.notation import no_dot                       # noqa: E402
+from conceptmaps.lib.streams import sources                       # noqa: E402
 
 FIELD = "specimen"
 
@@ -120,71 +118,13 @@ VERSION = "1.0.0"
 
 # One table per stream, committed so the build stays offline and deterministic,
 # each regenerated deliberately by its own `make` target.
-LAB_FLUID_TABLE = TABLE_DIR / "lab-fluid-snomed.csv"
-SPEC_TYPE_TABLE = TABLE_DIR / "spec-type-snomed.csv"
 
-SOURCES = [
-    {
-        # mimic-lab-fluid: the 12 specimen names MIMIC's `labevents` records
-        # against a lab result — `Blood`, `Urine`, `Ascites`, `Joint Fluid`.
-        # Nine of the 12 are observed in the warehouse and they carry 13,376,689
-        # occurrences, 89.4% of every occurrence of Specimen.type.
-        #
-        # The codes ARE the displays here, which is new: `mimic_code` and
-        # `mimic_display` hold the same string, so load_table's display check —
-        # the one that catches an item relabelled upstream — is degenerate for
-        # this stream. Nothing in lib/curated.py needs changing; it is worth
-        # knowing before someone reads the CSV and thinks a column got
-        # duplicated.
-        #
-        # `file`, not `valueset_file`: mimic-specimen-type is a bare compose
-        # unioning two CodeSystems with no enumerated concepts of its own, so the
-        # CodeSystem is the only enumeration there is — the same shape the
-        # microbiology and laboratory streams use in the Observation map.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-lab-fluid",
-        "file": "CodeSystem-mimic-lab-fluid.json",
-        "table": LAB_FLUID_TABLE,
-        # Single-target: this table aims at SNOMED CT alone and says so in its
-        # own header. NOT the mixed-target shape — that is for a stream where
-        # which terminology answers is a result of the search, which is only
-        # true of chartevents so far.
-        "table_columns": ("snomed_code", "snomed_display"),
-        # No targetVersion: this repo builds no SNOMED release, and pinning one
-        # it neither publishes nor controls is exactly the irreproducibility
-        # verify_mappings check 3 exists to catch. SNOMED is on
-        # UNVERSIONED_SYSTEMS.
-        "targets": [target(SNOMED, no_dot)],
-    },
-    {
-        # mimic-spec-type-desc: the 104 values of MIMIC's
-        # `microbiologyevents.spec_type_desc` column — what the laboratory
-        # recorded as the material it received. 1,587,214 occurrences, 10.6% of
-        # the element, all 104 observed in the warehouse.
-        #
-        # A SECOND SOURCE CODESYSTEM, so a second entry and a second table: an
-        # entry carries a single `system` and load_table validates every row
-        # against THAT source's enumeration, fatally, so one shared 116-row table
-        # would fail against both. It is also why this becomes a second
-        # ConceptMap GROUP rather than joining the first — a group is keyed by
-        # (source system, target system, targetVersion) and only the target half
-        # is shared here.
-        #
-        # `file`, not `valueset_file`, for the same reason as the sibling entry:
-        # mimic-specimen-type is a bare compose with no enumerated concepts of
-        # its own, so the CodeSystem is the only enumeration there is.
-        "system": f"{MIMIC_BASE}/CodeSystem/mimic-spec-type-desc",
-        "file": "CodeSystem-mimic-spec-type-desc.json",
-        "table": SPEC_TYPE_TABLE,
-        # Single-target, like the sibling stream: this table aims at SNOMED CT
-        # alone. NOT the mixed-target shape — that is for a stream where which
-        # terminology answers is a result of the search, which is only true of
-        # chartevents so far.
-        "table_columns": ("snomed_code", "snomed_display"),
-        # No targetVersion, as above: SNOMED is on UNVERSIONED_SYSTEMS because
-        # this repo builds no SNOMED release.
-        "targets": [target(SNOMED, no_dot)],
-    },
-]
+# One declaration per stream, in lib/streams.py; this map only names
+# which streams its facade ValueSet reaches. Order is group order.
+SOURCES = sources(
+    "lab-fluid",
+    "spec-type",
+)
 
 META = {
     "id": "mimic-specimen-to-standard",

@@ -4,7 +4,10 @@
  "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-observation-component-to-standard",
  "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-component-standard",
  "version": "1.0.0",
- "date": "2026-08-05",
+ "date": "2026-08-10",
+ "streams": [
+  "observation-component-vital"
+ ],
  "source_total": 2,
  "mapped": 2,
  "unmapped": 0,
@@ -24,26 +27,6 @@
   "equivalent": 2
  },
  "unmapped_by_reason": {},
- "by_stream": [
-  {
-   "stream": "mimic-observation-component-vital",
-   "source_file": "ValueSet-mimic-observation-component-vital.json",
-   "source_system": "http://loinc.org",
-   "method": "identity",
-   "total": 2,
-   "mapped": 2,
-   "unmapped": 0,
-   "coverage_pct": 100.0,
-   "target_systems": [
-    "http://loinc.org"
-   ],
-   "by_equivalence": {
-    "equivalent": 2,
-    "unmatched": 0
-   },
-   "unmapped_by_reason": {}
-  }
- ],
  "target_valueset_codes": 2,
  "extras": {}
 }

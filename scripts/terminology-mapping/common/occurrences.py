@@ -17,17 +17,28 @@ Three things are produced, in ascending order of how much they claim:
                denominator as the code count, each code counted as often as it
                occurs.
 
-  per element  every occurrence of the element partitioned five ways —
+  per element  every occurrence of the element partitioned seven ways —
                MAPPED, DECLINED (a built stream considered it and said no, with
                a reason on record), BLOCKED (a built stream that maps nothing
                because the obstacle is outside terminology — an ETL or
-               modelling defect), NO_STREAM (a bound population nobody has
-               built yet: labevents, chartevents), NOT_IN_ENUMERATION (a code in
-               the data that no bound ValueSet admits, which under a required
-               binding is an ETL or binding defect). The last three are kept
-               apart from DECLINED on purpose: only DECLINED is a judgement this
-               repo would defend, and reporting a 1,622-code backlog or a
+               modelling defect), UNRESOLVED (a declared stream owns the code
+               but has no answer for it yet), NO_MAP (a stream resolved it, but
+               this element has no ConceptMap to serve the answer), NO_STREAM (a
+               bound population NO stream declares at all), NOT_IN_ENUMERATION
+               (a code in the data that no bound ValueSet admits, which under a
+               required binding is an ETL or binding defect). Everything after
+               DECLINED is kept apart from it on purpose: only DECLINED is a
+               judgement this repo would defend, and reporting a backlog or a
                mis-modelled column as if it were one would misrepresent both.
+
+               The three backlog buckets are split because they have three
+               different fixes and one used to hide inside another: before the
+               split, MedicationDispense.medication[x] reported 14,240,367
+               occurrences as `no-stream-yet` when only 1,550,601 of them had no
+               stream — the other 12.7M were streams that resolve perfectly,
+               waiting on a ConceptMap for that element. Extending a table, ADDING
+               a builder and DECLARING a stream are three different jobs, so they
+               are three different buckets.
 
                BLOCKED is also what makes the element's coverage reportable two
                ways — against every occurrence, and against the occurrences a
@@ -70,9 +81,36 @@ BLOCKED = "blocked-upstream"
 # Kept in step with lib/assemble.py by hand rather than imported: this module is
 # read by the HPC-node side too, which has no conceptmaps/ package on its path.
 NOT_OBSERVED = "not-observed-in-data"
+# A declared stream owns this code and has no answer for it yet — no row in its
+# curated table, or absent from every built release. A backlog INSIDE a stream,
+# whose fix is extending that stream's table or building the missing release.
+UNRESOLVED = "unresolved-in-stream"
+# A stream resolved this code, but the element carrying it has no ConceptMap, so
+# no $translate call can reach the answer. The fix is a builder, not a mapping:
+# the dictionary work is already done. Split out of NO_STREAM because folding
+# the two together made an element with no builder look like an element with no
+# mappings, which is the opposite of the truth for four of the five populations
+# behind MedicationDispense.medication[x].
+NO_MAP = "no-map-for-element"
+# No stream declares this population AT ALL. The deepest of the three backlogs
+# and the only one invisible to the per-stream view until build_stream_reports
+# synthesises a row for it — see lib/streams.undeclared().
 NO_STREAM = "no-stream-yet"
+# The unmapped-CSV reason written for a population no stream declares
+# (lib/assemble.py NOT_BUILT). Deliberately the same string as the NO_STREAM
+# bucket: the worklist row and the bucket state one fact, and giving it two
+# names would invite a reader to think they differ.
+NOT_BUILT = NO_STREAM
+# A shared mapping table, generated for the codes one element observes, has no
+# row for a code a WIDER element admits. Named separately from the other
+# UNRESOLVED reason because it names its own fix — extend that table's
+# generation population — but it is the same coverage fact, so it buckets the
+# same way.
+NO_TABLE_ROW = "no-row-in-curated-table"
 NOT_IN_ENUMERATION = "not-in-enumeration"
-BUCKETS = (MAPPED, DECLINED, BLOCKED, NO_STREAM, NOT_IN_ENUMERATION)
+# Ordered by how deep the gap is, which is the order the stacked bars read in.
+BUCKETS = (MAPPED, DECLINED, BLOCKED, UNRESOLVED, NO_MAP, NO_STREAM,
+           NOT_IN_ENUMERATION)
 
 # The IG resources every enumeration is read from. Both directories, because the
 # MIMIC CodeSystems ship in input/resources/ while the FSH-authored ValueSets
@@ -120,6 +158,49 @@ class Counts:
         return self.by_element[element].get((system, code), 0)
 
 
+def registry(occ_dir=None):
+    """{element: entry} from elements.json alone, counts or no counts.
+
+    Separate from load() because the two answer different questions. load() is
+    "what does the data contain", and is legitimately absent before an extraction
+    run. This is "what elements are bound and to what", which is a property of
+    the profiles and is available offline, always — so a builder may rely on it
+    without acquiring a dependency on the HPC job having been run.
+    """
+    path = (occ_dir or paths.OCCURRENCES) / REGISTRY_NAME
+    if not path.is_file():
+        return {}
+    return {e["element"]: e
+            for e in json.loads(path.read_text())["elements"]}
+
+
+def valueset_systems(url, index=None, seen=None):
+    """Every code system a ValueSet's compose reaches, without enumerating codes.
+
+    Deliberately not expand(): the caller wants to know WHICH ELEMENTS could
+    carry a system, and for that a system-level answer is both sufficient and
+    orders of magnitude cheaper than pulling 20,288 concepts out of five
+    CodeSystems to then throw the codes away.
+    """
+    index = index if index is not None else _resource_index()
+    seen = seen if seen is not None else set()
+    if url in seen:
+        return set()
+    seen.add(url)
+    resource = index.get(url)
+    if resource is None:
+        return set()
+    if resource.get("resourceType") == "CodeSystem":
+        return {resource["url"]}
+    systems = set()
+    for include in resource.get("compose", {}).get("include", []):
+        if include.get("system"):
+            systems.add(include["system"])
+        for nested in include.get("valueSet", []):
+            systems |= valueset_systems(nested, index, seen)
+    return systems
+
+
 def load(occ_dir=None):
     """The committed counts, or None if they have not been extracted yet.
 
@@ -152,6 +233,47 @@ def load(occ_dir=None):
         rows = list(csv.DictReader(fh))
     registry = json.loads(registry_path.read_text())
     return Counts(rows, summary, registry)
+
+
+REFERENCE_NAME = "reference-occurrences.csv"
+
+
+def observed_anywhere(occ_dir=None, counts=None):
+    """{(system, code)} observed on ANY bound element, or None without counts.
+
+    The union-level fact the resolvers report `not-observed-in-data` against
+    (see lib/assemble.py). None — not the empty set — when the artifact is
+    absent: "nothing was ever counted" and "the count found nothing" are
+    different statements, and only the second may change a reason.
+    """
+    counts = counts if counts is not None else load(occ_dir)
+    if counts is None:
+        return None
+    return {key for per_element in counts.by_element.values()
+            for key in per_element}
+
+
+def reference_counts(occ_dir=None):
+    """{(system, code): referring resources} from reference-occurrences.csv.
+
+    The volume figure for codes reached through a Reference: each code counted
+    once per REFERRING resource, which is what makes it comparable with the
+    event elements' counts. This is the number a dictionary-kind element
+    (Medication, deduplicated to one resource per drug tuple) contributes to a
+    stream's occurrence totals — its own counts are dictionary size, and
+    summing those with event counts would be a category error.
+
+    Empty when the file is absent; callers must then leave dictionary volume
+    out rather than substituting the dictionary counts.
+    """
+    path = (occ_dir or paths.OCCURRENCES) / REFERENCE_NAME
+    if not path.is_file():
+        return {}
+    totals = defaultdict(int)
+    with open(path, newline="") as fh:
+        for row in csv.DictReader(fh):
+            totals[(row["system"], row["code"])] += int(row["resources"])
+    return dict(totals)
 
 
 # --------------------------------------------------------------------------- #
@@ -258,184 +380,38 @@ def _stream_codes(source_file, source_system, index):
     return {}
 
 
-# --------------------------------------------------------------------------- #
-# Declined codes and mapping targets, from the files the builders wrote.
-# --------------------------------------------------------------------------- #
+EVENTS = "events"
+DICTIONARY = "dictionary"
 
-def _declined(field_key, out_dir):
-    """{(system, code)} the builders considered and deliberately left unmapped.
 
-    NOT every row of the CSV. A stream declaring `observed_only` also writes a
-    row for each code the bound ValueSet admits but the data never carries, so
-    that a consumer meeting one is told the assumption rather than met with
-    silence — see lib/assemble.py NOT_OBSERVED. Those were never considered and
-    never declined: counting them here would report a code nobody looked at as a
-    judgement this repo would defend, which is precisely the distinction the
-    DECLINED bucket exists to preserve.
+def element_kind(element, reg=None):
+    """`events` or `dictionary` for one element — see elements.json `keys`.
 
-    They cannot move the occurrence arithmetic either way, since a never-observed
-    code occurs zero times by construction. What they would corrupt is the code
-    COUNT and the cross-check against the report, and the check is worth keeping
-    honest: it is what catches a builder and its CSV disagreeing.
+    An event element's occurrence count is data volume: one coding is one thing
+    that happened to a patient. A dictionary element's is the size of the
+    dictionary, because the resource is deduplicated — MIMIC mints one Medication
+    per distinct drug tuple, so a code recorded on ten thousand prescriptions
+    still occurs about once here.
+
+    The distinction is not cosmetic. print_occurrences exists to answer "how
+    likely is a data point to carry a code $translate cannot resolve", and a
+    dictionary element cannot answer that question at all: putting its row in
+    that table invites a reader to compare 29% of a drug list with 68% of
+    461 million observations as though the two were the same measurement.
     """
-    path = out_dir / f"unmapped-{field_key}.csv"
-    if not path.is_file():
-        return set()
-    with open(path, newline="") as fh:
-        return {(row["source_system"], row["mimic_code"])
-                for row in csv.DictReader(fh)
-                if row.get("reason") != NOT_OBSERVED}
-
-
-def _targets(report, out_dir):
-    """{(source system, code): "target_code"} from the field's ConceptMap.
-
-    Only so the top-N table can name what a mapped code maps to. Absent or
-    unreadable, the status column simply says "mapped".
-    """
-    url = report.get("conceptmap", "")
-    path = out_dir / f"ConceptMap-{url.rsplit('/', 1)[-1]}.json"
-    if not path.is_file():
-        return {}
-    conceptmap = json.loads(path.read_text())
-    targets = {}
-    for group in conceptmap.get("group", []):
-        for element in group.get("element", []):
-            for concept in element.get("target", []):
-                if concept.get("code"):
-                    targets[(group["source"], element["code"])] = concept["code"]
-    return targets
-
-
-# --------------------------------------------------------------------------- #
-# The three views.
-# --------------------------------------------------------------------------- #
-
-def analyse(reports, counts, out_dir, top_n=25):
-    """(stream_stats, buckets, top) — everything build_statistics.py renders.
-
-    stream_stats  {(field, stream): {...}} to merge into the per-stream rows
-    buckets       [{element, bucket, codes, occurrences, share_pct}]
-    top           {element: [{rank, code, display, occurrences, ...}]}
-    """
-    index = _resource_index()
-    stream_stats = {}
-    buckets = []
-    top = {}
-
-    # Every element that was counted, not every element that has a map. An
-    # element with no ConceptMap yet — Specimen.type, both medication[x] — is
-    # the case worth reporting: its buckets are entirely NO_STREAM, which states
-    # the size of the backlog in rows. Skipping it would leave the biggest
-    # unmapped populations invisible in the one view meant to rank them.
-    by_element = {r["element"]: r for r in reports}
-    for element in sorted(counts.by_element):
-        report = by_element.get(element)
-        field = report["field"] if report else None
-
-        declined_codes = _declined(field, out_dir) if report else set()
-        element_total = counts.total(element)
-
-        # Per stream, and at the same time the element-level mapped/declined
-        # sets — both are the same walk over the streams' enumerations.
-        mapped_keys, declined_keys, blocked_keys = set(), set(), set()
-        for stream in (report["by_stream"] if report else []):
-            source_file = stream.get("source_file")
-            if not source_file:
-                warn(f"{field}/{stream['stream']} has no source_file — rebuild "
-                     f"the field's report (see lib/assemble.py)")
-                continue
-            codes = _stream_codes(source_file, stream["source_system"], index)
-            in_stream_declined = {k for k in codes if k in declined_codes}
-            in_stream_mapped = set(codes) - in_stream_declined
-            if stream.get("blocked_upstream"):
-                # Its unmapped codes are blocked, not declined. Anything it DID
-                # map still counts as mapped — the flag is about why the gap
-                # exists, not a licence to ignore the stream's successes.
-                blocked_keys |= in_stream_declined
-            else:
-                declined_keys |= in_stream_declined
-            mapped_keys |= in_stream_mapped
-
-            # The report counted the same thing from the other direction; a
-            # disagreement means the enumeration and the map have drifted apart.
-            if len(in_stream_declined) != stream["unmapped"]:
-                warn(f"{field}/{stream['stream']}: {len(in_stream_declined)} "
-                     f"declined codes found in the enumeration but the report "
-                     f"says {stream['unmapped']}")
-
-            occ = {k: counts.get(element, *k) for k in codes}
-            total = sum(occ.values())
-            mapped = sum(occ[k] for k in in_stream_mapped)
-            stream_stats[(field, stream["stream"])] = {
-                "occurrences_total": total,
-                "occurrences_mapped": mapped,
-                # Floored, not rounded, for the reason build_statistics.totals
-                # floors: only a genuinely complete stream may display 100.
-                "occurrence_coverage_pct": (int(10000 * mapped / total) / 100
-                                            if total else 0.0),
-                "codes_never_used": sum(1 for k in codes if not occ[k]),
-                "declined_never_used": sum(1 for k in in_stream_declined
-                                           if not occ[k]),
-            }
-
-        # Bucket every occurrence of the element.
-        bound = {}
-        for url in counts.registry.get(element, {}).get("bound_valuesets", []):
-            bound.update(expand(url, index))
-
-        tallies = {bucket: {"codes": 0, "occurrences": 0} for bucket in BUCKETS}
-        classified = {}
-        for key, n in counts.by_element[element].items():
-            if key in mapped_keys:
-                bucket = MAPPED
-            elif key in blocked_keys:
-                bucket = BLOCKED
-            elif key in declined_keys:
-                bucket = DECLINED
-            elif key in bound:
-                bucket = NO_STREAM
-            else:
-                bucket = NOT_IN_ENUMERATION
-            classified[key] = bucket
-            tallies[bucket]["codes"] += 1
-            tallies[bucket]["occurrences"] += n
-
-        for bucket in BUCKETS:
-            tally = tallies[bucket]
-            buckets.append({
-                "element": element,
-                "bucket": bucket,
-                "codes": tally["codes"],
-                "occurrences": tally["occurrences"],
-                "share_pct": (round(100 * tally["occurrences"] / element_total, 2)
-                              if element_total else 0.0),
-            })
-
-        # The head of the distribution, with what happened to each code.
-        targets = _targets(report, out_dir) if report else {}
-        ranked = sorted(counts.by_element[element].items(),
-                        key=lambda kv: (-kv[1], kv[0]))[:top_n]
-        top[element] = [{
-            "rank": rank,
-            "system": system,
-            "code": code,
-            "display": (counts.displays[element].get((system, code))
-                        or bound.get((system, code), "")),
-            "occurrences": n,
-            "share_pct": (round(100 * n / element_total, 2)
-                          if element_total else 0.0),
-            "bucket": classified[(system, code)],
-            "target": targets.get((system, code), ""),
-        } for rank, ((system, code), n) in enumerate(ranked, 1)]
-
-    return stream_stats, buckets, top
+    reg = reg if reg is not None else registry()
+    return reg.get(element, {}).get("occurrence_kind", EVENTS)
 
 
 def element_summary(buckets):
     """Per element: mapped, total, and the coverage figure reported TWO ways.
 
-    [(element, mapped, total, pct, achievable_total, achievable_pct)]
+    [(element, mapped, total, pct, achievable_total, achievable_pct, kind)]
+
+    `kind` is carried through rather than looked up by the caller so that every
+    renderer of this table gets the events/dictionary split whether or not it
+    remembered to ask for it. A row that silently claims to be volume is the one
+    failure mode worth designing against here.
 
     The complement of the mapped share is the number this view exists for: the
     chance that a data point encountered in this element carries a code
@@ -469,10 +445,12 @@ def element_summary(buckets):
         # Floored, not rounded: only a genuinely complete element may show 100.
         return int(10000 * mapped / total) / 100 if total else 0.0
 
+    reg = registry()
     out = []
     for element, value in sorted(per_element.items()):
         achievable = value["total"] - value["blocked"]
         out.append((element, value["mapped"], value["total"],
                     pct(value["mapped"], value["total"]),
-                    achievable, pct(value["mapped"], achievable)))
+                    achievable, pct(value["mapped"], achievable),
+                    element_kind(element, reg)))
     return out

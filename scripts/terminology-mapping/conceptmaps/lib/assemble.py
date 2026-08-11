@@ -1,8 +1,8 @@
-"""Resolving a declaration into ConceptMap groups.
+"""Resolving stream declarations into ConceptMap groups.
 
-A builder declares `sources`; this turns them into R4 groups plus the list of
-codes nothing could map. Three resolver shapes are supported, and a source picks
-exactly one:
+A builder consumes streams (lib/streams.py); this resolves each one and turns
+the outcomes into R4 groups plus the list of codes nothing could map. Three
+resolver shapes are supported, and a stream picks exactly one:
 
   notation  `targets` is an ordered list of target(); the first that resolves
             wins, later entries are the cross-system fallback.
@@ -10,7 +10,7 @@ exactly one:
             to itself.
   table     `table` names a committed CSV; the mapping is data, see curated.py.
             Single-target by default. A table declaring MIXED_TARGET_COLUMNS
-            names its target system per row instead, and then one source spans
+            names its target system per row instead, and then one stream spans
             one group per system it named — which is how the chartevents stream
             reaches LOINC where LOINC answers and SNOMED CT where it does not.
 
@@ -18,29 +18,56 @@ The resolver also fixes the equivalence: `equivalent` for notation and identity,
 `relatedto` for every table row. See build_groups for why it is a property of
 the resolver rather than of the row.
 
-Nothing downstream re-derives a mapping. The builders write a ConceptMap, and
-the ValueSet projection, the verifier and every consumer read that.
+A STREAM RESOLVES IDENTICALLY WHEREVER IT IS CONSUMED. resolve_source is a
+function of (declaration, built releases, union-observed codes) and knows no
+bound element, so two ConceptMaps consuming one stream cannot publish two
+answers for one code. That replaces the per-element `observed_only` narrowing
+this module used to apply, under which the same drug code was `mapped` in one
+medication map and `unmatched / not-observed` in a sibling — defensible, but it
+meant a consumer's answer depended on which element the Coding sat on, and it
+made every shared stream's numbers exist once per consuming field.
+
+Nothing downstream re-derives a mapping. The builders write a ConceptMap; the
+ValueSet projection, the verifier, the stream reports and every consumer read
+what one resolution pass produced.
 """
 
 import sys
-from collections import Counter, defaultdict
+from collections import defaultdict
 
 from .built import find
 from .curated import DEFAULT_TARGET_COLUMNS, is_mixed, load_table
-from .igsource import partition_observed, resource_path, source_concepts
+from .igsource import resource_path
 
-# The reason recorded for a code that is in the bound ValueSet but that the
-# warehouse never puts on this element. It is deliberately NOT one of the
-# resolver's failure reasons: nothing was searched for and nothing was
-# declined, so folding it in with them would inflate every "we tried and
-# failed" number in the statistics. See igsource.partition_observed.
+# The reason recorded for a code the binding admits that the warehouse records
+# on NO bound element at all — a union-level fact, read from the committed
+# occurrence counts. It is deliberately NOT one of the resolver's failure
+# reasons: nothing was searched for and nothing was declined, so folding it in
+# with them would inflate every "we tried and failed" number in the statistics.
 NOT_OBSERVED = "not-observed-in-data"
+
+# The reason recorded for a population a stream declares but has no resolver
+# for yet. Distinct from the other reasons on purpose:
+#
+#   not-observed-in-data  no data anywhere carries the code
+#   no-row-in-curated-table  observed, but the table predates its population
+#   no-suitable-concept   a stream considered this code and declined it
+#   no-stream-yet         nobody has looked
+#
+# Declared absence is a fact; omission is not. A population left out of the map
+# entirely answers $translate with silence, which a consumer cannot tell from a
+# map that failed to load.
+NOT_BUILT = "no-stream-yet"
+
+# Outcome kinds resolve_source emits. MAPPED carries a target; every other kind
+# becomes an `unmatched` element and a worklist row.
+MAPPED = "mapped"
 
 Target = dict  # {system, rule, kind, predicate}
 
 
 def target(system, rule, kind=None, predicate=None):
-    """One candidate target system for a source.
+    """One candidate target system for a stream.
 
     `rule` rewrites the MIMIC code into the target's notation. `kind` filters on
     the built CodeSystem's `kind` property, which is how ICD-9-CM diagnoses
@@ -51,233 +78,184 @@ def target(system, rule, kind=None, predicate=None):
     return {"system": system, "rule": rule, "kind": kind, "predicate": predicate}
 
 
-def build_groups(sources, element, built):
-    """Resolve every MIMIC code, returning (groups, unmapped rows, streams).
+def method_of(source):
+    """Which resolver a declaration picked, for the reports.
+
+    `declared` is the last case: no table, no identity, and no notation rule on
+    any target — a population declared only so that every code the binding
+    admits has an entry in the map. It must not read as `notation`, which would
+    name a resolver that does not exist.
+    """
+    if source.get("identity"):
+        return "identity"
+    if "table" in source:
+        return "table"
+    if any(t["rule"] for t in source["targets"]):
+        return "notation"
+    return "declared"
+
+
+def resolve_source(source, built, observed):
+    """Resolve one stream: every enumerated code to exactly one outcome.
+
+    `observed` is the union of (system, code) pairs the occurrence extraction
+    saw on ANY bound element, or None when that artifact is absent. It affects
+    no mapping — only which reason an un-tabled code is reported under, because
+    "nobody uses this code" and "the table has not caught up with this
+    population" are different backlogs. Without the artifact both report as
+    `no-row-in-curated-table`, which is the weaker, always-true claim.
+
+    Returns [(code, display, outcome)] in enumeration order, where a MAPPED
+    outcome is {kind, target_system, target_code, target_display, equivalence,
+    comment} and every other outcome is {kind (== the worklist reason),
+    expected_code, expected_system, comment}.
+    """
+    from .igsource import source_concepts  # local import keeps lib acyclic
+
+    enumerated = list(source_concepts(source))
+    table_columns = source.get("table_columns", DEFAULT_TARGET_COLUMNS)
+    mixed_table = is_mixed(table_columns)
+    table = (load_table(source["table"], dict(enumerated),
+                        resource_path(source).name, table_columns,
+                        allowed_systems={t["system"]
+                                         for t in source["targets"]})
+             if "table" in source else None)
+
+    outcomes = []
+    for code, display in enumerated:
+        outcomes.append((code, display,
+                         _resolve_code(source, code, built, observed,
+                                       table, mixed_table)))
+    return outcomes
+
+
+def _resolve_code(source, code, built, observed, table, mixed_table):
+    primary = source["targets"][0]
+    if source.get("identity"):
+        # Already standard terminology: the code is its own target, so there
+        # is nothing to look up and no release to pin.
+        return {"kind": MAPPED, "target_system": primary["system"],
+                "target_code": code, "target_display": "",
+                "target_version": None, "equivalence": "equivalent",
+                "comment": ""}
+    if table is not None:
+        row = table.get(code)
+        if row is None:
+            # No row. Which backlog this is depends on whether any data
+            # anywhere carries the code — a fact the occurrence artifact
+            # settles and nothing else can.
+            if observed is not None and (source["system"], code) not in observed:
+                return {"kind": NOT_OBSERVED,
+                        "expected_code": "",
+                        "expected_system": primary["system"],
+                        "comment": (
+                            "Recorded on no bound element in the warehouse "
+                            "extract the committed occurrence counts describe. "
+                            "Deliberately not asked rather than declined: the "
+                            "mapping tables are generated over the codes the "
+                            "warehouse actually uses, and this one has never "
+                            "been used. If you are translating it, that "
+                            "assumption does not hold for your data — extend "
+                            "the table's generation population.")}
+            return {"kind": "no-row-in-curated-table",
+                    "expected_code": "",
+                    "expected_system": primary["system"],
+                    "comment": (
+                        f"Not considered yet. The committed mapping table for "
+                        f"{resource_path(source).stem} has no row for this "
+                        f"code. Nothing was searched for and no target was "
+                        f"declined — this is a backlog, not a finding that no "
+                        f"{primary['system']} concept exists. Extending the "
+                        f"table's generation population is what fills it.")}
+        if not row["target_code"]:
+            # Considered and deliberately not mapped. The row's own comment is
+            # the reason.
+            return {"kind": "no-suitable-concept",
+                    "expected_code": "",
+                    "expected_system": primary["system"],
+                    "comment": row["comment"]}
+        # No release pinned: the systems tables map into are all on
+        # UNVERSIONED_SYSTEMS. `relatedto` is set here rather than carried in
+        # the table, so it holds for every table equally and cannot drift as
+        # one generator's rule is edited.
+        return {"kind": MAPPED,
+                "target_system": (row["target_system"] if mixed_table
+                                  else primary["system"]),
+                "target_code": row["target_code"],
+                "target_display": row["target_display"],
+                "target_version": None, "equivalence": "relatedto",
+                "comment": row["comment"]}
+    for tgt in source["targets"]:
+        if tgt["rule"] is None:
+            # A stream with no table, no identity and no notation rule has no
+            # way to resolve anything. Stopping here is the only outcome that
+            # neither lies nor loses the code.
+            sys.exit(
+                f"  {source['system']} enumerates {code!r}, but the stream "
+                f"declares no resolver: no table, no identity, and target "
+                f"{tgt['system']} has no notation rule. Build the stream for "
+                f"this population, or give it a table — do not widen the rule "
+                f"to make the build pass.")
+        official = tgt["rule"](code)
+        found = find(built, tgt, official)
+        if found:
+            version, display = found
+            return {"kind": MAPPED, "target_system": tgt["system"],
+                    "target_code": official, "target_display": display,
+                    "target_version": version, "equivalence": "equivalent",
+                    "comment": ""}
+    return {"kind": "absent-from-all-built-releases",
+            "expected_code": primary["rule"](code),
+            "expected_system": primary["system"],
+            "comment": ""}
+
+
+def unmapped_row(source, code, display, outcome):
+    """One worklist row, shared by the field CSVs' successor (the per-stream
+    worklists) and the map's own `unmatched` elements."""
+    return {
+        "stream": source.get("stream", ""),
+        "source_system": source["system"],
+        "mimic_code": code,
+        "mimic_display": display,
+        "expected_code": outcome.get("expected_code", ""),
+        # The system that WOULD have been searched, not the source's own:
+        # `X -> X unmatched` would read as "we looked in the source system and
+        # found nothing", which is nonsense.
+        "expected_system": outcome["expected_system"],
+        "reason": outcome["kind"],
+        "comment": outcome.get("comment", ""),
+    }
+
+
+def build_groups(sources, built, observed):
+    """Resolve every stream, returning (groups, unmapped rows).
 
     Groups are keyed by (source system, target system, target version) because
-    group.targetVersion is the only place R4 records a target release.
-
-    `streams` is the per-SOURCES-entry tally, collected here because this loop
-    is the only place stream identity still exists: the finished map merges
-    populations into shared (source, target) groups — the two LOINC identity
-    populations land in ONE R4 group by design — so reading per-stream numbers
-    back out of the map is impossible. One entry per source, in declaration
-    order, keyed by the IG resource the codes came from. See lib/stats.py.
+    group.targetVersion is the only place R4 records a target release. Streams
+    sharing a (source, target) pair merge into one R4 group by design — the two
+    LOINC identity populations land in ONE group — which is why per-stream
+    numbers cannot be read back out of a finished map and live in the stream
+    reports instead (build_stream_reports.py).
     """
     buckets = defaultdict(list)
     unmapped = []
-    streams = []
 
     for source in sources:
-        enumerated = list(source_concepts(source))
-        enumerated_total = len(enumerated)
-        concepts = enumerated
-        # A code in the bound ValueSet that the data never carries is DECLARED,
-        # not dropped: it gets an `unmatched` element and a CSV row exactly like
-        # a resolver failure, so a consumer translating one is told the
-        # assumption out loud instead of getting silence. It is only kept out of
-        # this stream's coverage arithmetic below.
-        concepts, never_observed = partition_observed(source, element, concepts)
-        for code, display in never_observed:
-            unmapped.append({
-                "field": element, "source_system": source["system"],
-                "mimic_code": code, "mimic_display": display,
-                # The system that WOULD have been searched, not the source's
-                # own: `X -> X  unmatched` would read as "we looked in the
-                # source system and found nothing", which is nonsense. This
-                # also merges these into the one unmatched group per (source,
-                # searched system), where the per-element comment and the CSV's
-                # `reason` column are what tell the two kinds of gap apart.
-                "expected_code": "",
-                "expected_system": source["targets"][0]["system"],
-                "reason": NOT_OBSERVED,
-                "comment": (
-                    f"In {resource_path(source).stem}, which {element} is bound "
-                    f"to, but never recorded on {element} in the warehouse "
-                    f"extract this map was built against. Deliberately not "
-                    f"mapped rather than not considered: if you are translating "
-                    f"this code, the assumption it was left out under does not "
-                    f"hold for your data."),
-            })
+        outcomes = resolve_source(source, built, observed)
         hits = 0
-        unmapped_before = len(unmapped)
-        target_systems = set()
-        by_equivalence = Counter()
-        # `table_columns` names the target pair as this table spells it; the
-        # rows come back keyed `target_code` / `target_display` either way. A
-        # mixed-target table names a THIRD column, `target_system`, and its rows
-        # additionally come back keyed `target_system` — see curated.py.
-        table_columns = source.get("table_columns", DEFAULT_TARGET_COLUMNS)
-        mixed_table = is_mixed(table_columns)
-        # Validated against the ENUMERATION, not this stream's population: a
-        # table is keyed by its source CodeSystem and may be shared by two
-        # fields observing different subsets of it. Rows outside this
-        # population are simply never looked up below. See lib/curated.py.
-        table = (load_table(source["table"], dict(enumerated),
-                            resource_path(source).name, table_columns,
-                            allowed_systems={t["system"]
-                                             for t in source["targets"]})
-                 if "table" in source else None)
-
-        for code, mimic_display in concepts:
-            if source.get("identity"):
-                # Already standard terminology: the code is its own target, so
-                # there is nothing to look up and no release to pin. Version
-                # None -> the group is emitted without targetVersion.
-                tgt = source["targets"][0]
-                buckets[(source["system"], tgt["system"], None)].append(
-                    (code, mimic_display, code, mimic_display,
-                     "equivalent", ""))
+        for code, display, outcome in outcomes:
+            if outcome["kind"] == MAPPED:
+                buckets[(source["system"], outcome["target_system"],
+                         outcome["target_version"])].append(
+                    (code, display, outcome["target_code"],
+                     outcome["target_display"], outcome["equivalence"],
+                     outcome["comment"]))
                 hits += 1
-                target_systems.add(tgt["system"])
-                by_equivalence["equivalent"] += 1
-                continue
-            if table is not None:
-                # The system an UNMAPPED row is reported against. For a
-                # single-target table that is the only system there is; for a
-                # mixed one it is the system asked FIRST, which is what the
-                # declining comment on the row is phrased against. A row that
-                # declined was refused by every space the generator tried, so no
-                # single system is the whole truth — naming the primary keeps
-                # the unmatched elements in one group and leaves the row's own
-                # comment to say what was actually searched.
-                tgt = source["targets"][0]
-                row = table.get(code)
-                if row is None:
-                    unmapped.append({
-                        "field": element,
-                        "source_system": source["system"],
-                        "mimic_code": code,
-                        "mimic_display": mimic_display,
-                        "expected_code": "",
-                        "expected_system": tgt["system"],
-                        "reason": "no-row-in-curated-table",
-                    })
-                elif not row["target_code"]:
-                    # Considered and deliberately not mapped. The row's own
-                    # comment is the reason; unmatched_groups prefers it over
-                    # the generated "absent from every release" wording, which
-                    # would be a lie here — nothing was searched for.
-                    unmapped.append({
-                        "field": element,
-                        "source_system": source["system"],
-                        "mimic_code": code,
-                        "mimic_display": mimic_display,
-                        "expected_code": "",
-                        "expected_system": tgt["system"],
-                        "reason": "no-suitable-concept",
-                        "comment": row["comment"],
-                    })
-                else:
-                    # No release pinned: both SNOMED and LOINC, the two systems
-                    # tables target, are on UNVERSIONED_SYSTEMS.
-                    #
-                    # `relatedto` is set here rather than carried in the table,
-                    # so it holds for every table equally and cannot drift as
-                    # one generator's rule is edited. The tables have no
-                    # equivalence column to carry — see lib/curated.py.
-                    #
-                    # A mixed-target table decides the target system PER ROW, so
-                    # one stream fans out across as many groups as it named
-                    # systems — a group is keyed by (source, target, version),
-                    # and load_table has already checked every row's system is
-                    # one this source declared.
-                    mapped_system = (row["target_system"] if mixed_table
-                                     else tgt["system"])
-                    buckets[(source["system"], mapped_system, None)].append(
-                        (code, mimic_display, row["target_code"],
-                         row["target_display"], "relatedto",
-                         row["comment"]))
-                    hits += 1
-                    target_systems.add(mapped_system)
-                    by_equivalence["relatedto"] += 1
-                continue
-            for tgt in source["targets"]:
-                official = tgt["rule"](code)
-                found = find(built, tgt, official)
-                if found:
-                    version, display = found
-                    buckets[(source["system"], tgt["system"], version)].append(
-                        (code, mimic_display, official, display,
-                         "equivalent", ""))
-                    hits += 1
-                    target_systems.add(tgt["system"])
-                    by_equivalence["equivalent"] += 1
-                    break
             else:
-                primary = source["targets"][0]
-                unmapped.append({
-                    "field": element,
-                    "source_system": source["system"],
-                    "mimic_code": code,
-                    "mimic_display": mimic_display,
-                    "expected_code": primary["rule"](code),
-                    "expected_system": primary["system"],
-                    "reason": "absent-from-all-built-releases",
-                })
-
-        # A shared table carries rows for codes this field does not map, and
-        # they are neither an error nor invisible: load_table can no longer
-        # tell a sibling's row from a row for a code nobody maps, so the count
-        # is printed instead of either being rejected or going unmentioned.
-        foreign = (len(table) - sum(1 for c, _ in concepts if c in table)
-                   if table is not None else 0)
-        print(f"  {resource_path(source).name:45s} "
-              f"{hits:>6,}/{len(concepts):<6,} mapped"
-              f"{f'  (+{foreign:,} table row(s) for sibling populations)'
-                 if foreign else ''}", file=sys.stderr)
-
-        missed = unmapped[unmapped_before:]
-        by_equivalence["unmatched"] = len(missed)
-        streams.append({
-            # The IG resource id, which is the name a stream is invoked by:
-            # ValueSet-mimic-observation-type-ed.json -> mimic-observation-type-ed
-            "stream": resource_path(source).stem.split("-", 1)[1],
-            # The same resource, un-abbreviated. Stripping the prefix above is
-            # not invertible — mimic-microbiology-antibiotic exists as BOTH a
-            # CodeSystem and a ValueSet, and only the CodeSystem enumerates
-            # anything — so anything needing this stream's code list reads the
-            # file named here rather than guessing at the prefix. That is how
-            # common/occurrences.py attaches occurrence counts to streams.
-            "source_file": resource_path(source).name,
-            "source_system": source["system"],
-            "method": ("identity" if source.get("identity")
-                       else "table" if "table" in source else "notation"),
-            "total": len(concepts),
-            "mapped": hits,
-            "unmapped": len(missed),
-            # Over the population the stream SET OUT to map. For an
-            # observed_only stream that is the observed subset, and the two
-            # keys below say so — reporting 2,888 mapped out of a 9,971-code
-            # enumeration would describe a job nobody attempted, while hiding
-            # the narrowing entirely would be worse. Both numbers, always.
-            "coverage_pct": round(100 * hits / len(concepts), 1)
-                            if concepts else 0.0,
-            # Only for a stream that narrowed itself, so a report for a field
-            # that did not stays byte-identical. See RESTRICTION_COLUMNS.
-            **({"restriction": "observed-only",
-                "enumerated_total": enumerated_total,
-                "not_observed": len(never_observed)}
-               if source.get("observed_only") else {}),
-            # Free prose a stream declares about its own numbers, surfaced as a
-            # footnote by build_statistics.py. For the case where a coverage
-            # figure is correct but reads as a failure without context — see the
-            # poe-iv entry in build_medication_cm_vs.py. Declared next to the
-            # SOURCES entry it describes, so it cannot drift from the stream.
-            # Declares that this stream's gaps are NOT a terminology judgement:
-            # the obstacle is upstream, so common/occurrences.py buckets them
-            # apart from `declined` and the element reports its coverage both
-            # with and without them. Costs nothing when absent.
-            **({"blocked_upstream": True}
-               if source.get("blocked_upstream") else {}),
-            **({"note": source["note"]} if source.get("note") else {}),
-            **({"note_url": source["note_url"]}
-               if source.get("note_url") else {}),
-            "target_systems": sorted(target_systems),
-            "by_equivalence": dict(sorted(by_equivalence.items())),
-            "unmapped_by_reason": dict(sorted(Counter(
-                r["reason"] for r in missed).items())),
-        })
+                unmapped.append(unmapped_row(source, code, display, outcome))
+        print(f"  {source.get('stream', resource_path(source).stem):45s} "
+              f"{hits:>6,}/{len(outcomes):<6,} mapped", file=sys.stderr)
 
     groups = []
     # `version or ""` only to keep None sortable against the release strings;
@@ -331,7 +309,7 @@ def build_groups(sources, element, built):
             group["targetVersion"] = version
         group["element"] = elements
         groups.append(group)
-    return groups, unmapped, streams
+    return groups, unmapped
 
 
 def unmatched_groups(unmapped):

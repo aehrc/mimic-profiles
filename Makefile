@@ -57,6 +57,27 @@ MEDICATION := $(TERM)/conceptmaps/build_medication_cm_vs.py
 # almost a disjoint population of the same union, so a separate map. Built one
 # stream at a time in the order issue #27 records.
 MEDICATION_ADMINISTRATION := $(TERM)/conceptmaps/build_medication_administration_cm_vs.py
+# Medication.code — the element MedicationRequest.medication[x] REFERENCES. That
+# element is a choice, and at least 87.8% of MIMIC prescriptions take its
+# Reference branch (1,883,681 inline codings against 15,416,901 rows), so this is
+# the map a consumer needs after dereferencing medicationReference. A required
+# binding cannot constrain a Reference, so for those prescriptions this element's
+# binding is the only one that governs the drug code. Costs no generation run:
+# four of its five populations reuse the sibling fields' committed tables.
+MEDICATION_CODE := $(TERM)/conceptmaps/build_medication_code_cm_vs.py
+# MedicationStatement.medication[x] — the ED medrecon population. It binds at the
+# CODING SLICES (gsn and etc separately, ndc deliberately unbound), so it needed a
+# facade ValueSet before a map could name one sourceCanonical. Complete against
+# both slices since the medication-gsn stream was built. See issue #28.
+MEDICATION_STATEMENT := $(TERM)/conceptmaps/build_medication_statement_cm_vs.py
+# MedicationDispense.medication[x] — the LARGEST coded medication population in
+# MIMIC: 14,240,367 codings, more than the Request and Administration elements
+# together, and where 9,372 of the 9,971 drug-name codes are actually used. Two
+# sub-types binding at different depths (hosp binds the CodeableConcept to
+# mimic-medication, ED binds .coding to mimic-medication-gsn), hence a merged
+# facade. Costs ONE generation run — medication-gsn — because its other five
+# populations reuse the sibling fields' committed tables. See issue #29.
+MEDICATION_DISPENSE := $(TERM)/conceptmaps/build_medication_dispense_cm_vs.py
 VERIFY := $(TERM)/verify/verify_mappings.py
 VERIFY_CURATED := $(TERM)/verify/verify_curated_snomed.py
 D_ITEMS_TABLE := $(TERM)/conceptmaps/build_d_items_table.py
@@ -65,6 +86,9 @@ MEDICATION_NAME_TABLE := $(TERM)/conceptmaps/build_medication_name_table.py
 MEDICATION_POE_IV_TABLE := $(TERM)/conceptmaps/build_medication_poe_iv_table.py
 FORMULARY_DRUG_TABLE := $(TERM)/conceptmaps/build_formulary_drug_table.py
 MEDICATION_ICU_TABLE := $(TERM)/conceptmaps/build_medication_icu_table.py
+MEDICATION_NDC_TABLE := $(TERM)/conceptmaps/build_medication_ndc_table.py
+MEDICATION_ETC_TABLE := $(TERM)/conceptmaps/build_medication_etc_table.py
+MEDICATION_GSN_TABLE := $(TERM)/conceptmaps/build_medication_gsn_table.py
 MICRO_TEST_TABLE := $(TERM)/conceptmaps/build_micro_test_table.py
 OUTPUTEVENTS_TABLE := $(TERM)/conceptmaps/build_outputevents_table.py
 DATETIMEEVENTS_TABLE := $(TERM)/conceptmaps/build_datetimeevents_table.py
@@ -73,16 +97,20 @@ LABEVENTS_TABLE := $(TERM)/conceptmaps/build_labevents_table.py
 CHARTEVENTS_TABLE := $(TERM)/conceptmaps/build_chartevents_table.py
 LAB_FLUID_TABLE := $(TERM)/conceptmaps/build_lab_fluid_table.py
 SPEC_TYPE_TABLE := $(TERM)/conceptmaps/build_spec_type_table.py
+STREAM_REPORTS := $(TERM)/build_stream_reports.py
 STATISTICS := $(TERM)/build_statistics.py
 UPLOAD_MAPPINGS := $(TERM)/upload.py
 
 .PHONY: verify-inputs update-manifest terminology deploy-terminology \
-        condition procedure observation observation-component specimen \
-        medication medication-administration verify-mappings \
-        verify-curated d-items-table micro-susc-table micro-test-table \
+        verify-mappings verify-curated \
+        d-items-table micro-susc-table micro-test-table \
         outputevents-table datetimeevents-table micro-org-table \
         labevents-table chartevents-table lab-fluid-table spec-type-table \
-        mappings statistics upload-mappings ig
+        medication-name-table medication-poe-iv-table formulary-drug-table \
+        medication-icu-table medication-ndc-table medication-etc-table \
+        medication-gsn-table \
+        generate-all-tables \
+        mappings stream-reports statistics upload-mappings ig
 
 verify-inputs: ## check ICD source files against input-manifest.json
 	uv run $(TERM)/verify_inputs.py
@@ -105,85 +133,55 @@ deploy-terminology: ## build + upload CodeSystems to $$ONTOSERVER_URL (runs $$lo
 
 # --- stage 2: mappings, built locally and offline --------------------------- #
 #
-# One target per bound element. Each builder emits its ConceptMap AND the
-# enumerated ValueSet that map's targetCanonical names, in the same pass — which
-# is why there is no longer a scaffold stage. The scaffold existed only because
-# the value set used to be derived from the map in a LATER stage, so at
-# map-writing time the targetCanonical pointed at nothing yet. Nothing else ever
-# read it.
+# ONE COMMAND, `make mappings`, and no per-element build targets any more. A
+# ConceptMap consumes several streams and the whole offline pipeline takes
+# seconds, so a partial build bought nothing except the mixed-state artefacts
+# verify check 7 exists to catch. The per-STREAM commands are the generator
+# targets below — generation is the only genuinely per-stream operation.
 #
-# These touch no network: a builder is a pure function of the committed inputs,
-# so `make mappings` is instant and a build from unchanged inputs is
-# byte-identical.
+# These touch no network: every step is a pure function of the committed
+# inputs, so a build from unchanged inputs is byte-identical and
+# `make mappings && git diff --exit-code` is a valid test.
+#
+# Ordering inside `mappings`:
+#   builders            one ConceptMap + target ValueSet per bound element
+#   stream-reports      resolve every stream once -> stream-report.json,
+#                       unmapped-<stream>.csv worklists, occurrence-buckets.csv
+#   statistics          render stream-report.json -> csv + html + terminal
+#   verify-mappings     the checks; non-zero while codes are unmapped, which
+#                       is the gate working rather than a failure
+#
+# The observation and medication-code builders read FSH-generated ValueSets, so
+# a clean checkout needs `sushi .` first — the builders say so and exit rather
+# than emitting a map that silently drops a population.
 
-condition: ## build the Condition.code ConceptMap + target ValueSet
+mappings: ## build every ConceptMap + ValueSet, the stream reports, the statistics, then verify
 	uv run $(CONDITION)
-	uv run $(STATISTICS) --quiet
-
-procedure: ## build the Procedure.code ConceptMap + target ValueSet
 	uv run $(PROCEDURE)
-	uv run $(STATISTICS) --quiet
-
-# Reads the FSH-generated Observation ValueSets, so it needs `sushi .` to have
-# run — the builder says so and exits rather than emitting a map that silently
-# drops a whole population. Same for observation-component below.
-observation: ## build the Observation.code ConceptMap + target ValueSet
 	uv run $(OBSERVATION)
-	uv run $(STATISTICS) --quiet
-
-# Deliberately NOT a dependency of `observation`. Observation.component.code is
-# a separate column with a separate binding that happens to sit on the same
-# resource; a consumer projects it separately and translates it through its own
-# map. Merging the two would leave neither map a correct sourceCanonical.
-observation-component: ## build the Observation.component.code ConceptMap + target ValueSet
 	uv run $(OBSERVATION_COMPONENT)
-	uv run $(STATISTICS) --quiet
-
-# Reads only input/resources/ — both source CodeSystems ship with the IG rather
-# than being FSH-authored — so unlike `observation` this needs no `sushi .` run.
-#
-# Both source populations are now present — mimic-lab-fluid (12) and
-# mimic-spec-type-desc (104) — so every one of the 116 codes this map's
-# sourceCanonical admits has been considered, and a code it does not resolve is
-# declared unmatched with a reason rather than being absent.
-specimen: ## build the Specimen.type ConceptMap + target ValueSet
 	uv run $(SPECIMEN)
-	uv run $(STATISTICS) --quiet
-
-medication: ## build the MedicationRequest.medication[x] ConceptMap + target ValueSet
 	uv run $(MEDICATION)
-	uv run $(STATISTICS) --quiet
-
-# Every stream reads its codes from a CodeSystem in input/resources/ or from
-# ValueSet-mimic-medication-with-unknown.json, which also ships with the IG, so
-# this needs no `sushi .` run even though the bound ValueSet is FSH-authored.
-#
-# INCOMPLETE ON PURPOSE while the streams are added one at a time. Only the
-# v3-NullFlavor code is present today, mapping to itself — see the builder's
-# docstring and issue #27 for the remaining four streams.
-medication-administration: ## build the MedicationAdministration.medication[x] ConceptMap + target ValueSet
 	uv run $(MEDICATION_ADMINISTRATION)
-	uv run $(STATISTICS) --quiet
+	uv run $(MEDICATION_CODE)
+	uv run $(MEDICATION_STATEMENT)
+	uv run $(MEDICATION_DISPENSE)
+	uv run $(STREAM_REPORTS) --quiet
+	uv run $(STATISTICS)
+	uv run $(VERIFY)
+
+# Resolves every stream once (lib/streams.py) and writes the per-stream
+# artefacts. Offline; needs the built CodeSystems in output/ like the builders
+# do. The occurrence artifacts are optional — absent, the used-in-data columns
+# are omitted rather than zeroed.
+stream-reports: ## resolve every stream -> stream-report.json + worklists + buckets
+	uv run $(STREAM_REPORTS)
+
+statistics: stream-reports ## per-stream coverage table (csv + html + terminal)
+	uv run $(STATISTICS)
 
 verify-mappings: ## check coverage + invariants; non-zero while codes are unmapped
 	uv run $(VERIFY)
-
-# Flattens every <field>-report.json into output/mapping-statistics.{csv,html}
-# and prints the per-stream table. Recomputes nothing, so a partial build stays
-# honest: `make observation` refreshes its own report and this reads the
-# committed reports for every other field. The field targets above run it
-# --quiet so the files never go stale; this target is the loud version.
-#
-# If occurrences/code-occurrences.csv is present — the committed per-code counts
-# from the HPC node, see occurrences/README.md — every coverage figure also gains
-# an occurrence-weighted twin and output/occurrence-buckets.csv is written.
-# Auto-detected: no flag, no separate target, and nothing changes without it.
-statistics: ## per-stream coverage table from the field reports (csv + html + terminal)
-	uv run $(STATISTICS)
-
-# `statistics` before `verify-mappings`: the verifier is non-zero by design
-# while anything is unmapped, and the coverage table is most useful exactly then.
-mappings: condition procedure observation observation-component specimen medication medication-administration statistics verify-mappings ## build every population, then verify
 
 # NOT part of `mappings`: it needs the network, while the builders are offline
 # and instant. Run it when you touch a mapping table.
@@ -412,6 +410,97 @@ formulary-drug-table: ## regenerate conceptmaps/formulary-drug-standard.csv
 #   make medication-icu-table ARGS="--only 225158,225943 --insecure"  probe
 medication-icu-table: ## regenerate conceptmaps/medication-icu-standard.csv
 	uv run $(MEDICATION_ICU_TABLE) $(ARGS)
+
+# The NDC stream, 94.2% of Medication.code's reference branch by referring
+# prescriptions. The only generator here that contacts NO code-search service:
+# both tiers are deterministic lookups, so there is no threshold, no constraint
+# and no confidence column. It DOES read medication-name-standard.csv as its
+# second tier and records that file's sha256 in the log — regenerate that table
+# and this one goes stale with nothing else to notice.
+#
+# ~5,732 $expand calls at ~0.08s each; a few minutes at the default 8 workers.
+#
+#   make medication-ndc-table ARGS=--insecure                      generate
+#   make medication-ndc-table ARGS="--only 00088222033 --insecure"  probe
+medication-ndc-table: ## regenerate conceptmaps/medication-ndc-standard.csv
+	uv run $(MEDICATION_NDC_TABLE) $(ARGS)
+
+# The 1,201 FDB therapeutic-class labels of MedicationStatement.medication[x].
+# The one medication table with NO RxNorm target — RxNorm has no class concepts
+# at any term type, and ATC is on no server this repo can reach — so it is
+# single-target SNOMED, and the SUBSTANCE hierarchy rather than the medicinal-
+# product one: `<<763158003` contains no diuretic and no dihydropyridine concept,
+# which is 4.66% of the element's occurrences. Same standing as every generator
+# above: network, writes a build input, never part of `mappings`.
+#
+# 57 of the 1,201 labels are not medications at all (FDB files devices, supplies
+# and bulk chemicals in the same column); the constraint declines them, and the
+# generator's docstring carries the adversarial evidence for why no confidence
+# threshold could.
+#
+#   make medication-etc-table ARGS=--insecure                          generate
+#   make medication-etc-table ARGS="--only 00000224,00001123 --insecure"  probe
+medication-etc-table: ## regenerate conceptmaps/medication-etc-snomed.csv from code-search
+	uv run $(MEDICATION_ETC_TABLE) $(ARGS)
+
+# The 9,347 FDB Generic Sequence Numbers shared by MedicationStatement's `gsn`
+# coding slice and MedicationDispense's ED pyxis rows — the biggest generated
+# table in the repo, and the CHEAPEST per code, because the committed RxNorm term
+# index settles 61.4% of it offline (2,137 of the displays are in FDB's
+# `generic [Brand]` form and need lib/termindex.bracketed_rungs to get there).
+# Only the 3,611-code residual reaches the service. The one SINGLE-TARGET RxNorm
+# table here: the SNOMED substance rung its sibling name/formulary streams carry
+# was probed and dropped, because GSN has no drug-CLASS gap and that hierarchy
+# answered `TAB A VITE` with the nerve agent Tabun.
+#
+# Budget ~1.5-2.5h at the default 8 workers: the residual is mostly agentic
+# calls at ~6-40s each, while a term-join row costs one $lookup.
+#
+#   make medication-gsn-table ARGS=--insecure                          generate
+#   make medication-gsn-table ARGS="--append --insecure"               fill gaps
+#   make medication-gsn-table ARGS="--only 004490,006373 --insecure"   probe
+medication-gsn-table: ## regenerate conceptmaps/medication-gsn-rxnorm.csv from code-search
+	uv run $(MEDICATION_GSN_TABLE) $(ARGS)
+
+# Fill the gaps in every table that CAN have gaps. Only the union-narrowed
+# medication tables can: their generation population is "codes the warehouse
+# uses on any bound element" (lib/builders.table_population), so a re-extract
+# or a new consuming element can widen it past the committed rows. They run in
+# --append mode — committed answers, including the declined ones, are kept
+# verbatim and only codes with no row are asked. The ten code-search
+# generators above are deliberately NOT here: each covers its stream's full
+# fixed enumeration, so it never has a gap, and rerunning one is full
+# regeneration — nondeterministic, able to CHANGE committed answers, and
+# therefore per-stream and deliberate (`make <stream>-table`).
+#
+# Asks for confirmation first, because even append-only this contacts a paid,
+# model-backed service and can run for hours when the gaps are large. FORCE=1
+# skips the prompt (an interactive read hangs forever without a TTY):
+#
+#   make generate-all-tables ARGS=--insecure
+#   make generate-all-tables ARGS=--insecure FORCE=1
+#
+# medication-poe-iv-table is included even though it takes no ARGS (offline,
+# two codes); medication-ndc-table is deterministic (no model), so a full run
+# is churn-free; medication-name-table is NOT given --refresh-index —
+# re-pulling the term index is a build-input change to review on its own.
+generate-all-tables: ## fill the gaps in every gap-capable mapping table (network; asks first)
+ifndef FORCE
+	@printf '\n  WARNING: contacts the code-search service for every mapping table\n'
+	@printf '  whose generation population can have grown. Committed answers are\n'
+	@printf '  kept (--append); only codes with no row are asked — still\n'
+	@printf '  potentially hours and real money when the gaps are large. Full\n'
+	@printf '  regeneration stays per-stream: make <stream>-table.\n\n'
+	@printf '  Type "yes" to continue: '
+	@read answer && [ "$$answer" = yes ] || { echo "  aborted."; exit 1; }
+endif
+	uv run $(MEDICATION_NAME_TABLE) --append $(ARGS)
+	uv run $(MEDICATION_POE_IV_TABLE)
+	uv run $(FORMULARY_DRUG_TABLE) --append $(ARGS)
+	uv run $(MEDICATION_ICU_TABLE) --append $(ARGS)
+	uv run $(MEDICATION_NDC_TABLE) $(ARGS)
+	uv run $(MEDICATION_ETC_TABLE) --append $(ARGS)
+	uv run $(MEDICATION_GSN_TABLE) --append $(ARGS)
 
 # --- stage 3: publish, gated ------------------------------------------------ #
 

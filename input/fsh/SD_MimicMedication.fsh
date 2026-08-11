@@ -11,4 +11,10 @@ Description:    "A MIMIC medication profile based on the FHIR R4 medication reso
 * code 0..1
 
 // bindings to MIMIC terminology
-* code from $MimicMedicationCodes
+// For every MedicationRequest that uses medicationReference — the majority of
+// MIMIC prescriptions — this is the ONLY binding that governs the drug code, as
+// a required binding on a choice element cannot constrain its Reference branch.
+// MimicMedicationCode has IDENTICAL membership to $MimicMedicationCodes; it
+// exists so this element's ConceptMap has a sourceCanonical no other element
+// shares. See VS_MimicMedicationCode.fsh.
+* code from MimicMedicationCode

@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-06T04:45:29+00:00",
- "host": "c146",
+ "generated": "2026-08-10T03:06:03+00:00",
+ "host": "c339",
  "warehouse": "/scratch3/nau025/mimic-on-fhir-delta/spark_warehouse",
  "csv": "code-occurrences.csv",
- "csv_sha256": "a3a34c30df91bd95eb654fb8b5cfe67e6aad9b599f207ae1ef4cf360bac526cf",
+ "csv_sha256": "64af9cfd0ef18e88a041568a1e7b967ae4ea5ad1e2f49f452b66969accfb1e7f",
  "versions": {
   "python": "3.12.3",
   "spark": "4.0.2",
@@ -39,6 +39,21 @@
    "delta_version": 2,
    "committed": "2026-08-06 11:00:45",
    "rows": 15416901
+  },
+  "Medication": {
+   "delta_version": 2,
+   "committed": "2026-08-06 11:00:31",
+   "rows": 26027
+  },
+  "MedicationDispense": {
+   "delta_version": 2,
+   "committed": "2026-08-06 11:00:40",
+   "rows": 14275819
+  },
+  "MedicationStatement": {
+   "delta_version": 2,
+   "committed": "2026-08-06 11:00:50",
+   "rows": 2598365
   }
  },
  "elements": {
@@ -75,7 +90,56 @@
   "MedicationRequest.medication[x]": {
    "codings": 1883681,
    "distinct_codes": 2890,
+   "codings_without_code": 0,
+   "shapes": {
+    "resources": 15416901,
+    "with_codeable_concept": 1883681,
+    "with_coding": 1883681,
+    "with_reference": 13533220,
+    "no_branch": 0,
+    "codeable_concept_without_coding": 0
+   },
+   "reference_join": {
+    "via": "Medication.code",
+    "join_strategy": "reference-key",
+    "referring_resources": 13533220,
+    "codings_reached": 11673623,
+    "distinct_codes_reached": 9827,
+    "dangling": 1859597
+   }
+  },
+  "Medication.code": {
+   "codings": 19689,
+   "distinct_codes": 10916,
    "codings_without_code": 0
+  },
+  "MedicationDispense.medication[x]": {
+   "codings": 14240367,
+   "distinct_codes": 10076,
+   "codings_without_code": 0,
+   "shapes": {
+    "resources": 14275819,
+    "with_codeable_concept": 14275819,
+    "with_coding": 14240367,
+    "no_branch": 0,
+    "codeable_concept_without_coding": 35452
+   }
+  },
+  "MedicationStatement.medication[x]": {
+   "codings": 8143620,
+   "distinct_codes": 19691,
+   "codings_without_code": 0,
+   "shapes": {
+    "resources": 2598365,
+    "with_codeable_concept": 2598365,
+    "with_coding": 2586657,
+    "no_branch": 0,
+    "codeable_concept_without_coding": 11708
+   }
   }
- }
+ },
+ "shapes_csv": "element-shapes.csv",
+ "shapes_csv_sha256": "be6010532d390b4651ede02ff6b624fe77b7bbfdeeedbe158f9d360e7132d0c7",
+ "references_csv": "reference-occurrences.csv",
+ "references_csv_sha256": "b9e5383dbeca188620de152480cd5b5b39216b20d4f5564cede59a7adcccdc04"
 }
