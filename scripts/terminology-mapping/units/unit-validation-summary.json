@@ -1,0 +1,57 @@
+{
+ "generated": "2026-08-20T04:29:34+00:00",
+ "source": "valueshapes/observation-value-shapes.csv",
+ "source_sha256": "c5e8bbfb1dba174080b13ad96fd1ad84097d6c4b80642472d5fa43f290329756",
+ "validation_csv": "mimic-units-validation.csv",
+ "validation_csv_sha256": "745e394a00743a3f9a5cd040d8157fb4586b67a72560c817cd4e2bf27400dcdb",
+ "ucumate_version": "1.0.8",
+ "ucum_system": "http://unitsofmeasure.org",
+ "not_observed": [
+  "Quantity.system \u2014 selected by the extractor as qty_system but dropped before aggregation, so a UCUM code cannot be confirmed to sit under the UCUM system URI",
+  "whether a bare label means code == unit or code absent \u2014 the committed encoding collapses the two; rows carry code_known: no"
+ ],
+ "summary": {
+  "total": {
+   "distinct": 96,
+   "occurrences": 186020862
+  },
+  "valid": {
+   "distinct": 44,
+   "occurrences": 101303560
+  },
+  "invalid": {
+   "distinct": 52,
+   "occurrences": 84717302
+  },
+  "code_known": {
+   "distinct": 3,
+   "occurrences": 5184162
+  },
+  "arbitrary_units": {
+   "distinct": 0,
+   "occurrences": 0
+  },
+  "canonical_collisions": {
+   "1 x0.001": [
+    "g/kg",
+    "mg/g"
+   ],
+   "g.m-3 x1": [
+    "mg/L",
+    "ug/mL"
+   ],
+   "g.m-3 x10000": [
+    "g/dL",
+    "g/dl"
+   ],
+   "m+3 x0.000001": [
+    "mL",
+    "ml"
+   ],
+   "m+3.s-1 x0.00000001666666666666666666666666666666666666666667": [
+    "mL/min",
+    "ml/min"
+   ]
+  }
+ }
+}

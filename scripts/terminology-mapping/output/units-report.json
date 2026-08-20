@@ -1,0 +1,40 @@
+{
+ "field": "units",
+ "element": "Quantity.code",
+ "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-units-to-ucum",
+ "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-units-ucum",
+ "version": "1.0.0",
+ "date": "2026-08-20",
+ "streams": [
+  "units",
+  "units-ucum-native"
+ ],
+ "source_total": 509,
+ "mapped": 303,
+ "unmapped": 206,
+ "by_source": [
+  {
+   "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-units",
+   "mapped": 299
+  },
+  {
+   "system": "http://unitsofmeasure.org",
+   "mapped": 4
+  }
+ ],
+ "by_target_system": [
+  {
+   "system": "http://unitsofmeasure.org",
+   "mappings": 303
+  }
+ ],
+ "by_equivalence": {
+  "equivalent": 303,
+  "unmatched": 206
+ },
+ "unmapped_by_reason": {
+  "no-suitable-concept": 206
+ },
+ "target_valueset_codes": 169,
+ "extras": {}
+}

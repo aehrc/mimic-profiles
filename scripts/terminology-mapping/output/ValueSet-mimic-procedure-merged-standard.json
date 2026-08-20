@@ -7,7 +7,7 @@
  "title": "MIMIC merged Procedure codes as standard terminology",
  "status": "active",
  "experimental": false,
- "date": "2026-08-10",
+ "date": "2026-08-20",
  "publisher": "CSIRO",
  "description": "Every code the merged MIMIC Procedure profile admits, in standard terminology: MIMIC's ICD codes as official dotted ICD pinned to the earliest release containing them, plus the SNOMED CT codes that were already standard and map to themselves. Derived from ConceptMap/mimic-procedure-merged-to-standard, whose targetCanonical this is, so membership here and reachability by $translate are the same set. The SNOMED include carries no version: this repo builds no SNOMED release, so pinning one would name something it cannot reproduce.",
  "compose": {
@@ -10246,10 +10246,6 @@
       "display": "Ultrasound"
      },
      {
-      "code": "167944006",
-      "display": "Pleural fluid examination"
-     },
-     {
       "code": "168537006",
       "display": "Plain X-ray"
      },
@@ -10294,14 +10290,6 @@
       "display": "Central venous cannula insertion"
      },
      {
-      "code": "233580005",
-      "display": "Continuous venovenous haemodialysis"
-     },
-     {
-      "code": "233590002",
-      "display": "Continuous venovenous haemodiafiltration"
-     },
-     {
       "code": "235159007",
       "display": "Percutaneous endoscopic insertion of gastrostomy tube"
      },
@@ -10340,10 +10328,6 @@
      {
       "code": "287364001",
       "display": "Arteriovenous anastomosis"
-     },
-     {
-      "code": "288185006",
-      "display": "Inhalation general anaesthesia"
      },
      {
       "code": "29303009",

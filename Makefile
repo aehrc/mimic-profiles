@@ -78,6 +78,8 @@ MEDICATION_STATEMENT := $(TERM)/conceptmaps/build_medication_statement_cm_vs.py
 # facade. Costs ONE generation run — medication-gsn — because its other five
 # populations reuse the sibling fields' committed tables. See issue #29.
 MEDICATION_DISPENSE := $(TERM)/conceptmaps/build_medication_dispense_cm_vs.py
+UNITS := $(TERM)/conceptmaps/build_units_cm_vs.py
+UNITS_TABLE := $(TERM)/conceptmaps/build_units_table.py
 VERIFY := $(TERM)/verify/verify_mappings.py
 VERIFY_CURATED := $(TERM)/verify/verify_curated_snomed.py
 D_ITEMS_TABLE := $(TERM)/conceptmaps/build_d_items_table.py
@@ -97,6 +99,7 @@ LABEVENTS_TABLE := $(TERM)/conceptmaps/build_labevents_table.py
 CHARTEVENTS_TABLE := $(TERM)/conceptmaps/build_chartevents_table.py
 LAB_FLUID_TABLE := $(TERM)/conceptmaps/build_lab_fluid_table.py
 SPEC_TYPE_TABLE := $(TERM)/conceptmaps/build_spec_type_table.py
+VALIDATE_UNITS := $(TERM)/units/validate_units.py
 STREAM_REPORTS := $(TERM)/build_stream_reports.py
 STATISTICS := $(TERM)/build_statistics.py
 UPLOAD_MAPPINGS := $(TERM)/upload.py
@@ -108,9 +111,9 @@ UPLOAD_MAPPINGS := $(TERM)/upload.py
         labevents-table chartevents-table lab-fluid-table spec-type-table \
         medication-name-table medication-poe-iv-table formulary-drug-table \
         medication-icu-table medication-ndc-table medication-etc-table \
-        medication-gsn-table \
+        medication-gsn-table units-table \
         generate-all-tables \
-        mappings stream-reports statistics upload-mappings ig
+        mappings stream-reports statistics validate-units upload-mappings ig
 
 verify-inputs: ## check ICD source files against input-manifest.json
 	uv run $(TERM)/verify_inputs.py
@@ -166,6 +169,7 @@ mappings: ## build every ConceptMap + ValueSet, the stream reports, the statisti
 	uv run $(MEDICATION_CODE)
 	uv run $(MEDICATION_STATEMENT)
 	uv run $(MEDICATION_DISPENSE)
+	uv run $(UNITS)
 	uv run $(STREAM_REPORTS) --quiet
 	uv run $(STATISTICS)
 	uv run $(VERIFY)
@@ -183,6 +187,13 @@ statistics: stream-reports ## per-stream coverage table (csv + html + terminal)
 verify-mappings: ## check coverage + invariants; non-zero while codes are unmapped
 	uv run $(VERIFY)
 
+# Gets a target where its siblings in occurrences/ and valueshapes/ do not,
+# because it is the only one of the three that needs no cluster: it reads their
+# committed extraction and is a pure function of it, like `mappings`. NOT part
+# of `mappings` — nothing in the ConceptMap pipeline consumes it yet.
+validate-units: ## inventory Observation.valueQuantity units, validate as UCUM
+	uv run $(VALIDATE_UNITS) $(ARGS)
+
 # NOT part of `mappings`: it needs the network, while the builders are offline
 # and instant. Run it when you touch a mapping table.
 verify-curated: ## $$lookup every SNOMED code in the mapping tables
@@ -195,6 +206,15 @@ verify-curated: ## $$lookup every SNOMED code in the mapping tables
 # `make mappings` is offline and reproducible again.
 d-items-table: ## regenerate conceptmaps/d-items-snomed.csv from code-search
 	uv run $(D_ITEMS_TABLE) $(ARGS)
+
+# The ONE table generator that is offline. UCUM is a grammar, so its gate is a
+# parser (ucumate) rather than a terminology server, and the mapping judgement
+# is committed in the script rather than asked of a model. It is still kept out
+# of `mappings` for the same reason as its siblings — it WRITES a build input,
+# and a build input should move because someone ran a generator and read the
+# diff, never as a side effect of building.
+units-table: ## regenerate conceptmaps/units-ucum.csv (offline; ucumate-gated)
+	uv run $(UNITS_TABLE) $(ARGS)
 
 # One generator per Observation stream, for the same reason there is one table
 # per stream: each needs its own search constraint, context template and

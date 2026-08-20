@@ -7,7 +7,7 @@
  "title": "MIMIC merged Procedure codes to ICD-9-CM Vol 3 / ICD-10-PCS / SNOMED CT",
  "status": "active",
  "experimental": false,
- "date": "2026-08-10",
+ "date": "2026-08-20",
  "publisher": "CSIRO",
  "description": "Maps every code the merged MIMIC Procedure profile admits onto standard terminology, so a consumer can translate the whole Procedure.code column through a single ConceptMap. MIMIC's dot-less ICD codes become official dotted ICD codes pinned to a release; codes that are already SNOMED CT map to themselves, so that translating the column preserves them instead of dropping them.",
  "purpose": "Lets a consumer translate the whole Procedure.code column with a single $translate. The ICD groups are a notation map \u2014 every mapping is 'equivalent' and changes only how the code is written, never which concept it means, and this is NOT an ICD-9-to-ICD-10 GEM. The SNOMED CT groups are different in kind: the ED codes are already SNOMED CT and map to themselves, 'equivalent', while every ICU d_items mapping is 'relatedto'. A flowsheet item like '16 Gauge' has no SNOMED concept of equal meaning, and the relationship to the peripheral cannula insertion it records is not a direction this resource claims to know, so it is not asserted. Consumers must therefore accept 'relatedto' as well as 'equivalent', or they will drop the whole ICU population. Where the code pair alone would mislead, the row carries a comment saying what the mapping does and does not cover.",
@@ -613,17 +613,6 @@
      ]
     },
     {
-     "code": "225478",
-     "display": "Operation",
-     "target": [
-      {
-       "code": "387713003",
-       "equivalence": "relatedto",
-       "display": "Surgical procedure"
-      }
-     ]
-    },
-    {
      "code": "225479",
      "display": "Thoracentesis",
      "target": [
@@ -679,17 +668,6 @@
      ]
     },
     {
-     "code": "225803",
-     "display": "Dialysis - CVVHD",
-     "target": [
-      {
-       "code": "233580005",
-       "equivalence": "relatedto",
-       "display": "Continuous venovenous haemodialysis"
-      }
-     ]
-    },
-    {
      "code": "225805",
      "display": "Peritoneal Dialysis",
      "target": [
@@ -701,17 +679,6 @@
      ]
     },
     {
-     "code": "225809",
-     "display": "Dialysis - CVVHDF",
-     "target": [
-      {
-       "code": "233590002",
-       "equivalence": "relatedto",
-       "display": "Continuous venovenous haemodiafiltration"
-      }
-     ]
-    },
-    {
      "code": "225814",
      "display": "Stool Culture",
      "target": [
@@ -719,17 +686,6 @@
        "code": "117028002",
        "equivalence": "relatedto",
        "display": "Stool culture"
-      }
-     ]
-    },
-    {
-     "code": "225818",
-     "display": "Pleural Fluid Culture",
-     "target": [
-      {
-       "code": "167944006",
-       "equivalence": "relatedto",
-       "display": "Pleural fluid examination"
       }
      ]
     },
@@ -1193,17 +1149,6 @@
        "code": "277360004",
        "equivalence": "relatedto",
        "display": "Massive blood transfusion"
-      }
-     ]
-    },
-    {
-     "code": "229984",
-     "display": "Sevoflurane (Inhaled)",
-     "target": [
-      {
-       "code": "288185006",
-       "equivalence": "relatedto",
-       "display": "Inhalation general anaesthesia"
       }
      ]
     }
@@ -139723,7 +139668,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "code-search proposed 698956007 |Insertion of drain| at 0.70, below the 0.8 threshold."
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
       }
      ]
     },
@@ -139788,12 +139733,22 @@
      ]
     },
     {
+     "code": "225478",
+     "display": "Operation",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
+      }
+     ]
+    },
+    {
      "code": "225761",
      "display": "Sheath Insertion",
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "code-search proposed 429446009 |Catheterisation of blood vessel| at 0.50, below the 0.8 threshold."
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
       }
      ]
     },
@@ -139808,12 +139763,32 @@
      ]
     },
     {
+     "code": "225803",
+     "display": "Dialysis - CVVHD",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
+      }
+     ]
+    },
+    {
+     "code": "225809",
+     "display": "Dialysis - CVVHDF",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
+      }
+     ]
+    },
+    {
      "code": "225815",
      "display": "Peritoneal Fluid",
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "code-search proposed 238257004 |Peritoneal drainage procedure| at 0.70, below the 0.8 threshold."
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
       }
      ]
     },
@@ -139838,6 +139813,16 @@
      ]
     },
     {
+     "code": "225818",
+     "display": "Pleural Fluid Culture",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
+      }
+     ]
+    },
+    {
      "code": "225820",
      "display": "C-Spine Clearance",
      "target": [
@@ -139853,7 +139838,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "code-search proposed 108241001 |Dialysis procedure| at 0.75, below the 0.8 threshold."
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
       }
      ]
     },
@@ -140123,7 +140108,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "code-search proposed 830051000168103 |Insertion of intracranial pressure monitor| at 0.85 but that concept is not in the SNOMED international core."
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
       }
      ]
     },
@@ -140173,7 +140158,17 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "code-search returned no match within (<<71388002 OR <<404684003 OR <<272379006)."
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
+      }
+     ]
+    },
+    {
+     "code": "229984",
+     "display": "Sevoflurane (Inhaled)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
       }
      ]
     },
@@ -140183,7 +140178,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "code-search proposed 1366004 |Inhalation therapy procedure| at 0.50, below the 0.8 threshold."
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
       }
      ]
     }

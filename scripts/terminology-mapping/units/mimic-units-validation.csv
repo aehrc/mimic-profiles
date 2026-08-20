@@ -1,0 +1,97 @@
+element,unit,code,code_known,validated_term,validated_field,status,messages,canonical_term,canonical_magnitude,canonical_status,n_codes,occurrences,example_observations
+Observation.code,%,,no,%,unit-or-code,valid,,1,0.01,ok,209,27967920,O2 saturation pulseoxymetry | Hematocrit | RDW
+Observation.code,mmHg,,no,mmHg,unit-or-code,invalid,,,,,87,25401973,Non Invasive Blood Pressure systolic | Non Invasive Blood Pressure diastolic | Non Invasive Blood Pressure mean
+Observation.code,mg/dL,,no,mg/dL,unit-or-code,valid,,g.m-3,10,ok,95,22521672,Creatinine | Urea Nitrogen | Glucose
+Observation.code,mEq/L,,no,mEq/L,unit-or-code,invalid,,,,,49,19977995,Potassium | Sodium | Chloride
+Observation.code,K/uL,,no,K/uL,unit-or-code,valid,,K.m-3,1000000000,ok,17,9874714,Platelet Count | White Blood Cells | Absolute Neutrophil Count
+Observation.code,insp/min,,no,insp/min,unit-or-code,invalid,,,,,9,9642142,Respiratory Rate | Resp Alarm - High | Resp Alarm - Low
+Observation.code,bpm,,no,bpm,unit-or-code,invalid,,,,,13,7827348,Heart Rate | Heart Rate Alarm - Low | Heart rate Alarm - High
+Observation.code,g/dL,,no,g/dL,unit-or-code,valid,,g.m-3,10000,ok,17,5776209,Hemoglobin | MCHC | Albumin
+Observation.code,IU/L,,no,IU/L,unit-or-code,invalid,,,,,24,5409097,Alanine Aminotransferase (ALT) | Asparate Aminotransferase (AST) | Alkaline Phosphatase
+Observation.code,fL,,no,fL,unit-or-code,valid,,m+3,0.000000000000000001,ok,2,4521365,MCV | RDW-SD
+Observation.code,ml,,no,ml,unit-or-code,valid,,m+3,0.000001,ok,71,4234967,Foley | Void | Chest Tube #1
+Observation.code,sec,,no,sec,unit-or-code,invalid,,,,,15,4162356,PT | PTT | Apnea Interval
+Observation.component.code,mm[Hg],,no,mm[Hg],unit-or-code,valid,,g.m-1.s-2,133322,ok,2,3779500,Systolic blood pressure | Diastolic blood pressure
+Observation.code,cmH2O,,no,cmH2O,unit-or-code,invalid,,,,,19,3351546,PEEP set | Mean Airway Pressure | Peak Insp. Pressure
+Observation.code,m/uL,,no,m/uL,unit-or-code,valid,,m-2,1000000000,ok,2,3184074,"Red Blood Cells | Reticulocyte Count, Absolute"
+Observation.code,pg,,no,pg,unit-or-code,valid,,g,0.000000000001,ok,1,3160643,MCH
+Observation.code,L/min,,no,L/min,unit-or-code,valid,,m+3.s-1,0.00001666666666666666666666666666666666666666666667,ok,29,2828993,Minute Volume | O2 Flow | Minute Volume Alarm - Low
+Observation.code,mL,,no,mL,unit-or-code,valid,,m+3,0.000001,ok,20,2673591,Tidal Volume (observed) | Vti High | Tidal Volume (set)
+Observation.code,beats/minute,/min,yes,/min,code,valid,,s-1,0.01666666666666666666666666666666666666666666666667,ok,1,1902897,Heart rate
+Observation.code,breaths/minute,/min,yes,/min,code,valid,,s-1,0.01666666666666666666666666666666666666666666666667,ok,1,1879951,Respiratory rate
+Observation.code,units,,no,units,unit-or-code,invalid,,,,,12,1794987,pH | PH (Arterial) | Heparin Dose (per hour)
+Observation.code,°F,,no,°F,unit-or-code,invalid,,,,,3,1515987,Temperature Fahrenheit | TempApacheIIValue | TemperatureF_ApacheIV
+Observation.code,F,[degF],yes,[degF],code,valid,,K,255.92777777777777777778,ok,1,1401314,Body temperature
+Observation.code,mmol/L,,no,mmol/L,unit-or-code,valid,,m-3,602214076000000000000000,ok,8,1243416,Lactate | Free Calcium | Lactic Acid
+Observation.code,#/hpf,,no,#/hpf,unit-or-code,invalid,,,,,7,1082594,RBC | WBC | Epithelial Cells
+Observation.code,mm Hg,,no,mm Hg,unit-or-code,invalid,,,,,6,1035601,pO2 | pCO2 | Alveolar-arterial Gradient
+Observation.code,ml/hr,,no,ml/hr,unit-or-code,invalid,,,,,9,993580,Dialysate Rate | Replacement Rate | PBP (Prefilter) Replacement Rate
+Observation.code,ng/mL,,no,ng/mL,unit-or-code,valid,,g.m-3,0.001,ok,22,979335,"Creatine Kinase, MB Isoenzyme | Troponin T | Ferritin"
+Observation.code,cm,,no,cm,unit-or-code,valid,,m,0.01,ok,68,968376,GI #1 Tube Mark (CM) | Impaired Skin Length #1 | Impaired Skin Width #1
+Observation.code,°C,,no,°C,unit-or-code,invalid,,,,,9,958887,Inspired Gas Temp. | Temperature Celsius | Blood Temperature CCO (C)
+Observation.code,g/dl,,no,g/dl,unit-or-code,valid,,g.m-3,10000,ok,1,428839,Hemoglobin
+Observation.code,Ratio,,no,Ratio,unit-or-code,invalid,,,,,6,316399,Cholesterol Ratio (Total/HDL) | Protein/Creatinine Ratio | CD4/CD8 Ratio
+Observation.code,uIU/mL,,no,uIU/mL,unit-or-code,invalid,,,,,1,311106,Thyroid Stimulating Hormone
+Observation.code,#/uL,,no,#/uL,unit-or-code,invalid,,,,,25,292327,Granulocyte Count | Absolute CD4 Count | Absolute Lymphocyte Count
+Observation.code,ug/dL,,no,ug/dL,unit-or-code,valid,,g.m-3,0.01,ok,7,284326,"Iron | Iron Binding Capacity, Total | Cortisol"
+Observation.code,kg,,no,kg,unit-or-code,valid,,g,1000,ok,3,277540,Daily Weight | Admission Weight (Kg) | Feeding Weight
+Observation.code,ml/min,,no,ml/min,unit-or-code,valid,,m+3.s-1,0.00000001666666666666666666666666666666666666666667,ok,3,242012,Blood Flow (ml/min) | CO2 production | O2 Consumption
+Observation.code,pg/mL,,no,pg/mL,unit-or-code,valid,,g.m-3,0.000001,ok,8,228371,Vitamin B12 | NTproBNP | Parathyroid Hormone
+Observation.code,ug/mL,,no,ug/mL,unit-or-code,valid,,g.m-3,1,ok,27,190873,Vancomycin | Phenytoin | Vancomycin (Trough)
+Observation.code,cmH2O/L/seconds,,no,cmH2O/L/seconds,unit-or-code,invalid,,,,,4,173637,Compliance | Resistance Exp | Resistance Insp
+Observation.code,mg/L,,no,mg/L,unit-or-code,valid,,g.m-3,1,ok,6,156934,C-Reactive Protein | Free Kappa | Free Lambda
+Observation.code,mA,,no,mA,unit-or-code,valid,,C.s-1,0.001,ok,6,138292,Temporary Atrial Stim Setting mA | Temporary Venticular Stim Threshold mA | Current Used/mA
+Observation.code,ng/dL,,no,ng/dL,unit-or-code,valid,,g.m-3,0.00001,ok,3,135949,"Thyroxine (T4), Free | Triiodothyronine (T3) | Testosterone"
+Observation.code,#/lpf,,no,#/lpf,unit-or-code,invalid,,,,,9,113224,Hyaline Casts | Granular Casts | Cellular Cast
+Observation.code,mOsm/kg,,no,mOsm/kg,unit-or-code,invalid,,,,,6,113115,"Osmolality, Urine | Osmolality, Measured | Serum Osmolality"
+Observation.code,mV,,no,mV,unit-or-code,valid,,C-1.g.m+2.s-2,1,ok,4,98445,Temporary Venticular Sens Threshold mV | Temporary Atrial Sens Setting mV | Temporary Atrial Sens Threshold mV
+Observation.code,mm/hr,,no,mm/hr,unit-or-code,invalid,,,,,2,61066,Sedimentation Rate | Sed Rate
+Observation.code,mg/g,,no,mg/g,unit-or-code,valid,,1,0.001,ok,2,49266,"Albumin/Creatinine, Urine | Surfactant/Albumin"
+Observation.code,mg/mg,,no,mg/mg,unit-or-code,valid,,1,1,ok,1,44508,Protein/Creatinine Ratio
+Observation.code,min,,no,min,unit-or-code,valid,,s,60,ok,5,44125,PCA lockout (min) | Timespent | Breast Feed - L (Minutes)
+Observation.code,Inch,,no,Inch,unit-or-code,invalid,,,,,1,33707,Height
+Observation.code,mIU/mL,,no,mIU/mL,unit-or-code,invalid,,,,,3,27655,Human Chorionic Gonadotropin | Follicle Stimulating Hormone | Luteinizing Hormone
+Observation.code,U/mL,,no,U/mL,unit-or-code,valid,,m-3.s-1,10036901266666666666666.66666666666666666666666666666666666666666667,ok,6,26979,"CA-125 | Cancer Antigen 27.29 | Heparin, LMW"
+Observation.code,mL/beat,,no,mL/beat,unit-or-code,invalid,,,,,2,20836,SV (Arterial) | Stroke Volume (SV NICOM)
+Observation.code,mmHg.,,no,mmHg.,unit-or-code,invalid,,,,,4,19059,Aortic Pressure Signal - Systolic | Aortic Pressure Signal - Diastolic | Pulmonary Artery Pressure Signal - Diastolic
+Observation.code,umol/L,,no,umol/L,unit-or-code,valid,,m-3,602214076000000000000,ok,4,15545,Ammonia | Methotrexate | Homocysteine
+Observation.code,RPM,,no,RPM,unit-or-code,invalid,,,,,5,15444,Speed (ECMO) | Speed (VAD) | Speed (RVAD)
+Observation.code,L/min/m2,,no,L/min/m2,unit-or-code,valid,,m.s-1,0.00001666666666666666666666666666666666666666666667,ok,2,15070,Cardiac Index (CI NICOM) | CI (PiCCO)
+Observation.code,mg/24hr,,no,mg/24hr,unit-or-code,invalid,,,,,3,14607,24 hr Creatinine | 24 hr Protein | 24 hr Calcium
+Observation.code,IU/mL,,no,IU/mL,unit-or-code,invalid,,,,,5,13650,Rheumatoid Factor | Heparin | Thyroid Peroxidase Antibodies
+Observation.code,ng/mL FEU,,no,ng/mL FEU,unit-or-code,invalid,,,,,2,8826,D-Dimer
+Observation.code,nmol/L,,no,nmol/L,unit-or-code,valid,,m-3,602214076000000000,ok,1,7034,Sex Hormone Binding Globulin
+Observation.code,/min,,no,/min,unit-or-code,valid,,s-1,0.01666666666666666666666666666666666666666666666667,ok,1,6579,Permanent Pacemaker Rate
+Observation.code,mL/m2,,no,mL/m2,unit-or-code,valid,,m,0.000001,ok,3,6380,SVI (PiCCO) | GEDI (PiCCO) | ITBVI (PiCCO)
+Observation.code,dynes.sec.cm-5/m2,,no,dynes.sec.cm-5/m2,unit-or-code,invalid,,,,,1,3620,SVRI (PiCCO)
+Observation.code,dynes*sec/cm5/m2,,no,dynes*sec/cm5/m2,unit-or-code,invalid,,,,,1,3087,Total Peripheral Resistance Index (TPRI) (NICOM)
+Observation.code,dynes*sec/cm5,,no,dynes*sec/cm5,unit-or-code,invalid,,,,,1,2647,Total Peripheral Resistance (TPR) (NICOM)
+Observation.code,log10 IU/mL,,no,log10 IU/mL,unit-or-code,invalid,,,,,4,2571,Hepatitis C Viral Load | Hepatitis B Viral Load | Cytomegalovirus Viral Load
+Observation.code,U/g/Hb,,no,U/g/Hb,unit-or-code,invalid,,,,,1,2514,Quantitative G6PD
+Observation.code,GPL,,no,GPL,unit-or-code,invalid,,,,,1,2468,Anticardiolipin Antibody IgG
+Observation.code,MPL,,no,MPL,unit-or-code,invalid,,,,,1,2463,Anticardiolipin Antibody IgM
+Observation.code,ml/kg,,no,ml/kg,unit-or-code,valid,,g-1.m+3,0.000000001,ok,1,2376,ELWI (PiCCO)
+Observation.code,U,,no,U,unit-or-code,valid,,s-1,10036901266666666.66666666666666666666666666666666666666666666666667,ok,3,2106,I | H | L
+Observation.code,hour,,no,hour,unit-or-code,invalid,,,,,1,1717,Dwell Time (Peritoneal Dialysis)
+Observation.code,Liters,,no,Liters,unit-or-code,invalid,,,,,1,1606,Vital Cap
+Observation.code,lbs,,no,lbs,unit-or-code,invalid,,,,,3,1462,Skeletal Traction #1 - Pounds | Skeletal Traction #2 - Pounds | Skeletal Traction #3 - Pounds
+Observation.code,ppm,,no,ppm,unit-or-code,invalid,,,,,1,1290,Nitric Oxide
+Observation.code,N/A,,no,N/A,unit-or-code,valid,,C-1.g.m.s-1,1000,ok,28,1181,dRVVT - Screen | SCT - Screen | dRVVT - Confirmation
+Observation.code,psi,,no,psi,unit-or-code,invalid,,,,,1,927,Nitric Oxide Tank Pressure
+Observation.code,log10 copies/mL,,no,log10 copies/mL,unit-or-code,invalid,,,,,2,629,HIV 1 Viral Load
+Observation.code,hrs,,no,hrs,unit-or-code,invalid,,,,,1,624,Total Collection Time
+Observation.code,mL/min,,no,mL/min,unit-or-code,valid,,m+3.s-1,0.00000001666666666666666666666666666666666666666667,ok,1,622,Creatinine Clearance
+Observation.code,kcal/kg,,no,kcal/kg,unit-or-code,valid,,m+2.s-2,4184,ok,1,477,Estimated Energy Needs/Kg
+Observation.code,g/kg,,no,g/kg,unit-or-code,valid,,1,0.001,ok,1,450,Estimated Protein Needs/Kg
+Observation.code,msec,,no,msec,unit-or-code,invalid,,,,,1,415,Temporary AV interval
+Observation.code,log10 cop/mL,,no,log10 cop/mL,unit-or-code,invalid,,,,,1,313,HIV 1 Viral Load
+Observation.code,U/L,,no,U/L,unit-or-code,valid,,m-3.s-1,10036901266666666666.66666666666666666666666666666666666666666666667,ok,4,257,"Amylase, Urine | Lipase, Ascites | Lipase, Body Fluid"
+Observation.code,uU/ML,,no,uU/ML,unit-or-code,valid,,m-3.s-1,10036901.26666666666666666666666666666666666666666666666667,ok,1,87,Thyroid Stimulating Hormone
+Observation.code,Degree,,no,Degree,unit-or-code,invalid,,,,,1,77,Head of Bed Measurement
+Observation.code,Score,,no,Score,unit-or-code,invalid,,,,,1,48,Leukocyte Alkaline Phosphatase
+Observation.code,years,,no,years,unit-or-code,invalid,,,,,2,26,AgeApacheIIValue | Apache IV Age
+Observation.code,ng/mL DDU,,no,ng/mL DDU,unit-or-code,invalid,,,,,1,24,D-Dimer
+Observation.code,/hpf,,no,/hpf,unit-or-code,invalid,,,,,3,15,"Bacteria | Urine Crystals, Other | Yeast"
+Observation.code,+/-,,no,+/-,unit-or-code,invalid,,,,,1,6,"HCG, Urine, Qualitative"
+Observation.code,BU,,no,BU,unit-or-code,invalid,,,,,1,1,Factor IX Inhibitor
+Observation.code,kcal/day,,no,kcal/day,unit-or-code,invalid,,,,,1,1,Resting Energy Expenditure

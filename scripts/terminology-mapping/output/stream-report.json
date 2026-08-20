@@ -14,13 +14,14 @@
     "observation"
    ],
    "enumerated_total": 2982,
-   "mapped": 1318,
+   "mapped": 1086,
    "by_equivalence": {
-    "relatedto": 1318,
-    "unmatched": 1664
+    "relatedto": 1086,
+    "unmatched": 1896
    },
    "unmapped_by_reason": {
-    "no-suitable-concept": 1664
+    "no-suitable-concept": 1141,
+    "not-observed-in-data": 755
    },
    "used_in_data": 2227,
    "mapped_used": 1086,
@@ -3707,13 +3708,14 @@
     "procedure"
    ],
    "enumerated_total": 169,
-   "mapped": 108,
+   "mapped": 103,
    "by_equivalence": {
-    "relatedto": 108,
-    "unmatched": 61
+    "relatedto": 103,
+    "unmatched": 66
    },
    "unmapped_by_reason": {
-    "no-suitable-concept": 61
+    "no-suitable-concept": 54,
+    "not-observed-in-data": 12
    },
    "used_in_data": 157,
    "mapped_used": 103,
@@ -4077,13 +4079,14 @@
     "observation"
    ],
    "enumerated_total": 188,
-   "mapped": 101,
+   "mapped": 91,
    "by_equivalence": {
-    "relatedto": 101,
-    "unmatched": 87
+    "relatedto": 91,
+    "unmatched": 97
    },
    "unmapped_by_reason": {
-    "no-suitable-concept": 87
+    "no-suitable-concept": 79,
+    "not-observed-in-data": 18
    },
    "used_in_data": 170,
    "mapped_used": 91,
@@ -4422,12 +4425,14 @@
     "condition"
    ],
    "enumerated_total": 18450,
-   "mapped": 18450,
+   "mapped": 18190,
    "by_equivalence": {
-    "equivalent": 18450,
-    "unmatched": 0
+    "equivalent": 18190,
+    "unmatched": 260
    },
-   "unmapped_by_reason": {},
+   "unmapped_by_reason": {
+    "not-observed-in-data": 260
+   },
    "used_in_data": 18190,
    "mapped_used": 18190,
    "coverage_pct": 100.0,
@@ -4450,12 +4455,14 @@
     "condition"
    ],
    "enumerated_total": 9463,
-   "mapped": 9463,
+   "mapped": 9379,
    "by_equivalence": {
-    "equivalent": 9463,
-    "unmatched": 0
+    "equivalent": 9379,
+    "unmatched": 84
    },
-   "unmapped_by_reason": {},
+   "unmapped_by_reason": {
+    "not-observed-in-data": 84
+   },
    "used_in_data": 9379,
    "mapped_used": 9379,
    "coverage_pct": 100.0,
@@ -4648,13 +4655,14 @@
     "specimen"
    ],
    "enumerated_total": 12,
-   "mapped": 9,
+   "mapped": 8,
    "by_equivalence": {
-    "relatedto": 9,
-    "unmatched": 3
+    "relatedto": 8,
+    "unmatched": 4
    },
    "unmapped_by_reason": {
-    "no-suitable-concept": 3
+    "no-suitable-concept": 1,
+    "not-observed-in-data": 3
    },
    "used_in_data": 9,
    "mapped_used": 8,
@@ -4701,13 +4709,14 @@
     "observation"
    ],
    "enumerated_total": 1622,
-   "mapped": 1130,
+   "mapped": 714,
    "by_equivalence": {
-    "relatedto": 1130,
-    "unmatched": 492
+    "relatedto": 714,
+    "unmatched": 908
    },
    "unmapped_by_reason": {
-    "no-suitable-concept": 492
+    "no-suitable-concept": 201,
+    "not-observed-in-data": 707
    },
    "used_in_data": 915,
    "mapped_used": 714,
@@ -16360,13 +16369,14 @@
     "observation"
    ],
    "enumerated_total": 77,
-   "mapped": 61,
+   "mapped": 60,
    "by_equivalence": {
-    "relatedto": 61,
-    "unmatched": 16
+    "relatedto": 60,
+    "unmatched": 17
    },
    "unmapped_by_reason": {
-    "no-suitable-concept": 16
+    "no-suitable-concept": 11,
+    "not-observed-in-data": 6
    },
    "used_in_data": 71,
    "mapped_used": 60,
@@ -16611,6 +16621,50 @@
      }
     ]
    }
+  },
+  {
+   "stream": "units",
+   "declared": true,
+   "source_system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-units",
+   "source_file": "CodeSystem-mimic-units.json",
+   "method": "table",
+   "target_systems": [
+    "http://unitsofmeasure.org"
+   ],
+   "consumed_by": [
+    "units"
+   ],
+   "enumerated_total": 505,
+   "mapped": 299,
+   "by_equivalence": {
+    "equivalent": 299,
+    "unmatched": 206
+   },
+   "unmapped_by_reason": {
+    "no-suitable-concept": 206
+   },
+   "note": "Two populations in one CodeSystem, and they need reading apart. 92 of these codes are units MIMIC records on Observation.valueQuantity, carrying 182M occurrences, and they are ordinary clinical units spelled the way a chart spells them \u2014 `mmHg`, `mEq/L`, `bpm`, `cmH2O` \u2014 each with one unambiguous UCUM equivalent. The remaining ~413 are medication DOSAGE units, and about half of those are not units of measure at all: dose forms (`tab`, `vial`, `PUFF`), quantities that belong in a different field (`(1,000 mg)`, `mEq / 250 mL NS`), and ETL artefacts (`mg\\ 0 mg`, `Umits`, `tiwst`). Dose forms are mapped to the dimensionless UCUM annotation naming them; the rest are declined. VALIDITY OF THE SOURCE STRING IS NOT THE ORGANISING PRINCIPLE and a consumer must not treat it as one: `K/uL` on Platelet Count parses perfectly as KELVIN per microlitre, and `N/A` as newton per ampere, so four strings carrying 13M occurrences are valid UCUM meaning something other than what MIMIC intends. Those rows carry a comment, enforced by the generator wherever source and target differ in canonical dimension."
+  },
+  {
+   "stream": "units-ucum-native",
+   "declared": true,
+   "source_system": "http://unitsofmeasure.org",
+   "source_file": "ValueSet-mimic-quantity-code.json",
+   "method": "identity",
+   "target_systems": [
+    "http://unitsofmeasure.org"
+   ],
+   "consumed_by": [
+    "units"
+   ],
+   "enumerated_total": 4,
+   "mapped": 4,
+   "by_equivalence": {
+    "equivalent": 4,
+    "unmatched": 0
+   },
+   "unmapped_by_reason": {},
+   "note": "The units MIMIC's ETL had ALREADY normalised, which are not members of mimic-units and are reachable through no other stream. Where the ETL normalised a unit it wrote the UCUM expression into Quantity.code and named http://unitsofmeasure.org in Quantity.system, instead of writing the chart spelling under CodeSystem/mimic-units as it usually does \u2014 so these arrive already standard, and the identity is the honest answer. This is NOT the identity group build_units_cm_vs.py argues against: that argument is about the 87 mimic-units codes which happen to parse as UCUM, where the SYSTEM still changes and `mg/dL` -> `mg/dL` is therefore a real translation. Here the system does not change, because it was UCUM in the data to begin with. MEASURED, not assumed: the four codes are what the 2026-08-20 full-warehouse run found on Observation.code and Observation.component.code, read from the declared Quantity.system rather than inferred from spelling. `mm[Hg]` (3,779,500 occurrences, the two blood pressure components) and `[degF]` (1,401,314, body temperature) had no answer at all before this stream. `/min` and `%` did resolve, but only because they are also mimic-units codes spelled identically to their own targets \u2014 a coincidence rather than a guarantee, and one a consumer cannot see, so they are declared here too. NOTE the spelling divergence this makes visible rather than causes: the table maps `bpm` -> `/min{beats}` and `insp/min` -> `/min{insp}`, deliberately annotated so heart rate stays distinguishable from respiratory rate, while the ETL wrote bare `/min` for both. Both answers are in the map because both spellings are in the data; the map reports that, it does not reconcile it."
   }
  ],
  "elements": [

@@ -10,12 +10,12 @@
   "spec-type"
  ],
  "source_total": 116,
- "mapped": 90,
- "unmapped": 26,
+ "mapped": 89,
+ "unmapped": 27,
  "by_source": [
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-lab-fluid",
-   "mapped": 9
+   "mapped": 8
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-spec-type-desc",
@@ -25,15 +25,16 @@
  "by_target_system": [
   {
    "system": "http://snomed.info/sct",
-   "mappings": 90
+   "mappings": 89
   }
  ],
  "by_equivalence": {
-  "relatedto": 90,
-  "unmatched": 26
+  "relatedto": 89,
+  "unmatched": 27
  },
  "unmapped_by_reason": {
-  "no-suitable-concept": 26
+  "no-suitable-concept": 24,
+  "not-observed-in-data": 3
  },
  "target_valueset_codes": 53,
  "extras": {}

@@ -1,8 +1,9 @@
 # Observation value shapes
 
-What SHAPE of value each `Observation.code` actually carries in the full
-MIMIC-on-FHIR warehouse, so a mapping can be checked against the data rather
-than only against the terminology.
+What SHAPE of value each coded Observation element — `Observation.code` and
+`Observation.component.code` — actually carries in the full MIMIC-on-FHIR
+warehouse, so a mapping can be checked against the data rather than only against
+the terminology.
 
 The chartevents gate asserts that a proposed target is in the constraint, exists,
 is active, and has a confirmed display. None of those can see the defect that
@@ -37,7 +38,7 @@ the warehouse itself changes:
 
 | File | What |
 |---|---|
-| `observation-value-shapes.csv` | one row per code: the per-value\[x\] counts, `shape`, `scale_hint`, `distinct_values`, `domain_truncated`, `units` |
+| `observation-value-shapes.csv` | one row per code: the per-value\[x\] counts, `shape`, `scale_hint`, `distinct_values`, `domain_truncated`, `units`, `units_ucum` |
 | `observation-value-domains.csv` | one row per (code, value): `rank`, `value`, `occurrences` — long format, so a value containing a comma needs no escaping scheme |
 | `value-shape-summary.json` | per-element totals plus the run's identity: Delta version + commit timestamp, host, versions, the caps in force, and the sha256 of both CSVs |
 
@@ -51,11 +52,34 @@ Caps are recorded, never silent: `--top-values` (40) bounds the domain rows per
 code and `--max-value-chars` (200) bounds the grouping key. Both land in the
 summary, and any code whose domain was cut carries `domain_truncated`.
 
-`Observation.component.code` is **not** included — component values live at
-`component.value[x]` paired with `component.code` inside the same array element,
-so observing them needs a `forEach` over `component` rather than the flat view
-here. That element is 2 codes at 100% coverage; when it stops being 2 codes,
-this is the reason it was left out.
+`Observation.component.code` **is** included, since 2026-08-20. Component values
+live at `component.value[x]` paired with `component.code` inside the same array
+element, so it is planned as a `forEach` over `component` carrying the value
+columns with the coding `forEach` nested inside — `VALUE_SCOPES` in the script,
+checked against `elements.json` so the scope and the coding path cannot drift
+apart silently.
+
+It was originally excluded as 2 codes at 100% coverage, i.e. machinery for
+nothing. That is still true of its coverage and was not why it came back: the
+BP components carry `mm[Hg]`, already UCUM, which is a **target** of
+`mimic-units-to-ucum` and not a source, so `$translate` returns no match and the
+units on ~2M of the largest coded Observation population are unreachable by any
+arm of that map. Scoping the UCUM identity group that fixes it needs an
+enumeration of what the ETL emits, and nothing enumerated component units. The
+flat view could not have: it reads `Observation.value[x]`, empty on a BP panel,
+so it would have recorded 2 codes with no units at all and called that an
+answer.
+
+`units_ucum` is the column that makes that population readable, and it is read
+from `Quantity.system`, not from the spelling. MIMIC writes the raw source
+string into **both** `unit` and `code` and declares `mimic-units`, so the
+`unit|code` label in `units` never fires there and every entry reads as "code
+unknown". Where the ETL has normalised, it declares UCUM — but may still write
+one string to both fields, as the components do. Those two cases are
+indistinguishable by label and opposite in meaning. On the demo warehouse four
+`Observation.code` codes declare UCUM and only three have differing
+`unit`/`code`; `2708-6 Oxygen saturation` writes `%` to both and had been
+indistinguishable from the MIMIC source string `%`.
 
 ## Re-running it on the node
 

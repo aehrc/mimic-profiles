@@ -15,8 +15,10 @@ resolver shapes are supported, and a stream picks exactly one:
             reaches LOINC where LOINC answers and SNOMED CT where it does not.
 
 The resolver also fixes the equivalence: `equivalent` for notation and identity,
-`relatedto` for every table row. See build_groups for why it is a property of
-the resolver rather than of the row.
+`relatedto` for a table unless its STREAM declares otherwise. See build_groups
+for why it is a property of the resolver rather than of the row, and _resolve_code
+for why `units` is the one table that declares `equivalent` — its rows change how
+a unit is spelled, not which unit is meant.
 
 A STREAM RESOLVES IDENTICALLY WHEREVER IT IS CONSUMED. resolve_source is a
 function of (declaration, built releases, union-observed codes) and knows no
@@ -44,6 +46,13 @@ from .igsource import resource_path
 # occurrence counts. It is deliberately NOT one of the resolver's failure
 # reasons: nothing was searched for and nothing was declined, so folding it in
 # with them would inflate every "we tried and failed" number in the statistics.
+#
+# It PREEMPTS every resolver (see _resolve_code), which is what keeps the
+# projected target ValueSet an exact enumeration of the warehouse: a code no
+# data carries contributes no target concept. The code keeps its entry in the
+# ConceptMap, carrying this reason — the map's source side stays complete, and
+# only the ValueSet projection narrows, because $translate answering with a
+# reason is what a consumer can act on and silence is not.
 NOT_OBSERVED = "not-observed-in-data"
 
 # The reason recorded for a population a stream declares but has no resolver
@@ -99,11 +108,12 @@ def resolve_source(source, built, observed):
     """Resolve one stream: every enumerated code to exactly one outcome.
 
     `observed` is the union of (system, code) pairs the occurrence extraction
-    saw on ANY bound element, or None when that artifact is absent. It affects
-    no mapping — only which reason an un-tabled code is reported under, because
-    "nobody uses this code" and "the table has not caught up with this
-    population" are different backlogs. Without the artifact both report as
-    `no-row-in-curated-table`, which is the weaker, always-true claim.
+    saw on ANY bound element, or None when that artifact is absent. A code
+    outside it resolves to NOT_OBSERVED whatever its stream's resolver would
+    have said, so the projected ValueSet enumerates the warehouse exactly.
+    Without the artifact nothing is narrowed and every code resolves as it did
+    before — the map is then a superset of the data, which is the honest
+    result of not knowing, not a silent approximation of it.
 
     Returns [(code, display, outcome)] in enumeration order, where a MAPPED
     outcome is {kind, target_system, target_code, target_display, equivalence,
@@ -131,6 +141,49 @@ def resolve_source(source, built, observed):
 
 def _resolve_code(source, code, built, observed, table, mixed_table):
     primary = source["targets"][0]
+    # BEFORE any resolver, and for every stream shape alike. The projected
+    # ValueSet is the map's target side (lib/project.py), so a code resolved
+    # here puts its target in that ValueSet — and a code the warehouse never
+    # records would put a concept there that no data can reach. Consumers read
+    # the target ValueSet as the exact enumeration of what the data contains,
+    # which only holds if the check precedes the resolution rather than
+    # standing in for a missing table row.
+    #
+    # It was a table-only check, inside the no-row branch, and the three shapes
+    # leaked differently: a notation stream never consulted it at all (344 ICD
+    # diagnosis codes the warehouse has never carried), and a table row written
+    # for an unobserved code resolved anyway (labevents and chartevents tables
+    # predate builders.table_population narrowing generation to observed
+    # codes). Identity streams were clean only by accident of their size.
+    #
+    # A stream may declare itself OUTSIDE that extract. The occurrence job
+    # counts the ten bound elements in occurrences/elements.json, and a stream
+    # whose element is not one of them is not described by the artifact at all
+    # — every one of its codes would be absent from `observed` and would resolve
+    # NOT_OBSERVED, emptying the map while every check still passed. That is the
+    # module-level distinction common/occurrences.observed_anywhere already
+    # makes globally ("nothing was counted" is not "the count found nothing"),
+    # applied per stream, because the artifact's coverage is per element and so
+    # its silence is too. Declaring it is deliberately explicit: a stream gets
+    # this only by saying so, so a genuinely unobserved code in a covered
+    # stream can never reach the resolvers by accident.
+    if (observed is not None
+            and not source.get("outside_occurrence_extract")
+            and (source["system"], code) not in observed):
+        return {"kind": NOT_OBSERVED,
+                "expected_code": "",
+                "expected_system": primary["system"],
+                "comment": (
+                    "Recorded on no bound element in the warehouse extract the "
+                    "committed occurrence counts describe. Deliberately not "
+                    "resolved rather than declined: nothing was searched for "
+                    "and no target was refused. Its absence from the target "
+                    "ValueSet is the point — that ValueSet enumerates the "
+                    "codes this warehouse actually contains. If you are "
+                    "translating it, that assumption does not hold for your "
+                    "data: for a table stream, extend the table's generation "
+                    "population; for a notation stream the rule would resolve "
+                    "it unchanged.")}
     if source.get("identity"):
         # Already standard terminology: the code is its own target, so there
         # is nothing to look up and no release to pin.
@@ -141,22 +194,8 @@ def _resolve_code(source, code, built, observed, table, mixed_table):
     if table is not None:
         row = table.get(code)
         if row is None:
-            # No row. Which backlog this is depends on whether any data
-            # anywhere carries the code — a fact the occurrence artifact
-            # settles and nothing else can.
-            if observed is not None and (source["system"], code) not in observed:
-                return {"kind": NOT_OBSERVED,
-                        "expected_code": "",
-                        "expected_system": primary["system"],
-                        "comment": (
-                            "Recorded on no bound element in the warehouse "
-                            "extract the committed occurrence counts describe. "
-                            "Deliberately not asked rather than declined: the "
-                            "mapping tables are generated over the codes the "
-                            "warehouse actually uses, and this one has never "
-                            "been used. If you are translating it, that "
-                            "assumption does not hold for your data — extend "
-                            "the table's generation population.")}
+            # Observed (the check above passed) and the table has no row for
+            # it: a backlog inside the stream, not a finding.
             return {"kind": "no-row-in-curated-table",
                     "expected_code": "",
                     "expected_system": primary["system"],
@@ -175,15 +214,26 @@ def _resolve_code(source, code, built, observed, table, mixed_table):
                     "expected_system": primary["system"],
                     "comment": row["comment"]}
         # No release pinned: the systems tables map into are all on
-        # UNVERSIONED_SYSTEMS. `relatedto` is set here rather than carried in
-        # the table, so it holds for every table equally and cannot drift as
-        # one generator's rule is edited.
+        # UNVERSIONED_SYSTEMS. The equivalence is set here rather than carried
+        # in the table, so it holds for every row of a table equally and cannot
+        # drift as one generator's rule is edited — the property the "decided by
+        # the resolver, not per row" rule exists to protect.
+        #
+        # It is declared per STREAM, defaulting to `relatedto`, because one
+        # table stream is not like the others: `units-ucum.csv` maps a MIMIC
+        # unit STRING to the UCUM expression for the same unit, which is a fact
+        # about spelling in exactly the sense lib/notation.py's dot insertion is
+        # — `mmHg` -> `mm[Hg]` changes no meaning. The semantic tables (a
+        # flowsheet label against a SNOMED concept) keep `relatedto`, and this
+        # is a stream-level declaration rather than a row-level column so it
+        # stays a statement about the RESOLVER.
         return {"kind": MAPPED,
                 "target_system": (row["target_system"] if mixed_table
                                   else primary["system"]),
                 "target_code": row["target_code"],
                 "target_display": row["target_display"],
-                "target_version": None, "equivalence": "relatedto",
+                "target_version": None,
+                "equivalence": source.get("equivalence", "relatedto"),
                 "comment": row["comment"]}
     for tgt in source["targets"]:
         if tgt["rule"] is None:

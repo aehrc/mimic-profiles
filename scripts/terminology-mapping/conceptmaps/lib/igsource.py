@@ -9,8 +9,10 @@ Every stage that asks "what is the source side" — build_groups, the stream
 reports, verify_mappings — comes through here, so no two of them can disagree
 about a stream's population. The per-element `observed_only` narrowing that
 used to live here is gone: a stream resolves identically wherever it is
-consumed (see lib/assemble.py), and "used in the data" is a statistics fact
-computed union-wide from the occurrence artifact, not a mapping fact.
+consumed (see lib/assemble.py). "Used in the data" still narrows what resolves,
+but UNION-WIDE and in the resolver, so the answer for a code cannot depend on
+which bound element the Coding sat on — which is exactly what the per-element
+version got wrong.
 """
 
 import json

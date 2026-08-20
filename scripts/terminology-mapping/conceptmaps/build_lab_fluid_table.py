@@ -236,6 +236,11 @@ CONFIDENCE_THRESHOLD = 0.8
 # `Fluid` is deliberately NOT here. It is unobserved in the warehouse too, but it
 # is a real if unspecific specimen noun and SNOMED has 309051001 |Body fluid
 # specimen| for exactly it — unobserved is not the same claim as unmappable.
+# Its row therefore stays in the committed table and stays auditable, but the
+# resolver no longer publishes it: lib/assemble.py resolves every unobserved
+# code to `not-observed-in-data` ahead of the table lookup, so the target
+# ValueSet enumerates the warehouse exactly. Nothing is lost from that ValueSet
+# here — the observed `Other Body Fluid` reaches 309051001 anyway.
 #
 # Checked against the IG at startup by validate_no_clinical_content(): a rule
 # naming a code the IG has dropped declines nothing, and does so silently.

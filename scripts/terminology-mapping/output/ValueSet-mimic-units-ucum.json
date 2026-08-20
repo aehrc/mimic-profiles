@@ -1,0 +1,694 @@
+{
+ "resourceType": "ValueSet",
+ "id": "mimic-units-ucum",
+ "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-units-ucum",
+ "version": "1.0.0",
+ "name": "MimicUnitsUcum",
+ "title": "MIMIC units as UCUM",
+ "status": "active",
+ "experimental": false,
+ "date": "2026-08-20",
+ "publisher": "CSIRO",
+ "description": "The UCUM expressions every mapped MIMIC unit string resolves to. Derived from ConceptMap/mimic-units-to-ucum, whose targetCanonical this is, so membership here and reachability by $translate are the same set. Every member parses under ucumate, which the generator asserts on every row \u2014 this value set therefore contains no string that a UCUM implementation would reject, which is a stronger guarantee than this repo can make about any of its other target value sets, because it is decidable rather than gated against a server. The UCUM include carries no version: UCUM's identity is its grammar and a conformant expression parses the same under every release, so there is no release whose absence could change what `mm[Hg]` denotes. Note that several MIMIC strings legitimately share a member \u2014 `mmHg`, `mm Hg` and `mmHg.` all resolve to `mm[Hg]`, and the whole `tab`/`Tab`/`TAB`/`tablet`/`tablets`/`tabs` family to `{tablet}` \u2014 so the members here are far fewer than the mapped source codes, which is the normalisation the map exists to perform.",
+ "compose": {
+  "include": [
+   {
+    "system": "http://unitsofmeasure.org",
+    "concept": [
+     {
+      "code": "%"
+     },
+     {
+      "code": "/L",
+      "display": "/L"
+     },
+     {
+      "code": "/[HPF]",
+      "display": "/[HPF]"
+     },
+     {
+      "code": "/[LPF]",
+      "display": "/[LPF]"
+     },
+     {
+      "code": "/h",
+      "display": "/h"
+     },
+     {
+      "code": "/min"
+     },
+     {
+      "code": "/min{beats}",
+      "display": "/min{beats}"
+     },
+     {
+      "code": "/min{insp}",
+      "display": "/min{insp}"
+     },
+     {
+      "code": "/min{rev}",
+      "display": "/min{rev}"
+     },
+     {
+      "code": "/mm3",
+      "display": "/mm3"
+     },
+     {
+      "code": "/uL",
+      "display": "/uL"
+     },
+     {
+      "code": "1",
+      "display": "1"
+     },
+     {
+      "code": "10*3/uL",
+      "display": "10*3/uL"
+     },
+     {
+      "code": "10*6.[IU]",
+      "display": "10*6.[IU]"
+     },
+     {
+      "code": "10*6.{cells}",
+      "display": "10*6.{cells}"
+     },
+     {
+      "code": "10*6/uL",
+      "display": "10*6/uL"
+     },
+     {
+      "code": "10*9.{cells}",
+      "display": "10*9.{cells}"
+     },
+     {
+      "code": "Cel",
+      "display": "Cel"
+     },
+     {
+      "code": "L",
+      "display": "L"
+     },
+     {
+      "code": "L/min",
+      "display": "L/min"
+     },
+     {
+      "code": "L/min/m2",
+      "display": "L/min/m2"
+     },
+     {
+      "code": "U",
+      "display": "U"
+     },
+     {
+      "code": "U/L",
+      "display": "U/L"
+     },
+     {
+      "code": "U/g{Hb}",
+      "display": "U/g{Hb}"
+     },
+     {
+      "code": "U/mL",
+      "display": "U/mL"
+     },
+     {
+      "code": "[GPL'U]",
+      "display": "[GPL'U]"
+     },
+     {
+      "code": "[IU]",
+      "display": "[IU]"
+     },
+     {
+      "code": "[IU]/(kg.h)",
+      "display": "[IU]/(kg.h)"
+     },
+     {
+      "code": "[IU]/L",
+      "display": "[IU]/L"
+     },
+     {
+      "code": "[IU]/g",
+      "display": "[IU]/g"
+     },
+     {
+      "code": "[IU]/h",
+      "display": "[IU]/h"
+     },
+     {
+      "code": "[IU]/kg",
+      "display": "[IU]/kg"
+     },
+     {
+      "code": "[IU]/mL",
+      "display": "[IU]/mL"
+     },
+     {
+      "code": "[IU]/min",
+      "display": "[IU]/min"
+     },
+     {
+      "code": "[MPL'U]",
+      "display": "[MPL'U]"
+     },
+     {
+      "code": "[beth'U]",
+      "display": "[beth'U]"
+     },
+     {
+      "code": "[degF]"
+     },
+     {
+      "code": "[in_i]",
+      "display": "[in_i]"
+     },
+     {
+      "code": "[lb_av]",
+      "display": "[lb_av]"
+     },
+     {
+      "code": "[oz_av]",
+      "display": "[oz_av]"
+     },
+     {
+      "code": "[ppm]",
+      "display": "[ppm]"
+     },
+     {
+      "code": "[psi]",
+      "display": "[psi]"
+     },
+     {
+      "code": "[tsp_us]",
+      "display": "[tsp_us]"
+     },
+     {
+      "code": "a",
+      "display": "a"
+     },
+     {
+      "code": "cm",
+      "display": "cm"
+     },
+     {
+      "code": "cm3",
+      "display": "cm3"
+     },
+     {
+      "code": "cm[H2O]",
+      "display": "cm[H2O]"
+     },
+     {
+      "code": "cm[H2O].s/L",
+      "display": "cm[H2O].s/L"
+     },
+     {
+      "code": "deg",
+      "display": "deg"
+     },
+     {
+      "code": "dyn.s/(cm5.m2)",
+      "display": "dyn.s/(cm5.m2)"
+     },
+     {
+      "code": "dyn.s/cm5",
+      "display": "dyn.s/cm5"
+     },
+     {
+      "code": "fL",
+      "display": "fL"
+     },
+     {
+      "code": "g",
+      "display": "g"
+     },
+     {
+      "code": "g/dL",
+      "display": "g/dL"
+     },
+     {
+      "code": "g/h",
+      "display": "g/h"
+     },
+     {
+      "code": "g/kg",
+      "display": "g/kg"
+     },
+     {
+      "code": "g/min",
+      "display": "g/min"
+     },
+     {
+      "code": "h",
+      "display": "h"
+     },
+     {
+      "code": "kcal/d",
+      "display": "kcal/d"
+     },
+     {
+      "code": "kcal/kg",
+      "display": "kcal/kg"
+     },
+     {
+      "code": "kg",
+      "display": "kg"
+     },
+     {
+      "code": "mA",
+      "display": "mA"
+     },
+     {
+      "code": "mL",
+      "display": "mL"
+     },
+     {
+      "code": "mL/(kg.h)",
+      "display": "mL/(kg.h)"
+     },
+     {
+      "code": "mL/d",
+      "display": "mL/d"
+     },
+     {
+      "code": "mL/h",
+      "display": "mL/h"
+     },
+     {
+      "code": "mL/kg",
+      "display": "mL/kg"
+     },
+     {
+      "code": "mL/m2",
+      "display": "mL/m2"
+     },
+     {
+      "code": "mL/mL",
+      "display": "mL/mL"
+     },
+     {
+      "code": "mL/min",
+      "display": "mL/min"
+     },
+     {
+      "code": "mL/{beat}",
+      "display": "mL/{beat}"
+     },
+     {
+      "code": "mL/{lumen}",
+      "display": "mL/{lumen}"
+     },
+     {
+      "code": "mL/{syringe}",
+      "display": "mL/{syringe}"
+     },
+     {
+      "code": "mV",
+      "display": "mV"
+     },
+     {
+      "code": "m[IU]/mL",
+      "display": "m[IU]/mL"
+     },
+     {
+      "code": "m[IU]/min",
+      "display": "m[IU]/min"
+     },
+     {
+      "code": "meq",
+      "display": "meq"
+     },
+     {
+      "code": "meq/L",
+      "display": "meq/L"
+     },
+     {
+      "code": "meq/h",
+      "display": "meq/h"
+     },
+     {
+      "code": "mg",
+      "display": "mg"
+     },
+     {
+      "code": "mg/(24.h)",
+      "display": "mg/(24.h)"
+     },
+     {
+      "code": "mg/(kg.h)",
+      "display": "mg/(kg.h)"
+     },
+     {
+      "code": "mg/(kg.min)",
+      "display": "mg/(kg.min)"
+     },
+     {
+      "code": "mg/L",
+      "display": "mg/L"
+     },
+     {
+      "code": "mg/d",
+      "display": "mg/d"
+     },
+     {
+      "code": "mg/dL",
+      "display": "mg/dL"
+     },
+     {
+      "code": "mg/g",
+      "display": "mg/g"
+     },
+     {
+      "code": "mg/h",
+      "display": "mg/h"
+     },
+     {
+      "code": "mg/kg",
+      "display": "mg/kg"
+     },
+     {
+      "code": "mg/m2",
+      "display": "mg/m2"
+     },
+     {
+      "code": "mg/mL",
+      "display": "mg/mL"
+     },
+     {
+      "code": "mg/mg",
+      "display": "mg/mg"
+     },
+     {
+      "code": "mg/min",
+      "display": "mg/min"
+     },
+     {
+      "code": "mg/{actuation}",
+      "display": "mg/{actuation}"
+     },
+     {
+      "code": "mg/{dose}",
+      "display": "mg/{dose}"
+     },
+     {
+      "code": "min",
+      "display": "min"
+     },
+     {
+      "code": "mm/h",
+      "display": "mm/h"
+     },
+     {
+      "code": "mm3",
+      "display": "mm3"
+     },
+     {
+      "code": "mm[Hg]"
+     },
+     {
+      "code": "mmol",
+      "display": "mmol"
+     },
+     {
+      "code": "mmol/L",
+      "display": "mmol/L"
+     },
+     {
+      "code": "mosm/kg",
+      "display": "mosm/kg"
+     },
+     {
+      "code": "ms",
+      "display": "ms"
+     },
+     {
+      "code": "nL",
+      "display": "nL"
+     },
+     {
+      "code": "ng",
+      "display": "ng"
+     },
+     {
+      "code": "ng/(kg.min)",
+      "display": "ng/(kg.min)"
+     },
+     {
+      "code": "ng/dL",
+      "display": "ng/dL"
+     },
+     {
+      "code": "ng/mL",
+      "display": "ng/mL"
+     },
+     {
+      "code": "ng/mL{DDU}",
+      "display": "ng/mL{DDU}"
+     },
+     {
+      "code": "ng/mL{FEU}",
+      "display": "ng/mL{FEU}"
+     },
+     {
+      "code": "nmol/(mL.min)",
+      "display": "nmol/(mL.min)"
+     },
+     {
+      "code": "nmol/L",
+      "display": "nmol/L"
+     },
+     {
+      "code": "pL",
+      "display": "pL"
+     },
+     {
+      "code": "pg",
+      "display": "pg"
+     },
+     {
+      "code": "pg/mL",
+      "display": "pg/mL"
+     },
+     {
+      "code": "s",
+      "display": "s"
+     },
+     {
+      "code": "uL",
+      "display": "uL"
+     },
+     {
+      "code": "u[IU]/mL",
+      "display": "u[IU]/mL"
+     },
+     {
+      "code": "ug",
+      "display": "ug"
+     },
+     {
+      "code": "ug/(kg.h)",
+      "display": "ug/(kg.h)"
+     },
+     {
+      "code": "ug/(kg.min)",
+      "display": "ug/(kg.min)"
+     },
+     {
+      "code": "ug/d",
+      "display": "ug/d"
+     },
+     {
+      "code": "ug/dL",
+      "display": "ug/dL"
+     },
+     {
+      "code": "ug/h",
+      "display": "ug/h"
+     },
+     {
+      "code": "ug/kg",
+      "display": "ug/kg"
+     },
+     {
+      "code": "ug/mL",
+      "display": "ug/mL"
+     },
+     {
+      "code": "ug/min",
+      "display": "ug/min"
+     },
+     {
+      "code": "ug/{actuation}",
+      "display": "ug/{actuation}"
+     },
+     {
+      "code": "ug/{dose}",
+      "display": "ug/{dose}"
+     },
+     {
+      "code": "ug/{spray}",
+      "display": "ug/{spray}"
+     },
+     {
+      "code": "umol/L",
+      "display": "umol/L"
+     },
+     {
+      "code": "{ampule}",
+      "display": "{ampule}"
+     },
+     {
+      "code": "{application}",
+      "display": "{application}"
+     },
+     {
+      "code": "{applicator}",
+      "display": "{applicator}"
+     },
+     {
+      "code": "{bag}",
+      "display": "{bag}"
+     },
+     {
+      "code": "{bottle}",
+      "display": "{bottle}"
+     },
+     {
+      "code": "{can}",
+      "display": "{can}"
+     },
+     {
+      "code": "{capsule}",
+      "display": "{capsule}"
+     },
+     {
+      "code": "{cell}",
+      "display": "{cell}"
+     },
+     {
+      "code": "{cup}",
+      "display": "{cup}"
+     },
+     {
+      "code": "{dose}",
+      "display": "{dose}"
+     },
+     {
+      "code": "{drop}",
+      "display": "{drop}"
+     },
+     {
+      "code": "{each}",
+      "display": "{each}"
+     },
+     {
+      "code": "{enema}",
+      "display": "{enema}"
+     },
+     {
+      "code": "{film}",
+      "display": "{film}"
+     },
+     {
+      "code": "{gummy}",
+      "display": "{gummy}"
+     },
+     {
+      "code": "{gum}",
+      "display": "{gum}"
+     },
+     {
+      "code": "{jar}",
+      "display": "{jar}"
+     },
+     {
+      "code": "{kit}",
+      "display": "{kit}"
+     },
+     {
+      "code": "{lozenge}",
+      "display": "{lozenge}"
+     },
+     {
+      "code": "{nebule}",
+      "display": "{nebule}"
+     },
+     {
+      "code": "{packet}",
+      "display": "{packet}"
+     },
+     {
+      "code": "{patch}",
+      "display": "{patch}"
+     },
+     {
+      "code": "{pen}",
+      "display": "{pen}"
+     },
+     {
+      "code": "{pill}",
+      "display": "{pill}"
+     },
+     {
+      "code": "{puff}",
+      "display": "{puff}"
+     },
+     {
+      "code": "{ring}",
+      "display": "{ring}"
+     },
+     {
+      "code": "{scoop}",
+      "display": "{scoop}"
+     },
+     {
+      "code": "{score}",
+      "display": "{score}"
+     },
+     {
+      "code": "{sheet}",
+      "display": "{sheet}"
+     },
+     {
+      "code": "{spray}",
+      "display": "{spray}"
+     },
+     {
+      "code": "{strip}",
+      "display": "{strip}"
+     },
+     {
+      "code": "{suppository}",
+      "display": "{suppository}"
+     },
+     {
+      "code": "{swab}",
+      "display": "{swab}"
+     },
+     {
+      "code": "{syringe}",
+      "display": "{syringe}"
+     },
+     {
+      "code": "{tablet}",
+      "display": "{tablet}"
+     },
+     {
+      "code": "{troche}",
+      "display": "{troche}"
+     },
+     {
+      "code": "{tube}",
+      "display": "{tube}"
+     },
+     {
+      "code": "{vial}",
+      "display": "{vial}"
+     }
+    ]
+   }
+  ]
+ }
+}

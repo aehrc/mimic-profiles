@@ -4,7 +4,7 @@
  "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-observation-merged-to-standard",
  "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-merged-standard",
  "version": "1.0.0",
- "date": "2026-08-10",
+ "date": "2026-08-20",
  "streams": [
   "observation-type-ed",
   "observation-type-vital",
@@ -17,8 +17,8 @@
   "chartevents"
  ],
  "source_total": 5727,
- "mapped": 3384,
- "unmapped": 2343,
+ "mapped": 2725,
+ "unmapped": 3002,
  "by_source": [
   {
    "system": "http://loinc.org",
@@ -26,15 +26,15 @@
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-chartevents-d-items",
-   "mapped": 1318
+   "mapped": 1086
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
-   "mapped": 162
+   "mapped": 151
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-labitems",
-   "mapped": 1130
+   "mapped": 714
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-microbiology-antibiotic",
@@ -52,21 +52,22 @@
  "by_target_system": [
   {
    "system": "http://loinc.org",
-   "mappings": 2262
+   "mappings": 1691
   },
   {
    "system": "http://snomed.info/sct",
-   "mappings": 1122
+   "mappings": 1034
   }
  ],
  "by_equivalence": {
   "equivalent": 9,
-  "relatedto": 3375,
-  "unmatched": 2343
+  "relatedto": 2716,
+  "unmatched": 3002
  },
  "unmapped_by_reason": {
-  "no-suitable-concept": 2343
+  "no-suitable-concept": 1516,
+  "not-observed-in-data": 1486
  },
- "target_valueset_codes": 2172,
+ "target_valueset_codes": 1854,
  "extras": {}
 }

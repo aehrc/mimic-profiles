@@ -8,4 +8,8 @@ dependencies = [
     "httpx>=0.28.1",
     "pathling>=9.8.0",
     "striprtf>=0.0.32",
+    "ucumate",
 ]
+
+[tool.uv.sources]
+ucumate = { path = "../ucumate/ucumate-python/dist/ucumate-1.0.8-py3-none-any.whl" }

@@ -4,7 +4,7 @@
  "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-procedure-merged-to-standard",
  "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-procedure-merged-standard",
  "version": "1.0.0",
- "date": "2026-08-10",
+ "date": "2026-08-20",
  "streams": [
   "procedure-icd10",
   "procedure-icd9",
@@ -12,12 +12,12 @@
   "d-items"
  ],
  "source_total": 12746,
- "mapped": 12683,
- "unmapped": 63,
+ "mapped": 12678,
+ "unmapped": 68,
  "by_source": [
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-d-items",
-   "mapped": 108
+   "mapped": 103
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-procedure-icd10",
@@ -39,7 +39,7 @@
   },
   {
    "system": "http://snomed.info/sct",
-   "mappings": 110
+   "mappings": 105
   },
   {
    "system": "http://www.cms.gov/Medicare/Coding/ICD10|2016",
@@ -60,13 +60,14 @@
  ],
  "by_equivalence": {
   "equivalent": 12575,
-  "relatedto": 108,
-  "unmatched": 63
+  "relatedto": 103,
+  "unmatched": 68
  },
  "unmapped_by_reason": {
   "absent-from-all-built-releases": 2,
-  "no-suitable-concept": 61
+  "no-suitable-concept": 54,
+  "not-observed-in-data": 12
  },
- "target_valueset_codes": 12670,
+ "target_valueset_codes": 12666,
  "extras": {}
 }

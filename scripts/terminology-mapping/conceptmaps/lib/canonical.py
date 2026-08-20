@@ -23,6 +23,11 @@ RXNORM = "http://www.nlm.nih.gov/research/umls/rxnorm"
 # target: MedicationAdministration.medication[x] admits `UNK` for the
 # administrations whose drug could not be coded, and it maps to itself.
 NULL_FLAVOR = "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+# UCUM. The one target system in this repo that is a GRAMMAR rather than an
+# enumeration: there is no concept list to look a code up in, so a target is
+# checked by parsing it (ucumate) instead of by $lookup. That is what makes the
+# units table the only one here whose every row is verifiable offline.
+UCUM = "http://unitsofmeasure.org"
 
 # Systems we map INTO but do not build a CodeSystem for, so no release can be
 # pinned and there is nothing for the "only releases we built" check to verify.
@@ -43,7 +48,13 @@ NULL_FLAVOR = "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
 # carries `UNK` through translation would otherwise be the one mapping with a
 # version nothing here can reproduce. velonto holds it at 2.1.0; that is the
 # server's copy, not ours to pin.
-UNVERSIONED_SYSTEMS = {SNOMED, LOINC, RXNORM, NULL_FLAVOR}
+#
+# UCUM joined with Observation.valueQuantity.code. It is unversioned for a
+# reason the other four do not share: UCUM's identity is its grammar, and a
+# conformant expression parses the same under every release, so there is no
+# release whose absence could change what `mm[Hg]` denotes. Pinning one would
+# name a document rather than constrain a meaning.
+UNVERSIONED_SYSTEMS = {SNOMED, LOINC, RXNORM, NULL_FLAVOR, UCUM}
 
 MIMIC_BASE = "http://mimic.mit.edu/fhir/mimic"
 

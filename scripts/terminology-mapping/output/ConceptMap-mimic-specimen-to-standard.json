@@ -52,17 +52,6 @@
      ]
     },
     {
-     "code": "Fluid",
-     "display": "Fluid",
-     "target": [
-      {
-       "code": "309051001",
-       "equivalence": "relatedto",
-       "display": "Body fluid"
-      }
-     ]
-    },
-    {
      "code": "Joint Fluid",
      "display": "Joint Fluid",
      "target": [
@@ -1031,12 +1020,22 @@
      ]
     },
     {
+     "code": "Fluid",
+     "display": "Fluid",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
+      }
+     ]
+    },
+    {
      "code": "I",
      "display": "I",
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "I is a single letter with no clinical content and no expansion in MIMIC's own dictionary, so it was not sent to code-search: there is no text for an answer to be right about."
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
       }
      ]
     },
@@ -1046,7 +1045,7 @@
      "target": [
       {
        "equivalence": "unmatched",
-       "comment": "Q is a single letter with no clinical content and no expansion in MIMIC's own dictionary, so it was not sent to code-search: there is no text for an answer to be right about."
+       "comment": "Recorded on no bound element in the warehouse extract the committed occurrence counts describe. Deliberately not resolved rather than declined: nothing was searched for and no target was refused. Its absence from the target ValueSet is the point \u2014 that ValueSet enumerates the codes this warehouse actually contains. If you are translating it, that assumption does not hold for your data: for a table stream, extend the table's generation population; for a notation stream the rule would resolve it unchanged."
       }
      ]
     }

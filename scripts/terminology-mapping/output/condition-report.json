@@ -10,30 +10,30 @@
   "diagnosis-icd9"
  ],
  "source_total": 27913,
- "mapped": 27913,
- "unmapped": 0,
+ "mapped": 27569,
+ "unmapped": 344,
  "by_source": [
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd10",
-   "mapped": 18450
+   "mapped": 18190
   },
   {
    "system": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-diagnosis-icd9",
-   "mapped": 9463
+   "mapped": 9379
   }
  ],
  "by_target_system": [
   {
    "system": "http://hl7.org/fhir/sid/icd-10-cm|2016",
-   "mappings": 17538
+   "mappings": 17289
   },
   {
    "system": "http://hl7.org/fhir/sid/icd-10-cm|2017",
-   "mappings": 668
+   "mappings": 659
   },
   {
    "system": "http://hl7.org/fhir/sid/icd-10-cm|2018",
-   "mappings": 129
+   "mappings": 128
   },
   {
    "system": "http://hl7.org/fhir/sid/icd-10-cm|2019",
@@ -41,17 +41,20 @@
   },
   {
    "system": "http://hl7.org/fhir/sid/icd-10-cm|2024",
-   "mappings": 43
+   "mappings": 41
   },
   {
    "system": "http://hl7.org/fhir/sid/icd-9-cm|2012",
-   "mappings": 9457
+   "mappings": 9374
   }
  ],
  "by_equivalence": {
-  "equivalent": 27913
+  "equivalent": 27569,
+  "unmatched": 344
  },
- "unmapped_by_reason": {},
- "target_valueset_codes": 27907,
+ "unmapped_by_reason": {
+  "not-observed-in-data": 344
+ },
+ "target_valueset_codes": 27564,
  "extras": {}
 }

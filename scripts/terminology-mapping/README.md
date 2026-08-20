@@ -68,6 +68,19 @@ bound element resolves exactly one map:
 | `MedicationRequest.medication[x]` | `mimic-medication-request-code` | `mimic-medication-to-standard` | `mimic-medication-standard` | `build_medication_cm_vs.py` |
 | `Medication.code` | `mimic-medication-code` | `mimic-medication-code-to-standard` | `mimic-medication-code-standard` | `build_medication_code_cm_vs.py` |
 | `MedicationAdministration.medication[x]` | `mimic-medication-administration-merged-code` | `mimic-medication-administration-to-standard` | `mimic-medication-administration-standard` | `build_medication_administration_cm_vs.py` |
+| `Quantity.code` † | `mimic-units` † | `mimic-units-to-ucum` | `mimic-units-ucum` | `build_units_cm_vs.py` |
+
+† **`Quantity.code` is the one row here that no profile actually binds.** The
+`mimic-units` CodeSystem and ValueSet both exist and the IG's instances use them
+(`* valueQuantity = 1.3 $MimicUnits#mg/dL "mg/dL"`), but the only mention in
+`input/fsh/` is the `$MimicUnits` alias, so the "Bound ValueSet" column names
+what the map's `sourceCanonical` points at rather than a real binding. Three
+consequences: `verify_mappings` reports `completeness NOT CHECKED` for the
+element rather than passing it, `streams.undeclared()` cannot see the
+population, and the stream declares `outside_occurrence_extract` so its codes
+are not called never-observed on the strength of an occurrence extract that
+never covered them. Adding the binding and an `occurrences/elements.json` entry
+is what closes all three. See "Units are a grammar, not a code list".
 
 `MedicationRequest.medication[x]` and `Medication.code` are **one pair, not two
 populations**: that element is a choice, and at least 87.8% of MIMIC
@@ -204,6 +217,70 @@ for two reasons that only show up on the consuming side:
 
 Two maps put each code in exactly the one column that can hold it, and both name
 a `sourceCanonical` published by `scripts/publish-conformance.sh`.
+
+### Units are a grammar, not a code list
+
+`Quantity.code` is the ninth map and the first whose TARGET cannot be
+enumerated. UCUM has no concepts: a target is an expression, and whether it is a
+legal one is decided by parsing it. Everything unusual about this population
+follows from that.
+
+**The gate is a parser, so it is decidable.** `build_units_table.py` asserts
+that every target parses under ucumate, offline, on every row. No network, no
+terminology server, no confidence threshold — which makes `units-ucum.csv` the
+only committed table here whose every mapping is machine-checkable, and the one
+answer to the objection in "The ICU population" that a hand-written table rests
+on judgement a reader cannot verify. The judgement that remains is *which* unit
+a MIMIC string meant, and that is data in the generator, not a rule.
+
+**Its equivalence is `equivalent`, alone among the table streams.**
+`lib/assemble.py` gives a curated table `relatedto` because a flowsheet label
+and a SNOMED concept are related in a direction this repo does not establish.
+That argument does not reach here: `mmHg` and `mm[Hg]` are two spellings of one
+unit, the same kind of fact as ICD dot insertion. The STREAM declares it, so it
+stays a property of the resolver rather than of a row — see the `equivalence`
+key in `lib/streams.py`. Consequence for consumers: unlike the Specimen and
+Procedure maps, filtering on `equivalence: equivalent` keeps this field.
+
+**A valid source string is not a correct one, and this is the population that
+proves it.** Nine mappings change what the value *denotes* rather than how it is
+spelled, because the MIMIC string parses as UCUM and means something else:
+
+| source | parses as | MIMIC means |
+|---|---|---|
+| `K/uL` on Platelet Count, WBC | kelvin per microlitre | `10*3/uL` |
+| `m/uL` on Red Blood Cells | metres per microlitre | `10*6/uL` |
+| `EA` (dispensing count) | the **exa-ampere** | `{each}` |
+| `MG` in a prescription column | the **megagauss** | `mg` |
+| `N/A` on dRVVT Screen | newton per ampere | nothing — declined |
+
+So `_check_dimension` is fatal: **where the source is itself valid UCUM and its
+canonical form differs from the target's, the row must carry a comment.** That
+rule found `EA` and `MG` on its own, and it corrected the comment originally
+written for `MG` — which had said megagram. Sorting this population by "already
+valid UCUM" would have skipped all five.
+
+**Read its coverage as two populations.** About 92 of the 505 codes are the
+units on `Observation.valueQuantity`, carrying 182M occurrences, and they map
+nearly completely. The other ~413 are medication dosage strings, and roughly
+half are not units of measure at all — dose forms, whole quantities written into
+the unit column (`(1,000 mg)`, `mEq / 250 mL NS`), and ETL artefacts
+(`mg\ 0 mg`, `Umits`). Countable dose forms map to the dimensionless UCUM
+annotation naming them (`tab` → `{tablet}`); the rest are declined, and several
+of those reasons name an ETL defect rather than a terminology gap. A single
+percentage over the union describes neither half.
+
+**Annotations are preserved**: `bpm` → `/min{beats}`, not `/min`. Both
+canonicalise to `s-1`, so no arithmetic changes; what it buys is that beats and
+breaths stay distinguishable after translation, and 17.5M occurrences ride on
+those two strings. The cost is stated once rather than per row: MIMIC's own ETL
+chose plain `/min` where it populated a UCUM code itself, so translated and
+untranslated MIMIC data differ in spelling here.
+
+The map is one of the two places where 299 mapped source codes collapse to
+**169** distinct targets — `mmHg`, `mm Hg` and `mmHg.` all resolve to `mm[Hg]`,
+and the whole `tab`/`Tab`/`TAB`/`tablet`/`tablets`/`tabs` family to `{tablet}`.
+That collapse is the normalisation the map exists to perform.
 
 ### One map per element needs one sourceCanonical per element
 

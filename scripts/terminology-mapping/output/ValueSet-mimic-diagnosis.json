@@ -149,10 +149,6 @@
       "display": "Tuberculosis of intrathoracic lymph nodes"
      },
      {
-      "code": "A15.5",
-      "display": "Tuberculosis of larynx, trachea and bronchus"
-     },
-     {
       "code": "A15.6",
       "display": "Tuberculous pleurisy"
      },
@@ -183,18 +179,6 @@
      {
       "code": "A18.01",
       "display": "Tuberculosis of spine"
-     },
-     {
-      "code": "A18.10",
-      "display": "Tuberculosis of genitourinary system, unspecified"
-     },
-     {
-      "code": "A18.11",
-      "display": "Tuberculosis of kidney and ureter"
-     },
-     {
-      "code": "A18.15",
-      "display": "Tuberculosis of other male genital organs"
      },
      {
       "code": "A18.17",
@@ -531,10 +515,6 @@
      {
       "code": "A51.39",
       "display": "Other secondary syphilis of skin"
-     },
-     {
-      "code": "A51.41",
-      "display": "Secondary syphilitic meningitis"
      },
      {
       "code": "A51.49",
@@ -1105,10 +1085,6 @@
       "display": "Acute viral hepatitis, unspecified"
      },
      {
-      "code": "B18.0",
-      "display": "Chronic viral hepatitis B with delta-agent"
-     },
-     {
       "code": "B18.1",
       "display": "Chronic viral hepatitis B without delta-agent"
      },
@@ -1493,10 +1469,6 @@
       "display": "Plasmodium falciparum malaria, unspecified"
      },
      {
-      "code": "B51.9",
-      "display": "Plasmodium vivax malaria without complication"
-     },
-     {
       "code": "B53.0",
       "display": "Plasmodium ovale malaria"
      },
@@ -1555,10 +1527,6 @@
      {
       "code": "B65.1",
       "display": "Schistosomiasis due to Schistosoma mansoni [intestinal schistosomiasis]"
-     },
-     {
-      "code": "B65.8",
-      "display": "Other schistosomiasis"
      },
      {
       "code": "B65.9",
@@ -1911,10 +1879,6 @@
      {
       "code": "C04.0",
       "display": "Malignant neoplasm of anterior floor of mouth"
-     },
-     {
-      "code": "C04.1",
-      "display": "Malignant neoplasm of lateral floor of mouth"
      },
      {
       "code": "C04.8",
@@ -2315,10 +2279,6 @@
      {
       "code": "C34.02",
       "display": "Malignant neoplasm of left main bronchus"
-     },
-     {
-      "code": "C34.10",
-      "display": "Malignant neoplasm of upper lobe, unspecified bronchus or lung"
      },
      {
       "code": "C34.11",
@@ -2729,14 +2689,6 @@
       "display": "Kaposi's sarcoma of unspecified lung"
      },
      {
-      "code": "C46.51",
-      "display": "Kaposi's sarcoma of right lung"
-     },
-     {
-      "code": "C46.52",
-      "display": "Kaposi's sarcoma of left lung"
-     },
-     {
       "code": "C46.7",
       "display": "Kaposi's sarcoma of other sites"
      },
@@ -2919,10 +2871,6 @@
      {
       "code": "C50.819",
       "display": "Malignant neoplasm of overlapping sites of unspecified female breast"
-     },
-     {
-      "code": "C50.821",
-      "display": "Malignant neoplasm of overlapping sites of right male breast"
      },
      {
       "code": "C50.822",
@@ -3581,10 +3529,6 @@
       "display": "Other malignant neuroendocrine tumors"
      },
      {
-      "code": "C7B.00",
-      "display": "Secondary carcinoid tumors, unspecified site"
-     },
-     {
       "code": "C7B.01",
       "display": "Secondary carcinoid tumors of distant lymph nodes"
      },
@@ -3707,10 +3651,6 @@
      {
       "code": "C81.74",
       "display": "Other classical Hodgkin lymphoma, lymph nodes of axilla and upper limb"
-     },
-     {
-      "code": "C81.75",
-      "display": "Other classical Hodgkin lymphoma, lymph nodes of inguinal region and lower limb"
      },
      {
       "code": "C81.76",
@@ -4321,10 +4261,6 @@
       "display": "Enteropathy-type (intestinal) T-cell lymphoma"
      },
      {
-      "code": "C86.3",
-      "display": "Subcutaneous panniculitis-like T-cell lymphoma"
-     },
-     {
       "code": "C86.4",
       "display": "Blastic NK-cell lymphoma"
      },
@@ -4917,10 +4853,6 @@
       "display": "Benign neoplasm of trachea"
      },
      {
-      "code": "D14.31",
-      "display": "Benign neoplasm of right bronchus and lung"
-     },
-     {
       "code": "D14.32",
       "display": "Benign neoplasm of left bronchus and lung"
      },
@@ -5149,10 +5081,6 @@
       "display": "Other benign neoplasm of skin of unspecified upper limb, including shoulder"
      },
      {
-      "code": "D23.61",
-      "display": "Other benign neoplasm of skin of right upper limb, including shoulder"
-     },
-     {
       "code": "D23.70",
       "display": "Other benign neoplasm of skin of unspecified lower limb, including hip"
      },
@@ -5357,10 +5285,6 @@
       "display": "Benign neoplasm of peripheral nerves and autonomic nervous system of lower limb, including hip"
      },
      {
-      "code": "D36.14",
-      "display": "Benign neoplasm of peripheral nerves and autonomic nervous system of thorax"
-     },
-     {
       "code": "D36.15",
       "display": "Benign neoplasm of peripheral nerves and autonomic nervous system of abdomen"
      },
@@ -5553,10 +5477,6 @@
       "display": "Neoplasm of uncertain behavior of spinal meninges"
      },
      {
-      "code": "D42.9",
-      "display": "Neoplasm of uncertain behavior of meninges, unspecified"
-     },
-     {
       "code": "D43.0",
       "display": "Neoplasm of uncertain behavior of brain, supratentorial"
      },
@@ -5591,10 +5511,6 @@
      {
       "code": "D44.2",
       "display": "Neoplasm of uncertain behavior of parathyroid gland"
-     },
-     {
-      "code": "D44.3",
-      "display": "Neoplasm of uncertain behavior of pituitary gland"
      },
      {
       "code": "D44.4",
@@ -5711,10 +5627,6 @@
      {
       "code": "D48.7",
       "display": "Neoplasm of uncertain behavior of other specified sites"
-     },
-     {
-      "code": "D48.9",
-      "display": "Neoplasm of uncertain behavior, unspecified"
      },
      {
       "code": "D49.0",
@@ -6665,10 +6577,6 @@
       "display": "Disorder of thyroid, unspecified"
      },
      {
-      "code": "E08.00",
-      "display": "Diabetes mellitus due to underlying condition with hyperosmolarity without nonketotic hyperglycemic-hyperosmolar coma (NKHHC)"
-     },
-     {
       "code": "E08.10",
       "display": "Diabetes mellitus due to underlying condition with ketoacidosis without coma"
      },
@@ -7545,10 +7453,6 @@
       "display": "Deficiency of other specified nutrient elements"
      },
      {
-      "code": "E61.9",
-      "display": "Deficiency of nutrient element, unspecified"
-     },
-     {
       "code": "E63.0",
       "display": "Essential fatty acid [EFA] deficiency"
      },
@@ -7729,10 +7633,6 @@
       "display": "Lactose intolerance, unspecified"
      },
      {
-      "code": "E74.00",
-      "display": "Glycogen storage disease, unspecified"
-     },
-     {
       "code": "E74.01",
       "display": "von Gierke disease"
      },
@@ -7771,10 +7671,6 @@
      {
       "code": "E74.8",
       "display": "Other specified disorders of carbohydrate metabolism"
-     },
-     {
-      "code": "E75.11",
-      "display": "Mucolipidosis IV"
      },
      {
       "code": "E75.21",
@@ -9813,10 +9709,6 @@
       "display": "Other specified nonpsychotic mental disorders"
      },
      {
-      "code": "F48.9",
-      "display": "Nonpsychotic mental disorder, unspecified"
-     },
-     {
       "code": "F50.00",
       "display": "Anorexia nervosa, unspecified"
      },
@@ -10753,10 +10645,6 @@
       "display": "Juvenile myoclonic epilepsy, intractable, without status epilepticus"
      },
      {
-      "code": "G43.001",
-      "display": "Migraine without aura, not intractable, with status migrainosus"
-     },
-     {
       "code": "G43.009",
       "display": "Migraine without aura, not intractable, without status migrainosus"
      },
@@ -11305,10 +11193,6 @@
       "display": "Lesion of ulnar nerve, left upper limb"
      },
      {
-      "code": "G56.30",
-      "display": "Lesion of radial nerve, unspecified upper limb"
-     },
-     {
       "code": "G56.31",
       "display": "Lesion of radial nerve, right upper limb"
      },
@@ -11563,10 +11447,6 @@
      {
       "code": "G70.1",
       "display": "Toxic myoneural disorders"
-     },
-     {
-      "code": "G70.2",
-      "display": "Congenital and developmental myasthenia"
      },
      {
       "code": "G70.80",
@@ -12509,10 +12389,6 @@
       "display": "Dry eye syndrome of unspecified lacrimal gland"
      },
      {
-      "code": "H04.201",
-      "display": "Unspecified epiphora, right lacrimal gland"
-     },
-     {
       "code": "H04.202",
       "display": "Unspecified epiphora, left lacrimal gland"
      },
@@ -12575,14 +12451,6 @@
      {
       "code": "H05.111",
       "display": "Granuloma of right orbit"
-     },
-     {
-      "code": "H05.121",
-      "display": "Orbital myositis, right orbit"
-     },
-     {
-      "code": "H05.129",
-      "display": "Orbital myositis, unspecified orbit"
      },
      {
       "code": "H05.20",
@@ -12843,10 +12711,6 @@
      {
       "code": "H15.011",
       "display": "Anterior scleritis, right eye"
-     },
-     {
-      "code": "H15.012",
-      "display": "Anterior scleritis, left eye"
      },
      {
       "code": "H15.013",
@@ -13151,10 +13015,6 @@
      {
       "code": "H21.1X2",
       "display": "Other vascular disorders of iris and ciliary body, left eye"
-     },
-     {
-      "code": "H21.1X9",
-      "display": "Other vascular disorders of iris and ciliary body, unspecified eye"
      },
      {
       "code": "H21.531",
@@ -14117,10 +13977,6 @@
       "display": "Other optic atrophy, left eye"
      },
      {
-      "code": "H47.299",
-      "display": "Other optic atrophy, unspecified eye"
-     },
-     {
       "code": "H47.329",
       "display": "Drusen of optic disc, unspecified eye"
      },
@@ -14343,10 +14199,6 @@
      {
       "code": "H52.01",
       "display": "Hypermetropia, right eye"
-     },
-     {
-      "code": "H52.02",
-      "display": "Hypermetropia, left eye"
      },
      {
       "code": "H52.03",
@@ -14717,10 +14569,6 @@
       "display": "Keratopathy (bullous aphakic) following cataract surgery, unspecified eye"
      },
      {
-      "code": "H59.021",
-      "display": "Cataract (lens) fragments in eye following cataract surgery, right eye"
-     },
-     {
       "code": "H59.091",
       "display": "Other disorders of the right eye following cataract surgery"
      },
@@ -15081,10 +14929,6 @@
       "display": "Acute mastoiditis with other complications, bilateral"
      },
      {
-      "code": "H70.10",
-      "display": "Chronic mastoiditis, unspecified ear"
-     },
-     {
       "code": "H70.11",
       "display": "Chronic mastoiditis, right ear"
      },
@@ -15427,10 +15271,6 @@
      {
       "code": "H91.21",
       "display": "Sudden idiopathic hearing loss, right ear"
-     },
-     {
-      "code": "H91.22",
-      "display": "Sudden idiopathic hearing loss, left ear"
      },
      {
       "code": "H91.3",
@@ -15929,10 +15769,6 @@
       "display": "Atherosclerosis of autologous vein coronary artery bypass graft(s) with unstable angina pectoris"
      },
      {
-      "code": "I25.711",
-      "display": "Atherosclerosis of autologous vein coronary artery bypass graft(s) with angina pectoris with documented spasm"
-     },
-     {
       "code": "I25.718",
       "display": "Atherosclerosis of autologous vein coronary artery bypass graft(s) with other forms of angina pectoris"
      },
@@ -15943,10 +15779,6 @@
      {
       "code": "I25.720",
       "display": "Atherosclerosis of autologous artery coronary artery bypass graft(s) with unstable angina pectoris"
-     },
-     {
-      "code": "I25.721",
-      "display": "Atherosclerosis of autologous artery coronary artery bypass graft(s) with angina pectoris with documented spasm"
      },
      {
       "code": "I25.728",
@@ -16207,10 +16039,6 @@
      {
       "code": "I40.9",
       "display": "Acute myocarditis, unspecified"
-     },
-     {
-      "code": "I42",
-      "display": "Cardiomyopathy"
      },
      {
       "code": "I42.0",
@@ -16499,10 +16327,6 @@
      {
       "code": "I51.4",
       "display": "Myocarditis, unspecified"
-     },
-     {
-      "code": "I51.5",
-      "display": "Myocardial degeneration"
      },
      {
       "code": "I51.7",
@@ -17127,10 +16951,6 @@
      {
       "code": "I69.098",
       "display": "Other sequelae following nontraumatic subarachnoid hemorrhage"
-     },
-     {
-      "code": "I69.10",
-      "display": "Unspecified sequelae of nontraumatic intracerebral hemorrhage"
      },
      {
       "code": "I69.11",
@@ -17845,10 +17665,6 @@
       "display": "Other atherosclerosis of autologous vein bypass graft(s) of the extremities, left leg"
      },
      {
-      "code": "I70.498",
-      "display": "Other atherosclerosis of autologous vein bypass graft(s) of the extremities, other extremity"
-     },
-     {
       "code": "I70.502",
       "display": "Unspecified atherosclerosis of nonautologous biological bypass graft(s) of the extremities, left leg"
      },
@@ -17947,10 +17763,6 @@
      {
       "code": "I70.711",
       "display": "Atherosclerosis of other type of bypass graft(s) of the extremities with intermittent claudication, right leg"
-     },
-     {
-      "code": "I70.712",
-      "display": "Atherosclerosis of other type of bypass graft(s) of the extremities with intermittent claudication, left leg"
      },
      {
       "code": "I70.718",
@@ -18573,10 +18385,6 @@
       "display": "Chronic embolism and thrombosis of other specified deep vein of unspecified lower extremity"
      },
      {
-      "code": "I82.5Y1",
-      "display": "Chronic embolism and thrombosis of unspecified deep veins of right proximal lower extremity"
-     },
-     {
       "code": "I82.5Z1",
       "display": "Chronic embolism and thrombosis of unspecified deep veins of right distal lower extremity"
      },
@@ -18783,10 +18591,6 @@
      {
       "code": "I83.002",
       "display": "Varicose veins of unspecified lower extremity with ulcer of calf"
-     },
-     {
-      "code": "I83.003",
-      "display": "Varicose veins of unspecified lower extremity with ulcer of ankle"
      },
      {
       "code": "I83.004",
@@ -20477,10 +20281,6 @@
       "display": "Chronic gingivitis, plaque induced"
      },
      {
-      "code": "K05.11",
-      "display": "Chronic gingivitis, non-plaque induced"
-     },
-     {
       "code": "K05.20",
       "display": "Aggressive periodontitis, unspecified"
      },
@@ -21399,10 +21199,6 @@
      {
       "code": "K51.311",
       "display": "Ulcerative (chronic) rectosigmoiditis with rectal bleeding"
-     },
-     {
-      "code": "K51.313",
-      "display": "Ulcerative (chronic) rectosigmoiditis with fistula"
      },
      {
       "code": "K51.318",
@@ -22989,10 +22785,6 @@
       "display": "Acute lymphadenitis of other sites"
      },
      {
-      "code": "L04.9",
-      "display": "Acute lymphadenitis, unspecified"
-     },
-     {
       "code": "L05.01",
       "display": "Pilonidal cyst with abscess"
      },
@@ -23529,10 +23321,6 @@
       "display": "Lichen planopilaris"
      },
      {
-      "code": "L66.2",
-      "display": "Folliculitis decalvans"
-     },
-     {
       "code": "L68.0",
       "display": "Hirsutism"
      },
@@ -23611,10 +23399,6 @@
      {
       "code": "L74.0",
       "display": "Miliaria rubra"
-     },
-     {
-      "code": "L74.1",
-      "display": "Miliaria crystallina"
      },
      {
       "code": "L74.3",
@@ -24049,20 +23833,12 @@
       "display": "Pressure ulcer of contiguous site of back, buttock and hip, stage 2"
      },
      {
-      "code": "L89.43",
-      "display": "Pressure ulcer of contiguous site of back, buttock and hip, stage 3"
-     },
-     {
       "code": "L89.44",
       "display": "Pressure ulcer of contiguous site of back, buttock and hip, stage 4"
      },
      {
       "code": "L89.45",
       "display": "Pressure ulcer of contiguous site of back, buttock and hip, unstageable"
-     },
-     {
-      "code": "L89.501",
-      "display": "Pressure ulcer of unspecified ankle, stage 1"
      },
      {
       "code": "L89.509",
@@ -24107,10 +23883,6 @@
      {
       "code": "L89.523",
       "display": "Pressure ulcer of left ankle, stage 3"
-     },
-     {
-      "code": "L89.524",
-      "display": "Pressure ulcer of left ankle, stage 4"
      },
      {
       "code": "L89.529",
@@ -24921,10 +24693,6 @@
       "display": "Reiter's disease, right wrist"
      },
      {
-      "code": "M02.352",
-      "display": "Reiter's disease, left hip"
-     },
-     {
       "code": "M02.361",
       "display": "Reiter's disease, right knee"
      },
@@ -25069,10 +24837,6 @@
       "display": "Rheumatoid nodule, unspecified site"
      },
      {
-      "code": "M06.371",
-      "display": "Rheumatoid nodule, right ankle and foot"
-     },
-     {
       "code": "M06.39",
       "display": "Rheumatoid nodule, multiple sites"
      },
@@ -25123,10 +24887,6 @@
      {
       "code": "M06.851",
       "display": "Other specified rheumatoid arthritis, right hip"
-     },
-     {
-      "code": "M06.852",
-      "display": "Other specified rheumatoid arthritis, left hip"
      },
      {
       "code": "M06.861",
@@ -25313,10 +25073,6 @@
       "display": "Drug-induced gout, left ankle and foot"
      },
      {
-      "code": "M10.279",
-      "display": "Drug-induced gout, unspecified ankle and foot"
-     },
-     {
       "code": "M10.29",
       "display": "Drug-induced gout, multiple sites"
      },
@@ -25479,10 +25235,6 @@
      {
       "code": "M12.00",
       "display": "Chronic postrheumatic arthropathy [Jaccoud], unspecified site"
-     },
-     {
-      "code": "M12.20",
-      "display": "Villonodular synovitis (pigmented), unspecified site"
      },
      {
       "code": "M12.261",
@@ -25723,10 +25475,6 @@
      {
       "code": "M14.80",
       "display": "Arthropathies in other specified diseases classified elsewhere, unspecified site"
-     },
-     {
-      "code": "M14.841",
-      "display": "Arthropathies in other specified diseases classified elsewhere, right hand"
      },
      {
       "code": "M14.89",
@@ -25973,10 +25721,6 @@
       "display": "Post-traumatic osteoarthritis, left ankle and foot"
      },
      {
-      "code": "M19.211",
-      "display": "Secondary osteoarthritis, right shoulder"
-     },
-     {
       "code": "M19.212",
       "display": "Secondary osteoarthritis, left shoulder"
      },
@@ -26135,10 +25879,6 @@
      {
       "code": "M20.092",
       "display": "Other deformity of left finger(s)"
-     },
-     {
-      "code": "M20.099",
-      "display": "Other deformity of finger(s), unspecified finger(s)"
      },
      {
       "code": "M20.10",
@@ -26653,10 +26393,6 @@
       "display": "Recurrent dislocation, left hip"
      },
      {
-      "code": "M24.459",
-      "display": "Recurrent dislocation, unspecified hip"
-     },
-     {
       "code": "M24.461",
       "display": "Recurrent dislocation, right knee"
      },
@@ -26747,10 +26483,6 @@
      {
       "code": "M24.575",
       "display": "Contracture, left foot"
-     },
-     {
-      "code": "M24.611",
-      "display": "Ankylosis, right shoulder"
      },
      {
       "code": "M24.621",
@@ -26855,10 +26587,6 @@
      {
       "code": "M25.08",
       "display": "Hemarthrosis, other specified site"
-     },
-     {
-      "code": "M25.151",
-      "display": "Fistula, right hip"
      },
      {
       "code": "M25.152",
@@ -28037,10 +27765,6 @@
       "display": "Unspecified inflammatory spondylopathy, multiple sites in spine"
      },
      {
-      "code": "M47.014",
-      "display": "Anterior spinal artery compression syndromes, thoracic region"
-     },
-     {
       "code": "M47.022",
       "display": "Vertebral artery compression syndromes, cervical region"
      },
@@ -28589,10 +28313,6 @@
       "display": "Dorsopathy, unspecified"
      },
      {
-      "code": "M54",
-      "display": "Dorsalgia"
-     },
-     {
       "code": "M54.06",
       "display": "Panniculitis affecting regions of neck and back, lumbar region"
      },
@@ -28973,10 +28693,6 @@
       "display": "Muscle wasting and atrophy, not elsewhere classified, unspecified shoulder"
      },
      {
-      "code": "M62.532",
-      "display": "Muscle wasting and atrophy, not elsewhere classified, left forearm"
-     },
-     {
       "code": "M62.541",
       "display": "Muscle wasting and atrophy, not elsewhere classified, right hand"
      },
@@ -29161,10 +28877,6 @@
       "display": "Trigger finger, left ring finger"
      },
      {
-      "code": "M65.351",
-      "display": "Trigger finger, right little finger"
-     },
-     {
       "code": "M65.352",
       "display": "Trigger finger, left little finger"
      },
@@ -29317,20 +29029,12 @@
       "display": "Short Achilles tendon (acquired), left ankle"
      },
      {
-      "code": "M67.261",
-      "display": "Synovial hypertrophy, not elsewhere classified, right lower leg"
-     },
-     {
       "code": "M67.271",
       "display": "Synovial hypertrophy, not elsewhere classified, right ankle and foot"
      },
      {
       "code": "M67.341",
       "display": "Transient synovitis, right hand"
-     },
-     {
-      "code": "M67.39",
-      "display": "Transient synovitis, multiple sites"
      },
      {
       "code": "M67.40",
@@ -30713,10 +30417,6 @@
       "display": "Fibrous dysplasia (monostotic), unspecified site"
      },
      {
-      "code": "M85.021",
-      "display": "Fibrous dysplasia (monostotic), right upper arm"
-     },
-     {
       "code": "M85.051",
       "display": "Fibrous dysplasia (monostotic), right thigh"
      },
@@ -30867,10 +30567,6 @@
      {
       "code": "M86.111",
       "display": "Other acute osteomyelitis, right shoulder"
-     },
-     {
-      "code": "M86.112",
-      "display": "Other acute osteomyelitis, left shoulder"
      },
      {
       "code": "M86.132",
@@ -31085,10 +30781,6 @@
       "display": "Idiopathic aseptic necrosis of right femur"
      },
      {
-      "code": "M87.052",
-      "display": "Idiopathic aseptic necrosis of left femur"
-     },
-     {
       "code": "M87.10",
       "display": "Osteonecrosis due to drugs, unspecified bone"
      },
@@ -31099,10 +30791,6 @@
      {
       "code": "M87.122",
       "display": "Osteonecrosis due to drugs, left humerus"
-     },
-     {
-      "code": "M87.150",
-      "display": "Osteonecrosis due to drugs, pelvis"
      },
      {
       "code": "M87.151",
@@ -31307,10 +30995,6 @@
      {
       "code": "M88.852",
       "display": "Osteitis deformans of left thigh"
-     },
-     {
-      "code": "M88.859",
-      "display": "Osteitis deformans of unspecified thigh"
      },
      {
       "code": "M88.861",
@@ -31569,10 +31253,6 @@
       "display": "Chondromalacia, left knee"
      },
      {
-      "code": "M94.351",
-      "display": "Chondrolysis, right hip"
-     },
-     {
       "code": "M94.352",
       "display": "Chondrolysis, left hip"
      },
@@ -31723,10 +31403,6 @@
      {
       "code": "N01.9",
       "display": "Rapidly progressive nephritic syndrome with unspecified morphologic changes"
-     },
-     {
-      "code": "N02.1",
-      "display": "Recurrent and persistent hematuria with focal and segmental glomerular lesions"
      },
      {
       "code": "N02.2",
@@ -32517,10 +32193,6 @@
       "display": "Fournier gangrene"
      },
      {
-      "code": "N49.8",
-      "display": "Inflammatory disorders of other specified male genital organs"
-     },
-     {
       "code": "N49.9",
       "display": "Inflammatory disorder of unspecified male genital organ"
      },
@@ -33005,10 +32677,6 @@
       "display": "Endometrial hyperplasia, unspecified"
      },
      {
-      "code": "N85.01",
-      "display": "Benign endometrial hyperplasia"
-     },
-     {
       "code": "N85.02",
       "display": "Endometrial intraepithelial neoplasia [EIN]"
      },
@@ -33075,10 +32743,6 @@
      {
       "code": "N89.3",
       "display": "Dysplasia of vagina, unspecified"
-     },
-     {
-      "code": "N89.4",
-      "display": "Leukoplakia of vagina"
      },
      {
       "code": "N89.5",
@@ -33253,10 +32917,6 @@
       "display": "Recurrent pregnancy loss"
      },
      {
-      "code": "N97.0",
-      "display": "Female infertility associated with anovulation"
-     },
-     {
       "code": "N97.1",
       "display": "Female infertility of tubal origin"
      },
@@ -33339,10 +32999,6 @@
      {
       "code": "N99.61",
       "display": "Intraoperative hemorrhage and hematoma of a genitourinary system organ or structure complicating a genitourinary system procedure"
-     },
-     {
-      "code": "N99.62",
-      "display": "Intraoperative hemorrhage and hematoma of a genitourinary system organ or structure complicating other procedure"
      },
      {
       "code": "N99.71",
@@ -33451,10 +33107,6 @@
      {
       "code": "O03.7",
       "display": "Embolism following complete or unspecified spontaneous abortion"
-     },
-     {
-      "code": "O03.81",
-      "display": "Shock following complete or unspecified spontaneous abortion"
      },
      {
       "code": "O03.83",
@@ -33655,10 +33307,6 @@
      {
       "code": "O09.813",
       "display": "Supervision of pregnancy resulting from assisted reproductive technology, third trimester"
-     },
-     {
-      "code": "O09.819",
-      "display": "Supervision of pregnancy resulting from assisted reproductive technology, unspecified trimester"
      },
      {
       "code": "O09.823",
@@ -34395,10 +34043,6 @@
      {
       "code": "O30.103",
       "display": "Triplet pregnancy, unspecified number of placenta and unspecified number of amniotic sacs, third trimester"
-     },
-     {
-      "code": "O30.113",
-      "display": "Triplet pregnancy with two or more monochorionic fetuses, third trimester"
      },
      {
       "code": "O31.03X1",
@@ -35441,10 +35085,6 @@
       "display": "Perineal laceration during delivery, unspecified"
      },
      {
-      "code": "O71.03",
-      "display": "Rupture of uterus before onset of labor, third trimester"
-     },
-     {
       "code": "O71.1",
       "display": "Rupture of uterus during labor"
      },
@@ -35787,10 +35427,6 @@
      {
       "code": "O92.29",
       "display": "Other disorders of breast associated with pregnancy and the puerperium"
-     },
-     {
-      "code": "O92.6",
-      "display": "Galactorrhea"
      },
      {
       "code": "O92.79",
@@ -36261,10 +35897,6 @@
       "display": "Streptococcus B carrier state complicating the puerperium"
      },
      {
-      "code": "O99.830",
-      "display": "Other infection carrier state complicating pregnancy"
-     },
-     {
       "code": "O99.834",
       "display": "Other infection carrier state complicating childbirth"
      },
@@ -36331,10 +35963,6 @@
      {
       "code": "O9A.23",
       "display": "Injury, poisoning and certain other consequences of external causes complicating the puerperium"
-     },
-     {
-      "code": "O9A.311",
-      "display": "Physical abuse complicating pregnancy, first trimester"
      },
      {
       "code": "O9A.312",
@@ -36505,10 +36133,6 @@
       "display": "Congenital displaced lens"
      },
      {
-      "code": "Q13.0",
-      "display": "Coloboma of iris"
-     },
-     {
       "code": "Q13.1",
       "display": "Absence of iris"
      },
@@ -36615,10 +36239,6 @@
      {
       "code": "Q23.8",
       "display": "Other congenital malformations of aortic and mitral valves"
-     },
-     {
-      "code": "Q23.9",
-      "display": "Congenital malformation of aortic and mitral valves, unspecified"
      },
      {
       "code": "Q24.0",
@@ -37495,10 +37115,6 @@
      {
       "code": "Q83.1",
       "display": "Accessory breast"
-     },
-     {
-      "code": "Q83.8",
-      "display": "Other congenital malformations of breast"
      },
      {
       "code": "Q85.00",
@@ -38697,10 +38313,6 @@
       "display": "Coma scale, best motor response, localizes pain, at hospital admission"
      },
      {
-      "code": "R40.2354",
-      "display": "Coma scale, best motor response, localizes pain, 24 hours or more after hospital admission"
-     },
-     {
       "code": "R40.2360",
       "display": "Coma scale, best motor response, obeys commands, unspecified time"
      },
@@ -38719,10 +38331,6 @@
      {
       "code": "R40.2364",
       "display": "Coma scale, best motor response, obeys commands, 24 hours or more after hospital admission"
-     },
-     {
-      "code": "R40.241",
-      "display": "Glasgow coma scale score 13-15"
      },
      {
       "code": "R40.243",
@@ -39965,10 +39573,6 @@
       "display": "Open bite of nose, initial encounter"
      },
      {
-      "code": "S01.301A",
-      "display": "Unspecified open wound of right ear, initial encounter"
-     },
-     {
       "code": "S01.302A",
       "display": "Unspecified open wound of left ear, initial encounter"
      },
@@ -40453,10 +40057,6 @@
       "display": "Dislocation of tooth, initial encounter"
      },
      {
-      "code": "S03.4XXA",
-      "display": "Sprain of jaw, initial encounter"
-     },
-     {
       "code": "S03.8XXA",
       "display": "Sprain of joints and ligaments of other parts of head, initial encounter"
      },
@@ -40871,10 +40471,6 @@
      {
       "code": "S06.379D",
       "display": "Contusion, laceration, and hemorrhage of cerebellum with loss of consciousness of unspecified duration, subsequent encounter"
-     },
-     {
-      "code": "S06.379S",
-      "display": "Contusion, laceration, and hemorrhage of cerebellum with loss of consciousness of unspecified duration, sequela"
      },
      {
       "code": "S06.380A",
@@ -41649,10 +41245,6 @@
       "display": "Other displaced fracture of seventh cervical vertebra, subsequent encounter for fracture with routine healing"
      },
      {
-      "code": "S12.690G",
-      "display": "Other displaced fracture of seventh cervical vertebra, subsequent encounter for fracture with delayed healing"
-     },
-     {
       "code": "S12.691A",
       "display": "Other nondisplaced fracture of seventh cervical vertebra, initial encounter for closed fracture"
      },
@@ -41679,10 +41271,6 @@
      {
       "code": "S13.100A",
       "display": "Subluxation of unspecified cervical vertebrae, initial encounter"
-     },
-     {
-      "code": "S13.110A",
-      "display": "Subluxation of C0/C1 cervical vertebrae, initial encounter"
      },
      {
       "code": "S13.120A",
@@ -41739,10 +41327,6 @@
      {
       "code": "S13.4XXD",
       "display": "Sprain of ligaments of cervical spine, subsequent encounter"
-     },
-     {
-      "code": "S13.4XXS",
-      "display": "Sprain of ligaments of cervical spine, sequela"
      },
      {
       "code": "S13.8XXA",
@@ -41913,10 +41497,6 @@
       "display": "Other incomplete lesion at C4 level of cervical spinal cord, initial encounter"
      },
      {
-      "code": "S14.154S",
-      "display": "Other incomplete lesion at C4 level of cervical spinal cord, sequela"
-     },
-     {
       "code": "S14.155A",
       "display": "Other incomplete lesion at C5 level of cervical spinal cord, initial encounter"
      },
@@ -41985,10 +41565,6 @@
       "display": "Injury of cervical sympathetic nerves, subsequent encounter"
      },
      {
-      "code": "S14.8XXA",
-      "display": "Injury of other specified nerves of neck, initial encounter"
-     },
-     {
       "code": "S14.9XXA",
       "display": "Injury of unspecified nerves of neck, initial encounter"
      },
@@ -42035,10 +41611,6 @@
      {
       "code": "S15.212A",
       "display": "Minor laceration of left external jugular vein, initial encounter"
-     },
-     {
-      "code": "S15.312A",
-      "display": "Minor laceration of left internal jugular vein, initial encounter"
      },
      {
       "code": "S15.391A",
@@ -42349,10 +41921,6 @@
       "display": "Laceration without foreign body of left front wall of thorax with penetration into thoracic cavity, initial encounter"
      },
      {
-      "code": "S21.312D",
-      "display": "Laceration without foreign body of left front wall of thorax with penetration into thoracic cavity, subsequent encounter"
-     },
-     {
       "code": "S21.319A",
       "display": "Laceration without foreign body of unspecified front wall of thorax with penetration into thoracic cavity, initial encounter"
      },
@@ -42475,10 +42043,6 @@
      {
       "code": "S22.041A",
       "display": "Stable burst fracture of fourth thoracic vertebra, initial encounter for closed fracture"
-     },
-     {
-      "code": "S22.041D",
-      "display": "Stable burst fracture of fourth thoracic vertebra, subsequent encounter for fracture with routine healing"
      },
      {
       "code": "S22.041G",
@@ -42655,10 +42219,6 @@
      {
       "code": "S22.089G",
       "display": "Unspecified fracture of T11-T12 vertebra, subsequent encounter for fracture with delayed healing"
-     },
-     {
-      "code": "S22.089K",
-      "display": "Unspecified fracture of T11-T12 vertebra, subsequent encounter for fracture with nonunion"
      },
      {
       "code": "S22.089S",
@@ -42949,10 +42509,6 @@
       "display": "Other incomplete lesion at T11-T12 level of thoracic spinal cord, initial encounter"
      },
      {
-      "code": "S24.9XXS",
-      "display": "Injury of unspecified nerve of thorax, sequela"
-     },
-     {
       "code": "S25.00XS",
       "display": "Unspecified injury of thoracic aorta, sequela"
      },
@@ -42995,10 +42551,6 @@
      {
       "code": "S25.512A",
       "display": "Laceration of intercostal blood vessels, left side, initial encounter"
-     },
-     {
-      "code": "S25.891A",
-      "display": "Other specified injury of other blood vessels of thorax, right side, initial encounter"
      },
      {
       "code": "S26.00XA",
@@ -43123,10 +42675,6 @@
      {
       "code": "S27.391S",
       "display": "Other injuries of lung, unilateral, sequela"
-     },
-     {
-      "code": "S27.399A",
-      "display": "Other injuries of lung, unspecified, initial encounter"
      },
      {
       "code": "S27.409A",
@@ -43425,10 +42973,6 @@
       "display": "Unspecified open wound of abdominal wall, left lower quadrant without penetration into peritoneal cavity, sequela"
      },
      {
-      "code": "S31.105A",
-      "display": "Unspecified open wound of abdominal wall, periumbilic region without penetration into peritoneal cavity, initial encounter"
-     },
-     {
       "code": "S31.105D",
       "display": "Unspecified open wound of abdominal wall, periumbilic region without penetration into peritoneal cavity, subsequent encounter"
      },
@@ -43553,10 +43097,6 @@
       "display": "Laceration with foreign body of scrotum and testes, initial encounter"
      },
      {
-      "code": "S31.35XA",
-      "display": "Open bite of scrotum and testes, initial encounter"
-     },
-     {
       "code": "S31.41XA",
       "display": "Laceration without foreign body of vagina and vulva, initial encounter"
      },
@@ -43575,10 +43115,6 @@
      {
       "code": "S31.603A",
       "display": "Unspecified open wound of abdominal wall, right lower quadrant with penetration into peritoneal cavity, initial encounter"
-     },
-     {
-      "code": "S31.605A",
-      "display": "Unspecified open wound of abdominal wall, periumbilic region with penetration into peritoneal cavity, initial encounter"
      },
      {
       "code": "S31.609A",
@@ -43697,10 +43233,6 @@
       "display": "Puncture wound with foreign body of right buttock, initial encounter"
      },
      {
-      "code": "S31.815A",
-      "display": "Open bite of right buttock, initial encounter"
-     },
-     {
       "code": "S31.819A",
       "display": "Unspecified open wound of right buttock, initial encounter"
      },
@@ -43731,10 +43263,6 @@
      {
       "code": "S31.831A",
       "display": "Laceration without foreign body of anus, initial encounter"
-     },
-     {
-      "code": "S31.835A",
-      "display": "Open bite of anus, initial encounter"
      },
      {
       "code": "S32.000A",
@@ -43817,10 +43345,6 @@
       "display": "Unspecified fracture of first lumbar vertebra, subsequent encounter for fracture with delayed healing"
      },
      {
-      "code": "S32.019K",
-      "display": "Unspecified fracture of first lumbar vertebra, subsequent encounter for fracture with nonunion"
-     },
-     {
       "code": "S32.019S",
       "display": "Unspecified fracture of first lumbar vertebra, sequela"
      },
@@ -43873,10 +43397,6 @@
       "display": "Unspecified fracture of second lumbar vertebra, subsequent encounter for fracture with delayed healing"
      },
      {
-      "code": "S32.029K",
-      "display": "Unspecified fracture of second lumbar vertebra, subsequent encounter for fracture with nonunion"
-     },
-     {
       "code": "S32.030A",
       "display": "Wedge compression fracture of third lumbar vertebra, initial encounter for closed fracture"
      },
@@ -43891,10 +43411,6 @@
      {
       "code": "S32.031D",
       "display": "Stable burst fracture of third lumbar vertebra, subsequent encounter for fracture with routine healing"
-     },
-     {
-      "code": "S32.031S",
-      "display": "Stable burst fracture of third lumbar vertebra, sequela"
      },
      {
       "code": "S32.032A",
@@ -44077,14 +43593,6 @@
       "display": "Other fracture of sacrum, subsequent encounter for fracture with routine healing"
      },
      {
-      "code": "S32.19XK",
-      "display": "Other fracture of sacrum, subsequent encounter for fracture with nonunion"
-     },
-     {
-      "code": "S32.19XS",
-      "display": "Other fracture of sacrum, sequela"
-     },
-     {
       "code": "S32.2XXA",
       "display": "Fracture of coccyx, initial encounter for closed fracture"
      },
@@ -44129,10 +43637,6 @@
       "display": "Other fracture of right ilium, initial encounter for open fracture"
      },
      {
-      "code": "S32.391K",
-      "display": "Other fracture of right ilium, subsequent encounter for fracture with nonunion"
-     },
-     {
       "code": "S32.392A",
       "display": "Other fracture of left ilium, initial encounter for closed fracture"
      },
@@ -44143,10 +43647,6 @@
      {
       "code": "S32.392D",
       "display": "Other fracture of left ilium, subsequent encounter for fracture with routine healing"
-     },
-     {
-      "code": "S32.392K",
-      "display": "Other fracture of left ilium, subsequent encounter for fracture with nonunion"
      },
      {
       "code": "S32.399D",
@@ -44333,20 +43833,12 @@
       "display": "Other specified fracture of left acetabulum, subsequent encounter for fracture with routine healing"
      },
      {
-      "code": "S32.492S",
-      "display": "Other specified fracture of left acetabulum, sequela"
-     },
-     {
       "code": "S32.501A",
       "display": "Unspecified fracture of right pubis, initial encounter for closed fracture"
      },
      {
       "code": "S32.501D",
       "display": "Unspecified fracture of right pubis, subsequent encounter for fracture with routine healing"
-     },
-     {
-      "code": "S32.501K",
-      "display": "Unspecified fracture of right pubis, subsequent encounter for fracture with nonunion"
      },
      {
       "code": "S32.502A",
@@ -44395,10 +43887,6 @@
      {
       "code": "S32.592D",
       "display": "Other specified fracture of left pubis, subsequent encounter for fracture with routine healing"
-     },
-     {
-      "code": "S32.592S",
-      "display": "Other specified fracture of left pubis, sequela"
      },
      {
       "code": "S32.599A",
@@ -44479,10 +43967,6 @@
      {
       "code": "S33.111A",
       "display": "Dislocation of L1/L2 lumbar vertebra, initial encounter"
-     },
-     {
-      "code": "S33.121A",
-      "display": "Dislocation of L2/L3 lumbar vertebra, initial encounter"
      },
      {
       "code": "S33.131A",
@@ -44753,10 +44237,6 @@
       "display": "Major laceration of liver, initial encounter"
      },
      {
-      "code": "S36.116D",
-      "display": "Major laceration of liver, subsequent encounter"
-     },
-     {
       "code": "S36.118A",
       "display": "Other injury of liver, initial encounter"
      },
@@ -44877,10 +44357,6 @@
       "display": "Contusion of ascending [right] colon, initial encounter"
      },
      {
-      "code": "S36.521A",
-      "display": "Contusion of transverse colon, initial encounter"
-     },
-     {
       "code": "S36.522A",
       "display": "Contusion of descending [left] colon, initial encounter"
      },
@@ -44943,10 +44419,6 @@
      {
       "code": "S36.63XA",
       "display": "Laceration of rectum, initial encounter"
-     },
-     {
-      "code": "S36.63XS",
-      "display": "Laceration of rectum, sequela"
      },
      {
       "code": "S36.69XA",
@@ -45391,10 +44863,6 @@
      {
       "code": "S41.021A",
       "display": "Laceration with foreign body of right shoulder, initial encounter"
-     },
-     {
-      "code": "S41.022A",
-      "display": "Laceration with foreign body of left shoulder, initial encounter"
      },
      {
       "code": "S41.031A",
@@ -45885,10 +45353,6 @@
       "display": "Other nondisplaced fracture of upper end of right humerus, initial encounter for closed fracture"
      },
      {
-      "code": "S42.294D",
-      "display": "Other nondisplaced fracture of upper end of right humerus, subsequent encounter for fracture with routine healing"
-     },
-     {
       "code": "S42.295A",
       "display": "Other nondisplaced fracture of upper end of left humerus, initial encounter for closed fracture"
      },
@@ -46019,10 +45483,6 @@
      {
       "code": "S42.354A",
       "display": "Nondisplaced comminuted fracture of shaft of humerus, right arm, initial encounter for closed fracture"
-     },
-     {
-      "code": "S42.361A",
-      "display": "Displaced segmental fracture of shaft of humerus, right arm, initial encounter for closed fracture"
      },
      {
       "code": "S42.391A",
@@ -46577,10 +46037,6 @@
       "display": "Strain of muscle, fascia and tendon of long head of biceps, left arm, initial encounter"
      },
      {
-      "code": "S46.112S",
-      "display": "Strain of muscle, fascia and tendon of long head of biceps, left arm, sequela"
-     },
-     {
       "code": "S46.121A",
       "display": "Laceration of muscle, fascia and tendon of long head of biceps, right arm, initial encounter"
      },
@@ -46675,10 +46131,6 @@
      {
       "code": "S47.1XXA",
       "display": "Crushing injury of right shoulder and upper arm, initial encounter"
-     },
-     {
-      "code": "S47.2XXS",
-      "display": "Crushing injury of left shoulder and upper arm, sequela"
      },
      {
       "code": "S48.922A",
@@ -46779,10 +46231,6 @@
      {
       "code": "S50.362A",
       "display": "Insect bite (nonvenomous) of left elbow, initial encounter"
-     },
-     {
-      "code": "S50.372A",
-      "display": "Other superficial bite of left elbow, initial encounter"
      },
      {
       "code": "S50.811A",
@@ -47041,10 +46489,6 @@
       "display": "Displaced fracture of coronoid process of right ulna, initial encounter for closed fracture"
      },
      {
-      "code": "S52.041B",
-      "display": "Displaced fracture of coronoid process of right ulna, initial encounter for open fracture type I or II"
-     },
-     {
       "code": "S52.042A",
       "display": "Displaced fracture of coronoid process of left ulna, initial encounter for closed fracture"
      },
@@ -47213,10 +46657,6 @@
       "display": "Displaced transverse fracture of shaft of right ulna, initial encounter for closed fracture"
      },
      {
-      "code": "S52.221B",
-      "display": "Displaced transverse fracture of shaft of right ulna, initial encounter for open fracture type I or II"
-     },
-     {
       "code": "S52.222A",
       "display": "Displaced transverse fracture of shaft of left ulna, initial encounter for closed fracture"
      },
@@ -47305,10 +46745,6 @@
       "display": "Unspecified fracture of shaft of right radius, initial encounter for open fracture type I or II"
      },
      {
-      "code": "S52.301K",
-      "display": "Unspecified fracture of shaft of right radius, subsequent encounter for closed fracture with nonunion"
-     },
-     {
       "code": "S52.302A",
       "display": "Unspecified fracture of shaft of left radius, initial encounter for closed fracture"
      },
@@ -47327,10 +46763,6 @@
      {
       "code": "S52.321A",
       "display": "Displaced transverse fracture of shaft of right radius, initial encounter for closed fracture"
-     },
-     {
-      "code": "S52.321B",
-      "display": "Displaced transverse fracture of shaft of right radius, initial encounter for open fracture type I or II"
      },
      {
       "code": "S52.322A",
@@ -47549,20 +46981,12 @@
       "display": "Other extraarticular fracture of lower end of right radius, initial encounter for closed fracture"
      },
      {
-      "code": "S52.551B",
-      "display": "Other extraarticular fracture of lower end of right radius, initial encounter for open fracture type I or II"
-     },
-     {
       "code": "S52.552A",
       "display": "Other extraarticular fracture of lower end of left radius, initial encounter for closed fracture"
      },
      {
       "code": "S52.552B",
       "display": "Other extraarticular fracture of lower end of left radius, initial encounter for open fracture type I or II"
-     },
-     {
-      "code": "S52.561A",
-      "display": "Barton's fracture of right radius, initial encounter for closed fracture"
      },
      {
       "code": "S52.571A",
@@ -47635,10 +47059,6 @@
      {
       "code": "S52.602B",
       "display": "Unspecified fracture of lower end of left ulna, initial encounter for open fracture type I or II"
-     },
-     {
-      "code": "S52.602K",
-      "display": "Unspecified fracture of lower end of left ulna, subsequent encounter for closed fracture with nonunion"
      },
      {
       "code": "S52.611A",
@@ -48295,10 +47715,6 @@
      {
       "code": "S60.417A",
       "display": "Abrasion of left little finger, initial encounter"
-     },
-     {
-      "code": "S60.418A",
-      "display": "Abrasion of other finger, initial encounter"
      },
      {
       "code": "S60.419A",
@@ -49181,10 +48597,6 @@
       "display": "Displaced fracture of hook process of hamate [unciform] bone, left wrist, initial encounter for closed fracture"
      },
      {
-      "code": "S62.161A",
-      "display": "Displaced fracture of pisiform, right wrist, initial encounter for closed fracture"
-     },
-     {
       "code": "S62.161D",
       "display": "Displaced fracture of pisiform, right wrist, subsequent encounter for fracture with routine healing"
      },
@@ -49541,10 +48953,6 @@
       "display": "Nondisplaced fracture of base of fourth metacarpal bone, right hand, initial encounter for closed fracture"
      },
      {
-      "code": "S62.344B",
-      "display": "Nondisplaced fracture of base of fourth metacarpal bone, right hand, initial encounter for open fracture"
-     },
-     {
       "code": "S62.345A",
       "display": "Nondisplaced fracture of base of fourth metacarpal bone, left hand, initial encounter for closed fracture"
      },
@@ -49571,10 +48979,6 @@
      {
       "code": "S62.354B",
       "display": "Nondisplaced fracture of shaft of fourth metacarpal bone, right hand, initial encounter for open fracture"
-     },
-     {
-      "code": "S62.355A",
-      "display": "Nondisplaced fracture of shaft of fourth metacarpal bone, left hand, initial encounter for closed fracture"
      },
      {
       "code": "S62.356A",
@@ -49647,10 +49051,6 @@
      {
       "code": "S62.395A",
       "display": "Other fracture of fourth metacarpal bone, left hand, initial encounter for closed fracture"
-     },
-     {
-      "code": "S62.395D",
-      "display": "Other fracture of fourth metacarpal bone, left hand, subsequent encounter for fracture with routine healing"
      },
      {
       "code": "S62.396A",
@@ -49805,10 +49205,6 @@
       "display": "Fracture of unspecified phalanx of right little finger, initial encounter for open fracture"
      },
      {
-      "code": "S62.606D",
-      "display": "Fracture of unspecified phalanx of right little finger, subsequent encounter for fracture with routine healing"
-     },
-     {
       "code": "S62.607A",
       "display": "Fracture of unspecified phalanx of left little finger, initial encounter for closed fracture"
      },
@@ -49843,10 +49239,6 @@
      {
       "code": "S62.612B",
       "display": "Displaced fracture of proximal phalanx of right middle finger, initial encounter for open fracture"
-     },
-     {
-      "code": "S62.612D",
-      "display": "Displaced fracture of proximal phalanx of right middle finger, subsequent encounter for fracture with routine healing"
      },
      {
       "code": "S62.613A",
@@ -49885,20 +49277,12 @@
       "display": "Displaced fracture of proximal phalanx of right little finger, subsequent encounter for fracture with routine healing"
      },
      {
-      "code": "S62.616G",
-      "display": "Displaced fracture of proximal phalanx of right little finger, subsequent encounter for fracture with delayed healing"
-     },
-     {
       "code": "S62.617A",
       "display": "Displaced fracture of proximal phalanx of left little finger, initial encounter for closed fracture"
      },
      {
       "code": "S62.617B",
       "display": "Displaced fracture of proximal phalanx of left little finger, initial encounter for open fracture"
-     },
-     {
-      "code": "S62.617D",
-      "display": "Displaced fracture of proximal phalanx of left little finger, subsequent encounter for fracture with routine healing"
      },
      {
       "code": "S62.617G",
@@ -50217,10 +49601,6 @@
       "display": "Dislocation of carpometacarpal joint of right thumb, initial encounter"
      },
      {
-      "code": "S63.045A",
-      "display": "Dislocation of carpometacarpal joint of left thumb, initial encounter"
-     },
-     {
       "code": "S63.054A",
       "display": "Dislocation of other carpometacarpal joint of right hand, initial encounter"
      },
@@ -50327,10 +49707,6 @@
      {
       "code": "S63.257A",
       "display": "Unspecified dislocation of left little finger, initial encounter"
-     },
-     {
-      "code": "S63.259A",
-      "display": "Unspecified dislocation of unspecified finger, initial encounter"
      },
      {
       "code": "S63.260A",
@@ -50701,10 +50077,6 @@
       "display": "Injury of other nerves at wrist and hand level of left arm, initial encounter"
      },
      {
-      "code": "S64.91XA",
-      "display": "Injury of unspecified nerve at wrist and hand level of right arm, initial encounter"
-     },
-     {
       "code": "S64.91XS",
       "display": "Injury of unspecified nerve at wrist and hand level of right arm, sequela"
      },
@@ -50893,10 +50265,6 @@
       "display": "Laceration of flexor muscle, fascia and tendon of unspecified finger at wrist and hand level, initial encounter"
      },
      {
-      "code": "S66.190A",
-      "display": "Other injury of flexor muscle, fascia and tendon of right index finger at wrist and hand level, initial encounter"
-     },
-     {
       "code": "S66.191A",
       "display": "Other injury of flexor muscle, fascia and tendon of left index finger at wrist and hand level, initial encounter"
      },
@@ -50997,10 +50365,6 @@
       "display": "Other injury of extensor muscle, fascia and tendon of left ring finger at wrist and hand level, initial encounter"
      },
      {
-      "code": "S66.397A",
-      "display": "Other injury of extensor muscle, fascia and tendon of left little finger at wrist and hand level, initial encounter"
-     },
-     {
       "code": "S66.421A",
       "display": "Laceration of intrinsic muscle, fascia and tendon of right thumb at wrist and hand level, initial encounter"
      },
@@ -51043,10 +50407,6 @@
      {
       "code": "S66.911A",
       "display": "Strain of unspecified muscle, fascia and tendon at wrist and hand level, right hand, initial encounter"
-     },
-     {
-      "code": "S66.912A",
-      "display": "Strain of unspecified muscle, fascia and tendon at wrist and hand level, left hand, initial encounter"
      },
      {
       "code": "S66.922A",
@@ -51473,10 +50833,6 @@
       "display": "Puncture wound without foreign body, left hip, initial encounter"
      },
      {
-      "code": "S71.051A",
-      "display": "Open bite, right hip, initial encounter"
-     },
-     {
       "code": "S71.052A",
       "display": "Open bite, left hip, initial encounter"
      },
@@ -51543,10 +50899,6 @@
      {
       "code": "S72.001A",
       "display": "Fracture of unspecified part of neck of right femur, initial encounter for closed fracture"
-     },
-     {
-      "code": "S72.001B",
-      "display": "Fracture of unspecified part of neck of right femur, initial encounter for open fracture type I or II"
      },
      {
       "code": "S72.001D",
@@ -51639,10 +50991,6 @@
      {
       "code": "S72.035A",
       "display": "Nondisplaced midcervical fracture of left femur, initial encounter for closed fracture"
-     },
-     {
-      "code": "S72.035B",
-      "display": "Nondisplaced midcervical fracture of left femur, initial encounter for open fracture type I or II"
      },
      {
       "code": "S72.035D",
@@ -51795,10 +51143,6 @@
      {
       "code": "S72.141K",
       "display": "Displaced intertrochanteric fracture of right femur, subsequent encounter for closed fracture with nonunion"
-     },
-     {
-      "code": "S72.141P",
-      "display": "Displaced intertrochanteric fracture of right femur, subsequent encounter for closed fracture with malunion"
      },
      {
       "code": "S72.142A",
@@ -51965,20 +51309,12 @@
       "display": "Displaced segmental fracture of shaft of right femur, initial encounter for closed fracture"
      },
      {
-      "code": "S72.361B",
-      "display": "Displaced segmental fracture of shaft of right femur, initial encounter for open fracture type I or II"
-     },
-     {
       "code": "S72.362A",
       "display": "Displaced segmental fracture of shaft of left femur, initial encounter for closed fracture"
      },
      {
       "code": "S72.391A",
       "display": "Other fracture of shaft of right femur, initial encounter for closed fracture"
-     },
-     {
-      "code": "S72.391D",
-      "display": "Other fracture of shaft of right femur, subsequent encounter for closed fracture with routine healing"
      },
      {
       "code": "S72.392A",
@@ -52079,10 +51415,6 @@
      {
       "code": "S72.422B",
       "display": "Displaced fracture of lateral condyle of left femur, initial encounter for open fracture type I or II"
-     },
-     {
-      "code": "S72.422E",
-      "display": "Displaced fracture of lateral condyle of left femur, subsequent encounter for open fracture type I or II with routine healing"
      },
      {
       "code": "S72.424A",
@@ -52203,10 +51535,6 @@
      {
       "code": "S72.492B",
       "display": "Other fracture of lower end of left femur, initial encounter for open fracture type I or II"
-     },
-     {
-      "code": "S72.492C",
-      "display": "Other fracture of lower end of left femur, initial encounter for open fracture type IIIA, IIIB, or IIIC"
      },
      {
       "code": "S72.492D",
@@ -52401,20 +51729,12 @@
       "display": "Strain of muscle, fascia and tendon of left hip, initial encounter"
      },
      {
-      "code": "S76.019S",
-      "display": "Strain of muscle, fascia and tendon of unspecified hip, sequela"
-     },
-     {
       "code": "S76.021A",
       "display": "Laceration of muscle, fascia and tendon of right hip, initial encounter"
      },
      {
       "code": "S76.091A",
       "display": "Other specified injury of muscle, fascia and tendon of right hip, initial encounter"
-     },
-     {
-      "code": "S76.092A",
-      "display": "Other specified injury of muscle, fascia and tendon of left hip, initial encounter"
      },
      {
       "code": "S76.102A",
@@ -52503,10 +51823,6 @@
      {
       "code": "S76.912A",
       "display": "Strain of unspecified muscles, fascia and tendons at thigh level, left thigh, initial encounter"
-     },
-     {
-      "code": "S77.01XA",
-      "display": "Crushing injury of right hip, initial encounter"
      },
      {
       "code": "S77.11XA",
@@ -52845,16 +52161,8 @@
       "display": "Puncture wound without foreign body, left lower leg, initial encounter"
      },
      {
-      "code": "S81.832D",
-      "display": "Puncture wound without foreign body, left lower leg, subsequent encounter"
-     },
-     {
       "code": "S81.841A",
       "display": "Puncture wound with foreign body, right lower leg, initial encounter"
-     },
-     {
-      "code": "S81.842A",
-      "display": "Puncture wound with foreign body, left lower leg, initial encounter"
      },
      {
       "code": "S81.851A",
@@ -53003,10 +52311,6 @@
      {
       "code": "S82.101P",
       "display": "Unspecified fracture of upper end of right tibia, subsequent encounter for closed fracture with malunion"
-     },
-     {
-      "code": "S82.101S",
-      "display": "Unspecified fracture of upper end of right tibia, sequela"
      },
      {
       "code": "S82.102A",
@@ -53293,10 +52597,6 @@
       "display": "Displaced transverse fracture of shaft of left tibia, initial encounter for open fracture type IIIA, IIIB, or IIIC"
      },
      {
-      "code": "S82.224A",
-      "display": "Nondisplaced transverse fracture of shaft of right tibia, initial encounter for closed fracture"
-     },
-     {
       "code": "S82.225A",
       "display": "Nondisplaced transverse fracture of shaft of left tibia, initial encounter for closed fracture"
      },
@@ -53373,16 +52673,8 @@
       "display": "Displaced comminuted fracture of shaft of right tibia, initial encounter for open fracture type IIIA, IIIB, or IIIC"
      },
      {
-      "code": "S82.251K",
-      "display": "Displaced comminuted fracture of shaft of right tibia, subsequent encounter for closed fracture with nonunion"
-     },
-     {
       "code": "S82.251M",
       "display": "Displaced comminuted fracture of shaft of right tibia, subsequent encounter for open fracture type I or II with nonunion"
-     },
-     {
-      "code": "S82.251P",
-      "display": "Displaced comminuted fracture of shaft of right tibia, subsequent encounter for closed fracture with malunion"
      },
      {
       "code": "S82.252A",
@@ -53423,10 +52715,6 @@
      {
       "code": "S82.291B",
       "display": "Other fracture of shaft of right tibia, initial encounter for open fracture type I or II"
-     },
-     {
-      "code": "S82.291C",
-      "display": "Other fracture of shaft of right tibia, initial encounter for open fracture type IIIA, IIIB, or IIIC"
      },
      {
       "code": "S82.291D",
@@ -53797,10 +53085,6 @@
       "display": "Nondisplaced fracture of medial malleolus of left tibia, initial encounter for closed fracture"
      },
      {
-      "code": "S82.55XB",
-      "display": "Nondisplaced fracture of medial malleolus of left tibia, initial encounter for open fracture type I or II"
-     },
-     {
       "code": "S82.61XA",
       "display": "Displaced fracture of lateral malleolus of right fibula, initial encounter for closed fracture"
      },
@@ -53889,10 +53173,6 @@
       "display": "Other fracture of upper and lower end of right fibula, subsequent encounter for open fracture type I or II with nonunion"
      },
      {
-      "code": "S82.831S",
-      "display": "Other fracture of upper and lower end of right fibula, sequela"
-     },
-     {
       "code": "S82.832A",
       "display": "Other fracture of upper and lower end of left fibula, initial encounter for closed fracture"
      },
@@ -53937,10 +53217,6 @@
       "display": "Displaced bimalleolar fracture of right lower leg, subsequent encounter for closed fracture with nonunion"
      },
      {
-      "code": "S82.841P",
-      "display": "Displaced bimalleolar fracture of right lower leg, subsequent encounter for closed fracture with malunion"
-     },
-     {
       "code": "S82.842A",
       "display": "Displaced bimalleolar fracture of left lower leg, initial encounter for closed fracture"
      },
@@ -53959,10 +53235,6 @@
      {
       "code": "S82.842E",
       "display": "Displaced bimalleolar fracture of left lower leg, subsequent encounter for open fracture type I or II with routine healing"
-     },
-     {
-      "code": "S82.842H",
-      "display": "Displaced bimalleolar fracture of left lower leg, subsequent encounter for open fracture type I or II with delayed healing"
      },
      {
       "code": "S82.842M",
@@ -53989,16 +53261,8 @@
       "display": "Displaced trimalleolar fracture of right lower leg, initial encounter for open fracture type IIIA, IIIB, or IIIC"
      },
      {
-      "code": "S82.851D",
-      "display": "Displaced trimalleolar fracture of right lower leg, subsequent encounter for closed fracture with routine healing"
-     },
-     {
       "code": "S82.851M",
       "display": "Displaced trimalleolar fracture of right lower leg, subsequent encounter for open fracture type I or II with nonunion"
-     },
-     {
-      "code": "S82.851N",
-      "display": "Displaced trimalleolar fracture of right lower leg, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with nonunion"
      },
      {
       "code": "S82.852A",
@@ -54021,10 +53285,6 @@
       "display": "Displaced trimalleolar fracture of left lower leg, subsequent encounter for closed fracture with delayed healing"
      },
      {
-      "code": "S82.852H",
-      "display": "Displaced trimalleolar fracture of left lower leg, subsequent encounter for open fracture type I or II with delayed healing"
-     },
-     {
       "code": "S82.852M",
       "display": "Displaced trimalleolar fracture of left lower leg, subsequent encounter for open fracture type I or II with nonunion"
      },
@@ -54043,10 +53303,6 @@
      {
       "code": "S82.861A",
       "display": "Displaced Maisonneuve's fracture of right leg, initial encounter for closed fracture"
-     },
-     {
-      "code": "S82.861B",
-      "display": "Displaced Maisonneuve's fracture of right leg, initial encounter for open fracture type I or II"
      },
      {
       "code": "S82.862A",
@@ -54147,10 +53403,6 @@
      {
       "code": "S82.891K",
       "display": "Other fracture of right lower leg, subsequent encounter for closed fracture with nonunion"
-     },
-     {
-      "code": "S82.891M",
-      "display": "Other fracture of right lower leg, subsequent encounter for open fracture type I or II with nonunion"
      },
      {
       "code": "S82.891S",
@@ -54365,10 +53617,6 @@
       "display": "Injury of peroneal nerve at lower leg level, right leg, initial encounter"
      },
      {
-      "code": "S84.11XS",
-      "display": "Injury of peroneal nerve at lower leg level, right leg, sequela"
-     },
-     {
       "code": "S84.12XA",
       "display": "Injury of peroneal nerve at lower leg level, left leg, initial encounter"
      },
@@ -54547,14 +53795,6 @@
      {
       "code": "S86.912A",
       "display": "Strain of unspecified muscle(s) and tendon(s) at lower leg level, left leg, initial encounter"
-     },
-     {
-      "code": "S86.921A",
-      "display": "Laceration of unspecified muscle(s) and tendon(s) at lower leg level, right leg, initial encounter"
-     },
-     {
-      "code": "S86.922A",
-      "display": "Laceration of unspecified muscle(s) and tendon(s) at lower leg level, left leg, initial encounter"
      },
      {
       "code": "S87.01XA",
@@ -54799,10 +54039,6 @@
      {
       "code": "S90.454A",
       "display": "Superficial foreign body, right lesser toe(s), initial encounter"
-     },
-     {
-      "code": "S90.455A",
-      "display": "Superficial foreign body, left lesser toe(s), initial encounter"
      },
      {
       "code": "S90.465A",
@@ -55569,10 +54805,6 @@
       "display": "Displaced fracture of first metatarsal bone, left foot, initial encounter for closed fracture"
      },
      {
-      "code": "S92.312B",
-      "display": "Displaced fracture of first metatarsal bone, left foot, initial encounter for open fracture"
-     },
-     {
       "code": "S92.314A",
       "display": "Nondisplaced fracture of first metatarsal bone, right foot, initial encounter for closed fracture"
      },
@@ -55587,10 +54819,6 @@
      {
       "code": "S92.321B",
       "display": "Displaced fracture of second metatarsal bone, right foot, initial encounter for open fracture"
-     },
-     {
-      "code": "S92.321D",
-      "display": "Displaced fracture of second metatarsal bone, right foot, subsequent encounter for fracture with routine healing"
      },
      {
       "code": "S92.322A",
@@ -55625,20 +54853,12 @@
       "display": "Nondisplaced fracture of second metatarsal bone, left foot, initial encounter for open fracture"
      },
      {
-      "code": "S92.326A",
-      "display": "Nondisplaced fracture of second metatarsal bone, unspecified foot, initial encounter for closed fracture"
-     },
-     {
       "code": "S92.331A",
       "display": "Displaced fracture of third metatarsal bone, right foot, initial encounter for closed fracture"
      },
      {
       "code": "S92.331B",
       "display": "Displaced fracture of third metatarsal bone, right foot, initial encounter for open fracture"
-     },
-     {
-      "code": "S92.331D",
-      "display": "Displaced fracture of third metatarsal bone, right foot, subsequent encounter for fracture with routine healing"
      },
      {
       "code": "S92.331G",
@@ -55667,10 +54887,6 @@
      {
       "code": "S92.335A",
       "display": "Nondisplaced fracture of third metatarsal bone, left foot, initial encounter for closed fracture"
-     },
-     {
-      "code": "S92.336A",
-      "display": "Nondisplaced fracture of third metatarsal bone, unspecified foot, initial encounter for closed fracture"
      },
      {
       "code": "S92.341A",
@@ -55803,10 +55019,6 @@
      {
       "code": "S92.411B",
       "display": "Displaced fracture of proximal phalanx of right great toe, initial encounter for open fracture"
-     },
-     {
-      "code": "S92.411D",
-      "display": "Displaced fracture of proximal phalanx of right great toe, subsequent encounter for fracture with routine healing"
      },
      {
       "code": "S92.412A",
@@ -56041,10 +55253,6 @@
       "display": "Dislocation of metatarsophalangeal joint of left great toe, initial encounter"
      },
      {
-      "code": "S93.124A",
-      "display": "Dislocation of metatarsophalangeal joint of right lesser toe(s), initial encounter"
-     },
-     {
       "code": "S93.125A",
       "display": "Dislocation of metatarsophalangeal joint of left lesser toe(s), initial encounter"
      },
@@ -56061,10 +55269,6 @@
       "display": "Unspecified subluxation of left foot, initial encounter"
      },
      {
-      "code": "S93.304A",
-      "display": "Unspecified dislocation of right foot, initial encounter"
-     },
-     {
       "code": "S93.312A",
       "display": "Subluxation of tarsal joint of left foot, initial encounter"
      },
@@ -56075,14 +55279,6 @@
      {
       "code": "S93.315A",
       "display": "Dislocation of tarsal joint of left foot, initial encounter"
-     },
-     {
-      "code": "S93.321A",
-      "display": "Subluxation of tarsometatarsal joint of right foot, initial encounter"
-     },
-     {
-      "code": "S93.324A",
-      "display": "Dislocation of tarsometatarsal joint of right foot, initial encounter"
      },
      {
       "code": "S93.325A",
@@ -56183,10 +55379,6 @@
      {
       "code": "S93.505A",
       "display": "Unspecified sprain of left lesser toe(s), initial encounter"
-     },
-     {
-      "code": "S93.509A",
-      "display": "Unspecified sprain of unspecified toe(s), initial encounter"
      },
      {
       "code": "S93.512A",
@@ -56949,10 +56141,6 @@
       "display": "Burn of third degree of right forearm, initial encounter"
      },
      {
-      "code": "T22.352A",
-      "display": "Burn of third degree of left shoulder, initial encounter"
-     },
-     {
       "code": "T22.40XA",
       "display": "Corrosion of unspecified degree of shoulder and upper limb, except wrist and hand, unspecified site, initial encounter"
      },
@@ -57269,10 +56457,6 @@
       "display": "Corrosion of third degree of left thumb (nail), initial encounter"
      },
      {
-      "code": "T24.001A",
-      "display": "Burn of unspecified degree of unspecified site of right lower limb, except ankle and foot, initial encounter"
-     },
-     {
       "code": "T24.001D",
       "display": "Burn of unspecified degree of unspecified site of right lower limb, except ankle and foot, subsequent encounter"
      },
@@ -57323,10 +56507,6 @@
      {
       "code": "T24.111A",
       "display": "Burn of first degree of right thigh, initial encounter"
-     },
-     {
-      "code": "T24.112A",
-      "display": "Burn of first degree of left thigh, initial encounter"
      },
      {
       "code": "T24.122A",
@@ -57543,10 +56723,6 @@
      {
       "code": "T28.7XXA",
       "display": "Corrosion of other parts of alimentary tract, initial encounter"
-     },
-     {
-      "code": "T28.8XXA",
-      "display": "Corrosion of internal genitourinary organs, initial encounter"
      },
      {
       "code": "T30.0",
@@ -57979,10 +57155,6 @@
      {
       "code": "T38.6X5D",
       "display": "Adverse effect of antigonadotrophins, antiestrogens, antiandrogens, not elsewhere classified, subsequent encounter"
-     },
-     {
-      "code": "T38.6X6A",
-      "display": "Underdosing of antigonadotrophins, antiestrogens, antiandrogens, not elsewhere classified, initial encounter"
      },
      {
       "code": "T38.7X1A",
@@ -58525,14 +57697,6 @@
       "display": "Adverse effect of benzodiazepines, initial encounter"
      },
      {
-      "code": "T42.4X5D",
-      "display": "Adverse effect of benzodiazepines, subsequent encounter"
-     },
-     {
-      "code": "T42.4X5S",
-      "display": "Adverse effect of benzodiazepines, sequela"
-     },
-     {
       "code": "T42.4X6A",
       "display": "Underdosing of benzodiazepines, initial encounter"
      },
@@ -58629,10 +57793,6 @@
       "display": "Poisoning by tricyclic antidepressants, intentional self-harm, subsequent encounter"
      },
      {
-      "code": "T43.014A",
-      "display": "Poisoning by tricyclic antidepressants, undetermined, initial encounter"
-     },
-     {
       "code": "T43.015A",
       "display": "Adverse effect of tricyclic antidepressants, initial encounter"
      },
@@ -58659,10 +57819,6 @@
      {
       "code": "T43.026A",
       "display": "Underdosing of tetracyclic antidepressants, initial encounter"
-     },
-     {
-      "code": "T43.1X5A",
-      "display": "Adverse effect of monoamine-oxidase-inhibitor antidepressants, initial encounter"
      },
      {
       "code": "T43.201A",
@@ -58703,10 +57859,6 @@
      {
       "code": "T43.222A",
       "display": "Poisoning by selective serotonin reuptake inhibitors, intentional self-harm, initial encounter"
-     },
-     {
-      "code": "T43.223A",
-      "display": "Poisoning by selective serotonin reuptake inhibitors, assault, initial encounter"
      },
      {
       "code": "T43.224A",
@@ -58813,10 +57965,6 @@
       "display": "Poisoning by other antipsychotics and neuroleptics, accidental (unintentional), initial encounter"
      },
      {
-      "code": "T43.591D",
-      "display": "Poisoning by other antipsychotics and neuroleptics, accidental (unintentional), subsequent encounter"
-     },
-     {
       "code": "T43.592A",
       "display": "Poisoning by other antipsychotics and neuroleptics, intentional self-harm, initial encounter"
      },
@@ -58875,10 +58023,6 @@
      {
       "code": "T43.622A",
       "display": "Poisoning by amphetamines, intentional self-harm, initial encounter"
-     },
-     {
-      "code": "T43.623A",
-      "display": "Poisoning by amphetamines, assault, initial encounter"
      },
      {
       "code": "T43.624A",
@@ -59173,14 +58317,6 @@
       "display": "Poisoning by anticoagulants, accidental (unintentional), initial encounter"
      },
      {
-      "code": "T45.512A",
-      "display": "Poisoning by anticoagulants, intentional self-harm, initial encounter"
-     },
-     {
-      "code": "T45.514A",
-      "display": "Poisoning by anticoagulants, undetermined, initial encounter"
-     },
-     {
       "code": "T45.515A",
       "display": "Adverse effect of anticoagulants, initial encounter"
      },
@@ -59275,10 +58411,6 @@
      {
       "code": "T46.1X2A",
       "display": "Poisoning by calcium-channel blockers, intentional self-harm, initial encounter"
-     },
-     {
-      "code": "T46.1X4A",
-      "display": "Poisoning by calcium-channel blockers, undetermined, initial encounter"
      },
      {
       "code": "T46.1X5A",
@@ -59513,10 +58645,6 @@
       "display": "Poisoning by skeletal muscle relaxants [neuromuscular blocking agents], intentional self-harm, initial encounter"
      },
      {
-      "code": "T48.1X3A",
-      "display": "Poisoning by skeletal muscle relaxants [neuromuscular blocking agents], assault, initial encounter"
-     },
-     {
       "code": "T48.1X5A",
       "display": "Adverse effect of skeletal muscle relaxants [neuromuscular blocking agents], initial encounter"
      },
@@ -59723,10 +58851,6 @@
      {
       "code": "T50.4X5A",
       "display": "Adverse effect of drugs affecting uric acid metabolism, initial encounter"
-     },
-     {
-      "code": "T50.4X5D",
-      "display": "Adverse effect of drugs affecting uric acid metabolism, subsequent encounter"
      },
      {
       "code": "T50.4X6A",
@@ -60149,10 +59273,6 @@
       "display": "Ciguatera fish poisoning, accidental (unintentional), initial encounter"
      },
      {
-      "code": "T61.11XA",
-      "display": "Scombroid fish poisoning, accidental (unintentional), initial encounter"
-     },
-     {
       "code": "T61.781A",
       "display": "Other shellfish poisoning, accidental (unintentional), initial encounter"
      },
@@ -60385,10 +59505,6 @@
       "display": "Adult sexual abuse, confirmed, sequela"
      },
      {
-      "code": "T74.31XA",
-      "display": "Adult psychological abuse, confirmed, initial encounter"
-     },
-     {
       "code": "T74.91XA",
       "display": "Unspecified adult maltreatment, confirmed, initial encounter"
      },
@@ -60419,10 +59535,6 @@
      {
       "code": "T75.89XA",
       "display": "Other specified effects of external causes, initial encounter"
-     },
-     {
-      "code": "T75.89XS",
-      "display": "Other specified effects of external causes, sequela"
      },
      {
       "code": "T76.01XA",
@@ -60577,10 +59689,6 @@
       "display": "Traumatic subcutaneous emphysema, sequela"
      },
      {
-      "code": "T79.8XXA",
-      "display": "Other early complications of trauma, initial encounter"
-     },
-     {
       "code": "T79.8XXS",
       "display": "Other early complications of trauma, sequela"
      },
@@ -60685,10 +59793,6 @@
       "display": "Other serum reaction due to administration of blood and blood products, initial encounter"
      },
      {
-      "code": "T80.62XA",
-      "display": "Other serum reaction due to vaccination, initial encounter"
-     },
-     {
       "code": "T80.69XA",
       "display": "Other serum reaction due to other serum, initial encounter"
      },
@@ -60719,10 +59823,6 @@
      {
       "code": "T80.910A",
       "display": "Acute hemolytic transfusion reaction, unspecified incompatibility, initial encounter"
-     },
-     {
-      "code": "T80.911A",
-      "display": "Delayed hemolytic transfusion reaction, unspecified incompatibility, initial encounter"
      },
      {
       "code": "T80.919A",
@@ -60829,20 +59929,12 @@
       "display": "Other complications of foreign body accidentally left in body following other procedure, initial encounter"
      },
      {
-      "code": "T81.61XA",
-      "display": "Aseptic peritonitis due to foreign substance accidentally left during a procedure, initial encounter"
-     },
-     {
       "code": "T81.711A",
       "display": "Complication of renal artery following a procedure, not elsewhere classified, initial encounter"
      },
      {
       "code": "T81.718A",
       "display": "Complication of other artery following a procedure, not elsewhere classified, initial encounter"
-     },
-     {
-      "code": "T81.718D",
-      "display": "Complication of other artery following a procedure, not elsewhere classified, subsequent encounter"
      },
      {
       "code": "T81.719A",
@@ -60999,10 +60091,6 @@
      {
       "code": "T82.330A",
       "display": "Leakage of aortic (bifurcation) graft (replacement), initial encounter"
-     },
-     {
-      "code": "T82.330D",
-      "display": "Leakage of aortic (bifurcation) graft (replacement), subsequent encounter"
      },
      {
       "code": "T82.330S",
@@ -61259,10 +60347,6 @@
      {
       "code": "T82.897A",
       "display": "Other specified complication of cardiac prosthetic devices, implants and grafts, initial encounter"
-     },
-     {
-      "code": "T82.897D",
-      "display": "Other specified complication of cardiac prosthetic devices, implants and grafts, subsequent encounter"
      },
      {
       "code": "T82.898A",
@@ -61697,10 +60781,6 @@
       "display": "Other mechanical complication of internal fixation device of bone of left lower leg, initial encounter"
      },
      {
-      "code": "T84.210A",
-      "display": "Breakdown (mechanical) of internal fixation device of bones of hand and fingers, initial encounter"
-     },
-     {
       "code": "T84.213A",
       "display": "Breakdown (mechanical) of internal fixation device of bones of foot and toes, initial encounter"
      },
@@ -61711,10 +60791,6 @@
      {
       "code": "T84.218A",
       "display": "Breakdown (mechanical) of internal fixation device of other bones, initial encounter"
-     },
-     {
-      "code": "T84.220A",
-      "display": "Displacement of internal fixation device of bones of hand and fingers, initial encounter"
      },
      {
       "code": "T84.223A",
@@ -62003,10 +61079,6 @@
      {
       "code": "T85.09XD",
       "display": "Other mechanical complication of ventricular intracranial (communicating) shunt, subsequent encounter"
-     },
-     {
-      "code": "T85.110A",
-      "display": "Breakdown (mechanical) of implanted electronic neurostimulator (electrode) of brain, initial encounter"
      },
      {
       "code": "T85.111A",
@@ -62579,10 +61651,6 @@
      {
       "code": "V03.02XA",
       "display": "Pedestrian on skateboard injured in collision with car, pick-up truck or van in nontraffic accident, initial encounter"
-     },
-     {
-      "code": "V03.09XA",
-      "display": "Pedestrian with other conveyance injured in collision with car, pick-up truck or van in nontraffic accident, initial encounter"
      },
      {
       "code": "V03.10XA",
@@ -63461,10 +62529,6 @@
       "display": "Person on outside of heavy transport vehicle injured in collision with other nonmotor vehicle in traffic accident, initial encounter"
      },
      {
-      "code": "V67.5XXA",
-      "display": "Driver of heavy transport vehicle injured in collision with fixed or stationary object in traffic accident, initial encounter"
-     },
-     {
       "code": "V68.1XXA",
       "display": "Passenger in heavy transport vehicle injured in noncollision transport accident in nontraffic accident, initial encounter"
      },
@@ -63619,10 +62683,6 @@
      {
       "code": "V82.8XXA",
       "display": "Occupant of streetcar injured in other specified transport accidents, initial encounter"
-     },
-     {
-      "code": "V82.9XXS",
-      "display": "Occupant of streetcar injured in unspecified traffic accident, sequela"
      },
      {
       "code": "V83.0XXA",
@@ -63839,10 +62899,6 @@
      {
       "code": "V98.8XXA",
       "display": "Other specified transport accidents, initial encounter"
-     },
-     {
-      "code": "V98.8XXD",
-      "display": "Other specified transport accidents, subsequent encounter"
      },
      {
       "code": "V98.8XXS",
@@ -64119,10 +63175,6 @@
      {
       "code": "W13.9XXA",
       "display": "Fall from, out of or through building, not otherwise specified, initial encounter"
-     },
-     {
-      "code": "W13.9XXD",
-      "display": "Fall from, out of or through building, not otherwise specified, subsequent encounter"
      },
      {
       "code": "W13.9XXS",
@@ -64495,10 +63547,6 @@
      {
       "code": "W23.1XXA",
       "display": "Caught, crushed, jammed, or pinched between stationary objects, initial encounter"
-     },
-     {
-      "code": "W23.1XXD",
-      "display": "Caught, crushed, jammed, or pinched between stationary objects, subsequent encounter"
      },
      {
       "code": "W24.0XXA",
@@ -64911,10 +63959,6 @@
      {
       "code": "W55.81XA",
       "display": "Bitten by other mammals, initial encounter"
-     },
-     {
-      "code": "W55.89XA",
-      "display": "Other contact with other mammals, initial encounter"
      },
      {
       "code": "W56.31XA",
@@ -65525,10 +64569,6 @@
       "display": "Assault by strike by baseball bat, subsequent encounter"
      },
      {
-      "code": "Y08.02XS",
-      "display": "Assault by strike by baseball bat, sequela"
-     },
-     {
       "code": "Y08.09XA",
       "display": "Assault by strike by other specified type of sport equipment, initial encounter"
      },
@@ -65577,10 +64617,6 @@
       "display": "Contact with hot fluids, undetermined intent, initial encounter"
      },
      {
-      "code": "Y27.9XXA",
-      "display": "Contact with unspecified hot objects, undetermined intent, initial encounter"
-     },
-     {
       "code": "Y28.1XXA",
       "display": "Contact with knife, undetermined intent, initial encounter"
      },
@@ -65627,10 +64663,6 @@
      {
       "code": "Y35.091A",
       "display": "Legal intervention involving other firearm discharge, law enforcement official injured, initial encounter"
-     },
-     {
-      "code": "Y35.093A",
-      "display": "Legal intervention involving other firearm discharge, suspect injured, initial encounter"
      },
      {
       "code": "Y35.391A",
@@ -65843,10 +64875,6 @@
      {
       "code": "Y75.8",
       "display": "Miscellaneous neurological devices associated with adverse incidents, not elsewhere classified"
-     },
-     {
-      "code": "Y76.1",
-      "display": "Therapeutic (nonsurgical) and rehabilitative obstetric and gynecological devices associated with adverse incidents"
      },
      {
       "code": "Y76.2",
@@ -66733,10 +65761,6 @@
       "display": "Activity, wrestling"
      },
      {
-      "code": "Y93.73",
-      "display": "Activity, racquet and hand sports"
-     },
-     {
       "code": "Y93.74",
       "display": "Activity, frisbee"
      },
@@ -67015,10 +66039,6 @@
      {
       "code": "Z11.9",
       "display": "Encounter for screening for infectious and parasitic diseases, unspecified"
-     },
-     {
-      "code": "Z12.0",
-      "display": "Encounter for screening for malignant neoplasm of stomach"
      },
      {
       "code": "Z12.11",
@@ -67785,10 +66805,6 @@
       "display": "Encounter for fitting and adjustment of other specified devices"
      },
      {
-      "code": "Z46.9",
-      "display": "Encounter for fitting and adjustment of unspecified device"
-     },
-     {
       "code": "Z47.1",
       "display": "Aftercare following joint replacement surgery"
      },
@@ -68095,10 +67111,6 @@
      {
       "code": "Z60.2",
       "display": "Problems related to living alone"
-     },
-     {
-      "code": "Z60.3",
-      "display": "Acculturation difficulty"
      },
      {
       "code": "Z60.4",
@@ -70121,10 +69133,6 @@
       "display": "Other specified postprocedural states"
      },
      {
-      "code": "Z99.0",
-      "display": "Dependence on aspirator"
-     },
-     {
       "code": "Z99.11",
       "display": "Dependence on respirator [ventilator] status"
      },
@@ -70185,10 +69193,6 @@
      {
       "code": "D49.512",
       "display": "Neoplasm of unspecified behavior of left kidney"
-     },
-     {
-      "code": "D49.519",
-      "display": "Neoplasm of unspecified behavior of unspecified kidney"
      },
      {
       "code": "D49.59",
@@ -70437,10 +69441,6 @@
      {
       "code": "E11.3521",
       "display": "Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, right eye"
-     },
-     {
-      "code": "E11.3522",
-      "display": "Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, left eye"
      },
      {
       "code": "E11.3532",
@@ -70733,10 +69733,6 @@
      {
       "code": "H40.1192",
       "display": "Primary open-angle glaucoma, unspecified eye, moderate stage"
-     },
-     {
-      "code": "H40.1193",
-      "display": "Primary open-angle glaucoma, unspecified eye, severe stage"
      },
      {
       "code": "H40.1194",
@@ -71391,10 +70387,6 @@
       "display": "Cervical disc disorder at C6-C7 level with myelopathy"
      },
      {
-      "code": "M50.120",
-      "display": "Mid-cervical disc disorder, unspecified"
-     },
-     {
       "code": "M50.121",
       "display": "Cervical disc disorder at C4-C5 level with radiculopathy"
      },
@@ -71647,10 +70639,6 @@
       "display": "Acquired atrophy of left ovary and fallopian tube"
      },
      {
-      "code": "N83.42",
-      "display": "Prolapse and hernia of left ovary and fallopian tube"
-     },
-     {
       "code": "N83.511",
       "display": "Torsion of right ovary and ovarian pedicle"
      },
@@ -71833,10 +70821,6 @@
      {
       "code": "O44.32",
       "display": "Partial placenta previa with hemorrhage, second trimester"
-     },
-     {
-      "code": "O44.33",
-      "display": "Partial placenta previa with hemorrhage, third trimester"
      },
      {
       "code": "O44.42",
@@ -72331,10 +71315,6 @@
       "display": "Fracture of condylar process of left mandible, initial encounter for closed fracture"
      },
      {
-      "code": "S02.612B",
-      "display": "Fracture of condylar process of left mandible, initial encounter for open fracture"
-     },
-     {
       "code": "S02.621A",
       "display": "Fracture of subcondylar process of right mandible, initial encounter for closed fracture"
      },
@@ -72433,10 +71413,6 @@
      {
       "code": "S02.82XA",
       "display": "Fracture of other specified skull and facial bones, left side, initial encounter for closed fracture"
-     },
-     {
-      "code": "S02.82XB",
-      "display": "Fracture of other specified skull and facial bones, left side, initial encounter for open fracture"
      },
      {
       "code": "S02.82XD",
@@ -72617,10 +71593,6 @@
      {
       "code": "T85.734A",
       "display": "Infection and inflammatory reaction due to implanted electronic neurostimulator, generator, initial encounter"
-     },
-     {
-      "code": "T85.735A",
-      "display": "Infection and inflammatory reaction due to cranial or spinal infusion catheter, initial encounter"
      },
      {
       "code": "T85.738A",
@@ -73329,10 +72301,6 @@
       "display": "Driver of dirt bike or motor/cross bike injured in nontraffic accident, initial encounter"
      },
      {
-      "code": "V86.65XA",
-      "display": "Passenger of 3- or 4- wheeled all-terrain vehicle (ATV) injured in nontraffic accident, initial encounter"
-     },
-     {
       "code": "V86.66XA",
       "display": "Passenger of dirt bike or motor/cross bike injured in nontraffic accident, initial encounter"
      },
@@ -73773,14 +72741,6 @@
       "display": "Pyuria"
      },
      {
-      "code": "S02.121A",
-      "display": "Fracture of orbital roof, right side, initial encounter for closed fracture"
-     },
-     {
-      "code": "S02.122A",
-      "display": "Fracture of orbital roof, left side, initial encounter for closed fracture"
-     },
-     {
       "code": "S02.831A",
       "display": "Fracture of medial orbital wall, right side, initial encounter for closed fracture"
      },
@@ -73947,10 +72907,6 @@
       "display": "Intestinal infection due to E. coli, unspecified"
      },
      {
-      "code": "008.04",
-      "display": "Intestinal infection due to enterohemorrhagic E. coli"
-     },
-     {
       "code": "008.09",
       "display": "Intestinal infection due to other intestinal E. coli infections"
      },
@@ -74053,10 +73009,6 @@
      {
       "code": "011.26",
       "display": "Tuberculosis of lung with cavitation, tubercle bacilli not found by bacteriological or histological examination, but tuberculosis confirmed by other methods [inoculation of animals]"
-     },
-     {
-      "code": "011.40",
-      "display": "Tuberculous fibrosis of lung, unspecified"
      },
      {
       "code": "011.60",
@@ -74811,10 +73763,6 @@
       "display": "Other human herpesvirus infection"
      },
      {
-      "code": "059.10",
-      "display": "Parapoxvirus infection, unspecified"
-     },
-     {
       "code": "061",
       "display": "Dengue"
      },
@@ -75163,10 +74111,6 @@
       "display": "Early syphilis, latent, unspecified"
      },
      {
-      "code": "093.1",
-      "display": "Syphilitic aortitis"
-     },
-     {
       "code": "093.22",
       "display": "Syphilitic endocarditis of aortic valve"
      },
@@ -75193,10 +74137,6 @@
      {
       "code": "094.84",
       "display": "Syphilitic optic atrophy"
-     },
-     {
-      "code": "094.85",
-      "display": "Syphilitic retrobulbar neuritis"
      },
      {
       "code": "094.89",
@@ -75399,10 +74339,6 @@
       "display": "Primary coccidioidomycosis (pulmonary)"
      },
      {
-      "code": "114.3",
-      "display": "Other forms of progressive coccidioidomycosis"
-     },
-     {
       "code": "114.5",
       "display": "Pulmonary coccidioidomycosis, unspecified"
      },
@@ -75441,10 +74377,6 @@
      {
       "code": "117.3",
       "display": "Aspergillosis"
-     },
-     {
-      "code": "117.4",
-      "display": "Mycotic mycetomas"
      },
      {
       "code": "117.5",
@@ -75557,10 +74489,6 @@
      {
       "code": "130.0",
       "display": "Meningoencephalitis due to toxoplasmosis"
-     },
-     {
-      "code": "130.2",
-      "display": "Chorioretinitis due to toxoplasmosis"
      },
      {
       "code": "130.7",
@@ -77011,10 +75939,6 @@
       "display": "Burkitt's tumor or lymphoma, lymph nodes of axilla and upper limb"
      },
      {
-      "code": "200.25",
-      "display": "Burkitt's tumor or lymphoma, lymph nodes of inguinal region and lower limb"
-     },
-     {
       "code": "200.27",
       "display": "Burkitt's tumor or lymphoma, spleen"
      },
@@ -77195,10 +76119,6 @@
       "display": "Hodgkin's disease, lymphocytic-histiocytic predominance, unspecified site, extranodal and solid organ sites"
      },
      {
-      "code": "201.41",
-      "display": "Hodgkin's disease, lymphocytic-histiocytic predominance, lymph nodes of head, face, and neck"
-     },
-     {
       "code": "201.43",
       "display": "Hodgkin's disease, lymphocytic-histiocytic predominance, intra-abdominal lymph nodes"
      },
@@ -77367,10 +76287,6 @@
       "display": "Leukemic reticuloendotheliosis, unspecified site, extranodal and solid organ sites"
      },
      {
-      "code": "202.41",
-      "display": "Leukemic reticuloendotheliosis, lymph nodes of head, face, and neck"
-     },
-     {
       "code": "202.52",
       "display": "Letterer-siwe disease, intrathoracic lymph nodes"
      },
@@ -77381,10 +76297,6 @@
      {
       "code": "202.70",
       "display": "Peripheral T cell lymphoma, unspecified site, extranodal and solid organ sites"
-     },
-     {
-      "code": "202.71",
-      "display": "Peripheral T cell lymphoma, lymph nodes of head, face, and neck"
      },
      {
       "code": "202.73",
@@ -77841,14 +76753,6 @@
      {
       "code": "210.4",
       "display": "Benign neoplasm of other and unspecified parts of mouth"
-     },
-     {
-      "code": "210.6",
-      "display": "Benign neoplasm of other parts of oropharynx"
-     },
-     {
-      "code": "210.7",
-      "display": "Benign neoplasm of nasopharynx"
      },
      {
       "code": "210.9",
@@ -78499,10 +77403,6 @@
       "display": "Neoplasm of unspecified nature of bone, soft tissue, and skin"
      },
      {
-      "code": "239.3",
-      "display": "Neoplasm of unspecified nature of breast"
-     },
-     {
       "code": "239.4",
       "display": "Neoplasm of unspecified nature of bladder"
      },
@@ -78699,10 +77599,6 @@
       "display": "Secondary diabetes mellitus with neurological manifestations, uncontrolled"
      },
      {
-      "code": "249.70",
-      "display": "Secondary diabetes mellitus with peripheral circulatory disorders, not stated as uncontrolled, or unspecified"
-     },
-     {
       "code": "249.71",
       "display": "Secondary diabetes mellitus with peripheral circulatory disorders, uncontrolled"
      },
@@ -78881,10 +77777,6 @@
      {
       "code": "250.93",
       "display": "Diabetes with unspecified complication, type I [juvenile type], uncontrolled"
-     },
-     {
-      "code": "251.0",
-      "display": "Hypoglycemic coma"
      },
      {
       "code": "251.1",
@@ -79775,10 +78667,6 @@
       "display": "Beta thalassemia"
      },
      {
-      "code": "282.45",
-      "display": "Delta-beta thalassemia"
-     },
-     {
       "code": "282.46",
       "display": "Thalassemia minor"
      },
@@ -80093,10 +78981,6 @@
      {
       "code": "288.63",
       "display": "Monocytosis (symptomatic)"
-     },
-     {
-      "code": "288.64",
-      "display": "Plasmacytosis"
      },
      {
       "code": "288.66",
@@ -81739,10 +80623,6 @@
       "display": "Meningitis due to viruses not elsewhere classified"
      },
      {
-      "code": "321.8",
-      "display": "Meningitis due to other nonbacterial organisms classified elsewhere"
-     },
-     {
       "code": "322.0",
       "display": "Nonpyogenic meningitis"
      },
@@ -81861,10 +80741,6 @@
      {
       "code": "327.24",
       "display": "Idiopathic sleep related non-obstructive alveolar hypoventilation"
-     },
-     {
-      "code": "327.25",
-      "display": "Congenital central alveolar hypoventilation syndrome"
      },
      {
       "code": "327.26",
@@ -82321,10 +81197,6 @@
      {
       "code": "339.84",
       "display": "Primary exertional headache"
-     },
-     {
-      "code": "339.85",
-      "display": "Primary stabbing headache"
      },
      {
       "code": "339.89",
@@ -83195,20 +82067,12 @@
       "display": "Foreign body in vitreous"
      },
      {
-      "code": "360.65",
-      "display": "Foreign body in posterior wall of eye"
-     },
-     {
       "code": "360.81",
       "display": "Luxation of globe"
      },
      {
       "code": "361.00",
       "display": "Retinal detachment with retinal defect, unspecified"
-     },
-     {
-      "code": "361.01",
-      "display": "Recent retinal detachment, partial, with single defect"
      },
      {
       "code": "361.02",
@@ -84207,10 +83071,6 @@
       "display": "Xeroderma of eyelid"
      },
      {
-      "code": "373.4",
-      "display": "Infective dermatitis of eyelid of types resulting in deformity"
-     },
-     {
       "code": "373.8",
       "display": "Other inflammations of eyelids"
      },
@@ -84353,10 +83213,6 @@
      {
       "code": "375.56",
       "display": "Stenosis of nasolacrimal duct, acquired"
-     },
-     {
-      "code": "375.89",
-      "display": "Other disorders of lacrimal system"
      },
      {
       "code": "375.9",
@@ -84543,10 +83399,6 @@
       "display": "Heterotropia, unspecified"
      },
      {
-      "code": "378.31",
-      "display": "Hypertropia"
-     },
-     {
       "code": "378.32",
       "display": "Hypotropia"
      },
@@ -84657,10 +83509,6 @@
      {
       "code": "379.24",
       "display": "Other vitreous opacities"
-     },
-     {
-      "code": "379.25",
-      "display": "Vitreous membranes and strands"
      },
      {
       "code": "379.27",
@@ -84805,10 +83653,6 @@
      {
       "code": "380.89",
       "display": "Other disorders of external ear"
-     },
-     {
-      "code": "380.9",
-      "display": "Unspecified disorder of external ear"
      },
      {
       "code": "381.00",
@@ -88503,10 +87347,6 @@
       "display": "Acute gastrojejunal ulcer without mention of hemorrhage or perforation, without mention of obstruction"
      },
      {
-      "code": "534.31",
-      "display": "Acute gastrojejunal ulcer without mention of hemorrhage or perforation, with obstruction"
-     },
-     {
       "code": "534.40",
       "display": "Chronic or unspecified gastrojejunal ulcer with hemorrhage, without mention of obstruction"
      },
@@ -88517,10 +87357,6 @@
      {
       "code": "534.50",
       "display": "Chronic or unspecified gastrojejunal ulcer with perforation, without mention of obstruction"
-     },
-     {
-      "code": "534.60",
-      "display": "Chronic or unspecified gastrojejunal ulcer with hemorrhage and perforation, without mention of obstruction"
      },
      {
       "code": "534.70",
@@ -88641,10 +87477,6 @@
      {
       "code": "537.1",
       "display": "Gastric diverticulum"
-     },
-     {
-      "code": "537.2",
-      "display": "Chronic duodenal ileus"
      },
      {
       "code": "537.3",
@@ -90843,10 +89675,6 @@
       "display": "Vulvodynia, unspecified"
      },
      {
-      "code": "625.71",
-      "display": "Vulvar vestibulitis"
-     },
-     {
       "code": "625.79",
       "display": "Other vulvodynia"
      },
@@ -91239,10 +90067,6 @@
       "display": "Unspecified antepartum hemorrhage, antepartum condition or complication"
      },
      {
-      "code": "642.00",
-      "display": "Benign essential hypertension complicating pregnancy, childbirth, and the puerperium, unspecified as to episode of care or not applicable"
-     },
-     {
       "code": "642.01",
       "display": "Benign essential hypertension complicating pregnancy, childbirth, and the puerperium, delivered, with or without mention of antepartum condition"
      },
@@ -91557,10 +90381,6 @@
      {
       "code": "647.11",
       "display": "Gonorrhea of mother, complicating pregnancy, childbirth, or the puerperium, delivered, with or without mention of antepartum condition"
-     },
-     {
-      "code": "647.13",
-      "display": "Gonorrhea of mother, complicating pregnancy, childbirth, or the puerperium, antepartum condition or complication"
      },
      {
       "code": "647.21",
@@ -92011,10 +90831,6 @@
       "display": "Congenital abnormalities of uterus, postpartum condition or complication"
      },
      {
-      "code": "654.10",
-      "display": "Tumors of body of uterus, unspecified as to episode of care or not applicable"
-     },
-     {
       "code": "654.11",
       "display": "Tumors of body of uterus, delivered, with or without mention of antepartum condition"
      },
@@ -92107,10 +90923,6 @@
       "display": "Central nervous system malformation in fetus, antepartum condition or complication"
      },
      {
-      "code": "655.10",
-      "display": "Chromosomal abnormality in fetus, affecting management of mother, unspecified as to episode of care or not applicable"
-     },
-     {
       "code": "655.11",
       "display": "Chromosomal abnormality in fetus, affecting management of mother, delivered, with or without mention of antepartum condition"
      },
@@ -92153,10 +90965,6 @@
      {
       "code": "655.93",
       "display": "Unspecified suspected fetal abnormality, affecting management of mother, antepartum condition or complication"
-     },
-     {
-      "code": "656.01",
-      "display": "Fetal-maternal hemorrhage, delivered, with or without mention of antepartum condition"
      },
      {
       "code": "656.11",
@@ -92317,10 +91125,6 @@
      {
       "code": "659.53",
       "display": "Elderly primigravida, antepartum condition or complication"
-     },
-     {
-      "code": "659.60",
-      "display": "Elderly multigravida, unspecified as to episode of care or not applicable"
      },
      {
       "code": "659.61",
@@ -92715,14 +91519,6 @@
       "display": "Other complications of anesthesia or other sedation in labor and delivery, postpartum condition or complication"
      },
      {
-      "code": "669.01",
-      "display": "Maternal distress complicating labor and delivery, delivered, with or without mention of antepartum condition"
-     },
-     {
-      "code": "669.02",
-      "display": "Maternal distress complicating labor and delivery, delivered, with mention of postpartum complication"
-     },
-     {
       "code": "669.11",
       "display": "Shock during or following labor and delivery, delivered, with or without mention of antepartum condition"
      },
@@ -92917,10 +91713,6 @@
      {
       "code": "671.84",
       "display": "Other venous complications of pregnancy and the puerperium, postpartum condition or complication"
-     },
-     {
-      "code": "671.91",
-      "display": "Unspecified venous complication of pregnancy and the puerperium, delivered, with or without mention of antepartum condition"
      },
      {
       "code": "672.02",
@@ -93627,10 +92419,6 @@
       "display": "Dyshidrosis"
      },
      {
-      "code": "705.82",
-      "display": "Fox-Fordyce disease"
-     },
-     {
       "code": "705.83",
       "display": "Hidradenitis"
      },
@@ -93841,10 +92629,6 @@
      {
       "code": "710.9",
       "display": "Unspecified diffuse connective tissue disease"
-     },
-     {
-      "code": "711.00",
-      "display": "Pyogenic arthritis, site unspecified"
      },
      {
       "code": "711.01",
@@ -95531,10 +94315,6 @@
       "display": "Postoperative heterotopic calcification"
      },
      {
-      "code": "728.19",
-      "display": "Other muscular calcification and ossification"
-     },
-     {
       "code": "728.2",
       "display": "Muscular wasting and disuse atrophy, not elsewhere classified"
      },
@@ -95805,10 +94585,6 @@
      {
       "code": "730.29",
       "display": "Unspecified osteomyelitis, multiple sites"
-     },
-     {
-      "code": "730.33",
-      "display": "Periostitis, without mention of osteomyelitis, forearm"
      },
      {
       "code": "730.88",
@@ -97007,10 +95783,6 @@
       "display": "Syndactyly of toes without fusion of bone"
      },
      {
-      "code": "755.20",
-      "display": "Unspecified reduction deformity of upper limb"
-     },
-     {
       "code": "755.21",
       "display": "Transverse deficiency of upper limb"
      },
@@ -97277,10 +96049,6 @@
      {
       "code": "759.89",
       "display": "Other specified congenital anomalies"
-     },
-     {
-      "code": "759.9",
-      "display": "Congenital anomaly, unspecified"
      },
      {
       "code": "760.71",
@@ -97909,10 +96677,6 @@
      {
       "code": "787.4",
       "display": "Visible peristalsis"
-     },
-     {
-      "code": "787.5",
-      "display": "Abnormal bowel sounds"
      },
      {
       "code": "787.6",
@@ -98743,10 +97507,6 @@
       "display": "Closed fracture of vault of skull with subarachnoid, subdural, and extradural hemorrhage, with loss of consciousness of unspecified duration"
      },
      {
-      "code": "800.30",
-      "display": "Closed fracture of vault of skull with other and unspecified intracranial hemorrhage, unspecified state of consciousness"
-     },
-     {
       "code": "800.31",
       "display": "Closed fracture of vault of skull with other and unspecified intracranial hemorrhage, with no loss of consciousness"
      },
@@ -98937,10 +97697,6 @@
      {
       "code": "801.36",
       "display": "Closed fracture of base of skull with other and unspecified intracranial hemorrhage, with loss of consciousness of unspecified duration"
-     },
-     {
-      "code": "801.39",
-      "display": "Closed fracture of base of skull with other and unspecified intracranial hemorrhage, with concussion, unspecified"
      },
      {
       "code": "801.41",
@@ -99571,10 +98327,6 @@
       "display": "Multiple open pelvic fractures without disruption of pelvic circle"
      },
      {
-      "code": "808.59",
-      "display": "Open fracture of other specified part of pelvis"
-     },
-     {
       "code": "808.8",
       "display": "Closed unspecified fracture of pelvis"
      },
@@ -99665,10 +98417,6 @@
      {
       "code": "812.10",
       "display": "Open fracture of unspecified part of upper end of humerus"
-     },
-     {
-      "code": "812.12",
-      "display": "Open fracture of anatomical neck of humerus"
      },
      {
       "code": "812.13",
@@ -100479,10 +99227,6 @@
       "display": "Open dislocation of radioulnar (joint), distal"
      },
      {
-      "code": "833.13",
-      "display": "Open dislocation of midcarpal (joint)"
-     },
-     {
       "code": "833.14",
       "display": "Open dislocation of carpometacarpal (joint)"
      },
@@ -100931,10 +99675,6 @@
       "display": "Concussion, with loss of consciousness of 30 minutes or less"
      },
      {
-      "code": "850.12",
-      "display": "Concussion, with loss of consciousness from 31 to 59 minutes"
-     },
-     {
       "code": "850.2",
       "display": "Concussion with moderate loss of consciousness"
      },
@@ -100991,10 +99731,6 @@
       "display": "Cortex (cerebral) laceration without mention of open intracranial wound, with prolonged [more than 24 hours] loss of consciousness without return to pre-existing conscious level"
      },
      {
-      "code": "851.26",
-      "display": "Cortex (cerebral) laceration without mention of open intracranial wound, with loss of consciousness of unspecified duration"
-     },
-     {
       "code": "851.40",
       "display": "Cerebellar or brain stem contusion without mention of open intracranial wound, unspecified state of consciousness"
      },
@@ -101013,10 +99749,6 @@
      {
       "code": "851.46",
       "display": "Cerebellar or brain stem contusion without mention of open intracranial wound, with loss of consciousness of unspecified duration"
-     },
-     {
-      "code": "851.50",
-      "display": "Cerebellar or brain stem contusion with open intracranial wound, unspecified state of consciousness"
      },
      {
       "code": "851.60",
@@ -101069,10 +99801,6 @@
      {
       "code": "851.91",
       "display": "Other and unspecified cerebral laceration and contusion, with open intracranial wound, with no loss of consciousness"
-     },
-     {
-      "code": "851.94",
-      "display": "Other and unspecified cerebral laceration and contusion, with open intracranial wound, with prolonged [more than 24 hours] loss of consciousness and return to pre-existing conscious level"
      },
      {
       "code": "851.95",
@@ -101249,10 +99977,6 @@
      {
       "code": "853.12",
       "display": "Other and unspecified intracranial hemorrhage following injury with open intracranial wound, with brief [less than one hour] loss of consciousness"
-     },
-     {
-      "code": "853.16",
-      "display": "Other and unspecified intracranial hemorrhage following injury with open intracranial wound, with loss of consciousness of unspecified duration"
      },
      {
       "code": "854.00",
@@ -101665,10 +100389,6 @@
      {
       "code": "867.6",
       "display": "Injury to other specified pelvic organs, without mention of open wound into cavity"
-     },
-     {
-      "code": "867.7",
-      "display": "Injury to other specified pelvic organs, with open wound into cavity"
      },
      {
       "code": "867.8",
@@ -102123,10 +100843,6 @@
       "display": "Open wound of shoulder region, complicated"
      },
      {
-      "code": "880.12",
-      "display": "Open wound of axillary region, complicated"
-     },
-     {
       "code": "880.13",
       "display": "Open wound of upper arm, complicated"
      },
@@ -102379,10 +101095,6 @@
       "display": "Injury to innominate and subclavian veins"
      },
      {
-      "code": "901.41",
-      "display": "Injury to pulmonary artery"
-     },
-     {
       "code": "901.81",
       "display": "Injury to intercostal artery or vein"
      },
@@ -102457,10 +101169,6 @@
      {
       "code": "902.54",
       "display": "Injury to iliac vein"
-     },
-     {
-      "code": "902.55",
-      "display": "Injury to uterine artery"
      },
      {
       "code": "902.87",
@@ -102813,10 +101521,6 @@
      {
       "code": "912.5",
       "display": "Insect bite, nonvenomous of shoulder and upper arm, infected"
-     },
-     {
-      "code": "912.6",
-      "display": "Superficial foreign body (splinter) of shoulder and upper arm, without major open wound and without mention of infection"
      },
      {
       "code": "912.8",
@@ -103391,10 +102095,6 @@
       "display": "Other burn of cornea and conjunctival sac"
      },
      {
-      "code": "940.9",
-      "display": "Unspecified burn of eye and adnexa"
-     },
-     {
       "code": "941.00",
       "display": "Burn of unspecified degree of face and head, unspecified site"
      },
@@ -103843,10 +102543,6 @@
       "display": "Full-thickness skin loss [third degree nos] of lower leg"
      },
      {
-      "code": "945.36",
-      "display": "Full-thickness skin loss [third degree NOS] of thigh [any part]"
-     },
-     {
       "code": "946.2",
       "display": "Blisters, epidermal loss [second degree] of multiple specified sites"
      },
@@ -104049,10 +102745,6 @@
      {
       "code": "953.5",
       "display": "Injury to lumbosacral plexus"
-     },
-     {
-      "code": "953.9",
-      "display": "Injury to unspecified site of nerve roots and spinal plexus"
      },
      {
       "code": "954.0",
@@ -104713,10 +103405,6 @@
      {
       "code": "980.0",
       "display": "Toxic effect of ethyl alcohol"
-     },
-     {
-      "code": "980.1",
-      "display": "Toxic effect of methyl alcohol"
      },
      {
       "code": "980.2",
@@ -105879,10 +104567,6 @@
       "display": "Other activity involving property and land maintenance, building and construction"
      },
      {
-      "code": "E017.0",
-      "display": "Roller coaster riding"
-     },
-     {
       "code": "E017.9",
       "display": "Other activity involving external motion"
      },
@@ -106203,10 +104887,6 @@
       "display": "Nontraffic accident involving motor-driven snow vehicle injuring driver of motor vehicle other than motorcycle"
      },
      {
-      "code": "E820.3",
-      "display": "Nontraffic accident involving motor-driven snow vehicle injuring passenger on motorcycle"
-     },
-     {
       "code": "E820.4",
       "display": "Nontraffic accident involving motor-driven snow vehicle injuring occupant of streetcar"
      },
@@ -106245,10 +104925,6 @@
      {
       "code": "E821.9",
       "display": "Nontraffic accident involving other off-road motor vehicle injuring unspecified person"
-     },
-     {
-      "code": "E822.2",
-      "display": "Other motor vehicle nontraffic accident involving collision with moving object injuring motorcyclist"
      },
      {
       "code": "E822.7",
@@ -106417,14 +105093,6 @@
      {
       "code": "E832.2",
       "display": "Other accidental submersion or drowning in water transport accident injuring occupant of other watercraft -- crew"
-     },
-     {
-      "code": "E833.1",
-      "display": "Fall on stairs or ladders in water transport injuring occupant of small boat, powered"
-     },
-     {
-      "code": "E834.1",
-      "display": "Other fall from one level to another in water transport injuring occupant of small boat, powered"
      },
      {
       "code": "E834.2",
@@ -106703,10 +105371,6 @@
       "display": "Accidental poisoning by alcoholic beverages"
      },
      {
-      "code": "E860.2",
-      "display": "Accidental poisoning by methyl alcohol"
-     },
-     {
       "code": "E860.3",
       "display": "Accidental poisoning by isopropyl alcohol"
      },
@@ -106951,10 +105615,6 @@
       "display": "Mismatched blood in transfusion"
      },
      {
-      "code": "E876.1",
-      "display": "Wrong fluid in infusion"
-     },
-     {
       "code": "E876.2",
       "display": "Failure in suture and ligature during surgical operation"
      },
@@ -107183,10 +105843,6 @@
       "display": "Burning caused by conflagration in private dwelling"
      },
      {
-      "code": "E890.8",
-      "display": "Other accident resulting from conflagration in private dwelling"
-     },
-     {
       "code": "E891.2",
       "display": "Other smoke and fumes from conflagration in other and unspecified building or structure"
      },
@@ -107235,10 +105891,6 @@
       "display": "Accident caused by excessive heat due to weather conditions"
      },
      {
-      "code": "E900.1",
-      "display": "Accidents due to excessive heat of man-made origin"
-     },
-     {
       "code": "E900.9",
       "display": "Accidents due to excessive heat of unspecified origin"
      },
@@ -107257,10 +105909,6 @@
      {
       "code": "E901.9",
       "display": "Accident due to excessive cold of unspecified origin"
-     },
-     {
-      "code": "E902.1",
-      "display": "Accident due to changes in air pressure in aircraft"
      },
      {
       "code": "E902.2",
@@ -107359,10 +106007,6 @@
       "display": "Earthquakes"
      },
      {
-      "code": "E909.3",
-      "display": "Collapse of dam or man-made structure"
-     },
-     {
       "code": "E910.0",
       "display": "Accidental drowning and submersion while water-skiing"
      },
@@ -107373,10 +106017,6 @@
      {
       "code": "E910.3",
       "display": "Accidental drowning and submersion while swimming or diving for purposes other than recreation or sport"
-     },
-     {
-      "code": "E910.4",
-      "display": "Accidental drowning and submersion in bathtub"
      },
      {
       "code": "E910.8",
@@ -108753,10 +107393,6 @@
      {
       "code": "V02.59",
       "display": "Carrier or suspected carrier of other specified bacterial diseases"
-     },
-     {
-      "code": "V02.60",
-      "display": "Viral hepatitis carrier, unspecified"
      },
      {
       "code": "V02.61",
@@ -110655,10 +109291,6 @@
       "display": "Attention to other artificial opening of urinary tract"
      },
      {
-      "code": "V55.7",
-      "display": "Attention to artificial vagina"
-     },
-     {
       "code": "V55.8",
       "display": "Attention to other specified artificial opening"
      },
@@ -110909,10 +109541,6 @@
      {
       "code": "V61.10",
       "display": "Counseling for marital and partner problems, unspecified"
-     },
-     {
-      "code": "V61.11",
-      "display": "Counseling for victim of spousal and partner abuse"
      },
      {
       "code": "V61.23",

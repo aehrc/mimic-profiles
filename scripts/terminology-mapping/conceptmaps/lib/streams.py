@@ -52,7 +52,7 @@ from common import occurrences
 
 from .assemble import target
 from .canonical import (ICD9_CM, ICD10_CM, ICD10_PCS, LOINC, MIMIC_BASE,
-                        NULL_FLAVOR, RXNORM, SNOMED, TABLE_DIR)
+                        NULL_FLAVOR, RXNORM, SNOMED, TABLE_DIR, UCUM)
 from .curated import MIXED_TARGET_COLUMNS
 from .igsource import resource_path, source_concepts
 from .notation import (dot_icd9_diagnosis, dot_icd9_procedure, dot_icd10cm,
@@ -113,6 +113,51 @@ _GSN_NOTE = (
     "is declared rather than mapped into the substance hierarchy — an omission "
     "by decision, taken after that hierarchy answered `TAB A VITE` with a "
     "nerve agent.")
+
+_UNITS_NOTE = (
+    "Two populations in one CodeSystem, and they need reading apart. 92 of "
+    "these codes are units MIMIC records on Observation.valueQuantity, "
+    "carrying 182M occurrences, and they are ordinary clinical units spelled "
+    "the way a chart spells them — `mmHg`, `mEq/L`, `bpm`, `cmH2O` — each with "
+    "one unambiguous UCUM equivalent. The remaining ~413 are medication "
+    "DOSAGE units, and about half of those are not units of measure at all: "
+    "dose forms (`tab`, `vial`, `PUFF`), quantities that belong in a "
+    "different field (`(1,000 mg)`, `mEq / 250 mL NS`), and ETL artefacts "
+    "(`mg\\ 0 mg`, `Umits`, `tiwst`). Dose forms are mapped to the "
+    "dimensionless UCUM annotation naming them; the rest are declined. "
+    "VALIDITY OF THE SOURCE STRING IS NOT THE ORGANISING PRINCIPLE and a "
+    "consumer must not treat it as one: `K/uL` on Platelet Count parses "
+    "perfectly as KELVIN per microlitre, and `N/A` as newton per ampere, so "
+    "four strings carrying 13M occurrences are valid UCUM meaning something "
+    "other than what MIMIC intends. Those rows carry a comment, enforced by "
+    "the generator wherever source and target differ in canonical dimension.")
+
+_UNITS_NATIVE_NOTE = (
+    "The units MIMIC's ETL had ALREADY normalised, which are not members of "
+    "mimic-units and are reachable through no other stream. Where the ETL "
+    "normalised a unit it wrote the UCUM expression into Quantity.code and "
+    "named http://unitsofmeasure.org in Quantity.system, instead of writing "
+    "the chart spelling under CodeSystem/mimic-units as it usually does — so "
+    "these arrive already standard, and the identity is the honest answer. "
+    "This is NOT the identity group build_units_cm_vs.py argues against: that "
+    "argument is about the 87 mimic-units codes which happen to parse as UCUM, "
+    "where the SYSTEM still changes and `mg/dL` -> `mg/dL` is therefore a real "
+    "translation. Here the system does not change, because it was UCUM in the "
+    "data to begin with. MEASURED, not assumed: the four codes are what the "
+    "2026-08-20 full-warehouse run found on Observation.code and "
+    "Observation.component.code, read from the declared Quantity.system rather "
+    "than inferred from spelling. `mm[Hg]` (3,779,500 occurrences, the two "
+    "blood pressure components) and `[degF]` (1,401,314, body temperature) had "
+    "no answer at all before this stream. `/min` and `%` did resolve, but only "
+    "because they are also mimic-units codes spelled identically to their own "
+    "targets — a coincidence rather than a guarantee, and one a consumer "
+    "cannot see, so they are declared here too. NOTE the spelling divergence "
+    "this makes visible rather than causes: the table maps `bpm` -> "
+    "`/min{beats}` and `insp/min` -> `/min{insp}`, deliberately annotated so "
+    "heart rate stays distinguishable from respiratory rate, while the ETL "
+    "wrote bare `/min` for both. Both answers are in the map because both "
+    "spellings are in the data; the map reports that, it does not reconcile "
+    "it.")
 
 STREAMS = {
     # ------------------------------------------------------------------ #
@@ -331,6 +376,58 @@ STREAMS = {
         "targets": [target(RXNORM, None)],
         "note": _GSN_NOTE,
         "note_url": "https://github.com/fhnaumann/master_thesis_pipeline/issues/29",
+    },
+    "units": {
+        # The one stream whose target is a GRAMMAR. UCUM has no concept list, so
+        # a target is verified by parsing it rather than by $lookup — which
+        # makes this the only table here whose every row is checkable offline,
+        # and the reason its generator needs no network and no threshold.
+        "system": f"{MIMIC_BASE}/CodeSystem/mimic-units",
+        "file": "CodeSystem-mimic-units.json",
+        "table": TABLE_DIR / "units-ucum.csv",
+        "table_columns": ("ucum_code", "ucum_display"),
+        "targets": [target(UCUM, no_dot)],
+        # `equivalent`, not the table default. See lib/assemble._resolve_code:
+        # these rows change how a unit is SPELLED (`mmHg` -> `mm[Hg]`), which is
+        # the same kind of fact as ICD dot insertion, not the undirected
+        # relationship a label-to-concept table asserts.
+        "equivalence": "equivalent",
+        # The occurrence extract covers the ten coded elements in
+        # occurrences/elements.json, and Observation.valueQuantity.code is not
+        # one of them — so the artifact describes NONE of these codes and its
+        # silence must not be read as "never observed". Without this every one
+        # of the 505 would resolve not-observed-in-data and the map would be
+        # empty with every check still green. The units this stream DOES have
+        # counts for live in units/mimic-units-validation.csv, from the
+        # valueshapes extraction; wiring those in properly means adding the
+        # element to elements.json and re-running the occurrence job.
+        "outside_occurrence_extract": True,
+        "note": _UNITS_NOTE,
+    },
+    "units-ucum-native": {
+        # The partner of `units`, and the only identity stream here whose
+        # source system is not a MIMIC one. It exists because Quantity.code has
+        # TWO source systems in the data, not one: mimic-units for the chart
+        # spellings, and UCUM itself wherever the ETL had already normalised.
+        # Both are the same element, so both belong in the same map — see
+        # build_units_cm_vs.py.
+        "system": UCUM,
+        # Enumerated by the ValueSet that is also this map's sourceCanonical,
+        # so the codes the map ANSWERS for and the codes it DECLARES as its
+        # source cannot drift apart: they are read from one resource. Its other
+        # include is a bare compose over mimic-units and carries no `system`,
+        # so igsource.source_concepts skips it here and yields exactly the four
+        # UCUM concepts.
+        "valueset_file": "ValueSet-mimic-quantity-code.json",
+        "identity": True,
+        "targets": [target(UCUM, no_dot)],
+        # For the same reason as `units`: Quantity.code is bound on no element,
+        # so occurrences/elements.json does not describe these codes and their
+        # absence from the extract is silence rather than evidence. The counts
+        # that DO exist for them are in valueshapes/observation-value-shapes.csv
+        # (`units_ucum`), which is where the enumeration above came from.
+        "outside_occurrence_extract": True,
+        "note": _UNITS_NATIVE_NOTE,
     },
     "medication-ndc": {
         "system": f"{MIMIC_BASE}/CodeSystem/mimic-medication-ndc",

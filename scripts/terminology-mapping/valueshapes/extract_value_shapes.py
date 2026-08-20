@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Observe what SHAPE of value each Observation.code actually carries.
+"""Observe what SHAPE of value each coded Observation element actually carries.
 
 Runs ONCE on a CSIRO HPC node against the full Delta warehouse; its three output
 files are then committed to this repo and everything downstream is offline. The
@@ -47,6 +47,9 @@ WHAT IS RECORDED, per (element, system, code):
                   so the consumer compares LOINC's SCALE_TYP against one field
                   rather than re-deriving it from nine counts
   the UNITS       every distinct valueQuantity unit with its UCUM code and count
+  the UCUM SUBSET the same entries restricted to quantities whose declared
+                  `Quantity.system` is UCUM — i.e. the ones the ETL had already
+                  normalised, which the spelling alone cannot identify
   the VALUE DOMAIN  every distinct string-ish value with its count, FREQUENCY
                   ranked and capped at --top-values
 
@@ -75,11 +78,23 @@ code and --max-value-chars bounds the grouping key; both land in the summary,
 and a code whose domain was truncated carries `domain_truncated` so a reader
 cannot mistake 40 values for all of them.
 
-NOT Observation.component.code. Component values live at component.value[x],
-paired with component.code inside the same array element, so observing them
-needs a forEach over `component` rather than the flat view here. That element is
-2 codes at 100% coverage, so it would be machinery for nothing; when it stops
-being 2 codes this is the reason it was left out.
+ALSO Observation.component.code, whose values live at component.value[x], paired
+with component.code inside the same array element. Observing them needs a
+forEach over `component` with the value columns read INSIDE it rather than
+beside it — see VALUE_SCOPES and plan_view.
+
+It was originally left out on the grounds that 2 codes at 100% coverage is
+machinery for nothing, and that reason has NOT expired — it is still 2 codes. It
+came back for one the first pass did not anticipate. MIMIC's ETL populates
+`Quantity.code` itself for some units, and where it does the code it writes is
+already UCUM: the BP components carry `mm[Hg]`, which is a TARGET of
+mimic-units-to-ucum and not a source, so $translate correctly returns no match
+and the value is unreachable by any arm of that map. Fixing it means adding a
+UCUM identity group, and scoping that group needs an enumeration of what the ETL
+actually emits — which for component units nothing had. The flat view could not
+supply it: it reads `Observation.value[x]`, empty on a BP panel, so running this
+element through it would have recorded 2 codes carrying no units at all and
+called that an answer.
 
 Deliberately self-contained: stdlib + pathling/pyspark only, no imports from
 this repo. The node runs Python 3.12 under the REMOTE project's uv environment
@@ -107,6 +122,7 @@ Smoke test against the demo warehouse (laptop, needs pathling + Java):
 """
 
 import argparse
+import collections
 import csv
 import hashlib
 import json
@@ -126,14 +142,43 @@ SUMMARY_NAME = "value-shape-summary.json"
 # Only the elements that HAVE a value[x]. Keyed by the element name in
 # elements.json so the coding path stays in step with count_occurrences.py
 # rather than being re-typed here.
-VALUED_ELEMENTS = ["Observation.code"]
+VALUED_ELEMENTS = ["Observation.code", "Observation.component.code"]
+
+# Elements whose value[x] does NOT live at the resource root. The value columns
+# are read inside a forEach over the scope, and the registry's coding path
+# continues relative to it — so one row per (scope occurrence, Coding) carries
+# that occurrence's own value rather than the resource's.
+#
+# Not in elements.json: the scope is what THIS job needs to attach a value to a
+# code, and count_occurrences.py neither has nor wants an opinion on it. Keeping
+# it here holds to the same split as VALUE_COLUMNS — the registry owns the
+# coding path, this file owns everything about value[x].
+#
+# It is CHECKED against the registry rather than trusted, in plan_view: scope +
+# relative path must reconstruct `extract_path` exactly, so a registry edit that
+# moves the path fails loudly instead of leaving a stale scope that silently
+# reads the wrong value.
+VALUE_SCOPES = {"Observation.component.code": "component"}
 
 SHAPE_COLUMNS = [
     "element", "system", "code", "display", "occurrences",
     "n_quantity", "n_string", "n_codeable", "n_boolean", "n_integer",
     "n_datetime", "n_other", "n_no_value", "n_data_absent",
     "shape", "scale_hint", "distinct_values", "domain_truncated", "units",
+    "units_ucum",
 ]
+
+# `Quantity.system`, which is what actually says whether the ETL wrote a UCUM
+# code or a MIMIC unit string — and it is NOT recoverable from the spelling.
+# MIMIC writes the raw source string into BOTH `unit` and `code` and declares
+# mimic-units (`mmHg`/`mmHg`), so the `unit|code` label below never fires there
+# and every such entry reads as "code unknown". Where the ETL normalises it
+# declares UCUM instead, and it may still write the same string to both fields
+# — the BP components are `mm[Hg]`/`mm[Hg]`/UCUM. Those two cases are
+# indistinguishable by label and opposite in meaning, so `units_ucum` is
+# recorded from the declared system rather than inferred.
+UCUM_SYSTEM = "http://unitsofmeasure.org"
+
 DOMAIN_COLUMNS = ["element", "system", "code", "rank", "value", "occurrences"]
 
 # The value[x] choices read as their own columns. Every path is single-valued by
@@ -176,28 +221,60 @@ def log(msg):
 def plan_view(element):
     """The SQL-on-FHIR view for one element: one row per Coding, value attached.
 
-    Two select entries at the same level. The first reads the value[x] choices
-    as scalar columns of the resource; the second is the `forEach` over
-    `code.coding` that count_occurrences.py established, which is what keeps
-    system/code/display aligned per Coding instead of cross-joining them.
-    Together they yield one row per Coding carrying that resource's value — so a
-    CodeableConcept with two Codings counts its value under both, which is
-    correct: both codes were used to say it.
+    ROOT-SCOPED (Observation.code). Two select entries at the same level. The
+    first reads the value[x] choices as scalar columns of the resource; the
+    second is the `forEach` over `code.coding` that count_occurrences.py
+    established, which is what keeps system/code/display aligned per Coding
+    instead of cross-joining them. Together they yield one row per Coding
+    carrying that resource's value — so a CodeableConcept with two Codings
+    counts its value under both, which is correct: both codes were used to say
+    it.
 
-    `forEach`, not `forEachOrNull`: a resource with no code contributes no rows,
-    because "absent" is not a coded value and must not become one.
+    SCOPE-NESTED (Observation.component.code, via VALUE_SCOPES). The same two
+    reads, one level down: a `forEach` over the scope carries the value columns,
+    and the coding `forEach` NESTS INSIDE it. Both must be inside, and inside
+    the same iteration — a component's value and its code are siblings in one
+    array element, so reading the values beside the scope instead of within it
+    would pair every code with every value in the resource, and reading them at
+    the root would pair a component code with `Observation.value[x]`, which on
+    the population this exists for is empty. Same column names either way, so
+    extract_element does not know which shape it is reading.
+
+    `forEach`, not `forEachOrNull`, at every level: a resource with no code
+    contributes no rows, because "absent" is not a coded value and must not
+    become one. Applied to the scope this also means a component-free
+    Observation contributes nothing, which is the same statement about the same
+    kind of absence.
     """
-    return {
-        "resource_type": element["resource_type"],
-        "select": [
-            {"column": [{"path": path, "name": name}
-                        for name, path in VALUE_COLUMNS]},
-            {"forEach": element["extract_path"],
-             "column": [{"path": "system", "name": "system"},
-                        {"path": "code", "name": "code"},
-                        {"path": "display", "name": "display"}]},
-        ],
-    }
+    value_column = [{"path": path, "name": name}
+                    for name, path in VALUE_COLUMNS]
+    coding_column = [{"path": "system", "name": "system"},
+                     {"path": "code", "name": "code"},
+                     {"path": "display", "name": "display"}]
+
+    path = element["extract_path"]
+    scope = VALUE_SCOPES.get(element["element"])
+    if scope is None:
+        select = [{"column": value_column},
+                  {"forEach": path, "column": coding_column}]
+    else:
+        prefix = f"{scope}."
+        if not path.startswith(prefix):
+            # The scope is stated here and the path in elements.json; this is
+            # the check that stops them drifting apart silently. Failing the
+            # whole run is right — a wrong scope reads a real value from the
+            # wrong place, which no output column would reveal.
+            log(f"ERROR: {element['element']}: VALUE_SCOPES says {scope!r} but "
+                f"the registry's extract_path is {path!r}, which does not "
+                f"start with {prefix!r}. One of the two has moved.")
+            sys.exit(2)
+        select = [{"forEach": scope,
+                   "column": value_column,
+                   "select": [{"forEach": path[len(prefix):],
+                               "column": coding_column}]}]
+
+    return {"resource_type": element["resource_type"], "select": select,
+            "scope": scope}
 
 
 def load_registry(path, wanted):
@@ -257,8 +334,16 @@ def do_dry_run(elements, args):
         print("=" * 74)
         print(f"[{i}] {element['element']}")
         print(f"    resource : {plan['resource_type']}")
-        print(f"    forEach  : {element['extract_path']}")
-        print(f"    value[x] : {len(VALUE_COLUMNS)} scalar column(s)")
+        if plan["scope"]:
+            nested = plan["select"][0]["select"][0]["forEach"]
+            print(f"    forEach  : {plan['scope']}  <- value[x] read HERE, "
+                  f"per occurrence")
+            print(f"      forEach: {nested}  -> system, code, display")
+        else:
+            print(f"    forEach  : {element['extract_path']}  -> system, "
+                  f"code, display")
+        print(f"    value[x] : {len(VALUE_COLUMNS)} scalar column(s), relative "
+              f"to {plan['scope'] or plan['resource_type']}")
         for name, path in VALUE_COLUMNS:
             print(f"        {name:<15} {path}")
         print("    pass 1   : groupBy(system, code) -> shape counts")
@@ -334,6 +419,7 @@ def extract_element(data, element, args):
         F.coalesce(F.col("code"), F.lit("")).alias("code"),
         F.col("display"),
         F.col("qty_value"), F.col("qty_unit"), F.col("qty_ucum"),
+        F.col("qty_system"),
         F.col("val_string"), F.col("cc_text"), F.col("cc_present"),
         F.col("val_boolean"), F.col("val_integer"), F.col("val_datetime"),
         F.col("val_time"), F.col("period_present"), F.col("range_present"),
@@ -384,19 +470,26 @@ def extract_element(data, element, args):
     ).collect())
 
     # ---- pass 2: units, with counts. A few per code at most. ----
+    # Grouped by qty_system too, so `units_ucum` can be split off by the
+    # DECLARED system — see UCUM_SYSTEM for why the spelling cannot say it. The
+    # `units` cell is then re-summed over qty_system, so it keeps exactly the
+    # meaning and format it had before this column existed: one entry per
+    # distinct (unit, code) however many systems declared it.
     units = (view.filter(F.col("qty_unit").isNotNull()
                          | F.col("qty_ucum").isNotNull())
-             .groupBy("system", "code", "qty_unit", "qty_ucum")
+             .groupBy("system", "code", "qty_unit", "qty_ucum", "qty_system")
              .agg(F.count(F.lit(1)).alias("n"))
-             .orderBy("system", "code", F.desc("n"))
              .collect())
-    by_code_units = {}
+    by_code_units = collections.defaultdict(collections.Counter)
+    by_code_ucum = collections.defaultdict(collections.Counter)
     for row in units:
         unit = row["qty_unit"] or ""
         ucum = row["qty_ucum"] or ""
         label = f"{unit}|{ucum}" if ucum and ucum != unit else (unit or ucum)
-        by_code_units.setdefault((row["system"], row["code"]), []).append(
-            f"{label}={row['n']}")
+        key = (row["system"], row["code"])
+        by_code_units[key][label] += row["n"]
+        if row["qty_system"] == UCUM_SYSTEM:
+            by_code_ucum[key][label] += row["n"]
 
     # ---- pass 3: the value domain, frequency ranked, capped ----
     counted = (view.filter(F.col("value_key").isNotNull()
@@ -416,6 +509,16 @@ def extract_element(data, element, args):
                     "occurrences": r["n"]}
                    for r in ranked]
 
+    def render_units(counter):
+        """`label=count` entries, descending count, label as tiebreak.
+
+        The tiebreak is what makes the cell stable across runs — Spark's own
+        ordering is not, and this file is committed and diffed.
+        """
+        return ";".join(f"{label}={n}" for label, n
+                        in sorted(counter.items(), key=lambda kv: (-kv[1],
+                                                                  kv[0])))
+
     shape_rows = []
     for r in shapes:
         counts = {c: r[c] for c in (
@@ -432,7 +535,8 @@ def extract_element(data, element, args):
             "shape": shape, "scale_hint": hint,
             "distinct_values": distinct,
             "domain_truncated": ("yes" if distinct > args.top_values else ""),
-            "units": ";".join(by_code_units.get((r["system"], r["code"]), [])),
+            "units": render_units(by_code_units[(r["system"], r["code"])]),
+            "units_ucum": render_units(by_code_ucum[(r["system"], r["code"])]),
         })
 
     truncated = sum(1 for r in shape_rows if r["domain_truncated"])

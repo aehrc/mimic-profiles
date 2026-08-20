@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-06T10:33:25+00:00",
- "host": "c069",
+ "generated": "2026-08-20T04:25:41+00:00",
+ "host": "c201",
  "warehouse": "/scratch3/nau025/mimic-on-fhir-delta/spark_warehouse",
  "shapes_csv": "observation-value-shapes.csv",
- "shapes_csv_sha256": "5522f924c47286954981569fbc1760d9fa1c8edbdc25ab6b15d7404610bd70f7",
+ "shapes_csv_sha256": "c5e8bbfb1dba174080b13ad96fd1ad84097d6c4b80642472d5fa43f290329756",
  "domains_csv": "observation-value-domains.csv",
  "domains_csv_sha256": "65ab0c27e837b5388e1aa6ddac4e6d4dc742aa07471b97b25725640273e8ae05",
  "caps": {
@@ -35,6 +35,14 @@
     "mixed": 309,
     "no-value": 72,
     "quantitative": 1440
+   }
+  },
+  "Observation.component.code": {
+   "codings": 3979394,
+   "distinct_codes": 2,
+   "domains_truncated": 0,
+   "shapes": {
+    "quantitative": 2
    }
   }
  }

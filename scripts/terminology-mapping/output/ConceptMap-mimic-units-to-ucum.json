@@ -1,0 +1,5456 @@
+{
+ "resourceType": "ConceptMap",
+ "id": "mimic-units-to-ucum",
+ "url": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-units-to-ucum",
+ "version": "1.0.0",
+ "name": "MimicUnitsToUcum",
+ "title": "MIMIC unit strings to UCUM",
+ "status": "active",
+ "experimental": false,
+ "date": "2026-08-20",
+ "publisher": "CSIRO",
+ "description": "Maps the unit strings MIMIC records in Quantity.code onto UCUM expressions, so a consumer can translate every Quantity in the warehouse through a single ConceptMap and get a value it can convert, compare and plot. MIMIC writes its units under a local CodeSystem (mimic-units) rather than under UCUM: they are chart spellings \u2014 `mmHg`, `mEq/L`, `cmH2O`, `bpm` \u2014 and 418 of the 505 do not parse as UCUM at all. Source and target are the same element, so a consumer $translates Quantity.code, writes the answer back to Quantity.code and sets Quantity.system to http://unitsofmeasure.org, leaving Quantity.unit as the display it always was. There is no identity group: the system changes on every row, so even `mg/dL` -> `mg/dL` is a translation rather than a no-op, and no code is omitted on the grounds that it needs none. Every target is a parseable UCUM expression \u2014 the generator gates on that offline, so unlike this repo's other tables no row rests on a confidence score. Counted units keep their UCUM annotation, so `bpm` becomes `/min{beats}` and `insp/min` becomes `/min{insp}`; both canonicalise to `s-1` exactly as plain `/min` does, and the annotation is what keeps the two distinguishable after translation. A code this map does not resolve is declared as an unmatched element carrying its reason, never silently omitted.",
+ "purpose": "Lets a consumer normalise every MIMIC Quantity to UCUM with one $translate. Read three things before relying on it. FIRST, a valid source string is not a correct one: nine mappings change what the value DENOTES, not merely how it is spelled, because the MIMIC string parses as UCUM and means something else \u2014 `K/uL` on platelet counts is KELVIN per microlitre, `m/uL` on red cell counts is METRES per microlitre, `EA` is the EXA-AMPERE, and `N/A` is NEWTON PER AMPERE and is declined for it. Each carries a comment saying so, and a consumer that re-derives units from the source strings rather than through this map will get those wrong. SECOND, equivalence here is 'equivalent' rather than the 'relatedto' this repo's other curated tables use, because these rows restate a unit's notation rather than assert an undirected relationship between two concepts \u2014 so unlike the Specimen and Procedure maps, filtering on 'equivalent' keeps this field's mappings. THIRD, the source CodeSystem holds two populations: the units on Observation.valueQuantity, which map nearly completely, and the medication dosage strings, about half of which are not units of measure at all \u2014 dose forms, whole quantities written into the unit column, and ETL artefacts. Countable dose forms are mapped to the dimensionless UCUM annotation naming them (`tab` -> `{tablet}`), which is legal UCUM and dimensionless, so a consumer must not read one as a measured amount. The rest are declared unmatched with a reason, and several of those reasons name an ETL defect rather than a terminology gap: a unit column holding `(1,000 mg)` or `Units Insulin Glargine` is carrying a value or a product, and no ConceptMap can split that out.",
+ "sourceCanonical": "http://mimic.mit.edu/fhir/mimic/ValueSet/mimic-quantity-code",
+ "targetCanonical": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-units-ucum",
+ "group": [
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-units",
+   "target": "http://unitsofmeasure.org",
+   "element": [
+    {
+     "code": "#/hpf",
+     "display": "#/hpf",
+     "target": [
+      {
+       "code": "/[HPF]",
+       "equivalence": "equivalent",
+       "display": "/[HPF]"
+      }
+     ]
+    },
+    {
+     "code": "#/lpf",
+     "display": "#/lpf",
+     "target": [
+      {
+       "code": "/[LPF]",
+       "equivalence": "equivalent",
+       "display": "/[LPF]"
+      }
+     ]
+    },
+    {
+     "code": "#/uL",
+     "display": "#/uL",
+     "target": [
+      {
+       "code": "/uL",
+       "equivalence": "equivalent",
+       "display": "/uL"
+      }
+     ]
+    },
+    {
+     "code": "%",
+     "display": "%",
+     "target": [
+      {
+       "code": "%",
+       "equivalence": "equivalent",
+       "display": "%"
+      }
+     ]
+    },
+    {
+     "code": "/hour",
+     "display": "/hour",
+     "target": [
+      {
+       "code": "/h",
+       "equivalence": "equivalent",
+       "display": "/h"
+      }
+     ]
+    },
+    {
+     "code": "/hpf",
+     "display": "/hpf",
+     "target": [
+      {
+       "code": "/[HPF]",
+       "equivalence": "equivalent",
+       "display": "/[HPF]"
+      }
+     ]
+    },
+    {
+     "code": "/hr",
+     "display": "/hr",
+     "target": [
+      {
+       "code": "/h",
+       "equivalence": "equivalent",
+       "display": "/h"
+      }
+     ]
+    },
+    {
+     "code": "/min",
+     "display": "/min",
+     "target": [
+      {
+       "code": "/min",
+       "equivalence": "equivalent",
+       "display": "/min"
+      }
+     ]
+    },
+    {
+     "code": "/mm3",
+     "display": "/mm3",
+     "target": [
+      {
+       "code": "/mm3",
+       "equivalence": "equivalent",
+       "display": "/mm3"
+      }
+     ]
+    },
+    {
+     "code": "AMP",
+     "display": "AMP",
+     "target": [
+      {
+       "code": "{ampule}",
+       "equivalence": "equivalent",
+       "display": "{ampule}"
+      }
+     ]
+    },
+    {
+     "code": "Appl",
+     "display": "Appl",
+     "target": [
+      {
+       "code": "{applicator}",
+       "equivalence": "equivalent",
+       "display": "{applicator}"
+      }
+     ]
+    },
+    {
+     "code": "BAG",
+     "display": "BAG",
+     "target": [
+      {
+       "code": "{bag}",
+       "equivalence": "equivalent",
+       "display": "{bag}"
+      }
+     ]
+    },
+    {
+     "code": "BAGS",
+     "display": "BAGS",
+     "target": [
+      {
+       "code": "{bag}",
+       "equivalence": "equivalent",
+       "display": "{bag}"
+      }
+     ]
+    },
+    {
+     "code": "BTL",
+     "display": "BTL",
+     "target": [
+      {
+       "code": "{bottle}",
+       "equivalence": "equivalent",
+       "display": "{bottle}"
+      }
+     ]
+    },
+    {
+     "code": "BU",
+     "display": "BU",
+     "target": [
+      {
+       "code": "[beth'U]",
+       "equivalence": "equivalent",
+       "display": "[beth'U]",
+       "comment": "Bethesda units, on Factor IX Inhibitor. One occurrence in the whole warehouse."
+      }
+     ]
+    },
+    {
+     "code": "Bottle",
+     "display": "Bottle",
+     "target": [
+      {
+       "code": "{bottle}",
+       "equivalence": "equivalent",
+       "display": "{bottle}"
+      }
+     ]
+    },
+    {
+     "code": "CAN",
+     "display": "CAN",
+     "target": [
+      {
+       "code": "{can}",
+       "equivalence": "equivalent",
+       "display": "{can}"
+      }
+     ]
+    },
+    {
+     "code": "CAP",
+     "display": "CAP",
+     "target": [
+      {
+       "code": "{capsule}",
+       "equivalence": "equivalent",
+       "display": "{capsule}"
+      }
+     ]
+    },
+    {
+     "code": "CUP",
+     "display": "CUP",
+     "target": [
+      {
+       "code": "{cup}",
+       "equivalence": "equivalent",
+       "display": "{cup}"
+      }
+     ]
+    },
+    {
+     "code": "Cap",
+     "display": "Cap",
+     "target": [
+      {
+       "code": "{capsule}",
+       "equivalence": "equivalent",
+       "display": "{capsule}"
+      }
+     ]
+    },
+    {
+     "code": "DOSE",
+     "display": "DOSE",
+     "target": [
+      {
+       "code": "{dose}",
+       "equivalence": "equivalent",
+       "display": "{dose}"
+      }
+     ]
+    },
+    {
+     "code": "DROP",
+     "display": "DROP",
+     "target": [
+      {
+       "code": "{drop}",
+       "equivalence": "equivalent",
+       "display": "{drop}"
+      }
+     ]
+    },
+    {
+     "code": "DROPS",
+     "display": "DROPS",
+     "target": [
+      {
+       "code": "{drop}",
+       "equivalence": "equivalent",
+       "display": "{drop}"
+      }
+     ]
+    },
+    {
+     "code": "DROPs",
+     "display": "DROPs",
+     "target": [
+      {
+       "code": "{drop}",
+       "equivalence": "equivalent",
+       "display": "{drop}"
+      }
+     ]
+    },
+    {
+     "code": "DRP",
+     "display": "DRP",
+     "target": [
+      {
+       "code": "{drop}",
+       "equivalence": "equivalent",
+       "display": "{drop}"
+      }
+     ]
+    },
+    {
+     "code": "Degree",
+     "display": "Degree",
+     "target": [
+      {
+       "code": "deg",
+       "equivalence": "equivalent",
+       "display": "deg",
+       "comment": "Head of Bed Measurement: an angle in degrees of arc, not a temperature."
+      }
+     ]
+    },
+    {
+     "code": "Dose",
+     "display": "Dose",
+     "target": [
+      {
+       "code": "{dose}",
+       "equivalence": "equivalent",
+       "display": "{dose}"
+      }
+     ]
+    },
+    {
+     "code": "Drop",
+     "display": "Drop",
+     "target": [
+      {
+       "code": "{drop}",
+       "equivalence": "equivalent",
+       "display": "{drop}"
+      }
+     ]
+    },
+    {
+     "code": "EA",
+     "display": "EA",
+     "target": [
+      {
+       "code": "{each}",
+       "equivalence": "equivalent",
+       "display": "{each}",
+       "comment": "`EA` is `each`, a dispensing count. As UCUM it parses \u2014 as the EXA-AMPERE, 10^18 amperes. Found by _check_dimension rather than by reading the table, which is the whole argument for that gate: it is the same class as `K/uL` and `N/A`, and nobody had noticed it."
+      }
+     ]
+    },
+    {
+     "code": "ENE",
+     "display": "ENE",
+     "target": [
+      {
+       "code": "{enema}",
+       "equivalence": "equivalent",
+       "display": "{enema}"
+      }
+     ]
+    },
+    {
+     "code": "ENEMA",
+     "display": "ENEMA",
+     "target": [
+      {
+       "code": "{enema}",
+       "equivalence": "equivalent",
+       "display": "{enema}"
+      }
+     ]
+    },
+    {
+     "code": "Enema",
+     "display": "Enema",
+     "target": [
+      {
+       "code": "{enema}",
+       "equivalence": "equivalent",
+       "display": "{enema}"
+      }
+     ]
+    },
+    {
+     "code": "Enemas",
+     "display": "Enemas",
+     "target": [
+      {
+       "code": "{enema}",
+       "equivalence": "equivalent",
+       "display": "{enema}"
+      }
+     ]
+    },
+    {
+     "code": "FILM",
+     "display": "FILM",
+     "target": [
+      {
+       "code": "{film}",
+       "equivalence": "equivalent",
+       "display": "{film}"
+      }
+     ]
+    },
+    {
+     "code": "G",
+     "display": "G",
+     "target": [
+      {
+       "code": "g",
+       "equivalence": "equivalent",
+       "display": "g",
+       "comment": "As UCUM `G` is the gauss, a unit of magnetic flux density. MIMIC means the gram."
+      }
+     ]
+    },
+    {
+     "code": "GPL",
+     "display": "GPL",
+     "target": [
+      {
+       "code": "[GPL'U]",
+       "equivalence": "equivalent",
+       "display": "[GPL'U]",
+       "comment": "IgG phospholipid units, on Anticardiolipin Antibody IgG."
+      }
+     ]
+    },
+    {
+     "code": "GRAM",
+     "display": "GRAM",
+     "target": [
+      {
+       "code": "g",
+       "equivalence": "equivalent",
+       "display": "g"
+      }
+     ]
+    },
+    {
+     "code": "GTT",
+     "display": "GTT",
+     "target": [
+      {
+       "code": "{drop}",
+       "equivalence": "equivalent",
+       "display": "{drop}"
+      }
+     ]
+    },
+    {
+     "code": "GUM",
+     "display": "GUM",
+     "target": [
+      {
+       "code": "{gum}",
+       "equivalence": "equivalent",
+       "display": "{gum}"
+      }
+     ]
+    },
+    {
+     "code": "Grams",
+     "display": "Grams",
+     "target": [
+      {
+       "code": "g",
+       "equivalence": "equivalent",
+       "display": "g"
+      }
+     ]
+    },
+    {
+     "code": "INCH",
+     "display": "INCH",
+     "target": [
+      {
+       "code": "[in_i]",
+       "equivalence": "equivalent",
+       "display": "[in_i]"
+      }
+     ]
+    },
+    {
+     "code": "IU",
+     "display": "IU",
+     "target": [
+      {
+       "code": "[IU]",
+       "equivalence": "equivalent",
+       "display": "[IU]"
+      }
+     ]
+    },
+    {
+     "code": "IU/L",
+     "display": "IU/L",
+     "target": [
+      {
+       "code": "[IU]/L",
+       "equivalence": "equivalent",
+       "display": "[IU]/L"
+      }
+     ]
+    },
+    {
+     "code": "IU/mL",
+     "display": "IU/mL",
+     "target": [
+      {
+       "code": "[IU]/mL",
+       "equivalence": "equivalent",
+       "display": "[IU]/mL"
+      }
+     ]
+    },
+    {
+     "code": "Inch",
+     "display": "Inch",
+     "target": [
+      {
+       "code": "[in_i]",
+       "equivalence": "equivalent",
+       "display": "[in_i]"
+      }
+     ]
+    },
+    {
+     "code": "International Units",
+     "display": "International Units",
+     "target": [
+      {
+       "code": "[IU]",
+       "equivalence": "equivalent",
+       "display": "[IU]"
+      }
+     ]
+    },
+    {
+     "code": "JAR",
+     "display": "JAR",
+     "target": [
+      {
+       "code": "{jar}",
+       "equivalence": "equivalent",
+       "display": "{jar}"
+      }
+     ]
+    },
+    {
+     "code": "K/uL",
+     "display": "K/uL",
+     "target": [
+      {
+       "code": "10*3/uL",
+       "equivalence": "equivalent",
+       "display": "10*3/uL",
+       "comment": "MIMIC writes `K` for `thousands`, on Platelet Count, White Blood Cells and 15 other haematology items. As UCUM the source string is valid and denotes KELVIN per microlitre, so this row changes what the number means rather than only how it is written \u2014 which is the point: the source spelling was wrong, not merely non-standard."
+      }
+     ]
+    },
+    {
+     "code": "KIT",
+     "display": "KIT",
+     "target": [
+      {
+       "code": "{kit}",
+       "equivalence": "equivalent",
+       "display": "{kit}"
+      }
+     ]
+    },
+    {
+     "code": "L",
+     "display": "L",
+     "target": [
+      {
+       "code": "L",
+       "equivalence": "equivalent",
+       "display": "L"
+      }
+     ]
+    },
+    {
+     "code": "L/min",
+     "display": "L/min",
+     "target": [
+      {
+       "code": "L/min",
+       "equivalence": "equivalent",
+       "display": "L/min"
+      }
+     ]
+    },
+    {
+     "code": "L/min/m2",
+     "display": "L/min/m2",
+     "target": [
+      {
+       "code": "L/min/m2",
+       "equivalence": "equivalent",
+       "display": "L/min/m2"
+      }
+     ]
+    },
+    {
+     "code": "LOZ",
+     "display": "LOZ",
+     "target": [
+      {
+       "code": "{lozenge}",
+       "equivalence": "equivalent",
+       "display": "{lozenge}"
+      }
+     ]
+    },
+    {
+     "code": "Liters",
+     "display": "Liters",
+     "target": [
+      {
+       "code": "L",
+       "equivalence": "equivalent",
+       "display": "L",
+       "comment": "Spelled-out litre, on a fluid volume."
+      }
+     ]
+    },
+    {
+     "code": "MCG",
+     "display": "MCG",
+     "target": [
+      {
+       "code": "ug",
+       "equivalence": "equivalent",
+       "display": "ug"
+      }
+     ]
+    },
+    {
+     "code": "MCG/KG/MIN",
+     "display": "MCG/KG/MIN",
+     "target": [
+      {
+       "code": "ug/(kg.min)",
+       "equivalence": "equivalent",
+       "display": "ug/(kg.min)"
+      }
+     ]
+    },
+    {
+     "code": "MG",
+     "display": "MG",
+     "target": [
+      {
+       "code": "mg",
+       "equivalence": "equivalent",
+       "display": "mg",
+       "comment": "As UCUM `MG` is the MEGAGAUSS \u2014 `M` prefixing `G`, the gauss \u2014 so the source is not merely the wrong scale but the wrong DIMENSION entirely. MIMIC means the milligram; the string is a case error in a prescription column."
+      }
+     ]
+    },
+    {
+     "code": "MILLI UNITS/MIN",
+     "display": "MILLI UNITS/MIN",
+     "target": [
+      {
+       "code": "m[IU]/min",
+       "equivalence": "equivalent",
+       "display": "m[IU]/min"
+      }
+     ]
+    },
+    {
+     "code": "ML",
+     "display": "ML",
+     "target": [
+      {
+       "code": "mL",
+       "equivalence": "equivalent",
+       "display": "mL",
+       "comment": "As UCUM `ML` is the MEGAlitre. MIMIC means the millilitre."
+      }
+     ]
+    },
+    {
+     "code": "MPL",
+     "display": "MPL",
+     "target": [
+      {
+       "code": "[MPL'U]",
+       "equivalence": "equivalent",
+       "display": "[MPL'U]",
+       "comment": "IgM phospholipid units, on Anticardiolipin Antibody IgM."
+      }
+     ]
+    },
+    {
+     "code": "Mcg/kg/hr",
+     "display": "Mcg/kg/hr",
+     "target": [
+      {
+       "code": "ug/(kg.h)",
+       "equivalence": "equivalent",
+       "display": "ug/(kg.h)"
+      }
+     ]
+    },
+    {
+     "code": "Mg",
+     "display": "Mg",
+     "target": [
+      {
+       "code": "mg",
+       "equivalence": "equivalent",
+       "display": "mg",
+       "comment": "As UCUM `Mg` is the MEGAgram, a thousand million times the intended milligram. Note this differs from `MG` in the same table, which is not a mass at all \u2014 the two case variants of one MIMIC string parse as two unrelated units."
+      }
+     ]
+    },
+    {
+     "code": "Mg/hr",
+     "display": "Mg/hr",
+     "target": [
+      {
+       "code": "mg/h",
+       "equivalence": "equivalent",
+       "display": "mg/h"
+      }
+     ]
+    },
+    {
+     "code": "Million Cells",
+     "display": "Million Cells",
+     "target": [
+      {
+       "code": "10*6.{cells}",
+       "equivalence": "equivalent",
+       "display": "10*6.{cells}"
+      }
+     ]
+    },
+    {
+     "code": "Million Units",
+     "display": "Million Units",
+     "target": [
+      {
+       "code": "10*6.[IU]",
+       "equivalence": "equivalent",
+       "display": "10*6.[IU]",
+       "comment": "See `million units`."
+      }
+     ]
+    },
+    {
+     "code": "NEB",
+     "display": "NEB",
+     "target": [
+      {
+       "code": "{nebule}",
+       "equivalence": "equivalent",
+       "display": "{nebule}"
+      }
+     ]
+    },
+    {
+     "code": "Neb",
+     "display": "Neb",
+     "target": [
+      {
+       "code": "{nebule}",
+       "equivalence": "equivalent",
+       "display": "{nebule}"
+      }
+     ]
+    },
+    {
+     "code": "PACK",
+     "display": "PACK",
+     "target": [
+      {
+       "code": "{packet}",
+       "equivalence": "equivalent",
+       "display": "{packet}"
+      }
+     ]
+    },
+    {
+     "code": "PEN",
+     "display": "PEN",
+     "target": [
+      {
+       "code": "{pen}",
+       "equivalence": "equivalent",
+       "display": "{pen}"
+      }
+     ]
+    },
+    {
+     "code": "PKT",
+     "display": "PKT",
+     "target": [
+      {
+       "code": "{packet}",
+       "equivalence": "equivalent",
+       "display": "{packet}"
+      }
+     ]
+    },
+    {
+     "code": "PTCH",
+     "display": "PTCH",
+     "target": [
+      {
+       "code": "{patch}",
+       "equivalence": "equivalent",
+       "display": "{patch}"
+      }
+     ]
+    },
+    {
+     "code": "PTCHS",
+     "display": "PTCHS",
+     "target": [
+      {
+       "code": "{patch}",
+       "equivalence": "equivalent",
+       "display": "{patch}"
+      }
+     ]
+    },
+    {
+     "code": "PUFF",
+     "display": "PUFF",
+     "target": [
+      {
+       "code": "{puff}",
+       "equivalence": "equivalent",
+       "display": "{puff}"
+      }
+     ]
+    },
+    {
+     "code": "PUFFS",
+     "display": "PUFFS",
+     "target": [
+      {
+       "code": "{puff}",
+       "equivalence": "equivalent",
+       "display": "{puff}"
+      }
+     ]
+    },
+    {
+     "code": "Patch",
+     "display": "Patch",
+     "target": [
+      {
+       "code": "{patch}",
+       "equivalence": "equivalent",
+       "display": "{patch}"
+      }
+     ]
+    },
+    {
+     "code": "RING",
+     "display": "RING",
+     "target": [
+      {
+       "code": "{ring}",
+       "equivalence": "equivalent",
+       "display": "{ring}"
+      }
+     ]
+    },
+    {
+     "code": "RPM",
+     "display": "RPM",
+     "target": [
+      {
+       "code": "/min{rev}",
+       "equivalence": "equivalent",
+       "display": "/min{rev}",
+       "comment": "Revolutions per minute, on ICU device settings."
+      }
+     ]
+    },
+    {
+     "code": "Ratio",
+     "display": "Ratio",
+     "target": [
+      {
+       "code": "1",
+       "equivalence": "equivalent",
+       "display": "1",
+       "comment": "A dimensionless ratio of two like quantities \u2014 Cholesterol Total/HDL, Protein/Creatinine, CD4/CD8. UCUM spells that `1`. The source string names the KIND of quantity rather than a unit, so no scale information is lost here; there was none to lose."
+      }
+     ]
+    },
+    {
+     "code": "SCOOP",
+     "display": "SCOOP",
+     "target": [
+      {
+       "code": "{scoop}",
+       "equivalence": "equivalent",
+       "display": "{scoop}"
+      }
+     ]
+    },
+    {
+     "code": "SPRY",
+     "display": "SPRY",
+     "target": [
+      {
+       "code": "{spray}",
+       "equivalence": "equivalent",
+       "display": "{spray}"
+      }
+     ]
+    },
+    {
+     "code": "STRP",
+     "display": "STRP",
+     "target": [
+      {
+       "code": "{strip}",
+       "equivalence": "equivalent",
+       "display": "{strip}"
+      }
+     ]
+    },
+    {
+     "code": "SUPP",
+     "display": "SUPP",
+     "target": [
+      {
+       "code": "{suppository}",
+       "equivalence": "equivalent",
+       "display": "{suppository}"
+      }
+     ]
+    },
+    {
+     "code": "SWAB",
+     "display": "SWAB",
+     "target": [
+      {
+       "code": "{swab}",
+       "equivalence": "equivalent",
+       "display": "{swab}"
+      }
+     ]
+    },
+    {
+     "code": "SYR",
+     "display": "SYR",
+     "target": [
+      {
+       "code": "{syringe}",
+       "equivalence": "equivalent",
+       "display": "{syringe}"
+      }
+     ]
+    },
+    {
+     "code": "Score",
+     "display": "Score",
+     "target": [
+      {
+       "code": "{score}",
+       "equivalence": "equivalent",
+       "display": "{score}",
+       "comment": "Leukocyte Alkaline Phosphatase score: a dimensionless clinical score, not a measured quantity. Mapped to an annotated `1` so it stays distinguishable from a true ratio after translation."
+      }
+     ]
+    },
+    {
+     "code": "Syringe",
+     "display": "Syringe",
+     "target": [
+      {
+       "code": "{syringe}",
+       "equivalence": "equivalent",
+       "display": "{syringe}"
+      }
+     ]
+    },
+    {
+     "code": "TAB",
+     "display": "TAB",
+     "target": [
+      {
+       "code": "{tablet}",
+       "equivalence": "equivalent",
+       "display": "{tablet}"
+      }
+     ]
+    },
+    {
+     "code": "TROC",
+     "display": "TROC",
+     "target": [
+      {
+       "code": "{troche}",
+       "equivalence": "equivalent",
+       "display": "{troche}"
+      }
+     ]
+    },
+    {
+     "code": "TUBE",
+     "display": "TUBE",
+     "target": [
+      {
+       "code": "{tube}",
+       "equivalence": "equivalent",
+       "display": "{tube}"
+      }
+     ]
+    },
+    {
+     "code": "Tab",
+     "display": "Tab",
+     "target": [
+      {
+       "code": "{tablet}",
+       "equivalence": "equivalent",
+       "display": "{tablet}"
+      }
+     ]
+    },
+    {
+     "code": "U",
+     "display": "U",
+     "target": [
+      {
+       "code": "U",
+       "equivalence": "equivalent",
+       "display": "U",
+       "comment": "Left as the UCUM enzyme unit, which is what the string literally says. Note the three Observation codes carrying it are displayed `I`, `H` and `L`, which do not identify an assay \u2014 so this row is the literal reading rather than a confirmed one, and a consumer needing the assay's own unit should not rely on it."
+      }
+     ]
+    },
+    {
+     "code": "U/L",
+     "display": "U/L",
+     "target": [
+      {
+       "code": "U/L",
+       "equivalence": "equivalent",
+       "display": "U/L"
+      }
+     ]
+    },
+    {
+     "code": "U/g/Hb",
+     "display": "U/g/Hb",
+     "target": [
+      {
+       "code": "U/g{Hb}",
+       "equivalence": "equivalent",
+       "display": "U/g{Hb}",
+       "comment": "Quantitative G6PD, reported per gram of haemoglobin. `{Hb}` annotates the gram rather than dividing by it a second time \u2014 the source string's second `/` is not a division."
+      }
+     ]
+    },
+    {
+     "code": "U/hr",
+     "display": "U/hr",
+     "target": [
+      {
+       "code": "[IU]/h",
+       "equivalence": "equivalent",
+       "display": "[IU]/h"
+      }
+     ]
+    },
+    {
+     "code": "U/mL",
+     "display": "U/mL",
+     "target": [
+      {
+       "code": "U/mL",
+       "equivalence": "equivalent",
+       "display": "U/mL"
+      }
+     ]
+    },
+    {
+     "code": "UNIT",
+     "display": "UNIT",
+     "target": [
+      {
+       "code": "[IU]",
+       "equivalence": "equivalent",
+       "display": "[IU]"
+      }
+     ]
+    },
+    {
+     "code": "UNIT/HR",
+     "display": "UNIT/HR",
+     "target": [
+      {
+       "code": "[IU]/h",
+       "equivalence": "equivalent",
+       "display": "[IU]/h"
+      }
+     ]
+    },
+    {
+     "code": "UNIT/KG",
+     "display": "UNIT/KG",
+     "target": [
+      {
+       "code": "[IU]/kg",
+       "equivalence": "equivalent",
+       "display": "[IU]/kg"
+      }
+     ]
+    },
+    {
+     "code": "UNIT/kg/HR",
+     "display": "UNIT/kg/HR",
+     "target": [
+      {
+       "code": "[IU]/(kg.h)",
+       "equivalence": "equivalent",
+       "display": "[IU]/(kg.h)"
+      }
+     ]
+    },
+    {
+     "code": "UNITS",
+     "display": "UNITS",
+     "target": [
+      {
+       "code": "[IU]",
+       "equivalence": "equivalent",
+       "display": "[IU]"
+      }
+     ]
+    },
+    {
+     "code": "Unit",
+     "display": "Unit",
+     "target": [
+      {
+       "code": "[IU]",
+       "equivalence": "equivalent",
+       "display": "[IU]"
+      }
+     ]
+    },
+    {
+     "code": "Units",
+     "display": "Units",
+     "target": [
+      {
+       "code": "[IU]",
+       "equivalence": "equivalent",
+       "display": "[IU]"
+      }
+     ]
+    },
+    {
+     "code": "Units/Hr",
+     "display": "Units/Hr",
+     "target": [
+      {
+       "code": "[IU]/h",
+       "equivalence": "equivalent",
+       "display": "[IU]/h"
+      }
+     ]
+    },
+    {
+     "code": "Units/Liter",
+     "display": "Units/Liter",
+     "target": [
+      {
+       "code": "[IU]/L",
+       "equivalence": "equivalent",
+       "display": "[IU]/L"
+      }
+     ]
+    },
+    {
+     "code": "Units/kg",
+     "display": "Units/kg",
+     "target": [
+      {
+       "code": "[IU]/kg",
+       "equivalence": "equivalent",
+       "display": "[IU]/kg"
+      }
+     ]
+    },
+    {
+     "code": "VIAL",
+     "display": "VIAL",
+     "target": [
+      {
+       "code": "{vial}",
+       "equivalence": "equivalent",
+       "display": "{vial}"
+      }
+     ]
+    },
+    {
+     "code": "Vial",
+     "display": "Vial",
+     "target": [
+      {
+       "code": "{vial}",
+       "equivalence": "equivalent",
+       "display": "{vial}"
+      }
+     ]
+    },
+    {
+     "code": "_UNIT",
+     "display": "_UNIT",
+     "target": [
+      {
+       "code": "[IU]",
+       "equivalence": "equivalent",
+       "display": "[IU]"
+      }
+     ]
+    },
+    {
+     "code": "appl",
+     "display": "appl",
+     "target": [
+      {
+       "code": "{applicator}",
+       "equivalence": "equivalent",
+       "display": "{applicator}"
+      }
+     ]
+    },
+    {
+     "code": "application",
+     "display": "application",
+     "target": [
+      {
+       "code": "{application}",
+       "equivalence": "equivalent",
+       "display": "{application}"
+      }
+     ]
+    },
+    {
+     "code": "bag",
+     "display": "bag",
+     "target": [
+      {
+       "code": "{bag}",
+       "equivalence": "equivalent",
+       "display": "{bag}"
+      }
+     ]
+    },
+    {
+     "code": "billion cell",
+     "display": "billion cell",
+     "target": [
+      {
+       "code": "10*9.{cells}",
+       "equivalence": "equivalent",
+       "display": "10*9.{cells}"
+      }
+     ]
+    },
+    {
+     "code": "bottle",
+     "display": "bottle",
+     "target": [
+      {
+       "code": "{bottle}",
+       "equivalence": "equivalent",
+       "display": "{bottle}"
+      }
+     ]
+    },
+    {
+     "code": "bpm",
+     "display": "bpm",
+     "target": [
+      {
+       "code": "/min{beats}",
+       "equivalence": "equivalent",
+       "display": "/min{beats}",
+       "comment": "The `{beats}` annotation is carried deliberately. It is dimensionless to UCUM \u2014 this canonicalises to `s-1` exactly as plain `/min` does \u2014 and it keeps beats per minute distinguishable from breaths per minute after translation. Note MIMIC's own ETL chose plain `/min` where it populated a UCUM code itself, so translated and untranslated MIMIC data will differ in spelling here."
+      }
+     ]
+    },
+    {
+     "code": "btl",
+     "display": "btl",
+     "target": [
+      {
+       "code": "{bottle}",
+       "equivalence": "equivalent",
+       "display": "{bottle}"
+      }
+     ]
+    },
+    {
+     "code": "cap",
+     "display": "cap",
+     "target": [
+      {
+       "code": "{capsule}",
+       "equivalence": "equivalent",
+       "display": "{capsule}"
+      }
+     ]
+    },
+    {
+     "code": "caps",
+     "display": "caps",
+     "target": [
+      {
+       "code": "{capsule}",
+       "equivalence": "equivalent",
+       "display": "{capsule}"
+      }
+     ]
+    },
+    {
+     "code": "capsule",
+     "display": "capsule",
+     "target": [
+      {
+       "code": "{capsule}",
+       "equivalence": "equivalent",
+       "display": "{capsule}"
+      }
+     ]
+    },
+    {
+     "code": "capsules",
+     "display": "capsules",
+     "target": [
+      {
+       "code": "{capsule}",
+       "equivalence": "equivalent",
+       "display": "{capsule}"
+      }
+     ]
+    },
+    {
+     "code": "cc",
+     "display": "cc",
+     "target": [
+      {
+       "code": "mL",
+       "equivalence": "equivalent",
+       "display": "mL",
+       "comment": "Cubic centimetre as prescribers write it. Exactly equal to the millilitre, so nothing is lost; normalised because `cc` is not UCUM."
+      }
+     ]
+    },
+    {
+     "code": "cc/hr",
+     "display": "cc/hr",
+     "target": [
+      {
+       "code": "mL/h",
+       "equivalence": "equivalent",
+       "display": "mL/h"
+      }
+     ]
+    },
+    {
+     "code": "cell",
+     "display": "cell",
+     "target": [
+      {
+       "code": "{cell}",
+       "equivalence": "equivalent",
+       "display": "{cell}"
+      }
+     ]
+    },
+    {
+     "code": "cm",
+     "display": "cm",
+     "target": [
+      {
+       "code": "cm",
+       "equivalence": "equivalent",
+       "display": "cm"
+      }
+     ]
+    },
+    {
+     "code": "cm3",
+     "display": "cm3",
+     "target": [
+      {
+       "code": "cm3",
+       "equivalence": "equivalent",
+       "display": "cm3"
+      }
+     ]
+    },
+    {
+     "code": "cmH2O",
+     "display": "cmH2O",
+     "target": [
+      {
+       "code": "cm[H2O]",
+       "equivalence": "equivalent",
+       "display": "cm[H2O]"
+      }
+     ]
+    },
+    {
+     "code": "cmH2O/L/seconds",
+     "display": "cmH2O/L/seconds",
+     "target": [
+      {
+       "code": "cm[H2O].s/L",
+       "equivalence": "equivalent",
+       "display": "cm[H2O].s/L",
+       "comment": "Airway resistance. The source's two `/` are not both divisions \u2014 the quantity is pressure x time / volume \u2014 so this row reorders the expression rather than transcribing it."
+      }
+     ]
+    },
+    {
+     "code": "cp",
+     "display": "cp",
+     "target": [
+      {
+       "code": "{capsule}",
+       "equivalence": "equivalent",
+       "display": "{capsule}"
+      }
+     ]
+    },
+    {
+     "code": "cps",
+     "display": "cps",
+     "target": [
+      {
+       "code": "{capsule}",
+       "equivalence": "equivalent",
+       "display": "{capsule}"
+      }
+     ]
+    },
+    {
+     "code": "dose",
+     "display": "dose",
+     "target": [
+      {
+       "code": "{dose}",
+       "equivalence": "equivalent",
+       "display": "{dose}"
+      }
+     ]
+    },
+    {
+     "code": "doses",
+     "display": "doses",
+     "target": [
+      {
+       "code": "{dose}",
+       "equivalence": "equivalent",
+       "display": "{dose}"
+      }
+     ]
+    },
+    {
+     "code": "drop",
+     "display": "drop",
+     "target": [
+      {
+       "code": "{drop}",
+       "equivalence": "equivalent",
+       "display": "{drop}"
+      }
+     ]
+    },
+    {
+     "code": "drops",
+     "display": "drops",
+     "target": [
+      {
+       "code": "{drop}",
+       "equivalence": "equivalent",
+       "display": "{drop}"
+      }
+     ]
+    },
+    {
+     "code": "dynes*sec/cm5",
+     "display": "dynes*sec/cm5",
+     "target": [
+      {
+       "code": "dyn.s/cm5",
+       "equivalence": "equivalent",
+       "display": "dyn.s/cm5"
+      }
+     ]
+    },
+    {
+     "code": "dynes*sec/cm5/m2",
+     "display": "dynes*sec/cm5/m2",
+     "target": [
+      {
+       "code": "dyn.s/(cm5.m2)",
+       "equivalence": "equivalent",
+       "display": "dyn.s/(cm5.m2)"
+      }
+     ]
+    },
+    {
+     "code": "dynes.sec.cm-5/m2",
+     "display": "dynes.sec.cm-5/m2",
+     "target": [
+      {
+       "code": "dyn.s/(cm5.m2)",
+       "equivalence": "equivalent",
+       "display": "dyn.s/(cm5.m2)"
+      }
+     ]
+    },
+    {
+     "code": "ea",
+     "display": "ea",
+     "target": [
+      {
+       "code": "{each}",
+       "equivalence": "equivalent",
+       "display": "{each}"
+      }
+     ]
+    },
+    {
+     "code": "enema",
+     "display": "enema",
+     "target": [
+      {
+       "code": "{enema}",
+       "equivalence": "equivalent",
+       "display": "{enema}"
+      }
+     ]
+    },
+    {
+     "code": "fL",
+     "display": "fL",
+     "target": [
+      {
+       "code": "fL",
+       "equivalence": "equivalent",
+       "display": "fL"
+      }
+     ]
+    },
+    {
+     "code": "film",
+     "display": "film",
+     "target": [
+      {
+       "code": "{film}",
+       "equivalence": "equivalent",
+       "display": "{film}"
+      }
+     ]
+    },
+    {
+     "code": "g",
+     "display": "g",
+     "target": [
+      {
+       "code": "g",
+       "equivalence": "equivalent",
+       "display": "g"
+      }
+     ]
+    },
+    {
+     "code": "g/dL",
+     "display": "g/dL",
+     "target": [
+      {
+       "code": "g/dL",
+       "equivalence": "equivalent",
+       "display": "g/dL"
+      }
+     ]
+    },
+    {
+     "code": "g/dl",
+     "display": "g/dl",
+     "target": [
+      {
+       "code": "g/dL",
+       "equivalence": "equivalent",
+       "display": "g/dL"
+      }
+     ]
+    },
+    {
+     "code": "g/h",
+     "display": "g/h",
+     "target": [
+      {
+       "code": "g/h",
+       "equivalence": "equivalent",
+       "display": "g/h"
+      }
+     ]
+    },
+    {
+     "code": "g/hr",
+     "display": "g/hr",
+     "target": [
+      {
+       "code": "g/h",
+       "equivalence": "equivalent",
+       "display": "g/h"
+      }
+     ]
+    },
+    {
+     "code": "g/kg",
+     "display": "g/kg",
+     "target": [
+      {
+       "code": "g/kg",
+       "equivalence": "equivalent",
+       "display": "g/kg"
+      }
+     ]
+    },
+    {
+     "code": "gm",
+     "display": "gm",
+     "target": [
+      {
+       "code": "g",
+       "equivalence": "equivalent",
+       "display": "g"
+      }
+     ]
+    },
+    {
+     "code": "gm/hr",
+     "display": "gm/hr",
+     "target": [
+      {
+       "code": "g/h",
+       "equivalence": "equivalent",
+       "display": "g/h"
+      }
+     ]
+    },
+    {
+     "code": "gram",
+     "display": "gram",
+     "target": [
+      {
+       "code": "g",
+       "equivalence": "equivalent",
+       "display": "g"
+      }
+     ]
+    },
+    {
+     "code": "grams",
+     "display": "grams",
+     "target": [
+      {
+       "code": "g",
+       "equivalence": "equivalent",
+       "display": "g"
+      }
+     ]
+    },
+    {
+     "code": "grams/hour",
+     "display": "grams/hour",
+     "target": [
+      {
+       "code": "g/h",
+       "equivalence": "equivalent",
+       "display": "g/h"
+      }
+     ]
+    },
+    {
+     "code": "grams/min",
+     "display": "grams/min",
+     "target": [
+      {
+       "code": "g/min",
+       "equivalence": "equivalent",
+       "display": "g/min"
+      }
+     ]
+    },
+    {
+     "code": "gtt",
+     "display": "gtt",
+     "target": [
+      {
+       "code": "{drop}",
+       "equivalence": "equivalent",
+       "display": "{drop}"
+      }
+     ]
+    },
+    {
+     "code": "gummies",
+     "display": "gummies",
+     "target": [
+      {
+       "code": "{gummy}",
+       "equivalence": "equivalent",
+       "display": "{gummy}"
+      }
+     ]
+    },
+    {
+     "code": "hour",
+     "display": "hour",
+     "target": [
+      {
+       "code": "h",
+       "equivalence": "equivalent",
+       "display": "h"
+      }
+     ]
+    },
+    {
+     "code": "hrs",
+     "display": "hrs",
+     "target": [
+      {
+       "code": "h",
+       "equivalence": "equivalent",
+       "display": "h"
+      }
+     ]
+    },
+    {
+     "code": "in",
+     "display": "in",
+     "target": [
+      {
+       "code": "[in_i]",
+       "equivalence": "equivalent",
+       "display": "[in_i]"
+      }
+     ]
+    },
+    {
+     "code": "insp/min",
+     "display": "insp/min",
+     "target": [
+      {
+       "code": "/min{insp}",
+       "equivalence": "equivalent",
+       "display": "/min{insp}",
+       "comment": "See `bpm`. `insp` is inspirations; the annotation keeps this distinct from heart rate after translation."
+      }
+     ]
+    },
+    {
+     "code": "kcal/day",
+     "display": "kcal/day",
+     "target": [
+      {
+       "code": "kcal/d",
+       "equivalence": "equivalent",
+       "display": "kcal/d"
+      }
+     ]
+    },
+    {
+     "code": "kcal/kg",
+     "display": "kcal/kg",
+     "target": [
+      {
+       "code": "kcal/kg",
+       "equivalence": "equivalent",
+       "display": "kcal/kg"
+      }
+     ]
+    },
+    {
+     "code": "kg",
+     "display": "kg",
+     "target": [
+      {
+       "code": "kg",
+       "equivalence": "equivalent",
+       "display": "kg"
+      }
+     ]
+    },
+    {
+     "code": "lbs",
+     "display": "lbs",
+     "target": [
+      {
+       "code": "[lb_av]",
+       "equivalence": "equivalent",
+       "display": "[lb_av]"
+      }
+     ]
+    },
+    {
+     "code": "lozenge",
+     "display": "lozenge",
+     "target": [
+      {
+       "code": "{lozenge}",
+       "equivalence": "equivalent",
+       "display": "{lozenge}"
+      }
+     ]
+    },
+    {
+     "code": "lozenges",
+     "display": "lozenges",
+     "target": [
+      {
+       "code": "{lozenge}",
+       "equivalence": "equivalent",
+       "display": "{lozenge}"
+      }
+     ]
+    },
+    {
+     "code": "m/uL",
+     "display": "m/uL",
+     "target": [
+      {
+       "code": "10*6/uL",
+       "equivalence": "equivalent",
+       "display": "10*6/uL",
+       "comment": "MIMIC writes `m` for `millions`, on Red Blood Cells and Reticulocyte Count. As UCUM the source string is valid and denotes METRES per microlitre. Same class as `K/uL`."
+      }
+     ]
+    },
+    {
+     "code": "mA",
+     "display": "mA",
+     "target": [
+      {
+       "code": "mA",
+       "equivalence": "equivalent",
+       "display": "mA"
+      }
+     ]
+    },
+    {
+     "code": "mEQ",
+     "display": "mEQ",
+     "target": [
+      {
+       "code": "meq",
+       "equivalence": "equivalent",
+       "display": "meq"
+      }
+     ]
+    },
+    {
+     "code": "mEq",
+     "display": "mEq",
+     "target": [
+      {
+       "code": "meq",
+       "equivalence": "equivalent",
+       "display": "meq"
+      }
+     ]
+    },
+    {
+     "code": "mEq / hr",
+     "display": "mEq / hr",
+     "target": [
+      {
+       "code": "meq/h",
+       "equivalence": "equivalent",
+       "display": "meq/h"
+      }
+     ]
+    },
+    {
+     "code": "mEq.",
+     "display": "mEq.",
+     "target": [
+      {
+       "code": "meq",
+       "equivalence": "equivalent",
+       "display": "meq"
+      }
+     ]
+    },
+    {
+     "code": "mEq./hour",
+     "display": "mEq./hour",
+     "target": [
+      {
+       "code": "meq/h",
+       "equivalence": "equivalent",
+       "display": "meq/h"
+      }
+     ]
+    },
+    {
+     "code": "mEq/L",
+     "display": "mEq/L",
+     "target": [
+      {
+       "code": "meq/L",
+       "equivalence": "equivalent",
+       "display": "meq/L"
+      }
+     ]
+    },
+    {
+     "code": "mEq/hr",
+     "display": "mEq/hr",
+     "target": [
+      {
+       "code": "meq/h",
+       "equivalence": "equivalent",
+       "display": "meq/h"
+      }
+     ]
+    },
+    {
+     "code": "mIU/mL",
+     "display": "mIU/mL",
+     "target": [
+      {
+       "code": "m[IU]/mL",
+       "equivalence": "equivalent",
+       "display": "m[IU]/mL"
+      }
+     ]
+    },
+    {
+     "code": "mL",
+     "display": "mL",
+     "target": [
+      {
+       "code": "mL",
+       "equivalence": "equivalent",
+       "display": "mL"
+      }
+     ]
+    },
+    {
+     "code": "mL/Day",
+     "display": "mL/Day",
+     "target": [
+      {
+       "code": "mL/d",
+       "equivalence": "equivalent",
+       "display": "mL/d"
+      }
+     ]
+    },
+    {
+     "code": "mL/Lumen",
+     "display": "mL/Lumen",
+     "target": [
+      {
+       "code": "mL/{lumen}",
+       "equivalence": "equivalent",
+       "display": "mL/{lumen}"
+      }
+     ]
+    },
+    {
+     "code": "mL/Syringe",
+     "display": "mL/Syringe",
+     "target": [
+      {
+       "code": "mL/{syringe}",
+       "equivalence": "equivalent",
+       "display": "mL/{syringe}"
+      }
+     ]
+    },
+    {
+     "code": "mL/beat",
+     "display": "mL/beat",
+     "target": [
+      {
+       "code": "mL/{beat}",
+       "equivalence": "equivalent",
+       "display": "mL/{beat}",
+       "comment": "Stroke volume. `{beat}` is an annotation, so this is millilitres to UCUM, which is the correct dimension for a per-beat volume."
+      }
+     ]
+    },
+    {
+     "code": "mL/h",
+     "display": "mL/h",
+     "target": [
+      {
+       "code": "mL/h",
+       "equivalence": "equivalent",
+       "display": "mL/h"
+      }
+     ]
+    },
+    {
+     "code": "mL/hour",
+     "display": "mL/hour",
+     "target": [
+      {
+       "code": "mL/h",
+       "equivalence": "equivalent",
+       "display": "mL/h"
+      }
+     ]
+    },
+    {
+     "code": "mL/hr",
+     "display": "mL/hr",
+     "target": [
+      {
+       "code": "mL/h",
+       "equivalence": "equivalent",
+       "display": "mL/h"
+      }
+     ]
+    },
+    {
+     "code": "mL/kg/hour",
+     "display": "mL/kg/hour",
+     "target": [
+      {
+       "code": "mL/(kg.h)",
+       "equivalence": "equivalent",
+       "display": "mL/(kg.h)"
+      }
+     ]
+    },
+    {
+     "code": "mL/m2",
+     "display": "mL/m2",
+     "target": [
+      {
+       "code": "mL/m2",
+       "equivalence": "equivalent",
+       "display": "mL/m2"
+      }
+     ]
+    },
+    {
+     "code": "mL/mL",
+     "display": "mL/mL",
+     "target": [
+      {
+       "code": "mL/mL",
+       "equivalence": "equivalent",
+       "display": "mL/mL"
+      }
+     ]
+    },
+    {
+     "code": "mL/min",
+     "display": "mL/min",
+     "target": [
+      {
+       "code": "mL/min",
+       "equivalence": "equivalent",
+       "display": "mL/min"
+      }
+     ]
+    },
+    {
+     "code": "mOsm/kg",
+     "display": "mOsm/kg",
+     "target": [
+      {
+       "code": "mosm/kg",
+       "equivalence": "equivalent",
+       "display": "mosm/kg",
+       "comment": "Osmolality. UCUM's osmole is `osm`, lower case, with the milli prefix spelled `m`."
+      }
+     ]
+    },
+    {
+     "code": "mV",
+     "display": "mV",
+     "target": [
+      {
+       "code": "mV",
+       "equivalence": "equivalent",
+       "display": "mV"
+      }
+     ]
+    },
+    {
+     "code": "mcg",
+     "display": "mcg",
+     "target": [
+      {
+       "code": "ug",
+       "equivalence": "equivalent",
+       "display": "ug"
+      }
+     ]
+    },
+    {
+     "code": "mcg/actuation",
+     "display": "mcg/actuation",
+     "target": [
+      {
+       "code": "ug/{actuation}",
+       "equivalence": "equivalent",
+       "display": "ug/{actuation}"
+      }
+     ]
+    },
+    {
+     "code": "mcg/day",
+     "display": "mcg/day",
+     "target": [
+      {
+       "code": "ug/d",
+       "equivalence": "equivalent",
+       "display": "ug/d"
+      }
+     ]
+    },
+    {
+     "code": "mcg/dose",
+     "display": "mcg/dose",
+     "target": [
+      {
+       "code": "ug/{dose}",
+       "equivalence": "equivalent",
+       "display": "ug/{dose}"
+      }
+     ]
+    },
+    {
+     "code": "mcg/h",
+     "display": "mcg/h",
+     "target": [
+      {
+       "code": "ug/h",
+       "equivalence": "equivalent",
+       "display": "ug/h"
+      }
+     ]
+    },
+    {
+     "code": "mcg/hour",
+     "display": "mcg/hour",
+     "target": [
+      {
+       "code": "ug/h",
+       "equivalence": "equivalent",
+       "display": "ug/h"
+      }
+     ]
+    },
+    {
+     "code": "mcg/hr",
+     "display": "mcg/hr",
+     "target": [
+      {
+       "code": "ug/h",
+       "equivalence": "equivalent",
+       "display": "ug/h"
+      }
+     ]
+    },
+    {
+     "code": "mcg/kg",
+     "display": "mcg/kg",
+     "target": [
+      {
+       "code": "ug/kg",
+       "equivalence": "equivalent",
+       "display": "ug/kg"
+      }
+     ]
+    },
+    {
+     "code": "mcg/kg/hour",
+     "display": "mcg/kg/hour",
+     "target": [
+      {
+       "code": "ug/(kg.h)",
+       "equivalence": "equivalent",
+       "display": "ug/(kg.h)"
+      }
+     ]
+    },
+    {
+     "code": "mcg/kg/hr",
+     "display": "mcg/kg/hr",
+     "target": [
+      {
+       "code": "ug/(kg.h)",
+       "equivalence": "equivalent",
+       "display": "ug/(kg.h)"
+      }
+     ]
+    },
+    {
+     "code": "mcg/kg/min",
+     "display": "mcg/kg/min",
+     "target": [
+      {
+       "code": "ug/(kg.min)",
+       "equivalence": "equivalent",
+       "display": "ug/(kg.min)"
+      }
+     ]
+    },
+    {
+     "code": "mcg/mL",
+     "display": "mcg/mL",
+     "target": [
+      {
+       "code": "ug/mL",
+       "equivalence": "equivalent",
+       "display": "ug/mL"
+      }
+     ]
+    },
+    {
+     "code": "mcg/min",
+     "display": "mcg/min",
+     "target": [
+      {
+       "code": "ug/min",
+       "equivalence": "equivalent",
+       "display": "ug/min"
+      }
+     ]
+    },
+    {
+     "code": "mcg/ml",
+     "display": "mcg/ml",
+     "target": [
+      {
+       "code": "ug/mL",
+       "equivalence": "equivalent",
+       "display": "ug/mL"
+      }
+     ]
+    },
+    {
+     "code": "mcg/spray",
+     "display": "mcg/spray",
+     "target": [
+      {
+       "code": "ug/{spray}",
+       "equivalence": "equivalent",
+       "display": "ug/{spray}"
+      }
+     ]
+    },
+    {
+     "code": "meq",
+     "display": "meq",
+     "target": [
+      {
+       "code": "meq",
+       "equivalence": "equivalent",
+       "display": "meq"
+      }
+     ]
+    },
+    {
+     "code": "mg",
+     "display": "mg",
+     "target": [
+      {
+       "code": "mg",
+       "equivalence": "equivalent",
+       "display": "mg"
+      }
+     ]
+    },
+    {
+     "code": "mg//min",
+     "display": "mg//min",
+     "target": [
+      {
+       "code": "mg/min",
+       "equivalence": "equivalent",
+       "display": "mg/min"
+      }
+     ]
+    },
+    {
+     "code": "mg/24 hour",
+     "display": "mg/24 hour",
+     "target": [
+      {
+       "code": "mg/d",
+       "equivalence": "equivalent",
+       "display": "mg/d"
+      }
+     ]
+    },
+    {
+     "code": "mg/24 hr",
+     "display": "mg/24 hr",
+     "target": [
+      {
+       "code": "mg/d",
+       "equivalence": "equivalent",
+       "display": "mg/d"
+      }
+     ]
+    },
+    {
+     "code": "mg/24h",
+     "display": "mg/24h",
+     "target": [
+      {
+       "code": "mg/d",
+       "equivalence": "equivalent",
+       "display": "mg/d"
+      }
+     ]
+    },
+    {
+     "code": "mg/24hr",
+     "display": "mg/24hr",
+     "target": [
+      {
+       "code": "mg/(24.h)",
+       "equivalence": "equivalent",
+       "display": "mg/(24.h)",
+       "comment": "A 24-hour urine collection. Written as `mg/(24.h)` rather than `mg/d` to keep the collection period the source states, which is what the result is actually normalised to."
+      }
+     ]
+    },
+    {
+     "code": "mg/L",
+     "display": "mg/L",
+     "target": [
+      {
+       "code": "mg/L",
+       "equivalence": "equivalent",
+       "display": "mg/L"
+      }
+     ]
+    },
+    {
+     "code": "mg/actuation",
+     "display": "mg/actuation",
+     "target": [
+      {
+       "code": "mg/{actuation}",
+       "equivalence": "equivalent",
+       "display": "mg/{actuation}"
+      }
+     ]
+    },
+    {
+     "code": "mg/dL",
+     "display": "mg/dL",
+     "target": [
+      {
+       "code": "mg/dL",
+       "equivalence": "equivalent",
+       "display": "mg/dL"
+      }
+     ]
+    },
+    {
+     "code": "mg/day",
+     "display": "mg/day",
+     "target": [
+      {
+       "code": "mg/d",
+       "equivalence": "equivalent",
+       "display": "mg/d"
+      }
+     ]
+    },
+    {
+     "code": "mg/dose",
+     "display": "mg/dose",
+     "target": [
+      {
+       "code": "mg/{dose}",
+       "equivalence": "equivalent",
+       "display": "mg/{dose}"
+      }
+     ]
+    },
+    {
+     "code": "mg/g",
+     "display": "mg/g",
+     "target": [
+      {
+       "code": "mg/g",
+       "equivalence": "equivalent",
+       "display": "mg/g"
+      }
+     ]
+    },
+    {
+     "code": "mg/h",
+     "display": "mg/h",
+     "target": [
+      {
+       "code": "mg/h",
+       "equivalence": "equivalent",
+       "display": "mg/h"
+      }
+     ]
+    },
+    {
+     "code": "mg/hour",
+     "display": "mg/hour",
+     "target": [
+      {
+       "code": "mg/h",
+       "equivalence": "equivalent",
+       "display": "mg/h"
+      }
+     ]
+    },
+    {
+     "code": "mg/hr",
+     "display": "mg/hr",
+     "target": [
+      {
+       "code": "mg/h",
+       "equivalence": "equivalent",
+       "display": "mg/h"
+      }
+     ]
+    },
+    {
+     "code": "mg/kg",
+     "display": "mg/kg",
+     "target": [
+      {
+       "code": "mg/kg",
+       "equivalence": "equivalent",
+       "display": "mg/kg"
+      }
+     ]
+    },
+    {
+     "code": "mg/kg/hour",
+     "display": "mg/kg/hour",
+     "target": [
+      {
+       "code": "mg/(kg.h)",
+       "equivalence": "equivalent",
+       "display": "mg/(kg.h)"
+      }
+     ]
+    },
+    {
+     "code": "mg/kg/hr",
+     "display": "mg/kg/hr",
+     "target": [
+      {
+       "code": "mg/(kg.h)",
+       "equivalence": "equivalent",
+       "display": "mg/(kg.h)"
+      }
+     ]
+    },
+    {
+     "code": "mg/kg/min",
+     "display": "mg/kg/min",
+     "target": [
+      {
+       "code": "mg/(kg.min)",
+       "equivalence": "equivalent",
+       "display": "mg/(kg.min)"
+      }
+     ]
+    },
+    {
+     "code": "mg/m2",
+     "display": "mg/m2",
+     "target": [
+      {
+       "code": "mg/m2",
+       "equivalence": "equivalent",
+       "display": "mg/m2"
+      }
+     ]
+    },
+    {
+     "code": "mg/mL",
+     "display": "mg/mL",
+     "target": [
+      {
+       "code": "mg/mL",
+       "equivalence": "equivalent",
+       "display": "mg/mL"
+      }
+     ]
+    },
+    {
+     "code": "mg/mg",
+     "display": "mg/mg",
+     "target": [
+      {
+       "code": "mg/mg",
+       "equivalence": "equivalent",
+       "display": "mg/mg"
+      }
+     ]
+    },
+    {
+     "code": "mg/min",
+     "display": "mg/min",
+     "target": [
+      {
+       "code": "mg/min",
+       "equivalence": "equivalent",
+       "display": "mg/min"
+      }
+     ]
+    },
+    {
+     "code": "mg/ml",
+     "display": "mg/ml",
+     "target": [
+      {
+       "code": "mg/mL",
+       "equivalence": "equivalent",
+       "display": "mg/mL"
+      }
+     ]
+    },
+    {
+     "code": "mgs/min",
+     "display": "mgs/min",
+     "target": [
+      {
+       "code": "mg/min",
+       "equivalence": "equivalent",
+       "display": "mg/min"
+      }
+     ]
+    },
+    {
+     "code": "milligrams",
+     "display": "milligrams",
+     "target": [
+      {
+       "code": "mg",
+       "equivalence": "equivalent",
+       "display": "mg"
+      }
+     ]
+    },
+    {
+     "code": "million units",
+     "display": "million units",
+     "target": [
+      {
+       "code": "10*6.[IU]",
+       "equivalence": "equivalent",
+       "display": "10*6.[IU]",
+       "comment": "Penicillin and similar, dosed in millions of International Units."
+      }
+     ]
+    },
+    {
+     "code": "min",
+     "display": "min",
+     "target": [
+      {
+       "code": "min",
+       "equivalence": "equivalent",
+       "display": "min"
+      }
+     ]
+    },
+    {
+     "code": "ml",
+     "display": "ml",
+     "target": [
+      {
+       "code": "mL",
+       "equivalence": "equivalent",
+       "display": "mL"
+      }
+     ]
+    },
+    {
+     "code": "ml/day",
+     "display": "ml/day",
+     "target": [
+      {
+       "code": "mL/d",
+       "equivalence": "equivalent",
+       "display": "mL/d"
+      }
+     ]
+    },
+    {
+     "code": "ml/hr",
+     "display": "ml/hr",
+     "target": [
+      {
+       "code": "mL/h",
+       "equivalence": "equivalent",
+       "display": "mL/h"
+      }
+     ]
+    },
+    {
+     "code": "ml/kg",
+     "display": "ml/kg",
+     "target": [
+      {
+       "code": "mL/kg",
+       "equivalence": "equivalent",
+       "display": "mL/kg"
+      }
+     ]
+    },
+    {
+     "code": "ml/min",
+     "display": "ml/min",
+     "target": [
+      {
+       "code": "mL/min",
+       "equivalence": "equivalent",
+       "display": "mL/min"
+      }
+     ]
+    },
+    {
+     "code": "mls",
+     "display": "mls",
+     "target": [
+      {
+       "code": "mL",
+       "equivalence": "equivalent",
+       "display": "mL"
+      }
+     ]
+    },
+    {
+     "code": "mm Hg",
+     "display": "mm Hg",
+     "target": [
+      {
+       "code": "mm[Hg]",
+       "equivalence": "equivalent",
+       "display": "mm[Hg]"
+      }
+     ]
+    },
+    {
+     "code": "mm/hr",
+     "display": "mm/hr",
+     "target": [
+      {
+       "code": "mm/h",
+       "equivalence": "equivalent",
+       "display": "mm/h"
+      }
+     ]
+    },
+    {
+     "code": "mmHg",
+     "display": "mmHg",
+     "target": [
+      {
+       "code": "mm[Hg]",
+       "equivalence": "equivalent",
+       "display": "mm[Hg]"
+      }
+     ]
+    },
+    {
+     "code": "mmHg.",
+     "display": "mmHg.",
+     "target": [
+      {
+       "code": "mm[Hg]",
+       "equivalence": "equivalent",
+       "display": "mm[Hg]"
+      }
+     ]
+    },
+    {
+     "code": "mm^3",
+     "display": "mm^3",
+     "target": [
+      {
+       "code": "mm3",
+       "equivalence": "equivalent",
+       "display": "mm3",
+       "comment": "Cubic millimetre. The `^` is not UCUM exponent notation; UCUM writes the exponent as a bare digit."
+      }
+     ]
+    },
+    {
+     "code": "mmol",
+     "display": "mmol",
+     "target": [
+      {
+       "code": "mmol",
+       "equivalence": "equivalent",
+       "display": "mmol"
+      }
+     ]
+    },
+    {
+     "code": "mmol/L",
+     "display": "mmol/L",
+     "target": [
+      {
+       "code": "mmol/L",
+       "equivalence": "equivalent",
+       "display": "mmol/L"
+      }
+     ]
+    },
+    {
+     "code": "msec",
+     "display": "msec",
+     "target": [
+      {
+       "code": "ms",
+       "equivalence": "equivalent",
+       "display": "ms"
+      }
+     ]
+    },
+    {
+     "code": "nL",
+     "display": "nL",
+     "target": [
+      {
+       "code": "nL",
+       "equivalence": "equivalent",
+       "display": "nL"
+      }
+     ]
+    },
+    {
+     "code": "nMol/ml/min",
+     "display": "nMol/ml/min",
+     "target": [
+      {
+       "code": "nmol/(mL.min)",
+       "equivalence": "equivalent",
+       "display": "nmol/(mL.min)"
+      }
+     ]
+    },
+    {
+     "code": "nanogram",
+     "display": "nanogram",
+     "target": [
+      {
+       "code": "ng",
+       "equivalence": "equivalent",
+       "display": "ng"
+      }
+     ]
+    },
+    {
+     "code": "nanograms/kg/minute",
+     "display": "nanograms/kg/minute",
+     "target": [
+      {
+       "code": "ng/(kg.min)",
+       "equivalence": "equivalent",
+       "display": "ng/(kg.min)"
+      }
+     ]
+    },
+    {
+     "code": "neb",
+     "display": "neb",
+     "target": [
+      {
+       "code": "{nebule}",
+       "equivalence": "equivalent",
+       "display": "{nebule}"
+      }
+     ]
+    },
+    {
+     "code": "ng/dL",
+     "display": "ng/dL",
+     "target": [
+      {
+       "code": "ng/dL",
+       "equivalence": "equivalent",
+       "display": "ng/dL"
+      }
+     ]
+    },
+    {
+     "code": "ng/kg/min",
+     "display": "ng/kg/min",
+     "target": [
+      {
+       "code": "ng/(kg.min)",
+       "equivalence": "equivalent",
+       "display": "ng/(kg.min)"
+      }
+     ]
+    },
+    {
+     "code": "ng/mL",
+     "display": "ng/mL",
+     "target": [
+      {
+       "code": "ng/mL",
+       "equivalence": "equivalent",
+       "display": "ng/mL"
+      }
+     ]
+    },
+    {
+     "code": "ng/mL DDU",
+     "display": "ng/mL DDU",
+     "target": [
+      {
+       "code": "ng/mL{DDU}",
+       "equivalence": "equivalent",
+       "display": "ng/mL{DDU}",
+       "comment": "D-dimer in D-Dimer Units, the other of the two conventions. See `ng/mL FEU` \u2014 the two differ by roughly a factor of two and this mapping does not reconcile them."
+      }
+     ]
+    },
+    {
+     "code": "ng/mL FEU",
+     "display": "ng/mL FEU",
+     "target": [
+      {
+       "code": "ng/mL{FEU}",
+       "equivalence": "equivalent",
+       "display": "ng/mL{FEU}",
+       "comment": "D-dimer in Fibrinogen Equivalent Units. FEU is a reporting convention, not a unit, so it annotates rather than scales; a consumer must NOT compare an FEU value with a DDU value numerically."
+      }
+     ]
+    },
+    {
+     "code": "nmol/L",
+     "display": "nmol/L",
+     "target": [
+      {
+       "code": "nmol/L",
+       "equivalence": "equivalent",
+       "display": "nmol/L"
+      }
+     ]
+    },
+    {
+     "code": "ounces",
+     "display": "ounces",
+     "target": [
+      {
+       "code": "[oz_av]",
+       "equivalence": "equivalent",
+       "display": "[oz_av]"
+      }
+     ]
+    },
+    {
+     "code": "pL",
+     "display": "pL",
+     "target": [
+      {
+       "code": "pL",
+       "equivalence": "equivalent",
+       "display": "pL"
+      }
+     ]
+    },
+    {
+     "code": "packet",
+     "display": "packet",
+     "target": [
+      {
+       "code": "{packet}",
+       "equivalence": "equivalent",
+       "display": "{packet}"
+      }
+     ]
+    },
+    {
+     "code": "patch",
+     "display": "patch",
+     "target": [
+      {
+       "code": "{patch}",
+       "equivalence": "equivalent",
+       "display": "{patch}"
+      }
+     ]
+    },
+    {
+     "code": "per L",
+     "display": "per L",
+     "target": [
+      {
+       "code": "/L",
+       "equivalence": "equivalent",
+       "display": "/L"
+      }
+     ]
+    },
+    {
+     "code": "pg",
+     "display": "pg",
+     "target": [
+      {
+       "code": "pg",
+       "equivalence": "equivalent",
+       "display": "pg"
+      }
+     ]
+    },
+    {
+     "code": "pg/mL",
+     "display": "pg/mL",
+     "target": [
+      {
+       "code": "pg/mL",
+       "equivalence": "equivalent",
+       "display": "pg/mL"
+      }
+     ]
+    },
+    {
+     "code": "pills",
+     "display": "pills",
+     "target": [
+      {
+       "code": "{pill}",
+       "equivalence": "equivalent",
+       "display": "{pill}"
+      }
+     ]
+    },
+    {
+     "code": "ppm",
+     "display": "ppm",
+     "target": [
+      {
+       "code": "[ppm]",
+       "equivalence": "equivalent",
+       "display": "[ppm]"
+      }
+     ]
+    },
+    {
+     "code": "psi",
+     "display": "psi",
+     "target": [
+      {
+       "code": "[psi]",
+       "equivalence": "equivalent",
+       "display": "[psi]"
+      }
+     ]
+    },
+    {
+     "code": "puff",
+     "display": "puff",
+     "target": [
+      {
+       "code": "{puff}",
+       "equivalence": "equivalent",
+       "display": "{puff}"
+      }
+     ]
+    },
+    {
+     "code": "puffs",
+     "display": "puffs",
+     "target": [
+      {
+       "code": "{puff}",
+       "equivalence": "equivalent",
+       "display": "{puff}"
+      }
+     ]
+    },
+    {
+     "code": "scp",
+     "display": "scp",
+     "target": [
+      {
+       "code": "{scoop}",
+       "equivalence": "equivalent",
+       "display": "{scoop}"
+      }
+     ]
+    },
+    {
+     "code": "sec",
+     "display": "sec",
+     "target": [
+      {
+       "code": "s",
+       "equivalence": "equivalent",
+       "display": "s"
+      }
+     ]
+    },
+    {
+     "code": "sheet",
+     "display": "sheet",
+     "target": [
+      {
+       "code": "{sheet}",
+       "equivalence": "equivalent",
+       "display": "{sheet}"
+      }
+     ]
+    },
+    {
+     "code": "syringe",
+     "display": "syringe",
+     "target": [
+      {
+       "code": "{syringe}",
+       "equivalence": "equivalent",
+       "display": "{syringe}"
+      }
+     ]
+    },
+    {
+     "code": "tABS",
+     "display": "tABS",
+     "target": [
+      {
+       "code": "{tablet}",
+       "equivalence": "equivalent",
+       "display": "{tablet}"
+      }
+     ]
+    },
+    {
+     "code": "tab",
+     "display": "tab",
+     "target": [
+      {
+       "code": "{tablet}",
+       "equivalence": "equivalent",
+       "display": "{tablet}"
+      }
+     ]
+    },
+    {
+     "code": "tablet",
+     "display": "tablet",
+     "target": [
+      {
+       "code": "{tablet}",
+       "equivalence": "equivalent",
+       "display": "{tablet}"
+      }
+     ]
+    },
+    {
+     "code": "tablets",
+     "display": "tablets",
+     "target": [
+      {
+       "code": "{tablet}",
+       "equivalence": "equivalent",
+       "display": "{tablet}"
+      }
+     ]
+    },
+    {
+     "code": "tabs",
+     "display": "tabs",
+     "target": [
+      {
+       "code": "{tablet}",
+       "equivalence": "equivalent",
+       "display": "{tablet}"
+      }
+     ]
+    },
+    {
+     "code": "tsp",
+     "display": "tsp",
+     "target": [
+      {
+       "code": "[tsp_us]",
+       "equivalence": "equivalent",
+       "display": "[tsp_us]"
+      }
+     ]
+    },
+    {
+     "code": "tube",
+     "display": "tube",
+     "target": [
+      {
+       "code": "{tube}",
+       "equivalence": "equivalent",
+       "display": "{tube}"
+      }
+     ]
+    },
+    {
+     "code": "u",
+     "display": "u",
+     "target": [
+      {
+       "code": "[IU]",
+       "equivalence": "equivalent",
+       "display": "[IU]",
+       "comment": "As UCUM a bare `u` is the atomic mass unit. In MIMIC's prescription columns it is an abbreviation of `unit`, which for the drugs dosed this way (insulin, heparin) is the International Unit."
+      }
+     ]
+    },
+    {
+     "code": "uIU/mL",
+     "display": "uIU/mL",
+     "target": [
+      {
+       "code": "u[IU]/mL",
+       "equivalence": "equivalent",
+       "display": "u[IU]/mL"
+      }
+     ]
+    },
+    {
+     "code": "uL",
+     "display": "uL",
+     "target": [
+      {
+       "code": "uL",
+       "equivalence": "equivalent",
+       "display": "uL"
+      }
+     ]
+    },
+    {
+     "code": "uU/ML",
+     "display": "uU/ML",
+     "target": [
+      {
+       "code": "u[IU]/mL",
+       "equivalence": "equivalent",
+       "display": "u[IU]/mL",
+       "comment": "Two case errors in one string, on Thyroid Stimulating Hormone. As UCUM `ML` is the MEGAlitre, so the source parses and denotes microUnits per megalitre \u2014 out by nine orders of magnitude. The intended unit is the microInternational Unit per millilitre."
+      }
+     ]
+    },
+    {
+     "code": "ug/dL",
+     "display": "ug/dL",
+     "target": [
+      {
+       "code": "ug/dL",
+       "equivalence": "equivalent",
+       "display": "ug/dL"
+      }
+     ]
+    },
+    {
+     "code": "ug/mL",
+     "display": "ug/mL",
+     "target": [
+      {
+       "code": "ug/mL",
+       "equivalence": "equivalent",
+       "display": "ug/mL"
+      }
+     ]
+    },
+    {
+     "code": "umol/L",
+     "display": "umol/L",
+     "target": [
+      {
+       "code": "umol/L",
+       "equivalence": "equivalent",
+       "display": "umol/L"
+      }
+     ]
+    },
+    {
+     "code": "unit",
+     "display": "unit",
+     "target": [
+      {
+       "code": "[IU]",
+       "equivalence": "equivalent",
+       "display": "[IU]"
+      }
+     ]
+    },
+    {
+     "code": "unit/gram",
+     "display": "unit/gram",
+     "target": [
+      {
+       "code": "[IU]/g",
+       "equivalence": "equivalent",
+       "display": "[IU]/g"
+      }
+     ]
+    },
+    {
+     "code": "unit/hour",
+     "display": "unit/hour",
+     "target": [
+      {
+       "code": "[IU]/h",
+       "equivalence": "equivalent",
+       "display": "[IU]/h"
+      }
+     ]
+    },
+    {
+     "code": "unit/mL",
+     "display": "unit/mL",
+     "target": [
+      {
+       "code": "[IU]/mL",
+       "equivalence": "equivalent",
+       "display": "[IU]/mL"
+      }
+     ]
+    },
+    {
+     "code": "units/hour",
+     "display": "units/hour",
+     "target": [
+      {
+       "code": "[IU]/h",
+       "equivalence": "equivalent",
+       "display": "[IU]/h"
+      }
+     ]
+    },
+    {
+     "code": "units/hr",
+     "display": "units/hr",
+     "target": [
+      {
+       "code": "[IU]/h",
+       "equivalence": "equivalent",
+       "display": "[IU]/h"
+      }
+     ]
+    },
+    {
+     "code": "units/kg/hour",
+     "display": "units/kg/hour",
+     "target": [
+      {
+       "code": "[IU]/(kg.h)",
+       "equivalence": "equivalent",
+       "display": "[IU]/(kg.h)"
+      }
+     ]
+    },
+    {
+     "code": "units/kg/hr",
+     "display": "units/kg/hr",
+     "target": [
+      {
+       "code": "[IU]/(kg.h)",
+       "equivalence": "equivalent",
+       "display": "[IU]/(kg.h)"
+      }
+     ]
+    },
+    {
+     "code": "units/min",
+     "display": "units/min",
+     "target": [
+      {
+       "code": "[IU]/min",
+       "equivalence": "equivalent",
+       "display": "[IU]/min"
+      }
+     ]
+    },
+    {
+     "code": "vial",
+     "display": "vial",
+     "target": [
+      {
+       "code": "{vial}",
+       "equivalence": "equivalent",
+       "display": "{vial}"
+      }
+     ]
+    },
+    {
+     "code": "years",
+     "display": "years",
+     "target": [
+      {
+       "code": "a",
+       "equivalence": "equivalent",
+       "display": "a"
+      }
+     ]
+    },
+    {
+     "code": "\u00b0C",
+     "display": "\u00b0C",
+     "target": [
+      {
+       "code": "Cel",
+       "equivalence": "equivalent",
+       "display": "Cel"
+      }
+     ]
+    },
+    {
+     "code": "\u00b0F",
+     "display": "\u00b0F",
+     "target": [
+      {
+       "code": "[degF]",
+       "equivalence": "equivalent",
+       "display": "[degF]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://unitsofmeasure.org",
+   "target": "http://unitsofmeasure.org",
+   "element": [
+    {
+     "code": "%",
+     "display": "%",
+     "target": [
+      {
+       "code": "%",
+       "equivalence": "equivalent"
+      }
+     ]
+    },
+    {
+     "code": "/min",
+     "display": "/min",
+     "target": [
+      {
+       "code": "/min",
+       "equivalence": "equivalent"
+      }
+     ]
+    },
+    {
+     "code": "[degF]",
+     "display": "[degF]",
+     "target": [
+      {
+       "code": "[degF]",
+       "equivalence": "equivalent"
+      }
+     ]
+    },
+    {
+     "code": "mm[Hg]",
+     "display": "mm[Hg]",
+     "target": [
+      {
+       "code": "mm[Hg]",
+       "equivalence": "equivalent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "source": "http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-units",
+   "target": "http://unitsofmeasure.org",
+   "element": [
+    {
+     "code": "% of current infusion rate",
+     "display": "% of current infusion rate",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A relative instruction rather than a unit: the value is a proportion of another rate that this string does not identify."
+      }
+     ]
+    },
+    {
+     "code": "%(50 mg/5 gram)",
+     "display": "%(50 mg/5 gram)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(0.06 %)",
+     "display": "(0.06 %)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(0.6 mg/mL)",
+     "display": "(0.6 mg/mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(1,000 mg)",
+     "display": "(1,000 mg)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(10 mg/mL)",
+     "display": "(10 mg/mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(100 mcg/mL)",
+     "display": "(100 mcg/mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(1250 mg)",
+     "display": "(1250 mg)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(18 mg/3 mL)",
+     "display": "(18 mg/3 mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(2 mg/mL)",
+     "display": "(2 mg/mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(21)/75 mg (7)",
+     "display": "(21)/75 mg (7)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(24)/75 mg (4)",
+     "display": "(24)/75 mg (4)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(25 mg/2.5gram)",
+     "display": "(25 mg/2.5gram)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(3 mL)",
+     "display": "(3 mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(300 mcg)",
+     "display": "(300 mcg)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(4 mg/mL)",
+     "display": "(4 mg/mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(50 mg/5 gram)",
+     "display": "(50 mg/5 gram)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(500 mg)",
+     "display": "(500 mg)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(60 mg/mL)",
+     "display": "(60 mg/mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(65 mg iron)",
+     "display": "(65 mg iron)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(84)/10 mcg (7)",
+     "display": "(84)/10 mcg (7)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "(morphine)",
+     "display": "(morphine)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Names the substance, not a unit. Morphine-equivalent dosing has no UCUM expression."
+      }
+     ]
+    },
+    {
+     "code": "*IV~mL~mL~",
+     "display": "*IV~mL~mL~",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "*IV~mcg~mL~",
+     "display": "*IV~mcg~mL~",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "+/-",
+     "display": "+/-",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A qualitative result marker on HCG, Urine, Qualitative. Not a unit; the value it accompanies is not a measured quantity."
+      }
+     ]
+    },
+    {
+     "code": "-",
+     "display": "-",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A placeholder for a missing unit, not a unit."
+      }
+     ]
+    },
+    {
+     "code": "-109,000 unit",
+     "display": "-109,000 unit",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "-12 gram/160 mL",
+     "display": "-12 gram/160 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "-120000 unit",
+     "display": "-120000 unit",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "-125 unit",
+     "display": "-125 unit",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "-200 mg",
+     "display": "-200 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "-60000 unit",
+     "display": "-60000 unit",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "/ 0 Units",
+     "display": "/ 0 Units",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "/0mg",
+     "display": "/0mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "0",
+     "display": "0",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "0.8 mg",
+     "display": "0.8 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "0/mg",
+     "display": "0/mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "1 mg/mL",
+     "display": "1 mg/mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "100",
+     "display": "100",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "1000ML NS",
+     "display": "1000ML NS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "150",
+     "display": "150",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "15000 unit",
+     "display": "15000 unit",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "180,000 unit",
+     "display": "180,000 unit",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "180000 unit",
+     "display": "180000 unit",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "200",
+     "display": "200",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "250",
+     "display": "250",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "300",
+     "display": "300",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "350",
+     "display": "350",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "400",
+     "display": "400",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "450",
+     "display": "450",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "4ML",
+     "display": "4ML",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "50",
+     "display": "50",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "50 units/ml",
+     "display": "50 units/ml",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "500",
+     "display": "500",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "550",
+     "display": "550",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "600",
+     "display": "600",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "60mg",
+     "display": "60mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "61500 unit",
+     "display": "61500 unit",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "AERA",
+     "display": "AERA",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "AERO",
+     "display": "AERO",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "BULK",
+     "display": "BULK",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "CADD",
+     "display": "CADD",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "CART",
+     "display": "CART",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "CON",
+     "display": "CON",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "CONC",
+     "display": "CONC",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "CPT",
+     "display": "CPT",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "CRE",
+     "display": "CRE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "CREA",
+     "display": "CREA",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "DBTL",
+     "display": "DBTL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "DEV",
+     "display": "DEV",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "EFT",
+     "display": "EFT",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "ELIX",
+     "display": "ELIX",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "ERT",
+     "display": "ERT",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "EU/dL",
+     "display": "EU/dL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Ambiguous: `EU` is used for both Ehrlich units (urinary urobilinogen) and endotoxin units, which are unrelated quantities. MIMIC gives no way to tell which assay this row belongs to."
+      }
+     ]
+    },
+    {
+     "code": "Floor Stock Bag",
+     "display": "Floor Stock Bag",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "GEL",
+     "display": "GEL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "GR",
+     "display": "GR",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "See `gr` \u2014 the same ambiguity, in upper case."
+      }
+     ]
+    },
+    {
+     "code": "HALF TAB",
+     "display": "HALF TAB",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A fractional quantity fused into the unit string. The value is 0.5 and the unit `{tablet}`, and splitting the two is an ETL fix rather than a mapping \u2014 a ConceptMap can only supply the unit."
+      }
+     ]
+    },
+    {
+     "code": "INH",
+     "display": "INH",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "INJ",
+     "display": "INJ",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "LIQ",
+     "display": "LIQ",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "LOT",
+     "display": "LOT",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "MD to order daily dose",
+     "display": "MD to order daily dose",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A workflow instruction, not a unit."
+      }
+     ]
+    },
+    {
+     "code": "MU",
+     "display": "MU",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Ambiguous between the megaunit and an abbreviation of milliunit \u2014 a factor of 10^9 apart. Not resolvable from the string, and guessing either would misstate a dose."
+      }
+     ]
+    },
+    {
+     "code": "N/A",
+     "display": "N/A",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "The literal string `N/A`, recorded on 28 Observation codes including dRVVT and SCT screens, where the result is a ratio reported without a unit. It is a placeholder, not a unit. Note it parses as valid UCUM \u2014 NEWTON PER AMPERE \u2014 which is why it must be declined explicitly rather than left to a validity check to catch."
+      }
+     ]
+    },
+    {
+     "code": "NEEDLE",
+     "display": "NEEDLE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "NG/",
+     "display": "NG/",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A truncated unit string; the denominator is missing."
+      }
+     ]
+    },
+    {
+     "code": "Notify",
+     "display": "Notify",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A workflow instruction, not a unit."
+      }
+     ]
+    },
+    {
+     "code": "OINT",
+     "display": "OINT",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "PAD",
+     "display": "PAD",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "PE (Phenytoin Sodium Equivalent)",
+     "display": "PE (Phenytoin Sodium Equivalent)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Names a dose-equivalence convention rather than a unit. Fosphenytoin is dosed in phenytoin sodium equivalents, which UCUM cannot express; `mg` alone would drop the convention and make the dose ambiguous."
+      }
+     ]
+    },
+    {
+     "code": "PKG",
+     "display": "PKG",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "PPN Bag",
+     "display": "PPN Bag",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "PUMP",
+     "display": "PUMP",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "PWDR",
+     "display": "PWDR",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "Pos/Neg",
+     "display": "Pos/Neg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A qualitative result marker, not a unit. The Observation carrying it should use valueCodeableConcept rather than valueQuantity."
+      }
+     ]
+    },
+    {
+     "code": "Quarter Tab",
+     "display": "Quarter Tab",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "See `HALF TAB`."
+      }
+     ]
+    },
+    {
+     "code": "SBTL",
+     "display": "SBTL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "SOLN",
+     "display": "SOLN",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "SPG",
+     "display": "SPG",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "STCK",
+     "display": "STCK",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "SUSP",
+     "display": "SUSP",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "SYRP",
+     "display": "SYRP",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "TC",
+     "display": "TC",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "TPN Bag",
+     "display": "TPN Bag",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "UDCUP",
+     "display": "UDCUP",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "UNIT/1000ML",
+     "display": "UNIT/1000ML",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "Umits",
+     "display": "Umits",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A misspelling of `units`, and inheriting its ambiguity."
+      }
+     ]
+    },
+    {
+     "code": "Units Humalog",
+     "display": "Units Humalog",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "An insulin unit qualified by the PRODUCT. The quantity is `[IU]`, but the product belongs in the medication reference rather than the unit, and mapping it to `[IU]` alone would let two different insulins compare as equal."
+      }
+     ]
+    },
+    {
+     "code": "Units Insulin 70 / 30",
+     "display": "Units Insulin 70 / 30",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "See `Units Humalog`."
+      }
+     ]
+    },
+    {
+     "code": "Units Insulin Glargine",
+     "display": "Units Insulin Glargine",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "See `Units Humalog`."
+      }
+     ]
+    },
+    {
+     "code": "Units Insulin NPH",
+     "display": "Units Insulin NPH",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "See `Units Humalog`."
+      }
+     ]
+    },
+    {
+     "code": "Units Regular",
+     "display": "Units Regular",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "See `Units Humalog`."
+      }
+     ]
+    },
+    {
+     "code": "Units VWF:RCo",
+     "display": "Units VWF:RCo",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Von Willebrand factor ristocetin cofactor activity units. An assay-specific activity unit with no UCUM expression; `[IU]` would lose the assay the value is only interpretable against."
+      }
+     ]
+    },
+    {
+     "code": "WAF",
+     "display": "WAF",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "___",
+     "display": "___",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A placeholder for a missing unit, not a unit."
+      }
+     ]
+    },
+    {
+     "code": "bo",
+     "display": "bo",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not a unit. No expansion of this string is recorded in MIMIC."
+      }
+     ]
+    },
+    {
+     "code": "chamber",
+     "display": "chamber",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "drop ou",
+     "display": "drop ou",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "`ou` is the administration site (oculus uterque, both eyes), not part of the unit. The quantity is `{drop}`, but the site belongs in Dosage.site rather than in the unit, and this generator does not split a source string across two fields."
+      }
+     ]
+    },
+    {
+     "code": "g/1L NS",
+     "display": "g/1L NS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "g\\ 0 g",
+     "display": "g\\ 0 g",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "gg",
+     "display": "gg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Not a unit. No expansion of this string is recorded in MIMIC."
+      }
+     ]
+    },
+    {
+     "code": "gmgm",
+     "display": "gmgm",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "An ETL artefact: the unit string `gm` duplicated."
+      }
+     ]
+    },
+    {
+     "code": "gr",
+     "display": "gr",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Ambiguous between the apothecary grain (UCUM `[gr]`, 64.8 mg) and an abbreviation of gram, which differ by a factor of 15. MIMIC gives no way to tell which was meant, and choosing either would silently rescale a dose."
+      }
+     ]
+    },
+    {
+     "code": "gram/100 mL",
+     "display": "gram/100 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "gram/118 mL",
+     "display": "gram/118 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "gram/30 mL",
+     "display": "gram/30 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "iu/0iu",
+     "display": "iu/0iu",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "log10 IU/mL",
+     "display": "log10 IU/mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "UCUM has no logarithm operator \u2014 `[lg]` is not a unit \u2014 so a log10 concentration cannot be written as a UCUM expression at all. Declined because the alternative is dropping the `log10` and publishing a target that claims the value is a linear concentration, which would be wrong by orders of magnitude and silent."
+      }
+     ]
+    },
+    {
+     "code": "log10 cop/mL",
+     "display": "log10 cop/mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "UCUM has no logarithm operator \u2014 `[lg]` is not a unit \u2014 so a log10 concentration cannot be written as a UCUM expression at all. Declined because the alternative is dropping the `log10` and publishing a target that claims the value is a linear concentration, which would be wrong by orders of magnitude and silent."
+      }
+     ]
+    },
+    {
+     "code": "log10 copies/mL",
+     "display": "log10 copies/mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "UCUM has no logarithm operator \u2014 `[lg]` is not a unit \u2014 so a log10 concentration cannot be written as a UCUM expression at all. Declined because the alternative is dropping the `log10` and publishing a target that claims the value is a linear concentration, which would be wrong by orders of magnitude and silent."
+      }
+     ]
+    },
+    {
+     "code": "mEq / 100 mL SW",
+     "display": "mEq / 100 mL SW",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mEq / 250 mL D5W",
+     "display": "mEq / 250 mL D5W",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mEq / 250 mL NS",
+     "display": "mEq / 250 mL NS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mEq / 500 mL D5W",
+     "display": "mEq / 500 mL D5W",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mEq / 500 mL NS",
+     "display": "mEq / 500 mL NS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mEq in 1L",
+     "display": "mEq in 1L",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mEq/100 mL SW",
+     "display": "mEq/100 mL SW",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mEq/15 mL",
+     "display": "mEq/15 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mEq/200 mL NS",
+     "display": "mEq/200 mL NS",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mEqmEq",
+     "display": "mEqmEq",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "An ETL artefact: the unit string `mEq` duplicated."
+      }
+     ]
+    },
+    {
+     "code": "mL UDCUP",
+     "display": "mL UDCUP",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A volume fused with its container (unit-dose cup). The quantity is millilitres; the container belongs in the dispense record rather than in the unit."
+      }
+     ]
+    },
+    {
+     "code": "mcg'ml-mg/ml",
+     "display": "mcg'ml-mg/ml",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Names one unit per ingredient of a combination product rather than one unit of measure \u2014 the string is a list. UCUM has no expression for `the unit of each of several ingredients`, and picking either component would attach the whole value to one of them. The fix is upstream: a combination product needs one ingredient per Dosage entry, each with its own Quantity."
+      }
+     ]
+    },
+    {
+     "code": "mcg-mg/mL",
+     "display": "mcg-mg/mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Names one unit per ingredient of a combination product rather than one unit of measure \u2014 the string is a list. UCUM has no expression for `the unit of each of several ingredients`, and picking either component would attach the whole value to one of them. The fix is upstream: a combination product needs one ingredient per Dosage entry, each with its own Quantity."
+      }
+     ]
+    },
+    {
+     "code": "mcg/0.5",
+     "display": "mcg/0.5",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mcg/2 mL",
+     "display": "mcg/2 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mcg\\ 0 mcg",
+     "display": "mcg\\ 0 mcg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mch/kg/min",
+     "display": "mch/kg/min",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Most likely a misspelling of `mcg/kg/min`. Declined for the same reason as `mcq` \u2014 a guessed correction on an infusion rate."
+      }
+     ]
+    },
+    {
+     "code": "mcq",
+     "display": "mcq",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Most likely a misspelling of `mcg`, but this generator does not correct spelling it cannot confirm: mapping it to the microgram would rest on a guess about a prescription dose."
+      }
+     ]
+    },
+    {
+     "code": "mg (1 mL)",
+     "display": "mg (1 mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg (950 mg)",
+     "display": "mg (950 mg)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg / 0 mg",
+     "display": "mg / 0 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg /40 mg",
+     "display": "mg /40 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg ER",
+     "display": "mg ER",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A mass fused with a release characteristic (extended release). The quantity is milligrams; `ER` describes the formulation and belongs in the medication reference."
+      }
+     ]
+    },
+    {
+     "code": "mg PE",
+     "display": "mg PE",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "See `PE (Phenytoin Sodium Equivalent)`."
+      }
+     ]
+    },
+    {
+     "code": "mg PE/kg",
+     "display": "mg PE/kg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "See `PE (Phenytoin Sodium Equivalent)`."
+      }
+     ]
+    },
+    {
+     "code": "mg base)/3 mL",
+     "display": "mg base)/3 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg or 92mg",
+     "display": "mg or 92mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg-35 mcg (28)",
+     "display": "mg-35 mcg (28)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg-mcg",
+     "display": "mg-mcg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Names one unit per ingredient of a combination product rather than one unit of measure \u2014 the string is a list. UCUM has no expression for `the unit of each of several ingredients`, and picking either component would attach the whole value to one of them. The fix is upstream: a combination product needs one ingredient per Dosage entry, each with its own Quantity."
+      }
+     ]
+    },
+    {
+     "code": "mg-mg",
+     "display": "mg-mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Names one unit per ingredient of a combination product rather than one unit of measure \u2014 the string is a list. UCUM has no expression for `the unit of each of several ingredients`, and picking either component would attach the whole value to one of them. The fix is upstream: a combination product needs one ingredient per Dosage entry, each with its own Quantity."
+      }
+     ]
+    },
+    {
+     "code": "mg-mg-mcg-mg",
+     "display": "mg-mg-mcg-mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Names one unit per ingredient of a combination product rather than one unit of measure \u2014 the string is a list. UCUM has no expression for `the unit of each of several ingredients`, and picking either component would attach the whole value to one of them. The fix is upstream: a combination product needs one ingredient per Dosage entry, each with its own Quantity."
+      }
+     ]
+    },
+    {
+     "code": "mg/ 0 mg",
+     "display": "mg/ 0 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/0 mg",
+     "display": "mg/0 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/0.3 mL",
+     "display": "mg/0.3 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/0.5 mL",
+     "display": "mg/0.5 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/0.67 mL",
+     "display": "mg/0.67 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/0.6mL",
+     "display": "mg/0.6mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/0mg",
+     "display": "mg/0mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/0mgs",
+     "display": "mg/0mgs",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/100 mL",
+     "display": "mg/100 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/100mg",
+     "display": "mg/100mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/15 mL",
+     "display": "mg/15 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/2 mL",
+     "display": "mg/2 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/2.625 mL",
+     "display": "mg/2.625 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/20 mL",
+     "display": "mg/20 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/250 mL",
+     "display": "mg/250 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/250 ml",
+     "display": "mg/250 ml",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/3 mL",
+     "display": "mg/3 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/40mg",
+     "display": "mg/40mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/5",
+     "display": "mg/5",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/5 mL",
+     "display": "mg/5 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/5 mL (5 mL)",
+     "display": "mg/5 mL (5 mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/50 mL",
+     "display": "mg/50 mL",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/50 ml",
+     "display": "mg/50 ml",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/500 ml",
+     "display": "mg/500 ml",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/54mg",
+     "display": "mg/54mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/6 mL (6 mL)",
+     "display": "mg/6 mL (6 mL)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/61mg",
+     "display": "mg/61mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/960mg",
+     "display": "mg/960mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/mL (1 %)",
+     "display": "mg/mL (1 %)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/mL (4 %)",
+     "display": "mg/mL (4 %)",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg/omg",
+     "display": "mg/omg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "An ETL artefact: a zero mis-typed as the letter o."
+      }
+     ]
+    },
+    {
+     "code": "mg\\ 0 mg",
+     "display": "mg\\ 0 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg\\ 150 mg",
+     "display": "mg\\ 150 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg\\ 40mg",
+     "display": "mg\\ 40mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg\\40 mg",
+     "display": "mg\\40 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mg\\960 mg",
+     "display": "mg\\960 mg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    },
+    {
+     "code": "mgmg",
+     "display": "mgmg",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "An ETL artefact: the unit string `mg` duplicated."
+      }
+     ]
+    },
+    {
+     "code": "powder",
+     "display": "powder",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "soak",
+     "display": "soak",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "spacer",
+     "display": "spacer",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A preparation descriptor rather than a quantity: it answers what kind of product this is, not how much was given. Unlike the countable dose forms it cannot be annotated, because annotating it would attach a number to something no number was recorded for."
+      }
+     ]
+    },
+    {
+     "code": "tiwst",
+     "display": "tiwst",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "A misspelling with no recoverable intent."
+      }
+     ]
+    },
+    {
+     "code": "unit-mg-unit",
+     "display": "unit-mg-unit",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Names one unit per ingredient of a combination product rather than one unit of measure \u2014 the string is a list. UCUM has no expression for `the unit of each of several ingredients`, and picking either component would attach the whole value to one of them. The fix is upstream: a combination product needs one ingredient per Dosage entry, each with its own Quantity."
+      }
+     ]
+    },
+    {
+     "code": "units",
+     "display": "units",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Ambiguous across the Observation codes that carry it, so no single target is correct: MIMIC records it on pH (a dimensionless log activity, UCUM `[pH]`) and on Heparin Dose per hour (International Units per hour) alike. A ConceptMap resolves a source code to one target regardless of the Observation it sits on, so mapping this string would make one of those two populations wrong. The fix is upstream, in the ETL that wrote one unit string for two quantities."
+      }
+     ]
+    },
+    {
+     "code": "units\\ 0 units",
+     "display": "units\\ 0 units",
+     "target": [
+      {
+       "equivalence": "unmatched",
+       "comment": "Records a quantity or an ETL accident rather than a unit of measure \u2014 it carries a digit, a backslash, a tilde or an asterisk, or is wrapped in parentheses. Declined by a stated rule applied uniformly to every source string no explicit answer above covers, rather than row by row. Where a whole dose was written into the unit column (`(1,000 mg)`, `mEq / 250 mL NS`) the fix is in the ETL that filled it, not here: a ConceptMap can supply a unit, never split a value out of one."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

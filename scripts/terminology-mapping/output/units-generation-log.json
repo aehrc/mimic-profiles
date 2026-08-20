@@ -1,0 +1,33 @@
+{
+ "stream": "units",
+ "table": "units-ucum.csv",
+ "method": "curated table, gated by offline UCUM parsing (ucumate)",
+ "settings": {
+  "network": false,
+  "confidence_threshold": null,
+  "search_constraint": null,
+  "annotations_preserved": true
+ },
+ "enumerated": 505,
+ "rows": 505,
+ "mapped": 299,
+ "declined": 206,
+ "no_row": 0,
+ "tiers": {
+  "curated": 209,
+  "declined": 90,
+  "declined-by-rule": 116,
+  "dose-form": 90
+ },
+ "meaning_changed": [
+  "EA",
+  "G",
+  "K/uL",
+  "MG",
+  "ML",
+  "Mg",
+  "m/uL",
+  "u",
+  "uU/ML"
+ ]
+}

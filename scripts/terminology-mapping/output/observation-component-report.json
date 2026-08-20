@@ -4,7 +4,7 @@
  "conceptmap": "http://fhnaumann.github.io/mimic-profiles/fhir/ConceptMap/mimic-observation-component-to-standard",
  "valueset": "http://fhnaumann.github.io/mimic-profiles/fhir/ValueSet/mimic-observation-component-standard",
  "version": "1.0.0",
- "date": "2026-08-10",
+ "date": "2026-08-20",
  "streams": [
   "observation-component-vital"
  ],

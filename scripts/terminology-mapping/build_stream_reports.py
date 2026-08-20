@@ -149,7 +149,17 @@ def stream_block(name, source, outcomes, counts, observed, refs, reg,
     if source.get("note_url"):
         block["note_url"] = source["note_url"]
 
-    if counts is not None:
+    # A stream may sit OUTSIDE the extract: the occurrence job counts the ten
+    # bound elements in occurrences/elements.json, and `units` is read off
+    # Quantity.code, which is not one of them. Its used-in-data figures are
+    # therefore OMITTED here for exactly the reason they are omitted when the
+    # artifact is absent altogether — an empty column says "nobody counted",
+    # while a zero would say "the count found nothing" and hand the stream a
+    # 0.0 coverage_pct in mapping-statistics.csv despite 299 of 505 codes
+    # resolving. Same distinction as observed_anywhere returning None rather
+    # than an empty set, applied per stream because the artifact's coverage is
+    # per element and so its silence is too.
+    if counts is not None and not source.get("outside_occurrence_extract"):
         used = [key for key in enum_keys if key in observed]
         mapped_used = [key for key in used if key in mapped_keys]
         block.update({
